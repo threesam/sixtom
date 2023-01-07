@@ -26,7 +26,6 @@
 		background-color: white;
 		color: black;
 		padding-left: 0.125rem;
-		margin-left: 0.125rem;
 		padding-top: 0.4rem;
 	}
 </style>
