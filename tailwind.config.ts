@@ -9,7 +9,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: 'Tenor Sans'
+				sans: 'Montserrat'
 			}
 		}
 	},
