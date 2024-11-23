@@ -52,7 +52,7 @@
 	}
 </script>
 
-<main class="bg-white font-mono text-gray-900">
+<main class="bg-white font-sans text-gray-900">
 	<!-- Header -->
 	<header class="border-y-2 border-black bg-white">
 		<div class="container mx-auto flex items-center justify-between px-4">

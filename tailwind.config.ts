@@ -7,7 +7,11 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				sans: 'Tenor Sans'
+			}
+		}
 	},
 
 	plugins: [typography, forms, containerQueries]
