@@ -1,16 +1,26 @@
 <script>
 	const portfolioItems = [
 		{
-			title: 'Project 1',
-			description: 'Web Design',
-			image: '/placeholder.svg?height=300&width=400'
+			title: 'Custom E-Commerce Platform for Retailer',
+			description:
+				'Designed and developed a fully customized e-commerce website for a growing retailer, integrating seamless checkout, product catalogs, and a responsive design to maximize sales.',
+			image:
+				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
 		},
 		{
-			title: 'Project 2',
-			description: 'Mobile App',
-			image: '/placeholder.svg?height=300&width=400'
+			title: 'SEO & PPC Strategy for Tech Startup',
+			description:
+				'Implemented a data-driven digital marketing campaign combining SEO optimization and paid search advertising, leading to a 30% increase in traffic and a 20% boost in conversions.',
+			image:
+				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
 		},
-		{ title: 'Project 3', description: 'Branding', image: '/placeholder.svg?height=300&width=400' }
+		{
+			title: 'Rebranding for Creative Agency',
+			description:
+				'Led the full rebranding of a creative agency, including logo design, brand guidelines, and a refreshed visual identity that resonated with their target audience and reinforced their market position.',
+			image:
+				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
+		}
 	]
 </script>
 

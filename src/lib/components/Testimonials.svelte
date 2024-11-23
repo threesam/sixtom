@@ -5,6 +5,16 @@
 			name: 'Jane Smith',
 			role: 'Marketing Director, Brand Inc',
 			quote: 'Transformed our online presence.'
+		},
+		{
+			name: 'David Johnson',
+			role: 'Founder, Startup Hub',
+			quote: 'Their web development exceeded our expectations.'
+		},
+		{
+			name: 'Emily White',
+			role: 'Creative Lead, Design Studio',
+			quote: 'Fantastic branding and creative direction!'
 		}
 	]
 </script>
@@ -12,7 +22,7 @@
 <section id="testimonials" class="bg-white py-20">
 	<div class="container mx-auto px-4">
 		<h2 class="mb-12 text-center text-3xl font-bold text-gray-900">What Our Clients Say</h2>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 			{#each testimonials as testimonial}
 				<div class="border border-gray-200 p-6">
 					<p class="mb-4 text-gray-600">"{testimonial.quote}"</p>
