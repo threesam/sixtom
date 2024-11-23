@@ -1,8 +1,12 @@
-<footer class="bg-gray-900 py-8 text-white">
+<footer class="bg-black py-8 text-white">
 	<div class="container mx-auto px-4">
 		<div class="flex flex-wrap justify-between">
 			<div class="mb-6 w-full md:mb-0 md:w-1/3">
-				<h3 class="mb-4 text-2xl font-bold">sixtom</h3>
+				<h3 class="mb-4">
+					<p class="py-2 text-4xl font-bold text-gray-100">
+						six<span class="mx-0.5 bg-white px-1 py-[6px] text-black">to</span>m
+					</p>
+				</h3>
 				<p class="text-gray-400">Creating digital experiences that matter.</p>
 			</div>
 			<div class="mb-6 w-full md:mb-0 md:w-1/3">
