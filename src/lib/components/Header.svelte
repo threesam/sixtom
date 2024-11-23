@@ -1,5 +1,5 @@
 <script>
-	import { fade } from 'svelte/transition'
+	import { fade, slide } from 'svelte/transition'
 
 	let isMenuOpen = false
 
@@ -37,7 +37,7 @@
 		</button>
 	</div>
 	{#if isMenuOpen}
-		<nav transition:fade class="border-t border-gray-200 bg-white px-4 py-2 md:hidden">
+		<nav in:slide class="border-t border-gray-200 bg-white px-4 py-2 md:hidden">
 			<a href="#services" class="block py-2 text-gray-600 hover:text-gray-900">Services</a>
 			<a href="#portfolio" class="block py-2 text-gray-600 hover:text-gray-900">Portfolio</a>
 			<a href="#testimonials" class="block py-2 text-gray-600 hover:text-gray-900">Testimonials</a>
