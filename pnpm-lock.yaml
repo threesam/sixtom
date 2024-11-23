@@ -17,6 +17,9 @@ dependencies:
   drizzle-orm:
     specifier: ^0.33.0
     version: 0.33.0(@types/react@18.3.12)(postgres@3.4.4)(react@18.3.1)
+  nodemailer:
+    specifier: ^6.9.16
+    version: 6.9.16
   postgres:
     specifier: ^3.4.4
     version: 3.4.4
@@ -3597,6 +3600,11 @@ packages:
   /node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
     dev: true
+
+  /nodemailer@6.9.16:
+    resolution: {integrity: sha512-psAuZdTIRN08HKVd/E8ObdV6NO7NTBY3KsC30F7M4H1OnmLCUNaS56FpYxyb26zWLSyYF9Ozch9KYHhHegsiOQ==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
