@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
 	import { fade, slide } from 'svelte/transition'
-
+	let scrollY = 0
+	let height = 0
 	let isMenuOpen = false
+	let headerHeight = 56 //px
+
 	const navigationLinks = [
 		{ href: '#services', text: 'Services' },
 		{ href: '#portfolio', text: 'Portfolio' },
@@ -12,18 +15,48 @@
 	function toggleMenu() {
 		isMenuOpen = !isMenuOpen
 	}
+
+	// Use onMount to ensure the DOM is available
+	import { onMount } from 'svelte'
+
+	function scrollMaxValue() {
+		const body = document.body
+		const html = document.documentElement
+
+		const documentHeight = Math.max(
+			body.scrollHeight,
+			body.offsetHeight,
+			html.clientHeight,
+			html.scrollHeight,
+			html.offsetHeight
+		)
+
+		return documentHeight - window.innerHeight
+	}
+
+	onMount(() => {
+		height = scrollMaxValue() - headerHeight
+	})
 </script>
 
-<header class="fixed z-10 w-full bg-white text-black shadow-lg shadow-black/30">
+<svelte:window bind:scrollY on:resize={() => (height = scrollMaxValue() - headerHeight)} />
+
+<header
+	class="fixed z-10 w-full shadow-lg shadow-black/30 transition-all duration-300 data-[is-dark=false]:bg-black data-[is-dark=true]:bg-white data-[is-dark=false]:text-white data-[is-dark=true]:text-black"
+	data-is-dark={scrollY <= height}
+>
 	<div class="container relative z-40 mx-auto flex items-center justify-between px-4">
 		<a href="/">
-			<p class="py-2 text-4xl font-bold text-gray-900">
-				six<span class="mx-0.5 bg-black px-1 py-[6px] text-white">to</span>m
+			<p class="py-2 text-4xl font-bold">
+				six<span
+					class="mx-0.5 bg-black px-1 py-[6px] text-white transition-all duration-300 data-[is-dark=false]:bg-white data-[is-dark=true]:bg-black data-[is-dark=false]:text-black data-[is-dark=true]:text-white"
+					data-is-dark={scrollY <= height}>to</span
+				>m
 			</p>
 		</a>
 		<nav class="hidden space-x-6 md:flex">
 			{#each navigationLinks as { href, text }}
-				<a {href} class="text-black hover:text-gray-900">{text}</a>
+				<a {href} class="">{text}</a>
 			{/each}
 		</nav>
 		{#if isMenuOpen}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	let innerWidth = 0
 	let name = ''
 	let email = ''
 	let message = ''
@@ -18,47 +19,49 @@
 	}
 </script>
 
-<section id="contact" class="bg-gray-100 py-20">
-	<div class="container mx-auto px-4">
-		<h2 class="mb-12 text-center text-3xl font-bold text-gray-900">Get In Touch</h2>
-		<form class="mx-auto max-w-lg" on:submit|preventDefault={submitForm}>
+<svelte:window bind:innerWidth />
+
+<section class="container w-full py-4 md:py-12" id="contact">
+	<div class="mx-auto max-w-lg">
+		<h2 class="mb-4 text-center text-3xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
+		<form class="mx-auto" on:submit|preventDefault={submitForm}>
 			<div class="mb-4">
-				<label for="name" class="mb-2 block font-bold text-gray-700">Name</label>
+				<label for="name" class="mb-1 block font-bold text-gray-100">Name</label>
 				<input
 					bind:value={name}
 					type="text"
 					id="name"
 					name="name"
-					class="w-full border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none"
+					class="w-full border border-gray-300 px-3 py-1 focus:border-gray-500 focus:outline-none"
 					required
 				/>
 			</div>
 			<div class="mb-4">
-				<label for="email" class="mb-2 block font-bold text-gray-700">Email</label>
+				<label for="email" class="mb-1 block font-bold text-gray-100">Email</label>
 				<input
 					bind:value={email}
 					type="email"
 					id="email"
 					name="email"
-					class="w-full border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none"
+					class="w-full border border-gray-300 px-3 py-1 focus:border-gray-500 focus:outline-none"
 					required
 				/>
 			</div>
 			<div class="mb-4">
-				<label for="message" class="mb-2 block font-bold text-gray-700">Message</label>
+				<label for="message" class="mb-1 block font-bold text-gray-100">Message</label>
 				<textarea
 					bind:value={message}
 					id="message"
 					name="message"
-					rows="4"
-					class="w-full border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none"
+					rows={innerWidth < 768 ? 3 : 5}
+					class="w-full border border-gray-300 px-3 py-1 focus:border-gray-500 focus:outline-none"
 					required
 				></textarea>
 			</div>
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="bg-gray-900 px-6 py-3 font-bold text-white transition duration-300 hover:bg-gray-800"
+					class="w-full bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500"
 				>
 					Send Message
 				</button>
