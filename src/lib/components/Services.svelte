@@ -13,11 +13,11 @@
 
 <section id="services" class="bg-white py-20">
 	<div class="container mx-auto px-4">
-		<h2 class="mb-12 text-center text-3xl font-bold text-gray-900">Our Services</h2>
+		<h2 class="mb-12 text-center text-3xl font-bold text-black">Our Services</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 			{#each services as { name, text }}
 				<div class="p-6 shadow-lg shadow-gray-200">
-					<h3 class="mb-4 text-xl font-semibold text-gray-900">{name}</h3>
+					<h3 class="mb-4 text-xl font-semibold text-black">{name}</h3>
 					<p class="text-gray-600">
 						{text}
 					</p>
