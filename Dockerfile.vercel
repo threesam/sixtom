@@ -1,0 +1,17 @@
+FROM rust:latest
+
+# Install Node.js and pnpm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get update && apt-get install -y nodejs
+RUN npm install -g pnpm wasm-pack
+
+# Set working directory
+WORKDIR /app
+
+# Copy project files
+COPY . .
+
+# Build Wasm and project
+RUN pnpm install
+RUN cd src/lib/wasm-particle-system && wasm-pack build --target web --release
+RUN pnpm run build

@@ -11,7 +11,7 @@
 		</p>
 		<a
 			href="#contact"
-			class="bg-yellow-400 px-8 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500"
+			class="bg-yellow-400 px-8 py-4 font-bold uppercase text-black transition duration-300 hover:bg-yellow-500"
 		>
 			Get Started
 		</a>
