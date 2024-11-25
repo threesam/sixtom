@@ -1,0 +1,1 @@
+/Users/salvatoredangelo/Code/Me/sixtom/src/lib/wasm-particle-system/target/wasm32-unknown-unknown/release/wasm_particle_system.wasm: /Users/salvatoredangelo/Code/Me/sixtom/src/lib/wasm-particle-system/src/lib.rs
