@@ -1,5 +1,6 @@
-<script>
-	const portfolioItems = [
+<script lang="ts">
+	import type { Project } from '$lib/types'
+	const defaultItems = [
 		{
 			title: 'Custom E-Commerce Platform for Retailer',
 			description:
@@ -22,18 +23,20 @@
 				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
 		}
 	]
+
+	let { items = [] } = $props()
 </script>
 
 <section id="portfolio" class="bg-gray-100 py-20">
 	<div class="container mx-auto px-4">
 		<h2 class="mb-12 text-center text-3xl font-bold text-black">Our Portfolio</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-			{#each portfolioItems as item}
+			{#each items as item}
 				<div class="border border-gray-200 bg-white">
-					<img src={item.image} alt={item.title} class="h-48 w-full object-cover" />
+					<img src={item.image?.asset.url} alt={item.title} class="h-48 w-full object-cover" />
 					<div class="p-4">
 						<h3 class="mb-2 text-xl font-semibold text-black">{item.title}</h3>
-						<p class="text-gray-600">{item.description}</p>
+						<p class="text-gray-600">{item.subtitle}</p>
 					</div>
 				</div>
 			{/each}
