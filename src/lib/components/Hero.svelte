@@ -7,6 +7,9 @@
 <!-- Hero Section -->
 <section class="relative bg-black py-20" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);">
 	<div class="container mx-auto flex flex-col items-center justify-between gap-2 px-4 md:flex-row">
+		<div class="mb-8 flex items-center justify-center md:hidden">
+			<Clock size={250} hasBlur={false} />
+		</div>
 		<div class="mb-8 text-center md:mb-0 md:w-1/2 md:text-left">
 			<h1 class="mb-4 text-4xl font-bold text-gray-100 md:text-5xl">{title}</h1>
 			<p class="mb-8 text-xl text-gray-100">{subtitle}</p>

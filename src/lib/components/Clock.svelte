@@ -3,8 +3,9 @@
 	import { spring } from 'svelte/motion'
 
 	let {
+		hasBlur = true,
 		size = 300,
-		color = '#E5E7EB',
+		color = '#facc15',
 		backgroundImage = 'https://cdn.sanity.io/images/qcht0vh1/production/a3e6b97be8957dda89548a502f88b376e4f70a99-600x600.jpg'
 	} = $props()
 
@@ -49,23 +50,13 @@
 				</clipPath>
 			</defs>
 
-			<!-- Outer Border -->
-			<circle
-				cx={size / 2}
-				cy={size / 2}
-				r={size / 2 - 1}
-				fill="none"
-				stroke={color}
-				stroke-width="2"
-			/>
-
 			<!-- Background Image or Solid Color -->
 			{#if backgroundImage}
 				<image
 					href={backgroundImage}
 					x="0"
 					y="0"
-					class="blur grayscale transition-all duration-1000 group-hover:blur-0"
+					class="grayscale"
 					width={size}
 					height={size}
 					clip-path="url(#clock-face)"

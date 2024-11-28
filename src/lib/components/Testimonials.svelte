@@ -21,7 +21,7 @@
 
 <section id="testimonials" class="bg-gray-100 py-20">
 	<div class="container mx-auto md:px-4">
-		<h2 class="md:mb-12 mb-4 px-4 md:text-center md:text-4xl text-2xl font-bold text-black">
+		<h2 class="mb-4 px-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
 			What Our Clients Say
 		</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">

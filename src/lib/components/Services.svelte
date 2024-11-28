@@ -13,7 +13,9 @@
 
 <section id="services" class="bg-gray-100 py-20">
 	<div class="container mx-auto md:px-4">
-		<h2 class="md:mb-12 mb-4 px-4 md:text-center md:text-4xl text-2xl font-bold text-black">Our Services</h2>
+		<h2 class="mb-4 px-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
+			Our Services
+		</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 			{#each services as { name, text }}
 				<div class="p-4 shadow-lg shadow-gray-200">

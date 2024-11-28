@@ -10,8 +10,13 @@
 	]
 </script>
 
-<footer class="relative flex h-screen flex-col justify-between bg-black pb-8 text-gray-100">
-	<div class="container mx-auto flex h-full flex-col place-content-center px-4">
+<footer
+	class="relative flex flex-col justify-between bg-black text-gray-100"
+	style="clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);"
+>
+	<div
+		class="container mx-auto flex h-screen flex-col place-content-end px-4 max-md:pb-16 md:place-content-center"
+	>
 		<Contact />
 		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-4">
 			<h4 class="mb-4 w-full text-center text-2xl font-semibold">Connect With Us</h4>
@@ -19,13 +24,7 @@
 		</div>
 	</div>
 
-	<!-- Slanted Top Background -->
-	<div
-		class="h-15 absolute -top-[1px] left-0 w-full bg-gray-100"
-		style="clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);"
-	></div>
-
-	<div class="mt-8 bg-black text-center text-sm text-gray-400">
+	<div class="bg-black pb-4 text-center text-sm text-gray-400 md:mt-8">
 		© {new Date().getFullYear()} sixtom. All rights reserved.
 	</div>
 </footer>
