@@ -16,11 +16,11 @@ import { codeInput } from '@sanity/code-input'
 export const sanityConfig = defineConfig({
 	name: 'studio',
 	title: 'The Studio',
-	projectId: PUBLIC_SANITY_PROJECT_ID || '',
-	basePath: '/studio',
+	projectId: PUBLIC_SANITY_PROJECT_ID ?? '',
+	basePath: '/sanity',
 	icon: RiAliensLine,
-	dataset: PUBLIC_SANITY_DATASET || 'production',
-	plugins: [codeInput(), media(), structureTool(), visionTool()],
+	dataset: PUBLIC_SANITY_DATASET ?? 'production',
+	plugins: [codeInput(), structureTool(), media(), visionTool()],
 	schema: {
 		types: schemaTypes
 	}
