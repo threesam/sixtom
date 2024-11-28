@@ -7,7 +7,6 @@
 	import Testimonials from '$lib/components/Testimonials.svelte'
 
 	let { data } = $props()
-	console.log(data.page.sections.map((section) => section.items))
 </script>
 
 <Header />

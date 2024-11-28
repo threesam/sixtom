@@ -11,7 +11,6 @@ interface ContactForm {
 
 export async function POST({ request }: { request: Request }) {
 	const { name, email, message }: ContactForm = await request.json()
-	console.log('{ name, email, message }: ', { name, email, message })
 
 	// Create the transporter object using Gmail's SMTP service (or other SMTP server)
 	const transporter = nodemailer.createTransport({

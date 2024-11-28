@@ -25,7 +25,7 @@
 	]
 
 	let { section = [] } = $props()
-	console.log('section: ', section.items)
+
 	function getLink(links) {
 		const websiteLink = links?.find(({ title }) => title === 'website')
 
