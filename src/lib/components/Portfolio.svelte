@@ -37,7 +37,7 @@
 
 <section id="portfolio" class="bg-gray-200 py-20">
 	<div class="container mx-auto px-4">
-		<h2 class="mb-12 text-center md:text-4xl text-2xl font-bold text-black">{section.title}</h2>
+		<h2 class="md:mb-12 mb-4 md:text-center md:text-4xl text-2xl font-bold text-black">{section.title}</h2>
 		<ul class="grid grid-cols-1 gap-8 md:grid-cols-6">
 			{#each section.items as { config, image, links, title, subtitle }, index}
 				{#if config?.isActive}

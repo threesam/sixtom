@@ -12,11 +12,11 @@
 </script>
 
 <section id="services" class="bg-gray-100 py-20">
-	<div class="container mx-auto px-4">
-		<h2 class="mb-12 text-center text-2xl font-bold text-black md:text-4xl">Our Services</h2>
+	<div class="container mx-auto md:px-4">
+		<h2 class="md:mb-12 mb-4 px-4 md:text-center md:text-4xl text-2xl font-bold text-black">Our Services</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 			{#each services as { name, text }}
-				<div class="p-6 shadow-lg shadow-gray-200">
+				<div class="p-4 shadow-lg shadow-gray-200">
 					<h3 class="mb-4 text-xl font-semibold text-black">{name}</h3>
 					<p class="text-gray-600">
 						{text}

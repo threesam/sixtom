@@ -20,13 +20,13 @@
 </script>
 
 <section id="testimonials" class="bg-gray-100 py-20">
-	<div class="container mx-auto px-4">
-		<h2 class="mb-12 text-center text-2xl font-bold text-black md:text-4xl">
+	<div class="container mx-auto md:px-4">
+		<h2 class="md:mb-12 mb-4 px-4 md:text-center md:text-4xl text-2xl font-bold text-black">
 			What Our Clients Say
 		</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 			{#each testimonials as testimonial}
-				<div class="p-6 shadow-lg shadow-gray-200">
+				<div class="p-4 shadow-lg shadow-gray-200">
 					<p class="mb-4 text-gray-600">"{testimonial.quote}"</p>
 					<div class="font-semibold text-black">{testimonial.name}</div>
 					<div class="text-sm text-gray-500">{testimonial.role}</div>
