@@ -25,7 +25,7 @@
 
 <svelte:window bind:innerWidth />
 
-<section class="container w-full py-4 md:py-12" id="contact">
+<section class="container w-full py-2 md:py-12" id="contact">
 	<div class="mx-auto max-w-lg">
 		<h2 class="mb-4 text-center text-3xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
 		<form class="mx-auto" onsubmit={submitForm}>

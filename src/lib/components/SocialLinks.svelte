@@ -18,7 +18,7 @@
 </script>
 
 <div class="flex space-x-4 text-gray-100">
-	<a href={facebook.href} class="hover:text-yellow-400 duration-300 transition-colors">
+	<a href={facebook.href} class="transition-colors duration-300 hover:text-yellow-400">
 		<span class="sr-only">{facebook.title}</span>
 		<svg class="h-16 w-16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 			<path
@@ -28,7 +28,7 @@
 			/>
 		</svg>
 	</a>
-	<a href={linkedin.href} class="hover:text-yellow-400 duration-300 transition-colors">
+	<a href={linkedin.href} class="transition-colors duration-300 hover:text-yellow-400">
 		<span class="sr-only">{linkedin.title}</span>
 		<svg class="h-16 w-16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 			<path
@@ -36,7 +36,7 @@
 			/>
 		</svg>
 	</a>
-	<a href={x.href} class="hover:text-yellow-400 duration-300 transition-colors">
+	<a href={x.href} class="transition-colors duration-300 hover:text-yellow-400">
 		<span class="sr-only">{x.title}</span>
 		<svg class="h-16 w-16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 			<path
