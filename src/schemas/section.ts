@@ -53,13 +53,15 @@ export default defineType({
 				defineArrayMember({
 					type: 'reference',
 					name: 'post',
+					title: 'Post',
 					to: [{ type: 'post' }]
+				}),
+				defineArrayMember({
+					type: 'reference',
+					name: 'quote',
+					title: 'Quote',
+					to: [{ type: 'quote' }]
 				})
-				// defineArrayMember({
-				// 	type: 'reference',
-				// 	name: 'testimonial',
-				// 	to: [{ type: 'testimonial' }]
-				// })
 			]
 		},
 		{

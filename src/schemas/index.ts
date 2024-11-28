@@ -3,6 +3,7 @@ import blockContent from './blockContent'
 import category from './category'
 import catalog from './catalog'
 import link from './link'
+import quote from './quote'
 import page from './page'
 import post from './post'
 import project from './project'
@@ -16,6 +17,7 @@ export const schemaTypes = [
 	category,
 	catalog,
 	link,
+	quote,
 	page,
 	post,
 	project,
