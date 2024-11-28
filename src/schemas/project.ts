@@ -52,6 +52,20 @@ export default defineType({
 			type: 'array',
 			of: [{ type: 'string' }]
 		}),
+		defineField({
+			type: 'object',
+			name: 'config',
+			fields: [
+				{
+					type: 'boolean',
+					name: 'isActive'
+				},
+				{
+					type: 'boolean',
+					name: 'isFeatured'
+				}
+			]
+		}),
 		seo
 	]
 })

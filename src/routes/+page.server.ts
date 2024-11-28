@@ -3,25 +3,31 @@ import type { Project } from '$lib/types'
 import { fetchSanityData } from '$lib/client/sanity'
 
 // Query to fetch posts
-const PROJECTS_QUERY = `*[_type == "project"]{
-...,
-  _id,
-  title,
-  "handle": slug.current,
-	image{asset->},
-  publishedAt
-}[0...10] | order(publishedAt desc)`
+const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
+	sections[]->{
+		...,
+		_id,
+		title,
+		handle,
+		image{asset->},
+		publishedAt,
+		items[]->{
+			...,
+			image{asset->}
+		}
+	}
+}`
 
 export const load: PageServerLoad = async () => {
 	try {
-		const projects = await fetchSanityData<Project[]>(PROJECTS_QUERY)
+		const page = await fetchSanityData<Project[]>(PAGE_QUERY)
 
 		return {
-			projects
+			page
 		}
 	} catch (error) {
 		return {
-			projects: [],
+			page: [],
 			error: error instanceof Error ? error.message : 'Unknown error occurred'
 		}
 	}

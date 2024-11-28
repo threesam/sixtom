@@ -7,17 +7,14 @@
 	import Testimonials from '$lib/components/Testimonials.svelte'
 
 	let { data } = $props()
-	console.log(
-		'data: ',
-		data.projects.map(({ image }) => image)
-	)
+	console.log(data.page.sections.map((section) => section.items))
 </script>
 
 <Header />
 <div class="pt-8">
 	<Hero />
 	<Services />
-	<Portfolio items={data.projects} />
+	<Portfolio section={data.page.sections[0]} />
 	<Testimonials />
 </div>
 <Footer />

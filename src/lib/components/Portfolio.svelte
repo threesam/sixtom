@@ -24,22 +24,37 @@
 		}
 	]
 
-	let { items = [] } = $props()
+	let { section = [] } = $props()
+	console.log('section: ', section.items)
+	function getLink(links) {
+		const websiteLink = links?.find(({title}) => title === 'website')
+
+		if (websiteLink) return websiteLink.url
+
+		return '#'
+	}
 </script>
 
 <section id="portfolio" class="bg-gray-100 py-20">
 	<div class="container mx-auto px-4">
-		<h2 class="mb-12 text-center text-3xl font-bold text-black">Our Portfolio</h2>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-			{#each items as item}
-				<div class="border border-gray-200 bg-white">
-					<img src={item.image?.asset.url} alt={item.title} class="h-48 w-full object-cover" />
-					<div class="p-4">
-						<h3 class="mb-2 text-xl font-semibold text-black">{item.title}</h3>
-						<p class="text-gray-600">{item.subtitle}</p>
-					</div>
-				</div>
+		<h2 class="mb-12 text-center text-3xl font-bold text-black">{section.title}</h2>
+		<ul class="grid grid-cols-1 gap-8 md:grid-cols-6">
+			{#each section.items as { config, image, links, title, subtitle }, index}
+				{#if config?.isActive}
+					<li
+						class="col-span-2 border border-gray-200 bg-white data-[is-featured=true]:col-span-4"
+						data-is-featured={config.isFeatured}
+					>
+						<a href={getLink(links)}>
+							<img src={image?.asset.url} alt={title} class="h-96 w-full object-cover" />
+							<div class="p-4">
+								<h3 class="mb-2 text-xl font-semibold text-black">{title}</h3>
+								<p class="text-gray-600">{subtitle}</p>
+							</div>
+						</a>
+					</li>
+				{/if}
 			{/each}
-		</div>
+		</ul>
 	</div>
 </section>
