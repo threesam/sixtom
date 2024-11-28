@@ -12,7 +12,9 @@
 <Header />
 <div class="pt-8">
 	<Hero />
+
 	<Services />
+
 	<Portfolio section={data.page.sections[0]} />
 	<Testimonials />
 </div>

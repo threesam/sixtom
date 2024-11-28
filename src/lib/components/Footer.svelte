@@ -10,7 +10,7 @@
 	]
 </script>
 
-<footer class="flex h-screen flex-col justify-between bg-black pb-8 text-gray-100">
+<footer class="relative flex h-screen flex-col justify-between bg-black pb-8 text-gray-100">
 	<div class="container mx-auto flex h-full flex-col place-content-center px-4">
 		<Contact />
 		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-4">
@@ -18,6 +18,12 @@
 			<SocialLinks />
 		</div>
 	</div>
+
+	<!-- Slanted Top Background -->
+	<div
+		class="h-15 absolute -top-[1px] left-0 w-full bg-gray-100"
+		style="clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);"
+	></div>
 
 	<div class="mt-8 bg-black text-center text-sm text-gray-400">
 		© {new Date().getFullYear()} sixtom. All rights reserved.

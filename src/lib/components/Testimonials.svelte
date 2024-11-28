@@ -19,7 +19,7 @@
 	]
 </script>
 
-<section id="testimonials" class="bg-white py-20">
+<section id="testimonials" class="bg-gray-100 py-20">
 	<div class="container mx-auto px-4">
 		<h2 class="mb-12 text-center text-3xl font-bold text-black">What Our Clients Say</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">

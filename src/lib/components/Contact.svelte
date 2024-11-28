@@ -1,11 +1,15 @@
 <script lang="ts">
-	let innerWidth = 0
-	let name = ''
-	let email = ''
-	let message = ''
-	let status = ''
+	let innerWidth = $state(0)
+	let name = $state('')
+	let email = $state('')
+	let message = $state('')
+	let status = $state('')
 
-	async function submitForm() {
+	// Form validation: Check if all required fields are filled
+	let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
+
+	async function submitForm(e) {
+		e.preventDefault()
 		const response = await fetch('/api/send-email', {
 			method: 'POST',
 			headers: {
@@ -24,7 +28,7 @@
 <section class="container w-full py-4 md:py-12" id="contact">
 	<div class="mx-auto max-w-lg">
 		<h2 class="mb-4 text-center text-3xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
-		<form class="mx-auto" on:submit|preventDefault={submitForm}>
+		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">Name</label>
 				<input
@@ -32,7 +36,8 @@
 					type="text"
 					id="name"
 					name="name"
-					class="w-full border border-gray-300 px-3 py-1 focus:border-gray-500 focus:outline-none"
+					class="w-full border-2 border-gray-300 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-300 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					placeholder="please tell us your name"
 					required
 				/>
 			</div>
@@ -43,7 +48,8 @@
 					type="email"
 					id="email"
 					name="email"
-					class="w-full border border-gray-300 px-3 py-1 focus:border-gray-500 focus:outline-none"
+					class="w-full border-2 border-gray-300 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-300 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					placeholder="enter your email"
 					required
 				/>
 			</div>
@@ -54,14 +60,16 @@
 					id="message"
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
-					class="w-full border border-gray-300 px-3 py-1 focus:border-gray-500 focus:outline-none"
+					class="w-full border-2 border-gray-300 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-300 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					placeholder="how can we help?"
 					required
 				></textarea>
 			</div>
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="w-full bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500"
+					class="w-full bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
+					disabled={!isFormValid}
 				>
 					Send Message
 				</button>

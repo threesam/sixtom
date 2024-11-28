@@ -42,15 +42,15 @@
 <svelte:window bind:scrollY on:resize={() => (height = scrollMaxValue() - headerHeight)} />
 
 <header
-	class="fixed z-10 w-full shadow-lg shadow-black/30 transition-all duration-300 data-[is-dark=false]:bg-black data-[is-dark=true]:bg-white data-[is-dark=false]:text-white data-[is-dark=true]:text-black"
-	data-is-dark={scrollY <= height}
+	class="fixed z-10 w-full bg-black text-white shadow-lg shadow-black/30 transition-all duration-300"
+	data-is-dark={false}
 >
 	<div class="container relative z-40 mx-auto flex items-center justify-between px-4">
 		<a href="/">
 			<p class="py-2 text-4xl font-bold">
 				six<span
-					class="mx-0.5 bg-black px-1 py-[6px] text-white transition-all duration-300 data-[is-dark=false]:bg-white data-[is-dark=true]:bg-black data-[is-dark=false]:text-black data-[is-dark=true]:text-white"
-					data-is-dark={scrollY <= height}>to</span
+					class="mx-0.5 bg-white px-1 py-[6px] text-black transition-all duration-300"
+					data-is-dark={false}>to</span
 				>m
 			</p>
 		</a>
