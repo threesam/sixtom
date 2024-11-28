@@ -1,8 +1,10 @@
 import { defineType, defineArrayMember } from 'sanity'
+import { BsCollectionFill } from 'react-icons/bs'
 
 export default defineType({
 	name: 'section',
 	type: 'document',
+	icon: BsCollectionFill,
 	fields: [
 		{
 			name: 'title',

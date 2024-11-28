@@ -1,9 +1,11 @@
 import { seo } from './_partials'
 import { defineField, defineType } from 'sanity'
+import { GrGallery } from 'react-icons/gr'
 
 export default defineType({
 	name: 'catalog',
 	type: 'document',
+	icon: GrGallery,
 	fields: [
 		defineField({
 			name: 'title',

@@ -1,7 +1,10 @@
+import { FaItunesNote } from 'react-icons/fa'
+
 export default {
 	name: 'song',
 	type: 'document',
 	title: 'Song',
+	icon: FaItunesNote,
 	fields: [
 		{
 			name: 'title',

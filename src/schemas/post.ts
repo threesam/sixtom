@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { BsFillSignpostFill } from 'react-icons/bs'
 
 export default defineType({
 	name: 'post',
 	title: 'Post',
 	type: 'document',
+	icon: BsFillSignpostFill,
 	fields: [
 		defineField({
 			name: 'title',

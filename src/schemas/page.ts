@@ -1,9 +1,11 @@
 import { defineType, defineArrayMember } from 'sanity'
+import { MdRequestPage } from 'react-icons/md'
 
 export default defineType({
 	name: 'page',
 	type: 'document',
 	title: 'Page',
+	icon: MdRequestPage,
 	fields: [
 		{
 			name: 'title',

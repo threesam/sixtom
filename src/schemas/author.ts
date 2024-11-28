@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { FaBookOpen } from 'react-icons/fa6'
 
 export default defineType({
 	name: 'author',
 	title: 'Author',
 	type: 'document',
+	icon: FaBookOpen,
 	fields: [
 		defineField({
 			name: 'name',

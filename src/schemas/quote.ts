@@ -1,10 +1,12 @@
 import { defineType } from 'sanity'
+import { FaQuoteLeft } from 'react-icons/fa'
 import type { Rule } from 'sanity'
 
 export default defineType({
 	name: 'quote',
 	type: 'document',
 	title: 'Quote',
+	icon: FaQuoteLeft,
 	fields: [
 		{
 			name: 'text',
