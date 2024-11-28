@@ -57,6 +57,7 @@
 					x="0"
 					y="0"
 					class="grayscale"
+					style="filter: grayscale(100%); -webkit-filter: grayscale(100%);"
 					width={size}
 					height={size}
 					clip-path="url(#clock-face)"
