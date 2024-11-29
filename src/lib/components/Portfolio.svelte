@@ -44,15 +44,15 @@
 			{#each section.items as { config, image, links, title, subtitle }, index}
 				{#if config?.isActive}
 					<li
-						class="col-span-full overflow-hidden rounded-lg border border-gray-200 bg-gray-100 grayscale md:col-span-2 md:data-[is-featured=true]:col-span-4"
+						class="group col-span-full overflow-hidden rounded-lg border-4 border-transparent bg-gray-200 duration-500 hover:border-yellow-400 md:col-span-2 md:data-[is-featured=true]:col-span-4"
 						data-is-featured={config.isFeatured}
 					>
 						<a href={getLink(links)}>
-							<figure class="h-96 w-full overflow-hidden">
+							<figure class="h-96 w-full overflow-hidden grayscale">
 								<img
 									src={image?.asset.url}
 									alt={title}
-									class="h-full w-full object-cover transition-all duration-300 hover:scale-105"
+									class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
 								/>
 							</figure>
 							<div class="p-4">

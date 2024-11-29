@@ -10,9 +10,7 @@
 	]
 </script>
 
-<footer
-	class="relative flex flex-col justify-between bg-black text-gray-100"
->
+<footer class="relative flex flex-col justify-between bg-black text-gray-100">
 	<div
 		class="container mx-auto flex h-screen flex-col place-content-end px-4 max-md:pb-16 md:place-content-center"
 	>

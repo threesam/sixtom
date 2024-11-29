@@ -54,9 +54,14 @@
 				>m
 			</p>
 		</a>
-		<nav class="hidden space-x-6 md:flex">
+		<nav class="hidden space-x-12 md:flex">
 			{#each navigationLinks as { href, text }}
-				<a {href} class="">{text}</a>
+				<div class="group relative inline-block">
+					<a {href} class="">{text}</a>
+					<span
+						class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-yellow-400 opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
+					></span>
+				</div>
 			{/each}
 		</nav>
 		{#if isMenuOpen}

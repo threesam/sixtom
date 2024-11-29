@@ -18,7 +18,7 @@
 		</h2>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 			{#each services as { name, text }}
-				<div class="p-4 shadow-lg shadow-gray-200">
+				<div class="p-4">
 					<h3 class="mb-4 text-xl font-semibold text-black">{name}</h3>
 					<p class="text-gray-600">
 						{text}

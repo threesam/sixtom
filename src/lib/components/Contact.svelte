@@ -36,7 +36,7 @@
 					type="text"
 					id="name"
 					name="name"
-					class="w-full border-2 border-gray-300 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-300 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
 					placeholder="please tell us your name"
 					required
 				/>
@@ -48,7 +48,7 @@
 					type="email"
 					id="email"
 					name="email"
-					class="w-full border-2 border-gray-300 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-300 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
 					placeholder="enter your email"
 					required
 				/>
@@ -60,7 +60,7 @@
 					id="message"
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
-					class="w-full border-2 border-gray-300 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-300 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
 					placeholder="how can we help?"
 					required
 				></textarea>
@@ -68,7 +68,7 @@
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="w-full bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
+					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
 					disabled={!isFormValid}
 				>
 					Send Message
