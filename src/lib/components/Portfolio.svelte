@@ -40,24 +40,24 @@
 		<h2 class="mb-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
 			{section.title}
 		</h2>
-		<ul class="grid grid-cols-1 gap-8 md:grid-cols-6">
+		<ul class="flex w-full overflow-x-scroll gap-2 scrollbar-none snap-x snap-mandatory">
 			{#each section.items as { config, image, links, title, subtitle }, index}
 				{#if config?.isActive}
 					<li
-						class="group col-span-full overflow-hidden rounded-lg border-4 border-transparent bg-gray-200 duration-500 hover:border-yellow-400 md:col-span-2 md:data-[is-featured=true]:col-span-4"
+						class="group md:w-[40%] max-w-[60%] snap-start shrink-0 rounded-lg border-4 border-transparent bg-gray-200 duration-500 hover:border-yellow-400"
 						data-is-featured={config.isFeatured}
 					>
-						<a href={getLink(links)}>
-							<figure class="h-96 w-full overflow-hidden grayscale">
+						<a class="w-full" href={getLink(links)}>
+							<figure class="h-auto w-full aspect-square overflow-hidden grayscale">
 								<img
 									src={image?.asset.url}
 									alt={title}
 									class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
 								/>
 							</figure>
-							<div class="p-4">
-								<h3 class="mb-2 text-xl font-semibold text-black">{title}</h3>
-								<p class="text-gray-600">{subtitle}</p>
+							<div class="py-4">
+								<h3 class="text-xl mb-1font-semibold text-black">{title}</h3>
+								<p class="text-gray-500 uppercase text-xs">{subtitle}</p>
 							</div>
 						</a>
 					</li>
