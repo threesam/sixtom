@@ -1,30 +1,19 @@
 <script lang="ts">
+	import { onMount } from 'svelte'
+	import { fade } from 'svelte/transition'
 	import type { Project } from '$lib/types'
-	const defaultItems = [
-		{
-			title: 'Custom E-Commerce Platform for Retailer',
-			description:
-				'Designed and developed a fully customized e-commerce website for a growing retailer, integrating seamless checkout, product catalogs, and a responsive design to maximize sales.',
-			image:
-				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
-		},
-		{
-			title: 'SEO & PPC Strategy for Tech Startup',
-			description:
-				'Implemented a data-driven digital marketing campaign combining SEO optimization and paid search advertising, leading to a 30% increase in traffic and a 20% boost in conversions.',
-			image:
-				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
-		},
-		{
-			title: 'Rebranding for Creative Agency',
-			description:
-				'Led the full rebranding of a creative agency, including logo design, brand guidelines, and a refreshed visual identity that resonated with their target audience and reinforced their market position.',
-			image:
-				'https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDQxfHxld29tZXJjZXxlbnwwfDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'
-		}
-	]
 
 	let { section = [] } = $props()
+
+	// State for tracking navigation visibility
+	let isAtStart = $state(true)
+	let isAtEnd = $state(false)
+
+	// Reference to the slider container
+	let sliderContainer: HTMLElement
+
+	// Active items
+	const activeItems = $derived(section.items.filter((item) => item.config?.isActive))
 
 	function getLink(links) {
 		const websiteLink = links?.find(({ title }) => title === 'website')
@@ -33,22 +22,128 @@
 
 		return '#'
 	}
+
+	function navigateSlider(direction: 'prev' | 'next') {
+		if (!sliderContainer) return
+
+		const scrollAmount = sliderContainer.clientWidth
+		sliderContainer.scrollBy({
+			left: direction === 'prev' ? -scrollAmount : scrollAmount,
+			behavior: 'smooth'
+		})
+	}
+
+	// Add scroll event to update navigation state
+	function handleScroll() {
+		if (!sliderContainer) return
+
+		const scrollLeft = sliderContainer.scrollLeft
+		const scrollWidth = sliderContainer.scrollWidth
+		const clientWidth = sliderContainer.clientWidth
+
+		isAtStart = scrollLeft === 0
+		isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1 // Small buffer for rounding
+	}
+
+	onMount(() => {
+		if (!sliderContainer) return
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				// Check first and last items
+				const firstItem = entries[0]
+				const lastItem = entries[entries.length - 1]
+
+				// Update start and end states
+				isAtStart = firstItem.isIntersecting
+				isAtEnd = lastItem.isIntersecting
+			},
+			{ root: sliderContainer, threshold: 0.5 }
+		)
+
+		// Observe first and last items
+		const items = sliderContainer.querySelectorAll('li')
+		if (items.length > 0) {
+			observer.observe(items[0])
+			observer.observe(items[items.length - 1])
+		}
+
+		sliderContainer.addEventListener('scroll', handleScroll)
+
+		// Cleanup
+		return () => {
+			observer.disconnect()
+			sliderContainer.removeEventListener('scroll', handleScroll)
+		}
+	})
 </script>
 
-<section id="portfolio" class="bg-gray-200 py-20">
-	<div class="container mx-auto px-4">
-		<h2 class="mb-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
+<section id="portfolio" class="relative overflow-x-hidden bg-gray-200 py-20">
+	<div class="container relative mx-auto">
+		<h2 class="mb-4 px-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
 			{section.title}
 		</h2>
-		<ul class="scrollbar-none flex w-full snap-x snap-mandatory gap-2 overflow-x-scroll">
+
+		<!-- Navigation Arrows -->
+		<div
+			class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-md:hidden"
+		>
+			{#if !isAtStart}
+				<button
+					on:click={() => navigateSlider('prev')}
+					transition:fade={{ duration: 100 }}
+					class="pointer-events-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M15 18l-6-6 6-6" />
+					</svg>
+				</button>
+			{/if}
+			{#if !isAtEnd}
+				<button
+					on:click={() => navigateSlider('next')}
+					transition:fade={{ duration: 100 }}
+					class="pointer-events-auto ml-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M9 18l6-6-6-6" />
+					</svg>
+				</button>
+			{/if}
+		</div>
+
+		<ul
+			bind:this={sliderContainer}
+			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
+		>
 			{#each section.items as { config, image, links, title, subtitle }, index}
 				{#if config?.isActive}
 					<li
-						class="group max-w-[60%] shrink-0 snap-start rounded-lg border-4 border-transparent bg-gray-200 duration-500 hover:border-yellow-400 md:w-[40%]"
+						class="group max-w-[60%] shrink-0 snap-start rounded-lg bg-gray-200 max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
 						data-is-featured={config.isFeatured}
 					>
 						<a class="w-full" href={getLink(links)}>
-							<figure class="aspect-square h-auto w-full overflow-hidden grayscale">
+							<figure class="aspect-square h-auto w-full overflow-hidden rounded-t-lg grayscale">
 								<img
 									src={image?.asset.url}
 									alt={title}
@@ -56,7 +151,7 @@
 								/>
 							</figure>
 							<div class="py-4">
-								<h3 class="mb-1font-semibold text-xl text-black">{title}</h3>
+								<h3 class="mb-1 text-xl font-semibold text-black">{title}</h3>
 								<p class="text-xs uppercase text-gray-500">{subtitle}</p>
 							</div>
 						</a>

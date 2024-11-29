@@ -20,7 +20,7 @@
 			<p class="mb-8 text-xl text-gray-100">{subtitle}</p>
 			<a
 				href="#contact"
-				class="rounded-lg bg-yellow-400 px-8 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500"
+				class="inline-block rounded-lg bg-yellow-400 px-8 py-4 font-bold text-black transition-all duration-300 hover:scale-95"
 			>
 				Get Started
 			</a>
