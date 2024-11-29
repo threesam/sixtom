@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { scale, fade } from 'svelte/transition'
+	import { cubicOut } from 'svelte/easing'
+
 	import { sleep } from '$lib/client'
 
 	let innerWidth = $state(0)
@@ -35,7 +37,7 @@
 	$effect(async () => {
 		if (status) {
 			// wait for animation
-			await sleep(2000)
+			await sleep(200)
 
 			// clear fields
 			name = ''
@@ -52,7 +54,7 @@
 <svelte:window bind:innerWidth />
 
 <section class="container w-full py-2 md:py-12" id="contact">
-	<div class="relative mx-auto max-w-lg">
+	<div class="mx-auto max-w-lg">
 		<h2 class="mb-4 text-center text-3xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
@@ -104,9 +106,9 @@
 
 		{#if status}
 			<div
-				class="absolute inset-0 z-10 grid place-content-center rounded-lg border-2 border-yellow-400 bg-black text-gray-100"
+				class="absolute inset-0 z-10 grid place-content-center rounded-lg bg-black/90 text-gray-100"
 				in:scale={{ duration: 200, easing: (t) => t * t }}
-				out:fade
+				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
 					<p class="mb-2 text-center text-2xl md:text-3xl">Thanks for contacting us!</p>

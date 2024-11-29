@@ -40,15 +40,15 @@
 		<h2 class="mb-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
 			{section.title}
 		</h2>
-		<ul class="flex w-full overflow-x-scroll gap-2 scrollbar-none snap-x snap-mandatory">
+		<ul class="scrollbar-none flex w-full snap-x snap-mandatory gap-2 overflow-x-scroll">
 			{#each section.items as { config, image, links, title, subtitle }, index}
 				{#if config?.isActive}
 					<li
-						class="group md:w-[40%] max-w-[60%] snap-start shrink-0 rounded-lg border-4 border-transparent bg-gray-200 duration-500 hover:border-yellow-400"
+						class="group max-w-[60%] shrink-0 snap-start rounded-lg border-4 border-transparent bg-gray-200 duration-500 hover:border-yellow-400 md:w-[40%]"
 						data-is-featured={config.isFeatured}
 					>
 						<a class="w-full" href={getLink(links)}>
-							<figure class="h-auto w-full aspect-square overflow-hidden grayscale">
+							<figure class="aspect-square h-auto w-full overflow-hidden grayscale">
 								<img
 									src={image?.asset.url}
 									alt={title}
@@ -56,8 +56,8 @@
 								/>
 							</figure>
 							<div class="py-4">
-								<h3 class="text-xl mb-1font-semibold text-black">{title}</h3>
-								<p class="text-gray-500 uppercase text-xs">{subtitle}</p>
+								<h3 class="mb-1font-semibold text-xl text-black">{title}</h3>
+								<p class="text-xs uppercase text-gray-500">{subtitle}</p>
 							</div>
 						</a>
 					</li>

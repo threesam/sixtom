@@ -5,7 +5,10 @@
 </script>
 
 <!-- Hero Section -->
-<section class="relative bg-black pb-20 pt-28" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);">
+<section
+	class="relative bg-black pb-20 pt-28"
+	style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);"
+>
 	<div
 		class="container mx-auto flex flex-col items-center justify-between gap-5 px-4 md:grid md:grid-cols-12"
 	>
