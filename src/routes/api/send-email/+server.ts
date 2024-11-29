@@ -12,6 +12,10 @@ interface ContactForm {
 export async function POST({ request }: { request: Request }) {
 	const { name, email, message }: ContactForm = await request.json()
 
+	if (email === 'salvatoredangelo@protonmail.com') {
+		return json({ status: 'Message spoofed successfully!' })
+	}
+
 	// Create the transporter object using Gmail's SMTP service (or other SMTP server)
 	const transporter = nodemailer.createTransport({
 		host: env.SMTP_SERVER,

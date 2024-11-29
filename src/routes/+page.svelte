@@ -11,7 +11,7 @@
 </script>
 
 <Header />
-<div class="pt-8">
+<div class="">
 	<Hero />
 	<Services />
 	<Spacer isReversed={false} color1="bg-gray-100" color2="bg-gray-200" />
