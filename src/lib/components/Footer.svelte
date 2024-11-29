@@ -12,7 +12,6 @@
 
 <footer
 	class="relative flex flex-col justify-between bg-black text-gray-100"
-	style="clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);"
 >
 	<div
 		class="container mx-auto flex h-screen flex-col place-content-end px-4 max-md:pb-16 md:place-content-center"

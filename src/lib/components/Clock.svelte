@@ -6,7 +6,7 @@
 		hasBlur = true,
 		size = 300,
 		color = '#facc15',
-		backgroundImage = 'https://cdn.sanity.io/images/qcht0vh1/production/a3e6b97be8957dda89548a502f88b376e4f70a99-600x600.jpg'
+		backgroundImage = 'https://cdn.sanity.io/images/qcht0vh1/production/bdfc49865d938bfcebf61726ddf78e29846ec0fe-870x870.png'
 	} = $props()
 
 	let hours = 0
