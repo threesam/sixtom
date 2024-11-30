@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
+	import { fade } from 'svelte/transition'
 
 	const testimonials = [
 		{ name: 'John Doe', role: 'CEO, Tech Co', quote: 'Exceptional service and results!' },
 		{
 			name: 'Jane Smith',
 			role: 'Marketing Director, Brand Inc',
-			quote: 'Transformed our online presence.'
+			quote:
+				'Transformed our online presence. Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.'
 		},
 		{
 			name: 'David Johnson',
@@ -20,108 +22,131 @@
 		}
 	]
 
-	let speed = $state(1) // Default scroll speed
-	let marqueeContainer: HTMLDivElement
-	let isDragging = $state(false)
-	let startX: number
-	let scrollLeft: number
-	let isAutoScrolling = $state(true)
-	let animationFrame: number
+	// State for tracking navigation visibility
+	let isAtStart = $state(true)
+	let isAtEnd = $state(false)
 
-	function startDragging(e: MouseEvent | TouchEvent) {
-		isDragging = true
-		isAutoScrolling = false
+	// Reference to the slider container
+	let sliderContainer: HTMLElement
 
-		startX =
-			'touches' in e
-				? (e as TouchEvent).touches[0].pageX - marqueeContainer.offsetLeft
-				: (e as MouseEvent).pageX - marqueeContainer.offsetLeft
+	function navigateSlider(direction: 'prev' | 'next') {
+		if (!sliderContainer) return
 
-		scrollLeft = marqueeContainer.scrollLeft
+		const scrollAmount = sliderContainer.clientWidth
+		sliderContainer.scrollBy({
+			left: direction === 'prev' ? -scrollAmount : scrollAmount,
+			behavior: 'smooth'
+		})
 	}
 
-	function stopDragging() {
-		isDragging = false
-		isAutoScrolling = true
-	}
+	// Add scroll event to update navigation state
+	function handleScroll() {
+		if (!sliderContainer) return
 
-	function drag(e: MouseEvent | TouchEvent) {
-		if (!isDragging) return
+		const scrollLeft = sliderContainer.scrollLeft
+		const scrollWidth = sliderContainer.scrollWidth
+		const clientWidth = sliderContainer.clientWidth
 
-		e.preventDefault()
-		const x =
-			'touches' in e
-				? (e as TouchEvent).touches[0].pageX - marqueeContainer.offsetLeft
-				: (e as MouseEvent).pageX - marqueeContainer.offsetLeft
-
-		const walk = (x - startX) * 2 // Drag sensitivity
-		marqueeContainer.scrollLeft = scrollLeft - walk
+		isAtStart = scrollLeft === 0
+		isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1 // Small buffer for rounding
 	}
 
 	onMount(() => {
-		if (!marqueeContainer) return
+		if (!sliderContainer) return
 
-		// Duplicate content for seamless scroll
-		const content = marqueeContainer.innerHTML
-		marqueeContainer.innerHTML += content
+		const observer = new IntersectionObserver(
+			(entries) => {
+				// Check first and last items
+				const firstItem = entries[0]
+				const lastItem = entries[entries.length - 1]
 
-		function autoScroll() {
-			if (!isAutoScrolling) {
-				cancelAnimationFrame(animationFrame)
-				return
-			}
+				// Update start and end states
+				isAtStart = firstItem.isIntersecting
+				isAtEnd = lastItem.isIntersecting
+			},
+			{ root: sliderContainer, threshold: 0.5 }
+		)
 
-			marqueeContainer.scrollLeft += speed
-
-			// Reset to start when content scrolls out of view
-			if (marqueeContainer.scrollLeft >= marqueeContainer.scrollWidth / 2) {
-				marqueeContainer.classList.add('no-transition')
-				marqueeContainer.scrollLeft = 0
-				marqueeContainer.classList.remove('no-transition')
-			}
-
-			animationFrame = requestAnimationFrame(autoScroll)
+		// Observe first and last items
+		const items = sliderContainer.querySelectorAll('li')
+		if (items.length > 0) {
+			observer.observe(items[0])
+			observer.observe(items[items.length - 1])
 		}
 
-		// Start auto-scroll
-		autoScroll()
+		sliderContainer.addEventListener('scroll', handleScroll)
 
-		// Add event listeners for dragging
-		marqueeContainer.addEventListener('mousedown', startDragging)
-		marqueeContainer.addEventListener('mouseleave', stopDragging)
-		marqueeContainer.addEventListener('mouseup', stopDragging)
-		marqueeContainer.addEventListener('mousemove', drag)
-
-		// Touch events
-		marqueeContainer.addEventListener('touchstart', startDragging)
-		marqueeContainer.addEventListener('touchend', stopDragging)
-		marqueeContainer.addEventListener('touchmove', drag)
-
+		// Cleanup
 		return () => {
-			cancelAnimationFrame(animationFrame)
-			marqueeContainer.removeEventListener('mousedown', startDragging)
-			marqueeContainer.removeEventListener('mouseleave', stopDragging)
-			marqueeContainer.removeEventListener('mouseup', stopDragging)
-			marqueeContainer.removeEventListener('mousemove', drag)
-			marqueeContainer.removeEventListener('touchstart', startDragging)
-			marqueeContainer.removeEventListener('touchend', stopDragging)
-			marqueeContainer.removeEventListener('touchmove', drag)
+			observer.disconnect()
+			sliderContainer.removeEventListener('scroll', handleScroll)
 		}
 	})
 </script>
 
-<section id="testimonials" class="bg-gray-100 py-20">
-	<div class="container mx-auto md:px-4">
+<section id="testimonials" class="relative bg-gray-100 py-20">
+	<div class="container relative mx-auto">
 		<h2 class="mb-8 text-2xl font-bold text-black md:text-center md:text-4xl">
 			What Our Clients Say
 		</h2>
+
+		<!-- Navigation Arrows -->
 		<div
-			bind:this={marqueeContainer}
-			class="relative flex cursor-grab select-none overflow-x-hidden active:cursor-grabbing"
+			class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-md:hidden"
 		>
-			<div class="flex space-x-8">
-				{#each testimonials as testimonial}
-					<div class="w-80 shrink-0 py-4 first:ml-8">
+			{#if !isAtStart}
+				<button
+					on:click={() => navigateSlider('prev')}
+					transition:fade={{ duration: 100 }}
+					class="pointer-events-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M15 18l-6-6 6-6" />
+					</svg>
+				</button>
+			{/if}
+			{#if !isAtEnd}
+				<button
+					on:click={() => navigateSlider('next')}
+					transition:fade={{ duration: 100 }}
+					class="pointer-events-auto ml-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M9 18l6-6-6-6" />
+					</svg>
+				</button>
+			{/if}
+		</div>
+
+		<ul
+			bind:this={sliderContainer}
+			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
+		>
+			{#each testimonials as testimonial}
+				<li
+					class="group max-w-[60%] shrink-0 snap-start rounded-lg max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
+				>
+					<div class="w-full">
 						<div class="relative my-6 inline-block w-full bg-yellow-100 p-4 text-black">
 							<blockquote class="relative z-10 text-sm italic text-gray-900">
 								"{testimonial.quote}"
@@ -134,29 +159,8 @@
 						<div class="px-4 font-semibold text-black">{testimonial.name}</div>
 						<div class="px-4 text-sm text-gray-500">{testimonial.role}</div>
 					</div>
-				{/each}
-			</div>
-		</div>
+				</li>
+			{/each}
+		</ul>
 	</div>
 </section>
-
-<style>
-	/* Hide transitions during resets */
-	.no-transition {
-		transition: none !important;
-	}
-
-	@keyframes marquee {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-50%);
-		}
-	}
-
-	.animate-marquee {
-		display: flex;
-		animation: marquee 20s linear infinite;
-	}
-</style>

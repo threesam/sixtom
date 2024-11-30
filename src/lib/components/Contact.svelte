@@ -96,7 +96,7 @@
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
+					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:scale-95 disabled:bg-gray-400"
 					disabled={!isFormValid}
 				>
 					{buttonText}

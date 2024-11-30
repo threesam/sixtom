@@ -151,7 +151,13 @@
 								/>
 							</figure>
 							<div class="py-4">
-								<h3 class="mb-1 text-xl font-semibold text-black">{title}</h3>
+								<h3 class="relative mb-1 inline text-xl font-semibold text-black">
+									{title}
+									<span
+										class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-yellow-400 opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
+									></span>
+								</h3>
+
 								<p class="text-xs uppercase text-gray-500">{subtitle}</p>
 							</div>
 						</a>
