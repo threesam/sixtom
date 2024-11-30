@@ -86,7 +86,7 @@
 
 <section id="testimonials" class="relative bg-gray-100 py-20">
 	<div class="container relative mx-auto">
-		<h2 class="mb-8 px-4 text-2xl font-bold text-black md:text-center md:text-4xl">
+		<h2 class="mb-8 px-4 text-3xl font-bold text-black md:text-center md:text-4xl">
 			What Our Clients Say
 		</h2>
 
