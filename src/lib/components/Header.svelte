@@ -100,10 +100,10 @@
 				<a {href} class="block py-2 text-white hover:text-gray-100" on:click={toggleMenu}>{text}</a>
 			{/each}
 		</nav>
+		{#if isMenuOpen}
+			<button in:fade class="fixed inset-0 z-10 bg-black opacity-65" on:click={toggleMenu}>
+				<span class="sr-only">close menu</span>
+			</button>
+		{/if}
 	{/if}
 </header>
-{#if isMenuOpen}
-	<button in:fade class="fixed inset-0 z-0 bg-black opacity-65" on:click={toggleMenu}>
-		<span class="sr-only">close menu</span>
-	</button>
-{/if}

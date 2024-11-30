@@ -53,7 +53,7 @@
 
 <section class="container w-full py-2 md:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-8 text-center text-4xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
+		<h2 class="mb-8 text-center text-4xl font-bold text-white md:mb-8 md:text-5xl">Let's Talk</h2>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>

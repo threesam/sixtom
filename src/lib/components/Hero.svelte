@@ -17,12 +17,12 @@
 		</div>
 		<div class="mb-8 w-full text-center md:col-span-6 md:mb-0 md:text-left">
 			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 md:text-5xl">{title}</h1>
-			<p class="mb-8 text-xl text-gray-100">{subtitle}</p>
+			<p class="mb-8 text-base text-gray-100">{subtitle}</p>
 			<a
 				href="#contact"
 				class="inline-block rounded-lg bg-yellow-400 px-8 py-4 font-bold text-black transition-all duration-300 hover:scale-95"
 			>
-				Get Started
+				Book Consultation
 			</a>
 		</div>
 		<div class="hidden items-center justify-center md:col-span-6 md:flex">
