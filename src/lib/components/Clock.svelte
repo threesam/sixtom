@@ -33,9 +33,6 @@
 		const interval = setInterval(updateClockHands, 1000)
 		return () => clearInterval(interval)
 	})
-
-	const { primaryStrokeWidth } = $derived(size / 100)
-	const { secondaryStrokeWidth } = $derived(primaryStrokeWidth / 2)
 </script>
 
 <div class="relative inline-block" style="width: {size}px; height: {size}px;">
@@ -75,7 +72,6 @@
 					x2={size / 2 + (size / 2 - 5) * Math.cos(((i * 30 - 90) * Math.PI) / 180)}
 					y2={size / 2 + (size / 2 - 5) * Math.sin(((i * 30 - 90) * Math.PI) / 180)}
 					stroke={color}
-					stroke-width={primaryStrokeWidth}
 				/>
 			{/each}
 
@@ -86,7 +82,6 @@
 				x2={size / 2 + (size / 3 - 20) * Math.cos((($hourSpring - 90) * Math.PI) / 180)}
 				y2={size / 2 + (size / 3 - 20) * Math.sin((($hourSpring - 90) * Math.PI) / 180)}
 				stroke={color}
-				stroke-width={primaryStrokeWidth}
 				stroke-linecap="round"
 			/>
 
@@ -97,7 +92,6 @@
 				x2={size / 2 + (size / 2 - 20) * Math.cos((($minuteSpring - 90) * Math.PI) / 180)}
 				y2={size / 2 + (size / 2 - 20) * Math.sin((($minuteSpring - 90) * Math.PI) / 180)}
 				stroke={color}
-				stroke-width={primaryStrokeWidth}
 				stroke-linecap="round"
 			/>
 
@@ -108,7 +102,6 @@
 				x2={size / 2 + (size / 2 - 10) * Math.cos((($secondSpring - 90) * Math.PI) / 180)}
 				y2={size / 2 + (size / 2 - 10) * Math.sin((($secondSpring - 90) * Math.PI) / 180)}
 				stroke={color}
-				stroke-width={secondaryStrokeWidth}
 				stroke-linecap="round"
 			/>
 

@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
-	import type { Project } from '$lib/types'
 
-	let { section = [] } = $props()
+	type Link = {
+		title: string
+		url: string
+	}
+
+	let { section } = $props()
 
 	// State for tracking navigation visibility
 	let isAtStart = $state(true)
@@ -12,10 +16,7 @@
 	// Reference to the slider container
 	let sliderContainer: HTMLElement
 
-	// Active items
-	const activeItems = $derived(section.items.filter((item) => item.config?.isActive))
-
-	function getLink(links) {
+	function getLink(links: Link[]) {
 		const websiteLink = links?.find(({ title }) => title === 'website')
 
 		if (websiteLink) return websiteLink.url
@@ -80,7 +81,7 @@
 
 <section id="portfolio" class="relative overflow-x-hidden bg-gray-200 py-20">
 	<div class="container relative mx-auto">
-		<h2 class="mb-4 px-4 text-2xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
+		<h2 class="mb-8 px-4 text-3xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
 			{section.title}
 		</h2>
 
@@ -90,7 +91,7 @@
 		>
 			{#if !isAtStart}
 				<button
-					on:click={() => navigateSlider('prev')}
+					onclick={() => navigateSlider('prev')}
 					transition:fade={{ duration: 100 }}
 					class="pointer-events-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
 				>
@@ -107,11 +108,12 @@
 					>
 						<path d="M15 18l-6-6 6-6" />
 					</svg>
+					<span class="sr-only">previous</span>
 				</button>
 			{/if}
 			{#if !isAtEnd}
 				<button
-					on:click={() => navigateSlider('next')}
+					onclick={() => navigateSlider('next')}
 					transition:fade={{ duration: 100 }}
 					class="pointer-events-auto ml-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
 				>
@@ -128,6 +130,7 @@
 					>
 						<path d="M9 18l6-6-6-6" />
 					</svg>
+					<span class="sr-only">next</span>
 				</button>
 			{/if}
 		</div>
@@ -136,7 +139,7 @@
 			bind:this={sliderContainer}
 			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
 		>
-			{#each section.items as { config, image, links, title, subtitle }, index}
+			{#each section.items as { config, image, links, title, subtitle }}
 				{#if config?.isActive}
 					<li
 						class="group max-w-[60%] shrink-0 snap-start rounded-lg bg-gray-200 max-md:pl-4 max-md:last:mr-4 md:w-[30%]"

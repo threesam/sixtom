@@ -15,8 +15,7 @@
 		class="container mx-auto flex h-screen flex-col place-content-end px-4 max-md:pb-16 md:place-content-center"
 	>
 		<Contact />
-		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-4">
-			<h4 class="mb-4 w-full text-center text-2xl font-semibold">Connect With Us</h4>
+		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-16">
 			<SocialLinks />
 		</div>
 	</div>

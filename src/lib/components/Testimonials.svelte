@@ -86,7 +86,7 @@
 
 <section id="testimonials" class="relative bg-gray-100 py-20">
 	<div class="container relative mx-auto">
-		<h2 class="mb-8 text-2xl font-bold text-black md:text-center md:text-4xl">
+		<h2 class="mb-8 px-4 text-2xl font-bold text-black md:text-center md:text-4xl">
 			What Our Clients Say
 		</h2>
 
@@ -96,7 +96,7 @@
 		>
 			{#if !isAtStart}
 				<button
-					on:click={() => navigateSlider('prev')}
+					onclick={() => navigateSlider('prev')}
 					transition:fade={{ duration: 100 }}
 					class="pointer-events-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
 				>
@@ -113,11 +113,12 @@
 					>
 						<path d="M15 18l-6-6 6-6" />
 					</svg>
+					<span class="sr-only">previous</span>
 				</button>
 			{/if}
 			{#if !isAtEnd}
 				<button
-					on:click={() => navigateSlider('next')}
+					onclick={() => navigateSlider('next')}
 					transition:fade={{ duration: 100 }}
 					class="pointer-events-auto ml-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
 				>
@@ -134,6 +135,7 @@
 					>
 						<path d="M9 18l6-6-6-6" />
 					</svg>
+					<span class="sr-only">next</span>
 				</button>
 			{/if}
 		</div>
@@ -144,10 +146,10 @@
 		>
 			{#each testimonials as testimonial}
 				<li
-					class="group max-w-[60%] shrink-0 snap-start rounded-lg max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
+					class="group max-w-[70%] shrink-0 snap-start rounded-lg max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
 				>
 					<div class="w-full">
-						<div class="relative my-6 inline-block w-full bg-yellow-100 p-4 text-black">
+						<div class="relative mb-6 inline-block w-full bg-yellow-100 p-4 text-black">
 							<blockquote class="relative z-10 text-sm italic text-gray-900">
 								"{testimonial.quote}"
 							</blockquote>

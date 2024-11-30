@@ -3,6 +3,7 @@
 	import { cubicOut } from 'svelte/easing'
 
 	import { sleep } from '$lib/client'
+	import type { EventHandler, FormEventHandler } from 'svelte/elements'
 
 	let innerWidth = $state(0)
 	let name = $state('')
@@ -16,7 +17,7 @@
 
 	let buttonText = $derived(isLoading ? 'Loading' : 'Send Message')
 
-	async function submitForm(e) {
+	async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		e.preventDefault()
 		const response = await fetch('/api/send-email', {
 			method: 'POST',
@@ -34,19 +35,16 @@
 	}
 
 	// Watch for changes in status
-	$effect(async () => {
+	$effect(() => {
 		if (status) {
 			// wait for animation
-			await sleep(200)
+			sleep(500).then(() => {
+				name = ''
+				email = ''
+				message = ''
+			})
 
-			// clear fields
-			name = ''
-			email = ''
-			message = ''
-
-			// wait 2 seconds and close form
-			await sleep(2000)
-			status = ''
+			sleep(3000).then(() => (status = ''))
 		}
 	})
 </script>
@@ -54,8 +52,8 @@
 <svelte:window bind:innerWidth />
 
 <section class="container w-full py-2 md:py-12" id="contact">
-	<div class="mx-auto max-w-lg">
-		<h2 class="mb-4 text-center text-3xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
+	<div class="relative mx-auto max-w-lg">
+		<h2 class="mb-8 text-center text-4xl font-bold text-white md:mb-8 md:text-5xl">Get In Touch</h2>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
@@ -96,7 +94,7 @@
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:scale-95 disabled:bg-gray-400"
+					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
 					disabled={!isFormValid}
 				>
 					{buttonText}
