@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { renderStudio } from 'sanity'
 	import { onMount } from 'svelte'
-	export let config
-	let studioContainer: any | undefined = undefined
+
+	let { config } = $props()
+	let studioContainer: any | undefined = $state()
+
 	onMount(() => {
 		if (studioContainer) {
+			console.log('studioContainer: ', studioContainer)
 			renderStudio(studioContainer, { ...config })
 		}
 	})
