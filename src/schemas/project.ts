@@ -1,12 +1,12 @@
 import { defineField, defineType } from 'sanity'
-import { LuPaintbrush2 } from 'react-icons/lu'
+// import { LuPaintbrush2 } from 'react-icons/lu'
 import { seo } from './_partials'
 
 export default defineType({
 	name: 'project',
 	title: 'Project',
 	type: 'document',
-	icon: LuPaintbrush2,
+	// icon: LuPaintbrush2,
 	fields: [
 		defineField({
 			name: 'title',
