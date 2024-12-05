@@ -28,10 +28,10 @@ export default {
 			type: 'image'
 		},
 		{
-			name: 'author',
+			name: 'person',
 			type: 'reference',
 			title: 'Founder',
-			to: [{ type: 'author' }]
+			to: [{ type: 'person' }]
 		},
 		{
 			name: 'resume',

@@ -28,7 +28,11 @@ export default defineType({
 			name: 'description',
 			type: 'text'
 		}),
-
+		{
+			name: 'person',
+			type: 'reference',
+			to: [{ type: 'person' }]
+		},
 		defineField({
 			name: 'image',
 			type: 'image'

@@ -159,7 +159,7 @@
 								class="absolute -bottom-2 left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform bg-yellow-100"
 							></div>
 						</div>
-						<div class="px-4 font-semibold text-black">{testimonial.author}</div>
+						<div class="px-4 font-semibold text-black">{testimonial.person}</div>
 						<div class="px-4 text-sm text-gray-500">{testimonial.subtitle}</div>
 					</div>
 				</li>

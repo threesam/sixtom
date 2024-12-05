@@ -1,4 +1,4 @@
-import { defineType } from 'sanity'
+import { defineField, defineType } from 'sanity'
 import { FaQuoteLeft } from 'react-icons/fa'
 import type { Rule } from 'sanity'
 
@@ -15,11 +15,12 @@ export default defineType({
 			validation: (Rule: Rule) =>
 				Rule.required().min(10).error('The quote must be at least 10 characters long.')
 		},
-		{
-			name: 'author',
-			type: 'string',
-			description: 'The person who said or wrote this quote.'
-		},
+		defineField({
+			name: 'person',
+			type: 'reference',
+			title: 'Founder',
+			to: [{ type: 'person' }]
+		}),
 		{
 			name: 'subtitle',
 			type: 'string'
