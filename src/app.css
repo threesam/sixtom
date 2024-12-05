@@ -3,3 +3,18 @@
 @import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Webkit (Chrome, Safari, newer versions of Opera) */
+.scrollbar-none::-webkit-scrollbar {
+	display: none;
+}
+
+/* Firefox */
+.scrollbar-none {
+	scrollbar-width: none;
+}
+
+/* Internet Explorer and Edge */
+.scrollbar-none {
+	-ms-overflow-style: none;
+}

@@ -81,6 +81,13 @@
 
 <section id="portfolio" class="relative overflow-x-hidden bg-gray-200 py-20">
 	<div class="container relative mx-auto">
+		<div
+			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-200 to-transparent md:w-4"
+		></div>
+		<div
+			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-200 md:w-4"
+		></div>
+
 		<h2 class="mb-8 px-4 text-3xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
 			{section.title}
 		</h2>
@@ -93,7 +100,7 @@
 				<button
 					onclick={() => navigateSlider('prev')}
 					transition:fade={{ duration: 100 }}
-					class="pointer-events-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +122,7 @@
 				<button
 					onclick={() => navigateSlider('next')}
 					transition:fade={{ duration: 100 }}
-					class="pointer-events-auto ml-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+					class="pointer-events-auto ml-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -137,12 +144,12 @@
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
+			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4 md:px-4"
 		>
 			{#each section.items as { config, image, links, title, subtitle }}
 				{#if config?.isActive}
 					<li
-						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
+						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:mr-4 md:w-[30%]"
 						data-is-featured={config.isFeatured}
 					>
 						<a class="w-full" href={getLink(links)}>

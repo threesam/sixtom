@@ -13,6 +13,7 @@ const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
 		publishedAt,
 		items[]->{
 			...,
+			person->,
 			image{asset->}
 		}
 	}

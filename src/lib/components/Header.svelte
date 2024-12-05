@@ -42,7 +42,7 @@
 <svelte:window bind:scrollY on:resize={() => (height = scrollMaxValue() - headerHeight)} />
 
 <header
-	class="fixed z-10 w-full bg-black text-white shadow-lg shadow-black/30 transition-all duration-300"
+	class="fixed z-50 w-full bg-black text-white shadow-lg shadow-black/30 transition-all duration-300"
 	data-is-dark={false}
 >
 	<div class="container relative z-40 mx-auto flex items-center justify-between px-4">

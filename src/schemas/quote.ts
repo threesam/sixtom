@@ -17,8 +17,8 @@ export default defineType({
 		},
 		defineField({
 			name: 'person',
+			description: 'Who said it?',
 			type: 'reference',
-			title: 'Founder',
 			to: [{ type: 'person' }]
 		}),
 		{

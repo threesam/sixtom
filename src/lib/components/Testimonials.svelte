@@ -7,40 +7,32 @@
 		{
 			name: 'Jane Smith',
 			subtitle: 'Marketing Director, Brand Inc',
-			text: 'Transformed our online presence. Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.'
+			text: 'Transformed our online presence.'
 		},
-		{
-			name: 'David Johnson',
-			subtitle: 'Founder, Startup Hub',
-			text: 'Their web development exceeded our expectations.'
-		},
-		{
-			name: 'Emily White',
-			subtitle: 'Creative Lead, Design Studio',
-			text: 'Fantastic branding and creative direction!'
-		}
+		{ name: 'David Johnson', subtitle: 'Founder, Startup Hub', text: 'Exceeded expectations.' },
+		{ name: 'Emily White', subtitle: 'Creative Lead, Design Studio', text: 'Fantastic work!' }
 	]
 
 	let { section } = $props()
 
-	// State for tracking navigation visibility
 	let isAtStart = $state(true)
 	let isAtEnd = $state(false)
-
-	// Reference to the slider container
+	let currentSlideIndex = $state(0)
 	let sliderContainer: HTMLElement
 
-	function navigateSlider(direction: 'prev' | 'next') {
+	// Updated `navigateSlider` function
+	function navigateSlider(desiredIndex: number) {
 		if (!sliderContainer) return
 
-		const scrollAmount = sliderContainer.clientWidth
-		sliderContainer.scrollBy({
-			left: direction === 'prev' ? -scrollAmount : scrollAmount,
-			behavior: 'smooth'
-		})
+		const items = sliderContainer.querySelectorAll('li')
+
+		// Clamp the index to ensure it's within bounds
+		const newIndex = Math.max(0, Math.min(items.length - 1, desiredIndex))
+
+		currentSlideIndex = newIndex // Update state
+		scrollToSlide(newIndex)
 	}
 
-	// Add scroll event to update navigation state
 	function handleScroll() {
 		if (!sliderContainer) return
 
@@ -52,27 +44,59 @@
 		isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1 // Small buffer for rounding
 	}
 
+	function scrollToSlide(index: number) {
+		if (!sliderContainer) return
+
+		const items = sliderContainer.querySelectorAll('li')
+		if (index < 0 || index >= items.length) return
+
+		const targetItem = items[index] as HTMLLIElement
+		sliderContainer.scrollTo({
+			left: targetItem.offsetLeft - sliderContainer.offsetLeft,
+			behavior: 'smooth'
+		})
+	}
+
 	onMount(() => {
 		if (!sliderContainer) return
 
 		const observer = new IntersectionObserver(
 			(entries) => {
-				// Check first and last items
-				const firstItem = entries[0]
-				const lastItem = entries[entries.length - 1]
+				// Type assertion to HTMLLIElement
+				const visibleEntry = entries.find(
+					(entry) => entry.isIntersecting && entry.target instanceof HTMLLIElement
+				)
 
-				// Update start and end states
-				isAtStart = firstItem.isIntersecting
-				isAtEnd = lastItem.isIntersecting
+				if (visibleEntry && visibleEntry.target instanceof HTMLLIElement) {
+					// Get the index of the visible item
+					const items = Array.from(sliderContainer.querySelectorAll('li'))
+					const visibleIndex = items.indexOf(visibleEntry.target)
+
+					// Update states
+					isAtStart = visibleIndex === 0
+					isAtEnd = visibleIndex === items.length - 1
+
+					// New variable to track the current visible index
+					currentSlideIndex = visibleIndex
+				}
 			},
-			{ root: sliderContainer, threshold: 0.5 }
+			{
+				root: sliderContainer,
+				threshold: 0.5 // Trigger when at least 50% of the item is visible
+			}
 		)
 
-		// Observe first and last items
+		// Get all list items in the slider
 		const items = sliderContainer.querySelectorAll('li')
+
+		// If there are items, observe all items
 		if (items.length > 0) {
-			observer.observe(items[0])
-			observer.observe(items[items.length - 1])
+			items.forEach((item) => {
+				// Type assertion to ensure it's an HTMLLIElement
+				if (item instanceof HTMLLIElement) {
+					observer.observe(item)
+				}
+			})
 		}
 
 		sliderContainer.addEventListener('scroll', handleScroll)
@@ -85,21 +109,28 @@
 	})
 </script>
 
-<section id="testimonials" class="relative bg-gray-100 py-20">
-	<div class="container relative mx-auto">
+<section id="testimonials" class="container relative mx-auto w-full bg-gray-100 py-20">
+	<div class="relative mx-auto md:max-w-xl">
+		<div
+			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent md:w-10"
+		></div>
+		<div
+			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 md:w-10"
+		></div>
+
 		<h2 class="mb-8 px-4 text-3xl font-bold text-black md:text-center md:text-4xl">
 			What Our Clients Say
 		</h2>
 
-		<!-- Navigation Arrows -->
-		<div
-			class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-md:hidden"
-		>
-			{#if !isAtStart}
+		{#if section.items?.length > 1}
+			<div
+				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-md:hidden"
+			>
 				<button
-					onclick={() => navigateSlider('prev')}
+					onclick={() => navigateSlider(currentSlideIndex - 1)}
 					transition:fade={{ duration: 100 }}
-					class="pointer-events-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+					disabled={isAtStart}
+					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400 disabled:opacity-0"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -116,12 +147,11 @@
 					</svg>
 					<span class="sr-only">previous</span>
 				</button>
-			{/if}
-			{#if !isAtEnd}
 				<button
-					onclick={() => navigateSlider('next')}
+					onclick={() => navigateSlider(currentSlideIndex + 1)}
 					transition:fade={{ duration: 100 }}
-					class="pointer-events-auto ml-auto rounded-lg bg-black/30 p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+					disabled={isAtEnd}
+					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400 disabled:opacity-0"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -138,32 +168,48 @@
 					</svg>
 					<span class="sr-only">next</span>
 				</button>
-			{/if}
-		</div>
+			</div>
+		{/if}
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
+			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
 		>
 			{#each section.items as testimonial}
-				<li
-					class="group max-w-[70%] shrink-0 snap-start rounded-lg max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
-				>
-					<div class="w-full">
-						<div class="relative mb-6 inline-block w-full bg-yellow-100 p-4 text-black">
-							<blockquote class="relative z-10 text-sm italic text-gray-900">
+				<li class="group grid w-full shrink-0 snap-start place-content-center rounded-lg px-4">
+					<div class="mx-auto w-full max-w-lg">
+						<div class="relative mb-6 inline-block w-full bg-yellow-100 p-6 text-black">
+							<blockquote
+								class="relative z-10 text-base italic text-gray-900 data-[is-big=true]:text-xl"
+								data-is-big={testimonial.text.length < 200}
+							>
 								"{testimonial.text}"
 							</blockquote>
-							<!-- Triangle -->
 							<div
 								class="absolute -bottom-2 left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform bg-yellow-100"
 							></div>
 						</div>
-						<div class="px-4 font-semibold text-black">{testimonial.person}</div>
-						<div class="px-4 text-sm text-gray-500">{testimonial.subtitle}</div>
+						<div class="flex items-center">
+							<div class="px-2 font-semibold text-black">{testimonial.person.name}</div>
+							<div class="pr-4 text-sm text-gray-500">{testimonial.subtitle}</div>
+						</div>
 					</div>
 				</li>
 			{/each}
 		</ul>
+
+		{#if section.items?.length > 1}
+			<div aria-inert="true" class="absolute flex w-full items-center justify-center gap-2 py-8">
+				{#each section.items as _, index}
+					<button
+						class="h-4 w-4 rounded-full border-2 border-black data-[is-selected=true]:bg-black"
+						data-is-selected={currentSlideIndex === index}
+						onclick={() => navigateSlider(index)}
+					>
+						<span class="sr-only">{index}</span>
+					</button>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </section>
