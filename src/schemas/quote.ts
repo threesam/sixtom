@@ -21,6 +21,10 @@ export default defineType({
 			description: 'The person who said or wrote this quote.'
 		},
 		{
+			name: 'subtitle',
+			type: 'string'
+		},
+		{
 			name: 'source',
 			type: 'url',
 			description: 'An optional source or link to where the quote was taken from.'

@@ -3,24 +3,25 @@
 	import { fade } from 'svelte/transition'
 
 	const testimonials = [
-		{ name: 'John Doe', role: 'CEO, Tech Co', quote: 'Exceptional service and results!' },
+		{ name: 'John Doe', subtitle: 'CEO, Tech Co', text: 'Exceptional service and results!' },
 		{
 			name: 'Jane Smith',
-			role: 'Marketing Director, Brand Inc',
-			quote:
-				'Transformed our online presence. Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.'
+			subtitle: 'Marketing Director, Brand Inc',
+			text: 'Transformed our online presence. Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.Transformed our online presence.'
 		},
 		{
 			name: 'David Johnson',
-			role: 'Founder, Startup Hub',
-			quote: 'Their web development exceeded our expectations.'
+			subtitle: 'Founder, Startup Hub',
+			text: 'Their web development exceeded our expectations.'
 		},
 		{
 			name: 'Emily White',
-			role: 'Creative Lead, Design Studio',
-			quote: 'Fantastic branding and creative direction!'
+			subtitle: 'Creative Lead, Design Studio',
+			text: 'Fantastic branding and creative direction!'
 		}
 	]
+
+	let { section } = $props()
 
 	// State for tracking navigation visibility
 	let isAtStart = $state(true)
@@ -144,22 +145,22 @@
 			bind:this={sliderContainer}
 			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
 		>
-			{#each testimonials as testimonial}
+			{#each section.items as testimonial}
 				<li
 					class="group max-w-[70%] shrink-0 snap-start rounded-lg max-md:pl-4 max-md:last:mr-4 md:w-[30%]"
 				>
 					<div class="w-full">
 						<div class="relative mb-6 inline-block w-full bg-yellow-100 p-4 text-black">
 							<blockquote class="relative z-10 text-sm italic text-gray-900">
-								"{testimonial.quote}"
+								"{testimonial.text}"
 							</blockquote>
 							<!-- Triangle -->
 							<div
 								class="absolute -bottom-2 left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform bg-yellow-100"
 							></div>
 						</div>
-						<div class="px-4 font-semibold text-black">{testimonial.name}</div>
-						<div class="px-4 text-sm text-gray-500">{testimonial.role}</div>
+						<div class="px-4 font-semibold text-black">{testimonial.author}</div>
+						<div class="px-4 text-sm text-gray-500">{testimonial.subtitle}</div>
 					</div>
 				</li>
 			{/each}
