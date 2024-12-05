@@ -149,7 +149,7 @@
 			{#each section.items as { config, image, links, title, subtitle }}
 				{#if config?.isActive}
 					<li
-						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:mr-4 md:w-[30%]"
+						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-md:mr-4 md:w-[30%]"
 						data-is-featured={config.isFeatured}
 					>
 						<a class="w-full" href={getLink(links)}>
