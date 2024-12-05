@@ -7,7 +7,6 @@
 
 	onMount(() => {
 		if (studioContainer) {
-			console.log('studioContainer: ', studioContainer)
 			renderStudio(studioContainer, { ...config })
 		}
 	})

@@ -22,7 +22,6 @@ const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
 export const load: PageServerLoad = async () => {
 	try {
 		const page = await fetchSanityData<Project[]>(PAGE_QUERY)
-		console.log('page: ', page)
 
 		return {
 			page
