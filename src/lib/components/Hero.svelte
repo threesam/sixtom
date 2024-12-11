@@ -1,6 +1,6 @@
 <script>
-	let title = 'Pioneering Digital Excellence'
-	let subtitle = 'Delivering cutting-edge solutions that inspire growth and drive lasting impact.'
+	let title = 'Sharpen the Axe'
+	let subtitle = 'Custom Solutions to Build, Grow, and Differentiate Your Brand'
 	import Clock from '$lib/components/Clock.svelte'
 </script>
 
@@ -16,7 +16,7 @@
 			<Clock size={250} hasBlur={false} />
 		</div>
 		<div class="mb-8 w-full text-center md:col-span-6 md:mb-0 md:text-left">
-			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 md:text-5xl">{title}</h1>
+			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 md:text-6xl">{title}</h1>
 			<p class="mb-8 text-base text-gray-100">{subtitle}</p>
 			<a
 				href="#contact"
