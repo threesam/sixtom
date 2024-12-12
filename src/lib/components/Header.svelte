@@ -64,34 +64,42 @@
 				</div>
 			{/each}
 		</nav>
-		{#if isMenuOpen}
-			<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
-				<svg
-					viewBox="0 0 15 15"
-					fill="currentColor"
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6 rotate-45"
-				>
-					<path d="M7.5 1v13M1 7.5h13" stroke="currentColor"></path>
-				</svg>
-			</button>
+		{#if scrollY === scrollMaxValue() || scrollY < window.innerHeight - 185}
+			{#if isMenuOpen}
+				<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
+					<svg
+						viewBox="0 0 15 15"
+						fill="currentColor"
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6 rotate-45"
+					>
+						<path d="M7.5 1v13M1 7.5h13" stroke="currentColor"></path>
+					</svg>
+				</button>
+			{:else}
+				<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
+					<svg
+						class="h-6 w-6"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16m-7 6h7"
+						></path>
+					</svg>
+				</button>
+			{/if}
 		{:else}
-			<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
-				<svg
-					class="h-6 w-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16m-7 6h7"
-					></path>
-				</svg>
-			</button>
+			<a
+				in:fade
+				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black lg:hidden"
+				href="#contact">Book now</a
+			>
 		{/if}
 	</div>
 	{#if isMenuOpen}
@@ -100,10 +108,8 @@
 				<a {href} class="block py-2 text-white hover:text-gray-100" on:click={toggleMenu}>{text}</a>
 			{/each}
 		</nav>
-		{#if isMenuOpen}
-			<button in:fade class="fixed inset-0 z-10 bg-black opacity-65" on:click={toggleMenu}>
-				<span class="sr-only">close menu</span>
-			</button>
-		{/if}
+		<button in:fade class="fixed inset-0 z-10 bg-black opacity-65" on:click={toggleMenu}>
+			<span class="sr-only">close menu</span>
+		</button>
 	{/if}
 </header>
