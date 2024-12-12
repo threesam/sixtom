@@ -49,16 +49,15 @@
 <svelte:window bind:scrollY on:resize={() => (height = scrollMaxValue() - headerHeight)} />
 
 <header
-	class="fixed z-50 w-full bg-black text-white shadow-lg shadow-black/30 transition-all duration-300"
-	data-is-dark={false}
+	class="fixed z-50 w-full border-b-2 border-black bg-black text-white shadow-black/30 transition-all duration-300 data-[is-menu-open=false]:border-transparent data-[is-menu-open=false]:shadow-lg"
+	data-is-menu-open={isMenuOpen}
 >
 	<div class="container relative z-40 mx-auto flex items-center justify-between px-4">
 		<a href="/">
 			<p class="py-2 text-4xl font-bold">
-				six<span
-					class="mx-0.5 bg-white px-1 py-[6px] text-black transition-all duration-300"
-					data-is-dark={false}>to</span
-				>m
+				six<span class="mx-0.5 bg-gray-100 px-1 py-[6px] text-black transition-all duration-300">
+					to
+				</span>m
 			</p>
 		</a>
 		<nav class="hidden space-x-12 lg:flex">
@@ -105,17 +104,21 @@
 			<a
 				in:fade
 				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black lg:hidden"
-				href="#contact">Book now</a
+				href="#contact"
 			>
+				Book now
+			</a>
 		{/if}
 	</div>
 	{#if isMenuOpen}
-		<nav in:slide class="relative z-50 border-t-2 border-black bg-black px-4 py-2 lg:hidden">
+		<nav in:slide class="relative z-50 bg-gray-100 px-4 py-2 lg:hidden">
 			{#each navigationLinks as { href, text }}
-				<a {href} class="block py-2 text-white hover:text-gray-100" onclick={toggleMenu}>{text}</a>
+				<a {href} class="block py-2 font-bold text-black hover:text-gray-800" onclick={toggleMenu}>
+					{text}
+				</a>
 			{/each}
 		</nav>
-		<button in:fade class="fixed inset-0 z-10 bg-black opacity-65" onclick={toggleMenu}>
+		<button in:fade class="fixed inset-0 z-10 bg-black opacity-85" onclick={toggleMenu}>
 			<span class="sr-only">close menu</span>
 		</button>
 	{/if}
