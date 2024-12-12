@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { fade, slide } from 'svelte/transition'
-	let scrollY = 0
+	let scrollY = $state(0)
 	let height = 0
-	let isMenuOpen = false
+	let isMenuOpen = $state(false)
 	let headerHeight = 56 //px
 
 	const navigationLinks = [
@@ -20,6 +20,8 @@
 	import { onMount } from 'svelte'
 
 	function scrollMaxValue() {
+		if (typeof window === 'undefined' || typeof document === 'undefined') return 0
+
 		const body = document.body
 		const html = document.documentElement
 
@@ -33,6 +35,11 @@
 
 		return documentHeight - window.innerHeight
 	}
+
+	let isVisibleButton = $derived(
+		scrollY === scrollMaxValue() ||
+			scrollY < (typeof window !== 'undefined' ? window.innerHeight - 185 : 0)
+	)
 
 	onMount(() => {
 		height = scrollMaxValue() - headerHeight
@@ -64,7 +71,7 @@
 				</div>
 			{/each}
 		</nav>
-		{#if scrollY === scrollMaxValue() || scrollY < window.innerHeight - 185}
+		{#if isVisibleButton}
 			{#if isMenuOpen}
 				<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
 					<svg
