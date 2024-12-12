@@ -109,7 +109,7 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-					<p class="mb-2 text-center text-2xl lg:text-3xl">Thanks for contacting us!</p>
+					<p class="mb-2 text-center text-2xl lg:text-4xl">Thanks for contacting us!</p>
 					<p class="text-center text-gray-200 lg:text-lg">Someone will get back to you shortly</p>
 				</div>
 			</div>

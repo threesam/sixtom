@@ -2,17 +2,6 @@
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
 
-	const testimonials = [
-		{ name: 'John Doe', subtitle: 'CEO, Tech Co', text: 'Exceptional service and results!' },
-		{
-			name: 'Jane Smith',
-			subtitle: 'Marketing Director, Brand Inc',
-			text: 'Transformed our online presence.'
-		},
-		{ name: 'David Johnson', subtitle: 'Founder, Startup Hub', text: 'Exceeded expectations.' },
-		{ name: 'Emily White', subtitle: 'Creative Lead, Design Studio', text: 'Fantastic work!' }
-	]
-
 	let { section } = $props()
 
 	let isAtStart = $state(true)
@@ -118,7 +107,7 @@
 			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 lg:w-10"
 		></div>
 
-		<h2 class="mb-8 px-4 text-3xl font-bold text-black lg:text-center lg:text-4xl">
+		<h2 class="mb-8 px-4 text-2xl font-bold text-black lg:text-center lg:text-4xl">
 			What Our Clients Say
 		</h2>
 
