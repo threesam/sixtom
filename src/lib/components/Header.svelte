@@ -37,8 +37,8 @@
 	}
 
 	let isVisibleButton = $derived(
-		scrollY === scrollMaxValue() ||
-			scrollY < (typeof window !== 'undefined' ? window.innerHeight - 185 : 0)
+		scrollY >= scrollMaxValue() - headerHeight ||
+			scrollY <= (typeof window !== 'undefined' ? window.innerHeight - 185 : 0)
 	)
 
 	onMount(() => {
@@ -73,7 +73,7 @@
 		</nav>
 		{#if isVisibleButton}
 			{#if isMenuOpen}
-				<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
+				<button in:fade class="lg:hidden" onclick={toggleMenu} aria-label="Toggle menu">
 					<svg
 						viewBox="0 0 15 15"
 						fill="currentColor"
@@ -84,7 +84,7 @@
 					</svg>
 				</button>
 			{:else}
-				<button in:fade class="lg:hidden" on:click={toggleMenu} aria-label="Toggle menu">
+				<button in:fade class="lg:hidden" onclick={toggleMenu} aria-label="Toggle menu">
 					<svg
 						class="h-6 w-6"
 						fill="none"
@@ -112,10 +112,10 @@
 	{#if isMenuOpen}
 		<nav in:slide class="relative z-50 border-t-2 border-black bg-black px-4 py-2 lg:hidden">
 			{#each navigationLinks as { href, text }}
-				<a {href} class="block py-2 text-white hover:text-gray-100" on:click={toggleMenu}>{text}</a>
+				<a {href} class="block py-2 text-white hover:text-gray-100" onclick={toggleMenu}>{text}</a>
 			{/each}
 		</nav>
-		<button in:fade class="fixed inset-0 z-10 bg-black opacity-65" on:click={toggleMenu}>
+		<button in:fade class="fixed inset-0 z-10 bg-black opacity-65" onclick={toggleMenu}>
 			<span class="sr-only">close menu</span>
 		</button>
 	{/if}
