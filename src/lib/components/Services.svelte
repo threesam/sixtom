@@ -24,18 +24,18 @@
 </script>
 
 <section id="services" class="bg-gray-100 py-20">
-	<div class="container mx-auto md:px-4">
-		<h2 class="mb-4 px-4 text-3xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
+	<div class="container mx-auto lg:px-4">
+		<h2 class="mb-4 px-4 text-3xl font-bold text-black lg:mb-12 lg:text-center lg:text-4xl">
 			Our Services
 		</h2>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 			{#each services as { name, text, icon }}
 				<div class="flex max-w-full items-start space-x-4 p-4">
 					<div class="flex-shrink-0">
 						{@html icon}
 					</div>
 					<div>
-						<h3 class="mb-2 text-lg font-semibold text-black md:text-xl">{name}</h3>
+						<h3 class="mb-2 text-lg font-semibold text-black lg:text-xl">{name}</h3>
 						<p class="text-gray-600">
 							{text}
 						</p>

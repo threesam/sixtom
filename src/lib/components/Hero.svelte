@@ -1,5 +1,5 @@
 <script>
-	let title = 'Sharpen the Axe'
+	let title = 'Elevate Your Edge'
 	let subtitle = 'Custom Solutions to Build, Grow, and Differentiate Your Brand'
 	import Clock from '$lib/components/Clock.svelte'
 </script>
@@ -10,13 +10,13 @@
 	style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);"
 >
 	<div
-		class="container mx-auto flex flex-col items-center justify-between gap-5 px-4 md:grid md:grid-cols-12"
+		class="container mx-auto flex flex-col items-center justify-between gap-5 px-4 lg:grid lg:grid-cols-12"
 	>
-		<div class="mb-8 flex items-center justify-center md:hidden">
+		<div class="mb-8 flex items-center justify-center lg:hidden">
 			<Clock size={250} hasBlur={false} />
 		</div>
-		<div class="mb-8 w-full text-center md:col-span-6 md:mb-0 md:text-left">
-			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 md:text-6xl">{title}</h1>
+		<div class="mb-8 w-full text-center lg:col-span-6 lg:mb-0 lg:text-left">
+			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 lg:text-6xl">{title}</h1>
 			<p class="mb-8 text-base text-gray-100">{subtitle}</p>
 			<a
 				href="#contact"
@@ -25,7 +25,7 @@
 				Book Consultation
 			</a>
 		</div>
-		<div class="hidden items-center justify-center md:col-span-6 md:flex">
+		<div class="hidden items-center justify-center lg:col-span-6 lg:flex">
 			<Clock size={666} />
 		</div>
 	</div>

@@ -82,19 +82,19 @@
 <section id="portfolio" class="relative overflow-x-hidden bg-gray-200 py-20">
 	<div class="container relative mx-auto">
 		<div
-			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-200 to-transparent md:w-4"
+			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-200 to-transparent lg:w-4"
 		></div>
 		<div
-			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-200 md:w-4"
+			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-200 lg:w-4"
 		></div>
 
-		<h2 class="mb-8 px-4 text-3xl font-bold text-black md:mb-12 md:text-center md:text-4xl">
+		<h2 class="mb-8 px-4 text-3xl font-bold text-black lg:mb-12 lg:text-center lg:text-4xl">
 			{section.title}
 		</h2>
 
 		<!-- Navigation Arrows -->
 		<div
-			class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-md:hidden"
+			class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-lg:hidden"
 		>
 			{#if !isAtStart}
 				<button
@@ -144,12 +144,12 @@
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4 md:px-4"
+			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none lg:gap-4 lg:px-4"
 		>
 			{#each section.items as { config, image, links, title, subtitle }}
 				{#if config?.isActive}
 					<li
-						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-md:mr-4 md:w-[30%]"
+						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-lg:mr-4 lg:w-[30%]"
 						data-is-featured={config.isFeatured}
 					>
 						<a class="w-full" href={getLink(links)}>

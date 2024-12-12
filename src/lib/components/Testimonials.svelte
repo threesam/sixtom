@@ -110,21 +110,21 @@
 </script>
 
 <section id="testimonials" class="container relative mx-auto w-full bg-gray-100 py-20">
-	<div class="relative mx-auto md:max-w-xl">
+	<div class="relative mx-auto lg:max-w-xl">
 		<div
-			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent md:w-10"
+			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent lg:w-10"
 		></div>
 		<div
-			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 md:w-10"
+			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 lg:w-10"
 		></div>
 
-		<h2 class="mb-8 px-4 text-3xl font-bold text-black md:text-center md:text-4xl">
+		<h2 class="mb-8 px-4 text-3xl font-bold text-black lg:text-center lg:text-4xl">
 			What Our Clients Say
 		</h2>
 
 		{#if section.items?.length > 1}
 			<div
-				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-md:hidden"
+				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-lg:hidden"
 			>
 				<button
 					onclick={() => navigateSlider(currentSlideIndex - 1)}
@@ -173,20 +173,22 @@
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none md:gap-4"
+			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none lg:gap-4"
 		>
 			{#each section.items as testimonial}
-				<li class="group grid w-full shrink-0 snap-start place-content-center rounded-lg px-4">
+				<li class="group grid w-full shrink-0 snap-start place-content-center px-4">
 					<div class="mx-auto w-full max-w-lg">
-						<div class="relative mb-6 inline-block w-full bg-yellow-100 p-6 text-black">
+						<div
+							class="relative mb-6 inline-block w-full border-2 border-black bg-yellow-100 p-6 text-black"
+						>
 							<blockquote
-								class="relative z-10 text-base italic text-gray-900 data-[is-big=true]:text-xl"
+								class="text-base italic text-gray-900 data-[is-big=true]:text-xl"
 								data-is-big={testimonial.text.length < 200}
 							>
 								"{testimonial.text}"
 							</blockquote>
 							<div
-								class="absolute -bottom-2 left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform bg-yellow-100"
+								class="absolute -bottom-[11px] left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform border-b-2 border-r-2 border-black bg-yellow-100"
 							></div>
 						</div>
 						<div class="flex items-center">

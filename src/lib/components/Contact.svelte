@@ -51,9 +51,9 @@
 
 <svelte:window bind:innerWidth />
 
-<section class="container w-full py-2 md:py-12" id="contact">
+<section class="container w-full py-2 lg:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-8 text-center text-4xl font-bold text-white md:mb-8 md:text-5xl">Let's Talk</h2>
+		<h2 class="mb-8 text-center text-4xl font-bold text-white lg:mb-8 lg:text-5xl">Let's Talk</h2>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
@@ -109,8 +109,8 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-					<p class="mb-2 text-center text-2xl md:text-3xl">Thanks for contacting us!</p>
-					<p class="text-center text-gray-200 md:text-lg">Someone will get back to you shortly</p>
+					<p class="mb-2 text-center text-2xl lg:text-3xl">Thanks for contacting us!</p>
+					<p class="text-center text-gray-200 lg:text-lg">Someone will get back to you shortly</p>
 				</div>
 			</div>
 		{/if}

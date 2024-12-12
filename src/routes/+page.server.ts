@@ -21,16 +21,9 @@ const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
 
 export const load: PageServerLoad = async () => {
 	try {
-		const page = await fetchSanityData<Project[]>(PAGE_QUERY)
-
-		return {
-			page
-		}
+		return { page: await fetchSanityData<Project[]>(PAGE_QUERY) }
 	} catch (error) {
-		return {
-			page: [],
-			error: error instanceof Error ? error.message : 'Unknown error occurred'
-		}
+		return { error: error instanceof Error ? error.message : 'Unknown error occurred' }
 	}
 }
 
