@@ -88,7 +88,9 @@
 			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-200 lg:w-4"
 		></div>
 
-		<h2 class="mb-8 px-4 text-2xl font-bold text-black lg:mb-12 lg:text-center lg:text-4xl">
+		<h2
+			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-lg:border-b-2 max-lg:border-yellow-400 lg:mb-12 lg:text-center lg:text-4xl"
+		>
 			{section.title}
 		</h2>
 

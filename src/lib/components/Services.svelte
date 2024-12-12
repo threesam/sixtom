@@ -24,8 +24,10 @@
 </script>
 
 <section id="services" class="bg-gray-100 py-20">
-	<div class="container mx-auto lg:px-4">
-		<h2 class="mb-4 px-4 text-2xl font-bold text-black lg:mb-12 lg:text-center lg:text-4xl">
+	<div class="container relative mx-auto lg:px-4">
+		<h2
+			class="mb-4 px-4 text-2xl font-bold text-black max-lg:border-b-2 max-lg:border-yellow-400 lg:mb-12 lg:text-center lg:text-4xl"
+		>
 			How We Accelerate Growth
 		</h2>
 		<div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
