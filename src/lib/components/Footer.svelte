@@ -1,19 +1,12 @@
 <script>
 	import Contact from './Contact.svelte'
 	import SocialLinks from './SocialLinks.svelte'
-
-	const navigationLinks = [
-		{ href: '#services', text: 'Services' },
-		{ href: '#portfolio', text: 'Portfolio' },
-		{ href: '#testimonials', text: 'Testimonials' },
-		{ href: '#contact', text: 'Contact' }
-	]
 </script>
 
 <footer class="relative flex flex-col justify-between bg-black text-gray-100">
 	<div class="container mx-auto flex h-screen flex-col place-content-center px-4">
 		<Contact />
-		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-16">
+		<div class="mx-auto flex w-full max-w-lg flex-col items-center pb-4 pt-12">
 			<SocialLinks />
 		</div>
 	</div>
