@@ -35,11 +35,11 @@
 	})
 </script>
 
-<div class="relative inline-block" style="width: {size}px; height: {size}px;">
-	<div
-		class="group absolute inset-0 overflow-hidden rounded-full"
-		style="clip-path: circle({size / 2}px at center);"
-	>
+<div
+	class="relative inline-block"
+	style="width: {Math.max(size, 150)}px; height: {Math.max(size, 150)}px;"
+>
+	<div class="group absolute inset-0 overflow-hidden rounded-full">
 		<svg width={size} height={size} viewBox="0 0 {size} {size}">
 			<defs>
 				<clipPath id="clock-face">

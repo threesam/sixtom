@@ -10,13 +10,13 @@
 	style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);"
 >
 	<div
-		class="container mx-auto flex flex-col items-center justify-between gap-5 px-4 lg:grid lg:grid-cols-12"
+		class="container mx-auto flex flex-col items-center justify-between gap-5 px-4 xl:grid xl:grid-cols-12"
 	>
-		<div class="mb-8 flex items-center justify-center lg:hidden">
+		<div class="mb-8 flex items-center justify-center xl:hidden">
 			<Clock size={250} hasBlur={false} />
 		</div>
-		<div class="mb-8 w-full text-center lg:col-span-6 lg:mb-0 lg:text-left">
-			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 lg:text-6xl">{title}</h1>
+		<div class="mb-8 w-full text-center xl:col-span-6 xl:mb-0 xl:text-left">
+			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 xl:text-6xl">{title}</h1>
 			<p class="mb-8 text-base text-gray-100">{subtitle}</p>
 			<a
 				href="#contact"
@@ -25,7 +25,7 @@
 				Book Consultation
 			</a>
 		</div>
-		<div class="hidden items-center justify-center lg:col-span-6 lg:flex">
+		<div class="hidden items-center justify-center xl:col-span-6 xl:flex">
 			<Clock size={666} />
 		</div>
 	</div>

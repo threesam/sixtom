@@ -99,23 +99,23 @@
 </script>
 
 <section id="testimonials" class="container relative mx-auto w-full bg-gray-100 py-20">
-	<div class="relative mx-auto lg:max-w-xl">
+	<div class="relative mx-auto xl:max-w-xl">
 		<div
-			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent lg:w-10"
+			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent xl:w-10"
 		></div>
 		<div
-			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 lg:w-10"
+			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 xl:w-10"
 		></div>
 
 		<h2
-			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-lg:border-b-2 max-lg:border-yellow-400 lg:text-center lg:text-4xl"
+			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:text-center xl:text-4xl"
 		>
 			What Our Clients Say
 		</h2>
 
 		{#if section.items?.length > 1}
 			<div
-				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-lg:hidden"
+				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-xl:hidden"
 			>
 				<button
 					onclick={() => navigateSlider(currentSlideIndex - 1)}
@@ -164,7 +164,7 @@
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none lg:gap-4"
+			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4"
 		>
 			{#each section.items as testimonial}
 				<li class="group grid w-full shrink-0 snap-start place-content-center px-4">

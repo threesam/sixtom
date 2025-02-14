@@ -24,20 +24,20 @@
 </script>
 
 <section id="services" class="bg-gray-100 py-20">
-	<div class="container relative mx-auto lg:px-4">
+	<div class="container relative mx-auto xl:px-4">
 		<h2
-			class="mb-4 px-4 text-2xl font-bold text-black max-lg:border-b-2 max-lg:border-yellow-400 lg:mb-12 lg:text-center lg:text-4xl"
+			class="mb-4 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:mb-12 xl:text-center xl:text-4xl"
 		>
 			How We Accelerate Growth
 		</h2>
-		<div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+		<div class="grid grid-cols-1 gap-16 xl:grid-cols-2 xl:gap-24">
 			{#each services as { name, text, icon }}
 				<div class="flex max-w-full items-start space-x-4 p-4">
 					<div class="flex-shrink-0">
 						{@html icon}
 					</div>
 					<div>
-						<h3 class="mb-2 text-lg font-semibold text-black lg:text-xl">{name}</h3>
+						<h3 class="mb-2 text-lg font-semibold text-black xl:text-xl">{name}</h3>
 						<p class="text-gray-600">
 							{text}
 						</p>

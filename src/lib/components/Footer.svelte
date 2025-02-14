@@ -11,7 +11,7 @@
 		</div>
 	</div>
 
-	<div class="absolute bottom-0 w-full bg-black pb-4 text-center text-sm text-gray-400 lg:mt-8">
+	<div class="absolute bottom-0 w-full bg-black pb-4 text-center text-sm text-gray-400 xl:mt-8">
 		© 2020-{new Date().getFullYear()} SIXTOM. All rights reserved.
 	</div>
 </footer>
