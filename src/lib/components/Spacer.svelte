@@ -2,7 +2,7 @@
 	export let height: string = '100px' // Default height
 	export let color1: string = 'bg-gray-200' // Default top-left color
 	export let color2: string = 'bg-gray-100' // Default bottom-right color
-	export let isReversed: boolean = 'false'
+	export let isReversed: boolean = false
 </script>
 
 <div

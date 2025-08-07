@@ -192,7 +192,7 @@
 		</ul>
 
 		{#if section.items?.length > 1}
-			<div aria-inert="true" class="absolute flex w-full items-center justify-center gap-2 py-8">
+			<div inert class="absolute flex w-full items-center justify-center gap-2 py-8">
 				{#each section.items as _, index}
 					<button
 						class="h-4 w-4 rounded-full border-2 border-black data-[is-selected=true]:bg-black"

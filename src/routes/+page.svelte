@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Footer from '$lib/components/Footer.svelte'
 	import Header from '$lib/components/Header.svelte'
 	import Hero from '$lib/components/Hero.svelte'
@@ -7,7 +7,8 @@
 	import Testimonials from '$lib/components/Testimonials.svelte'
 	import Spacer from '$lib/components/Spacer.svelte'
 
-	let { data } = $props()
+	let { data }: { data: any } = $props()
+	let page = $derived(data?.page)
 
 	const canonicalUrl = 'https://sixtom.com/'
 	const description =
@@ -70,9 +71,11 @@
 	<Hero />
 	<Services />
 	<Spacer isReversed={false} color1="bg-gray-100" color2="bg-gray-200" />
-	<Portfolio section={data.page.sections[0]} />
-	<Spacer isReversed={false} color2="bg-gray-100" color1="bg-gray-200" />
-	<Testimonials section={data.page.sections[1]} />
+	{#if page}
+		<Portfolio section={page?.sections?.[0]} />
+		<Spacer isReversed={false} color2="bg-gray-100" color1="bg-gray-200" />
+		<Testimonials section={page?.sections?.[1]} />
+	{/if}
 	<Spacer isReversed={true} color2="bg-black" color1="bg-gray-100" />
 </div>
 <Footer />

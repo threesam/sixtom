@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import nodemailer, { type TransportOptions } from 'nodemailer'
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
@@ -16,20 +16,22 @@ export async function POST({ request }: { request: Request }) {
 		return json({ status: 'Message spoofed successfully!' })
 	}
 
-	// Create the transporter object using Gmail's SMTP service (or other SMTP server)
+	const host = env.SMTP_SERVER as string
+	const port = Number(env.SMTP_PORT ?? 587)
+	const user = env.SMTP_EMAIL as string
+	const pass = env.SMTP_TOKEN as string
+
+	// Create the transporter object using SMTP service
 	const transporter = nodemailer.createTransport({
-		host: env.SMTP_SERVER,
-		port: env.SMTP_PORT,
-		secure: false,
-		auth: {
-			user: env.SMTP_EMAIL,
-			pass: env.SMTP_TOKEN
-		}
-	})
+		host,
+		port,
+		secure: port === 465,
+		auth: { user, pass }
+	} as TransportOptions)
 
 	// Email options
 	const confirmationMailOptions = {
-		from: env.SMTP_EMAIL,
+		from: user,
 		to: email,
 		subject: `Contact sixtom`,
 		text: 'Contact form submission received! We look forward to talking to you soon.'
@@ -37,8 +39,8 @@ export async function POST({ request }: { request: Request }) {
 
 	// Email options
 	const mailOptions = {
-		from: env.SMTP_EMAIL,
-		to: env.SMTP_RECIPIENT_EMAIL,
+		from: user,
+		to: env.SMTP_RECIPIENT_EMAIL as string,
 		replyTo: email,
 		subject: `Contact: ${name}`,
 		text: message

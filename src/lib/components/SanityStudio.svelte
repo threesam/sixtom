@@ -1,13 +1,21 @@
 <script lang="ts">
 	import { renderStudio } from 'sanity'
 	import { onMount } from 'svelte'
+	import { browser } from '$app/environment'
 
 	let { config } = $props()
 	let studioContainer: any | undefined = $state()
 
-	onMount(() => {
-		if (studioContainer) {
-			renderStudio(studioContainer, { ...config })
+	onMount(async () => {
+		if (studioContainer && browser) {
+			const [{ media }, { codeInput }] = await Promise.all([
+				import('sanity-plugin-media'),
+				import('@sanity/code-input')
+			])
+			renderStudio(studioContainer, {
+				...config,
+				plugins: [...(config.plugins ?? []), media(), codeInput()]
+			})
 		}
 	})
 </script>

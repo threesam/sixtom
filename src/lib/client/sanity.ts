@@ -2,41 +2,36 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from '../../schemas'
-import {
-	PUBLIC_SANITY_CDN,
-	PUBLIC_SANITY_PROJECT_ID,
-	PUBLIC_SANITY_DATASET
-} from '$env/static/public'
+import { env as PUBLIC_ENV } from '$env/dynamic/public'
 import { RiAliensLine } from 'react-icons/ri'
 import { createClient } from '@sanity/client'
 import type { ClientConfig } from '@sanity/client'
-import { media } from 'sanity-plugin-media'
-import { codeInput } from '@sanity/code-input'
+// media plugin is loaded dynamically in SanityStudio.svelte to avoid SSR importing React deps
+// code-input plugin will be added dynamically in SanityStudio.svelte
 
-export const sanityConfig = defineConfig({
-	name: 'studio',
-	title: 'The Studio',
-	projectId: PUBLIC_SANITY_PROJECT_ID ?? '',
-	basePath: '/sanity',
-	icon: RiAliensLine,
-	dataset: PUBLIC_SANITY_DATASET ?? 'production',
-	plugins: [codeInput(), structureTool(), media(), visionTool()],
-	schema: {
-		types: schemaTypes
-	}
-})
+	export const sanityConfig = defineConfig({
+		name: 'studio',
+		title: 'The Studio',
+		projectId: PUBLIC_ENV.PUBLIC_SANITY_PROJECT_ID ?? '',
+		basePath: '/sanity',
+		icon: RiAliensLine,
+		dataset: PUBLIC_ENV.PUBLIC_SANITY_DATASET ?? 'production',
+		plugins: [structureTool(), visionTool()],
+		schema: {
+			types: schemaTypes
+		}
+	})
 
 // Create type for Sanity query function
 export type SanityQueryParams = Record<string, string | number | boolean>
 
 // Create Sanity client configuration
-export function getSanityConfig(): ClientConfig {
+	export function getSanityConfig(): ClientConfig {
 	return {
-		projectId: PUBLIC_SANITY_PROJECT_ID,
-		dataset: PUBLIC_SANITY_DATASET,
-		apiVersion: '2024-01-01', // Use current date or latest API version
-		useCdn: PUBLIC_SANITY_CDN === 'true' // Convert string to boolean
-		// token: env.SANITY_TOKEN // Optional: for authenticated requests
+		projectId: PUBLIC_ENV.PUBLIC_SANITY_PROJECT_ID,
+		dataset: PUBLIC_ENV.PUBLIC_SANITY_DATASET,
+		apiVersion: '2024-01-01',
+		useCdn: PUBLIC_ENV.PUBLIC_SANITY_CDN === 'true'
 	}
 }
 
