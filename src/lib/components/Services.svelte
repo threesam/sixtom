@@ -26,7 +26,7 @@
 <section id="services" class="bg-gray-100 py-20">
 	<div class="container relative mx-auto xl:px-4">
 		<h2
-			class="mb-4 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:mb-12 xl:text-center xl:text-4xl"
+			class="mb-4 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-brand-yellow xl:mb-12 xl:text-center xl:text-4xl"
 		>
 			How We Accelerate Growth
 		</h2>

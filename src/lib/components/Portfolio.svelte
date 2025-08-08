@@ -89,7 +89,7 @@
 		></div>
 
 		<h2
-			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:mb-12 xl:text-center xl:text-4xl"
+			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-brand-yellow xl:mb-12 xl:text-center xl:text-4xl"
 		>
 			{section?.title ?? 'Portfolio'}
 		</h2>
@@ -102,7 +102,7 @@
 				<button
 					onclick={() => navigateSlider('prev')}
 					transition:fade={{ duration: 100 }}
-					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-brand-yellow"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +124,7 @@
 				<button
 					onclick={() => navigateSlider('next')}
 					transition:fade={{ duration: 100 }}
-					class="pointer-events-auto ml-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400"
+					class="pointer-events-auto ml-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-brand-yellow"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@
 								<h3 class="relative mb-1 inline text-xl font-semibold text-black">
 									{title}
 									<span
-										class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-yellow-400 opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
+										class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-brand-yellow opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
 									></span>
 								</h3>
 
