@@ -1,5 +1,8 @@
 import type { PageServerLoad } from './$types'
-import type { Project } from '$lib/types'
+// Define a minimal type for the page data we use here
+type PageData = {
+    sections?: Array<Record<string, unknown>>
+}
 import { fetchSanityData } from '$lib/client/sanity'
 
 // Query to fetch posts
@@ -21,7 +24,7 @@ const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
 
 export const load: PageServerLoad = async () => {
 	try {
-		return { page: await fetchSanityData<Project[]>(PAGE_QUERY) }
+		return { page: await fetchSanityData<PageData>(PAGE_QUERY) }
 	} catch (error) {
 		return { error: error instanceof Error ? error.message : 'Unknown error occurred' }
 	}

@@ -91,7 +91,7 @@
 		<h2
 			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:mb-12 xl:text-center xl:text-4xl"
 		>
-			{section.title}
+			{section?.title ?? 'Portfolio'}
 		</h2>
 
 		<!-- Navigation Arrows -->
@@ -148,7 +148,7 @@
 			bind:this={sliderContainer}
 			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4 xl:px-4"
 		>
-			{#each section.items as { config, image, links, title, subtitle }}
+			{#each (section?.items ?? []) as { config, image, links, title, subtitle }}
 				{#if config?.isActive}
 					<li
 						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-xl:mr-4 xl:w-[30%]"
