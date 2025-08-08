@@ -113,7 +113,7 @@
 			What Our Clients Say
 		</h2>
 
-		{#if section.items?.length > 1}
+		{#if section?.items?.length > 1}
 			<div
 				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-xl:hidden"
 			>
@@ -166,7 +166,7 @@
 			bind:this={sliderContainer}
 			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4"
 		>
-			{#each section.items as testimonial}
+			{#each (section?.items ?? []) as testimonial}
 				<li class="group grid w-full shrink-0 snap-start place-content-center px-4">
 					<div class="mx-auto w-full max-w-lg">
 						<div
@@ -174,26 +174,26 @@
 						>
 							<blockquote
 								class="text-base italic text-gray-900 data-[is-big=true]:text-xl"
-								data-is-big={testimonial.text.length < 200}
+								data-is-big={(testimonial?.text?.length ?? 0) < 200}
 							>
-								"{testimonial.text}"
+								"{testimonial?.text ?? ''}"
 							</blockquote>
 							<div
 								class="absolute -bottom-[11px] left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform border-b-2 border-r-2 border-black bg-yellow-100"
 							></div>
 						</div>
 						<div class="flex items-center">
-							<div class="px-2 font-semibold text-black">{testimonial.person.name}</div>
-							<div class="pr-4 text-sm text-gray-500">{testimonial.subtitle}</div>
+							<div class="px-2 font-semibold text-black">{testimonial?.person?.name}</div>
+							<div class="pr-4 text-sm text-gray-500">{testimonial?.subtitle}</div>
 						</div>
 					</div>
 				</li>
 			{/each}
 		</ul>
 
-		{#if section.items?.length > 1}
-			<div aria-inert="true" class="absolute flex w-full items-center justify-center gap-2 py-8">
-				{#each section.items as _, index}
+		{#if section?.items?.length > 1}
+			<div inert class="absolute flex w-full items-center justify-center gap-2 py-8">
+				{#each (section?.items ?? []) as _, index}
 					<button
 						class="h-4 w-4 rounded-full border-2 border-black data-[is-selected=true]:bg-black"
 						data-is-selected={currentSlideIndex === index}
