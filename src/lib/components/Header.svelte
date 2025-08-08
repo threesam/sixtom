@@ -65,7 +65,7 @@
 				<div class="group relative inline-block">
 					<a {href} class="">{text}</a>
 					<span
-						class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-yellow-400 opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
+						class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-brand-yellow opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
 					></span>
 				</div>
 			{/each}
@@ -103,7 +103,7 @@
 		{:else}
 			<a
 				in:fade
-				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black xl:hidden"
+				class="rounded-md bg-brand-yellow px-3 py-1 text-sm font-bold text-black xl:hidden"
 				href="#contact"
 			>
 				Book now

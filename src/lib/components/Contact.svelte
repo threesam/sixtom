@@ -63,7 +63,7 @@
 					id="name"
 					name="name"
 					autocomplete="name"
-					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-brand-yellow focus:outline-none focus:ring-brand-yellow"
 					placeholder="please tell us your name"
 					required
 				/>
@@ -76,7 +76,7 @@
 					id="email"
 					name="email"
 					autocomplete="email"
-					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-brand-yellow focus:outline-none focus:ring-brand-yellow"
 					placeholder="enter your email"
 					required
 				/>
@@ -89,7 +89,7 @@
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
 					autocomplete="off"
-					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-brand-yellow focus:ring-brand-yellow"
 					placeholder="how can we help?"
 					required
 				></textarea>
@@ -97,7 +97,7 @@
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
+					class="w-full rounded-lg bg-brand-yellow py-4 font-bold text-black transition duration-300 hover:bg-brand-yellow disabled:bg-gray-400"
 					disabled={!isFormValid}
 					aria-busy={isLoading}
 				>

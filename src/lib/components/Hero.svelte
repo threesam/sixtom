@@ -20,7 +20,7 @@
 			<p class="mb-8 text-base text-gray-100">{subtitle}</p>
 			<a
 				href="#contact"
-				class="inline-block rounded-lg bg-yellow-400 px-8 py-4 font-bold text-black transition-all duration-300 hover:scale-95"
+				class="inline-block rounded-lg bg-brand-yellow px-8 py-4 font-bold text-black transition-all duration-300 hover:scale-95"
 			>
 				Book Consultation
 			</a>

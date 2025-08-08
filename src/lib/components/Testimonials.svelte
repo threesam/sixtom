@@ -108,7 +108,7 @@
 		></div>
 
 		<h2
-			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:text-center xl:text-4xl"
+			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-brand-yellow xl:text-center xl:text-4xl"
 		>
 			What Our Clients Say
 		</h2>
@@ -121,7 +121,7 @@
 					onclick={() => navigateSlider(currentSlideIndex - 1)}
 					transition:fade={{ duration: 100 }}
 					disabled={isAtStart}
-					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400 disabled:opacity-0"
+					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-brand-yellow disabled:opacity-0"
 					aria-label="Previous testimonial"
 				>
 					<svg
@@ -143,7 +143,7 @@
 					onclick={() => navigateSlider(currentSlideIndex + 1)}
 					transition:fade={{ duration: 100 }}
 					disabled={isAtEnd}
-					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400 disabled:opacity-0"
+					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-brand-yellow disabled:opacity-0"
 					aria-label="Next testimonial"
 				>
 					<svg
@@ -173,7 +173,7 @@
 				<li class="group grid w-full shrink-0 snap-start place-content-center px-4">
 					<div class="mx-auto w-full max-w-lg">
 						<div
-							class="relative mb-6 inline-block w-full border-2 border-black bg-yellow-100 p-6 text-black"
+							class="relative mb-6 inline-block w-full border-2 border-black bg-brand-yellow/20 p-6 text-black"
 						>
 							<blockquote
 								class="text-base italic text-gray-900 data-[is-big=true]:text-xl"
@@ -182,7 +182,7 @@
 								"{testimonial?.text ?? ''}"
 							</blockquote>
 							<div
-								class="absolute -bottom-[11px] left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform border-b-2 border-r-2 border-black bg-yellow-100"
+								class="absolute -bottom-[11px] left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform border-b-2 border-r-2 border-black bg-brand-yellow/20"
 							></div>
 						</div>
 						<div class="flex items-center">
