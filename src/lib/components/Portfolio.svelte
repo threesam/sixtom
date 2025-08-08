@@ -159,6 +159,8 @@
 								<img
 									src={image?.asset.url}
 									alt={title}
+									loading="lazy"
+									decoding="async"
 									class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
 								/>
 							</figure>

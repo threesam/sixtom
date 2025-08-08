@@ -32,6 +32,7 @@
 		href={x.href}
 		class="transition-all duration-300 hover:scale-95 hover:text-yellow-400"
 		target="_blank"
+		rel="noopener noreferrer"
 	>
 		<span class="sr-only">{x.title}</span>
 		<svg class="h-16 w-16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -44,6 +45,7 @@
 		href={linkedin.href}
 		class="transition-all duration-300 hover:scale-95 hover:text-yellow-400"
 		target="_blank"
+		rel="noopener noreferrer"
 	>
 		<span class="sr-only">{linkedin.title}</span>
 		<svg class="h-16 w-16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

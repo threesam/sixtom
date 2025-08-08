@@ -4,6 +4,9 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+		<meta name="theme-color" content="#000000" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -12,7 +15,7 @@
 		/>
 		%sveltekit.head%
 	</head>
-	<body class="relative scroll-smooth bg-black" data-sveltekit-preload-data="hover">
+	<body class="relative scroll-smooth motion-reduce:scroll-auto bg-black" data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
