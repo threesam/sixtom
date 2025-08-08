@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { sanityConfig } from '$lib/client/sanity'
 	import SanityStudio from '$lib/components/SanityStudio.svelte'
+	export const ssr = false
+	export const prerender = false
 </script>
 
-<SanityStudio config={sanityConfig} />
+<SanityStudio />

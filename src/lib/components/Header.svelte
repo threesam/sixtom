@@ -123,3 +123,7 @@
 		</button>
 	{/if}
 </header>
+
+<!-- Fallback anchors for prerender when sections are missing -->
+<a id="portfolio" hidden aria-hidden="true"></a>
+<a id="testimonials" hidden aria-hidden="true"></a>

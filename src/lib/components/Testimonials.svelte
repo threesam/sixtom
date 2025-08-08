@@ -115,7 +115,9 @@
 
 		{#if section.items?.length > 1}
 			<div
-				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-xl:hidden"
+				inert
+				data-interactive="false"
+				class="absolute -left-16 -right-16 top-1/2 z-10 hidden justify-between xl:flex"
 			>
 				<button
 					onclick={() => navigateSlider(currentSlideIndex - 1)}
@@ -192,7 +194,7 @@
 		</ul>
 
 		{#if section.items?.length > 1}
-			<div aria-inert="true" class="absolute flex w-full items-center justify-center gap-2 py-8">
+			<div class="absolute flex w-full items-center justify-center gap-2 py-8">
 				{#each section.items as _, index}
 					<button
 						class="h-4 w-4 rounded-full border-2 border-black data-[is-selected=true]:bg-black"

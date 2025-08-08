@@ -79,6 +79,7 @@
 	})
 </script>
 
+{#if section}
 <section id="portfolio" class="relative overflow-x-hidden bg-gray-200 py-20">
 	<div class="container relative mx-auto">
 		<div
@@ -179,3 +180,6 @@
 		</ul>
 	</div>
 </section>
+{:else}
+<!-- no-op when page.sections is missing -->
+{/if}

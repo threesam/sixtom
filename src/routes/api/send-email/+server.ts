@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+import type SMTPTransport from 'nodemailer/lib/smtp-transport'
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
@@ -16,16 +17,16 @@ export async function POST({ request }: { request: Request }) {
 		return json({ status: 'Message spoofed successfully!' })
 	}
 
-	// Create the transporter object using Gmail's SMTP service (or other SMTP server)
+	// Create the transporter object using SMTP server
 	const transporter = nodemailer.createTransport({
 		host: env.SMTP_SERVER,
-		port: env.SMTP_PORT,
+		port: Number(env.SMTP_PORT ?? 587),
 		secure: false,
 		auth: {
 			user: env.SMTP_EMAIL,
 			pass: env.SMTP_TOKEN
 		}
-	})
+	} as SMTPTransport.Options)
 
 	// Email options
 	const confirmationMailOptions = {

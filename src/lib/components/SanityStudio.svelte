@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { renderStudio } from 'sanity'
 	import { onMount } from 'svelte'
+	import { createSanityConfig } from '$lib/client/sanity'
 
-	let { config } = $props()
-	let studioContainer: any | undefined = $state()
+	let studioContainer: HTMLDivElement | undefined = $state()
 
-	onMount(() => {
+	onMount(async () => {
 		if (studioContainer) {
+			const config = await createSanityConfig()
 			renderStudio(studioContainer, { ...config })
 		}
 	})

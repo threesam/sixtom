@@ -1,10 +1,9 @@
 import type { PageServerLoad } from './$types'
-import type { Project } from '$lib/types'
 import { fetchSanityData } from '$lib/client/sanity'
 
 // Query to fetch posts
 const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
-	sections[]->{
+	sections[]{
 		...,
 		_id,
 		title,
@@ -19,12 +18,19 @@ const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
 	}
 }`
 
+// Minimal shape used by the page
+type HomePage = {
+	sections: unknown[]
+}
+
 export const load: PageServerLoad = async () => {
+	let page: HomePage = { sections: [] }
 	try {
-		return { page: await fetchSanityData<Project[]>(PAGE_QUERY) }
+		page = await fetchSanityData<HomePage>(PAGE_QUERY)
 	} catch (error) {
-		return { error: error instanceof Error ? error.message : 'Unknown error occurred' }
+		// ignore and use default
 	}
+	return { page }
 }
 
 export const prerender = true

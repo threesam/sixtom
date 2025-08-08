@@ -7,3 +7,10 @@ export type Project = {
 		url: string
 	}
 }
+
+export type Section = {
+	_id?: string
+	title?: string
+	subtitle?: string
+	items?: Array<Record<string, unknown>>
+}
