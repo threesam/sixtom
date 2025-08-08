@@ -2,16 +2,16 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from '../../schemas'
-import {
-    PUBLIC_SANITY_CDN,
-    PUBLIC_SANITY_PROJECT_ID,
-    PUBLIC_SANITY_DATASET
-} from '$env/static/public'
+import { env as publicEnv } from '$env/dynamic/public'
 import { RiAliensLine } from 'react-icons/ri'
 import { createClient } from '@sanity/client'
 import type { ClientConfig } from '@sanity/client'
 import { media } from 'sanity-plugin-media'
 import { codeInput } from '@sanity/code-input'
+
+const PUBLIC_SANITY_PROJECT_ID = publicEnv.PUBLIC_SANITY_PROJECT_ID ?? ''
+const PUBLIC_SANITY_DATASET = publicEnv.PUBLIC_SANITY_DATASET ?? 'production'
+const PUBLIC_SANITY_CDN = publicEnv.PUBLIC_SANITY_CDN ?? 'true'
 
 export const sanityConfig = defineConfig({
     name: 'studio',

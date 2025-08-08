@@ -54,7 +54,7 @@
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
 		<h2 class="mb-8 text-center text-4xl font-bold text-white xl:mb-8 xl:text-5xl">Let's Talk</h2>
-		<form class="mx-auto" onsubmit={submitForm}>
+		<form class="mx-auto" onsubmit={submitForm} method="post">
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
 				<input
@@ -62,6 +62,7 @@
 					type="text"
 					id="name"
 					name="name"
+					autocomplete="name"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
 					placeholder="please tell us your name"
 					required
@@ -74,6 +75,7 @@
 					type="email"
 					id="email"
 					name="email"
+					autocomplete="email"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
 					placeholder="enter your email"
 					required
@@ -86,6 +88,7 @@
 					id="message"
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
+					autocomplete="off"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
 					placeholder="how can we help?"
 					required
@@ -96,17 +99,21 @@
 					type="submit"
 					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
 					disabled={!isFormValid}
+					aria-busy={isLoading}
 				>
 					{buttonText}
 				</button>
 			</div>
 		</form>
 
+		<div aria-live="polite" class="sr-only">{status}</div>
+
 		{#if status}
 			<div
 				class="absolute inset-0 z-10 grid place-content-center rounded-lg bg-black/90 text-gray-100"
 				in:scale={{ duration: 200, easing: (t) => t * t }}
 				out:fade={{ duration: 200 }}
+				role="status"
 			>
 				<div class="max-w-md p-2">
 					<p class="mb-2 text-center text-2xl xl:text-4xl">Thanks for contacting us!</p>

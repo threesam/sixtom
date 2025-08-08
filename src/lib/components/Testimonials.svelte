@@ -98,7 +98,7 @@
 	})
 </script>
 
-<section id="testimonials" class="container relative mx-auto w-full bg-gray-100 py-20">
+<section id="testimonials" class="container relative mx-auto w-full bg-gray-100 py-20" aria-label="Testimonials">
 	<div class="relative mx-auto xl:max-w-xl">
 		<div
 			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent xl:w-10"
@@ -122,6 +122,7 @@
 					transition:fade={{ duration: 100 }}
 					disabled={isAtStart}
 					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400 disabled:opacity-0"
+					aria-label="Previous testimonial"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -143,6 +144,7 @@
 					transition:fade={{ duration: 100 }}
 					disabled={isAtEnd}
 					class="pointer-events-auto rounded-full border-2 border-black p-2 text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-400 disabled:opacity-0"
+					aria-label="Next testimonial"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -165,6 +167,7 @@
 		<ul
 			bind:this={sliderContainer}
 			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4"
+			aria-live="polite"
 		>
 			{#each (section?.items ?? []) as testimonial}
 				<li class="group grid w-full shrink-0 snap-start place-content-center px-4">
@@ -192,12 +195,13 @@
 		</ul>
 
 		{#if section?.items?.length > 1}
-			<div inert class="absolute flex w-full items-center justify-center gap-2 py-8">
+			<div class="absolute flex w-full items-center justify-center gap-2 py-8">
 				{#each (section?.items ?? []) as _, index}
 					<button
 						class="h-4 w-4 rounded-full border-2 border-black data-[is-selected=true]:bg-black"
 						data-is-selected={currentSlideIndex === index}
 						onclick={() => navigateSlider(index)}
+						aria-label={`Go to slide ${index + 1}`}
 					>
 						<span class="sr-only">{index}</span>
 					</button>
