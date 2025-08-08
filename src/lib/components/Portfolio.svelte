@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
+	import CaseStudyCard from '$lib/components/CaseStudyCard.svelte'
 
 	type Link = {
 		title: string
@@ -148,34 +149,54 @@
 			bind:this={sliderContainer}
 			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4 xl:px-4"
 		>
-			{#each section.items as { config, image, links, title, subtitle }}
-				{#if config?.isActive}
-					<li
-						class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-xl:mr-4 xl:w-[30%]"
-						data-is-featured={config.isFeatured}
-					>
-						<a class="w-full" href={getLink(links)}>
-							<figure class="aspect-square h-auto w-full overflow-hidden rounded-t-lg grayscale">
-								<img
-									src={image?.asset.url}
-									alt={title}
-									class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
-								/>
-							</figure>
-							<div class="py-4">
-								<h3 class="relative mb-1 inline text-xl font-semibold text-black">
-									{title}
-									<span
-										class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-yellow-400 opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
-									></span>
-								</h3>
-
-								<p class="text-xs uppercase text-gray-500">{subtitle}</p>
-							</div>
-						</a>
+			{#each section.items as item}
+				{#if item?._type === 'caseStudy'}
+					<li class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-xl:mr-4 xl:w-[30%]">
+						<CaseStudyCard study={item} />
 					</li>
+				{:else}
+					{#if item?.config?.isActive}
+						<li
+							class="group max-w-[70%] shrink-0 snap-start rounded-lg bg-gray-200 pl-4 last:max-xl:mr-4 xl:w-[30%]"
+							data-is-featured={item.config.isFeatured}
+						>
+							<a class="w-full" href={getLink(item.links)}>
+								<figure class="aspect-square h-auto w-full overflow-hidden rounded-t-lg grayscale">
+									<img
+										src={item?.image?.asset.url}
+										alt={item?.title}
+										class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+									/>
+								</figure>
+								<div class="py-4">
+									<h3 class="relative mb-1 inline text-xl font-semibold text-black">
+										{item?.title}
+										<span
+											class="absolute bottom-[-5px] left-0 h-[2px] w-full bg-yellow-400 opacity-0 transition-all duration-300 group-hover:bottom-0 group-hover:opacity-100"
+										></span>
+									</h3>
+
+									<p class="text-xs uppercase text-gray-500">{item?.subtitle}</p>
+								</div>
+							</a>
+						</li>
+					{/if}
 				{/if}
 			{/each}
 		</ul>
+
+		<!-- MOFU CTA under slider -->
+		<div class="mx-4 mt-8 rounded-lg bg-black p-6 text-white md:mx-auto md:w-2/3">
+			<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+				<div class="text-center md:text-left">
+					<h3 class="text-xl font-semibold">Want similar results?</h3>
+					<p class="text-gray-300">Get our case study guide and a free action plan for your use case.</p>
+				</div>
+				<div class="flex gap-3">
+					<a href="/assets/case-study-guide.pdf" class="rounded bg-white px-4 py-2 font-semibold text-black">Download guide</a>
+					<a href="/contact" class="rounded border border-white px-4 py-2 font-semibold text-white">Talk to us</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>

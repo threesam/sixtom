@@ -63,6 +63,12 @@ export default defineType({
 					name: 'quote',
 					title: 'Quote',
 					to: [{ type: 'quote' }]
+				}),
+				defineArrayMember({
+					type: 'reference',
+					name: 'caseStudy',
+					title: 'Case Study',
+					to: [{ type: 'caseStudy' }]
 				})
 			]
 		},

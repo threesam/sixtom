@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { BsFillSignpostFill } from 'react-icons/bs'
+import { seo } from './_partials'
 
 export default defineType({
 	name: 'post',
@@ -24,6 +25,9 @@ export default defineType({
 			name: 'description',
 			type: 'text'
 		}),
+		defineField({ name: 'excerpt', type: 'text' }),
+		defineField({ name: 'featuredImage', type: 'image', options: { hotspot: true } }),
+		defineField({ name: 'tags', type: 'array', of: [{ type: 'string' }] }),
 		defineField({
 			name: 'person',
 			type: 'reference',
@@ -49,7 +53,8 @@ export default defineType({
 		defineField({
 			name: 'body',
 			type: 'blockContent'
-		})
+		}),
+		seo
 	],
 
 	preview: {

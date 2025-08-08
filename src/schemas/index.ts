@@ -10,6 +10,7 @@ import project from './project'
 import siteSettings from './siteSettings'
 import section from './section'
 import song from './song'
+import caseStudy from './caseStudy'
 
 export const schemaTypes = [
 	blockContent,
@@ -23,5 +24,7 @@ export const schemaTypes = [
 	project,
 	siteSettings,
 	section,
-	song
+	song,
+	// New document
+	(caseStudy as any)
 ]
