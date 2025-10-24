@@ -98,13 +98,13 @@
 	})
 </script>
 
-<section id="testimonials" class="container relative mx-auto w-full bg-gray-100 py-20">
+<section id="testimonials" class="relative container mx-auto w-full bg-gray-100 py-20">
 	<div class="relative mx-auto xl:max-w-xl">
 		<div
-			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent xl:w-10"
+			class="absolute top-0 bottom-0 left-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent xl:w-10"
 		></div>
 		<div
-			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 xl:w-10"
+			class="absolute top-0 right-0 bottom-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-100 xl:w-10"
 		></div>
 
 		<h2
@@ -115,7 +115,7 @@
 
 		{#if section.items?.length > 1}
 			<div
-				class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-xl:hidden"
+				class="pointer-events-none absolute top-1/2 -right-16 -left-16 z-10 flex justify-between max-xl:hidden"
 			>
 				<button
 					onclick={() => navigateSlider(currentSlideIndex - 1)}
@@ -164,7 +164,7 @@
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4"
+			class="scrollbar-none relative flex snap-x snap-mandatory overflow-x-scroll overflow-y-hidden overscroll-x-none xl:gap-4"
 		>
 			{#each section.items as testimonial}
 				<li class="group grid w-full shrink-0 snap-start place-content-center px-4">
@@ -173,13 +173,13 @@
 							class="relative mb-6 inline-block w-full border-2 border-black bg-yellow-100 p-6 text-black"
 						>
 							<blockquote
-								class="text-base italic text-gray-900 data-[is-big=true]:text-xl"
+								class="text-base text-gray-900 italic data-[is-big=true]:text-xl"
 								data-is-big={testimonial.text.length < 200}
 							>
 								"{testimonial.text}"
 							</blockquote>
 							<div
-								class="absolute -bottom-[11px] left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform border-b-2 border-r-2 border-black bg-yellow-100"
+								class="absolute -bottom-[11px] left-7 h-5 w-5 -translate-x-1/2 rotate-45 transform border-r-2 border-b-2 border-black bg-yellow-100"
 							></div>
 						</div>
 						<div class="flex items-center">

@@ -54,7 +54,7 @@
 >
 	<div class="container relative z-40 mx-auto flex items-center justify-between px-4">
 		<a href="/">
-			<p class="py-2 text-4xl font-bold">
+			<p class="py-2 text-4xl font-bold uppercase">
 				six<span class="mx-0.5 bg-gray-100 px-1 py-[6px] text-black transition-all duration-300">
 					to
 				</span>m

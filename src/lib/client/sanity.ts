@@ -10,7 +10,7 @@ import {
 import { RiAliensLine } from 'react-icons/ri'
 import { createClient } from '@sanity/client'
 import type { ClientConfig } from '@sanity/client'
-import { media } from 'sanity-plugin-media'
+// import { media } from 'sanity-plugin-media'
 import { codeInput } from '@sanity/code-input'
 
 export const sanityConfig = defineConfig({
@@ -20,7 +20,7 @@ export const sanityConfig = defineConfig({
 	basePath: '/sanity',
 	icon: RiAliensLine,
 	dataset: PUBLIC_SANITY_DATASET ?? 'production',
-	plugins: [codeInput(), structureTool(), media(), visionTool()],
+	plugins: [codeInput(), structureTool(), visionTool()],
 	schema: {
 		types: schemaTypes
 	}

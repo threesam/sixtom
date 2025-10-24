@@ -70,9 +70,9 @@
 	<Hero />
 	<Services />
 	<Spacer isReversed={false} color1="bg-gray-100" color2="bg-gray-200" />
-	<Portfolio section={data.page.sections[0]} />
+	<Portfolio section={data?.page?.sections[0]} />
 	<Spacer isReversed={false} color2="bg-gray-100" color1="bg-gray-200" />
-	<Testimonials section={data.page.sections[1]} />
+	<Testimonials section={data?.page?.sections[1]} />
 	<Spacer isReversed={true} color2="bg-black" color1="bg-gray-100" />
 </div>
 <Footer />
