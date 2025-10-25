@@ -2,19 +2,45 @@ import nodemailer from 'nodemailer'
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
+// Simple in-memory deduplication within a short time window
+const submissionCache = new Map<string, number>()
+const DEDUPE_WINDOW_MS = 30_000 // 30 seconds
+
+function makeKey(name: string, email: string, message: string) {
+    return `${email.trim().toLowerCase()}|${name.trim()}|${message.trim()}`
+}
+
+function isDuplicateAndRecord(key: string): boolean {
+    const now = Date.now()
+    const last = submissionCache.get(key)
+    if (last && now - last < DEDUPE_WINDOW_MS) {
+        return true
+    }
+    submissionCache.set(key, now)
+    return false
+}
+
 // Define types for incoming request body
 interface ContactForm {
-	name: string
-	email: string
-	message: string
+    name: string
+    email: string
+    message: string
+    website?: string // honeypot
 }
 
 export async function POST({ request }: { request: Request }) {
-	const { name, email, message }: ContactForm = await request.json()
+    const { name, email, message, website }: ContactForm = await request.json()
 
-	if (email === 'salvatoredangelo@protonmail.com') {
-		return json({ status: 'Message spoofed successfully!' })
-	}
+    // Honeypot check: if filled, pretend success without sending
+    if (website && website.trim() !== '') {
+        return json({ status: 'Message sent successfully!' })
+    }
+
+    // Short-window dedupe to prevent multiple sends from accidental double submit
+    const key = makeKey(name ?? '', email ?? '', message ?? '')
+    if (isDuplicateAndRecord(key)) {
+        return json({ status: 'Message sent successfully!' })
+    }
 
 	// Create the transporter object using Gmail's SMTP service (or other SMTP server)
 	const transporter = nodemailer.createTransport({
@@ -44,7 +70,7 @@ export async function POST({ request }: { request: Request }) {
 		text: message
 	}
 
-	try {
+    try {
 		// Send the email
 		await transporter.sendMail(confirmationMailOptions)
 		await transporter.sendMail(mailOptions)
@@ -52,13 +78,8 @@ export async function POST({ request }: { request: Request }) {
 		return json({
 			status: 'Message sent successfully!'
 		})
-	} catch (error) {
+    } catch (error) {
 		console.error('Error sending email:', error)
-		return json(
-			{
-				status: 'Error sending message. Please try again later.'
-			},
-			{ status: 500 }
-		)
+        return json({ status: 'Error sending message. Please try again later.' }, { status: 500 })
 	}
 }
