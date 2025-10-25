@@ -2,24 +2,6 @@ import nodemailer from 'nodemailer'
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
-// Simple in-memory deduplication within a short time window
-const submissionCache = new Map<string, number>()
-const DEDUPE_WINDOW_MS = 30_000 // 30 seconds
-
-function makeKey(name: string, email: string, message: string) {
-    return `${email.trim().toLowerCase()}|${name.trim()}|${message.trim()}`
-}
-
-function isDuplicateAndRecord(key: string): boolean {
-    const now = Date.now()
-    const last = submissionCache.get(key)
-    if (last && now - last < DEDUPE_WINDOW_MS) {
-        return true
-    }
-    submissionCache.set(key, now)
-    return false
-}
-
 // Define types for incoming request body
 interface ContactForm {
     name: string
@@ -33,12 +15,6 @@ export async function POST({ request }: { request: Request }) {
 
     // Honeypot check: if filled, pretend success without sending
     if (website && website.trim() !== '') {
-        return json({ status: 'Message sent successfully!' })
-    }
-
-    // Short-window dedupe to prevent multiple sends from accidental double submit
-    const key = makeKey(name ?? '', email ?? '', message ?? '')
-    if (isDuplicateAndRecord(key)) {
         return json({ status: 'Message sent successfully!' })
     }
 
