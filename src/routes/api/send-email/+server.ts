@@ -4,17 +4,19 @@ import { env } from '$env/dynamic/private'
 
 // Define types for incoming request body
 interface ContactForm {
-	name: string
-	email: string
-	message: string
+    name: string
+    email: string
+    message: string
+    website?: string // honeypot
 }
 
 export async function POST({ request }: { request: Request }) {
-	const { name, email, message }: ContactForm = await request.json()
+    const { name, email, message, website }: ContactForm = await request.json()
 
-	if (email === 'salvatoredangelo@protonmail.com') {
-		return json({ status: 'Message spoofed successfully!' })
-	}
+    // Honeypot check: if filled, pretend success without sending
+    if (website && website.trim() !== '') {
+        return json({ status: 'Message sent successfully!' })
+    }
 
 	// Create the transporter object using Gmail's SMTP service (or other SMTP server)
 	const transporter = nodemailer.createTransport({
@@ -44,7 +46,7 @@ export async function POST({ request }: { request: Request }) {
 		text: message
 	}
 
-	try {
+    try {
 		// Send the email
 		await transporter.sendMail(confirmationMailOptions)
 		await transporter.sendMail(mailOptions)
@@ -52,13 +54,8 @@ export async function POST({ request }: { request: Request }) {
 		return json({
 			status: 'Message sent successfully!'
 		})
-	} catch (error) {
+    } catch (error) {
 		console.error('Error sending email:', error)
-		return json(
-			{
-				status: 'Error sending message. Please try again later.'
-			},
-			{ status: 500 }
-		)
+        return json({ status: 'Error sending message. Please try again later.' }, { status: 500 })
 	}
 }
