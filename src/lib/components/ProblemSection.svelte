@@ -8,7 +8,6 @@
 			<p>
 				<span class="font-bold text-black">Bloated teams.</span>
 				Six people in a room debating button colors. A discovery phase that outlasts most startups.
-				You paid for a strategy deck. You got pilot purgatory.
 			</p>
 			<p>
 				<span class="font-bold text-black">Scope creep is a feature, not a bug</span>
@@ -20,9 +19,7 @@
 		</div>
 
 		<div class="mt-12 border-l-4 border-yellow-400 pl-6">
-			<p class="text-2xl font-bold text-black sm:text-3xl">
-				It doesn't have to be this way.
-			</p>
+			<p class="text-2xl font-bold text-black sm:text-3xl">It doesn't have to be this way.</p>
 		</div>
 	</div>
 </section>
