@@ -3,9 +3,7 @@
 	import SocialLinks from './SocialLinks.svelte'
 </script>
 
-<footer
-	class="relative flex flex-col justify-between bg-black text-gray-100 max-xl:min-h-screen max-xl:snap-start"
->
+<footer class="relative flex flex-col justify-between bg-black text-gray-100 max-xl:snap-start">
 	<div class="container mx-auto flex h-screen flex-col place-content-center px-4">
 		<Contact />
 		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-12 pb-4">
@@ -21,11 +19,5 @@
 <style>
 	footer {
 		height: calc(100vh - 56px);
-	}
-
-	@media (max-width: 1279px) {
-		footer {
-			height: 100svh;
-		}
 	}
 </style>

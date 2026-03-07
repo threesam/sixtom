@@ -15,15 +15,12 @@
 	]
 </script>
 
-<section
-	id="services"
-	class="bg-gray-100 max-xl:min-h-screen max-xl:snap-start max-xl:py-0 xl:py-20"
->
+<section id="services" class="bg-gray-100 max-xl:py-0 xl:py-20">
 	<div class="relative container mx-auto">
 		<div class="grid grid-cols-1 xl:grid-cols-3 xl:gap-6 xl:px-6">
 			{#each services as { question, answer }}
 				<article
-					class="flex flex-col justify-center px-4 py-8 max-xl:relative max-xl:min-h-screen max-xl:snap-start max-xl:after:absolute max-xl:after:top-full max-xl:after:left-1/2 max-xl:after:h-10 max-xl:after:w-px max-xl:after:-translate-x-1/2 max-xl:after:bg-black max-xl:last:after:hidden xl:min-h-[28rem] xl:border-2 xl:p-8"
+					class="flex flex-col justify-center px-4 py-8 max-xl:min-h-screen max-xl:snap-start xl:min-h-[28rem] xl:border-2 xl:p-8"
 				>
 					<h3 class="mb-6 text-4xl font-bold text-black xl:text-4xl">{question}</h3>
 					<p class="text-xl text-gray-700 xl:text-xl">{answer}</p>

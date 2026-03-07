@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="relative w-full data-[is-reversed=true]:-scale-x-100 max-xl:hidden"
+	class="relative w-full data-[is-reversed=true]:-scale-x-100"
 	data-is-reversed={isReversed}
 	style="height: {height};"
 >

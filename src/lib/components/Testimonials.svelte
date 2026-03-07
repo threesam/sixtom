@@ -111,7 +111,7 @@
 		></div>
 
 		<h2
-			class="relative z-30 mb-8 px-4 text-4xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:text-center xl:text-4xl"
+			class="relative z-30 mb-8 px-4 text-2xl font-bold text-black max-xl:border-b-2 max-xl:border-yellow-400 xl:text-center xl:text-4xl"
 		>
 			What Our Clients Say
 		</h2>
