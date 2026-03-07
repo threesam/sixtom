@@ -16,7 +16,7 @@
 			<Clock size={250} hasBlur={false} />
 		</div>
 		<div class="mb-8 w-full text-center xl:col-span-6 xl:mb-0 xl:text-left">
-			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 xl:text-6xl">{title}</h1>
+			<h1 class="mb-4 w-full text-4xl font-bold text-gray-100 xl:text-4xl">{title}</h1>
 			<p class="mb-8 text-base text-gray-200">{subtitle}</p>
 			<div class="flex flex-wrap items-center justify-center gap-3 xl:justify-start">
 				<a

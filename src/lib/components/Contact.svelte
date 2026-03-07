@@ -73,7 +73,7 @@
 
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:text-5xl">Book a Call</h2>
+		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:text-4xl">Book a Call</h2>
 		<p class="mb-8 text-center text-sm text-gray-300 xl:text-base">
 			Tell me what you sell, what is stuck, and what needs to move now.
 		</p>
