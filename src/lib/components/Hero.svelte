@@ -6,7 +6,7 @@
 
 <!-- Hero Section -->
 <section
-	class="relative bg-black pt-28 pb-20"
+	class="relative bg-black pt-28 pb-20 max-xl:min-h-screen max-xl:snap-start"
 	style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);"
 >
 	<div
