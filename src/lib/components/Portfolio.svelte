@@ -79,13 +79,16 @@
 	})
 </script>
 
-<section id="portfolio" class="relative overflow-x-hidden bg-gray-200 py-20">
-	<div class="container relative mx-auto">
+<section
+	id="portfolio"
+	class="relative overflow-x-hidden bg-gray-200 py-20 max-xl:min-h-screen max-xl:snap-start"
+>
+	<div class="relative container mx-auto">
 		<div
-			class="absolute bottom-0 left-0 top-0 z-20 w-4 bg-gradient-to-r from-gray-200 to-transparent xl:w-4"
+			class="absolute top-0 bottom-0 left-0 z-20 w-4 bg-gradient-to-r from-gray-200 to-transparent xl:w-4"
 		></div>
 		<div
-			class="absolute bottom-0 right-0 top-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-200 xl:w-4"
+			class="absolute top-0 right-0 bottom-0 z-20 w-4 bg-gradient-to-r from-transparent to-gray-200 xl:w-4"
 		></div>
 
 		<h2
@@ -96,7 +99,7 @@
 
 		<!-- Navigation Arrows -->
 		<div
-			class="pointer-events-none absolute -left-16 -right-16 top-1/2 z-10 flex justify-between max-xl:hidden"
+			class="pointer-events-none absolute top-1/2 -right-16 -left-16 z-10 flex justify-between max-xl:hidden"
 		>
 			{#if !isAtStart}
 				<button
@@ -146,7 +149,7 @@
 
 		<ul
 			bind:this={sliderContainer}
-			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-y-hidden overflow-x-scroll overscroll-x-none xl:gap-4 xl:px-4"
+			class="scrollbar-none relative flex w-full snap-x snap-mandatory overflow-x-scroll overflow-y-hidden overscroll-x-none xl:gap-4 xl:px-4"
 		>
 			{#each section.items as { config, image, links, title, subtitle }}
 				{#if config?.isActive}
@@ -170,7 +173,7 @@
 									></span>
 								</h3>
 
-								<p class="text-xs uppercase text-gray-500">{subtitle}</p>
+								<p class="text-xs text-gray-500 uppercase">{subtitle}</p>
 							</div>
 						</a>
 					</li>

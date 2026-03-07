@@ -98,7 +98,10 @@
 	})
 </script>
 
-<section id="testimonials" class="relative container mx-auto w-full bg-gray-100 py-20">
+<section
+	id="testimonials"
+	class="relative container mx-auto w-full bg-gray-100 py-20 max-xl:min-h-screen max-xl:snap-start"
+>
 	<div class="relative mx-auto xl:max-w-xl">
 		<div
 			class="absolute top-0 bottom-0 left-0 z-20 w-4 bg-gradient-to-r from-gray-100 to-transparent xl:w-10"

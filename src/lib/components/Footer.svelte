@@ -3,10 +3,10 @@
 	import SocialLinks from './SocialLinks.svelte'
 </script>
 
-<footer class="relative flex flex-col justify-between bg-black text-gray-100">
+<footer class="relative flex flex-col justify-between bg-black text-gray-100 max-xl:snap-start">
 	<div class="container mx-auto flex h-screen flex-col place-content-center px-4">
 		<Contact />
-		<div class="mx-auto flex w-full max-w-lg flex-col items-center pb-4 pt-12">
+		<div class="mx-auto flex w-full max-w-lg flex-col items-center pt-12 pb-4">
 			<SocialLinks />
 		</div>
 	</div>
