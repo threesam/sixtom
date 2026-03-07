@@ -6,9 +6,9 @@
 	let headerHeight = 56 //px
 
 	const navigationLinks = [
-		{ href: '#services', text: 'Services' },
-		{ href: '#portfolio', text: 'Portfolio' },
-		{ href: '#testimonials', text: 'Testimonials' },
+		{ href: '#problem', text: 'Why Us' },
+		{ href: '#service-01', text: 'Services' },
+		{ href: '#credibility', text: 'Proof' },
 		{ href: '#contact', text: 'Contact' }
 	]
 

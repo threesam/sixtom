@@ -53,7 +53,8 @@
 
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-8 text-center text-4xl font-bold text-white xl:mb-8 xl:text-5xl">Let's Talk</h2>
+		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">Ready to ship?</h2>
+		<p class="mb-8 text-center text-gray-400">Tell me what you're building. I'll tell you how fast we can get there.</p>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
@@ -109,8 +110,8 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-					<p class="mb-2 text-center text-2xl xl:text-4xl">Thanks for contacting us!</p>
-					<p class="text-center text-gray-200 xl:text-lg">Someone will get back to you shortly</p>
+				<p class="mb-2 text-center text-2xl xl:text-4xl">Message received.</p>
+				<p class="text-center text-gray-200 xl:text-lg">I'll get back to you fast &mdash; that's kind of the whole point.</p>
 				</div>
 			</div>
 		{/if}
