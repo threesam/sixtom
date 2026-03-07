@@ -52,7 +52,7 @@
 	class="fixed z-50 w-full border-b-2 border-black bg-black text-white shadow-black/30 transition-all duration-300 data-[is-menu-open=false]:border-transparent data-[is-menu-open=false]:shadow-lg"
 	data-is-menu-open={isMenuOpen}
 >
-	<div class="container relative z-40 mx-auto flex items-center justify-between px-4">
+	<div class="relative z-40 container mx-auto flex items-center justify-between px-4">
 		<a href="/">
 			<p class="py-2 text-4xl font-bold uppercase">
 				six<span class="mx-0.5 bg-gray-100 px-1 py-[6px] text-black transition-all duration-300">
@@ -106,7 +106,7 @@
 				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black xl:hidden"
 				href="#contact"
 			>
-				Book now
+				Start here
 			</a>
 		{/if}
 	</div>

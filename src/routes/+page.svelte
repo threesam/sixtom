@@ -11,15 +11,15 @@
 
 	const canonicalUrl = 'https://sixtom.com/'
 	const description =
-		'Tailored solutions to transform your vision into reality. From custom development to digital marketing and branding, we drive your business forward.'
+		'AI enablement for ecommerce and content-led teams. Build practical digital systems that improve conversion, speed execution, and create measurable wins in 14-30 days.'
 	const imageUrl =
 		'https://cdn.sanity.io/images/qcht0vh1/production/bdfc49865d938bfcebf61726ddf78e29846ec0fe-870x870.png'
-	const title = 'SIXTOM | Precision Tools for Accelerating Big Ideas'
+	const title = 'SIXTOM | AI Enablement for Digital Systems'
 </script>
 
 <svelte:head>
 	<!-- Primary Meta Tags -->
-	<title>SIXTOM | Precision Tools for Accelerating Big Ideas</title>
+	<title>{title}</title>
 	<meta name="description" content={description} />
 	<meta charset="UTF-8" />
 
@@ -44,25 +44,11 @@
 	<!-- Keywords -->
 	<meta
 		name="keywords"
-		content="custom development, e-commerce, branding, digital marketing, scalable solutions, business growth"
+		content="AI enablement consultant, ecommerce AI systems, conversion rate optimization, AI workflow automation, linkedin personal brand, digital systems strategy"
 	/>
 
 	<!-- Canonical Link -->
 	<link rel="canonical" href={canonicalUrl} />
-
-	<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Organization",
-			"name": "SIXTOM",
-			"url": canonicalUrl,
-			"logo": imageUrl,
-			"sameAs": [
-				"https://twitter.com/six_to_m",
-				"https://www.linkedin.com/in/sixtom/"
-			],
-		}
-	</script>
 </svelte:head>
 
 <Header />

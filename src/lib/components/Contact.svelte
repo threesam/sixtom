@@ -1,80 +1,86 @@
 <script lang="ts">
-    import { scale, fade } from 'svelte/transition'
-    import { cubicOut } from 'svelte/easing'
+	import { scale, fade } from 'svelte/transition'
+	import { cubicOut } from 'svelte/easing'
 
-    import { sleep } from '$lib/client'
+	import { sleep } from '$lib/client'
 
-    let innerWidth = $state(0)
-    let name = $state('')
-    let email = $state('')
-    let message = $state('')
-    let status = $state('')
+	let innerWidth = $state(0)
+	let name = $state('')
+	let email = $state('')
+	let message = $state('')
+	let status = $state('')
 
-    // Honeypot field (should remain empty for humans)
-    let honeypot = $state('')
+	// Honeypot field (should remain empty for humans)
+	let honeypot = $state('')
 
-    // Prevent duplicate submissions
-    let isSubmitting = $state(false)
+	// Prevent duplicate submissions
+	let isSubmitting = $state(false)
 
-    // Form validation: Check if all required fields are filled
-    let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
+	// Form validation: Check if all required fields are filled
+	let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
 
-    let buttonText = $derived(isSubmitting ? 'Sending…' : 'Send Message')
+	let buttonText = $derived(isSubmitting ? 'Sending…' : 'Request Fit Call')
 
-    async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
-        e.preventDefault()
+	async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
+		e.preventDefault()
 
-        // Guard against duplicate submits
-        if (isSubmitting) return
+		// Guard against duplicate submits
+		if (isSubmitting) return
 
-        // If honeypot is filled, silently succeed without sending
-        if (honeypot.trim() !== '') {
-            status = 'Message sent successfully!'
-            return
-        }
+		// If honeypot is filled, silently succeed without sending
+		if (honeypot.trim() !== '') {
+			status = 'Message sent successfully!'
+			return
+		}
 
-        isSubmitting = true
-        try {
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({ name, email, message, website: honeypot })
-            })
+		isSubmitting = true
+		try {
+			const response = await fetch('/api/send-email', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: JSON.stringify({ name, email, message, website: honeypot })
+			})
 
-            const result = await response.json().catch(() => ({ status: 'Message sent successfully!' }))
-            status = result?.status ?? 'Message sent successfully!'
-        } catch (err) {
-            status = 'Error sending message. Please try again later.'
-        } finally {
-            isSubmitting = false
-        }
-    }
+			const result = await response.json().catch(() => ({ status: 'Message sent successfully!' }))
+			status = result?.status ?? 'Message sent successfully!'
+		} catch (err) {
+			status = 'Error sending message. Please try again later.'
+		} finally {
+			isSubmitting = false
+		}
+	}
 
-    // Watch for changes in status
-    $effect(() => {
-        if (status) {
-            // wait for animation
-            sleep(500).then(() => {
-                name = ''
-                email = ''
-                message = ''
-                honeypot = ''
-            })
+	// Watch for changes in status
+	$effect(() => {
+		if (status) {
+			// wait for animation
+			sleep(500).then(() => {
+				name = ''
+				email = ''
+				message = ''
+				honeypot = ''
+			})
 
-            sleep(3000).then(() => (status = ''))
-        }
-    })
+			sleep(3000).then(() => (status = ''))
+		}
+	})
 </script>
 
 <svelte:window bind:innerWidth />
 
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-        <h2 class="mb-8 text-center text-4xl font-bold text-white xl:mb-8 xl:text-5xl">Let's Talk</h2>
-        <form class="mx-auto" onsubmit={submitForm}>
+		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:text-5xl">
+			Start With One Clear Win
+		</h2>
+		<p class="mb-8 text-center text-sm text-gray-300 xl:text-base">
+			Share what you sell, where your team is stuck, and what result matters most in the next 30
+			days.
+		</p>
+		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
 				<input
@@ -82,8 +88,8 @@
 					type="text"
 					id="name"
 					name="name"
-					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-					placeholder="please tell us your name"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none"
+					placeholder="your name"
 					required
 				/>
 			</div>
@@ -94,8 +100,8 @@
 					type="email"
 					id="email"
 					name="email"
-					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-					placeholder="enter your email"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none"
+					placeholder="best email"
 					required
 				/>
 			</div>
@@ -107,27 +113,27 @@
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
-					placeholder="how can we help?"
+					placeholder="What do you sell? Who is your ideal buyer? What is the biggest bottleneck right now?"
 					required
 				></textarea>
 			</div>
-            <!-- Honeypot field: hidden from users, visible to bots -->
-            <div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
-                <label for="website">Website</label>
-                <input
-                    id="website"
-                    name="website"
-                    type="text"
-                    tabindex="-1"
-                    autocomplete="off"
-                    bind:value={honeypot}
-                />
-            </div>
+			<!-- Honeypot field: hidden from users, visible to bots -->
+			<div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+				<label for="website">Website</label>
+				<input
+					id="website"
+					name="website"
+					type="text"
+					tabindex="-1"
+					autocomplete="off"
+					bind:value={honeypot}
+				/>
+			</div>
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-                    class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
-                    disabled={!isFormValid || isSubmitting}
+					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
+					disabled={!isFormValid || isSubmitting}
 				>
 					{buttonText}
 				</button>
@@ -141,8 +147,10 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-					<p class="mb-2 text-center text-2xl xl:text-4xl">Thanks for contacting us!</p>
-					<p class="text-center text-gray-200 xl:text-lg">Someone will get back to you shortly</p>
+					<p class="mb-2 text-center text-2xl xl:text-4xl">Thanks for reaching out.</p>
+					<p class="text-center text-gray-200 xl:text-lg">
+						I will follow up with next steps shortly.
+					</p>
 				</div>
 			</div>
 		{/if}
