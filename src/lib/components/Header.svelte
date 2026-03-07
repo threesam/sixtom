@@ -106,7 +106,7 @@
 				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black xl:hidden"
 				href="#contact"
 			>
-				Start here
+				Book Call
 			</a>
 		{/if}
 	</div>

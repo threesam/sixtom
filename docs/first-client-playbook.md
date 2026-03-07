@@ -20,7 +20,7 @@ Offer name: **14-Day AI Workflow Pilot**
 - **Who it's for:** teams already shipping but stuck in tool chaos
 - **Deliverables:** one production-ready workflow + KPI baseline + rollout doc
 - **Typical outcomes:** faster content operations, cleaner merchandising workflows, fewer handoff delays
-- **CTA:** "Book a niche-fit call"
+- **CTA:** "Book a call"
 
 ## 3) First 30-day client pipeline
 
@@ -34,7 +34,7 @@ Outreach structure:
 
 1. Problem mirror ("Looks like you're handling X while trying to improve Y")
 2. Observation ("I noticed friction in...")
-3. Low-friction ask ("Open to a 20-minute fit call?")
+3. Low-friction ask ("Open to a 20-minute call?")
 
 ## 4) LinkedIn growth system (simple + consistent)
 

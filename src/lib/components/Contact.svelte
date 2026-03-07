@@ -19,7 +19,7 @@
 	// Form validation: Check if all required fields are filled
 	let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
 
-	let buttonText = $derived(isSubmitting ? 'Sending…' : 'Request Fit Call')
+	let buttonText = $derived(isSubmitting ? 'Sending…' : 'Book Call')
 
 	async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		e.preventDefault()
@@ -73,12 +73,9 @@
 
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:text-5xl">
-			Start With One Clear Win
-		</h2>
+		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:text-5xl">Book a Call</h2>
 		<p class="mb-8 text-center text-sm text-gray-300 xl:text-base">
-			Share what you sell, where your team is stuck, and what result matters most in the next 30
-			days.
+			Tell me what you sell, what is stuck, and what needs to move now.
 		</p>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
