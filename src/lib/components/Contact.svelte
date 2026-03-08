@@ -4,6 +4,9 @@
 
 	import { sleep } from '$lib/client'
 	import type { EventHandler, FormEventHandler } from 'svelte/elements'
+	import type { ContactCopy } from '$lib/copy/types'
+
+	let { copy }: { copy: ContactCopy } = $props()
 
 	let innerWidth = $state(0)
 	let name = $state('')
@@ -12,10 +15,9 @@
 	let status = $state('')
 	let isLoading = $state(false)
 
-	// Form validation: Check if all required fields are filled
 	let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
 
-	let buttonText = $derived(isLoading ? 'Loading' : 'Send Message')
+	let buttonText = $derived(isLoading ? 'Loading...' : copy.button)
 
 	async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		e.preventDefault()
@@ -53,8 +55,8 @@
 
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">Ready to ship?</h2>
-		<p class="mb-8 text-center text-gray-400">Tell me what you're building. I'll tell you how fast we can get there.</p>
+		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">{copy.headline}</h2>
+		<p class="mb-8 text-center text-gray-400">{copy.subheadline}</p>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
@@ -64,7 +66,7 @@
 					id="name"
 					name="name"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-					placeholder="please tell us your name"
+					placeholder={copy.namePlaceholder}
 					required
 				/>
 			</div>
@@ -76,7 +78,7 @@
 					id="email"
 					name="email"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-					placeholder="enter your email"
+					placeholder={copy.emailPlaceholder}
 					required
 				/>
 			</div>
@@ -88,7 +90,7 @@
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
-					placeholder="how can we help?"
+					placeholder={copy.messagePlaceholder}
 					required
 				></textarea>
 			</div>
@@ -110,8 +112,8 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-				<p class="mb-2 text-center text-2xl xl:text-4xl">Message received.</p>
-				<p class="text-center text-gray-200 xl:text-lg">I'll get back to you fast &mdash; that's kind of the whole point.</p>
+			<p class="mb-2 text-center text-2xl xl:text-4xl">{copy.successTitle}</p>
+			<p class="text-center text-gray-200 xl:text-lg">{copy.successBody}</p>
 				</div>
 			</div>
 		{/if}

@@ -5,6 +5,7 @@
 	import ProblemSection from '$lib/components/ProblemSection.svelte'
 	import Services from '$lib/components/Services.svelte'
 	import Credibility from '$lib/components/Credibility.svelte'
+	import { cro as copy } from '$lib/copy/cro'
 
 	let { data } = $props()
 
@@ -21,16 +22,13 @@
 		: null
 
 	const canonicalUrl = 'https://sixtom.com/'
-	const description =
-		'AI-enabled web development that ships in days, not months. Websites, e-commerce, automations, and digital infrastructure — built fast.'
 	const imageUrl =
 		'https://cdn.sanity.io/images/qcht0vh1/production/bdfc49865d938bfcebf61726ddf78e29846ec0fe-870x870.png'
-	const title = 'SIXTOM | Your Website. Tomorrow.'
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
+	<title>{copy.meta.title}</title>
+	<meta name="description" content={copy.meta.description} />
 	<meta charset="UTF-8" />
 
 	<meta name="robots" content="index, follow" />
@@ -38,20 +36,17 @@
 
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={canonicalUrl} />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
+	<meta property="og:title" content={copy.meta.title} />
+	<meta property="og:description" content={copy.meta.description} />
 	<meta property="og:image" content={imageUrl} />
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:url" content={canonicalUrl} />
-	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content={description} />
+	<meta name="twitter:title" content={copy.meta.title} />
+	<meta name="twitter:description" content={copy.meta.description} />
 	<meta name="twitter:image" content={imageUrl} />
 
-	<meta
-		name="keywords"
-		content="fast website development, AI web development, website in a day, rapid web development, e-commerce setup, workflow automation, digital infrastructure"
-	/>
+	<meta name="keywords" content={copy.meta.keywords} />
 
 	<link rel="canonical" href={canonicalUrl} />
 
@@ -70,46 +65,20 @@
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
-		"mainEntity": [
-			{
-				"@type": "Question",
-				"name": "Need a website that actually converts?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "High-performance landing pages and marketing sites, built on modern frameworks like SvelteKit and Next.js, deployed in days. Mobile-first, SEO baked in, live in under a week."
-				}
-			},
-			{
-				"@type": "Question",
-				"name": "Ready to sell online?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Your store, launched. Shopify or custom storefront with checkout flow optimization, payment and shipping integrations. Product launch in days, not quarters."
-				}
-			},
-			{
-				"@type": "Question",
-				"name": "What if AI handled the boring stuff?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Workflow automation. AI integrations for chat, summarization, and triage. Internal tools that save hours per week with no vendor lock-in."
-				}
-			},
-			{
-				"@type": "Question",
-				"name": "Want your digital systems just working?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "APIs, dashboards, CMS setup (Sanity). API design and integration, admin dashboards, and infrastructure that scales with your business."
-				}
+		"mainEntity": copy.services.map(s => ({
+			"@type": "Question",
+			"name": s.question,
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": `${s.answer} ${s.bullets.join('. ')}`
 			}
-		]
+		}))
 	})}</script>`}
 </svelte:head>
 
 <Header />
-<Hero />
-<ProblemSection />
-<Services />
-<Credibility testimonial={firstTestimonial} />
-<Footer />
+<Hero copy={copy.hero} />
+<ProblemSection copy={copy.problem} />
+<Services services={copy.services} />
+<Credibility copy={copy.credibility} testimonial={firstTestimonial} />
+<Footer copy={copy.contact} />
