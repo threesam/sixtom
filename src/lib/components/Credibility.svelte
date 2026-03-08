@@ -19,21 +19,22 @@
 			{/each}
 		</div>
 
-		{#if testimonial}
-			<div class="mx-auto mb-8 max-w-xl">
-				<div class="relative border-l-4 border-yellow-400 pl-4">
-					<blockquote class="mb-2 text-sm text-gray-300 italic sm:text-base">
-						"{testimonial.text}"
-					</blockquote>
-					<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-						<span class="text-sm font-bold text-gray-100">{testimonial.person.name}</span>
-						{#if testimonial.subtitle}
-							<span class="text-xs text-gray-500">&mdash; {testimonial.subtitle}</span>
-						{/if}
-					</div>
+	{#if testimonial}
+		<div class="mx-auto mb-8 max-w-xl">
+			<div class="relative bg-yellow-400 px-6 py-5 sm:px-8 sm:py-6">
+				<span class="mb-3 block text-4xl font-black leading-none text-black/20 sm:text-5xl">"</span>
+				<blockquote class="mb-4 text-base font-medium leading-relaxed text-black sm:text-lg">
+					{testimonial.text}
+				</blockquote>
+				<div class="flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-black/10 pt-3">
+					<span class="text-sm font-black uppercase tracking-wide text-black">{testimonial.person.name}</span>
+					{#if testimonial.subtitle}
+						<span class="text-xs text-black/60">&mdash; {testimonial.subtitle}</span>
+					{/if}
 				</div>
 			</div>
-		{/if}
+		</div>
+	{/if}
 
 		<div class="text-center">
 			<p class="mb-4 text-xs tracking-widest uppercase text-gray-500">{credibility.techLabel}</p>
