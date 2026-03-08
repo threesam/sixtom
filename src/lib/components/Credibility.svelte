@@ -36,15 +36,5 @@
 		</div>
 	{/if}
 
-		<div class="text-center">
-			<p class="mb-4 text-xs tracking-widest uppercase text-gray-500">{credibility.techLabel}</p>
-			<div class="flex flex-wrap justify-center gap-2">
-				{#each credibility.capabilities as tech}
-					<span class="rounded border border-gray-700 px-2 py-1 text-xs text-gray-400 transition-colors duration-200 hover:border-yellow-400 hover:text-yellow-400">
-						{tech}
-					</span>
-				{/each}
-			</div>
-		</div>
 	</div>
 </section>

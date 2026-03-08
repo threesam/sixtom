@@ -138,20 +138,6 @@ export const credibility = {
 		{ value: '0', label: 'Committees consulted' },
 		{ value: '100%', label: 'Shipped, not shelved' },
 	],
-	capabilities: [
-		'SvelteKit',
-		'Next.js',
-		'Shopify',
-		'Vercel',
-		'Cloudflare',
-		'Sanity',
-		'OpenAI',
-		'Claude',
-		'Tailwind',
-		'n8n',
-		'Postgres',
-	],
-	techLabel: 'Some of the technologies we use',
 }
 
 // ─── Contact section ──────────────────────────────────────────────────────────
