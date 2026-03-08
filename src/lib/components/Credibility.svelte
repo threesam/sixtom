@@ -1,21 +1,23 @@
 <script lang="ts">
-	let { testimonial }: { testimonial?: { text: string; person: { name: string }; subtitle: string } } = $props()
+	import type { CredibilityCopy } from '$lib/copy/types'
 
-	const stats = [
-		{ value: '< 7 days', label: 'From first call to live website' },
-		{ value: 'Zero', label: 'Surprise invoices. Ever.' },
-		{ value: '100%', label: 'On-time delivery rate' }
-	]
+	let {
+		copy,
+		testimonial
+	}: {
+		copy: CredibilityCopy
+		testimonial?: { text: string; person: { name: string }; subtitle: string }
+	} = $props()
 </script>
 
 <section id="credibility" class="snap-section relative bg-black px-4 py-12">
 	<div class="mx-auto max-w-3xl">
 		<h2 class="mb-8 text-center text-2xl font-bold text-gray-100 sm:text-3xl xl:text-4xl">
-			Fast by design. Proven by results.
+			{copy.headline}
 		</h2>
 
 		<div class="mb-10 grid grid-cols-3 gap-4">
-			{#each stats as stat}
+			{#each copy.stats as stat}
 				<div class="text-center">
 					<p class="mb-1 text-2xl font-bold text-yellow-400 sm:text-3xl xl:text-4xl">{stat.value}</p>
 					<p class="text-[10px] tracking-widest uppercase text-gray-500 sm:text-xs">{stat.label}</p>
