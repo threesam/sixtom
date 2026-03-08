@@ -1,22 +1,16 @@
 <script lang="ts">
 	import { fade, slide } from 'svelte/transition'
+	import { header } from '$lib/copy'
+
 	let scrollY = $state(0)
 	let height = 0
 	let isMenuOpen = $state(false)
 	let headerHeight = 56 //px
 
-	const navigationLinks = [
-		{ href: '#problem', text: 'Why Us' },
-		{ href: '#service-01', text: 'Services' },
-		{ href: '#credibility', text: 'Proof' },
-		{ href: '#contact', text: 'Contact' }
-	]
-
 	function toggleMenu() {
 		isMenuOpen = !isMenuOpen
 	}
 
-	// Use onMount to ensure the DOM is available
 	import { onMount } from 'svelte'
 
 	function scrollMaxValue() {
@@ -61,7 +55,7 @@
 			</p>
 		</a>
 		<nav class="hidden space-x-12 xl:flex">
-			{#each navigationLinks as { href, text }}
+			{#each header.nav as { href, text }}
 				<div class="group relative inline-block">
 					<a {href} class="">{text}</a>
 					<span
@@ -104,15 +98,15 @@
 			<a
 				in:fade
 				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black xl:hidden"
-				href="#contact"
+				href={header.mobileCta.href}
 			>
-				Book now
+				{header.mobileCta.text}
 			</a>
 		{/if}
 	</div>
 	{#if isMenuOpen}
 		<nav in:slide class="relative z-50 bg-gray-100 px-4 py-2 xl:hidden">
-			{#each navigationLinks as { href, text }}
+			{#each header.nav as { href, text }}
 				<a {href} class="block py-2 font-bold text-black hover:text-gray-800" onclick={toggleMenu}>
 					{text}
 				</a>

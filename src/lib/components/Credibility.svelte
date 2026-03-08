@@ -1,35 +1,17 @@
 <script lang="ts">
+	import { credibility } from '$lib/copy'
+
 	let { testimonial }: { testimonial?: { text: string; person: { name: string }; subtitle: string } } = $props()
-
-	const stats = [
-		{ value: '< 7 days', label: 'Average delivery' },
-		{ value: '0', label: 'Committees consulted' },
-		{ value: '100%', label: 'Shipped, not shelved' }
-	]
-
-	const capabilities = [
-		'SvelteKit',
-		'Next.js',
-		'Shopify',
-		'Vercel',
-		'Cloudflare',
-		'Sanity',
-		'OpenAI',
-		'Claude',
-		'Tailwind',
-		'n8n',
-		'Postgres'
-	]
 </script>
 
 <section id="credibility" class="snap-section relative bg-black px-4 py-12">
 	<div class="mx-auto max-w-3xl">
 		<h2 class="mb-8 text-center text-2xl font-bold text-gray-100 sm:text-3xl xl:text-4xl">
-			Speed is the strategy.
+			{credibility.heading}
 		</h2>
 
 		<div class="mb-8 grid grid-cols-3 gap-4">
-			{#each stats as stat}
+			{#each credibility.stats as stat}
 				<div class="text-center">
 					<p class="mb-1 text-2xl font-bold text-yellow-400 sm:text-3xl xl:text-4xl">{stat.value}</p>
 					<p class="text-[10px] tracking-widest uppercase text-gray-500 sm:text-xs">{stat.label}</p>
@@ -54,9 +36,9 @@
 		{/if}
 
 		<div class="text-center">
-			<p class="mb-4 text-xs tracking-widest uppercase text-gray-500">Some of the technologies we use</p>
+			<p class="mb-4 text-xs tracking-widest uppercase text-gray-500">{credibility.techLabel}</p>
 			<div class="flex flex-wrap justify-center gap-2">
-				{#each capabilities as tech}
+				{#each credibility.capabilities as tech}
 					<span class="rounded border border-gray-700 px-2 py-1 text-xs text-gray-400 transition-colors duration-200 hover:border-yellow-400 hover:text-yellow-400">
 						{tech}
 					</span>
