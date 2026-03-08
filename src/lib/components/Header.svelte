@@ -97,7 +97,7 @@
 		{:else}
 			<a
 				in:fade
-				class="rounded-full bg-yellow-400 px-3 py-1 text-sm font-bold text-black xl:hidden"
+				class="rounded-md bg-yellow-400 px-3 py-1 text-sm font-bold text-black xl:hidden"
 				href={header.mobileCta.href}
 			>
 				{header.mobileCta.text}

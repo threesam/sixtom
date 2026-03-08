@@ -13,7 +13,7 @@
 		</p>
 		<a
 			href={hero.cta.href}
-			class="inline-block rounded-full bg-yellow-400 px-10 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-500"
+			class="inline-block rounded-lg bg-yellow-400 px-10 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-500"
 		>
 			{hero.cta.text}
 		</a>

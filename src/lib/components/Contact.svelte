@@ -49,8 +49,8 @@
 
 <svelte:window bind:innerWidth />
 
-<section class="snap-section relative bg-black px-4" id="contact">
-	<div class="relative mx-auto w-full max-w-lg">
+<section class="container w-full py-2 xl:py-12" id="contact">
+	<div class="relative mx-auto max-w-lg">
 		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">{contact.heading}</h2>
 		<p class="mb-8 text-center text-gray-400">{contact.subheading}</p>
 		<form class="mx-auto" onsubmit={submitForm}>
@@ -61,7 +61,7 @@
 					type="text"
 					id="name"
 					name="name"
-					class="w-full rounded-lg border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
 					placeholder={contact.fields.name.placeholder}
 					required
 				/>
@@ -73,7 +73,7 @@
 					type="email"
 					id="email"
 					name="email"
-					class="w-full rounded-lg border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
 					placeholder={contact.fields.email.placeholder}
 					required
 				/>
@@ -85,7 +85,7 @@
 					id="message"
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
-					class="w-full rounded-lg border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
+					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
 					placeholder={contact.fields.message.placeholder}
 					required
 				></textarea>
@@ -93,7 +93,7 @@
 			<div class="flex items-center gap-2">
 				<button
 					type="submit"
-					class="w-full rounded-xl bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
+					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
 					disabled={!isFormValid}
 				>
 					{buttonText}
@@ -103,7 +103,7 @@
 
 		{#if status}
 			<div
-				class="absolute inset-0 z-10 grid place-content-center rounded-2xl bg-black/90 text-gray-100"
+				class="absolute inset-0 z-10 grid place-content-center rounded-lg bg-black/90 text-gray-100"
 				in:scale={{ duration: 200, easing: (t) => t * t }}
 				out:fade={{ duration: 200 }}
 			>

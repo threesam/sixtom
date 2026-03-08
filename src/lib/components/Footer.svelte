@@ -4,12 +4,15 @@
 	import { footer } from '$lib/copy'
 </script>
 
-<footer class="relative bg-black text-gray-100">
-	<Contact />
-	<div class="mx-auto flex w-full max-w-lg flex-col items-center px-4 py-8">
-		<SocialLinks />
+<footer class="snap-section relative bg-black text-gray-100">
+	<div class="container mx-auto flex flex-col place-content-center px-4" style="min-height: inherit;">
+		<Contact />
+		<div class="mx-auto flex w-full max-w-lg flex-col items-center pb-4 pt-12">
+			<SocialLinks />
+		</div>
 	</div>
-	<div class="pb-6 text-center text-sm text-gray-400">
+
+	<div class="absolute bottom-0 w-full bg-black pb-4 text-center text-sm text-gray-400">
 		&copy; {footer.foundingYear}-{new Date().getFullYear()} SIXTOM. All rights reserved.
 	</div>
 </footer>
