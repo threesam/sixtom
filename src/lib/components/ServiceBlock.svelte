@@ -16,7 +16,7 @@
 >
 	<div class="mx-auto max-w-2xl">
 		<span
-			class="mb-6 block text-sm font-bold tracking-widest uppercase {dark ? 'text-yellow-400' : 'text-gray-400'}"
+			class="mb-6 inline-block rounded-full border px-3 py-0.5 text-xs font-bold tracking-widest uppercase {dark ? 'border-yellow-400/40 text-yellow-400' : 'border-gray-400/40 text-gray-400'}"
 		>
 			{index}
 		</span>
@@ -29,7 +29,7 @@
 		<ul class="space-y-3">
 			{#each bullets as bullet}
 				<li class="flex items-start gap-3 text-base sm:text-lg">
-					<span class="mt-1 block h-2 w-2 shrink-0 bg-yellow-400"></span>
+					<span class="mt-1 block h-2 w-2 shrink-0 rounded-full bg-yellow-400"></span>
 					<span class={dark ? 'text-gray-300' : 'text-gray-700'}>{bullet}</span>
 				</li>
 			{/each}

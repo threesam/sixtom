@@ -21,7 +21,7 @@
 
 	{#if testimonial}
 		<div class="mx-auto mb-8 max-w-xl">
-			<div class="relative bg-yellow-400 px-6 py-5 sm:px-8 sm:py-6">
+			<div class="relative rounded-2xl bg-yellow-400 px-6 py-5 sm:px-8 sm:py-6">
 				<span class="mb-3 block text-4xl font-black leading-none text-black/20 sm:text-5xl">"</span>
 				<blockquote class="mb-4 text-base font-medium leading-relaxed text-black sm:text-lg">
 					{testimonial.text}
