@@ -22,10 +22,10 @@
 
 	const canonicalUrl = 'https://sixtom.com/'
 	const description =
-		'AI-enabled web development that ships in days, not months. Websites, e-commerce, automations, and digital infrastructure — built fast.'
+		'Stop losing customers to a website that isn\'t earning its keep. Get a high-converting website live in 7 days — built around what your buyers need to say yes.'
 	const imageUrl =
 		'https://cdn.sanity.io/images/qcht0vh1/production/bdfc49865d938bfcebf61726ddf78e29846ec0fe-870x870.png'
-	const title = 'SIXTOM | Your Website. Tomorrow.'
+	const title = 'SIXTOM | Your Website Should Be Making You Money.'
 </script>
 
 <svelte:head>
@@ -73,34 +73,34 @@
 		"mainEntity": [
 			{
 				"@type": "Question",
-				"name": "Need a website that actually converts?",
+				"name": "What if your website actually brought in customers?",
 				"acceptedAnswer": {
 					"@type": "Answer",
-					"text": "High-performance landing pages and marketing sites, built on modern frameworks like SvelteKit and Next.js, deployed in days. Mobile-first, SEO baked in, live in under a week."
+					"text": "Most sites look professional and do nothing. Every page, headline, and call-to-action is built around turning a visitor into a lead. Loads in under 2 seconds, ranks on Google from day one, and is live generating leads within a week."
 				}
 			},
 			{
 				"@type": "Question",
-				"name": "Ready to sell online?",
+				"name": "Ready to turn your store into a sales machine?",
 				"acceptedAnswer": {
 					"@type": "Answer",
-					"text": "Your store, launched. Shopify or custom storefront with checkout flow optimization, payment and shipping integrations. Product launch in days, not quarters."
+					"text": "The difference between a store that converts and one that doesn't is friction. Every barrier between your customer and checkout is removed. Checkout flows people complete, payment and shipping that works, product pages that answer every objection. Open for business in days, not quarters."
 				}
 			},
 			{
 				"@type": "Question",
-				"name": "What if AI handled the boring stuff?",
+				"name": "What would your team do with 10 extra hours a week?",
 				"acceptedAnswer": {
 					"@type": "Answer",
-					"text": "Workflow automation. AI integrations for chat, summarization, and triage. Internal tools that save hours per week with no vendor lock-in."
+					"text": "The tasks eating your team's time — copy-paste, manual follow-ups, repetitive approvals — can run themselves. Automations save 10+ hours per week from week one, customer follow-ups happen automatically, and you own it outright with no monthly platform fees."
 				}
 			},
 			{
 				"@type": "Question",
-				"name": "Want your digital systems just working?",
+				"name": "Is broken infrastructure quietly costing you growth?",
 				"acceptedAnswer": {
 					"@type": "Answer",
-					"text": "APIs, dashboards, CMS setup (Sanity). API design and integration, admin dashboards, and infrastructure that scales with your business."
+					"text": "Slow dashboards, broken integrations, data scattered across five tools — technical debt compounds until it stops your growth. The foundation is built to handle 10x your current volume, with all your data in one place and business dashboards that show what actually matters."
 				}
 			}
 		]
