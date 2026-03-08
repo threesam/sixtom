@@ -11,7 +11,7 @@
 <section id="credibility" class="snap-section relative bg-black px-4 py-12">
 	<div class="mx-auto max-w-3xl">
 		<h2 class="mb-8 text-center text-2xl font-bold text-gray-100 sm:text-3xl xl:text-4xl">
-			While others are still planning, our clients are already winning.
+			Fast by design. Proven by results.
 		</h2>
 
 		<div class="mb-10 grid grid-cols-3 gap-4">

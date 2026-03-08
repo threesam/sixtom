@@ -5,8 +5,7 @@
 			<span class="text-yellow-400">making you money.</span>
 		</h1>
 		<p class="mb-10 max-w-xl text-base text-gray-400 sm:text-lg">
-			Every day it doesn't, you're handing customers to whoever shows up first.
-			I build sites that convert visitors into paying clients — live in 7 days, built around what your buyers need to say yes.
+			Every day it doesn't, you're handing customers to whoever shows up first. Live in 7 days.
 		</p>
 		<a
 			href="#contact"
