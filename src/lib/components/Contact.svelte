@@ -3,6 +3,7 @@
 	import { cubicOut } from 'svelte/easing'
 
 	import { sleep } from '$lib/client'
+	import { contact } from '$lib/copy'
 	import type { EventHandler, FormEventHandler } from 'svelte/elements'
 
 	let innerWidth = $state(0)
@@ -12,10 +13,9 @@
 	let status = $state('')
 	let isLoading = $state(false)
 
-	// Form validation: Check if all required fields are filled
 	let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
 
-	let buttonText = $derived(isLoading ? 'Loading' : 'Send Message')
+	let buttonText = $derived(isLoading ? contact.loading : contact.submit)
 
 	async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		e.preventDefault()
@@ -34,10 +34,8 @@
 		status = result.status
 	}
 
-	// Watch for changes in status
 	$effect(() => {
 		if (status) {
-			// wait for animation
 			sleep(500).then(() => {
 				name = ''
 				email = ''
@@ -53,42 +51,42 @@
 
 <section class="container w-full py-2 xl:py-12" id="contact">
 	<div class="relative mx-auto max-w-lg">
-		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">Ready to ship?</h2>
-		<p class="mb-8 text-center text-gray-400">Tell me what you're building. I'll tell you how fast we can get there.</p>
+		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">{contact.heading}</h2>
+		<p class="mb-8 text-center text-gray-400">{contact.subheading}</p>
 		<form class="mx-auto" onsubmit={submitForm}>
 			<div class="mb-4">
-				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
+				<label for="name" class="mb-1 block font-bold text-gray-100">{contact.fields.name.label}</label>
 				<input
 					bind:value={name}
 					type="text"
 					id="name"
 					name="name"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-					placeholder="please tell us your name"
+					placeholder={contact.fields.name.placeholder}
 					required
 				/>
 			</div>
 			<div class="mb-4">
-				<label for="email" class="mb-1 block font-bold text-gray-100">email</label>
+				<label for="email" class="mb-1 block font-bold text-gray-100">{contact.fields.email.label}</label>
 				<input
 					bind:value={email}
 					type="email"
 					id="email"
 					name="email"
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-					placeholder="enter your email"
+					placeholder={contact.fields.email.placeholder}
 					required
 				/>
 			</div>
 			<div class="mb-4">
-				<label for="message" class="mb-1 block font-bold text-gray-100">message</label>
+				<label for="message" class="mb-1 block font-bold text-gray-100">{contact.fields.message.label}</label>
 				<textarea
 					bind:value={message}
 					id="message"
 					name="message"
 					rows={innerWidth < 768 ? 3 : 5}
 					class="w-full rounded-md border-2 border-gray-800 bg-transparent px-3 py-1 text-gray-100 placeholder-gray-400 transition-all duration-500 focus:border-yellow-400 focus:ring-yellow-400"
-					placeholder="how can we help?"
+					placeholder={contact.fields.message.placeholder}
 					required
 				></textarea>
 			</div>
@@ -110,8 +108,8 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-				<p class="mb-2 text-center text-2xl xl:text-4xl">Message received.</p>
-				<p class="text-center text-gray-200 xl:text-lg">I'll get back to you fast &mdash; that's kind of the whole point.</p>
+					<p class="mb-2 text-center text-2xl xl:text-4xl">{contact.success.heading}</p>
+					<p class="text-center text-gray-200 xl:text-lg">{contact.success.body}</p>
 				</div>
 			</div>
 		{/if}

@@ -5,6 +5,7 @@
 	import ProblemSection from '$lib/components/ProblemSection.svelte'
 	import Services from '$lib/components/Services.svelte'
 	import Credibility from '$lib/components/Credibility.svelte'
+	import { site, social, services } from '$lib/copy'
 
 	let { data } = $props()
 
@@ -20,91 +21,106 @@
 			}
 		: null
 
-	const canonicalUrl = 'https://sixtom.com/'
-	const description =
-		'AI-enabled web development that ships in days, not months. Websites, e-commerce, automations, and digital infrastructure — built fast.'
-	const imageUrl =
-		'https://cdn.sanity.io/images/qcht0vh1/production/bdfc49865d938bfcebf61726ddf78e29846ec0fe-870x870.png'
-	const title = 'SIXTOM | Your Website. Tomorrow.'
+	// Build FAQ answer text that matches the visible page content (answer + bullets)
+	function faqAnswerText(service: (typeof services)[number]): string {
+		return `${service.answer} ${service.bullets.join('. ')}.`
+	}
+
+	const schemaWebSite = {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		'@id': `${site.url}#website`,
+		name: site.name,
+		url: site.url,
+		description: site.description,
+	}
+
+	const schemaOrganization = {
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		'@id': `${site.url}#organization`,
+		name: site.name,
+		url: site.url,
+		logo: {
+			'@type': 'ImageObject',
+			url: site.imageUrl,
+		},
+		description: site.description,
+		foundingDate: String(site.foundingYear),
+		sameAs: [social.x.href, social.linkedin.href],
+		contactPoint: {
+			'@type': 'ContactPoint',
+			contactType: 'customer service',
+			url: `${site.url}#contact`,
+			availableLanguage: 'English',
+		},
+		knowsAbout: [
+			'Web Development',
+			'E-commerce',
+			'AI Automation',
+			'SvelteKit',
+			'Next.js',
+			'Shopify',
+		],
+	}
+
+	const schemaWebPage = {
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		'@id': `${site.url}#webpage`,
+		url: site.url,
+		name: site.title,
+		description: site.description,
+		isPartOf: { '@id': `${site.url}#website` },
+		about: { '@id': `${site.url}#organization` },
+		primaryImageOfPage: {
+			'@type': 'ImageObject',
+			url: site.imageUrl,
+		},
+	}
+
+	const schemaFAQPage = {
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: services.map((service) => ({
+			'@type': 'Question',
+			name: service.question,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: faqAnswerText(service),
+			},
+		})),
+	}
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
+	<title>{site.title}</title>
+	<meta name="description" content={site.description} />
 	<meta charset="UTF-8" />
 
 	<meta name="robots" content="index, follow" />
 	<meta name="googlebot" content="index, follow" />
 
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content={canonicalUrl} />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<meta property="og:image" content={imageUrl} />
+	<meta property="og:url" content={site.url} />
+	<meta property="og:title" content={site.title} />
+	<meta property="og:description" content={site.description} />
+	<meta property="og:image" content={site.imageUrl} />
 
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:url" content={canonicalUrl} />
-	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image" content={imageUrl} />
+	<meta name="twitter:url" content={site.url} />
+	<meta name="twitter:title" content={site.title} />
+	<meta name="twitter:description" content={site.description} />
+	<meta name="twitter:image" content={site.imageUrl} />
 
-	<meta
-		name="keywords"
-		content="fast website development, AI web development, website in a day, rapid web development, e-commerce setup, workflow automation, digital infrastructure"
-	/>
+	<meta name="keywords" content={site.keywords} />
 
-	<link rel="canonical" href={canonicalUrl} />
+	<link rel="canonical" href={site.url} />
 
-	{@html `<script type="application/ld+json">${JSON.stringify({
-		"@context": "https://schema.org",
-		"@type": "Organization",
-		"name": "SIXTOM",
-		"url": canonicalUrl,
-		"logo": imageUrl,
-		"sameAs": [
-			"https://twitter.com/six_to_m",
-			"https://www.linkedin.com/in/sixtom/"
-		]
-	})}</script>`}
-
-	{@html `<script type="application/ld+json">${JSON.stringify({
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		"mainEntity": [
-			{
-				"@type": "Question",
-				"name": "Need a website that actually converts?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "High-performance landing pages and marketing sites, built on modern frameworks like SvelteKit and Next.js, deployed in days. Mobile-first, SEO baked in, live in under a week."
-				}
-			},
-			{
-				"@type": "Question",
-				"name": "Ready to sell online?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Your store, launched. Shopify or custom storefront with checkout flow optimization, payment and shipping integrations. Product launch in days, not quarters."
-				}
-			},
-			{
-				"@type": "Question",
-				"name": "What if AI handled the boring stuff?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Workflow automation. AI integrations for chat, summarization, and triage. Internal tools that save hours per week with no vendor lock-in."
-				}
-			},
-			{
-				"@type": "Question",
-				"name": "Want your digital systems just working?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "APIs, dashboards, CMS setup (Sanity). API design and integration, admin dashboards, and infrastructure that scales with your business."
-				}
-			}
-		]
-	})}</script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify(schemaWebSite)}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify(schemaOrganization)}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify(schemaWebPage)}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify(schemaFAQPage)}<\/script>`}
 </svelte:head>
 
 <Header />
