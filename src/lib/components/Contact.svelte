@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { scale, fade } from 'svelte/transition'
-	import { cubicOut } from 'svelte/easing'
 
 	import { sleep } from '$lib/client'
-	import type { EventHandler, FormEventHandler } from 'svelte/elements'
 
 	let innerWidth = $state(0)
 	let name = $state('')
 	let email = $state('')
 	let message = $state('')
+	let company = $state('')
 	let status = $state('')
+	let wasSuccessful = $state(false)
 	let isLoading = $state(false)
+	const formStartedAt = Date.now()
 
 	// Form validation: Check if all required fields are filled
 	let isFormValid = $derived(name.trim() !== '' && email.trim() !== '' && message.trim() !== '')
@@ -19,32 +20,45 @@
 
 	async function submitForm(e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		e.preventDefault()
-		const response = await fetch('/api/send-email', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ name, email, message })
-		})
-
 		isLoading = true
-		const result = await response.json()
+		try {
+			const response = await fetch('/api/send-email', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ name, email, message, company, formStartedAt })
+			})
 
-		isLoading = false
-		status = result.status
+			const result = await response.json()
+			wasSuccessful = response.ok
+			status = result.status ?? (response.ok ? 'Message sent successfully!' : 'Could not send your message.')
+		} catch (error) {
+			console.error('Failed to submit contact form:', error)
+			wasSuccessful = false
+			status = 'Could not send your message right now.'
+		} finally {
+			isLoading = false
+		}
 	}
 
 	// Watch for changes in status
 	$effect(() => {
 		if (status) {
-			// wait for animation
-			sleep(500).then(() => {
-				name = ''
-				email = ''
-				message = ''
-			})
+			if (wasSuccessful) {
+				// wait for animation
+				sleep(500).then(() => {
+					name = ''
+					email = ''
+					message = ''
+					company = ''
+				})
+			}
 
-			sleep(3000).then(() => (status = ''))
+			sleep(3000).then(() => {
+				status = ''
+				wasSuccessful = false
+			})
 		}
 	})
 </script>
@@ -56,6 +70,17 @@
 		<h2 class="mb-3 text-center text-4xl font-bold text-white xl:mb-4 xl:text-5xl">Ready to ship?</h2>
 		<p class="mb-8 text-center text-gray-400">Tell me what you're building. I'll tell you how fast we can get there.</p>
 		<form class="mx-auto" onsubmit={submitForm}>
+			<div class="pointer-events-none absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+				<label for="company">Company</label>
+				<input
+					bind:value={company}
+					type="text"
+					id="company"
+					name="company"
+					tabindex="-1"
+					autocomplete="off"
+				/>
+			</div>
 			<div class="mb-4">
 				<label for="name" class="mb-1 block font-bold text-gray-100">name</label>
 				<input
@@ -96,7 +121,7 @@
 				<button
 					type="submit"
 					class="w-full rounded-lg bg-yellow-400 py-4 font-bold text-black transition duration-300 hover:bg-yellow-500 disabled:bg-gray-400"
-					disabled={!isFormValid}
+					disabled={!isFormValid || isLoading}
 				>
 					{buttonText}
 				</button>
@@ -110,8 +135,14 @@
 				out:fade={{ duration: 200 }}
 			>
 				<div class="max-w-md p-2">
-				<p class="mb-2 text-center text-2xl xl:text-4xl">Message received.</p>
-				<p class="text-center text-gray-200 xl:text-lg">I'll get back to you fast &mdash; that's kind of the whole point.</p>
+					<p class="mb-2 text-center text-2xl xl:text-4xl">{status}</p>
+					{#if wasSuccessful}
+						<p class="text-center text-gray-200 xl:text-lg">
+							I'll get back to you fast &mdash; that's kind of the whole point.
+						</p>
+					{:else}
+						<p class="text-center text-gray-200 xl:text-lg">Please try again in a moment.</p>
+					{/if}
 				</div>
 			</div>
 		{/if}
