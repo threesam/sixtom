@@ -1,17 +1,24 @@
-<script>
-	import Contact from './Contact.svelte'
-	import SocialLinks from './SocialLinks.svelte'
+<script lang="ts">
+	import { site } from '$lib/content'
 </script>
 
-<footer class="snap-section relative bg-black text-gray-100">
-	<div class="container mx-auto flex flex-col place-content-center px-4" style="min-height: inherit;">
-		<Contact />
-		<div class="mx-auto flex w-full max-w-lg flex-col items-center pb-4 pt-12">
-			<SocialLinks />
+<footer class="py-16 border-t border-neutral-200 bg-neutral-900 text-neutral-100">
+	<div class="max-w-5xl mx-auto px-6">
+		<p class="text-2xl md:text-3xl font-semibold tracking-tight">
+			sixtom — {site.tagline}
+		</p>
+		<div class="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-neutral-400">
+			<p>
+				Designed and built by {site.operator.name}.
+			</p>
+			<a
+				href={site.gardenUrl}
+				class="underline underline-offset-4 hover:text-white"
+				rel="noopener noreferrer"
+				target="_blank"
+			>
+				more at the garden →
+			</a>
 		</div>
-	</div>
-
-	<div class="absolute bottom-0 w-full bg-black pb-4 text-center text-sm text-gray-400">
-		&copy; 2020-{new Date().getFullYear()} SIXTOM. All rights reserved.
 	</div>
 </footer>
