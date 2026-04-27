@@ -57,7 +57,7 @@ export const sprintQA: readonly QA[] = [
 	{
 		question: 'What if I’m not technical?',
 		answer:
-			"Most clients aren’t. I just need login access to your analytics, your CMS, your hosting. Usually 15 minutes of clicking “add user.” You don’t have to understand any of it — that’s my job."
+			"Most clients aren't. I just need login access to your analytics, your CMS, your hosting. Usually 15 minutes of clicking “add user.” You don't have to understand any of it — that's my job."
 	},
 	{
 		question: 'What if my live site breaks?',
