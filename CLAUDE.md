@@ -15,26 +15,30 @@ Package manager is **pnpm** (see `.npmrc`, `pnpm-lock.yaml`).
 - `pnpm test:e2e` — Playwright (`e2e/`)
 - `pnpm test` — unit (one-shot) then e2e
 - `pnpm storybook` — Storybook dev server on port 6006
-- `pnpm db:start` / `db:push` / `db:migrate` / `db:studio` — Postgres via `docker compose` + Drizzle Kit
 
 ## Architecture
 
-SvelteKit 2 + Svelte 5 (runes — e.g. `let { children } = $props()`), Tailwind v4 (via `@tailwindcss/vite`), deployed to Vercel (`@sveltejs/adapter-vercel`, but `svelte.config.js` currently uses `adapter-auto`).
+SvelteKit 2 + Svelte 5 (runes), Tailwind 4 (`@tailwindcss/vite`), deployed to Vercel. The repo houses two independent surfaces in one app:
 
-### Two apps in one SvelteKit project
+### 1. The marketing/offer site (`/`)
 
-1. **Marketing site** at `/` — a single fully prerendered page (`src/routes/+page.server.ts` sets `export const prerender = true`) that pulls a Sanity `page` document with `handle.current == 'home'`, dereferencing nested `sections[]` and their `items[]`. **Do not introduce request-time data into the home `load`** without removing the prerender flag.
-2. **Embedded Sanity Studio** at `/sanity/*` — `src/routes/sanity/[...catchAll]/+page.svelte` mounts `<SanityStudio>` with the config from `src/lib/client/sanity.ts`. Schemas live in `src/schemas/` and are aggregated through `src/schemas/index.ts`. Adding a new content type means: create the schema file, register it in `schemas/index.ts`, and (if it should be queryable) reference it from the GROQ query in `+page.server.ts` and the `Project` type in `src/lib/types/index.ts`.
+Single fully-prerendered page (`src/routes/+page.svelte`, `src/routes/+page.server.ts` sets `prerender = true`). All copy lives in `src/lib/content/` as typed TypeScript so components AND schema.org JSON-LD render from the same source. Page sections are composed from `src/lib/components/` (Hero, Corollaries, SprintSection, ProofSlot, LeadCapture, Footer); the credentials chip and thesis band are inline in `+page.svelte`.
 
-`svelte.config.js` lists `prerender.entries: ['/', '/sanity']` — the second entry exists so Studio's shell is reachable from the prerender crawler; Studio itself is a client-side SPA.
+Site-wide constants (operator name, current/former employers, booking URL, garden URL, production domain, hero copy, offer name, price) live in `src/lib/content/site.ts`. Update there before launch — `siteUrl`, `bookingUrl`, `gardenUrl` are placeholders.
 
-### Sanity client
+Schema markup (Person, ProfessionalService, FAQPage) is generated in `src/lib/seo/jsonld.ts` from the same content data and emitted into `<head>` via `src/routes/+layout.svelte`.
 
-`src/lib/client/sanity.ts` exports both the Studio `defineConfig` and a runtime `fetchSanityData<T>(query, params)` helper. All Sanity reads should go through `fetchSanityData` (uses `PUBLIC_SANITY_*` env vars; CDN toggled by `PUBLIC_SANITY_CDN === 'true'`).
+Static SEO files: `static/llms.txt`, `static/sitemap.xml`, `static/robots.txt`, `static/og.png`, `static/favicon.svg`. The `<title>`, `<meta description>`, OG/Twitter cards live in `src/app.html`.
+
+### 2. The embedded Sanity Studio (`/sanity/*`)
+
+`src/routes/sanity/[...catchAll]/+page.svelte` mounts `<SanityStudio>` with the config from `src/lib/client/sanity.ts`. Schemas live in `src/schemas/` and are aggregated through `src/schemas/index.ts`. The home page does NOT consume Sanity content in v1 — Studio is preserved for future use (e.g., future content-driven pages or case study management).
+
+`svelte.config.js` lists `prerender.entries: ['/', '/sanity']` — the second exists so Studio's shell is reachable from the prerender crawler; Studio itself is a client-side SPA.
 
 ### Contact form endpoint (`src/routes/api/send-email/+server.ts`)
 
-POSTs JSON `{ name, email, message, company?, formStartedAt? }`. It is the only runtime route and contains layered bot/abuse protection that must be preserved if you touch it:
+POSTs JSON `{ name, email, message, company?, formStartedAt? }`. It is the only runtime route. The `LeadCapture` component on the home page submits to it with `name = 'Notify list signup'` + a fixed `message`, reusing the existing rate limit and bot protection. The endpoint contains layered bot/abuse protection that must be preserved if you touch it:
 
 - Field validation: required `name`/`email`/`message`, length caps, regex on email, CRLF header-injection check.
 - Honeypot: non-empty `company` field → silent success.
@@ -42,13 +46,9 @@ POSTs JSON `{ name, email, message, company?, formStartedAt? }`. It is the only 
 - In-memory IP rate limit (`CONTACT_FORM_RATE_LIMIT_WINDOW_MS` / `CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS`, defaults 60s / 5). The `requestLog` Map is per-process — fine for a single Vercel function instance, but be aware it is not durable across cold starts or multiple instances.
 - Sends a confirmation email to the submitter and a notification (with `replyTo: email`) to `SMTP_RECIPIENT_EMAIL` via Nodemailer SMTP.
 
-### Database
-
-Drizzle + `postgres` are wired up in `src/lib/server/db/index.ts` (requires `DATABASE_URL`), and `db:*` scripts run against the local Docker Postgres. Currently no route consumes the DB — the schema in `src/lib/server/db/schema.ts` is the source of truth when you do.
-
 ## Environment
 
-Copy `.env.example` to `.env`. Notable vars: `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `PUBLIC_SANITY_CDN`, `SANITY_TOKEN`, `SMTP_*`, `CONTACT_FORM_*`, `DATABASE_URL`. Server-only secrets are read via `$env/dynamic/private`; public Sanity vars via `$env/static/public`.
+Copy `.env.example` to `.env`. Notable vars: `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `PUBLIC_SANITY_CDN`, `SANITY_TOKEN`, `SMTP_*`, `CONTACT_FORM_*`. Server-only secrets are read via `$env/dynamic/private`; public Sanity vars via `$env/static/public`.
 
 ## Conventions
 
