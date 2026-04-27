@@ -495,7 +495,7 @@ The content layer is the single source of truth. Components render from it; sche
   ```bash
   pnpm test:unit -- --run src/lib/content/content.test.ts
   ```
-  Expected: PASS, all 5 tests green.
+  Expected: PASS, all 6 tests green.
 
 - [ ] **Step 9: Commit**
 
