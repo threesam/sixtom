@@ -1,18 +1,24 @@
-<section id="hero" class="snap-section relative bg-black px-4">
-	<div class="mx-auto flex max-w-3xl flex-col items-center text-center">
-		<h1 class="mb-6 text-4xl font-bold leading-tight text-gray-100 sm:text-5xl xl:text-7xl">
-			Your website.<br />
-			<span class="text-yellow-400">Tomorrow.</span>
+<script lang="ts">
+	import { site } from '$lib/content'
+</script>
+
+<section class="py-24 md:py-32">
+	<div class="max-w-3xl mx-auto px-6">
+		<h1 class="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] text-neutral-900">
+			{site.hero.h1}
 		</h1>
-		<p class="mb-10 max-w-xl text-base text-gray-400 sm:text-lg">
-			AI-enabled development means your site ships in days, not months.
-			No committees. No scope creep. Just results.
+		<p class="mt-8 text-xl md:text-2xl text-neutral-600 leading-relaxed">
+			{site.hero.subhead}
 		</p>
-		<a
-			href="#contact"
-			class="inline-block rounded-lg bg-yellow-400 px-10 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-500"
-		>
-			Book a Call
-		</a>
+		<div class="mt-10">
+			<a
+				href={site.bookingUrl}
+				class="inline-block bg-neutral-900 text-white px-6 py-3 rounded-md hover:bg-neutral-700 transition-colors text-lg"
+				rel="noopener noreferrer"
+				target="_blank"
+			>
+				{site.hero.ctaPrimary} →
+			</a>
+		</div>
 	</div>
 </section>
