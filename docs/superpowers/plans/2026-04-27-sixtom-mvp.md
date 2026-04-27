@@ -59,6 +59,9 @@ static/
 ├── llms.txt            # llmstxt.org-formatted snapshot
 ├── sitemap.xml         # Single URL
 └── robots.txt          # Allow all + sitemap reference
+
+scripts/
+└── sync-cal.ts         # Provisions Cal.com intro event from site.calEvent
 ```
 
 ### Modified files
@@ -68,6 +71,8 @@ src/routes/+page.svelte         # Full rewrite — composes the new components
 src/routes/+page.server.ts      # Drop Sanity load; keep prerender = true
 src/routes/+layout.svelte       # Add JSON-LD scripts; switch bg-gray-100 → bg-white
 src/app.html                    # Add OG/Twitter meta + favicon link
+package.json                    # Add tsx + dotenv devDeps; add cal:sync script
+.env.example                    # Add CAL_API_KEY and CAL_USERNAME
 CLAUDE.md                       # Updated to reflect v1 site (final task)
 ```
 
@@ -103,6 +108,8 @@ src/lib/components/PortableText.svelte     # No Sanity content on home in v1
 | Production domain | `static/sitemap.xml`, `static/robots.txt`, `src/lib/content/site.ts` → `siteUrl` | `'https://sixtom.com'` |
 | OG image (1200×630 PNG) | `static/og.png` | placeholder solid-color image generated in Task 15 |
 | Favicon | `static/favicon.svg` | small placeholder mark |
+| Cal.com API key | `.env` → `CAL_API_KEY` | `''` (get from app.cal.com → Settings → Developer → API keys) |
+| Cal.com username | `.env` → `CAL_USERNAME` | `''` (your Cal.com handle, e.g. `sam-dangelo`) |
 
 These placeholders ship working — operator updates the strings in `site.ts` and replaces the static assets pre-launch. The sitemap/robots/og references all derive from `siteUrl` in `site.ts`.
 
@@ -184,7 +191,7 @@ The content layer is the single source of truth. Components render from it; sche
   Create `src/lib/content/content.test.ts`:
   ```ts
   import { describe, it, expect } from 'vitest'
-  import { corollaries, sprintQA, site } from './index'
+  import { corollaries, sprintQA, site, calEvent } from './index'
 
   describe('content', () => {
   	it('exports exactly 5 corollaries', () => {
@@ -213,6 +220,14 @@ The content layer is the single source of truth. Components render from it; sche
   		expect(site.operator.name).toBe("Sam D'Angelo")
   		expect(site.offer.priceUSD).toBe(7500)
   		expect(site.bookingUrl).toMatch(/^https?:\/\//)
+  	})
+
+  	it('calEvent has the fields the sync script needs', () => {
+  		expect(calEvent.title).toBeTruthy()
+  		expect(calEvent.slug).toBeTruthy()
+  		expect(calEvent.durationMinutes).toBeGreaterThan(0)
+  		expect(calEvent.description).toBeTruthy()
+  		expect(calEvent.intakeQuestions.length).toBeGreaterThan(0)
   	})
   })
   ```
@@ -267,13 +282,28 @@ The content layer is the single source of truth. Components render from it; sche
   	operator: Operator
   	offer: Offer
   }
+
+  export type IntakeQuestion = {
+  	label: string
+  	type: 'text' | 'longText' | 'select'
+  	required: boolean
+  	options?: readonly string[]
+  }
+
+  export type CalEvent = {
+  	title: string
+  	slug: string
+  	durationMinutes: number
+  	description: string
+  	intakeQuestions: readonly IntakeQuestion[]
+  }
   ```
 
 - [ ] **Step 4: Create site constants**
 
   Create `src/lib/content/site.ts`:
   ```ts
-  import type { Site } from './types'
+  import type { Site, CalEvent } from './types'
 
   export const site: Site = {
   	// Replace pre-launch with the production domain.
@@ -309,7 +339,27 @@ The content layer is the single source of truth. Components render from it; sche
   			'A working site by next Friday. Read access in. Working version live mid-sprint. Before/after measured. $7,500 fixed.'
   	}
   }
+
+  export const calEvent: CalEvent = {
+  	title: '30-min intro call — Sixtom Sprint',
+  	slug: 'sprint-intro',
+  	durationMinutes: 30,
+  	description:
+  		"A 30-min call to talk about your site, your data, and whether the Sprint is the right fit. If we are, we'll schedule the actual sprint after this call.",
+  	intakeQuestions: [
+  		{ label: 'What is the URL of your current site?', type: 'text', required: true },
+  		{ label: 'What is working, and what is not?', type: 'longText', required: true },
+  		{
+  			label: 'Are you ready to start a sprint in the next 30 days?',
+  			type: 'select',
+  			options: ['Yes', 'Maybe', 'No, just exploring'],
+  			required: true
+  		}
+  	]
+  }
   ```
+
+  Note: keep `site.bookingUrl`'s slug portion (`/sprint-intro` after the username) in sync with `calEvent.slug`. They're separate strings on purpose — `site.bookingUrl` is what the *page* renders, `calEvent.slug` is what the *sync script* provisions in Cal.com. The pre-launch checklist reminds the operator to verify both.
 
 - [ ] **Step 5: Create the 5 corollaries**
 
@@ -433,10 +483,10 @@ The content layer is the single source of truth. Components render from it; sche
 
   Create `src/lib/content/index.ts`:
   ```ts
-  export { site } from './site'
+  export { site, calEvent } from './site'
   export { corollaries } from './corollaries'
   export { sprintQA } from './sprint'
-  export type { QA, Operator, Offer, Site } from './types'
+  export type { QA, Operator, Offer, Site, CalEvent, IntakeQuestion } from './types'
   ```
 
 - [ ] **Step 8: Run tests — expect them to pass**
@@ -1653,7 +1703,133 @@ The existing `CLAUDE.md` describes the Sanity-driven dual-app architecture. Afte
 
 ---
 
-### Task 19: Push branch and open PR
+### Task 19: Cal.com sync script
+
+**Files:**
+- Create: `scripts/sync-cal.ts`
+- Modify: `package.json` (add `tsx` + `dotenv` devDeps + `cal:sync` script)
+- Modify: `.env.example` (add `CAL_API_KEY`, `CAL_USERNAME`)
+
+The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.com v2 API to provision the intro-call event type. Run on demand: `pnpm cal:sync`. The site itself does not run this — it's an operator command, not part of `pnpm build`.
+
+- [ ] **Step 1: Add `tsx` and `dotenv` to devDependencies**
+
+  Run:
+  ```bash
+  pnpm add -D tsx dotenv
+  ```
+  Expected: both packages added to `devDependencies` in `package.json`; `pnpm-lock.yaml` updated.
+
+- [ ] **Step 2: Add the `cal:sync` script to `package.json`**
+
+  Open `package.json`. In the `"scripts"` block, add (placement: next to the existing `"db:*"` lines for visual grouping):
+  ```json
+  "cal:sync": "tsx scripts/sync-cal.ts"
+  ```
+
+- [ ] **Step 3: Add Cal.com env vars to `.env.example`**
+
+  Append to `.env.example`:
+  ```
+  CAL_API_KEY=""
+  CAL_USERNAME=""
+  ```
+
+- [ ] **Step 4: Create the sync script**
+
+  Create `scripts/sync-cal.ts`:
+  ```ts
+  import 'dotenv/config'
+  import { calEvent } from '../src/lib/content/site'
+
+  const API_KEY = process.env.CAL_API_KEY
+  const USERNAME = process.env.CAL_USERNAME
+
+  if (!API_KEY) {
+  	console.error('Missing CAL_API_KEY in .env')
+  	process.exit(1)
+  }
+  if (!USERNAME) {
+  	console.error('Missing CAL_USERNAME in .env')
+  	process.exit(1)
+  }
+
+  const BASE = 'https://api.cal.com/v2'
+  const HEADERS = {
+  	Authorization: `Bearer ${API_KEY}`,
+  	'cal-api-version': '2024-06-14',
+  	'Content-Type': 'application/json'
+  } as const
+
+  function fieldType(t: 'text' | 'longText' | 'select'): string {
+  	return t === 'longText' ? 'textarea' : t === 'select' ? 'select' : 'text'
+  }
+
+  function toBookingField(q: (typeof calEvent.intakeQuestions)[number]) {
+  	const slug = q.label
+  		.toLowerCase()
+  		.replace(/[^a-z0-9]+/g, '-')
+  		.replace(/^-+|-+$/g, '')
+  		.slice(0, 40)
+  	const base = { type: fieldType(q.type), slug, label: q.label, required: q.required }
+  	if (q.type === 'select' && q.options?.length) {
+  		return { ...base, options: q.options.map((o) => ({ label: o, value: o })) }
+  	}
+  	return base
+  }
+
+  type EventTypeRow = { id: number; slug: string }
+
+  async function listEventTypes(): Promise<EventTypeRow[]> {
+  	const res = await fetch(`${BASE}/event-types?username=${USERNAME}`, { headers: HEADERS })
+  	if (!res.ok) {
+  		throw new Error(`List event-types failed: ${res.status} ${await res.text()}`)
+  	}
+  	const json = (await res.json()) as { data?: EventTypeRow[] }
+  	return json.data ?? []
+  }
+
+  const existing = await listEventTypes()
+  const match = existing.find((e) => e.slug === calEvent.slug)
+  const payload = {
+  	title: calEvent.title,
+  	slug: calEvent.slug,
+  	lengthInMinutes: calEvent.durationMinutes,
+  	description: calEvent.description,
+  	bookingFields: calEvent.intakeQuestions.map(toBookingField)
+  }
+  const url = match ? `${BASE}/event-types/${match.id}` : `${BASE}/event-types`
+  const method = match ? 'PATCH' : 'POST'
+  const res = await fetch(url, { method, headers: HEADERS, body: JSON.stringify(payload) })
+  if (!res.ok) {
+  	throw new Error(`${method} event-type failed: ${res.status} ${await res.text()}`)
+  }
+  console.log(`${match ? 'Updated' : 'Created'} event type "${calEvent.title}".`)
+  console.log(`Booking URL: https://cal.com/${USERNAME}/${calEvent.slug}`)
+  ```
+
+  Note: this uses top-level `await` (Node 20+ + ESM). The script runs once when invoked; no event-loop hooks needed.
+
+- [ ] **Step 5: Type-check the script**
+
+  Run:
+  ```bash
+  pnpm exec tsc --noEmit --module esnext --target esnext --moduleResolution bundler --allowImportingTsExtensions false scripts/sync-cal.ts
+  ```
+  Expected: 0 errors.
+
+  (Optional smoke run: `CAL_API_KEY=test CAL_USERNAME=test pnpm cal:sync` will reach Cal.com and 401 — that's fine, it confirms the script wires up correctly without provisioning anything.)
+
+- [ ] **Step 6: Commit**
+
+  ```bash
+  git add scripts/sync-cal.ts package.json pnpm-lock.yaml .env.example
+  git commit -m "Add Cal.com sync script (provisions intro event from site.calEvent)"
+  ```
+
+---
+
+### Task 20: Push branch and open PR
 
 **Files:** none (git operations)
 
@@ -1693,7 +1869,9 @@ The existing `CLAUDE.md` describes the Sanity-driven dual-app architecture. Afte
 
   ## Pre-launch checklist (operator action required)
 
-  - [ ] Replace `bookingUrl` in `src/lib/content/site.ts` with the real Cal.com URL.
+  - [ ] Set `CAL_API_KEY` and `CAL_USERNAME` in your local `.env` (and on Vercel for production).
+  - [ ] Run `pnpm cal:sync` to provision the intro event in Cal.com.
+  - [ ] Verify the resulting Cal.com URL matches `bookingUrl` in `src/lib/content/site.ts`; update either side if not.
   - [ ] Replace `gardenUrl` in `src/lib/content/site.ts` with the actual garden site URL.
   - [ ] Replace `siteUrl` in `src/lib/content/site.ts` with the production domain.
   - [ ] Update the production domain in `static/sitemap.xml`, `static/robots.txt`, and the OG/Twitter URLs in `src/app.html`.
