@@ -3,13 +3,9 @@
 
 	let email = $state('')
 	let company = $state('') // honeypot — never display, never submit non-empty
-	let formStartedAt = $state(0)
+	let formStartedAt = $state(Date.now())
 	let status = $state<'idle' | 'submitting' | 'success' | 'error'>('idle')
 	let message = $state('')
-
-	$effect(() => {
-		formStartedAt = Date.now()
-	})
 
 	async function onSubmit(event: SubmitEvent) {
 		event.preventDefault()
@@ -45,17 +41,17 @@
 	}
 </script>
 
-<section class="py-24 border-t border-neutral-200 bg-neutral-50">
-	<div class="max-w-2xl mx-auto px-6">
-		<h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
+<section class="border-t border-neutral-200 bg-neutral-50 py-24">
+	<div class="mx-auto max-w-2xl px-6">
+		<h2 class="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
 			Want a heads-up when the next slot opens?
 		</h2>
 		<p class="mt-4 text-lg text-neutral-600">
-			One client a month. If you're not ready to book today, drop your email and
-			I'll let you know when I'm taking the next one.
+			One client a month. If you're not ready to book today, drop your email and I'll let you know
+			when I'm taking the next one.
 		</p>
 
-		<form onsubmit={onSubmit} class="mt-8 flex flex-col sm:flex-row gap-3">
+		<form onsubmit={onSubmit} class="mt-8 flex flex-col gap-3 sm:flex-row">
 			<label class="sr-only" for="email">Email address</label>
 			<input
 				id="email"
@@ -65,7 +61,7 @@
 				placeholder="you@yourdomain.com"
 				bind:value={email}
 				disabled={status === 'submitting'}
-				class="flex-1 px-4 py-3 border border-neutral-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 disabled:opacity-60"
+				class="flex-1 rounded-md border border-neutral-300 px-4 py-3 text-lg focus:ring-2 focus:ring-neutral-900 focus:outline-none disabled:opacity-60"
 			/>
 			<!-- honeypot, hidden from humans + assistive tech -->
 			<input
@@ -74,13 +70,13 @@
 				tabindex="-1"
 				autocomplete="off"
 				bind:value={company}
-				class="absolute left-[-9999px] top-auto w-px h-px overflow-hidden"
+				class="absolute top-auto left-[-9999px] h-px w-px overflow-hidden"
 				aria-hidden="true"
 			/>
 			<button
 				type="submit"
 				disabled={status === 'submitting'}
-				class="bg-neutral-900 text-white px-6 py-3 rounded-md hover:bg-neutral-700 transition-colors text-lg disabled:opacity-60"
+				class="rounded-md bg-neutral-900 px-6 py-3 text-lg text-white transition-colors hover:bg-neutral-700 disabled:opacity-60"
 			>
 				{status === 'submitting' ? 'Sending…' : site.hero.ctaSecondary}
 			</button>

@@ -43,7 +43,7 @@ export const sprintQA: readonly QA[] = [
 	{
 		question: 'How long does it take?',
 		answer:
-			"One week from discovery call to deployment. Then 30 days for the after-state to settle so we can see what changed."
+			'One week from discovery call to deployment. Then 30 days for the after-state to settle so we can see what changed.'
 	},
 	{
 		question: 'How much?',

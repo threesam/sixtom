@@ -23,7 +23,6 @@ export const corollaries: readonly QA[] = [
 	},
 	{
 		question: 'How do you decide what to change?',
-		answer:
-			"Your numbers already say what's working and what isn't. Most consultants never look."
+		answer: "Your numbers already say what's working and what isn't. Most consultants never look."
 	}
 ]

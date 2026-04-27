@@ -10,15 +10,17 @@
 
 <Hero />
 
-<section class="py-6 border-t border-neutral-200">
-	<div class="max-w-3xl mx-auto px-6">
+<section class="border-t border-neutral-200 py-6">
+	<div class="mx-auto max-w-3xl px-6">
 		<p class="text-base text-neutral-600">{site.operator.credentialsChip}</p>
 	</div>
 </section>
 
-<section class="py-24 border-t border-neutral-200">
-	<div class="max-w-3xl mx-auto px-6">
-		<p class="text-3xl md:text-4xl font-semibold tracking-tight italic text-neutral-900 leading-snug">
+<section class="border-t border-neutral-200 py-24">
+	<div class="mx-auto max-w-3xl px-6">
+		<p
+			class="text-3xl leading-snug font-semibold tracking-tight text-neutral-900 italic md:text-4xl"
+		>
 			{site.thesis}
 		</p>
 	</div>

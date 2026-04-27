@@ -10,21 +10,21 @@
 	}
 </script>
 
-<section id="sprint" class="py-24 border-t border-neutral-200 bg-neutral-50">
-	<div class="max-w-3xl mx-auto px-6">
-		<h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
+<section id="sprint" class="border-t border-neutral-200 bg-neutral-50 py-24">
+	<div class="mx-auto max-w-3xl px-6">
+		<h2 class="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
 			The {site.offer.name}
 		</h2>
 		<p class="mt-4 text-lg text-neutral-600">{site.offer.promise}</p>
 
 		<dl class="mt-16 space-y-12">
-			{#each sprintQA as { question, answer }}
+			{#each sprintQA as { question, answer } (question)}
 				<div>
 					<dt class="text-2xl font-semibold text-neutral-900">{question}</dt>
 					<dd class="mt-3 text-lg leading-relaxed text-neutral-700">
 						{#if isList(answer)}
-							<ul class="list-disc list-outside pl-6 space-y-2">
-								{#each lines(answer) as line}
+							<ul class="list-outside list-disc space-y-2 pl-6">
+								{#each lines(answer) as line (line)}
 									<li>{line}</li>
 								{/each}
 							</ul>

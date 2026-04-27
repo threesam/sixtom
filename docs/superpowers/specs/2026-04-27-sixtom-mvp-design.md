@@ -52,19 +52,19 @@ The "where the leverage is highest" bridge addresses the implicit DTC/SMB mismat
 
 The operator's POV is bullish on speed/iteration because his lived experience is at-scale (Made In, where iteration is non-destructive due to read access, team capacity, and budget tolerance). For SMB buyers, every iteration is real revenue, so the POV must be translated into buyer-benefit language while preserving the underlying belief.
 
-| POV (operator-voice) | Buyer-facing translation |
-|---|---|
-| Speed is the new moat (when iteration is non-destructive) | I iterate fast in private. You see polished results fast in public. You ship when ready. |
-| Read access is a pen test, not an ask | I dig through your stack to find what's already working before we change anything. |
-| Value is measurable when you put the work in | Most businesses have all the data they need. They just don't know what to look at. I do. |
-| Build while you decide. | Most consultants hand you a plan, then disappear. I hand you a working site you can use the day we're done. |
-| Talk to your data to reveal optionality | Your numbers already say what's working and what isn't. Most consultants never look. |
+| POV (operator-voice)                                      | Buyer-facing translation                                                                                    |
+| --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Speed is the new moat (when iteration is non-destructive) | I iterate fast in private. You see polished results fast in public. You ship when ready.                    |
+| Read access is a pen test, not an ask                     | I dig through your stack to find what's already working before we change anything.                          |
+| Value is measurable when you put the work in              | Most businesses have all the data they need. They just don't know what to look at. I do.                    |
+| Build while you decide.                                   | Most consultants hand you a plan, then disappear. I hand you a working site you can use the day we're done. |
+| Talk to your data to reveal optionality                   | Your numbers already say what's working and what isn't. Most consultants never look.                        |
 
 Each corollary is also a content target — one essay each, published on the garden over time, surfaced from sixtom only if/when light cross-coupling is reintroduced.
 
 ### ICP
 
-Founder, operator, or small-business owner whose digital stack — site, analytics, marketing ops — has slowed them down. Vertical-agnostic by design; the *motion* is the niche, not the industry.
+Founder, operator, or small-business owner whose digital stack — site, analytics, marketing ops — has slowed them down. Vertical-agnostic by design; the _motion_ is the niche, not the industry.
 
 Self-selection up by price ($7,500 self-qualifies away tire-kickers). Warm-channel arrival means trust transferred from referrer.
 
@@ -74,22 +74,26 @@ Self-selection up by price ($7,500 self-qualifies away tire-kickers). Warm-chann
 - Conversational, lived, lyrical when earned.
 - Never corporate, never marketing-speak, never sounds like a chatbot wrote it.
 - Reference: `../garden/content/self.md`.
-- Q&A structured throughout — see *Format* section.
+- Q&A structured throughout — see _Format_ section.
 
 ---
 
 ## The Offer
 
 ### Name
+
 **Sixtom Sprint** (brand-anchored). Long form for SEO: "1-week site sprint."
 
 ### Promise
+
 A working site by next Friday. Read access in. Working POC live mid-sprint. Before/after instrumented. $7,500 fixed.
 
 ### Price
+
 $7,500 fixed. **One client per month. By appointment.** Holding the price (not dropping to $5k) because lower price → more inquiries → worse fit → worse case studies → bad compounding. Day-job income lets the practice be selective.
 
 ### Scope: in
+
 - 1-hour discovery call (recorded, transcribed, synthesized)
 - Read-access onboarding to: analytics, CMS, hosting, any other relevant systems
 - Build, 5 working days
@@ -99,6 +103,7 @@ $7,500 fixed. **One client per month. By appointment.** Holding the price (not d
 - 30-day after-state checkpoint → case study material
 
 ### Scope: out
+
 - Brand identity / logo design
 - Fresh long-form copywriting
 - Ad campaign management
@@ -108,6 +113,7 @@ $7,500 fixed. **One client per month. By appointment.** Holding the price (not d
 - Maintenance after delivery
 
 ### Client provides
+
 - Read-access to systems
 - 1-hour discovery + 30-min mid-sprint review
 - Feedback within 2 business days
@@ -115,12 +121,14 @@ $7,500 fixed. **One client per month. By appointment.** Holding the price (not d
 - Approval to deploy
 
 ### Definition of done (per engagement)
+
 - Site live on client's hosting
 - Before/after metrics baselined
 - Case-study outline drafted
 - 30-day after-state check scheduled
 
 ### Risk reversal
+
 > If the POC isn't on track by day 3, we pause. You keep what we've built and pay only for the time spent.
 
 ### Future tiers (deferred — NOT on the v1 site)
@@ -138,18 +146,22 @@ These do not appear on the v1 site. They are documented here so the v1 build sta
 **One page. URL: `/`.** Top to bottom:
 
 ### 1. Hero
-- **H1:** *I help people get ideas out of their head and into the world.*
-- **Subhead:** *1-week site sprint. I look at what you have, ship a working version in days, and show you the before-and-after. For operators whose website has gotten in the way of growth.*
-- **Primary CTA:** *Book a 30-min intro call →*
-- **Secondary (optional small text below):** *Or get notified when I open my next sprint slot.*
+
+- **H1:** _I help people get ideas out of their head and into the world._
+- **Subhead:** _1-week site sprint. I look at what you have, ship a working version in days, and show you the before-and-after. For operators whose website has gotten in the way of growth._
+- **Primary CTA:** _Book a 30-min intro call →_
+- **Secondary (optional small text below):** _Or get notified when I open my next sprint slot._
 
 ### 2. Credentials chip
+
 Single line directly below hero (see Identity section).
 
 ### 3. Thesis band
+
 The thesis sentence as a standalone band, large type, no body.
 
 ### 4. The five corollaries (Q&A grid)
+
 Each corollary presented as a question header → answer body. Question phrasing matches what a buyer would silently ask.
 
 Example:
@@ -166,15 +178,15 @@ Example:
 
 The offer presented as a sequence of buyer questions:
 
-- *What is the Sixtom Sprint?* — 1–2 lines.
-- *What's included?* — bullet list (from "Scope: in" above).
-- *What's not included?* — bullet list (from "Scope: out").
-- *What do I need to give you?* — bullet list (read-access scope, calls, feedback windows).
-- *How long does it take?* — One week.
-- *How much?* — $7,500 fixed.
-- *What if it goes off the rails?* — Risk reversal copy.
-- *Who is this for?* — ICP statement.
-- *Who is this not for?* — Honest opt-out (saves their time and yours).
+- _What is the Sixtom Sprint?_ — 1–2 lines.
+- _What's included?_ — bullet list (from "Scope: in" above).
+- _What's not included?_ — bullet list (from "Scope: out").
+- _What do I need to give you?_ — bullet list (read-access scope, calls, feedback windows).
+- _How long does it take?_ — One week.
+- _How much?_ — $7,500 fixed.
+- _What if it goes off the rails?_ — Risk reversal copy.
+- _Who is this for?_ — ICP statement.
+- _Who is this not for?_ — Honest opt-out (saves their time and yours).
 
 Sample Q&A copy to anchor the voice:
 
@@ -187,7 +199,7 @@ Sample Q&A copy to anchor the voice:
 > **Who is this not for?**
 > If you want a brand-new logo, name, or visual identity, I'm not the fit. If you want someone to manage your ads or write your blog forever — also not me. I rebuild your site, fast, with the data your team forgot to look at, and hand it back.
 
-**Pricing visibility.** $7,500 appears on the page as the answer to *"How much?"* inside the Sprint Q&A — not in the hero. The hero leads with value and outcome; price is honest disclosure for buyers who self-qualify by reading down. Gating price behind email capture would read evasive given how productized the offer is.
+**Pricing visibility.** $7,500 appears on the page as the answer to _"How much?"_ inside the Sprint Q&A — not in the hero. The hero leads with value and outcome; price is honest disclosure for buyers who self-qualify by reading down. Gating price behind email capture would read evasive given how productized the offer is.
 
 ### 6. Proof slot (case studies)
 
@@ -195,13 +207,15 @@ Sample Q&A copy to anchor the voice:
 - **As studies mature:** 2–3 mini case-study cards. Each card: client type (anonymized if needed), 1-line problem, 1-line motion, before/after metric, 1-line outcome.
 
 ### 7. Lead capture
+
 - **Primary CTA:** book-the-call link (Cal.com / Calendly equivalent).
-- **Secondary:** single email field — *"Get notified when I open my next sprint slot."* Reinforces scarcity, captures warm intent.
+- **Secondary:** single email field — _"Get notified when I open my next sprint slot."_ Reinforces scarcity, captures warm intent.
 
 ### 8. Footer
-- Sign-off: *sixtom — we just want to build cool shit and help people chase their dreams.*
-- Garden link: *more at [garden URL]*
-- Built-by line: *Designed and built by Sam D'Angelo.* (Optional; add only if it doesn't crowd the footer.)
+
+- Sign-off: _sixtom — we just want to build cool shit and help people chase their dreams._
+- Garden link: _more at [garden URL]_
+- Built-by line: _Designed and built by Sam D'Angelo._ (Optional; add only if it doesn't crowd the footer.)
 - The footer is creative space, not utility — explicit user preference.
 
 ---
@@ -209,18 +223,23 @@ Sample Q&A copy to anchor the voice:
 ## Voice & format
 
 ### Q&A structure throughout
+
 Every section body is **Q&A formulated**. Each subsection header = a question buyers silently ask. This serves three goals at once:
+
 - **AEO/GEO:** answer engines extract Q&A pairs and surface them as direct responses; FAQPage schema reinforces this.
 - **Conversion:** every header preempts an objection.
 - **Skim:** the page reads cleanly even at a glance.
 
 ### Hormozi-style value framing
+
 In the Sprint section especially, lead with the dream outcome, then the perceived likelihood (proof, credentials), then the time delay (1 week vs. months), then the effort/sacrifice (1 hour discovery + read access — minimal client work). All four legs of the value equation visible.
 
 ### Voss-style empathy
+
 Phrase questions the way the buyer would think them — surface the silent doubts before stating the answer. Use labeling ("It seems like the question on your mind is…") sparingly, never as gimmick. Calibrated questions ("How would this affect your team?") fit the proof slot's case-study narratives.
 
 ### self.md voice filter
+
 Lowercase, lived, conversational, willing to be lyrical when earned. Never corporate. Never sounds like a chatbot wrote it. Never sales-bro. The H1 itself comes from self.md verbatim — set the tone from there and let it carry.
 
 ---
@@ -228,28 +247,35 @@ Lowercase, lived, conversational, willing to be lyrical when earned. Never corpo
 ## SEO / AEO / GEO requirements
 
 ### Schema.org (JSON-LD in `<head>`)
+
 - **Person** — Sam D'Angelo, with `worksFor` (Made In Cookware) and `alumniOf` (Rhone).
 - **ProfessionalService** — for the Sixtom Sprint, with `priceRange`, `serviceType: "Web design and development"`, `provider`.
 - **FAQPage** — wrapping the corollary section and the Sprint Q&A section.
 
 ### llms.txt
+
 Published at `/llms.txt` per llmstxt.org. Concise — identity, offer, contact. Updated when offer changes.
 
 ### Title / meta description
+
 - `<title>`: "sixtom — 1-week site sprint by Sam D'Angelo" (tunable; keep brand + descriptor under 60 chars)
-- `<meta description>`: 1-line value prop + price + scarcity. e.g., *"1-week site sprint. $7,500 fixed. One client per month."*
+- `<meta description>`: 1-line value prop + price + scarcity. e.g., _"1-week site sprint. $7,500 fixed. One client per month."_
 
 ### OpenGraph / Twitter card
+
 - `og:title`, `og:description`, `og:image` — single hero card image.
 - `twitter:card` — `summary_large_image`.
 
 ### Sitemap
+
 - `/sitemap.xml` — single URL (the home page). Add case-study slugs as they ship if proof slot ever expands to dedicated pages.
 
 ### robots.txt
+
 - Allow all. No blocks.
 
 ### Out of scope for v1 SEO
+
 - Programmatic vertical landing pages
 - Blog (lives on garden, possibly cross-coupled in a later version)
 - Internal site search
@@ -260,11 +286,11 @@ Published at `/llms.txt` per llmstxt.org. Concise — identity, offer, contact. 
 
 The site converts warm traffic. Where does the warm traffic come from? Three concurrent low-volume motions:
 
-| Motion | Cadence | Effort/wk | Compounds via |
-|---|---|---|---|
-| W1 — Warm outreach (DM/email to network) | 3–5/wk | ~30 min | Direct response + referral asks |
-| W2 — Content drip (LinkedIn or chosen platform) | 1 post/wk | 1–2 hrs | Search + distribution |
-| W3 — Referral asks (post-engagement) | After every project | Free | Quality of fit compounds slowly |
+| Motion                                          | Cadence             | Effort/wk | Compounds via                   |
+| ----------------------------------------------- | ------------------- | --------- | ------------------------------- |
+| W1 — Warm outreach (DM/email to network)        | 3–5/wk              | ~30 min   | Direct response + referral asks |
+| W2 — Content drip (LinkedIn or chosen platform) | 1 post/wk           | 1–2 hrs   | Search + distribution           |
+| W3 — Referral asks (post-engagement)            | After every project | Free      | Quality of fit compounds slowly |
 
 Total: ~3 hrs/week of business development. Site is the destination, not the lead source.
 
@@ -286,9 +312,9 @@ The content drip (W2) draws from the corollaries — each corollary is essay-sha
 
 ### Planned for v1.5 — lead magnet → Sprint funnel
 
-A natural extension of the v1 site is a **lead-magnet-first funnel**: visitor exchanges email for a value asset (e.g., *The Read-Access Audit Checklist* — a 1-page operator's checklist they can run on their own stack), then enters a short nurture sequence that ends with the Sprint as the upsell. This addresses the *"give value first, ask later"* (Voss-empathy) instinct without complicating v1.
+A natural extension of the v1 site is a **lead-magnet-first funnel**: visitor exchanges email for a value asset (e.g., _The Read-Access Audit Checklist_ — a 1-page operator's checklist they can run on their own stack), then enters a short nurture sequence that ends with the Sprint as the upsell. This addresses the _"give value first, ask later"_ (Voss-empathy) instinct without complicating v1.
 
-**Why deferred to v1.5, not v1:** building the asset, the email sequence, and the automation is real work that's only worth doing if v1 captures intent. The v1 email field is intent-only (*"get notified when I open my next sprint slot"*) — no asset promised. If v1 captures meaningful signup volume, we build the lead magnet and convert the existing field into a gated download.
+**Why deferred to v1.5, not v1:** building the asset, the email sequence, and the automation is real work that's only worth doing if v1 captures intent. The v1 email field is intent-only (_"get notified when I open my next sprint slot"_) — no asset promised. If v1 captures meaningful signup volume, we build the lead magnet and convert the existing field into a gated download.
 
 **Funnel logic when v1.5 ships:** content drip (W2) → site visit → free checklist → 3-email nurture (each email = one corollary, deepened) → Sprint pitch. Buyer who refuses the Sprint stays on the list for future tiers (DWY, DIY).
 
@@ -316,7 +342,7 @@ A natural extension of the v1 site is a **lead-magnet-first funnel**: visitor ex
 - **POV vs. SMB-buyer reality.** Mitigated by buyer-facing translations of corollaries (table above).
 - **DTC chip mismatch.** Mitigated by the omnichannel framing of Made In and the bridge sentence ("…where the leverage is highest").
 - **SEO compounding latency.** Accepted; offset by sourcing motion in months 0–6.
-- **Generalist vs. specificity tension.** Accepted; specificity lives in the *motion*, not the vertical.
+- **Generalist vs. specificity tension.** Accepted; specificity lives in the _motion_, not the vertical.
 - **Single-offer concentration.** If the Sprint doesn't convert, there's no fallback offer on the page. Acceptable trade for v1 simplicity; addressed by the patient sourcing strategy.
 
 ---

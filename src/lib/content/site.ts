@@ -23,7 +23,7 @@ export const site: Site = {
 		currentEmployer: 'Made In Cookware',
 		formerEmployer: 'Rhone',
 		credentialsChip:
-			"Lead engineer at Made In Cookware. Formerly at Rhone. Now applying that to small businesses where the leverage is highest."
+			'Lead engineer at Made In Cookware. Formerly at Rhone. Now applying that to small businesses where the leverage is highest.'
 	},
 	offer: {
 		name: 'Sixtom Sprint',

@@ -101,15 +101,15 @@ src/lib/components/PortableText.svelte     # No Sanity content on home in v1
 
 ### Defer to operator (must be supplied before launch — placeholders in code)
 
-| Item | Where it lives | Default placeholder |
-|---|---|---|
-| Cal.com URL | `src/lib/content/site.ts` → `bookingUrl` | `'https://cal.com/sam-dangelo/sprint-intro'` |
-| Garden URL | `src/lib/content/site.ts` → `gardenUrl` | `'https://garden.example.com'` |
-| Production domain | `static/sitemap.xml`, `static/robots.txt`, `src/lib/content/site.ts` → `siteUrl` | `'https://sixtom.com'` |
-| OG image (1200×630 PNG) | `static/og.png` | placeholder solid-color image generated in Task 15 |
-| Favicon | `static/favicon.svg` | small placeholder mark |
-| Cal.com API key | `.env` → `CAL_API_KEY` | `''` (get from app.cal.com → Settings → Developer → API keys) |
-| Cal.com username | `.env` → `CAL_USERNAME` | `''` (your Cal.com handle, e.g. `sam-dangelo`) |
+| Item                    | Where it lives                                                                   | Default placeholder                                           |
+| ----------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Cal.com URL             | `src/lib/content/site.ts` → `bookingUrl`                                         | `'https://cal.com/sam-dangelo/sprint-intro'`                  |
+| Garden URL              | `src/lib/content/site.ts` → `gardenUrl`                                          | `'https://garden.example.com'`                                |
+| Production domain       | `static/sitemap.xml`, `static/robots.txt`, `src/lib/content/site.ts` → `siteUrl` | `'https://sixtom.com'`                                        |
+| OG image (1200×630 PNG) | `static/og.png`                                                                  | placeholder solid-color image generated in Task 15            |
+| Favicon                 | `static/favicon.svg`                                                             | small placeholder mark                                        |
+| Cal.com API key         | `.env` → `CAL_API_KEY`                                                           | `''` (get from app.cal.com → Settings → Developer → API keys) |
+| Cal.com username        | `.env` → `CAL_USERNAME`                                                          | `''` (your Cal.com handle, e.g. `sam-dangelo`)                |
 
 These placeholders ship working — operator updates the strings in `site.ts` and replaces the static assets pre-launch. The sitemap/robots/og references all derive from `siteUrl` in `site.ts`.
 
@@ -150,26 +150,32 @@ Decisions made up front so component tasks don't have to re-litigate:
 - [ ] **Step 1: Confirm working tree is clean and on the right branch**
 
   Run:
+
   ```bash
   git status
   git branch --show-current
   ```
+
   Expected: `working tree clean` and `sixtom-mvp`.
 
 - [ ] **Step 2: Install dependencies if needed**
 
   Run:
+
   ```bash
   pnpm install
   ```
+
   Expected: completes without errors.
 
 - [ ] **Step 3: Verify dev server boots on the existing site**
 
   Run:
+
   ```bash
   pnpm dev
   ```
+
   Open `http://localhost:5173`. The current Sanity-driven page should render. Stop the server (Ctrl-C) once verified — this is just a sanity check that the baseline works before we replace it.
 
 ---
@@ -177,6 +183,7 @@ Decisions made up front so component tasks don't have to re-litigate:
 ### Task 2: Content data layer (typed Q&A + site constants)
 
 **Files:**
+
 - Create: `src/lib/content/types.ts`
 - Create: `src/lib/content/site.ts`
 - Create: `src/lib/content/corollaries.ts`
@@ -189,6 +196,7 @@ The content layer is the single source of truth. Components render from it; sche
 - [ ] **Step 1: Write the failing test for content shape**
 
   Create `src/lib/content/content.test.ts`:
+
   ```ts
   import { describe, it, expect } from 'vitest'
   import { corollaries, sprintQA, site, calEvent } from './index'
@@ -235,14 +243,17 @@ The content layer is the single source of truth. Components render from it; sche
 - [ ] **Step 2: Run the test — expect it to fail (no source files yet)**
 
   Run:
+
   ```bash
   pnpm test:unit -- --run src/lib/content/content.test.ts
   ```
+
   Expected: FAIL with module-not-found errors for `./index`.
 
 - [ ] **Step 3: Create types**
 
   Create `src/lib/content/types.ts`:
+
   ```ts
   export type QA = {
   	question: string
@@ -302,6 +313,7 @@ The content layer is the single source of truth. Components render from it; sche
 - [ ] **Step 4: Create site constants**
 
   Create `src/lib/content/site.ts`:
+
   ```ts
   import type { Site, CalEvent } from './types'
 
@@ -328,7 +340,7 @@ The content layer is the single source of truth. Components render from it; sche
   		currentEmployer: 'Made In Cookware',
   		formerEmployer: 'Rhone',
   		credentialsChip:
-  			"Lead engineer at Made In Cookware. Formerly at Rhone. Now applying that to small businesses where the leverage is highest."
+  			'Lead engineer at Made In Cookware. Formerly at Rhone. Now applying that to small businesses where the leverage is highest.'
   	},
   	offer: {
   		name: 'Sixtom Sprint',
@@ -359,11 +371,12 @@ The content layer is the single source of truth. Components render from it; sche
   }
   ```
 
-  Note: keep `site.bookingUrl`'s slug portion (`/sprint-intro` after the username) in sync with `calEvent.slug`. They're separate strings on purpose — `site.bookingUrl` is what the *page* renders, `calEvent.slug` is what the *sync script* provisions in Cal.com. The pre-launch checklist reminds the operator to verify both.
+  Note: keep `site.bookingUrl`'s slug portion (`/sprint-intro` after the username) in sync with `calEvent.slug`. They're separate strings on purpose — `site.bookingUrl` is what the _page_ renders, `calEvent.slug` is what the _sync script_ provisions in Cal.com. The pre-launch checklist reminds the operator to verify both.
 
 - [ ] **Step 5: Create the 5 corollaries**
 
   Create `src/lib/content/corollaries.ts`:
+
   ```ts
   import type { QA } from './types'
 
@@ -390,8 +403,7 @@ The content layer is the single source of truth. Components render from it; sche
   	},
   	{
   		question: 'How do you decide what to change?',
-  		answer:
-  			"Your numbers already say what's working and what isn't. Most consultants never look."
+  		answer: "Your numbers already say what's working and what isn't. Most consultants never look."
   	}
   ]
   ```
@@ -399,6 +411,7 @@ The content layer is the single source of truth. Components render from it; sche
 - [ ] **Step 6: Create the Sprint Q&A**
 
   Create `src/lib/content/sprint.ts`:
+
   ```ts
   import type { QA } from './types'
 
@@ -445,7 +458,7 @@ The content layer is the single source of truth. Components render from it; sche
   	{
   		question: 'How long does it take?',
   		answer:
-  			"One week from discovery call to deployment. Then 30 days for the after-state to settle so we can see what changed."
+  			'One week from discovery call to deployment. Then 30 days for the after-state to settle so we can see what changed.'
   	},
   	{
   		question: 'How much?',
@@ -482,6 +495,7 @@ The content layer is the single source of truth. Components render from it; sche
 - [ ] **Step 7: Create the barrel re-export**
 
   Create `src/lib/content/index.ts`:
+
   ```ts
   export { site, calEvent } from './site'
   export { corollaries } from './corollaries'
@@ -492,9 +506,11 @@ The content layer is the single source of truth. Components render from it; sche
 - [ ] **Step 8: Run tests — expect them to pass**
 
   Run:
+
   ```bash
   pnpm test:unit -- --run src/lib/content/content.test.ts
   ```
+
   Expected: PASS, all 6 tests green.
 
 - [ ] **Step 9: Commit**
@@ -509,6 +525,7 @@ The content layer is the single source of truth. Components render from it; sche
 ### Task 3: JSON-LD generation (schema.org)
 
 **Files:**
+
 - Create: `src/lib/seo/jsonld.ts`
 - Create: `src/lib/seo/jsonld.test.ts`
 
@@ -517,6 +534,7 @@ JSON-LD is generated from the same content that the page renders, so the schema 
 - [ ] **Step 1: Write the failing test**
 
   Create `src/lib/seo/jsonld.test.ts`:
+
   ```ts
   import { describe, it, expect } from 'vitest'
   import { personJsonLd, serviceJsonLd, faqPageJsonLd } from './jsonld'
@@ -565,14 +583,17 @@ JSON-LD is generated from the same content that the page renders, so the schema 
 - [ ] **Step 2: Run the test — expect it to fail**
 
   Run:
+
   ```bash
   pnpm test:unit -- --run src/lib/seo/jsonld.test.ts
   ```
+
   Expected: FAIL with module-not-found.
 
 - [ ] **Step 3: Implement the generators**
 
   Create `src/lib/seo/jsonld.ts`:
+
   ```ts
   import { site, corollaries, sprintQA } from '$lib/content'
 
@@ -666,9 +687,11 @@ JSON-LD is generated from the same content that the page renders, so the schema 
 - [ ] **Step 4: Run the test — expect it to pass**
 
   Run:
+
   ```bash
   pnpm test:unit -- --run src/lib/seo/jsonld.test.ts
   ```
+
   Expected: PASS, all 3 tests green.
 
 - [ ] **Step 5: Commit**
@@ -683,6 +706,7 @@ JSON-LD is generated from the same content that the page renders, so the schema 
 ### Task 4: Hero component
 
 **Files:**
+
 - Delete: `src/lib/components/Hero.svelte` (existing)
 - Create: `src/lib/components/Hero.svelte`
 
@@ -691,6 +715,7 @@ H1 + subhead + primary CTA (book the call). Reads from `site.hero` and `site.boo
 - [ ] **Step 1: Delete the existing Hero component**
 
   Run:
+
   ```bash
   rm src/lib/components/Hero.svelte
   ```
@@ -698,23 +723,24 @@ H1 + subhead + primary CTA (book the call). Reads from `site.hero` and `site.boo
 - [ ] **Step 2: Create the new Hero**
 
   Create `src/lib/components/Hero.svelte`:
+
   ```svelte
   <script lang="ts">
   	import { site } from '$lib/content'
   </script>
 
   <section class="py-24 md:py-32">
-  	<div class="max-w-3xl mx-auto px-6">
-  		<h1 class="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] text-neutral-900">
+  	<div class="mx-auto max-w-3xl px-6">
+  		<h1 class="text-5xl leading-[1.1] font-bold tracking-tight text-neutral-900 md:text-6xl">
   			{site.hero.h1}
   		</h1>
-  		<p class="mt-8 text-xl md:text-2xl text-neutral-600 leading-relaxed">
+  		<p class="mt-8 text-xl leading-relaxed text-neutral-600 md:text-2xl">
   			{site.hero.subhead}
   		</p>
   		<div class="mt-10">
   			<a
   				href={site.bookingUrl}
-  				class="inline-block bg-neutral-900 text-white px-6 py-3 rounded-md hover:bg-neutral-700 transition-colors text-lg"
+  				class="inline-block rounded-md bg-neutral-900 px-6 py-3 text-lg text-white transition-colors hover:bg-neutral-700"
   				rel="noopener noreferrer"
   				target="_blank"
   			>
@@ -728,9 +754,11 @@ H1 + subhead + primary CTA (book the call). Reads from `site.hero` and `site.boo
 - [ ] **Step 3: Verify imports resolve via type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors related to Hero.svelte. (May still report errors from the not-yet-rewritten `+page.svelte` — that's fine; we'll fix it in Task 12.)
 
 - [ ] **Step 4: Commit**
@@ -745,6 +773,7 @@ H1 + subhead + primary CTA (book the call). Reads from `site.hero` and `site.boo
 ### Task 5: Corollaries component
 
 **Files:**
+
 - Create: `src/lib/components/Corollaries.svelte`
 
 Renders the 5 buyer-facing Q&A pairs in a 2-column grid. The `<dl>`/`<dt>`/`<dd>` semantics aid both screen readers and AEO crawlers.
@@ -752,17 +781,18 @@ Renders the 5 buyer-facing Q&A pairs in a 2-column grid. The `<dl>`/`<dt>`/`<dd>
 - [ ] **Step 1: Create the component**
 
   Create `src/lib/components/Corollaries.svelte`:
+
   ```svelte
   <script lang="ts">
   	import { corollaries } from '$lib/content'
   </script>
 
-  <section class="py-24 border-t border-neutral-200">
-  	<div class="max-w-5xl mx-auto px-6">
-  		<dl class="grid grid-cols-1 md:grid-cols-2 gap-12">
+  <section class="border-t border-neutral-200 py-24">
+  	<div class="mx-auto max-w-5xl px-6">
+  		<dl class="grid grid-cols-1 gap-12 md:grid-cols-2">
   			{#each corollaries as { question, answer }}
   				<div>
-  					<dt class="text-2xl md:text-3xl font-semibold text-neutral-900">
+  					<dt class="text-2xl font-semibold text-neutral-900 md:text-3xl">
   						{question}
   					</dt>
   					<dd class="mt-4 text-lg leading-relaxed text-neutral-700">
@@ -778,9 +808,11 @@ Renders the 5 buyer-facing Q&A pairs in a 2-column grid. The `<dl>`/`<dt>`/`<dd>
 - [ ] **Step 2: Type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors related to Corollaries.svelte.
 
 - [ ] **Step 3: Commit**
@@ -795,6 +827,7 @@ Renders the 5 buyer-facing Q&A pairs in a 2-column grid. The `<dl>`/`<dt>`/`<dd>
 ### Task 6: SprintSection component
 
 **Files:**
+
 - Create: `src/lib/components/SprintSection.svelte`
 
 Renders the offer detail as a Q&A list (single column, generous spacing). Multi-line answers (split by `\n` from the data layer) render as bullet lists.
@@ -802,6 +835,7 @@ Renders the offer detail as a Q&A list (single column, generous spacing). Multi-
 - [ ] **Step 1: Create the component**
 
   Create `src/lib/components/SprintSection.svelte`:
+
   ```svelte
   <script lang="ts">
   	import { sprintQA, site } from '$lib/content'
@@ -815,9 +849,9 @@ Renders the offer detail as a Q&A list (single column, generous spacing). Multi-
   	}
   </script>
 
-  <section id="sprint" class="py-24 border-t border-neutral-200 bg-neutral-50">
-  	<div class="max-w-3xl mx-auto px-6">
-  		<h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
+  <section id="sprint" class="border-t border-neutral-200 bg-neutral-50 py-24">
+  	<div class="mx-auto max-w-3xl px-6">
+  		<h2 class="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
   			The {site.offer.name}
   		</h2>
   		<p class="mt-4 text-lg text-neutral-600">{site.offer.promise}</p>
@@ -828,7 +862,7 @@ Renders the offer detail as a Q&A list (single column, generous spacing). Multi-
   					<dt class="text-2xl font-semibold text-neutral-900">{question}</dt>
   					<dd class="mt-3 text-lg leading-relaxed text-neutral-700">
   						{#if isList(answer)}
-  							<ul class="list-disc list-outside pl-6 space-y-2">
+  							<ul class="list-outside list-disc space-y-2 pl-6">
   								{#each lines(answer) as line}
   									<li>{line}</li>
   								{/each}
@@ -847,9 +881,11 @@ Renders the offer detail as a Q&A list (single column, generous spacing). Multi-
 - [ ] **Step 2: Type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors related to SprintSection.svelte.
 
 - [ ] **Step 3: Commit**
@@ -864,6 +900,7 @@ Renders the offer detail as a Q&A list (single column, generous spacing). Multi-
 ### Task 7: ProofSlot component
 
 **Files:**
+
 - Create: `src/lib/components/ProofSlot.svelte`
 
 Honest in-progress placeholder for v1. Designed so cases can drop in as cards once they mature (next iteration).
@@ -871,20 +908,21 @@ Honest in-progress placeholder for v1. Designed so cases can drop in as cards on
 - [ ] **Step 1: Create the component**
 
   Create `src/lib/components/ProofSlot.svelte`:
+
   ```svelte
-  <section class="py-24 border-t border-neutral-200">
-  	<div class="max-w-3xl mx-auto px-6">
-  		<h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
+  <section class="border-t border-neutral-200 py-24">
+  	<div class="mx-auto max-w-3xl px-6">
+  		<h2 class="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
   			Currently shipping with…
   		</h2>
   		<p class="mt-6 text-lg leading-relaxed text-neutral-700">
-  			A psychologist refreshing her practice site, and a friend's local business —
-  			both with login access to their analytics so the before-and-after is real.
-  			Case studies will land here once the after-state settles.
+  			A psychologist refreshing her practice site, and a friend's local business — both with login
+  			access to their analytics so the before-and-after is real. Case studies will land here once
+  			the after-state settles.
   		</p>
   		<p class="mt-4 text-base text-neutral-500">
-  			I take one client per month. If you'd rather not wait for proof to talk,
-  			the call link's at the top of the page.
+  			I take one client per month. If you'd rather not wait for proof to talk, the call link's at
+  			the top of the page.
   		</p>
   	</div>
   </section>
@@ -893,9 +931,11 @@ Honest in-progress placeholder for v1. Designed so cases can drop in as cards on
 - [ ] **Step 2: Type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors related to ProofSlot.svelte.
 
 - [ ] **Step 3: Commit**
@@ -910,9 +950,11 @@ Honest in-progress placeholder for v1. Designed so cases can drop in as cards on
 ### Task 8: LeadCapture component
 
 **Files:**
+
 - Create: `src/lib/components/LeadCapture.svelte`
 
 Single-email-field form. POSTs to existing `/api/send-email` endpoint with required-field shape filled in:
+
 - `name`: `'Notify list signup'`
 - `email`: user input
 - `message`: `'Wants notification when next sprint slot opens.'`
@@ -923,6 +965,7 @@ The existing endpoint validates these and rate-limits per IP, so reuse is safe w
 - [ ] **Step 1: Create the component**
 
   Create `src/lib/components/LeadCapture.svelte`:
+
   ```svelte
   <script lang="ts">
   	import { site } from '$lib/content'
@@ -971,17 +1014,17 @@ The existing endpoint validates these and rate-limits per IP, so reuse is safe w
   	}
   </script>
 
-  <section class="py-24 border-t border-neutral-200 bg-neutral-50">
-  	<div class="max-w-2xl mx-auto px-6">
-  		<h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
+  <section class="border-t border-neutral-200 bg-neutral-50 py-24">
+  	<div class="mx-auto max-w-2xl px-6">
+  		<h2 class="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
   			Want a heads-up when the next slot opens?
   		</h2>
   		<p class="mt-4 text-lg text-neutral-600">
-  			One client a month. If you're not ready to book today, drop your email and
-  			I'll let you know when I'm taking the next one.
+  			One client a month. If you're not ready to book today, drop your email and I'll let you know
+  			when I'm taking the next one.
   		</p>
 
-  		<form onsubmit={onSubmit} class="mt-8 flex flex-col sm:flex-row gap-3">
+  		<form onsubmit={onSubmit} class="mt-8 flex flex-col gap-3 sm:flex-row">
   			<label class="sr-only" for="email">Email address</label>
   			<input
   				id="email"
@@ -991,7 +1034,7 @@ The existing endpoint validates these and rate-limits per IP, so reuse is safe w
   				placeholder="you@yourdomain.com"
   				bind:value={email}
   				disabled={status === 'submitting'}
-  				class="flex-1 px-4 py-3 border border-neutral-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 disabled:opacity-60"
+  				class="flex-1 rounded-md border border-neutral-300 px-4 py-3 text-lg focus:ring-2 focus:ring-neutral-900 focus:outline-none disabled:opacity-60"
   			/>
   			<!-- honeypot, hidden from humans + assistive tech -->
   			<input
@@ -1000,13 +1043,13 @@ The existing endpoint validates these and rate-limits per IP, so reuse is safe w
   				tabindex="-1"
   				autocomplete="off"
   				bind:value={company}
-  				class="absolute left-[-9999px] top-auto w-px h-px overflow-hidden"
+  				class="absolute top-auto left-[-9999px] h-px w-px overflow-hidden"
   				aria-hidden="true"
   			/>
   			<button
   				type="submit"
   				disabled={status === 'submitting'}
-  				class="bg-neutral-900 text-white px-6 py-3 rounded-md hover:bg-neutral-700 transition-colors text-lg disabled:opacity-60"
+  				class="rounded-md bg-neutral-900 px-6 py-3 text-lg text-white transition-colors hover:bg-neutral-700 disabled:opacity-60"
   			>
   				{status === 'submitting' ? 'Sending…' : site.hero.ctaSecondary}
   			</button>
@@ -1026,9 +1069,11 @@ The existing endpoint validates these and rate-limits per IP, so reuse is safe w
 - [ ] **Step 2: Type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors related to LeadCapture.svelte.
 
 - [ ] **Step 3: Commit**
@@ -1043,6 +1088,7 @@ The existing endpoint validates these and rate-limits per IP, so reuse is safe w
 ### Task 9: Footer component
 
 **Files:**
+
 - Delete: `src/lib/components/Footer.svelte` (existing)
 - Create: `src/lib/components/Footer.svelte`
 
@@ -1051,6 +1097,7 @@ The footer is creative space (per spec). Carries the unofficial tagline + garden
 - [ ] **Step 1: Delete the existing Footer**
 
   Run:
+
   ```bash
   rm src/lib/components/Footer.svelte
   ```
@@ -1058,17 +1105,20 @@ The footer is creative space (per spec). Carries the unofficial tagline + garden
 - [ ] **Step 2: Create the new Footer**
 
   Create `src/lib/components/Footer.svelte`:
+
   ```svelte
   <script lang="ts">
   	import { site } from '$lib/content'
   </script>
 
-  <footer class="py-16 border-t border-neutral-200 bg-neutral-900 text-neutral-100">
-  	<div class="max-w-5xl mx-auto px-6">
-  		<p class="text-2xl md:text-3xl font-semibold tracking-tight">
+  <footer class="border-t border-neutral-200 bg-neutral-900 py-16 text-neutral-100">
+  	<div class="mx-auto max-w-5xl px-6">
+  		<p class="text-2xl font-semibold tracking-tight md:text-3xl">
   			sixtom — {site.tagline}
   		</p>
-  		<div class="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-neutral-400">
+  		<div
+  			class="mt-8 flex flex-col gap-3 text-sm text-neutral-400 sm:flex-row sm:items-center sm:justify-between"
+  		>
   			<p>
   				Designed and built by {site.operator.name}.
   			</p>
@@ -1088,9 +1138,11 @@ The footer is creative space (per spec). Carries the unofficial tagline + garden
 - [ ] **Step 3: Type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors related to Footer.svelte.
 
 - [ ] **Step 4: Commit**
@@ -1105,6 +1157,7 @@ The footer is creative space (per spec). Carries the unofficial tagline + garden
 ### Task 10: Rewrite the home route
 
 **Files:**
+
 - Modify: `src/routes/+page.svelte`
 - Modify: `src/routes/+page.server.ts`
 
@@ -1113,6 +1166,7 @@ The home page composes the new components. The page server load drops the Sanity
 - [ ] **Step 1: Replace `+page.server.ts` with prerender-only**
 
   Overwrite `src/routes/+page.server.ts`:
+
   ```ts
   export const prerender = true
   ```
@@ -1122,6 +1176,7 @@ The home page composes the new components. The page server load drops the Sanity
 - [ ] **Step 2: Replace `+page.svelte` with the composed sections**
 
   Overwrite `src/routes/+page.svelte`:
+
   ```svelte
   <script lang="ts">
   	import Hero from '$lib/components/Hero.svelte'
@@ -1135,15 +1190,17 @@ The home page composes the new components. The page server load drops the Sanity
 
   <Hero />
 
-  <section class="py-6 border-t border-neutral-200">
-  	<div class="max-w-3xl mx-auto px-6">
+  <section class="border-t border-neutral-200 py-6">
+  	<div class="mx-auto max-w-3xl px-6">
   		<p class="text-base text-neutral-600">{site.operator.credentialsChip}</p>
   	</div>
   </section>
 
-  <section class="py-24 border-t border-neutral-200">
-  	<div class="max-w-3xl mx-auto px-6">
-  		<p class="text-3xl md:text-4xl font-semibold tracking-tight italic text-neutral-900 leading-snug">
+  <section class="border-t border-neutral-200 py-24">
+  	<div class="mx-auto max-w-3xl px-6">
+  		<p
+  			class="text-3xl leading-snug font-semibold tracking-tight text-neutral-900 italic md:text-4xl"
+  		>
   			{site.thesis}
   		</p>
   	</div>
@@ -1159,17 +1216,21 @@ The home page composes the new components. The page server load drops the Sanity
 - [ ] **Step 3: Type-check the route**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors. (Any earlier errors from legacy components should now be irrelevant since the rewritten page no longer imports them; legacy components will be deleted in Task 14.)
 
 - [ ] **Step 4: Boot the dev server and visually verify**
 
   Run:
+
   ```bash
   pnpm dev
   ```
+
   Open `http://localhost:5173`. Confirm:
   - Hero H1 + subhead + "Book a 30-min intro call →" button render
   - Credentials chip visible just below
@@ -1179,7 +1240,7 @@ The home page composes the new components. The page server load drops the Sanity
   - Proof slot with placeholder copy
   - Email form
   - Dark footer with tagline + garden link
-  
+
   Stop the server.
 
 - [ ] **Step 5: Commit**
@@ -1194,6 +1255,7 @@ The home page composes the new components. The page server load drops the Sanity
 ### Task 11: Layout — switch background, embed JSON-LD scripts
 
 **Files:**
+
 - Modify: `src/routes/+layout.svelte`
 
 Switch background to white. Inject the three JSON-LD scripts in the layout so they render on every page (FAQPage and ProfessionalService schemas only describe the home page accurately, but emitting them site-wide is harmless because the home page is the only public route besides Sanity Studio at `/sanity`, which is a client-side SPA shell).
@@ -1201,6 +1263,7 @@ Switch background to white. Inject the three JSON-LD scripts in the layout so th
 - [ ] **Step 1: Replace `+layout.svelte`**
 
   Overwrite `src/routes/+layout.svelte`:
+
   ```svelte
   <script lang="ts">
   	import '../app.css'
@@ -1219,7 +1282,7 @@ Switch background to white. Inject the three JSON-LD scripts in the layout so th
   	{@html `<script type="application/ld+json">${faqLd}</script>`}
   </svelte:head>
 
-  <main class="bg-white font-sans text-neutral-900 min-h-screen">
+  <main class="min-h-screen bg-white font-sans text-neutral-900">
   	{@render children()}
   </main>
   ```
@@ -1229,9 +1292,11 @@ Switch background to white. Inject the three JSON-LD scripts in the layout so th
 - [ ] **Step 2: Verify the JSON-LD renders correctly**
 
   Run:
+
   ```bash
   pnpm dev
   ```
+
   Open `http://localhost:5173`, view-source, and confirm three `<script type="application/ld+json">` tags appear in `<head>`, each with valid JSON. Stop the server.
 
 - [ ] **Step 3: Commit**
@@ -1246,6 +1311,7 @@ Switch background to white. Inject the three JSON-LD scripts in the layout so th
 ### Task 12: Update `app.html` with title, meta, OG/Twitter cards
 
 **Files:**
+
 - Modify: `src/app.html`
 
 The current `app.html` has the SvelteKit defaults. We replace `<title>` and add meta tags. The title and description come from constants we'll add to `app.html` directly (small enough that pulling them from a Svelte component is unnecessary — `app.html` is a static template).
@@ -1255,11 +1321,13 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
   ```bash
   cat src/app.html
   ```
+
   Expected: a SvelteKit default with `%sveltekit.head%` and `%sveltekit.body%`.
 
 - [ ] **Step 2: Replace `app.html`**
 
   Overwrite `src/app.html`:
+
   ```html
   <!doctype html>
   <html lang="en">
@@ -1315,6 +1383,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 ### Task 13: Static SEO/AEO files (`llms.txt`, `sitemap.xml`, `robots.txt`, placeholders for og.png + favicon.svg)
 
 **Files:**
+
 - Create: `static/llms.txt`
 - Create: `static/sitemap.xml`
 - Create: `static/robots.txt`
@@ -1324,6 +1393,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 - [ ] **Step 1: Create `llms.txt`**
 
   Create `static/llms.txt`:
+
   ```
   # sixtom
 
@@ -1356,6 +1426,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 - [ ] **Step 2: Create `sitemap.xml`**
 
   Create `static/sitemap.xml`:
+
   ```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -1371,6 +1442,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 - [ ] **Step 3: Create `robots.txt`**
 
   Create `static/robots.txt`:
+
   ```
   User-agent: *
   Allow: /
@@ -1381,6 +1453,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 - [ ] **Step 4: Create a placeholder `favicon.svg`**
 
   Create `static/favicon.svg`:
+
   ```xml
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   	<rect width="64" height="64" rx="14" fill="#0a0a0a" />
@@ -1391,6 +1464,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 - [ ] **Step 5: Create a placeholder `og.png`**
 
   Generate a 1200×630 solid-black PNG with white "sixtom" text. Run from the repo root:
+
   ```bash
   cat > /tmp/og-gen.html <<'EOF'
   <!doctype html>
@@ -1403,12 +1477,13 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
   ```
 
   If the operator already has a designed OG image, drop it in at `static/og.png` instead. For now, create a placeholder PNG using ImageMagick or similar:
+
   ```bash
   # Using ImageMagick (if installed):
   magick -size 1200x630 xc:'#0a0a0a' \
   	-pointsize 120 -fill white -gravity center -font 'Helvetica-Bold' \
   	-annotate 0 'sixtom' static/og.png
-  
+
   # Fallback: create a minimal valid PNG via Node so the file exists.
   # If neither is available, manually create static/og.png as a 1200x630 PNG before launch.
   ```
@@ -1416,6 +1491,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
   If neither `magick` nor a manual PNG is available locally, leave `static/og.png` as a 1×1 transparent PNG (created via `printf` in the next step) so the meta tag still resolves — it'll be replaced pre-launch.
 
   Generate a 1×1 transparent PNG fallback (run only if no real image was created above):
+
   ```bash
   printf '\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\rIDATx\x9cc\xfa\xcf\x00\x00\x00\x02\x00\x01\xe5\x27\xde\xfc\x00\x00\x00\x00IEND\xaeB`\x82' > static/og.png
   ```
@@ -1423,9 +1499,11 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 - [ ] **Step 6: Verify static assets are served**
 
   Run:
+
   ```bash
   pnpm dev
   ```
+
   Visit each in a browser:
   - `http://localhost:5173/llms.txt`
   - `http://localhost:5173/sitemap.xml`
@@ -1447,6 +1525,7 @@ The current `app.html` has the SvelteKit defaults. We replace `<title>` and add 
 ### Task 14: Delete legacy components
 
 **Files:**
+
 - Delete: 7 unused components in `src/lib/components/`
 
 These were used by the old Sanity-driven home page. The new page doesn't import them, and leaving them creates confusion for future readers.
@@ -1454,14 +1533,17 @@ These were used by the old Sanity-driven home page. The new page doesn't import 
 - [ ] **Step 1: Verify the rewritten page doesn't import any legacy component**
 
   Run:
+
   ```bash
   grep -rE "(Header|Credibility|ProblemSection|Services|ServiceBlock|Contact|SocialLinks|PortableText)\\.svelte" src/
   ```
+
   Expected: no matches in `src/routes/`. (Sanity-related files in `src/lib/client/` and the Sanity Studio route at `src/routes/sanity/` may still match, but those aren't the legacy components — verify each grep result is OK to leave alone.)
 
 - [ ] **Step 2: Delete the legacy components**
 
   Run:
+
   ```bash
   rm src/lib/components/Header.svelte \
   	src/lib/components/Credibility.svelte \
@@ -1476,10 +1558,12 @@ These were used by the old Sanity-driven home page. The new page doesn't import 
 - [ ] **Step 3: Type-check + lint**
 
   Run:
+
   ```bash
   pnpm check
   pnpm lint
   ```
+
   Expected: 0 errors, 0 warnings.
 
 - [ ] **Step 4: Commit**
@@ -1494,6 +1578,7 @@ These were used by the old Sanity-driven home page. The new page doesn't import 
 ### Task 15: Drop unused server-side and Sanity glue from the home route
 
 **Files:**
+
 - Inspect: `src/lib/types/index.ts` (the `Project` type was used by the old `+page.server.ts`)
 - Modify if unused: `src/lib/types/index.ts`
 
@@ -1502,10 +1587,12 @@ The `Project` type is now unused. Either delete it or leave it in case the opera
 - [ ] **Step 1: Search for any remaining usage of the `Project` type**
 
   Run:
+
   ```bash
   grep -rE "from '\$lib/types'" src/
   grep -rE "Project" src/lib/ src/routes/
   ```
+
   Expected: only the definition itself in `src/lib/types/index.ts`. No imports.
 
 - [ ] **Step 2: Decision point**
@@ -1523,73 +1610,91 @@ The `Project` type is now unused. Either delete it or leave it in case the opera
 - [ ] **Step 1: Run formatter check**
 
   Run:
+
   ```bash
   pnpm format
   ```
+
   Expected: completes; any reformatted files are committed in step 6 below.
 
 - [ ] **Step 2: Run lint**
 
   Run:
+
   ```bash
   pnpm lint
   ```
+
   Expected: 0 errors, 0 warnings. If errors, fix and re-run.
 
 - [ ] **Step 3: Run type-check**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors, 0 warnings.
 
 - [ ] **Step 4: Run unit tests**
 
   Run:
+
   ```bash
   pnpm test:unit -- --run
   ```
+
   Expected: all tests in `src/lib/content/content.test.ts` and `src/lib/seo/jsonld.test.ts` pass.
 
 - [ ] **Step 5: Run production build**
 
   Run:
+
   ```bash
   pnpm build
   ```
+
   Expected: completes successfully; the home page is included in the prerendered output (check `.svelte-kit/output/prerendered/pages/index.html` exists).
 
 - [ ] **Step 6: Verify the prerendered HTML contains the schema markup**
 
   Run:
+
   ```bash
   grep -c 'application/ld+json' .svelte-kit/output/prerendered/pages/index.html
   ```
+
   Expected: `3` (Person, ProfessionalService, FAQPage).
 
 - [ ] **Step 7: Verify the prerendered HTML contains the Q&A copy**
 
   Run:
+
   ```bash
   grep -c 'Why move fast?' .svelte-kit/output/prerendered/pages/index.html
   grep -c 'How much?' .svelte-kit/output/prerendered/pages/index.html
   grep -c '7,500' .svelte-kit/output/prerendered/pages/index.html
   ```
+
   Expected: each grep returns `1` or higher (the question and the price string appear in the prerendered output).
 
 - [ ] **Step 8: Commit any formatting changes**
 
   Run:
+
   ```bash
   git status
   git add -A
   git diff --cached --stat
   ```
+
   If there are changes to commit:
+
   ```bash
   git commit -m "Apply formatter to v1 site files"
   ```
+
   If clean, skip.
 
 ---
@@ -1601,6 +1706,7 @@ The `Project` type is now unused. Either delete it or leave it in case the opera
 - [ ] **Step 1: Boot the dev server**
 
   Run:
+
   ```bash
   pnpm dev
   ```
@@ -1640,6 +1746,7 @@ The `Project` type is now unused. Either delete it or leave it in case the opera
 ### Task 18: Update `CLAUDE.md` to reflect v1 site
 
 **Files:**
+
 - Modify: `CLAUDE.md`
 
 The existing `CLAUDE.md` describes the Sanity-driven dual-app architecture. After this v1 build, the home page is no longer Sanity-driven. Update the relevant sections.
@@ -1681,17 +1788,21 @@ The existing `CLAUDE.md` describes the Sanity-driven dual-app architecture. Afte
   Find the `### Contact form endpoint` heading and update its first sentence to reference the LeadCapture component:
 
   Replace:
+
   > POSTs JSON `{ name, email, message, company?, formStartedAt? }`. It is the only runtime route and contains layered bot/abuse protection that must be preserved if you touch it:
 
   With:
+
   > POSTs JSON `{ name, email, message, company?, formStartedAt? }`. It is the only runtime route. The `LeadCapture` component on the home page submits to it with `name = 'Notify list signup'` + a fixed `message`, reusing the existing rate limit and bot protection. The endpoint contains layered bot/abuse protection that must be preserved if you touch it:
 
 - [ ] **Step 4: Type-check that everything still compiles**
 
   Run:
+
   ```bash
   pnpm check
   ```
+
   Expected: 0 errors. (CLAUDE.md is a doc file, but running `check` confirms nothing else regressed.)
 
 - [ ] **Step 5: Commit**
@@ -1706,6 +1817,7 @@ The existing `CLAUDE.md` describes the Sanity-driven dual-app architecture. Afte
 ### Task 19: Cal.com sync script
 
 **Files:**
+
 - Create: `scripts/sync-cal.ts`
 - Modify: `package.json` (add `tsx` + `dotenv` devDeps + `cal:sync` script)
 - Modify: `.env.example` (add `CAL_API_KEY`, `CAL_USERNAME`)
@@ -1715,14 +1827,17 @@ The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.c
 - [ ] **Step 1: Add `tsx` and `dotenv` to devDependencies**
 
   Run:
+
   ```bash
   pnpm add -D tsx dotenv
   ```
+
   Expected: both packages added to `devDependencies` in `package.json`; `pnpm-lock.yaml` updated.
 
 - [ ] **Step 2: Add the `cal:sync` script to `package.json`**
 
   Open `package.json`. In the `"scripts"` block, add (placement: next to the existing `"db:*"` lines for visual grouping):
+
   ```json
   "cal:sync": "tsx scripts/sync-cal.ts"
   ```
@@ -1730,6 +1845,7 @@ The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.c
 - [ ] **Step 3: Add Cal.com env vars to `.env.example`**
 
   Append to `.env.example`:
+
   ```
   CAL_API_KEY=""
   CAL_USERNAME=""
@@ -1738,6 +1854,7 @@ The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.c
 - [ ] **Step 4: Create the sync script**
 
   Create `scripts/sync-cal.ts`:
+
   ```ts
   import 'dotenv/config'
   import { calEvent } from '../src/lib/content/site'
@@ -1813,9 +1930,11 @@ The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.c
 - [ ] **Step 5: Type-check the script**
 
   Run:
+
   ```bash
   pnpm exec tsc --noEmit --module esnext --target esnext --moduleResolution bundler --allowImportingTsExtensions false scripts/sync-cal.ts
   ```
+
   Expected: 0 errors.
 
   (Optional smoke run: `CAL_API_KEY=test CAL_USERNAME=test pnpm cal:sync` will reach Cal.com and 401 — that's fine, it confirms the script wires up correctly without provisioning anything.)
@@ -1836,15 +1955,18 @@ The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.c
 - [ ] **Step 1: Verify the branch is clean and up-to-date with main**
 
   Run:
+
   ```bash
   git status
   git log --oneline main..HEAD
   ```
+
   Expected: working tree clean; commit list shows the v1 work plus the initial CLAUDE.md commit.
 
 - [ ] **Step 2: Push the branch with upstream tracking**
 
   Run:
+
   ```bash
   git push -u origin sixtom-mvp
   ```
@@ -1852,6 +1974,7 @@ The script reads `calEvent` from `$lib/content` and POSTs (or PATCHes) the Cal.c
 - [ ] **Step 3: Open the PR**
 
   Run:
+
   ```bash
   gh pr create --title "sixtom v1 — single-page offer site for the Sprint" --body "$(cat <<'EOF'
   ## Summary
