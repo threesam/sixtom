@@ -36,7 +36,7 @@ The operator is the lead engineer / most-technical operator at Made In Cookware 
 
 ### Subhead (motion)
 
-> 1-week site sprint with read access in, working POC in days, before/after on the wall. For operators whose digital stack has slowed them down.
+> 1-week site sprint. I look at what you have, ship a working version in days, and show you the before-and-after. For operators whose website has gotten in the way of growth.
 
 ### Credentials chip (single line, just below hero)
 
@@ -56,9 +56,9 @@ The operator's POV is bullish on speed/iteration because his lived experience is
 |---|---|
 | Speed is the new moat (when iteration is non-destructive) | I iterate fast in private. You see polished results fast in public. You ship when ready. |
 | Read access is a pen test, not an ask | I dig through your stack to find what's already working before we change anything. |
-| Value is measurable when you put the work in | The bottleneck isn't measurement infra — it's taste about what to measure. I bring that. |
-| Working artifacts beat decks | I ship the thing — not a 40-page strategy doc. You can use it the day I hand it over. |
-| Talk to your data to reveal optionality | Your data already says what to optimize. Most consultants don't bother to look. |
+| Value is measurable when you put the work in | Most businesses have all the data they need. They just don't know what to look at. I do. |
+| Build while you decide. | Most consultants hand you a plan, then disappear. I hand you a working site you can use the day we're done. |
+| Talk to your data to reveal optionality | Your numbers already say what's working and what isn't. Most consultants never look. |
 
 Each corollary is also a content target — one essay each, published on the garden over time, surfaced from sixtom only if/when light cross-coupling is reintroduced.
 
@@ -139,7 +139,7 @@ These do not appear on the v1 site. They are documented here so the v1 build sta
 
 ### 1. Hero
 - **H1:** *I help people get ideas out of their head and into the world.*
-- **Subhead:** *1-week site sprint with read access in, working POC in days, before/after on the wall. For operators whose digital stack has slowed them down.*
+- **Subhead:** *1-week site sprint. I look at what you have, ship a working version in days, and show you the before-and-after. For operators whose website has gotten in the way of growth.*
 - **Primary CTA:** *Book a 30-min intro call →*
 - **Secondary (optional small text below):** *Or get notified when I open my next sprint slot.*
 
