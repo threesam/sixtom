@@ -16,6 +16,6 @@
 	{@html jsonLdHtml}
 </svelte:head>
 
-<main class="min-h-screen bg-white font-sans text-neutral-900">
+<main class="bg-neutral-950 font-sans text-neutral-100 antialiased">
 	{@render children()}
 </main>
