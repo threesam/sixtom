@@ -57,7 +57,8 @@ function getClientIp(event: RequestEvent): string {
 
 function isRateLimited(ip: string): boolean {
 	const now = Date.now()
-	const recentAttempts = requestLog.get(ip)?.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS) ?? []
+	const recentAttempts =
+		requestLog.get(ip)?.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS) ?? []
 	recentAttempts.push(now)
 	requestLog.set(ip, recentAttempts)
 

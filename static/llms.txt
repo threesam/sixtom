@@ -1,0 +1,26 @@
+# sixtom
+
+> 1-week site sprint by Sam D'Angelo, lead engineer at Made In Cookware. $7,500 fixed. One client per month.
+
+## What it is
+
+- Productized 1-week sprint to rebuild your site.
+- Begins with login access to your analytics, CMS, and hosting so the work is grounded in your actual data.
+- A live working version delivered mid-sprint.
+- One round of revisions, then deployment to your hosting.
+- 30-day check-in to capture before/after metrics.
+
+## Who it's for
+
+- Founders, operators, and small business owners whose website (and the data and tools around it) has gotten in the way of growth.
+
+## Pricing
+
+- $7,500 USD, fixed.
+- One client per month, by appointment.
+- If the working version isn't on track by day 3, we pause; the client keeps what's been built and pays only for time spent.
+
+## How to engage
+
+- Book a 30-min intro call: https://sixtom.com (link from the homepage)
+- Notify list (signup form on the homepage) for next available sprint slot.

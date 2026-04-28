@@ -1,18 +1,30 @@
-<section id="hero" class="snap-section relative bg-black px-4">
-	<div class="mx-auto flex max-w-3xl flex-col items-center text-center">
-		<h1 class="mb-6 text-4xl font-bold leading-tight text-gray-100 sm:text-5xl xl:text-7xl">
-			Your website.<br />
-			<span class="text-yellow-400">Tomorrow.</span>
-		</h1>
-		<p class="mb-10 max-w-xl text-base text-gray-400 sm:text-lg">
-			AI-enabled development means your site ships in days, not months.
-			No committees. No scope creep. Just results.
-		</p>
-		<a
-			href="#contact"
-			class="inline-block rounded-lg bg-yellow-400 px-10 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-95 hover:bg-yellow-500"
+<script lang="ts">
+	import { site } from '$lib/content'
+</script>
+
+<section class="snap-section bg-neutral-950">
+	<div class="mx-auto w-full max-w-4xl px-6">
+		<p class="text-coin text-sm tracking-widest uppercase">sixtom — site sprints</p>
+		<h1
+			class="mt-6 text-5xl leading-[1.02] font-bold tracking-tight text-neutral-100 md:text-7xl lg:text-8xl"
 		>
-			Book a Call
-		</a>
+			{site.hero.h1}
+		</h1>
+		<p class="text-coin mt-10 text-2xl md:text-3xl">
+			One week. One client a month. ${site.offer.priceUSD.toLocaleString()} fixed.
+		</p>
+		<div class="mt-12">
+			<a
+				href={site.bookingUrl}
+				class="bg-coin inline-block rounded-md px-8 py-4 text-lg font-medium text-neutral-950 transition-opacity hover:opacity-90"
+				rel="noopener noreferrer"
+				target="_blank"
+			>
+				{site.hero.ctaPrimary} →
+			</a>
+		</div>
+		<p class="mt-12 text-xs tracking-widest text-neutral-500 uppercase">
+			@ {site.operator.currentEmployer} · Formerly @ {site.operator.formerEmployer}
+		</p>
 	</div>
 </section>
