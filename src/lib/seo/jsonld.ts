@@ -1,4 +1,4 @@
-import { site, corollaries, sprintQA } from '$lib/content'
+import { site } from '$lib/content'
 
 type Org = { '@type': 'Organization'; name: string }
 
@@ -24,19 +24,6 @@ export type ServiceLd = {
 		price: string
 		priceCurrency: 'USD'
 	}
-}
-
-export type FaqLd = {
-	'@context': 'https://schema.org'
-	'@type': 'FAQPage'
-	mainEntity: Array<{
-		'@type': 'Question'
-		name: string
-		acceptedAnswer: {
-			'@type': 'Answer'
-			text: string
-		}
-	}>
 }
 
 export function personJsonLd(): PersonLd {
@@ -70,18 +57,5 @@ export function serviceJsonLd(): ServiceLd {
 			price: String(site.offer.priceUSD),
 			priceCurrency: 'USD'
 		}
-	}
-}
-
-export function faqPageJsonLd(): FaqLd {
-	const all = [...corollaries, ...sprintQA]
-	return {
-		'@context': 'https://schema.org',
-		'@type': 'FAQPage',
-		mainEntity: all.map((qa) => ({
-			'@type': 'Question',
-			name: qa.question,
-			acceptedAnswer: { '@type': 'Answer', text: qa.answer }
-		}))
 	}
 }

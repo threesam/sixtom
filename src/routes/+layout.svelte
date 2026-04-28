@@ -1,12 +1,12 @@
 <script lang="ts">
 	import '../app.css'
-	import { personJsonLd, serviceJsonLd, faqPageJsonLd } from '$lib/seo/jsonld'
+	import { personJsonLd, serviceJsonLd } from '$lib/seo/jsonld'
 
 	let { children } = $props()
 
 	const SCRIPT_OPEN = '<script type="application/ld+json">'
 	const SCRIPT_CLOSE = '</' + 'script>' // split avoids parser confusion in template literals
-	const jsonLdHtml = [personJsonLd(), serviceJsonLd(), faqPageJsonLd()]
+	const jsonLdHtml = [personJsonLd(), serviceJsonLd()]
 		.map((ld) => SCRIPT_OPEN + JSON.stringify(ld) + SCRIPT_CLOSE)
 		.join('')
 </script>

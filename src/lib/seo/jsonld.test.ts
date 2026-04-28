@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { personJsonLd, serviceJsonLd, faqPageJsonLd } from './jsonld'
-import { site, corollaries, sprintQA } from '$lib/content'
+import { personJsonLd, serviceJsonLd } from './jsonld'
+import { site } from '$lib/content'
 
 describe('JSON-LD generators', () => {
 	it('personJsonLd has correct schema.org shape', () => {
@@ -27,16 +27,5 @@ describe('JSON-LD generators', () => {
 		expect(ld.priceRange).toBe(`$${site.offer.priceUSD}`)
 		expect(ld.offers.price).toBe(String(site.offer.priceUSD))
 		expect(ld.offers.priceCurrency).toBe('USD')
-	})
-
-	it('faqPageJsonLd combines corollaries + sprint Q&A', () => {
-		const ld = faqPageJsonLd()
-		expect(ld['@context']).toBe('https://schema.org')
-		expect(ld['@type']).toBe('FAQPage')
-		expect(ld.mainEntity).toHaveLength(corollaries.length + sprintQA.length)
-		const first = ld.mainEntity[0]
-		expect(first['@type']).toBe('Question')
-		expect(first.name).toBe(corollaries[0].question)
-		expect(first.acceptedAnswer.text).toBe(corollaries[0].answer)
 	})
 })

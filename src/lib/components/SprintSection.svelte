@@ -1,48 +1,33 @@
 <script lang="ts">
-	import { sprintQA, site } from '$lib/content'
-
-	function isList(answer: string): boolean {
-		return answer.includes('\n')
-	}
-
-	function lines(answer: string): string[] {
-		return answer.split('\n').filter((l) => l.trim().length > 0)
-	}
+	import { site } from '$lib/content'
 </script>
 
-<section id="sprint" class="snap-section bg-neutral-950">
+<section id="sprint" class="snap-section bg-neutral-900">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class="text-sm tracking-wider text-neutral-500 uppercase">The offer</p>
-		<h2 class="mt-2 text-3xl font-bold tracking-tight text-neutral-100 md:text-5xl">
+		<p class="text-coin text-sm tracking-widest uppercase">The offer</p>
+		<h2 class="mt-2 text-4xl font-bold tracking-tight text-neutral-100 md:text-6xl">
 			The {site.offer.name}.
 		</h2>
-		<p class="mt-6 text-lg leading-relaxed text-neutral-400 md:text-xl">{site.offer.promise}</p>
-
-		<div class="mt-12 divide-y divide-neutral-800 border-y border-neutral-800">
-			{#each sprintQA as { question, answer } (question)}
-				<details class="group">
-					<summary
-						class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-semibold text-neutral-100 transition-colors group-open:text-emerald-400 md:text-xl"
-					>
-						<span>{question}</span>
-						<span
-							class="text-2xl text-neutral-500 transition-transform group-open:rotate-45 group-open:text-emerald-400"
-							aria-hidden="true">+</span
-						>
-					</summary>
-					<div class="pb-6 text-base leading-relaxed text-neutral-400 md:text-lg">
-						{#if isList(answer)}
-							<ul class="list-outside list-disc space-y-2 pl-6">
-								{#each lines(answer) as line (line)}
-									<li>{line}</li>
-								{/each}
-							</ul>
-						{:else}
-							<p>{answer}</p>
-						{/if}
-					</div>
-				</details>
-			{/each}
+		<p class="mt-8 text-xl leading-relaxed text-neutral-300 md:text-2xl">
+			A working site by Friday. Read access in. Working version live mid-sprint. Before-and-after
+			measured.
+		</p>
+		<p class="text-coin mt-8 text-2xl font-semibold md:text-3xl">
+			${site.offer.priceUSD.toLocaleString()} fixed. {site.offer.cadence}
+		</p>
+		<p class="mt-6 max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg">
+			If the working version isn't on track by day 3, we pause. You keep what we've built and pay
+			only for time spent.
+		</p>
+		<div class="mt-12">
+			<a
+				href={site.bookingUrl}
+				class="bg-coin inline-block rounded-md px-8 py-4 text-lg font-medium text-neutral-950 transition-opacity hover:opacity-90"
+				rel="noopener noreferrer"
+				target="_blank"
+			>
+				{site.hero.ctaPrimary} →
+			</a>
 		</div>
 	</div>
 </section>
