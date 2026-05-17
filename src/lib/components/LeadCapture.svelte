@@ -30,6 +30,10 @@
 				status = 'success'
 				message = data.status ?? "You're on the list."
 				email = ''
+				// CRO: track successful capture in Umami if loaded
+				if (typeof window !== 'undefined' && typeof window.umami?.track === 'function') {
+					window.umami.track('notify_signup_success')
+				}
 			} else {
 				status = 'error'
 				message = data.status ?? 'Something went wrong. Try again in a moment.'
@@ -77,6 +81,7 @@
 				<button
 					type="submit"
 					disabled={status === 'submitting'}
+					data-umami-event="cta_notify_submit"
 					class="bg-coin rounded-md px-6 py-3 text-lg font-medium text-neutral-950 transition-opacity hover:opacity-90 disabled:opacity-60"
 				>
 					{status === 'submitting' ? 'Sending…' : site.hero.ctaSecondary}
@@ -100,6 +105,7 @@
 			<span class="text-coin" aria-hidden="true">★</span>
 			<a
 				href={site.gardenUrl}
+				data-umami-event="cta_garden_link"
 				class="hover:text-coin font-semibold text-neutral-100 transition-colors"
 				rel="noopener noreferrer"
 				target="_blank">more at the garden →</a

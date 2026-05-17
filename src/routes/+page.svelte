@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte'
-	import SprintSection from '$lib/components/SprintSection.svelte'
+	import OfferSection from '$lib/components/OfferSection.svelte'
 	import LeadCapture from '$lib/components/LeadCapture.svelte'
 	import { site } from '$lib/content'
 </script>
@@ -21,5 +21,5 @@
 	</div>
 </section>
 
-<SprintSection />
+<OfferSection />
 <LeadCapture />

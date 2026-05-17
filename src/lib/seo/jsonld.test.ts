@@ -19,13 +19,15 @@ describe('JSON-LD generators', () => {
 		})
 	})
 
-	it('serviceJsonLd has correct schema.org shape', () => {
+	it('serviceJsonLd lists both offers (audit + sprint)', () => {
 		const ld = serviceJsonLd()
 		expect(ld['@context']).toBe('https://schema.org')
 		expect(ld['@type']).toBe('ProfessionalService')
-		expect(ld.name).toBe(site.offer.name)
-		expect(ld.priceRange).toBe(`$${site.offer.priceUSD}`)
-		expect(ld.offers.price).toBe(String(site.offer.priceUSD))
-		expect(ld.offers.priceCurrency).toBe('USD')
+		expect(ld.offers).toHaveLength(2)
+		expect(ld.offers[0]?.name).toBe(site.audit.name)
+		expect(ld.offers[0]?.price).toBe(String(site.audit.priceUSD))
+		expect(ld.offers[1]?.name).toBe(site.sprint.name)
+		expect(ld.offers[1]?.price).toBe(String(site.sprint.priceUSD))
+		expect(ld.priceRange).toBe(`$${site.audit.priceUSD}–$${site.sprint.priceUSD}`)
 	})
 })

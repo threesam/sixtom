@@ -1,33 +1,36 @@
 # sixtom
 
-> AI ships demos. I ship products. A week pairing with someone on your team — they drive, I shape, we ship. $7,500 fixed. 1 client a month.
+> AI ships demos. I ship products. I run AI agents in parallel — work happens whether I'm in a meeting or asleep. Two weeks to a working version. $500 audit. $7,500 sprint. 1 client a month.
 
-## What it is
+## What I do
 
-- 1 week.
-- You pair me with someone on your team.
-- They drive. I shape. We ship.
-- You keep the code.
+- **The Audit — $500.** You send me your repo and the thing you're stuck on. I send back a 1-pager and a 15-min Loom — what's blocking, what I'd do, whether a sprint makes sense. About a week turnaround.
+- **The Async Sprint — $7,500.** Two weeks. Multiple agents working in parallel on the boring bits — fixes, accessibility passes, the edge cases that break in front of customers. I steer. You get a daily drop in Slack and a working version live on day 10.
 
 ## Who it's for
 
-- You have a prototype that won't ship.
+- A prototype that won't ship.
 - An internal tool that won't scale past the person who built it.
-- Someone on your team can build with AI but stalls before production.
+- A team that built with AI but stalls before production.
 
-## How it goes
+## How the sprint goes
 
-- Day 0: 30-min intro call. We figure out the thing.
-- Day 1: I show up. Meet who I'm pairing with.
-- Days 1–5: They drive. I shape. The thing ships.
-- Day 5: Live in production. You own it.
-- Day 30: Check-in. What stuck, what didn't.
+- Week 1 day 0: 30-min call (or skip if you did the audit). We figure out the thing.
+- Days 1–7: Agents build. I steer. Daily Loom + code drop in Slack.
+- Mid-sprint: 1 short sync. Course-correct if needed.
+- Day 5: If we can both see it won't ship in scope, we stop. You keep what we built.
+- Day 10: Live in production. You own it.
+- Day 30: Check-in.
+
+## How I work
+
+I orchestrate AI agents continuously — drafts, fixes, accessibility passes, the parts that don't need taste. I bring the taste. The fleet runs in parallel, which is why a two-week sprint can produce a shipping-ready product. You don't have to be on a call; the work happens whether you are or not.
 
 ## Pricing
 
-- $7,500 USD, fixed.
-- 1 client a month, by appointment.
-- If we're off track by day 3, we stop. You keep what we built. Pay for the time, that's it.
+- Audit: $500 USD, fixed. Turnaround within a week.
+- Sprint: $7,500 USD, fixed. 1 client a month, by appointment.
+- If by sprint day 5 we can both see it won't ship in scope, we stop. You keep what we built. Pay for the time, that's it.
 
 ## How to engage
 

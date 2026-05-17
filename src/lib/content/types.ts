@@ -50,7 +50,8 @@ export type Site = {
 		ctaSecondary: string
 	}
 	operator: Operator
-	offer: Offer
+	audit: Offer
+	sprint: Offer
 	process: readonly ProcessStep[]
 	stats: readonly Stat[]
 	testimonial: Testimonial
