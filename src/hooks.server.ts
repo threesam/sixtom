@@ -2,8 +2,7 @@ import type { Handle } from '@sveltejs/kit'
 
 const MARKETING_CSP = [
 	"default-src 'self'",
-	// 'unsafe-inline' for the JSON-LD script block in +layout.svelte;
-	// content is in-repo and never reflects user input.
+	// 'unsafe-inline' covers the in-repo JSON-LD <script> block; no user input is reflected.
 	"script-src 'self' 'unsafe-inline' https://analytics.sixtom.com",
 	"style-src 'self' 'unsafe-inline'",
 	"img-src 'self' data:",
@@ -14,9 +13,7 @@ const MARKETING_CSP = [
 	"base-uri 'self'"
 ].join('; ')
 
-// Studio is a third-party SPA that needs eval + cross-origin to *.sanity.io.
-// Path is internal-only (robots Disallow + noindex), so the relaxed policy
-// doesn't widen the public attack surface.
+// Studio is a third-party SPA that needs eval + cross-origin to *.sanity.io. Gated by noindex + robots.
 const STUDIO_CSP = [
 	"default-src 'self' https://*.sanity.io",
 	"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.sanity.io",
@@ -38,20 +35,27 @@ const SECURITY_HEADERS: Readonly<Record<string, string>> = {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const response = await resolve(event)
+
+	// CSP + security headers are only meaningful on HTML; static assets ship with
+	// their own content-type/cache headers and don't benefit from CSP.
+	if (!response.headers.get('content-type')?.startsWith('text/html')) {
+		return response
+	}
+
 	const csp = event.url.pathname.startsWith('/sanity') ? STUDIO_CSP : MARKETING_CSP
 	response.headers.set('Content-Security-Policy', csp)
 	for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
 		response.headers.set(name, value)
 	}
 
-	// Marketing GET is content-stable, so let Vercel's edge CDN cache it for a
-	// day and serve stale-while-revalidate for a week. POSTs to the action
-	// inherit no-store from the action response itself.
 	if (event.request.method === 'GET' && event.url.pathname === '/') {
 		response.headers.set(
 			'Cache-Control',
 			'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
 		)
+	} else if (event.request.method !== 'GET') {
+		// Action responses must never be cached — they're per-request and may carry form state.
+		response.headers.set('Cache-Control', 'private, no-store')
 	}
 
 	return response
