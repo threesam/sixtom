@@ -28,6 +28,19 @@ export default ts.config(
 		}
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
+		rules: {
+			// External-link href values (e.g., Cal.com, garden) don't go through SvelteKit's resolve().
+			'svelte/no-navigation-without-resolve': 'off'
+		}
+	},
+	{
+		ignores: [
+			'build/**',
+			'.svelte-kit/**',
+			'dist/**',
+			'.vercel/**',
+			'node_modules/**',
+			'coverage/**'
+		]
 	}
 )

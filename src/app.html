@@ -2,18 +2,43 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap"
-			rel="stylesheet"
+		<meta name="theme-color" content="#0a0a0a" />
+
+		<title>sixtom — 1-week site sprint by Sam D'Angelo</title>
+		<meta
+			name="description"
+			content="1-week site sprint with before/after instrumented. $7,500 fixed. One client per month."
 		/>
-		<script defer src="https://analytics.sixtom.com/script.js" data-website-id="64398c1a-02a0-4a61-991c-b0d143f01b46"></script>
+
+		<meta property="og:title" content="sixtom — 1-week site sprint by Sam D'Angelo" />
+		<meta
+			property="og:description"
+			content="1-week site sprint with before/after instrumented. $7,500 fixed. One client per month."
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://sixtom.com/" />
+		<meta property="og:image" content="https://sixtom.com/og.png" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="sixtom — 1-week site sprint by Sam D'Angelo" />
+		<meta
+			name="twitter:description"
+			content="1-week site sprint with before/after instrumented. $7,500 fixed. One client per month."
+		/>
+		<meta name="twitter:image" content="https://sixtom.com/og.png" />
+
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+
+		<script
+			defer
+			src="https://analytics.sixtom.com/script.js"
+			data-website-id="64398c1a-02a0-4a61-991c-b0d143f01b46"
+		></script>
+
 		%sveltekit.head%
 	</head>
-	<body class="relative scroll-smooth bg-black" data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

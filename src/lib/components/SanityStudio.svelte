@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte'
 
 	let { config } = $props()
-	let studioContainer: any | undefined = $state()
+	let studioContainer: HTMLDivElement | undefined = $state()
 
 	onMount(() => {
 		if (studioContainer) {
