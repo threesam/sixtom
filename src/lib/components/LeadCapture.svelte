@@ -2,7 +2,7 @@
 	import { site } from '$lib/content'
 
 	let email = $state('')
-	let company = $state('') // honeypot — never display, never submit non-empty
+	let company = $state('')
 	let formStartedAt = $state(Date.now())
 	let status = $state<'idle' | 'submitting' | 'success' | 'error'>('idle')
 	let message = $state('')
@@ -30,7 +30,6 @@
 				status = 'success'
 				message = data.status ?? "You're on the list."
 				email = ''
-				// CRO: track successful capture in Umami if loaded
 				if (typeof window !== 'undefined' && typeof window.umami?.track === 'function') {
 					window.umami.track('notify_signup_success')
 				}
