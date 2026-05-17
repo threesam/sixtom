@@ -6,27 +6,37 @@ import { resolve } from 'node:path'
  * Pins every CRO event named in docs/site-copy.md to the file that fires it.
  * If a component is renamed or an attribute drops out, this fails before
  * analytics goes silent in production.
+ *
+ * Five events bind to the DOM via Umami's `data-umami-event` auto-binding
+ * (works without SvelteKit's client runtime). One event fires server-side
+ * from the form action — that's checked separately.
  */
-const EXPECTED: readonly { event: string; file: string; via: 'data-attr' | 'window.umami' }[] = [
-	{ event: 'cta_hero_book', file: 'Hero.svelte', via: 'data-attr' },
-	{ event: 'cta_audit_book', file: 'OfferSection.svelte', via: 'data-attr' },
-	{ event: 'cta_sprint_book', file: 'OfferSection.svelte', via: 'data-attr' },
-	{ event: 'cta_notify_submit', file: 'LeadCapture.svelte', via: 'data-attr' },
-	{ event: 'notify_signup_success', file: 'LeadCapture.svelte', via: 'window.umami' },
-	{ event: 'cta_garden_link', file: 'LeadCapture.svelte', via: 'data-attr' }
+const COMPONENT_DIR = resolve(import.meta.dirname)
+const SERVER_DIR = resolve(import.meta.dirname, '../../routes')
+
+interface ClientEvent {
+	event: string
+	file: string
+}
+
+const CLIENT_EVENTS: readonly ClientEvent[] = [
+	{ event: 'cta_hero_book', file: 'Hero.svelte' },
+	{ event: 'cta_audit_book', file: 'OfferSection.svelte' },
+	{ event: 'cta_sprint_book', file: 'OfferSection.svelte' },
+	{ event: 'cta_notify_submit', file: 'LeadCapture.svelte' },
+	{ event: 'cta_garden_link', file: 'LeadCapture.svelte' }
 ]
 
-const dir = resolve(import.meta.dirname)
-
 describe('Umami CRO event instrumentation', () => {
-	for (const { event, file, via } of EXPECTED) {
-		it(`fires "${event}" in ${file} (${via})`, () => {
-			const contents = readFileSync(resolve(dir, file), 'utf-8')
-			if (via === 'data-attr') {
-				expect(contents).toContain(`data-umami-event="${event}"`)
-			} else {
-				expect(contents).toContain(`window.umami.track('${event}')`)
-			}
+	for (const { event, file } of CLIENT_EVENTS) {
+		it(`fires "${event}" via data-attr in ${file}`, () => {
+			const contents = readFileSync(resolve(COMPONENT_DIR, file), 'utf-8')
+			expect(contents).toContain(`data-umami-event="${event}"`)
 		})
 	}
+
+	it('fires "notify_signup_success" server-side from the page action', () => {
+		const contents = readFileSync(resolve(SERVER_DIR, '+page.server.ts'), 'utf-8')
+		expect(contents).toContain("fireServerEvent('notify_signup_success'")
+	})
 })

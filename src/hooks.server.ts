@@ -43,5 +43,16 @@ export const handle: Handle = async ({ event, resolve }) => {
 	for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
 		response.headers.set(name, value)
 	}
+
+	// Marketing GET is content-stable, so let Vercel's edge CDN cache it for a
+	// day and serve stale-while-revalidate for a week. POSTs to the action
+	// inherit no-store from the action response itself.
+	if (event.request.method === 'GET' && event.url.pathname === '/') {
+		response.headers.set(
+			'Cache-Control',
+			'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
+		)
+	}
+
 	return response
 }

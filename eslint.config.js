@@ -13,7 +13,8 @@ export default defineConfig(
 			'dist/**',
 			'.vercel/**',
 			'node_modules/**',
-			'coverage/**'
+			'coverage/**',
+			'static/**'
 		]
 	},
 	js.configs.recommended,

@@ -15,6 +15,13 @@
 		<link rel="canonical" href="https://sixtom.com/" />
 
 		<link rel="preconnect" href="https://analytics.sixtom.com" />
+		<link
+			rel="preload"
+			href="%sveltekit.assets%/fonts/fira-mono-400.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 
 		<meta property="og:title" content="sixtom — async sprints with Sam D'Angelo" />
 		<meta
@@ -44,6 +51,7 @@
 			src="https://analytics.sixtom.com/script.js"
 			data-website-id="64398c1a-02a0-4a61-991c-b0d143f01b46"
 		></script>
+		<script defer src="%sveltekit.assets%/enhance-form.js"></script>
 
 		%sveltekit.head%
 	</head>
