@@ -4,7 +4,7 @@ import { site, calEvent } from './index'
 describe('content', () => {
 	it('site exports the operator + audit + sprint', () => {
 		expect(site.operator.name).toBe("Sam D'Angelo")
-		expect(site.audit.priceUSD).toBe(500)
+		expect(site.audit.priceUSD).toBe(750)
 		expect(site.sprint.priceUSD).toBe(7500)
 		expect(site.bookingUrl).toMatch(/^https?:\/\//)
 	})

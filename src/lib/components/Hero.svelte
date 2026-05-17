@@ -14,7 +14,7 @@
 			{site.hero.subhead}
 		</p>
 		<p class="text-coin mt-10 text-2xl md:text-3xl">
-			${site.audit.priceUSD} audit. ${site.sprint.priceUSD.toLocaleString()} sprint. By appointment.
+			${site.audit.priceUSD} audit → ${site.sprint.priceUSD.toLocaleString()} sprint. By appointment.
 		</p>
 		<div class="mt-12">
 			<a

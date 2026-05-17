@@ -11,7 +11,7 @@
 
 		<div class="mt-12 grid gap-8 md:grid-cols-2">
 			<article class="flex flex-col rounded-lg border border-neutral-800 bg-neutral-950 p-8">
-				<p class="text-coin text-xs tracking-widest uppercase">start here</p>
+				<p class="text-coin text-xs tracking-widest uppercase">step 1 — start here</p>
 				<h3 class="mt-2 text-2xl font-bold tracking-tight text-neutral-100 md:text-3xl">
 					The {site.audit.name}.
 				</h3>
@@ -34,8 +34,10 @@
 				</div>
 			</article>
 
-			<article class="flex flex-col rounded-lg border border-neutral-800 bg-neutral-950 p-8">
-				<p class="text-coin text-xs tracking-widest uppercase">when you're ready</p>
+			<article
+				class="flex flex-col rounded-lg border border-neutral-700 bg-neutral-950 p-8 ring-1 ring-neutral-800"
+			>
+				<p class="text-coin text-xs tracking-widest uppercase">step 2 — when you're ready</p>
 				<h3 class="mt-2 text-2xl font-bold tracking-tight text-neutral-100 md:text-3xl">
 					The {site.sprint.name}.
 				</h3>

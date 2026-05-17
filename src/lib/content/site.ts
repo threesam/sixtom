@@ -9,11 +9,12 @@ export const site: Site = {
 	gardenUrl: 'https://garden.example.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
 	thesis: 'Vibe coding is how you slowly become the intern of your own codebase.',
-	thesisBody: 'AI gets you to a demo. I run the agents that turn it into a product.',
+	thesisBody:
+		'AI gets you to a demo. Agents do the typing. I do the judgment. Together we ship a product.',
 	hero: {
 		h1: 'AI ships demos. I ship products.',
 		subhead:
-			"I run agents in parallel. Work ships whether I'm in a meeting or asleep. Two weeks to a working version in production. Daily drops in Slack. No standups.",
+			'I run a fleet of agents in parallel. They type, I judge. Two weeks to a working version live in production. Daily drops. No calendar tetris.',
 		ctaPrimary: 'Book a 30-min intro call',
 		ctaSecondary: 'Notify me'
 	},
@@ -27,10 +28,10 @@ export const site: Site = {
 	audit: {
 		name: 'Audit',
 		longName: 'the audit',
-		priceUSD: 500,
+		priceUSD: 750,
 		cadence: 'turnaround within a week.',
 		promise:
-			"Send me your repo and the thing you've been trying to ship. I send back a 1-pager and a 15-min Loom: what's blocking, what I'd do, whether a sprint makes sense."
+			"Send me your repo and the thing you've been trying to ship. I send back a 1-pager and a 15-min Loom: what's blocking, what I'd do, whether a sprint makes sense. Start here."
 	},
 	sprint: {
 		name: 'Async Sprint',
@@ -38,25 +39,25 @@ export const site: Site = {
 		priceUSD: 7500,
 		cadence: '1 client a month, by appointment.',
 		promise:
-			'Two weeks. Multiple agents working in parallel on the boring bits — fixes, accessibility passes, the edge cases that break in front of customers. I steer. You get a daily drop in Slack and a working version live on day 10.'
+			'Two weeks. Agents do the typing — drafts, fixes, accessibility passes, the boring 10%. I do the judgment. Daily drops. Live in production on day 10.'
 	},
 	process: [
 		{
 			label: 'Week 1, day 0',
 			body: '30-min call (or skip if you did the audit). We figure out the thing.'
 		},
-		{ label: 'Days 1–7', body: 'Agents build. I steer. Daily Loom + code drop in Slack.' },
+		{ label: 'Days 1–7', body: 'Agents build. I steer. Daily Loom + code drop in your channel.' },
 		{ label: 'Mid-sprint', body: '1 short sync. Course-correct if needed.' },
 		{
-			label: 'Day 5',
-			body: "If we can both see it won't ship in scope, we stop. You keep what we built."
+			label: 'Day 5 (scope check)',
+			body: "If we can both see it won't ship in scope, we stop here. You keep what we built."
 		},
 		{ label: 'Day 10', body: 'Live in production. You own it.' },
 		{ label: 'Day 30', body: "Check-in. What stuck, what didn't." }
 	],
 	stats: [
 		{ value: '2 weeks', label: 'per sprint' },
-		{ value: '0', label: 'standups' },
+		{ value: 'all async', label: 'no standups' },
 		{ value: '$7,500', label: 'fixed' }
 	],
 	testimonial: {
@@ -84,7 +85,7 @@ export const calEvent: CalEvent = {
 			required: false
 		},
 		{
-			label: 'Audit ($500) or sprint ($7,500)?',
+			label: 'Audit ($750) or sprint ($7,500)?',
 			type: 'select',
 			options: [
 				'Audit — figure it out first',
