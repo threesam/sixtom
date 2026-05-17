@@ -1,30 +1,25 @@
-import type { PageServerLoad } from './$types'
-import type { Project } from '$lib/types'
-import { fetchSanityData } from '$lib/client/sanity'
+import { fail } from '@sveltejs/kit'
+import type { Actions } from './$types'
+import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
+import { fireServerEvent } from '$lib/server/umami'
 
-// Query to fetch posts
-const PAGE_QUERY = `*[_type == "page" && handle.current == 'home'][0]{
-	sections[]->{
-		...,
-		_id,
-		title,
-		handle,
-		image{asset->},
-		publishedAt,
-		items[]->{
-			...,
-			person->,
-			image{asset->}
+export const actions = {
+	notify: async (event) => {
+		// Reject oversized or unmeasured bodies before parsing them into memory.
+		// A missing content-length is suspicious — every legitimate browser POST sets it.
+		const declaredLength = Number(event.request.headers.get('content-length'))
+		if (!Number.isFinite(declaredLength) || declaredLength > MAX_REQUEST_BYTES) {
+			return fail(413, { status: 'error' as const, message: 'Payload too large.' })
 		}
-	}
-}`
 
-export const load: PageServerLoad = async () => {
-	try {
-		return { page: await fetchSanityData<Project[]>(PAGE_QUERY) }
-	} catch (error) {
-		return { error: error instanceof Error ? error.message : 'Unknown error occurred' }
-	}
-}
+		const formData = await event.request.formData()
+		const result = await processSubmission(formData, event)
 
-export const prerender = true
+		if (result.ok) {
+			fireServerEvent('notify_signup_success', event.request)
+			return { status: 'success' as const, message: result.message }
+		}
+
+		return fail(result.status, { status: 'error' as const, message: result.message })
+	}
+} satisfies Actions

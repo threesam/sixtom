@@ -7,19 +7,16 @@ import {
 	PUBLIC_SANITY_PROJECT_ID,
 	PUBLIC_SANITY_DATASET
 } from '$env/static/public'
-import { RiAliensLine } from 'react-icons/ri'
 import { createClient } from '@sanity/client'
 import type { ClientConfig } from '@sanity/client'
-// import { media } from 'sanity-plugin-media'
 import { codeInput } from '@sanity/code-input'
 
 export const sanityConfig = defineConfig({
 	name: 'studio',
 	title: 'The Studio',
-	projectId: PUBLIC_SANITY_PROJECT_ID ?? '',
+	projectId: PUBLIC_SANITY_PROJECT_ID,
 	basePath: '/sanity',
-	icon: RiAliensLine,
-	dataset: PUBLIC_SANITY_DATASET ?? 'production',
+	dataset: PUBLIC_SANITY_DATASET,
 	plugins: [codeInput(), structureTool(), visionTool()],
 	schema: {
 		types: schemaTypes
