@@ -14,9 +14,11 @@
 	}
 
 	function enhance(form) {
-		// Set formStartedAt on page load. Server treats a missing value as
-		// suspicious, so bots that skip our deferred script don't pass the
-		// time-trap layer.
+		// Mark this submission as having reached the lazy script. Server only
+		// enforces the time-trap layer when this flag is set — otherwise a real
+		// visitor whose JS didn't load (ad-blocker, race) would silent-fail.
+		var enhanced = form.querySelector('[data-form-enhanced]')
+		if (enhanced) enhanced.value = '1'
 		var startedAt = form.querySelector('[data-form-started-at]')
 		if (startedAt) startedAt.value = String(Date.now())
 

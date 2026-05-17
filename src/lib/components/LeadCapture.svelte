@@ -43,6 +43,7 @@
 					value="Wants notification when next sprint slot opens."
 				/>
 				<input type="hidden" name="formStartedAt" value="" data-form-started-at />
+				<input type="hidden" name="enhanced" value="" data-form-enhanced />
 				<input
 					type="text"
 					name="company"

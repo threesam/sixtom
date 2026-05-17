@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import nodemailer, { type Transporter } from 'nodemailer'
 import { env } from '$env/dynamic/private'
 import type { RequestEvent } from '@sveltejs/kit'
 
@@ -11,6 +11,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const DEFAULT_MIN_SUBMIT_MS = 3000
 const DEFAULT_RATE_LIMIT_WINDOW_MS = 60_000
 const DEFAULT_MAX_REQUESTS_PER_WINDOW = 5
+const RATE_LIMIT_SWEEP_AT = 10_000
 
 function parsePositiveNumber(value: string | undefined, fallback: number): number {
 	const parsedValue = Number(value)
@@ -29,7 +30,6 @@ const RATE_LIMIT_MAX_REQUESTS = parsePositiveNumber(
 
 const requestLog = new Map<string, number[]>()
 
-// Visible for tests so each describe block can isolate its IP counters.
 export function resetRateLimitForTests(): void {
 	requestLog.clear()
 }
@@ -52,8 +52,17 @@ function getClientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>):
 	return 'unknown'
 }
 
+function sweepRateLimit(now: number): void {
+	for (const [key, timestamps] of requestLog) {
+		const fresh = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS)
+		if (fresh.length === 0) requestLog.delete(key)
+		else requestLog.set(key, fresh)
+	}
+}
+
 function isRateLimited(ip: string): boolean {
 	const now = Date.now()
+	if (requestLog.size > RATE_LIMIT_SWEEP_AT) sweepRateLimit(now)
 	const recentAttempts =
 		requestLog.get(ip)?.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS) ?? []
 	recentAttempts.push(now)
@@ -69,34 +78,28 @@ export type SubmissionResult =
 	| { ok: true; message: string }
 	| { ok: false; status: number; message: string }
 
-function suspicious(message: string): SubmissionResult {
-	// Honeypot + time-trap both look successful to bots — they shouldn't learn
-	// the form is filtering them.
-	return { ok: true, message }
+// Honeypot + time-trap silently 200 so attackers can't learn which layer filtered them.
+function suspicious(): SubmissionResult {
+	return { ok: true, message: "You're on the list." }
 }
 
-interface ProcessOptions {
-	skipSend?: boolean
+let cachedTransporter: Transporter | null = null
+function getTransporter(): Transporter {
+	cachedTransporter ??= nodemailer.createTransport({
+		host: env.SMTP_SERVER,
+		port: parsePositiveNumber(env.SMTP_PORT, 587),
+		secure: false,
+		requireTLS: true,
+		tls: { minVersion: 'TLSv1.2' },
+		auth: { user: env.SMTP_EMAIL, pass: env.SMTP_TOKEN }
+	})
+	return cachedTransporter
 }
 
-/**
- * Validates and (if all layers pass) sends the contact email. Returns a
- * uniform result the caller can map to either a form-action response or a
- * raw HTTP JSON response.
- *
- * Bot-protection layer order matters — honeypot + time-trap return a silent
- * success so attackers can't learn the form is filtering them.
- */
 export async function processSubmission(
 	formData: FormData,
-	event: Pick<RequestEvent, 'request' | 'getClientAddress'>,
-	options: ProcessOptions = {}
+	event: Pick<RequestEvent, 'request' | 'getClientAddress'>
 ): Promise<SubmissionResult> {
-	const declaredLength = Number(event.request.headers.get('content-length'))
-	if (Number.isFinite(declaredLength) && declaredLength > MAX_REQUEST_BYTES) {
-		return { ok: false, status: 413, message: 'Payload too large.' }
-	}
-
 	function readString(field: string): string {
 		const value = formData.get(field)
 		return typeof value === 'string' ? value : ''
@@ -106,6 +109,7 @@ export async function processSubmission(
 	const email = readString('email').trim()
 	const message = readString('message').trim()
 	const company = readString('company')
+	const enhanced = readString('enhanced') === '1'
 	const formStartedAtRaw = readString('formStartedAt')
 	const formStartedAt = formStartedAtRaw !== '' ? Number(formStartedAtRaw) : undefined
 
@@ -124,19 +128,15 @@ export async function processSubmission(
 		return { ok: false, status: 400, message: 'Invalid form submission.' }
 	}
 
-	// Honeypot: a filled `company` means a bot auto-completed every visible field.
-	if (company.trim() !== '') {
-		return suspicious("You're on the list.")
-	}
+	if (company.trim() !== '') return suspicious()
 
-	// Time-trap: enforced only when the client provided a timestamp (the lazy
-	// enhancement script writes it on page load). Submissions without one are
-	// also treated as suspicious — most scrapers don't execute deferred JS.
-	if (typeof formStartedAt !== 'number' || Number.isNaN(formStartedAt)) {
-		return suspicious("You're on the list.")
-	}
-	if (Date.now() - formStartedAt < MIN_SUBMIT_MS) {
-		return suspicious("You're on the list.")
+	// Time-trap only runs when the lazy enhancement script set `enhanced=1`.
+	// Real visitors whose JS failed to load (ad-blockers, defer race, blocked CSP)
+	// would otherwise get a silent 200 with no email sent — which is worse than
+	// skipping this single layer and relying on honeypot + rate-limit + validation.
+	if (enhanced) {
+		if (typeof formStartedAt !== 'number' || Number.isNaN(formStartedAt)) return suspicious()
+		if (Date.now() - formStartedAt < MIN_SUBMIT_MS) return suspicious()
 	}
 
 	const clientIp = getClientIp(event)
@@ -144,29 +144,14 @@ export async function processSubmission(
 		return { ok: false, status: 429, message: 'Too many requests. Please try again shortly.' }
 	}
 
-	if (options.skipSend) {
-		return { ok: true, message: "You're on the list." }
-	}
-
-	const transporter = nodemailer.createTransport({
-		host: env.SMTP_SERVER,
-		port: parsePositiveNumber(env.SMTP_PORT, 587),
-		secure: false,
-		requireTLS: true,
-		tls: { minVersion: 'TLSv1.2' },
-		auth: {
-			user: env.SMTP_EMAIL,
-			pass: env.SMTP_TOKEN
-		}
-	})
-
-	const confirmationMailOptions = {
+	const transporter = getTransporter()
+	const confirmation = {
 		from: env.SMTP_EMAIL,
 		to: email,
 		subject: `Contact sixtom`,
 		text: 'Contact form submission received! We look forward to talking to you soon.'
 	}
-	const mailOptions = {
+	const notification = {
 		from: env.SMTP_EMAIL,
 		to: env.SMTP_RECIPIENT_EMAIL,
 		replyTo: email,
@@ -175,8 +160,7 @@ export async function processSubmission(
 	}
 
 	try {
-		await transporter.sendMail(confirmationMailOptions)
-		await transporter.sendMail(mailOptions)
+		await Promise.all([transporter.sendMail(confirmation), transporter.sendMail(notification)])
 		return { ok: true, message: "You're on the list." }
 	} catch (error) {
 		console.error('send-email failed:', error instanceof Error ? error.message : 'unknown')

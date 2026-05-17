@@ -29,13 +29,14 @@ function mockEvent({ headers = {}, ip = '127.0.0.1' }: MockEventOptions = {}): P
 	}
 }
 
-function validFormData(overrides: Partial<Record<string, string>> = {}): FormData {
+function makeFormData(overrides: Partial<Record<string, string>> = {}): FormData {
 	const fd = new FormData()
 	const fields: Record<string, string> = {
 		name: 'Real Person',
 		email: 'real@example.com',
 		message: 'Heads-up please',
 		formStartedAt: String(Date.now() - 10_000),
+		enhanced: '1',
 		...overrides
 	}
 	for (const [k, v] of Object.entries(fields)) fd.set(k, v)
@@ -47,30 +48,21 @@ describe('processSubmission — protection layers', () => {
 		resetRateLimitForTests()
 	})
 
-	it('rejects oversized payloads via content-length before parsing', async () => {
-		const result = await processSubmission(
-			validFormData(),
-			mockEvent({ headers: { 'content-length': '50000' } })
-		)
-		expect(result.ok).toBe(false)
-		if (!result.ok) expect(result.status).toBe(413)
-	})
-
 	it('rejects missing required fields', async () => {
-		const result = await processSubmission(validFormData({ name: '' }), mockEvent())
+		const result = await processSubmission(makeFormData({ name: '' }), mockEvent())
 		expect(result.ok).toBe(false)
 		if (!result.ok) expect(result.status).toBe(400)
 	})
 
 	it('rejects malformed email', async () => {
-		const result = await processSubmission(validFormData({ email: 'not-an-email' }), mockEvent())
+		const result = await processSubmission(makeFormData({ email: 'not-an-email' }), mockEvent())
 		expect(result.ok).toBe(false)
 		if (!result.ok) expect(result.status).toBe(400)
 	})
 
 	it('rejects header injection (CRLF in email)', async () => {
 		const result = await processSubmission(
-			validFormData({ email: 'evil@example.com\r\nBcc: leak@evil.com' }),
+			makeFormData({ email: 'evil@example.com\r\nBcc: leak@evil.com' }),
 			mockEvent()
 		)
 		expect(result.ok).toBe(false)
@@ -78,42 +70,56 @@ describe('processSubmission — protection layers', () => {
 	})
 
 	it('rejects oversized fields', async () => {
-		const result = await processSubmission(validFormData({ name: 'a'.repeat(200) }), mockEvent())
+		const result = await processSubmission(makeFormData({ name: 'a'.repeat(200) }), mockEvent())
 		expect(result.ok).toBe(false)
 		if (!result.ok) expect(result.status).toBe(400)
 	})
 
 	it('silently 200s when honeypot is filled', async () => {
 		const result = await processSubmission(
-			validFormData({ company: 'AcmeCorp' }),
+			makeFormData({ company: 'AcmeCorp' }),
 			mockEvent({ ip: '10.0.0.1' })
 		)
 		expect(result.ok).toBe(true)
 	})
 
-	it('silently 200s when submitted before the time-trap window', async () => {
-		const result = await processSubmission(
-			validFormData({ formStartedAt: String(Date.now()) }),
-			mockEvent({ ip: '10.0.0.2' })
-		)
-		expect(result.ok).toBe(true)
-	})
+	describe('time-trap (gated on enhanced=1)', () => {
+		it('silently 200s when enhanced + submitted before the time-trap window', async () => {
+			const result = await processSubmission(
+				makeFormData({ enhanced: '1', formStartedAt: String(Date.now()) }),
+				mockEvent({ ip: '10.0.0.2' })
+			)
+			expect(result.ok).toBe(true)
+		})
 
-	it('silently 200s when formStartedAt is missing (bot skipped the lazy script)', async () => {
-		const result = await processSubmission(
-			validFormData({ formStartedAt: '' }),
-			mockEvent({ ip: '10.0.0.3' })
-		)
-		expect(result.ok).toBe(true)
+		it('silently 200s when enhanced + formStartedAt is missing', async () => {
+			const result = await processSubmission(
+				makeFormData({ enhanced: '1', formStartedAt: '' }),
+				mockEvent({ ip: '10.0.0.3' })
+			)
+			expect(result.ok).toBe(true)
+		})
+
+		it('SENDS when enhancement never loaded (no `enhanced` flag) — real visitor protection', async () => {
+			// This is the CRITICAL behavior change: with the lazy script blocked
+			// or racing, a real visitor must still get their email sent rather
+			// than getting a silent fake-success.
+			const result = await processSubmission(
+				makeFormData({ enhanced: '', formStartedAt: '' }),
+				mockEvent({ ip: '10.0.0.4' })
+			)
+			expect(result.ok).toBe(true)
+			if (result.ok) expect(result.message).toMatch(/list/i)
+		})
 	})
 
 	it('rate-limits after the configured number of valid submissions per IP', async () => {
 		const ip = '10.0.0.99'
 		for (let i = 0; i < 5; i++) {
-			const ok = await processSubmission(validFormData(), mockEvent({ ip }))
+			const ok = await processSubmission(makeFormData(), mockEvent({ ip }))
 			expect(ok.ok).toBe(true)
 		}
-		const limited = await processSubmission(validFormData(), mockEvent({ ip }))
+		const limited = await processSubmission(makeFormData(), mockEvent({ ip }))
 		expect(limited.ok).toBe(false)
 		if (!limited.ok) expect(limited.status).toBe(429)
 	})
@@ -123,15 +129,7 @@ describe('processSubmission — protection layers', () => {
 		;(event as { getClientAddress: () => string }).getClientAddress = () => {
 			throw new Error('not available')
 		}
-		const result = await processSubmission(validFormData(), event)
+		const result = await processSubmission(makeFormData(), event)
 		expect(result.ok).toBe(true)
-	})
-
-	it('returns success without invoking nodemailer when skipSend is true', async () => {
-		const result = await processSubmission(validFormData(), mockEvent({ ip: '10.0.0.50' }), {
-			skipSend: true
-		})
-		expect(result.ok).toBe(true)
-		if (result.ok) expect(result.message).toMatch(/list/i)
 	})
 })
