@@ -8,14 +8,14 @@
 	const MARQUEE_COPIES = 6
 </script>
 
-<section class="snap-section relative !justify-between bg-neutral-950">
+<section class="snap-section bg-surface relative !justify-between">
 	<div class="flex w-full flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<p class="text-coin text-sm tracking-widest uppercase">Not ready yet?</p>
-			<h2 class="mt-2 text-3xl font-bold tracking-tight text-neutral-100 md:text-5xl">
+			<p class="eyebrow text-sm">Not ready yet?</p>
+			<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
 				Heads-up when the next slot opens.
 			</h2>
-			<p class="mt-6 text-lg leading-relaxed text-neutral-400">
+			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				One client a month. Drop your email and I'll let you know when I'm taking the next one.
 			</p>
 
@@ -33,7 +33,7 @@
 					required
 					autocomplete="email"
 					placeholder="you@yourdomain.com"
-					class="focus:border-coin focus:ring-coin flex-1 rounded-md border border-neutral-800 bg-neutral-900 px-4 py-3 text-lg text-neutral-100 placeholder:text-neutral-600 focus:ring-2 focus:outline-none disabled:opacity-60"
+					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-coin focus:ring-coin flex-1 rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none disabled:opacity-60"
 				/>
 				<input type="hidden" name="name" value="Notify list signup" />
 				<input
@@ -55,7 +55,7 @@
 					type="submit"
 					data-umami-event="cta_notify_submit"
 					data-enhance-submit
-					class="bg-coin rounded-md px-6 py-3 text-lg font-medium text-neutral-950 transition-opacity hover:opacity-90 disabled:opacity-60"
+					class="btn-coin px-6 py-3 text-lg hover:opacity-90 disabled:opacity-60"
 				>
 					{site.hero.ctaSecondary}
 				</button>
@@ -65,14 +65,14 @@
 				{#if form?.status === 'success'}
 					<p class="text-coin mt-4 text-base">{form.message}</p>
 				{:else if form?.status === 'error'}
-					<p class="mt-4 text-base text-rose-400">{form.message}</p>
+					<p class="text-error mt-4 text-base">{form.message}</p>
 				{/if}
 			</div>
 		</div>
 	</div>
 
 	<div
-		class="w-full overflow-hidden border-t border-neutral-800 bg-black py-6"
+		class="border-border bg-surface w-full overflow-hidden border-t py-6"
 		aria-label="Mission marquee"
 	>
 		<div
@@ -81,13 +81,13 @@
 		>
 			{#each Array(MARQUEE_COPIES), i (i)}
 				<div data-marquee-copy class="flex items-center gap-12 pr-12" aria-hidden={i !== 0}>
-					<span class="font-semibold text-neutral-100">we just want to build cool shit</span>
+					<span class="text-fg font-semibold">we just want to build cool shit</span>
 					<span class="text-coin">★</span>
 					<a
 						href={site.gardenUrl}
 						data-umami-event={i === 0 ? 'cta_garden_link' : undefined}
 						tabindex={i === 0 ? undefined : -1}
-						class="hover:text-coin font-semibold text-neutral-100 transition-colors"
+						class="text-fg hover:text-coin font-semibold transition-colors"
 						rel="noopener noreferrer"
 						target="_blank">more at the garden →</a
 					>

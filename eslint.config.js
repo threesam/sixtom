@@ -38,7 +38,8 @@ export default defineConfig(
 						'svelte.config.js',
 						'playwright.config.ts',
 						'e2e/constants.ts',
-						'e2e/notify-form.spec.ts'
+						'e2e/notify-form.spec.ts',
+						'e2e/visual-theme.spec.ts'
 					]
 				},
 				extraFileExtensions: ['.svelte'],
@@ -57,7 +58,8 @@ export default defineConfig(
 						'svelte.config.js',
 						'playwright.config.ts',
 						'e2e/constants.ts',
-						'e2e/notify-form.spec.ts'
+						'e2e/notify-form.spec.ts',
+						'e2e/visual-theme.spec.ts'
 					]
 				},
 				extraFileExtensions: ['.svelte'],

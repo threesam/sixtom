@@ -37,10 +37,55 @@
 
 @theme {
 	--font-sans: 'Fira Mono', monospace;
-	--color-coin: #e8a317;
+
+	/* Light theme defaults; dark overrides in the @media block below.
+	 * fg/fg-muted/fg-subtle are ordered by descending contrast in BOTH themes
+	 * (numbers reverse because contrast-against-surface depends on theme). */
+	--color-surface: oklch(98% 0.005 85);
+	--color-fg: oklch(15% 0 0);
+	--color-fg-muted: oklch(40% 0 0);
+	--color-fg-subtle: oklch(48% 0 0);
+	--color-border: oklch(86% 0.005 85);
+	--color-border-strong: oklch(72% 0.005 85);
+	/* Coin is theme-aware: light needs a deeper gold to clear WCAG AA on the
+	 * off-white surface (bright #e8a317 measures 2.07:1, fails large-text floor). */
+	--color-coin: oklch(48% 0.16 70);
+	--color-on-coin: oklch(98% 0.005 85);
+	--color-error: oklch(48% 0.18 13);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-surface: oklch(14.5% 0 0);
+		--color-fg: oklch(97% 0 0);
+		--color-fg-muted: oklch(70.8% 0 0);
+		--color-fg-subtle: oklch(60% 0 0);
+		--color-border: oklch(26.9% 0 0);
+		--color-border-strong: oklch(37.1% 0 0);
+		--color-coin: #e8a317;
+		--color-on-coin: oklch(14.5% 0 0);
+		--color-error: oklch(71.2% 0.194 13.428);
+	}
+}
+
+@utility btn-coin {
+	display: inline-block;
+	background-color: var(--color-coin);
+	color: var(--color-on-coin);
+	border-radius: 0.375rem;
+	font-weight: 500;
+	transition: opacity 0.15s;
+}
+
+@utility eyebrow {
+	color: var(--color-coin);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
 }
 
 html {
+	color: var(--color-fg);
+	background: var(--color-surface);
 	scroll-snap-type: y mandatory;
 	scroll-behavior: smooth;
 }
@@ -71,19 +116,4 @@ html {
 	.marquee-track {
 		animation: none;
 	}
-}
-
-/* Webkit (Chrome, Safari, newer versions of Opera) */
-.scrollbar-none::-webkit-scrollbar {
-	display: none;
-}
-
-/* Firefox */
-.scrollbar-none {
-	scrollbar-width: none;
-}
-
-/* Internet Explorer and Edge */
-.scrollbar-none {
-	-ms-overflow-style: none;
 }

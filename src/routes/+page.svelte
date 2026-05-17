@@ -10,15 +10,15 @@
 
 <Hero />
 
-<section class="snap-section bg-neutral-950">
+<section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="text-coin text-sm tracking-widest uppercase">— the thesis</p>
+		<p class="eyebrow text-sm">— the thesis</p>
 		<p
-			class="mt-4 text-3xl leading-tight font-semibold tracking-tight text-neutral-100 italic md:text-5xl lg:text-6xl"
+			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight italic md:text-5xl lg:text-6xl"
 		>
 			{site.thesis}
 		</p>
-		<p class="mt-12 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
+		<p class="text-fg-muted mt-12 max-w-2xl text-lg leading-relaxed md:text-xl">
 			{site.thesisBody}
 		</p>
 	</div>

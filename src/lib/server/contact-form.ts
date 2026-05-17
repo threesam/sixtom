@@ -147,7 +147,8 @@ export async function processSubmission(
 	}
 
 	// E2E bypass; env var unset in production, exact-match comparison.
-	const testEmail = env.CONTACT_FORM_TEST_EMAIL?.trim() ?? ''
+	const testEmailRaw = env.CONTACT_FORM_TEST_EMAIL
+	const testEmail = typeof testEmailRaw === 'string' ? testEmailRaw.trim() : ''
 	if (testEmail !== '' && email === testEmail) {
 		return { ok: true, message: SUCCESS_MESSAGE }
 	}
