@@ -1,8 +1,4 @@
-// Progressive enhancement for forms marked [data-enhance-form].
-// Without this script the form still works via native HTML submission;
-// with it, you get inline "Sending..." + result rendering without a page reload.
-//
-// Loaded with `<script defer>` so it doesn't block FCP/LCP.
+// Progressive enhancement for [data-enhance-form] forms. Form still works without this.
 ;(function () {
 	'use strict'
 

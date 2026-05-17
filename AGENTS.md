@@ -32,7 +32,7 @@ SvelteKit 2 + Svelte 5 (runes) + Tailwind 4, deployed to Vercel.
 
 ### 1. Marketing/offer site (`/`)
 
-Single fully-prerendered page (`src/routes/+page.svelte`, `src/routes/+page.server.ts` exports `prerender = true`). All copy lives in `src/lib/content/` as typed TypeScript so components AND schema.org JSON-LD render from the same source.
+SSR page (`src/routes/+page.svelte` + `src/routes/+page.server.ts`) cached at Vercel's edge for 24h via `Cache-Control: s-maxage=86400, stale-while-revalidate=604800` set in `src/hooks.server.ts`. `csr = false` in `src/routes/+page.ts` ships zero SvelteKit client JS on initial paint. All copy lives in `src/lib/content/` as typed TypeScript so components AND schema.org JSON-LD render from the same source.
 
 Page sections compose from `src/lib/components/`:
 
@@ -52,18 +52,22 @@ Static SEO/AEO files: `static/llms.txt`, `static/sitemap.xml`, `static/robots.tx
 
 Preserved for future content-driven pages. The home page does NOT consume Sanity in v1. Don't touch `src/lib/client/sanity.ts`, `src/lib/components/SanityStudio.svelte`, `src/routes/sanity/`, or `src/schemas/` unless extending Studio specifically.
 
-`svelte.config.js` lists `prerender.entries: ['/', '/sanity']` — the second entry exists so Studio's shell is reachable from the prerender crawler; Studio itself is a client-side SPA.
+`svelte.config.js` lists `prerender.entries: ['/sanity', '/sitemap.xml']` — the Studio entry exists so its shell is reachable from the prerender crawler; Studio itself is a client-side SPA.
 
-### 3. Contact form endpoint (`src/routes/api/send-email/+server.ts`)
+### 3. Contact form action (`?/notify` in `src/routes/+page.server.ts`)
 
-The only runtime route. POSTs JSON `{ name, email, message, company?, formStartedAt? }`. `LeadCapture` submits to it with `name = 'Notify list signup'` + a fixed `message`, reusing the rate limit + bot protection. **Preserve all four protection layers if you touch this file:**
+The form posts to a SvelteKit form action. Submission logic lives in `src/lib/server/contact-form.ts` (`processSubmission`). The action also fires a server-side Umami event (`notify_signup_success`) via `src/lib/server/umami.ts` so analytics doesn't depend on the client running JS.
+
+**Preserve all four protection layers if you touch this:**
 
 - Field validation: required `name`/`email`/`message`, length caps, regex on email, CRLF header-injection check.
 - Honeypot: non-empty `company` field → silent success.
-- Time-trap: submissions before `CONTACT_FORM_MIN_SUBMIT_MS` (default 3000ms) → silent success.
-- In-memory IP rate limit (`CONTACT_FORM_RATE_LIMIT_WINDOW_MS` / `CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS`, defaults 60s / 5). Per-process, not durable across cold starts.
+- Time-trap (gated on `enhanced=1`): submissions before `CONTACT_FORM_MIN_SUBMIT_MS` (default 3000ms) → silent success. The `enhanced` flag is set by `static/enhance-form.js` on page load; if that script never ran (ad-blocker, defer race, no-JS visitor), this layer is skipped so real visitors aren't silent-failed.
+- In-memory IP rate limit (`CONTACT_FORM_RATE_LIMIT_WINDOW_MS` / `CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS`, defaults 60s / 5). Per-process, not durable across cold starts. Keyed off `event.getClientAddress()` (Vercel-resolved, unspoofable).
 
-The endpoint sends a confirmation to the submitter and a notification to `SMTP_RECIPIENT_EMAIL` via Nodemailer SMTP.
+Request body size cap (`MAX_REQUEST_BYTES`, 20 KB) is enforced in the action before parsing — missing `content-length` is also rejected as 413.
+
+Both confirmation + notification emails go through a module-level lazy-singleton nodemailer transporter (`requireTLS`, `tls.minVersion: TLSv1.2`) and are sent in parallel.
 
 ### 4. Cal.com sync script (`scripts/sync-cal.ts`)
 

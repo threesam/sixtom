@@ -2,15 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-/**
- * Pins every CRO event named in docs/site-copy.md to the file that fires it.
- * If a component is renamed or an attribute drops out, this fails before
- * analytics goes silent in production.
- *
- * Five events bind to the DOM via Umami's `data-umami-event` auto-binding
- * (works without SvelteKit's client runtime). One event fires server-side
- * from the form action — that's checked separately.
- */
+// Pins every CRO event from docs/site-copy.md to the file that fires it,
+// so a rename or refactor fails the build before analytics goes silent.
 const COMPONENT_DIR = resolve(import.meta.dirname)
 const SERVER_DIR = resolve(import.meta.dirname, '../../routes')
 

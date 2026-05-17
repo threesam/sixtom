@@ -20,8 +20,9 @@ const HEADERS = {
 	'Content-Type': 'application/json'
 } as const
 
-function fieldType(t: 'text' | 'longText' | 'select'): string {
-	return t === 'longText' ? 'textarea' : t === 'select' ? 'select' : 'text'
+const FIELD_TYPE_MAP = { longText: 'textarea', select: 'select', text: 'text' } as const
+function fieldType(t: keyof typeof FIELD_TYPE_MAP): string {
+	return FIELD_TYPE_MAP[t]
 }
 
 function toBookingField(q: (typeof calEvent.intakeQuestions)[number]) {
