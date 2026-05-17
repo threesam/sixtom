@@ -4,14 +4,17 @@
 
 <section class="snap-section bg-neutral-950">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="text-coin text-sm tracking-widest uppercase">sixtom — site sprints</p>
+		<p class="text-coin text-sm tracking-widest uppercase">sixtom — pair sprints</p>
 		<h1
 			class="mt-6 text-5xl leading-[1.02] font-bold tracking-tight text-neutral-100 md:text-7xl lg:text-8xl"
 		>
 			{site.hero.h1}
 		</h1>
+		<p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
+			{site.hero.subhead}
+		</p>
 		<p class="text-coin mt-10 text-2xl md:text-3xl">
-			One week. One client a month. ${site.offer.priceUSD.toLocaleString()} fixed.
+			One week. ${site.offer.priceUSD.toLocaleString()} fixed. {site.offer.cadence}
 		</p>
 		<div class="mt-12">
 			<a

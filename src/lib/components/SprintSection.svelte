@@ -9,15 +9,14 @@
 			The {site.offer.name}.
 		</h2>
 		<p class="mt-8 text-xl leading-relaxed text-neutral-300 md:text-2xl">
-			A working site by Friday. Read access in. Working version live mid-sprint. Before-and-after
-			measured.
+			{site.offer.promise}
 		</p>
 		<p class="text-coin mt-8 text-2xl font-semibold md:text-3xl">
 			${site.offer.priceUSD.toLocaleString()} fixed. {site.offer.cadence}
 		</p>
 		<p class="mt-6 max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg">
-			If the working version isn't on track by day 3, we pause. You keep what we've built and pay
-			only for time spent.
+			If we're not on track by day 3, we pause. You keep what we've built and pay only for time
+			spent.
 		</p>
 		<div class="mt-12">
 			<a

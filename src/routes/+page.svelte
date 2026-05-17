@@ -16,8 +16,8 @@
 			{site.thesis}
 		</p>
 		<p class="mt-12 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-			Most consultants hand you a plan and disappear. I hand you a working site you can use the day
-			we're done.
+			Vibe-coding got you a prototype. Putting it into production is a different muscle. I bring the
+			engineering — your domain expert brings the context. We pair, and the thing ships.
 		</p>
 	</div>
 </section>
