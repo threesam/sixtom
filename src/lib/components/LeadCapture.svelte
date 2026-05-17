@@ -11,7 +11,7 @@
 <section class="snap-section bg-surface relative !justify-between">
 	<div class="flex w-full flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<p class="text-coin text-sm tracking-widest uppercase">Not ready yet?</p>
+			<p class="eyebrow text-sm">Not ready yet?</p>
 			<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
 				Heads-up when the next slot opens.
 			</h2>
@@ -55,7 +55,7 @@
 					type="submit"
 					data-umami-event="cta_notify_submit"
 					data-enhance-submit
-					class="bg-coin text-on-coin rounded-md px-6 py-3 text-lg font-medium transition-opacity hover:opacity-90 disabled:opacity-60"
+					class="btn-coin px-6 py-3 text-lg hover:opacity-90 disabled:opacity-60"
 				>
 					{site.hero.ctaSecondary}
 				</button>

@@ -4,7 +4,7 @@
 
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="text-coin text-sm tracking-widest uppercase">sixtom — async sprints</p>
+		<p class="eyebrow text-sm">sixtom — async sprints</p>
 		<h1
 			class="text-fg mt-6 text-5xl leading-[1.02] font-bold tracking-tight md:text-7xl lg:text-8xl"
 		>
@@ -20,7 +20,7 @@
 			<a
 				href={site.bookingUrl}
 				data-umami-event="cta_hero_book"
-				class="bg-coin text-on-coin inline-block rounded-md px-8 py-4 text-lg font-medium transition-opacity hover:opacity-90"
+				class="btn-coin px-8 py-4 text-lg hover:opacity-90"
 				rel="noopener noreferrer"
 				target="_blank"
 			>

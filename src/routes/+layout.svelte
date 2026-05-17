@@ -18,6 +18,6 @@
 	{@html jsonLdHtml}
 </svelte:head>
 
-<main class="bg-surface text-fg font-sans antialiased">
+<main class="font-sans antialiased">
 	{@render children()}
 </main>

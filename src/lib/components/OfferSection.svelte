@@ -4,12 +4,12 @@
 
 <section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="text-coin text-sm tracking-widest uppercase">two ways in</p>
+		<p class="eyebrow text-sm">two ways in</p>
 		<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">Start small. Or go.</h2>
 
 		<div class="mt-12 grid gap-8 md:grid-cols-2">
 			<article class="border-border flex flex-col rounded-lg border p-8">
-				<p class="text-coin text-xs tracking-widest uppercase">step 1 — start here</p>
+				<p class="eyebrow text-xs">step 1 — start here</p>
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.audit.name}.
 				</h3>
@@ -23,7 +23,7 @@
 					<a
 						href={site.bookingUrl}
 						data-umami-event="cta_audit_book"
-						class="bg-coin text-on-coin inline-block rounded-md px-6 py-3 text-base font-medium transition-opacity hover:opacity-90"
+						class="btn-coin px-6 py-3 text-base hover:opacity-90"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
@@ -33,7 +33,7 @@
 			</article>
 
 			<article class="border-border-strong ring-border flex flex-col rounded-lg border p-8 ring-1">
-				<p class="text-coin text-xs tracking-widest uppercase">step 2 — when you're ready</p>
+				<p class="eyebrow text-xs">step 2 — when you're ready</p>
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.sprint.name}.
 				</h3>
@@ -47,7 +47,7 @@
 					<a
 						href={site.bookingUrl}
 						data-umami-event="cta_sprint_book"
-						class="bg-coin text-on-coin inline-block rounded-md px-6 py-3 text-base font-medium transition-opacity hover:opacity-90"
+						class="btn-coin px-6 py-3 text-base hover:opacity-90"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
