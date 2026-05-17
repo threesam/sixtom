@@ -3,7 +3,6 @@ import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 import type { RequestEvent } from './$types'
 
-// Define types for incoming request body
 interface ContactForm {
 	name: string
 	email: string
@@ -125,7 +124,6 @@ export async function POST(event: RequestEvent) {
 		return json({ status: 'Message spoofed successfully!' })
 	}
 
-	// Create the transporter object using SMTP
 	const transporter = nodemailer.createTransport({
 		host: env.SMTP_SERVER,
 		port: parsePositiveNumber(env.SMTP_PORT, 587),
@@ -136,7 +134,6 @@ export async function POST(event: RequestEvent) {
 		}
 	})
 
-	// Email options
 	const confirmationMailOptions = {
 		from: env.SMTP_EMAIL,
 		to: email,
@@ -144,7 +141,6 @@ export async function POST(event: RequestEvent) {
 		text: 'Contact form submission received! We look forward to talking to you soon.'
 	}
 
-	// Email options
 	const mailOptions = {
 		from: env.SMTP_EMAIL,
 		to: env.SMTP_RECIPIENT_EMAIL,
@@ -154,7 +150,6 @@ export async function POST(event: RequestEvent) {
 	}
 
 	try {
-		// Send the email
 		await transporter.sendMail(confirmationMailOptions)
 		await transporter.sendMail(mailOptions)
 
