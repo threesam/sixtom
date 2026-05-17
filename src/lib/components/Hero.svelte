@@ -4,7 +4,7 @@
 
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="eyebrow text-sm">sixtom — async sprints</p>
+		<p class="eyebrow text-sm">SIXTOM — async sprints</p>
 		<h1
 			class="text-fg mt-6 text-5xl leading-[1.02] font-bold tracking-tight md:text-7xl lg:text-8xl"
 		>

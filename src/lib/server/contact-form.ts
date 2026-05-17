@@ -157,7 +157,7 @@ export async function processSubmission(
 	const confirmation = {
 		from: env.SMTP_EMAIL,
 		to: email,
-		subject: `Contact sixtom`,
+		subject: `Contact SIXTOM`,
 		text: 'Contact form submission received! We look forward to talking to you soon.'
 	}
 	const notification = {
