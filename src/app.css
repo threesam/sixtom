@@ -67,7 +67,6 @@
 html {
 	color: var(--color-fg);
 	background: var(--color-surface);
-	color-scheme: dark;
 	scroll-snap-type: y mandatory;
 	scroll-behavior: smooth;
 }
