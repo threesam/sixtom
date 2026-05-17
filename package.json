@@ -12,10 +12,12 @@
 		"lint": "prettier --check . && eslint .",
 		"test": "vitest --run",
 		"test:unit": "vitest",
+		"test:e2e": "playwright test",
 		"cal:sync": "tsx scripts/sync-cal.ts"
 	},
 	"devDependencies": {
 		"@eslint/js": "10.0.1",
+		"@playwright/test": "1.60.0",
 		"@sveltejs/kit": "2.60.1",
 		"@sveltejs/vite-plugin-svelte": "7.1.2",
 		"@types/node": "25.8.0",

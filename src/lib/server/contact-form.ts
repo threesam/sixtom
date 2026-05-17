@@ -144,6 +144,13 @@ export async function processSubmission(
 		return { ok: false, status: 429, message: 'Too many requests. Please try again shortly.' }
 	}
 
+	// E2E + load testing: env-opt-in bypass that returns success without sending.
+	// Unset in production (env var never set), so a leaked address grants nothing.
+	const testEmail = env.CONTACT_FORM_TEST_EMAIL?.trim()
+	if (testEmail && email === testEmail) {
+		return { ok: true, message: "You're on the list." }
+	}
+
 	const transporter = getTransporter()
 	const confirmation = {
 		from: env.SMTP_EMAIL,

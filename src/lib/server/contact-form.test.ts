@@ -132,4 +132,19 @@ describe('processSubmission — protection layers', () => {
 		const result = await processSubmission(makeFormData(), event)
 		expect(result.ok).toBe(true)
 	})
+
+	it('bypasses SMTP when email matches CONTACT_FORM_TEST_EMAIL env var', async () => {
+		const { env } = await import('$env/dynamic/private')
+		const original = env.CONTACT_FORM_TEST_EMAIL
+		env.CONTACT_FORM_TEST_EMAIL = 'e2e@test.sixtom.local'
+		try {
+			const result = await processSubmission(
+				makeFormData({ email: 'e2e@test.sixtom.local' }),
+				mockEvent({ ip: '10.0.0.51' })
+			)
+			expect(result.ok).toBe(true)
+		} finally {
+			env.CONTACT_FORM_TEST_EMAIL = original
+		}
+	})
 })

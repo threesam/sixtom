@@ -4,5 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 import type { PluginOption } from 'vite'
 
 export default defineConfig({
-	plugins: [sveltekit(), tailwindcss() as PluginOption]
+	plugins: [sveltekit(), tailwindcss() as PluginOption],
+	test: {
+		exclude: ['**/node_modules/**', '**/dist/**', '**/.svelte-kit/**', 'e2e/**']
+	}
 })
