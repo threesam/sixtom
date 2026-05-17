@@ -133,7 +133,7 @@ Server-only via `$env/dynamic/private`; public Sanity vars via `$env/static/publ
 
 Items that must be set by Sam, not by an agent:
 
-- [ ] `siteUrl` / `bookingUrl` / `gardenUrl` in `src/lib/content/site.ts` reflect real URLs.
+- [ ] `siteUrl` / `bookingUrl` in `src/lib/content/site.ts` reflect real URLs.
 - [ ] `CAL_API_KEY` + `CAL_USERNAME` set in environment.
 - [ ] `pnpm cal:sync` run to provision the intro event.
 - [ ] `static/og.png` replaced with a real 1200×630 social card.

@@ -5,8 +5,7 @@ export const site: Site = {
 	siteUrl: 'https://sixtom.com',
 	// Replace pre-launch with the operator's actual Cal.com URL.
 	bookingUrl: 'https://cal.com/sam-dangelo/sprint-intro',
-	// Replace pre-launch with the actual garden URL.
-	gardenUrl: 'https://garden.example.com',
+	gardenUrl: 'https://threesam.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
 	thesis: 'Vibe coding is how you slowly become the intern of your own codebase.',
 	thesisBody:
