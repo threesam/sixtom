@@ -16,8 +16,9 @@
 			{site.thesis}
 		</p>
 		<p class="mt-12 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-			Vibe-coding got you a prototype. Putting it into production is a different muscle. I bring the
-			engineering — your domain expert brings the context. We pair, and the thing ships.
+			I built our centralized ops tool — every department of a $200M/yr cookware brand, two months.
+			Build was the easy part. Shaping it so it actually scales across roles is the muscle. That's
+			what we pair on.
 		</p>
 	</div>
 </section>

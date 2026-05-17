@@ -1,33 +1,32 @@
 # sixtom
 
-> Pair Sprints by Sam D'Angelo, lead engineer at Made In Cookware ($200M/yr DTC). I pair with your team's domain experts for a week and ship the internal tool, system, or operating layer they've been stuck on. $7,500 fixed. One client per month.
+> Pair Sprints by Sam D'Angelo, lead engineer at Made In Cookware ($200M/yr DTC). Vibe coding gets you to 90%. The last 10% — production-readiness, the shape that scales across roles — is a different muscle. That's what I bring. $7,500 fixed. One client per month.
 
 ## What it is
 
-- One-week pair sprint. I embed with one of your team's domain experts.
-- We pair on the system, internal tool, or operating layer that's been stuck at 90%.
-- You keep the code, the patterns, and the working knowledge.
-- The thesis: most teams get to 90% with AI. The last 10% — production-readiness, shape, reusability — is engineering work. That's what I bring.
+- One week. You bring a domain expert.
+- We pair on the thing they've been close on but can't quite get over.
+- They keep the code. You keep the muscle.
 
 ## Who it's for
 
-- Founders, operators, and department heads at companies trying to operate at AI speed.
-- Teams with a vibe-coded prototype that won't ship, or an internal tool that won't scale past one person.
-- Companies whose domain experts can prototype with AI but can't get to production without an engineer to shape the work.
+- Teams with a working prototype that won't ship.
+- Internal tools that won't scale past the person who built them.
+- Domain experts who can prototype with AI but stall on production.
 
 ## What I've built
 
-- A centralized operations tool serving every department at a $200M/yr DTC brand in two months (Made In Cookware).
-- LinkedIn / content drip systems with Telegram + AI + scheduler pipelines.
-- A pattern of taking domain experts' 30k-line vibe-coded prototypes down to 10k clean, tested, reusable lines.
+- Our centralized ops tool at Made In Cookware. Every department, two months.
+- A LinkedIn pipeline (Telegram bot → AI synthesis → scheduler) that posts from my work in progress.
+- A pattern: take a vibe-coded 30k-line draft, ship a 10k-line version that's tested, shaped, and reusable.
 
 ## Pricing
 
 - $7,500 USD, fixed.
 - One client per month, by appointment.
-- If we're not on track by day 3, we pause; the client keeps what's been built and pays only for time spent.
+- If we're not on track by day 3, we stop. You keep what we built and pay only for the time.
 
 ## How to engage
 
-- Book a 30-min intro call: https://sixtom.com (link from the homepage).
-- Notify list (signup form on the homepage) for next available sprint slot.
+- Book a 30-min intro call (link on the homepage).
+- Notify list for the next open slot (form on the homepage).
