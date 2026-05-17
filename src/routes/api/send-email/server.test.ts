@@ -131,21 +131,9 @@ describe('POST /api/send-email — protection layers', () => {
 	})
 
 	it('rate-limits after the configured number of valid submissions per IP', async () => {
-		// Use the spoof email so we never invoke SMTP, and a unique IP so other
-		// tests' counters don't interfere
+		// Unique IP so other tests' counters don't interfere with the count.
 		const ip = '10.0.0.99'
-		const submit = () =>
-			POST(
-				mockEvent({
-					body: {
-						name: 'Real Person',
-						email: 'salvatoredangelo@protonmail.com',
-						message: 'Heads-up please',
-						formStartedAt: Date.now() - 10_000
-					},
-					ip
-				})
-			)
+		const submit = () => POST(mockEvent({ body: validForm, ip }))
 
 		// Default MAX is 5 per 60s window
 		for (let i = 0; i < 5; i++) {
@@ -158,12 +146,7 @@ describe('POST /api/send-email — protection layers', () => {
 
 	it('falls back to x-forwarded-for header when getClientAddress is unavailable', async () => {
 		const event = mockEvent({
-			body: {
-				name: 'Real Person',
-				email: 'salvatoredangelo@protonmail.com',
-				message: 'Heads-up please',
-				formStartedAt: Date.now() - 10_000
-			},
+			body: validForm,
 			headers: { 'x-forwarded-for': '203.0.113.7, 70.41.3.18' }
 		})
 		// Strip getClientAddress so the header path is taken

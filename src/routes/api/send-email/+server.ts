@@ -120,10 +120,6 @@ export async function POST(event: RequestEvent) {
 		return json({ status: 'Too many requests. Please try again shortly.' }, { status: 429 })
 	}
 
-	if (email === 'salvatoredangelo@protonmail.com') {
-		return json({ status: 'Message spoofed successfully!' })
-	}
-
 	const transporter = nodemailer.createTransport({
 		host: env.SMTP_SERVER,
 		port: parsePositiveNumber(env.SMTP_PORT, 587),

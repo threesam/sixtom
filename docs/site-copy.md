@@ -29,7 +29,7 @@ appointment.
 [ Book a 30-min intro call → ]           ← CTA (gold bg, dark text)
                                            (data-umami-event="cta_hero_book")
 
-@ Made In Cookware · Formerly @ Rhone    ← trust marks, tiny neutral-500, uppercase
+@ Made In Cookware · Formerly @ Rhone    ← trust marks, tiny neutral-400, uppercase
 ```
 
 ---
@@ -121,14 +121,14 @@ we just want to build cool shit   ★   more at the garden →   ★   we…
 <title>sixtom — async sprints with Sam D'Angelo</title>
 
 <meta name="description"
-      content="AI ships demos. I ship products. Senior engineer by day, async
-               builder for you on my hours. $500 audit. $7,500 sprint. By
-               appointment." />
+      content="AI ships demos. I ship products. I run a fleet of agents in
+               parallel. $750 audit. $7,500 sprint. 1 client a month." />
+<meta name="author" content="Sam D'Angelo" />
 <link rel="canonical" href="https://sixtom.com/" />
 
 <meta property="og:title"        content="sixtom — async sprints with Sam D'Angelo" />
 <meta property="og:description"  content="AI ships demos. I ship products.
-                                          $500 audit. $7,500 sprint." />
+                                          $750 audit. $7,500 sprint." />
 <meta property="og:image"        content="https://sixtom.com/og.png" />
 <meta property="og:image:width"  content="1200" />
 <meta property="og:image:height" content="630" />
@@ -136,11 +136,9 @@ we just want to build cool shit   ★   more at the garden →   ★   we…
 
 <meta name="twitter:card"        content="summary_large_image" />
 <meta name="twitter:title"       content="sixtom — async sprints with Sam D'Angelo" />
-<meta name="twitter:description" content="AI ships demos. I ship products. …" />
+<meta name="twitter:description" content="AI ships demos. I ship products.
+                                          $750 audit. $7,500 sprint." />
 ```
-
-> Note: description / OG meta still references "$500 audit" — needs sync to $750.
-> Tracked in v1.3 hardening commits.
 
 ---
 

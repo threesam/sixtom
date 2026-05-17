@@ -99,6 +99,11 @@ This repo has been intentionally trimmed. Don't add:
 
 Before adding any dep, ask: does this earn its install-cost AND its mental-cost?
 
+`package.json#pnpm.overrides` exists to silence CVE advisories in transitive
+deps that the top-level packages haven't bumped yet (cookie, postcss, js-yaml).
+Don't remove an entry without re-running `pnpm audit` to confirm the underlying
+chain has been fixed upstream.
+
 ## Conventions
 
 - Prettier: tabs, single quotes, no semicolons, `printWidth: 100`, with `prettier-plugin-svelte` + `prettier-plugin-tailwindcss`. **Don't fight the formatter.**
