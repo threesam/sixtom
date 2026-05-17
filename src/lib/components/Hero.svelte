@@ -27,7 +27,7 @@
 				{site.hero.ctaPrimary} →
 			</a>
 		</div>
-		<p class="mt-12 text-xs tracking-widest text-neutral-500 uppercase">
+		<p class="mt-12 text-xs tracking-widest text-neutral-400 uppercase">
 			@ {site.operator.currentEmployer} · Formerly @ {site.operator.formerEmployer}
 		</p>
 	</div>

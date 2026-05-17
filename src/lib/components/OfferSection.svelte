@@ -65,7 +65,7 @@
 			{#each site.stats as { value, label } (label)}
 				<div>
 					<dt class="text-coin text-2xl font-bold tracking-tight md:text-4xl">{value}</dt>
-					<dd class="mt-1 text-xs tracking-widest text-neutral-500 uppercase">{label}</dd>
+					<dd class="mt-1 text-xs tracking-widest text-neutral-400 uppercase">{label}</dd>
 				</div>
 			{/each}
 		</dl>
@@ -74,7 +74,7 @@
 			class="mt-12 border-l-2 border-neutral-700 pl-6 text-base leading-relaxed text-neutral-300 italic md:text-lg"
 		>
 			“{site.testimonial.quote}”
-			<footer class="mt-2 text-sm text-neutral-500 not-italic">
+			<footer class="mt-2 text-sm text-neutral-400 not-italic">
 				— {site.testimonial.attribution}
 			</footer>
 		</blockquote>
