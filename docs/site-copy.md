@@ -14,7 +14,7 @@ If page and doc disagree, files win — re-export from those.
 ## 1. Hero (snap section, full screen, `bg-neutral-950`)
 
 ```
-sixtom — async sprints                   ← eyebrow, gold, uppercase tracking-widest
+SIXTOM — async sprints                   ← eyebrow, gold, uppercase tracking-widest
 
 AI ships demos. I ship products.         ← H1, huge bold neutral-100
 
@@ -118,7 +118,7 @@ we just want to build cool shit   ★   more at the garden →   ★   we…
 ## 5. Browser meta (`src/app.html`)
 
 ```
-<title>sixtom — async sprints with Sam D'Angelo</title>
+<title>SIXTOM — async sprints with Sam D'Angelo</title>
 
 <meta name="description"
       content="AI ships demos. I ship products. I run a fleet of agents in
@@ -126,16 +126,16 @@ we just want to build cool shit   ★   more at the garden →   ★   we…
 <meta name="author" content="Sam D'Angelo" />
 <link rel="canonical" href="https://sixtom.com/" />
 
-<meta property="og:title"        content="sixtom — async sprints with Sam D'Angelo" />
+<meta property="og:title"        content="SIXTOM — async sprints with Sam D'Angelo" />
 <meta property="og:description"  content="AI ships demos. I ship products.
                                           $750 audit. $7,500 sprint." />
 <meta property="og:image"        content="https://sixtom.com/og.png" />
 <meta property="og:image:width"  content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt"    content="sixtom — async sprints with Sam D'Angelo" />
+<meta property="og:image:alt"    content="SIXTOM — async sprints with Sam D'Angelo" />
 
 <meta name="twitter:card"        content="summary_large_image" />
-<meta name="twitter:title"       content="sixtom — async sprints with Sam D'Angelo" />
+<meta name="twitter:title"       content="SIXTOM — async sprints with Sam D'Angelo" />
 <meta name="twitter:description" content="AI ships demos. I ship products.
                                           $750 audit. $7,500 sprint." />
 ```
@@ -172,7 +172,7 @@ Intake questions:
 See `static/llms.txt` for the live version. Summary:
 
 ```
-sixtom — AI ships demos. I ship products. I run a fleet of AI agents in
+SIXTOM — AI ships demos. I ship products. I run a fleet of AI agents in
 parallel — agents type, I judge. Two weeks to a working version. $750 audit.
 $7,500 sprint. 1 client a month.
 ```

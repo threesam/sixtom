@@ -53,7 +53,7 @@ export function serviceJsonLd(): ServiceLd {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'ProfessionalService',
-		name: 'Sixtom',
+		name: 'SIXTOM',
 		description: site.hero.subhead,
 		priceRange: `$${String(site.audit.priceUSD)}–$${String(site.sprint.priceUSD)}`,
 		provider,

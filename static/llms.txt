@@ -1,4 +1,4 @@
-# sixtom
+# SIXTOM
 
 > AI ships demos. I ship products. I run a fleet of AI agents in parallel — agents type, I judge. Two weeks to a working version. $750 audit. $7,500 sprint. 1 client a month.
 
