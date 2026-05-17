@@ -15,6 +15,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MAX_NAME_LENGTH = 120
 const MAX_EMAIL_LENGTH = 254
 const MAX_MESSAGE_LENGTH = 5000
+const MAX_REQUEST_BYTES = 20_000
 const DEFAULT_MIN_SUBMIT_MS = 3000
 const DEFAULT_RATE_LIMIT_WINDOW_MS = 60_000
 const DEFAULT_MAX_REQUESTS_PER_WINDOW = 5
@@ -37,6 +38,15 @@ const RATE_LIMIT_MAX_REQUESTS = parsePositiveNumber(
 const requestLog = new Map<string, number[]>()
 
 function getClientIp(event: RequestEvent): string {
+	// Prefer the platform-resolved address (Vercel sets this from its edge
+	// network, so it can't be spoofed by client-supplied headers).
+	try {
+		const addr = event.getClientAddress()
+		if (addr) return addr
+	} catch {
+		// fall through to header parsing
+	}
+
 	const forwardedFor = event.request.headers.get('x-forwarded-for')
 	if (forwardedFor) {
 		return forwardedFor.split(',')[0]?.trim() ?? 'unknown'
@@ -47,11 +57,7 @@ function getClientIp(event: RequestEvent): string {
 		return realIp.trim()
 	}
 
-	try {
-		return event.getClientAddress()
-	} catch {
-		return 'unknown'
-	}
+	return 'unknown'
 }
 
 function isRateLimited(ip: string): boolean {
@@ -85,6 +91,11 @@ function isSuspiciousSubmission(form: Partial<Record<keyof ContactForm, unknown>
 }
 
 export async function POST(event: RequestEvent) {
+	const declaredLength = Number(event.request.headers.get('content-length'))
+	if (Number.isFinite(declaredLength) && declaredLength > MAX_REQUEST_BYTES) {
+		return json({ status: 'Payload too large.' }, { status: 413 })
+	}
+
 	let form: Partial<Record<keyof ContactForm, unknown>>
 	try {
 		form = (await event.request.json()) as Partial<Record<keyof ContactForm, unknown>>
@@ -124,6 +135,8 @@ export async function POST(event: RequestEvent) {
 		host: env.SMTP_SERVER,
 		port: parsePositiveNumber(env.SMTP_PORT, 587),
 		secure: false,
+		requireTLS: true,
+		tls: { minVersion: 'TLSv1.2' },
 		auth: {
 			user: env.SMTP_EMAIL,
 			pass: env.SMTP_TOKEN
@@ -153,7 +166,9 @@ export async function POST(event: RequestEvent) {
 			status: 'Message sent successfully!'
 		})
 	} catch (error) {
-		console.error('Error sending email:', error)
+		// Log only the message — error objects from nodemailer can carry SMTP
+		// host/port/auth fields that we don't want in deploy logs.
+		console.error('send-email failed:', error instanceof Error ? error.message : 'unknown')
 		return json(
 			{
 				status: 'Error sending message. Please try again later.'

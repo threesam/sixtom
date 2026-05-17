@@ -53,6 +53,16 @@ describe('POST /api/send-email — protection layers', () => {
 		expect(res.status).toBe(400)
 	})
 
+	it('rejects oversized payloads via content-length before parsing', async () => {
+		const res = await POST(
+			mockEvent({
+				rawBody: '{}',
+				headers: { 'content-length': '50000' }
+			})
+		)
+		expect(res.status).toBe(413)
+	})
+
 	it('rejects missing required fields', async () => {
 		const res = await POST(mockEvent({ body: { name: 'a', email: 'x@y.z' } }))
 		expect(res.status).toBe(400)
