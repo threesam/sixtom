@@ -24,7 +24,13 @@ describe('Umami CRO event instrumentation', () => {
 	for (const { event, file } of CLIENT_EVENTS) {
 		it(`fires "${event}" via data-attr in ${file}`, () => {
 			const contents = readFileSync(resolve(COMPONENT_DIR, file), 'utf-8')
-			expect(contents).toContain(`data-umami-event="${event}"`)
+			// Match either a literal data-umami-event="<event>" or a dynamic
+			// data-umami-event={...'<event>'...} expression so the test
+			// survives ternaries / snippet refactors.
+			const literalForm = `data-umami-event="${event}"`
+			const dynamicForm = new RegExp(`data-umami-event=\\{[^}]*['"]${event}['"]`)
+			const hit = contents.includes(literalForm) || dynamicForm.test(contents)
+			expect(hit, `${file} should reference "${event}" on a data-umami-event attr`).toBe(true)
 		})
 	}
 

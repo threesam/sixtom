@@ -72,30 +72,25 @@
 		class="w-full overflow-hidden border-t border-neutral-800 bg-black py-6"
 		aria-label="Mission marquee"
 	>
-		<div class="marquee-track flex w-max items-center gap-12 text-lg whitespace-nowrap">
-			<span class="font-semibold text-neutral-100">we just want to build cool shit</span>
-			<span class="text-coin" aria-hidden="true">★</span>
-			<a
-				href={site.gardenUrl}
-				data-umami-event="cta_garden_link"
-				class="hover:text-coin font-semibold text-neutral-100 transition-colors"
-				rel="noopener noreferrer"
-				target="_blank">more at the garden →</a
-			>
-			<span class="text-coin" aria-hidden="true">★</span>
-			<span class="font-semibold text-neutral-100" aria-hidden="true"
-				>we just want to build cool shit</span
-			>
-			<span class="text-coin" aria-hidden="true">★</span>
-			<a
-				href={site.gardenUrl}
-				class="hover:text-coin font-semibold text-neutral-100 transition-colors"
-				aria-hidden="true"
-				tabindex="-1"
-				rel="noopener noreferrer"
-				target="_blank">more at the garden →</a
-			>
-			<span class="text-coin" aria-hidden="true">★</span>
+		<div
+			class="marquee-track flex w-max items-center text-lg whitespace-nowrap"
+			style="--marquee-copies: 6"
+		>
+			{#each Array(6), i (i)}
+				<div class="flex items-center gap-12 pr-12" aria-hidden={i !== 0}>
+					<span class="font-semibold text-neutral-100">we just want to build cool shit</span>
+					<span class="text-coin">★</span>
+					<a
+						href={site.gardenUrl}
+						data-umami-event={i === 0 ? 'cta_garden_link' : undefined}
+						tabindex={i === 0 ? undefined : -1}
+						class="hover:text-coin font-semibold text-neutral-100 transition-colors"
+						rel="noopener noreferrer"
+						target="_blank">more at the garden →</a
+					>
+					<span class="text-coin">★</span>
+				</div>
+			{/each}
 		</div>
 	</div>
 </section>
