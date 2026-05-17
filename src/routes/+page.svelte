@@ -3,11 +3,7 @@
 	import OfferSection from '$lib/components/OfferSection.svelte'
 	import LeadCapture from '$lib/components/LeadCapture.svelte'
 	import { site } from '$lib/content'
-
-	interface FormResult {
-		status: 'success' | 'error'
-		message: string
-	}
+	import type { FormResult } from '$lib/types'
 
 	let { form }: { form: FormResult | null } = $props()
 </script>

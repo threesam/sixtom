@@ -8,7 +8,8 @@
 	const SCRIPT_OPEN = '<script type="application/ld+json">'
 	const SCRIPT_CLOSE = '</' + 'script>' // split avoids parser confusion in template literals
 	const jsonLdHtml = [personJsonLd(), serviceJsonLd()]
-		.map((ld) => SCRIPT_OPEN + JSON.stringify(ld) + SCRIPT_CLOSE)
+		// Escape `<` so a future content author can't break out of the JSON-LD script block.
+		.map((ld) => SCRIPT_OPEN + JSON.stringify(ld).replace(/</g, '\\u003c') + SCRIPT_CLOSE)
 		.join('')
 </script>
 
