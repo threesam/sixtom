@@ -5,8 +5,8 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 export default {
 	preprocess: vitePreprocess(),
 	compilerOptions: { runes: true },
-	kit: { adapter: adapter() },
-	prerender: {
-		entries: ['/', '/sanity']
+	kit: {
+		adapter: adapter(),
+		prerender: { entries: ['/', '/sanity', '/sitemap.xml'] }
 	}
 }
