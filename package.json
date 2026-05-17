@@ -10,16 +10,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"cal:sync": "tsx scripts/sync-cal.ts",
+		"test": "vitest --run",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run && npm run test:e2e",
-		"test:e2e": "playwright test",
-		"db:start": "docker compose up",
-		"db:push": "drizzle-kit push",
-		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"cal:sync": "tsx scripts/sync-cal.ts"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
@@ -46,7 +39,6 @@
 		"vitest": "4.1.5"
 	},
 	"dependencies": {
-		"@portabletext/svelte": "3.0.1",
 		"@sanity/client": "7.22.0",
 		"@sanity/code-input": "7.1.0",
 		"@sanity/core": "2.36.2",
@@ -60,7 +52,6 @@
 		"@tailwindcss/vite": "4.2.4",
 		"nodemailer": "8.0.7",
 		"react-icons": "5.6.0",
-		"sanity": "5.22.0",
-		"sanity-plugin-media": "4.2.0"
+		"sanity": "5.22.0"
 	}
 }

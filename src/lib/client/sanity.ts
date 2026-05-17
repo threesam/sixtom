@@ -9,7 +9,6 @@ import {
 } from '$env/static/public'
 import { createClient } from '@sanity/client'
 import type { ClientConfig } from '@sanity/client'
-// import { media } from 'sanity-plugin-media'
 import { codeInput } from '@sanity/code-input'
 
 export const sanityConfig = defineConfig({
