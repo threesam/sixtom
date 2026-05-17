@@ -45,7 +45,6 @@ const validForm = {
 	name: 'Real Person',
 	email: 'real@example.com',
 	message: 'Heads-up please',
-	// Use the operator spoof email to avoid hitting SMTP in success path tests
 	formStartedAt: Date.now() - 10_000
 }
 
