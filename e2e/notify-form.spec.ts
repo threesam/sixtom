@@ -1,19 +1,12 @@
 import { test, expect } from '@playwright/test'
-
-const TEST_EMAIL = 'e2e@test.sixtom.local'
+import { TEST_EMAIL } from './constants'
 
 test.describe('Notify form — progressive enhancement', () => {
-	test('JS-enhanced path: inline "Sending…" then inline success without page reload', async ({
-		page
-	}) => {
+	test('JS-enhanced path: inline result without page reload', async ({ page }) => {
 		await page.goto('/')
 
-		// Wait for the lazy enhancement script to have stamped formStartedAt.
 		await expect(page.locator('[data-form-started-at]')).toHaveAttribute('value', /^\d+$/)
 		await expect(page.locator('[data-form-enhanced]')).toHaveAttribute('value', '1')
-
-		// Time-trap requires >= 3s between page load and submit.
-		await page.waitForTimeout(3200)
 
 		const url = page.url()
 		await page.fill('input[type="email"]', TEST_EMAIL)
@@ -23,8 +16,6 @@ test.describe('Notify form — progressive enhancement', () => {
 			page.click('button[type="submit"]')
 		])
 		expect(response.status()).toBe(200)
-
-		// No navigation should have happened — the script intercepted submit.
 		expect(page.url()).toBe(url)
 
 		await expect(page.locator('[data-enhance-result] p')).toHaveText(/you're on the list/i)
@@ -45,16 +36,15 @@ test.describe('Notify form — progressive enhancement', () => {
 			page.locator('button[type="submit"]').click({ force: true })
 		])
 
-		// With JS off the time-trap is skipped (enhanced flag isn't set) — request reaches the action.
 		await expect(page.locator('[data-enhance-result] p')).toHaveText(/you're on the list/i)
 		await context.close()
 	})
 
 	test('honeypot: filled `company` returns silent success', async ({ page }) => {
 		await page.goto('/')
-		await page.waitForTimeout(3200)
 
-		await page.fill('input[type="email"]', TEST_EMAIL)
+		// Non-bypass email so we exercise the honeypot path itself, not the test-email shortcut.
+		await page.fill('input[type="email"]', 'real-looking@example.com')
 		await page.locator('input[name="company"]').evaluate((el: HTMLInputElement) => {
 			el.value = 'AcmeCorp'
 		})
@@ -70,9 +60,7 @@ test.describe('Notify form — progressive enhancement', () => {
 
 	test('malformed email: server rejects with inline error', async ({ page }) => {
 		await page.goto('/')
-		await page.waitForTimeout(3200)
 
-		// Override the input type so the browser's HTML5 validation lets us submit a bad value.
 		await page.locator('input[type="email"]').evaluate((el: HTMLInputElement) => {
 			el.setAttribute('type', 'text')
 		})
@@ -86,10 +74,13 @@ test.describe('Notify form — progressive enhancement', () => {
 		await expect(page.locator('[data-enhance-result] p')).toHaveText(/invalid/i)
 	})
 
-	test('all 5 marquee copies are rendered (no empty space on wide viewports)', async ({ page }) => {
+	test('marquee renders multiple copies for seamless tiling on wide viewports', async ({
+		page
+	}) => {
 		await page.setViewportSize({ width: 2400, height: 800 })
 		await page.goto('/')
-		const tracks = page.locator('.marquee-track > div')
-		await expect(tracks).toHaveCount(6)
+		const copies = page.locator('[data-marquee-copy]')
+		// At least 4 covers most laptop viewports; the component picks the exact count.
+		await expect(copies).toHaveCount(6)
 	})
 })

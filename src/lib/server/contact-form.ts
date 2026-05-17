@@ -78,9 +78,11 @@ export type SubmissionResult =
 	| { ok: true; message: string }
 	| { ok: false; status: number; message: string }
 
+export const SUCCESS_MESSAGE = "You're on the list."
+
 // Honeypot + time-trap silently 200 so attackers can't learn which layer filtered them.
 function suspicious(): SubmissionResult {
-	return { ok: true, message: "You're on the list." }
+	return { ok: true, message: SUCCESS_MESSAGE }
 }
 
 let cachedTransporter: Transporter | null = null
@@ -144,11 +146,10 @@ export async function processSubmission(
 		return { ok: false, status: 429, message: 'Too many requests. Please try again shortly.' }
 	}
 
-	// E2E + load testing: env-opt-in bypass that returns success without sending.
-	// Unset in production (env var never set), so a leaked address grants nothing.
-	const testEmail = env.CONTACT_FORM_TEST_EMAIL?.trim()
-	if (testEmail && email === testEmail) {
-		return { ok: true, message: "You're on the list." }
+	// E2E bypass; env var unset in production, exact-match comparison.
+	const testEmail = env.CONTACT_FORM_TEST_EMAIL?.trim() ?? ''
+	if (testEmail !== '' && email === testEmail) {
+		return { ok: true, message: SUCCESS_MESSAGE }
 	}
 
 	const transporter = getTransporter()
@@ -168,7 +169,7 @@ export async function processSubmission(
 
 	try {
 		await Promise.all([transporter.sendMail(confirmation), transporter.sendMail(notification)])
-		return { ok: true, message: "You're on the list." }
+		return { ok: true, message: SUCCESS_MESSAGE }
 	} catch (error) {
 		console.error('send-email failed:', error instanceof Error ? error.message : 'unknown')
 		return { ok: false, status: 500, message: 'Error sending message. Please try again later.' }

@@ -37,7 +37,8 @@ export default defineConfig(
 						'eslint.config.js',
 						'svelte.config.js',
 						'playwright.config.ts',
-						'e2e/*.spec.ts'
+						'e2e/constants.ts',
+						'e2e/notify-form.spec.ts'
 					]
 				},
 				extraFileExtensions: ['.svelte'],
@@ -55,7 +56,8 @@ export default defineConfig(
 						'eslint.config.js',
 						'svelte.config.js',
 						'playwright.config.ts',
-						'e2e/*.spec.ts'
+						'e2e/constants.ts',
+						'e2e/notify-form.spec.ts'
 					]
 				},
 				extraFileExtensions: ['.svelte'],

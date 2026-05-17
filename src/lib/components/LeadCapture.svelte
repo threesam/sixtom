@@ -3,6 +3,9 @@
 	import type { FormResult } from '$lib/types'
 
 	let { form }: { form: FormResult | null } = $props()
+
+	// Enough copies that the seamless-loop tile covers wide viewports (4K still works).
+	const MARQUEE_COPIES = 6
 </script>
 
 <section class="snap-section relative !justify-between bg-neutral-950">
@@ -74,10 +77,10 @@
 	>
 		<div
 			class="marquee-track flex w-max items-center text-lg whitespace-nowrap"
-			style="--marquee-copies: 6"
+			style="--marquee-copies: {MARQUEE_COPIES}"
 		>
-			{#each Array(6), i (i)}
-				<div class="flex items-center gap-12 pr-12" aria-hidden={i !== 0}>
+			{#each Array(MARQUEE_COPIES), i (i)}
+				<div data-marquee-copy class="flex items-center gap-12 pr-12" aria-hidden={i !== 0}>
 					<span class="font-semibold text-neutral-100">we just want to build cool shit</span>
 					<span class="text-coin">★</span>
 					<a

@@ -62,8 +62,8 @@ html {
 		transform: translateX(0);
 	}
 	to {
-		/* Move by exactly one copy's width so loop is seamless. */
-		transform: translateX(calc(-100% / var(--marquee-copies, 2)));
+		/* One copy's width — caller must set --marquee-copies on the element. */
+		transform: translateX(calc(-100% / var(--marquee-copies)));
 	}
 }
 
