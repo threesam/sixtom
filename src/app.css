@@ -54,7 +54,7 @@ html {
 }
 
 .marquee-track {
-	animation: marquee 40s linear infinite;
+	animation: marquee 60s linear infinite;
 }
 
 @keyframes marquee {
@@ -62,7 +62,8 @@ html {
 		transform: translateX(0);
 	}
 	to {
-		transform: translateX(-50%);
+		/* One copy's width — caller must set --marquee-copies on the element. */
+		transform: translateX(calc(-100% / var(--marquee-copies)));
 	}
 }
 

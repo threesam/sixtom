@@ -14,7 +14,9 @@ export default defineConfig(
 			'.vercel/**',
 			'node_modules/**',
 			'coverage/**',
-			'static/**'
+			'static/**',
+			'playwright-report/**',
+			'test-results/**'
 		]
 	},
 	js.configs.recommended,
@@ -31,7 +33,13 @@ export default defineConfig(
 			},
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ['eslint.config.js', 'svelte.config.js']
+					allowDefaultProject: [
+						'eslint.config.js',
+						'svelte.config.js',
+						'playwright.config.ts',
+						'e2e/constants.ts',
+						'e2e/notify-form.spec.ts'
+					]
 				},
 				extraFileExtensions: ['.svelte'],
 				tsconfigRootDir: import.meta.dirname
@@ -44,7 +52,13 @@ export default defineConfig(
 			parserOptions: {
 				parser: ts.parser,
 				projectService: {
-					allowDefaultProject: ['eslint.config.js', 'svelte.config.js']
+					allowDefaultProject: [
+						'eslint.config.js',
+						'svelte.config.js',
+						'playwright.config.ts',
+						'e2e/constants.ts',
+						'e2e/notify-form.spec.ts'
+					]
 				},
 				extraFileExtensions: ['.svelte'],
 				tsconfigRootDir: import.meta.dirname
