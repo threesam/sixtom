@@ -4,15 +4,17 @@ export const site: Site = {
 	// Replace pre-launch with the production domain.
 	siteUrl: 'https://sixtom.com',
 	// Replace pre-launch with the operator's actual Cal.com URL.
-	bookingUrl: 'https://cal.com/sam-dangelo/sprint-intro',
+	bookingUrl: 'https://cal.com/sam-dangelo/pair-sprint-intro',
 	// Replace pre-launch with the actual garden URL.
 	gardenUrl: 'https://garden.example.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
-	thesis: 'Prototypes ship in a weekend. Production is its own job.',
+	thesis: 'Vibe coding is how you slowly become the intern of your own codebase.',
+	thesisBody:
+		"AI ships the demo. The rest — accessibility, performance, the shape that doesn't break in front of customers — is a different sport. That's where I show up.",
 	hero: {
-		h1: 'Vibe coding gets you to 90%. The rest is a different muscle.',
+		h1: 'Your prototype works. Production is its own job.',
 		subhead:
-			"Spend a week with me and one of your domain experts. We pair on the thing they've been close on but can't quite get over. They keep the code. You keep the muscle.",
+			'I pair with one of your domain experts for a week. We ship the thing — clean code, real users, no committees.',
 		ctaPrimary: 'Book a 30-min intro call',
 		ctaSecondary: 'Notify me'
 	},
@@ -21,16 +23,32 @@ export const site: Site = {
 		jobTitle: 'Lead Engineer',
 		currentEmployer: 'Made In Cookware',
 		formerEmployer: 'Rhone',
-		credentialsChip:
-			'Lead engineer at Made In Cookware ($200M/yr DTC). Built our centralized ops tool — every department, two months.'
+		credentialsChip: 'Lead engineer at Made In Cookware. Formerly at Rhone.'
 	},
 	offer: {
 		name: 'Pair Sprint',
-		longName: '1-week pair sprint',
+		longName: 'pair sprint',
 		priceUSD: 7500,
-		cadence: 'One client per month, by appointment.',
+		cadence: '1 client a month, by appointment.',
 		promise:
-			"One week. You bring a domain expert. We pair on the thing they've been close on but can't quite get over. They keep the code and the muscle."
+			"A week with me and one of your team's domain experts. They drive, I shape, the thing ships."
+	},
+	process: [
+		{ label: 'Day 0', body: '30-min intro call. We figure out the thing.' },
+		{ label: 'Day 1', body: 'I show up. You introduce me to who I’m pairing with.' },
+		{ label: 'Days 1–5', body: 'They drive. I shape. The thing ships.' },
+		{ label: 'Day 5', body: 'Working version in production. You own it.' },
+		{ label: 'Day 30', body: 'Check-in. What stuck, what didn’t.' }
+	],
+	stats: [
+		{ value: '1 week', label: 'per sprint' },
+		{ value: '1 pair', label: 'you + me' },
+		{ value: '0', label: 'committees' }
+	],
+	testimonial: {
+		quote:
+			"He's built three sites for me and with each one, the unique needs and goals of the site dictated his approach, no cookie cutting corners.",
+		attribution: 'Eleanor Goldfield'
 	}
 }
 

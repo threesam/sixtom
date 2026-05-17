@@ -14,7 +14,7 @@
 			{site.hero.subhead}
 		</p>
 		<p class="text-coin mt-10 text-2xl md:text-3xl">
-			One week. ${site.offer.priceUSD.toLocaleString()} fixed. {site.offer.cadence}
+			1 week. ${site.offer.priceUSD.toLocaleString()} fixed. {site.offer.cadence}
 		</p>
 		<div class="mt-12">
 			<a

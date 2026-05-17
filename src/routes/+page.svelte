@@ -7,7 +7,7 @@
 
 <Hero />
 
-<section class="snap-section bg-neutral-900">
+<section class="snap-section bg-neutral-950">
 	<div class="mx-auto w-full max-w-4xl px-6">
 		<p class="text-coin text-sm tracking-widest uppercase">— the thesis</p>
 		<p
@@ -16,9 +16,7 @@
 			{site.thesis}
 		</p>
 		<p class="mt-12 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-			I built our centralized ops tool — every department of a $200M/yr cookware brand, two months.
-			Build was the easy part. Shaping it so it actually scales across roles is the muscle. That's
-			what we pair on.
+			{site.thesisBody}
 		</p>
 	</div>
 </section>

@@ -21,12 +21,28 @@ export type Offer = {
 	promise: string
 }
 
+export type ProcessStep = {
+	label: string
+	body: string
+}
+
+export type Stat = {
+	value: string
+	label: string
+}
+
+export type Testimonial = {
+	quote: string
+	attribution: string
+}
+
 export type Site = {
 	siteUrl: string
 	bookingUrl: string
 	gardenUrl: string
 	tagline: string
 	thesis: string
+	thesisBody: string
 	hero: {
 		h1: string
 		subhead: string
@@ -35,6 +51,9 @@ export type Site = {
 	}
 	operator: Operator
 	offer: Offer
+	process: readonly ProcessStep[]
+	stats: readonly Stat[]
+	testimonial: Testimonial
 }
 
 export type IntakeQuestion = {

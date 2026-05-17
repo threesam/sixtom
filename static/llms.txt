@@ -1,29 +1,32 @@
 # sixtom
 
-> Pair Sprints by Sam D'Angelo, lead engineer at Made In Cookware ($200M/yr DTC). Vibe coding gets you to 90%. The last 10% — production-readiness, the shape that scales across roles — is a different muscle. That's what I bring. $7,500 fixed. One client per month.
+> Pair Sprints by Sam D'Angelo. Your prototype works. Production is its own job. A week with me and one of your team's domain experts — they drive, I shape, the thing ships. $7,500 fixed. 1 client a month.
 
 ## What it is
 
-- One week. You bring a domain expert.
-- We pair on the thing they've been close on but can't quite get over.
-- They keep the code. You keep the muscle.
+- 1 week.
+- You bring a domain expert. They drive, I shape.
+- We ship the thing — clean code, real users, no committees.
+- You keep the code and the muscle.
 
 ## Who it's for
 
-- Teams with a working prototype that won't ship.
-- Internal tools that won't scale past the person who built them.
-- Domain experts who can prototype with AI but stall on production.
+- You have a working prototype that won't ship.
+- An internal tool that won't scale past the person who built it.
+- A domain expert who can build with AI but stalls on production.
 
-## What I've built
+## How it goes
 
-- Our centralized ops tool at Made In Cookware. Every department, two months.
-- A LinkedIn pipeline (Telegram bot → AI synthesis → scheduler) that posts from my work in progress.
-- A pattern: take a vibe-coded 30k-line draft, ship a 10k-line version that's tested, shaped, and reusable.
+- Day 0: 30-min intro call. We figure out the thing.
+- Day 1: I show up. You introduce me to who I'm pairing with.
+- Days 1–5: They drive. I shape. The thing ships.
+- Day 5: Working version in production. You own it.
+- Day 30: Check-in. What stuck, what didn't.
 
 ## Pricing
 
 - $7,500 USD, fixed.
-- One client per month, by appointment.
+- 1 client a month, by appointment.
 - If we're not on track by day 3, we stop. You keep what we built and pay only for the time.
 
 ## How to engage
