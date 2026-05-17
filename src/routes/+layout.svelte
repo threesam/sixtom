@@ -1,8 +1,9 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte'
 	import '../app.css'
 	import { personJsonLd, serviceJsonLd } from '$lib/seo/jsonld'
 
-	let { children } = $props()
+	let { children }: { children: Snippet } = $props()
 
 	const SCRIPT_OPEN = '<script type="application/ld+json">'
 	const SCRIPT_CLOSE = '</' + 'script>' // split avoids parser confusion in template literals

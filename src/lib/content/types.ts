@@ -1,11 +1,11 @@
-export type QA = {
+export interface QA {
 	question: string
 	answer: string
 }
 
 export type StringList = readonly string[]
 
-export type Operator = {
+export interface Operator {
 	name: string
 	jobTitle: string
 	currentEmployer: string
@@ -13,7 +13,7 @@ export type Operator = {
 	credentialsChip: string
 }
 
-export type Offer = {
+export interface Offer {
 	name: string
 	longName: string
 	priceUSD: number
@@ -21,22 +21,22 @@ export type Offer = {
 	promise: string
 }
 
-export type ProcessStep = {
+export interface ProcessStep {
 	label: string
 	body: string
 }
 
-export type Stat = {
+export interface Stat {
 	value: string
 	label: string
 }
 
-export type Testimonial = {
+export interface Testimonial {
 	quote: string
 	attribution: string
 }
 
-export type Site = {
+export interface Site {
 	siteUrl: string
 	bookingUrl: string
 	gardenUrl: string
@@ -57,14 +57,14 @@ export type Site = {
 	testimonial: Testimonial
 }
 
-export type IntakeQuestion = {
+export interface IntakeQuestion {
 	label: string
 	type: 'text' | 'longText' | 'select'
 	required: boolean
 	options?: readonly string[]
 }
 
-export type CalEvent = {
+export interface CalEvent {
 	title: string
 	slug: string
 	durationMinutes: number

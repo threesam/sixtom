@@ -40,7 +40,7 @@ const requestLog = new Map<string, number[]>()
 function getClientIp(event: RequestEvent): string {
 	const forwardedFor = event.request.headers.get('x-forwarded-for')
 	if (forwardedFor) {
-		return forwardedFor.split(',')[0]?.trim() || 'unknown'
+		return forwardedFor.split(',')[0]?.trim() ?? 'unknown'
 	}
 
 	const realIp = event.request.headers.get('x-real-ip')
@@ -69,7 +69,7 @@ function hasHeaderInjection(value: string): boolean {
 	return /[\r\n]/.test(value)
 }
 
-function isSuspiciousSubmission(form: ContactForm): boolean {
+function isSuspiciousSubmission(form: Partial<Record<keyof ContactForm, unknown>>): boolean {
 	if (typeof form.company === 'string' && form.company.trim() !== '') {
 		return true
 	}
@@ -86,9 +86,9 @@ function isSuspiciousSubmission(form: ContactForm): boolean {
 }
 
 export async function POST(event: RequestEvent) {
-	let form: ContactForm
+	let form: Partial<Record<keyof ContactForm, unknown>>
 	try {
-		form = await event.request.json()
+		form = (await event.request.json()) as Partial<Record<keyof ContactForm, unknown>>
 	} catch {
 		return json({ status: 'Invalid request payload.' }, { status: 400 })
 	}

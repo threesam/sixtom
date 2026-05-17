@@ -37,12 +37,15 @@ function toBookingField(q: (typeof calEvent.intakeQuestions)[number]) {
 	return base
 }
 
-type EventTypeRow = { id: number; slug: string }
+interface EventTypeRow {
+	id: number
+	slug: string
+}
 
 async function listEventTypes(): Promise<EventTypeRow[]> {
-	const res = await fetch(`${BASE}/event-types?username=${USERNAME}`, { headers: HEADERS })
+	const res = await fetch(`${BASE}/event-types?username=${String(USERNAME)}`, { headers: HEADERS })
 	if (!res.ok) {
-		throw new Error(`List event-types failed: ${res.status} ${await res.text()}`)
+		throw new Error(`List event-types failed: ${String(res.status)} ${await res.text()}`)
 	}
 	const json = (await res.json()) as { data?: EventTypeRow[] }
 	return json.data ?? []
@@ -57,11 +60,11 @@ const payload = {
 	description: calEvent.description,
 	bookingFields: calEvent.intakeQuestions.map(toBookingField)
 }
-const url = match ? `${BASE}/event-types/${match.id}` : `${BASE}/event-types`
+const url = match ? `${BASE}/event-types/${String(match.id)}` : `${BASE}/event-types`
 const method = match ? 'PATCH' : 'POST'
 const res = await fetch(url, { method, headers: HEADERS, body: JSON.stringify(payload) })
 if (!res.ok) {
-	throw new Error(`${method} event-type failed: ${res.status} ${await res.text()}`)
+	throw new Error(`${method} event-type failed: ${String(res.status)} ${await res.text()}`)
 }
 console.log(`${match ? 'Updated' : 'Created'} event type "${calEvent.title}".`)
 console.log(`Booking URL: https://cal.com/${USERNAME}/${calEvent.slug}`)

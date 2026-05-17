@@ -28,6 +28,6 @@ describe('JSON-LD generators', () => {
 		expect(ld.offers[0]?.price).toBe(String(site.audit.priceUSD))
 		expect(ld.offers[1]?.name).toBe(site.sprint.name)
 		expect(ld.offers[1]?.price).toBe(String(site.sprint.priceUSD))
-		expect(ld.priceRange).toBe(`$${site.audit.priceUSD}–$${site.sprint.priceUSD}`)
+		expect(ld.priceRange).toBe(`$${String(site.audit.priceUSD)}–$${String(site.sprint.priceUSD)}`)
 	})
 })

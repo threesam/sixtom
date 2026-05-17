@@ -1,8 +1,11 @@
 import { site } from '$lib/content'
 
-type Org = { '@type': 'Organization'; name: string }
+interface Org {
+	'@type': 'Organization'
+	name: string
+}
 
-export type PersonLd = {
+export interface PersonLd {
 	'@context': 'https://schema.org'
 	'@type': 'Person'
 	name: string
@@ -12,19 +15,19 @@ export type PersonLd = {
 	url: string
 }
 
-export type ServiceLd = {
+export interface ServiceLd {
 	'@context': 'https://schema.org'
 	'@type': 'ProfessionalService'
 	name: string
 	description: string
 	priceRange: string
 	provider: Omit<PersonLd, '@context' | 'url'>
-	offers: ReadonlyArray<{
+	offers: readonly {
 		'@type': 'Offer'
 		name: string
 		price: string
 		priceCurrency: 'USD'
-	}>
+	}[]
 }
 
 export function personJsonLd(): PersonLd {
@@ -52,7 +55,7 @@ export function serviceJsonLd(): ServiceLd {
 		'@type': 'ProfessionalService',
 		name: 'Sixtom',
 		description: site.hero.subhead,
-		priceRange: `$${site.audit.priceUSD}–$${site.sprint.priceUSD}`,
+		priceRange: `$${String(site.audit.priceUSD)}–$${String(site.sprint.priceUSD)}`,
 		provider,
 		offers: [
 			{

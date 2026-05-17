@@ -14,9 +14,9 @@ import { codeInput } from '@sanity/code-input'
 export const sanityConfig = defineConfig({
 	name: 'studio',
 	title: 'The Studio',
-	projectId: PUBLIC_SANITY_PROJECT_ID ?? '',
+	projectId: PUBLIC_SANITY_PROJECT_ID,
 	basePath: '/sanity',
-	dataset: PUBLIC_SANITY_DATASET ?? 'production',
+	dataset: PUBLIC_SANITY_DATASET,
 	plugins: [codeInput(), structureTool(), visionTool()],
 	schema: {
 		types: schemaTypes

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { renderStudio } from 'sanity'
+	import { renderStudio, type Config } from 'sanity'
 	import { onMount } from 'svelte'
 
-	let { config } = $props()
+	let { config }: { config: Config } = $props()
 	let studioContainer: HTMLDivElement | undefined = $state()
 
 	onMount(() => {
 		if (studioContainer) {
-			renderStudio(studioContainer, { ...config })
+			renderStudio(studioContainer, config)
 		}
 	})
 </script>
