@@ -2,9 +2,8 @@ import { describe, it, expect, vi } from 'vitest'
 import type { RequestEvent } from './$types'
 import { POST } from './+server'
 
-// nodemailer is lazy — sendMail isn't called until a code path that gets past
-// every protection layer AND isn't the spoof shortcut. Mock it so an environment
-// without SMTP can still exercise the success path if we ever add one.
+// Mock nodemailer so any test that reaches the SMTP path runs without
+// needing real SMTP credentials in the environment.
 vi.mock('nodemailer', () => ({
 	default: {
 		createTransport: () => ({ sendMail: vi.fn().mockResolvedValue(undefined) })
