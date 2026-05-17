@@ -9,12 +9,11 @@ export const site: Site = {
 	gardenUrl: 'https://garden.example.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
 	thesis: 'Vibe coding is how you slowly become the intern of your own codebase.',
-	thesisBody:
-		"AI ships the demo. The rest — accessibility, performance, the shape that doesn't break in front of customers — is a different sport. That's where I show up.",
+	thesisBody: "AI gets you to a demo. The shipping part takes longer. That's me.",
 	hero: {
-		h1: 'Your prototype works. Production is its own job.',
+		h1: 'AI ships demos. I ship products.',
 		subhead:
-			'I pair with one of your domain experts for a week. We ship the thing — clean code, real users, no committees.',
+			"I pair with someone on your team for a week. We ship the thing they've been stuck on.",
 		ctaPrimary: 'Book a 30-min intro call',
 		ctaSecondary: 'Notify me'
 	},
@@ -30,15 +29,14 @@ export const site: Site = {
 		longName: 'pair sprint',
 		priceUSD: 7500,
 		cadence: '1 client a month, by appointment.',
-		promise:
-			"A week with me and one of your team's domain experts. They drive, I shape, the thing ships."
+		promise: 'A week. You pair me with someone on your team. They drive, I shape, we ship.'
 	},
 	process: [
 		{ label: 'Day 0', body: '30-min intro call. We figure out the thing.' },
-		{ label: 'Day 1', body: 'I show up. You introduce me to who I’m pairing with.' },
+		{ label: 'Day 1', body: "I show up. Meet who I'm pairing with." },
 		{ label: 'Days 1–5', body: 'They drive. I shape. The thing ships.' },
-		{ label: 'Day 5', body: 'Working version in production. You own it.' },
-		{ label: 'Day 30', body: 'Check-in. What stuck, what didn’t.' }
+		{ label: 'Day 5', body: 'Live in production. You own it.' },
+		{ label: 'Day 30', body: "Check-in. What stuck, what didn't." }
 	],
 	stats: [
 		{ value: '1 week', label: 'per sprint' },
@@ -57,23 +55,22 @@ export const calEvent: CalEvent = {
 	slug: 'pair-sprint-intro',
 	durationMinutes: 30,
 	description:
-		"A 30-min call to talk about the thing you've been trying to ship, who on your team would pair with me, and whether the Pair Sprint is the right fit. If we are, we'll schedule the sprint after this call.",
+		"A 30-min call. Tell me about the thing you've been trying to ship and who on your team would pair with me. If it's a fit, we'll schedule the sprint.",
 	intakeQuestions: [
 		{
-			label:
-				"What's the thing — the tool, system, or layer you've been close on but haven't shipped?",
+			label: "What's the thing you've been close on but haven't shipped?",
 			type: 'longText',
 			required: true
 		},
 		{
-			label: 'Who on your team would pair with me for the week? (name, role)',
+			label: 'Who on your team would pair with me for the week?',
 			type: 'text',
 			required: true
 		},
 		{
 			label: 'Ready to start in the next 30 days?',
 			type: 'select',
-			options: ['Yes', 'Maybe', 'No, just exploring'],
+			options: ['Yes', 'Maybe', 'Just exploring'],
 			required: true
 		}
 	]

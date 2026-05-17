@@ -36,7 +36,7 @@
 			${site.offer.priceUSD.toLocaleString()} fixed. {site.offer.cadence}
 		</p>
 		<p class="mt-4 max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg">
-			If we're not on track by day 3, we stop. You keep what we built and pay only for the time.
+			If we're off track by day 3, we stop. You keep what we built. Pay for the time, that's it.
 		</p>
 
 		<blockquote
