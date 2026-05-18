@@ -78,6 +78,9 @@
 
 @utility btn-accent {
 	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
 	/* background-color is the fallback if --gradient-accent fails to parse. */
 	background-color: var(--color-accent);
 	background-image: var(--gradient-accent);
@@ -85,6 +88,33 @@
 	border-radius: 0.375rem;
 	font-weight: 500;
 	transition: opacity 0.15s;
+}
+/* Shine sweep on hover — a diagonal white pass crosses the button once. */
+.btn-accent::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		115deg,
+		transparent 30%,
+		rgba(255, 255, 255, 0.45) 50%,
+		transparent 70%
+	);
+	transform: translateX(-100%);
+	pointer-events: none;
+}
+.btn-accent:hover::before {
+	animation: btn-shine 0.7s ease;
+}
+@keyframes btn-shine {
+	to {
+		transform: translateX(100%);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.btn-accent:hover::before {
+		animation: none;
+	}
 }
 
 @utility eyebrow {
