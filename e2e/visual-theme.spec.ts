@@ -3,7 +3,6 @@ import { test, expect, type Browser } from '@playwright/test'
 async function openPage(browser: Browser, width = 1280, height = 720) {
 	const context = await browser.newContext({ colorScheme: 'dark' })
 	const page = await context.newPage()
-	// Freeze animations BEFORE the page mounts so screenshots are deterministic.
 	await page.addInitScript(() => {
 		const style = document.createElement('style')
 		style.textContent = `*, *::before, *::after {
@@ -16,39 +15,36 @@ async function openPage(browser: Browser, width = 1280, height = 720) {
 	return { context, page }
 }
 
-test.describe('Visual surface parity (dark-only)', () => {
-	test('every section surface resolves to the same color', async ({ browser }) => {
+test.describe('Visual surface — dark/light alternation', () => {
+	test('sections alternate D L D L, first dark, marquee dark', async ({ browser }) => {
 		const { context, page } = await openPage(browser)
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
 
 		const sections = await page.locator('section').all()
-		expect(sections.length).toBeGreaterThanOrEqual(4)
+		expect(sections.length).toBe(4)
 
-		const colors = await Promise.all(
+		const surfaces = await Promise.all(
 			sections.map((s) => s.evaluate((el) => getComputedStyle(el).backgroundColor))
 		)
-		const distinct = new Set(colors)
-		expect(distinct.size, `expected one surface, got: ${[...distinct].join(', ')}`).toBe(1)
 
-		await context.close()
-	})
+		// Sections should pair up: 1 == 3 (dark) and 2 == 4 (light). Two distinct values total.
+		const distinct = new Set(surfaces)
+		expect(distinct.size, `expected 2 alternating surfaces, got ${[...distinct].join(' | ')}`).toBe(
+			2
+		)
+		expect(surfaces[0]).toBe(surfaces[2])
+		expect(surfaces[1]).toBe(surfaces[3])
+		expect(surfaces[0]).not.toBe(surfaces[1])
 
-	test('marquee bar uses the same surface as its parent section', async ({ browser }) => {
-		const { context, page } = await openPage(browser)
-		await page.goto('/', { waitUntil: 'domcontentloaded' })
-
-		const marquee = page.locator('[aria-label="Mission marquee"]')
-		const sectionBg = await marquee
-			.locator('xpath=ancestor::section[1]')
+		// Marquee bar (inside the last light section) is explicitly dark — visual close on dark.
+		const marqueeBg = await page
+			.locator('[aria-label="Mission marquee"]')
 			.evaluate((el) => getComputedStyle(el).backgroundColor)
-		const marqueeBg = await marquee.evaluate((el) => getComputedStyle(el).backgroundColor)
-		expect(marqueeBg).toBe(sectionBg)
+		expect(marqueeBg).toBe(surfaces[0])
 
 		await context.close()
 	})
 
-	// Pixel baseline is platform-sensitive (font hinting, AA). Committed for darwin only;
-	// the per-section color test above is the actual regression guard.
 	test('full-page screenshot', async ({ browser }) => {
 		test.skip(process.platform !== 'darwin', 'darwin-only baselines committed')
 		const { context, page } = await openPage(browser, 1280, 800)

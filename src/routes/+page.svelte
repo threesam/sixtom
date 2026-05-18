@@ -10,7 +10,7 @@
 
 <Hero />
 
-<section class="snap-section bg-surface">
+<section class="snap-section surface-light">
 	<div class="mx-auto w-full max-w-4xl px-6">
 		<p class="eyebrow text-sm">— the thesis</p>
 		<p
