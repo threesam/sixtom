@@ -56,8 +56,12 @@
 				</div>
 			</article>
 		</div>
+	</div>
+</section>
 
-		<dl class="border-border mt-12 grid grid-cols-3 gap-6 border-t pt-10">
+<section class="snap-section surface-uv">
+	<div class="mx-auto w-full max-w-4xl px-6">
+		<dl class="border-border grid grid-cols-3 gap-6 border-t pt-10">
 			{#each site.stats as { value, label } (label)}
 				<div>
 					<dt class="text-accent text-2xl font-bold tracking-tight md:text-4xl">{value}</dt>
@@ -67,7 +71,7 @@
 		</dl>
 
 		<blockquote
-			class="border-border-strong text-fg-muted mt-12 border-l-2 pl-6 text-base leading-relaxed italic md:text-lg"
+			class="border-border-strong text-fg-muted mt-16 border-l-2 pl-6 text-base leading-relaxed italic md:text-lg"
 		>
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
