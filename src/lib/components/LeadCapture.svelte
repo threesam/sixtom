@@ -76,15 +76,16 @@
 		data-umami-event="cta_garden_link"
 		target="_blank"
 		rel="noopener noreferrer"
+		draggable="false"
 		aria-label="threesam.com — the garden"
-		class="surface-dark border-border text-fg hover:text-accent block w-full overflow-hidden border-t py-6 transition-colors"
+		class="surface-dark border-border text-fg hover:text-accent marquee-link block w-full overflow-hidden border-t py-6 transition-colors"
 	>
 		<div
 			class="marquee-track flex w-max items-center text-lg font-bold whitespace-nowrap"
-			style="--marquee-copies: {MARQUEE_COPIES}; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.4em;"
+			style="--marquee-copies: {MARQUEE_COPIES};"
 		>
 			{#each Array(MARQUEE_COPIES), i (i)}
-				<div data-marquee-copy class="pr-12" aria-hidden={i !== 0}>
+				<div data-marquee-copy class="pr-12" aria-hidden="true">
 					t ★ h ★ r ★ e ★ e ★ s ★ a ★ m ★
 				</div>
 			{/each}
