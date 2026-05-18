@@ -40,6 +40,7 @@
 	--color-accent: oklch(70% 0.15 195);
 	--gradient-accent: linear-gradient(95deg, oklch(72% 0.15 200) 0%, oklch(64% 0.16 178) 100%);
 	--color-on-accent: oklch(14.5% 0 0);
+	--color-coin: #e8a317;
 	--color-error: oklch(71.2% 0.194 13.428);
 }
 
