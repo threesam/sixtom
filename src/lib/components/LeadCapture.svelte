@@ -85,7 +85,7 @@
 			style="--marquee-copies: {MARQUEE_COPIES};"
 		>
 			{#each Array(MARQUEE_COPIES), i (i)}
-				<div data-marquee-copy aria-hidden="true">T ★ H ★ R ★ E ★ E ★ S ★ A ★ M ★</div>
+				<div data-marquee-copy class="pr-4" aria-hidden="true">T ★ H ★ R ★ E ★ E ★ S ★ A ★ M ★</div>
 			{/each}
 		</div>
 	</a>
