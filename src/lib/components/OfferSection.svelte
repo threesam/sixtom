@@ -13,7 +13,7 @@
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.audit.name}.
 				</h3>
-				<p class="text-coin mt-3 text-xl font-semibold">
+				<p class="text-accent mt-3 text-xl font-semibold">
 					${site.audit.priceUSD}. {site.audit.cadence}
 				</p>
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
@@ -23,7 +23,7 @@
 					<a
 						href={site.bookingUrl}
 						data-umami-event="cta_audit_book"
-						class="btn-coin px-6 py-3 text-base hover:opacity-90"
+						class="btn-accent px-6 py-3 text-base hover:opacity-90"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
@@ -37,7 +37,7 @@
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.sprint.name}.
 				</h3>
-				<p class="text-coin mt-3 text-xl font-semibold">
+				<p class="text-accent mt-3 text-xl font-semibold">
 					${site.sprint.priceUSD.toLocaleString()}. {site.sprint.cadence}
 				</p>
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
@@ -47,7 +47,7 @@
 					<a
 						href={site.bookingUrl}
 						data-umami-event="cta_sprint_book"
-						class="btn-coin px-6 py-3 text-base hover:opacity-90"
+						class="btn-accent px-6 py-3 text-base hover:opacity-90"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
@@ -60,7 +60,7 @@
 		<dl class="border-border mt-12 grid grid-cols-3 gap-6 border-t pt-10">
 			{#each site.stats as { value, label } (label)}
 				<div>
-					<dt class="text-coin text-2xl font-bold tracking-tight md:text-4xl">{value}</dt>
+					<dt class="text-accent text-2xl font-bold tracking-tight md:text-4xl">{value}</dt>
 					<dd class="text-fg-subtle mt-1 text-xs tracking-widest uppercase">{label}</dd>
 				</div>
 			{/each}

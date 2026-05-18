@@ -38,28 +38,55 @@
 @theme {
 	--font-sans: 'Fira Mono', monospace;
 
+	/* Default (dark) surface tokens. .surface-light overrides them per-section below. */
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
 	--color-fg-muted: oklch(70.8% 0 0);
 	--color-fg-subtle: oklch(60% 0 0);
 	--color-border: oklch(26.9% 0 0);
 	--color-border-strong: oklch(37.1% 0 0);
-	--color-coin: #e8a317;
-	--color-on-coin: oklch(14.5% 0 0);
+	/* Neon-green accent. Single value used in both light + dark sections;
+	 * decorative-emphasis only on light (fails AA-normal there, by design). */
+	--color-accent: oklch(82% 0.3 138);
+	--color-on-accent: oklch(14.5% 0 0);
 	--color-error: oklch(71.2% 0.194 13.428);
 }
 
-@utility btn-coin {
+/* Per-section surface flip. Apply to <section class="snap-section surface-light">. */
+.surface-light {
+	--color-surface: oklch(96% 0.005 85);
+	--color-fg: oklch(15% 0 0);
+	--color-fg-muted: oklch(40% 0 0);
+	--color-fg-subtle: oklch(48% 0 0);
+	--color-border: oklch(85% 0.005 85);
+	--color-border-strong: oklch(70% 0.005 85);
+	background: var(--color-surface);
+	color: var(--color-fg);
+}
+
+/* Reset back to the default dark palette inside a .surface-light parent (e.g. marquee bar). */
+.surface-dark {
+	--color-surface: oklch(14.5% 0 0);
+	--color-fg: oklch(97% 0 0);
+	--color-fg-muted: oklch(70.8% 0 0);
+	--color-fg-subtle: oklch(60% 0 0);
+	--color-border: oklch(26.9% 0 0);
+	--color-border-strong: oklch(37.1% 0 0);
+	background: var(--color-surface);
+	color: var(--color-fg);
+}
+
+@utility btn-accent {
 	display: inline-block;
-	background-color: var(--color-coin);
-	color: var(--color-on-coin);
+	background-color: var(--color-accent);
+	color: var(--color-on-accent);
 	border-radius: 0.375rem;
 	font-weight: 500;
 	transition: opacity 0.15s;
 }
 
 @utility eyebrow {
-	color: var(--color-coin);
+	color: var(--color-accent);
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 }
