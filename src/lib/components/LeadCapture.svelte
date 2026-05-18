@@ -71,29 +71,23 @@
 		</div>
 	</div>
 
-	<div
-		class="surface-dark border-border w-full overflow-hidden border-t py-6"
-		aria-label="Mission marquee"
+	<a
+		href={site.gardenUrl}
+		data-umami-event="cta_garden_link"
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label="threesam.com — the garden"
+		class="surface-dark border-border text-fg hover:text-accent block w-full overflow-hidden border-t py-6 transition-colors"
 	>
 		<div
-			class="marquee-track flex w-max items-center text-lg whitespace-nowrap"
-			style="--marquee-copies: {MARQUEE_COPIES}"
+			class="marquee-track flex w-max items-center text-lg font-bold whitespace-nowrap"
+			style="--marquee-copies: {MARQUEE_COPIES}; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.4em;"
 		>
 			{#each Array(MARQUEE_COPIES), i (i)}
-				<div data-marquee-copy class="flex items-center gap-12 pr-12" aria-hidden={i !== 0}>
-					<span class="text-fg font-semibold">we just want to build cool shit</span>
-					<span class="text-accent">★</span>
-					<a
-						href={site.gardenUrl}
-						data-umami-event={i === 0 ? 'cta_garden_link' : undefined}
-						tabindex={i === 0 ? undefined : -1}
-						class="text-fg hover:text-accent font-semibold transition-colors"
-						rel="noopener noreferrer"
-						target="_blank">more at the garden →</a
-					>
-					<span class="text-accent">★</span>
+				<div data-marquee-copy class="pr-12" aria-hidden={i !== 0}>
+					t ★ h ★ r ★ e ★ e ★ s ★ a ★ m ★
 				</div>
 			{/each}
 		</div>
-	</div>
+	</a>
 </section>

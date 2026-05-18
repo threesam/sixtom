@@ -36,9 +36,9 @@ test.describe('Visual surface — dark/light alternation', () => {
 		expect(surfaces[1]).toBe(surfaces[3])
 		expect(surfaces[0]).not.toBe(surfaces[1])
 
-		// Marquee bar (inside the last light section) is explicitly dark — visual close on dark.
+		// Marquee link (inside the last UV section) is explicitly dark — visual close on dark.
 		const marqueeBg = await page
-			.locator('[aria-label="Mission marquee"]')
+			.locator('[data-umami-event="cta_garden_link"]')
 			.evaluate((el) => getComputedStyle(el).backgroundColor)
 		expect(marqueeBg).toBe(surfaces[0])
 
