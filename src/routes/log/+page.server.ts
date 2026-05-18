@@ -21,6 +21,17 @@ interface RawPost {
 	meta: { pinned?: boolean } | null
 }
 
+// Strip anything that isn't a plain https:// URL — defense against a future
+// upstream returning `javascript:` or `data:` URIs that would execute on click.
+function safeHttpsUrl(url: string | null): string | null {
+	if (!url) return null
+	try {
+		return new URL(url).protocol === 'https:' ? url : null
+	} catch {
+		return null
+	}
+}
+
 export const load: PageServerLoad = async ({ fetch }) => {
 	const origin = env.CONTENT_ENGINE_URL
 	const token = env.STUDIO_TOKEN
@@ -42,8 +53,8 @@ export const load: PageServerLoad = async ({ fetch }) => {
 			id: p.id,
 			text: p.text,
 			publishedAt: p.publishedAt,
-			linkedinPermalink: p.linkedinPermalink,
-			imageUrl: p.imageUrl,
+			linkedinPermalink: safeHttpsUrl(p.linkedinPermalink),
+			imageUrl: safeHttpsUrl(p.imageUrl),
 			pinned: Boolean(p.meta?.pinned)
 		}))
 		posts.sort((a, b) => {
