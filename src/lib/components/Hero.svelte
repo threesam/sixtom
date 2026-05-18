@@ -13,9 +13,6 @@
 		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
 			{site.hero.subhead}
 		</p>
-		<p class="text-accent mt-10 text-2xl md:text-3xl">
-			${site.audit.priceUSD} audit → ${site.sprint.priceUSD.toLocaleString()} sprint. By appointment.
-		</p>
 		<div class="mt-12">
 			<a
 				href={site.bookingUrl}
