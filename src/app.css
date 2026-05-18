@@ -10,6 +10,16 @@
 		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
 		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+	font-family: 'Space Grotesk';
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('/fonts/space-grotesk.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 @plugin '@tailwindcss/container-queries';
 @plugin '@tailwindcss/forms';
@@ -36,20 +46,27 @@
 	--shadow-accent: 0 0 0 transparent;
 }
 
-/* Blacklight section: deep UV-purple surface, glow on neon, system serif
- * (Times New Roman) for editorial contrast against the dark sections' system mono. */
+/* Blacklight effect: WHITE surface, BLACK text, neon green accent that glows
+ * via text-shadow / box-shadow — emulates how fluorescent objects appear
+ * under UV light against a white wall. */
 .surface-uv {
-	--color-surface: oklch(22% 0.1 290);
-	--color-fg: oklch(95% 0.02 290);
-	--color-fg-muted: oklch(75% 0.05 290);
-	--color-fg-subtle: oklch(60% 0.05 290);
-	--color-border: oklch(35% 0.08 290);
-	--color-border-strong: oklch(48% 0.1 290);
+	--color-surface: oklch(98% 0.005 85);
+	--color-fg: oklch(15% 0 0);
+	--color-fg-muted: oklch(40% 0 0);
+	--color-fg-subtle: oklch(50% 0 0);
+	--color-border: oklch(86% 0.005 85);
+	--color-border-strong: oklch(72% 0.005 85);
 	--shadow-accent:
-		0 0 12px var(--color-accent), 0 0 28px color-mix(in oklch, var(--color-accent) 50%, transparent);
+		0 0 14px var(--color-accent), 0 0 36px color-mix(in oklch, var(--color-accent) 60%, transparent);
 	background: var(--color-surface);
 	color: var(--color-fg);
-	font-family: ui-serif, 'New York', Georgia, 'Times New Roman', Times, serif;
+	font-family:
+		'Space Grotesk',
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		sans-serif;
 }
 
 /* Reset to default dark palette inside a .surface-uv parent (marquee bar). */
