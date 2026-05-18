@@ -78,14 +78,14 @@
 		rel="noopener noreferrer"
 		draggable="false"
 		aria-label="threesam.com — the garden"
-		class="surface-dark border-border text-fg hover:text-accent marquee-link block w-full overflow-hidden border-t py-6 transition-colors"
+		class="surface-dark border-border text-fg hover:text-coin marquee-link block w-full overflow-hidden border-t py-6 transition-colors"
 	>
 		<div
 			class="marquee-track flex w-max items-center text-lg font-bold whitespace-nowrap"
 			style="--marquee-copies: {MARQUEE_COPIES};"
 		>
 			{#each Array(MARQUEE_COPIES), i (i)}
-				<div data-marquee-copy class="pr-4" aria-hidden="true">T • H • R • E • E • S • A • M •</div>
+				<div data-marquee-copy class="pr-2" aria-hidden="true">T • H • R • E • E • S • A • M •</div>
 			{/each}
 		</div>
 	</a>
