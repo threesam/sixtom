@@ -89,7 +89,8 @@
 	font-weight: 500;
 	transition: opacity 0.15s;
 }
-/* Shine sweep on hover — a diagonal white pass crosses the button once. */
+/* Shine sweep on hover — diagonal white pass that travels across the button
+ * and blooms (scales up) as it exits. ease-out so it settles smooth at the end. */
 .btn-accent::before {
 	content: '';
 	position: absolute;
@@ -97,18 +98,24 @@
 	background: linear-gradient(
 		115deg,
 		transparent 30%,
-		rgba(255, 255, 255, 0.45) 50%,
+		rgba(255, 255, 255, 0.28) 50%,
 		transparent 70%
 	);
-	transform: translateX(-100%);
+	transform: translateX(-100%) scale(1);
 	pointer-events: none;
 }
 .btn-accent:hover::before {
-	animation: btn-shine 0.7s ease;
+	animation: btn-shine 1.4s ease-out;
 }
 @keyframes btn-shine {
-	to {
-		transform: translateX(100%);
+	0% {
+		transform: translateX(-100%) scale(1);
+	}
+	60% {
+		transform: translateX(20%) scale(1);
+	}
+	100% {
+		transform: translateX(100%) scale(1.5);
 	}
 }
 @media (prefers-reduced-motion: reduce) {
