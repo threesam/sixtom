@@ -21,18 +21,19 @@ test.describe('Visual surface — dark/light alternation', () => {
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
 
 		const sections = await page.locator('section').all()
-		expect(sections.length).toBe(4)
+		expect(sections.length).toBe(5)
 
 		const surfaces = await Promise.all(
 			sections.map((s) => s.evaluate((el) => getComputedStyle(el).backgroundColor))
 		)
 
-		// Sections should pair up: 1 == 3 (dark) and 2 == 4 (light). Two distinct values total.
+		// Alternation D L D L D — first/third/fifth dark, second/fourth UV.
 		const distinct = new Set(surfaces)
 		expect(distinct.size, `expected 2 alternating surfaces, got ${[...distinct].join(' | ')}`).toBe(
 			2
 		)
 		expect(surfaces[0]).toBe(surfaces[2])
+		expect(surfaces[2]).toBe(surfaces[4])
 		expect(surfaces[1]).toBe(surfaces[3])
 		expect(surfaces[0]).not.toBe(surfaces[1])
 
