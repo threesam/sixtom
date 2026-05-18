@@ -41,9 +41,6 @@
 	--gradient-accent: linear-gradient(95deg, oklch(72% 0.15 200) 0%, oklch(64% 0.16 178) 100%);
 	--color-on-accent: oklch(14.5% 0 0);
 	--color-error: oklch(71.2% 0.194 13.428);
-
-	/* Glow only on UV surface; default surface keeps a no-op transparent shadow. */
-	--shadow-accent: 0 0 0 transparent;
 }
 
 /* Blacklight effect: white surface, black text, neon accents fluoresce via shadow.
