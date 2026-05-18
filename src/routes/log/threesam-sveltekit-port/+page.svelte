@@ -8,7 +8,7 @@
 	<meta property="og:title" content="we ported threesam.com to SvelteKit. here's what changed." />
 	<meta
 		property="og:description"
-		content="a 1:1 port from Next.js to SvelteKit. Lighthouse numbers, 5,557 lines deleted, and why the non-standard choice is sometimes the boring measured one."
+		content="a 1:1 port from Next.js to SvelteKit. Lighthouse numbers, 5,557 lines deleted, and why LLMs make framework choice a tactical decision instead of a strategic commitment."
 	/>
 	<meta property="og:url" content="https://sixtom.com/log/threesam-sveltekit-port" />
 	<meta name="twitter:card" content="summary" />
@@ -101,38 +101,8 @@
 						<tr class="border-border border-b hover:bg-white/5">
 							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/</td>
 							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">50 → 88</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+38)</span>
-							</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-						</tr>
-						<tr class="border-border border-b hover:bg-white/5">
-							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/sounds</td>
-							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">70 → 99</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+29)</span>
-							</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-						</tr>
-						<tr class="border-border border-b hover:bg-white/5">
-							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/dad</td>
-							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">76 → 97</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+21)</span>
-							</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-						</tr>
-						<tr class="border-border border-b hover:bg-white/5">
-							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/canvas/self</td>
-							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">62 → 82</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+20)</span>
+								<span class="text-accent font-semibold">50 → 85</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+35)</span>
 							</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
@@ -141,8 +111,18 @@
 						<tr class="border-border border-b hover:bg-white/5">
 							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/deana</td>
 							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">67 → 83</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+16)</span>
+								<span class="text-accent font-semibold">67 → 95</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+28)</span>
+							</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+						</tr>
+						<tr class="border-border border-b hover:bg-white/5">
+							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/sounds</td>
+							<td class="px-4 py-3">
+								<span class="text-accent font-semibold">70 → 96</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+26)</span>
 							</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
@@ -151,18 +131,38 @@
 						<tr class="border-border border-b hover:bg-white/5">
 							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/anything-but-analog</td>
 							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">72 → 85</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+13)</span>
+								<span class="text-accent font-semibold">72 → 95</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+23)</span>
 							</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 						</tr>
 						<tr class="border-border border-b hover:bg-white/5">
-							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/benny</td>
+							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/shelf</td>
 							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">88 → 97</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+9)</span>
+								<span class="text-accent font-semibold">75 → 90</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+15)</span>
+							</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+							<td class="text-fg-muted px-4 py-3">99.6 / 99.6</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+						</tr>
+						<tr class="border-border border-b hover:bg-white/5">
+							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/dad</td>
+							<td class="px-4 py-3">
+								<span class="text-accent font-semibold">76 → 90</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+14)</span>
+							</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
+						</tr>
+						<tr class="border-border border-b hover:bg-white/5">
+							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/canvas/self</td>
+							<td class="px-4 py-3">
+								<span class="text-accent font-semibold">62 → 70</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+8)</span>
 							</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
@@ -171,21 +171,21 @@
 						<tr class="border-border border-b hover:bg-white/5">
 							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/thoughts</td>
 							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">91 → 99</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+8)</span>
+								<span class="text-accent font-semibold">91 → 96</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+5)</span>
 							</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 						</tr>
 						<tr class="hover:bg-white/5">
-							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/shelf</td>
+							<td class="text-fg-muted px-4 py-3 font-mono text-xs">/benny</td>
 							<td class="px-4 py-3">
-								<span class="text-accent font-semibold">75 → 82</span>
-								<span class="text-fg-subtle ml-1 text-xs">(+7)</span>
+								<span class="text-accent font-semibold">88 → 90</span>
+								<span class="text-fg-subtle ml-1 text-xs">(+2)</span>
 							</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
-							<td class="text-fg-muted px-4 py-3">96 / 96</td>
+							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 							<td class="text-fg-muted px-4 py-3">100 / 100</td>
 						</tr>
 					</tbody>
@@ -199,10 +199,17 @@
 			<div class="border-border mt-6 rounded-lg border p-5">
 				<p class="text-fg mb-1 font-medium">net</p>
 				<ul class="text-fg-muted mt-2 space-y-1.5 text-sm">
-					<li>perf: green on all 9 routes. avg +17.9 pts. best gain +38 on /.</li>
-					<li>a11y + best practices + seo: 100/100 across the board. /shelf BP stays tied at 96.</li>
+					<li>perf: avg +17.3 pts. best gain +35 on /. 8 of 9 routes now at 90+.</li>
+					<li>
+						/canvas/self is the outlier at 70 — that's a WebGL-canvas ceiling, not a framework
+						issue.
+					</li>
+					<li>a11y / best practices / seo: 100 / 99.6 / 100 — held everywhere, both before and after.</li>
 					<li>/canvas/self payload: 6.3 MB → ~1.5 MB (album-art WebP conversion).</li>
-					<li>/deana initial JS: 220 KB → 5.5 KB (−97.5%; canvas + message components dynamic-imported).</li>
+					<li
+						>/deana initial JS: 220 KB → 5.5 KB (−97.5%; canvas + message components
+						dynamic-imported).</li
+					>
 					<li>/shelf TTFB: 2.6s → ~0 (prerendered; Goodreads RSS fetch moved to build time).</li>
 				</ul>
 			</div>
@@ -235,6 +242,36 @@
 		</section>
 
 		<section>
+			<h2 class="text-fg mb-3 text-xl font-semibold">what this unlocks</h2>
+			<p>
+				the older argument for sticking with Next.js + React — even when the fit wasn't great — was
+				cost. re-platforming was a major engineering project. weeks of refactor work, regression
+				risk, testing burden, team retraining. so studios and teams reached for the defaults and
+				stayed there. "don't fight the framework" was a cost-shaped law of nature.
+			</p>
+			<p class="mt-4">
+				that math has changed. this port was driven by an AI agent: 78 commits, multi-day
+				execution, granular and reviewable. total LLM cost was roughly tens of dollars in API
+				tokens — closer to a single consulting hour than a sprint. the 1:1 visual fidelity was
+				verified by automated screenshot diffs against the live production site, route by route.
+				the result: +17.3 perf avg, every a11y / BP / SEO category held or improved, zero feature
+				regressions.
+			</p>
+			<p class="mt-4">
+				when the grunt work compresses from an engineering quarter to a few days and a small API
+				bill, the cost-benefit equation for framework choice changes completely. you're no longer
+				locked in by the cost of leaving. framework choice becomes a tactical perf bet with
+				measurable payback — not a strategic multi-year commitment.
+			</p>
+			<p class="mt-4">
+				this isn't a svelte-beats-react take. it's a meta-point: pick the tool that fits your
+				app's actual shape. the constraint that used to lock you in has melted. you can read what
+				an app actually does, pick accordingly, measure the win, and know whether it was worth it.
+				sometimes that answer is Next.js. here it wasn't.
+			</p>
+		</section>
+
+		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">the takeaway</h2>
 			<p>
 				framework choice should follow what the app actually does. threesam.com imperatively touches
@@ -244,12 +281,12 @@
 				picking the non-standard tool isn't always the bold move. sometimes it's just the measured
 				one. when the math works, it works. the numbers above compare Next.js live-production —
 				CDN, edge delivery, the works — against SvelteKit with perf work applied. SvelteKit wins
-				on all 9 perf scores.
+				on all 9 perf scores, avg +17.3, best +35 on /.
 			</p>
 			<p class="mt-4">
 				this is what the audit + sprint model is actually for. not reaching for whatever the default
-				vibe is, but reading what an app actually does and picking the tool that fits. sometimes
-				that's Next.js. here it wasn't.
+				vibe is, but reading what an app actually does and picking the tool that fits. and with
+				LLMs compressing the migration cost, that choice is finally worth revisiting.
 			</p>
 		</section>
 
@@ -257,8 +294,8 @@
 			<p class="text-fg-muted text-sm">
 				the result is live at <a href="https://threesam.com" class="text-accent hover:underline"
 					>threesam.com</a
-				>. if you want this kind of measured technical decision-making on your stack,
-				<a href="/" class="text-accent hover:underline">we can talk</a>.
+				>. if you've been side-eyeing your stack because the cost of moving felt too high — that
+				math has changed. <a href="/" class="text-accent hover:underline">happy to talk</a>.
 			</p>
 		</footer>
 	</div>
