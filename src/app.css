@@ -26,31 +26,28 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	/* Recursive 400 with system-mono fallback chain. Only one weight downloaded
-	 * (~23 KB latin); `font-bold` and `font-semibold` synthesize from it. */
 	--font-sans:
 		'Recursive', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+	--font-display:
+		'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-	/* Default (dark) tokens. `.surface-uv` and `.surface-dark` override locally. */
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
 	--color-fg-muted: oklch(70.8% 0 0);
 	--color-fg-subtle: oklch(60% 0 0);
 	--color-border: oklch(26.9% 0 0);
 	--color-border-strong: oklch(37.1% 0 0);
-	/* Teal accent (text + shadow base); the surface variant flows via gradient. */
 	--color-accent: oklch(70% 0.15 195);
 	--gradient-accent: linear-gradient(95deg, oklch(72% 0.15 200) 0%, oklch(64% 0.16 178) 100%);
 	--color-on-accent: oklch(14.5% 0 0);
 	--color-error: oklch(71.2% 0.194 13.428);
 
-	/* Glow only on UV surface. */
+	/* Glow only on UV surface; default surface keeps a no-op transparent shadow. */
 	--shadow-accent: 0 0 0 transparent;
 }
 
-/* Blacklight effect: WHITE surface, BLACK text, neon green accent that glows
- * via text-shadow / box-shadow — emulates how fluorescent objects appear
- * under UV light against a white wall. */
+/* Blacklight effect: white surface, black text, neon accents fluoresce via shadow.
+ * `font-family` swaps to display (sans) so the section reads as a different medium. */
 .surface-uv {
 	--color-surface: oklch(98% 0.005 85);
 	--color-fg: oklch(15% 0 0);
@@ -62,16 +59,12 @@
 		0 0 14px var(--color-accent), 0 0 36px color-mix(in oklch, var(--color-accent) 60%, transparent);
 	background: var(--color-surface);
 	color: var(--color-fg);
-	font-family:
-		'Space Grotesk',
-		system-ui,
-		-apple-system,
-		BlinkMacSystemFont,
-		'Segoe UI',
-		sans-serif;
+	font-family: var(--font-display);
 }
 
-/* Reset to default dark palette inside a .surface-uv parent (marquee bar). */
+/* Re-establish the dark palette inside a .surface-uv parent (marquee bar).
+ * Only the vars that .surface-uv actually changes need restating; the rest
+ * (--gradient-accent, --color-on-accent, --color-error) inherit from @theme. */
 .surface-dark {
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
@@ -87,6 +80,7 @@
 
 @utility btn-accent {
 	display: inline-block;
+	/* background-color is the fallback if --gradient-accent fails to parse. */
 	background-color: var(--color-accent);
 	background-image: var(--gradient-accent);
 	color: var(--color-on-accent);
@@ -103,8 +97,20 @@
 	text-shadow: var(--shadow-accent);
 }
 
-.text-accent {
+@utility text-accent {
+	color: var(--color-accent);
 	text-shadow: var(--shadow-accent);
+}
+
+/* Marquee bar uses the display font + letter-spacing the t★h★r★e★e★s★a★m treatment.
+ * `user-select: none` prevents drag-to-select on the animated track. */
+.marquee-link .marquee-track {
+	font-family: var(--font-display);
+	letter-spacing: 0.4em;
+}
+.marquee-link {
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 html {

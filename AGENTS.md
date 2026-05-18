@@ -73,6 +73,16 @@ Both confirmation + notification emails go through a module-level lazy-singleton
 
 Reads `site.calEvent` from the content layer, upserts the intro event in Cal.com via their v2 API. Operator runs `pnpm cal:sync` after editing `calEvent`. Not part of `pnpm build`.
 
+## Design system
+
+`src/app.css` defines semantic tokens via `@theme` and per-section overrides via `.surface-uv` (blacklight: white + black text + glowing accents) and `.surface-dark` (re-establishes the dark palette inside a `.surface-uv` parent — e.g. the marquee bar).
+
+Tokens: `--color-surface`, `--color-fg`, `--color-fg-muted`, `--color-fg-subtle`, `--color-border`, `--color-border-strong`, `--color-accent` (teal), `--gradient-accent` (subtle horizontal teal flow for `bg-accent`), `--color-on-accent`, `--color-error`, `--shadow-accent` (none on dark, glow on UV), `--font-sans` (Recursive + system mono fallback), `--font-display` (Space Grotesk + system sans fallback).
+
+Custom utilities: `.btn-accent` (gradient bg + dark text + shadow), `.eyebrow` (accent color + tracking + uppercase + shadow), `.text-accent` (accent text + shadow).
+
+Sections alternate D / UV / D / UV / D (marquee bar resets to dark). The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together.
+
 ## Voice & copy guardrails
 
 **Apply to every change that touches buyer-facing copy.** The operator's published voice (see his "Vibe coding insight" post — wry, observational, terse, _italics for genuine emphasis_, em-dashes only when earned) is the target.
