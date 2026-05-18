@@ -9,19 +9,22 @@ export interface PersonLd {
 	'@context': 'https://schema.org'
 	'@type': 'Person'
 	name: string
+	alternateName: readonly string[]
 	jobTitle: string
 	worksFor: Org
 	alumniOf: Org
 	url: string
+	sameAs: readonly string[]
 }
 
 export interface ServiceLd {
 	'@context': 'https://schema.org'
 	'@type': 'ProfessionalService'
 	name: string
+	alternateName: readonly string[]
 	description: string
 	priceRange: string
-	provider: Omit<PersonLd, '@context' | 'url'>
+	provider: Omit<PersonLd, '@context' | 'url' | 'sameAs'>
 	offers: readonly {
 		'@type': 'Offer'
 		name: string
@@ -35,10 +38,12 @@ export function personJsonLd(): PersonLd {
 		'@context': 'https://schema.org',
 		'@type': 'Person',
 		name: site.operator.name,
+		alternateName: ['Sixtom', 'sixtom', 'threesam'],
 		jobTitle: site.operator.jobTitle,
 		worksFor: { '@type': 'Organization', name: site.operator.currentEmployer },
 		alumniOf: { '@type': 'Organization', name: site.operator.formerEmployer },
-		url: site.siteUrl
+		url: site.siteUrl,
+		sameAs: [site.gardenUrl]
 	}
 }
 
@@ -46,6 +51,7 @@ export function serviceJsonLd(): ServiceLd {
 	const provider = {
 		'@type': 'Person' as const,
 		name: site.operator.name,
+		alternateName: ['Sixtom', 'threesam'] as const,
 		jobTitle: site.operator.jobTitle,
 		worksFor: { '@type': 'Organization' as const, name: site.operator.currentEmployer },
 		alumniOf: { '@type': 'Organization' as const, name: site.operator.formerEmployer }
@@ -54,6 +60,7 @@ export function serviceJsonLd(): ServiceLd {
 		'@context': 'https://schema.org',
 		'@type': 'ProfessionalService',
 		name: 'SIXTOM',
+		alternateName: ['Sixtom', 'sixtom'],
 		description: site.hero.subhead,
 		priceRange: `$${String(site.audit.priceUSD)}–$${String(site.sprint.priceUSD)}`,
 		provider,

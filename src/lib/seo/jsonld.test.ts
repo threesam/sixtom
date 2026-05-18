@@ -9,6 +9,8 @@ describe('JSON-LD generators', () => {
 		expect(ld['@type']).toBe('Person')
 		expect(ld.name).toBe(site.operator.name)
 		expect(ld.jobTitle).toBe(site.operator.jobTitle)
+		expect(ld.alternateName).toContain('Sixtom')
+		expect(ld.sameAs).toContain(site.gardenUrl)
 		expect(ld.worksFor).toEqual({
 			'@type': 'Organization',
 			name: site.operator.currentEmployer
