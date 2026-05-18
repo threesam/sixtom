@@ -8,7 +8,7 @@
 	const MARQUEE_COPIES = 6
 </script>
 
-<section class="snap-section surface-light relative !justify-between">
+<section class="snap-section surface-uv relative !justify-between">
 	<div class="flex w-full flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
 			<p class="eyebrow text-sm">Not ready yet?</p>

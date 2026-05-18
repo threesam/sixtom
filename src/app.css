@@ -30,41 +30,58 @@
 		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
 		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+	font-family: 'Space Grotesk';
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('/fonts/space-grotesk.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 @plugin '@tailwindcss/container-queries';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
 @theme {
+	/* Default (dark) tokens. `.surface-uv` and `.surface-dark` override locally. */
 	--font-sans: 'Fira Mono', monospace;
 
-	/* Default (dark) surface tokens. .surface-light overrides them per-section below. */
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
 	--color-fg-muted: oklch(70.8% 0 0);
 	--color-fg-subtle: oklch(60% 0 0);
 	--color-border: oklch(26.9% 0 0);
 	--color-border-strong: oklch(37.1% 0 0);
-	/* Neon-green accent. Single value used in both light + dark sections;
-	 * decorative-emphasis only on light (fails AA-normal there, by design). */
 	--color-accent: oklch(82% 0.3 138);
 	--color-on-accent: oklch(14.5% 0 0);
 	--color-error: oklch(71.2% 0.194 13.428);
+
+	/* Glow shadow applied to accent text + buttons. None by default — only the
+	 * UV surface enables fluorescence. */
+	--shadow-accent: 0 0 0 transparent;
 }
 
-/* Per-section surface flip. Apply to <section class="snap-section surface-light">. */
-.surface-light {
-	--color-surface: oklch(96% 0.005 85);
-	--color-fg: oklch(15% 0 0);
-	--color-fg-muted: oklch(40% 0 0);
-	--color-fg-subtle: oklch(48% 0 0);
-	--color-border: oklch(85% 0.005 85);
-	--color-border-strong: oklch(70% 0.005 85);
+/* Blacklight section: deep UV-purple surface, glow on neon, Space Grotesk for
+ * editorial contrast against the dark sections' Fira Mono. Apply to
+ * <section class="snap-section surface-uv">. */
+.surface-uv {
+	--color-surface: oklch(22% 0.1 290);
+	--color-fg: oklch(95% 0.02 290);
+	--color-fg-muted: oklch(75% 0.05 290);
+	--color-fg-subtle: oklch(60% 0.05 290);
+	--color-border: oklch(35% 0.08 290);
+	--color-border-strong: oklch(48% 0.1 290);
+	--shadow-accent:
+		0 0 12px var(--color-accent), 0 0 28px color-mix(in oklch, var(--color-accent) 50%, transparent);
 	background: var(--color-surface);
 	color: var(--color-fg);
+	font-family: 'Space Grotesk', sans-serif;
 }
 
-/* Reset back to the default dark palette inside a .surface-light parent (e.g. marquee bar). */
+/* Reset to the default dark palette inside a .surface-uv parent (e.g. marquee bar). */
 .surface-dark {
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
@@ -72,8 +89,10 @@
 	--color-fg-subtle: oklch(60% 0 0);
 	--color-border: oklch(26.9% 0 0);
 	--color-border-strong: oklch(37.1% 0 0);
+	--shadow-accent: 0 0 0 transparent;
 	background: var(--color-surface);
 	color: var(--color-fg);
+	font-family: var(--font-sans);
 }
 
 @utility btn-accent {
@@ -83,12 +102,19 @@
 	border-radius: 0.375rem;
 	font-weight: 500;
 	transition: opacity 0.15s;
+	box-shadow: var(--shadow-accent);
 }
 
 @utility eyebrow {
 	color: var(--color-accent);
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
+	text-shadow: var(--shadow-accent);
+}
+
+/* Catch the remaining accent text usages (price lines, stat values, marquee stars). */
+.text-accent {
+	text-shadow: var(--shadow-accent);
 }
 
 html {
