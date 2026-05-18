@@ -83,12 +83,7 @@
 	color: var(--color-on-accent);
 	border-radius: 0.375rem;
 	font-weight: 500;
-	transition:
-		opacity 0.15s,
-		box-shadow 0.2s;
-}
-.btn-accent:hover {
-	box-shadow: 0 0 12px color-mix(in oklch, var(--color-accent) 50%, transparent);
+	transition: opacity 0.15s;
 }
 
 @utility eyebrow {
@@ -102,8 +97,7 @@
 }
 
 /* Marquee bar uses the display font + letter-spacing the T•H•R•E•E•S•A•M treatment.
- * `user-select: none` prevents drag-to-select on the animated track.
- * Hover lifts a subtle teal glow on the bar to match the color shift. */
+ * `user-select: none` prevents drag-to-select on the animated track. */
 .marquee-link .marquee-track {
 	font-family: var(--font-display);
 	letter-spacing: 0.4em;
@@ -111,12 +105,7 @@
 .marquee-link {
 	user-select: none;
 	-webkit-user-select: none;
-	transition:
-		color 0.25s,
-		text-shadow 0.25s;
-}
-.marquee-link:hover {
-	text-shadow: 0 0 8px color-mix(in oklch, var(--color-accent) 40%, transparent);
+	transition: color 0.25s;
 }
 
 html {
