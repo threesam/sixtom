@@ -4,8 +4,7 @@
 
 	let { form }: { form: FormResult | null } = $props()
 
-	// Enough copies that the seamless-loop tile covers wide viewports (4K still works).
-	const MARQUEE_COPIES = 6
+	const year = new Date().getFullYear()
 </script>
 
 <section class="snap-section bg-surface relative !justify-between">
@@ -71,22 +70,24 @@
 		</div>
 	</div>
 
-	<a
-		href={site.gardenUrl}
-		data-umami-event="cta_garden_link"
-		target="_blank"
-		rel="noopener noreferrer"
-		draggable="false"
-		aria-label="threesam.com — the garden"
-		class="surface-dark border-border text-fg hover:text-coin marquee-link block w-full overflow-hidden border-t py-6 transition-colors"
-	>
+	<footer class="border-border text-fg-subtle w-full border-t px-6 py-4 text-xs">
 		<div
-			class="marquee-track flex w-max items-center text-lg font-bold whitespace-nowrap"
-			style="--marquee-copies: {MARQUEE_COPIES};"
+			class="mx-auto flex w-full max-w-4xl flex-col items-center justify-between gap-2 sm:flex-row"
 		>
-			{#each Array(MARQUEE_COPIES), i (i)}
-				<div data-marquee-copy class="pr-2" aria-hidden="true">T • H • R • E • E • S • A • M •</div>
-			{/each}
+			<div class="flex items-center gap-4">
+				<span>© {year} sixtom</span>
+				<a href="/privacy" class="hover:text-fg transition-colors">privacy</a>
+				<a href="/terms" class="hover:text-fg transition-colors">terms</a>
+			</div>
+			<a
+				href={site.gardenUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				data-umami-event="cta_garden_link"
+				class="hover:text-coin transition-colors"
+			>
+				threesam.com →
+			</a>
 		</div>
-	</a>
+	</footer>
 </section>

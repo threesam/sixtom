@@ -18,6 +18,18 @@ export function GET(): Response {
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<url>
+		<loc>${site.siteUrl}/privacy</loc>
+		<lastmod>${today}</lastmod>
+		<changefreq>yearly</changefreq>
+		<priority>0.3</priority>
+	</url>
+	<url>
+		<loc>${site.siteUrl}/terms</loc>
+		<lastmod>${today}</lastmod>
+		<changefreq>yearly</changefreq>
+		<priority>0.3</priority>
+	</url>
 </urlset>
 `
 	return new Response(body, {

@@ -59,22 +59,6 @@
 	font-family: var(--font-display);
 }
 
-/* Re-establish the dark palette inside a .surface-uv parent (marquee bar).
- * Only the vars that .surface-uv actually changes need restating; the rest
- * (--gradient-accent, --color-on-accent, --color-error) inherit from @theme. */
-.surface-dark {
-	--color-surface: oklch(14.5% 0 0);
-	--color-fg: oklch(97% 0 0);
-	--color-fg-muted: oklch(70.8% 0 0);
-	--color-fg-subtle: oklch(60% 0 0);
-	--color-border: oklch(26.9% 0 0);
-	--color-border-strong: oklch(37.1% 0 0);
-	--shadow-accent: 0 0 0 transparent;
-	background: var(--color-surface);
-	color: var(--color-fg);
-	font-family: var(--font-sans);
-}
-
 /* Register --gradient-angle as <angle> so CSS can interpolate it on transition.
  * Without @property, the gradient would swap instantly instead of rotating. */
 @property --gradient-angle {
@@ -118,18 +102,6 @@
 	color: var(--color-accent);
 }
 
-/* Marquee bar uses the display font + letter-spacing the T•H•R•E•E•S•A•M treatment.
- * `user-select: none` prevents drag-to-select on the animated track. */
-.marquee-link .marquee-track {
-	font-family: var(--font-display);
-	letter-spacing: 0.4em;
-}
-.marquee-link {
-	user-select: none;
-	-webkit-user-select: none;
-	transition: color 0.25s;
-}
-
 html {
 	color: var(--color-fg);
 	background: var(--color-surface);
@@ -143,24 +115,4 @@ html {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-}
-
-.marquee-track {
-	animation: marquee 60s linear infinite;
-}
-
-@keyframes marquee {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		/* One copy's width — caller must set --marquee-copies on the element. */
-		transform: translateX(calc(-100% / var(--marquee-copies)));
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.marquee-track {
-		animation: none;
-	}
 }
