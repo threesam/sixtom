@@ -13,7 +13,7 @@
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.audit.name}.
 				</h3>
-				<p class="text-accent mt-3 text-xl font-semibold">
+				<p class="text-fg mt-3 text-xl font-semibold">
 					${site.audit.priceUSD}. {site.audit.cadence}
 				</p>
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
@@ -37,7 +37,7 @@
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.sprint.name}.
 				</h3>
-				<p class="text-accent mt-3 text-xl font-semibold">
+				<p class="text-fg mt-3 text-xl font-semibold">
 					${site.sprint.priceUSD.toLocaleString()}. {site.sprint.cadence}
 				</p>
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
@@ -61,17 +61,17 @@
 
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<dl class="border-border grid grid-cols-3 gap-6 border-t pt-10">
+		<dl class="grid grid-cols-3 gap-6">
 			{#each site.stats as { value, label } (label)}
 				<div>
-					<dt class="text-accent text-2xl font-bold tracking-tight md:text-4xl">{value}</dt>
-					<dd class="text-fg-subtle mt-1 text-xs tracking-widest uppercase">{label}</dd>
+					<dt class="text-fg text-3xl font-bold tracking-tight md:text-5xl">{value}</dt>
+					<dd class="text-fg-subtle mt-2 text-xs tracking-widest uppercase">{label}</dd>
 				</div>
 			{/each}
 		</dl>
 
 		<blockquote
-			class="border-border-strong text-fg-muted mt-16 border-l-2 pl-6 text-base leading-relaxed italic md:text-lg"
+			class="text-fg-muted mt-20 text-base leading-relaxed italic md:text-lg"
 		>
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
