@@ -72,7 +72,7 @@
 
 	<footer class="border-border text-fg-subtle w-full border-t px-6 py-4 text-xs">
 		<div
-			class="mx-auto flex w-full max-w-4xl flex-col items-center justify-between gap-2 sm:flex-row"
+			class="mx-auto flex w-full max-w-2xl flex-col items-center justify-between gap-2 sm:flex-row"
 		>
 			<div class="flex items-center gap-4">
 				<span>© {year} sixtom</span>
