@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types'
-	import type { LogPost } from './+page.server'
 	import { site } from '$lib/content'
 
 	let { data }: { data: PageData } = $props()
@@ -15,41 +14,6 @@
 		return dateFmt.format(new Date(iso))
 	}
 </script>
-
-{#snippet entry(post: LogPost)}
-	<article>
-		<div class="flex items-baseline gap-3">
-			{#if post.publishedAt}
-				<time
-					datetime={post.publishedAt}
-					class="text-fg-subtle group-hover:text-coin text-xs tracking-widest uppercase transition-colors"
-				>
-					{formatDate(post.publishedAt)}
-				</time>
-			{/if}
-			{#if post.pinned}
-				<span class="text-accent text-xs tracking-widest uppercase">pinned</span>
-			{/if}
-			{#if post.linkedinPermalink}
-				<span
-					aria-hidden="true"
-					class="text-fg-subtle group-hover:text-coin ml-auto text-xs transition-colors"
-				>→</span>
-			{/if}
-		</div>
-		<p
-			class="text-fg mt-4 text-base leading-relaxed break-words whitespace-pre-wrap"
-		>{post.text}</p>
-		{#if post.imageUrl}
-			<img
-				src={post.imageUrl}
-				alt=""
-				loading="lazy"
-				class="border-border mt-6 rounded-lg border"
-			/>
-		{/if}
-	</article>
-{/snippet}
 
 <svelte:head>
 	<title>log — sixtom</title>
@@ -92,19 +56,53 @@
 			<ul class="m-0 list-none p-0">
 				{#each data.posts as post (post.id)}
 					<li class="border-border border-t py-10">
-						{#if post.linkedinPermalink}
-							<a
-								href={post.linkedinPermalink}
-								target="_blank"
-								rel="noopener noreferrer"
-								data-umami-event="log_entry_click"
-								class="group block"
-							>
-								{@render entry(post)}
-							</a>
-						{:else}
-							{@render entry(post)}
-						{/if}
+						<article>
+							<div class="flex items-center gap-3">
+								{#if post.publishedAt}
+									<time
+										datetime={post.publishedAt}
+										class="text-fg-subtle text-xs tracking-widest uppercase"
+									>
+										{formatDate(post.publishedAt)}
+									</time>
+								{/if}
+								{#if post.pinned}
+									<span class="text-coin text-xs tracking-widest uppercase">pinned</span>
+								{/if}
+								{#if post.linkedinPermalink}
+									<a
+										href={post.linkedinPermalink}
+										target="_blank"
+										rel="noopener noreferrer"
+										data-umami-event="log_entry_visit_linkedin"
+										aria-label="View on LinkedIn"
+										class="text-fg-subtle hover:text-coin ml-auto -m-2 inline-flex p-2 transition-colors"
+									>
+										<svg
+											class="h-4 w-4"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+											aria-hidden="true"
+										>
+											<path
+												d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.62 0 4.29 2.38 4.29 5.48v6.26zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.07.93 2.07 2.07-.93 2.07-2.07 2.07zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"
+											/>
+										</svg>
+									</a>
+								{/if}
+							</div>
+							<p
+								class="text-fg mt-4 text-base leading-relaxed break-words whitespace-pre-wrap"
+							>{post.text}</p>
+							{#if post.imageUrl}
+								<img
+									src={post.imageUrl}
+									alt=""
+									loading="lazy"
+									class="border-border mt-6 rounded-lg border"
+								/>
+							{/if}
+						</article>
 					</li>
 				{/each}
 			</ul>
