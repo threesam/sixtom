@@ -5,7 +5,7 @@ const MARKETING_CSP = [
 	// 'unsafe-inline' covers the in-repo JSON-LD <script> block; no user input is reflected.
 	"script-src 'self' 'unsafe-inline' https://analytics.sixtom.com",
 	"style-src 'self' 'unsafe-inline'",
-	"img-src 'self' data:",
+	"img-src 'self' data: https://studio.sixtom.com",
 	"connect-src 'self' https://analytics.sixtom.com",
 	"font-src 'self'",
 	"frame-ancestors 'none'",

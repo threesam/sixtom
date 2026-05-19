@@ -12,6 +12,12 @@ export function GET(): Response {
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
+	<url>
+		<loc>${site.siteUrl}/log</loc>
+		<lastmod>${today}</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
 </urlset>
 `
 	return new Response(body, {
