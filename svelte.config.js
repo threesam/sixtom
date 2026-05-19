@@ -7,12 +7,11 @@ export default {
 	compilerOptions: { runes: true },
 	kit: {
 		adapter: adapter(),
-		// Default is relative URLs (./_app/...), which 404 from nested routes
-		// like /log when the inline style hand-off tries to load the external CSS.
+		// Root-absolute asset URLs so nested-route HTML resolves /_app/... correctly.
 		paths: { relative: false },
-		prerender: { entries: ['/sanity', '/sitemap.xml', '/privacy', '/terms'] },
-		// Inline CSS chunks under 25 KB to drop the render-blocking
-		// <link rel="stylesheet"> round-trip on a fully prerendered page.
-		inlineStyleThreshold: 25_000
+		prerender: { entries: ['/sanity', '/sitemap.xml', '/privacy', '/terms'] }
+		// inlineStyleThreshold removed: nested routes with <svelte:head> had the
+		// SSR-injected inline <style> block wiped during hydration while the
+		// fallback <link> stayed disabled, leaving the page unstyled.
 	}
 }
