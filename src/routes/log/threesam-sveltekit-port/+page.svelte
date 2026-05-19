@@ -239,6 +239,25 @@
 				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">$effect</code> — you read a component
 				and you know exactly what's reactive and why. no implicit dependency arrays to audit.
 			</p>
+			<p class="mt-4">
+				honest aside: we could have shipped the port faster. lift-and-shift, leave the dead code
+				alone, move on. instead we paused to prune — and that pass took days, not hours. the agent
+				reads every file during a port anyway, so orphan code surfaces naturally. the cost of
+				<em>noticing</em> it is essentially zero. the cost is the decision to stop and remove it.
+				that decision is worth making. the audio-reactive subsystem was setting state nothing read;
+				the <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">/api/counters</code> endpoint
+				had zero callers; the deprecated case-study routes weren't linked from anywhere. none of it
+				was doing anything — it just looked like it might be.
+			</p>
+			<p class="mt-4">
+				the payoff compounds. every change since has been faster because there's less surface area to
+				navigate. prototyping a new section is hours, not a day. tinkering with an interaction
+				doesn't start with "wait, does this audio system still matter?" a smaller codebase is a
+				faster codebase to think in. for a long-lived personal site, the time you spend pruning
+				during a re-platform pays back the next time you sit down to build something. when we do
+				this kind of work for a client, the cleanup pass isn't scope creep — it's the part that
+				makes the next year of changes cheap.
+			</p>
 		</section>
 
 		<section>
