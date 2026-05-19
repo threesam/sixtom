@@ -32,7 +32,7 @@
 					type="email"
 					required
 					autocomplete="email"
-					placeholder="you@yourdomain.com"
+					placeholder="Where should the heads-up land?"
 					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent flex-1 rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none disabled:opacity-60"
 				/>
 				<input type="hidden" name="name" value="Notify list signup" />

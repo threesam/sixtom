@@ -12,7 +12,7 @@
 
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="eyebrow text-sm">— the thesis</p>
+		<p class="eyebrow text-fg text-sm">— the thesis</p>
 		<p
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight italic md:text-5xl lg:text-6xl"
 		>
