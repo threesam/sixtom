@@ -1,14 +1,14 @@
 <svelte:head>
-	<title>we ported threesam.com to SvelteKit. here's what changed. — SIXTOM log</title>
+	<title>garden port — SIXTOM log</title>
 	<meta
 		name="description"
-		content="a 1:1 port from Next.js to SvelteKit on a canvas-heavy personal site. Lighthouse numbers, code deleted, and why framework choice should follow what the app actually does."
+		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
 	<link rel="canonical" href="https://sixtom.com/log/garden-porty" />
-	<meta property="og:title" content="we ported threesam.com to SvelteKit. here's what changed." />
+	<meta property="og:title" content="garden port" />
 	<meta
 		property="og:description"
-		content="a 1:1 port from Next.js to SvelteKit. Lighthouse numbers, 5,557 lines deleted, and why LLMs make framework choice a tactical decision instead of a strategic commitment."
+		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
 	<meta property="og:url" content="https://sixtom.com/log/garden-porty" />
 	<meta name="twitter:card" content="summary" />
@@ -18,71 +18,67 @@
 	<header class="mb-12">
 		<p class="eyebrow mb-4 text-sm">— log / 2026-05-18</p>
 		<h1
-			class="text-fg mb-6 text-3xl leading-tight font-semibold tracking-tight md:text-4xl lg:text-5xl"
+			class="text-fg mb-2 text-3xl leading-tight font-semibold tracking-tight md:text-4xl lg:text-5xl"
 		>
-			we ported threesam.com to SvelteKit.<br />here's what changed.
+			garden port
 		</h1>
+		<p class="mb-6 text-xl font-semibold md:text-2xl" style="color: var(--color-coin)">y?</p>
 		<p class="text-fg-muted text-lg leading-relaxed">
-			a 1:1 framework swap on a canvas-heavy personal site — plus a focused perf sprint after the
-			port landed. no design changes. no feature changes. the numbers are interesting.
+			a 1:1 port of <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> from Next.js to SvelteKit. here's the impulse, what we were trying to find out, and what we actually learned.
 		</p>
 	</header>
 
 	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">the reflex</h2>
+			<h2 class="text-fg mb-3 text-xl font-semibold">why</h2>
 			<p>
-				most projects reach for Next.js + React without asking the question. it's the default vibe.
-				big ecosystem, lots of examples, every AI coding tool knows it cold. that's a real reason to
-				use it — especially when you're building quickly and don't want to fight your tooling.
+				threesam.com was draft-factoried — started as a draft, kept getting built on, never revisited
+				the foundation. the framework was Next.js + React because that's what was already there, not
+				because it was chosen. that's how it goes: reach for the default, start building, accumulate.
 			</p>
 			<p class="mt-4">
-				but it's worth asking the question anyway: does this app actually benefit from a virtual
-				DOM? for <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a
-				>, the honest answer was no.
+				Sam had wanted to move to SvelteKit for a while. personally prefers it; the mental model fits
+				better for the kind of sites he builds. but it stayed in the "eventually" pile the way things
+				do when the cost of moving feels large relative to the benefit.
+			</p>
+			<p class="mt-4">
+				the impulse was simple: why not actually try, rather than just stay on the default? the cost
+				of migrating a medium-sized personal site had always been the blocker. with LLM tooling where
+				it is now, that assumption felt worth testing. so we tested it.
 			</p>
 		</section>
 
 		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">what threesam.com actually is</h2>
+			<h2 class="text-fg mb-3 text-xl font-semibold">purpose</h2>
 			<p>
-				31 generative sketches. WebGL cloud shaders. voronoi images, metaball simulations,
-				particle-text effects, a three.js scene. the site is canvas-heavy and imperative by nature —
-				things that directly touch the DOM frame-by-frame and respond to pointer events in real
-				time.
+				two questions we wanted answered:
 			</p>
 			<p class="mt-4">
-				React's value is diffing a tree and batching DOM updates. canvas and WebGL bypass the DOM
-				entirely. the component tree was already mostly <code
-					class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code
-				>
-				hooks pretending to be declarative — mount, get a canvas ref, run an imperative animation loop,
-				clean up on unmount. React's mental model was fighting the actual code shape.
+				first, the existence question: is a 1:1 port across frameworks even possible with current LLM
+				tooling? not "mostly done" or "good enough" — a complete transfer, same routes, same
+				sketches, same visual output, zero feature regressions.
 			</p>
 			<p class="mt-4">
-				Svelte's compile-time approach has no runtime vdom overhead. Svelte actions map cleanly onto
-				exactly this pattern: attach imperative behavior to a DOM node, return a destroy function.
-				it's the same code, minus the apologetic wrapping.
+				second, the degree question: if the port is possible, what level of quality can it reach?
+				visual parity with the original? performance parity? better? we wanted a real measurement
+				against a live production baseline — not a toy project, not a greenfield rewrite.
+			</p>
+			<p class="mt-4">
+				threesam.com is canvas-heavy and imperative by nature: 31 generative sketches, WebGL cloud
+				shaders, voronoi images, metaball simulations, particle-text effects, a three.js scene.
+				things that directly touch the DOM frame-by-frame. React's value is diffing a tree and
+				batching updates. canvas and WebGL bypass the DOM entirely. the component tree was already
+				mostly <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> hooks
+				pretending to be declarative. React's mental model was fighting the actual code shape — which
+				made it a good test case for whether the better-fit framework actually shows up in the numbers.
 			</p>
 		</section>
 
 		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">the port</h2>
+			<h2 class="text-fg mb-3 text-xl font-semibold">findings</h2>
 			<p>
-				1:1. no design changes, no feature changes, no content changes. SvelteKit (Svelte 5 runes) +
-				Vercel adapter replacing Next.js 15 + React 19. same routes, same sketches, same copy, same
-				visual output. the goal was an apples-to-apples measurement, not a redesign.
+				the port is possible, and the quality landed higher than the baseline. here's what we found.
 			</p>
-			<p class="mt-4">
-				the Lighthouse comparison is end-to-end: the Next.js baseline (live production) against
-				SvelteKit with all perf work applied — WebP image conversions, dynamic imports, prerendered
-				routes where possible. the baseline has CDN caching and edge delivery on its side. SvelteKit
-				still came out ahead across the board.
-			</p>
-		</section>
-
-		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">the numbers</h2>
 
 			<div class="border-border mt-6 overflow-x-auto rounded-lg border">
 				<table class="w-full text-sm">
@@ -213,12 +209,9 @@
 					<li>/shelf TTFB: 2.6s → ~0 (prerendered; Goodreads RSS fetch moved to build time).</li>
 				</ul>
 			</div>
-		</section>
 
-		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">what else got cleaner</h2>
-			<p>
-				the port was a forcing function for cleanup that was overdue. one commit deleted 5,557
+			<p class="mt-8">
+				the port was also a forcing function for cleanup that was overdue. one commit deleted 5,557
 				lines: a dead audio system, orphan hero canvas components, deprecated case-study route
 				stubs, and duplicate lib files that had been shadowing each other between the Next.js root
 				and the SvelteKit <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code
@@ -258,54 +251,25 @@
 				this kind of work for a client, the cleanup pass isn't scope creep — it's the part that
 				makes the next year of changes cheap.
 			</p>
-		</section>
 
-		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">what this unlocks</h2>
-			<p>
-				the older argument for sticking with Next.js + React — even when the fit wasn't great — was
-				cost. re-platforming was a major engineering project. weeks of refactor work, regression
-				risk, testing burden, team retraining. so studios and teams reached for the defaults and
-				stayed there. "don't fight the framework" was a cost-shaped law of nature.
-			</p>
-			<p class="mt-4">
-				that math has changed. this port was driven by an AI agent: 78 commits, multi-day
-				execution, granular and reviewable. total LLM cost was roughly tens of dollars in API
-				tokens — closer to a single consulting hour than a sprint. the 1:1 visual fidelity was
+			<p class="mt-8">
+				what we found about the cost equation: this port was driven by an AI agent — 78 commits,
+				multi-day execution, granular and reviewable. total LLM cost was roughly tens of dollars in
+				API tokens — closer to a single consulting hour than a sprint. the 1:1 visual fidelity was
 				verified by automated screenshot diffs against the live production site, route by route.
-				the result: +17.3 perf avg, every a11y / BP / SEO category held or improved, zero feature
-				regressions.
 			</p>
 			<p class="mt-4">
-				when the grunt work compresses from an engineering quarter to a few days and a small API
-				bill, the cost-benefit equation for framework choice changes completely. you're no longer
-				locked in by the cost of leaving. framework choice becomes a tactical perf bet with
-				measurable payback — not a strategic multi-year commitment.
+				that changes the math on framework choice. the older argument for staying with Next.js + React
+				— even when the fit wasn't great — was cost. re-platforming was a major engineering project.
+				weeks of refactor work, regression risk, testing burden, team retraining. so studios and teams
+				reached for the defaults and stayed there. when the grunt work compresses from an engineering
+				quarter to a few days and a small API bill, that constraint melts. framework choice becomes a
+				tactical perf bet with measurable payback — not a strategic multi-year commitment.
 			</p>
 			<p class="mt-4">
-				this isn't a svelte-beats-react take. it's a meta-point: pick the tool that fits your
-				app's actual shape. the constraint that used to lock you in has melted. you can read what
-				an app actually does, pick accordingly, measure the win, and know whether it was worth it.
-				sometimes that answer is Next.js. here it wasn't.
-			</p>
-		</section>
-
-		<section>
-			<h2 class="text-fg mb-3 text-xl font-semibold">the takeaway</h2>
-			<p>
-				framework choice should follow what the app actually does. threesam.com imperatively touches
-				the DOM at 60fps — it was always paying for vdom overhead without getting anything back.
-			</p>
-			<p class="mt-4">
-				picking the non-standard tool isn't always the bold move. sometimes it's just the measured
-				one. when the math works, it works. the numbers above compare Next.js live-production —
-				CDN, edge delivery, the works — against SvelteKit with perf work applied. SvelteKit wins
-				on all 9 perf scores, avg +17.3, best +35 on /.
-			</p>
-			<p class="mt-4">
-				this is what the audit + sprint model is actually for. not reaching for whatever the default
-				vibe is, but reading what an app actually does and picking the tool that fits. and with
-				LLMs compressing the migration cost, that choice is finally worth revisiting.
+				this isn't a svelte-beats-react take. it's a meta-point: pick the tool that fits your app's
+				actual shape. you can read what an app actually does, pick accordingly, measure the win, and
+				know whether it was worth it. sometimes that answer is Next.js. here it wasn't.
 			</p>
 		</section>
 
