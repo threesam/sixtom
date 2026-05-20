@@ -37,27 +37,32 @@
 </svelte:head>
 
 <!-- case studies -->
-{#each LOG_ENTRIES as entry (entry.slug)}
-	<article class="mb-12 md:mb-20">
-		<LogHero
-			href={`/log/${entry.slug}`}
-			title={entry.title}
-			eyebrow={entry.eyebrow}
-			heroImage={entry.heroImage}
-			clickable={true}
-			headingLevel={2}
-		/>
-		<div class="mx-auto w-full max-w-2xl px-6 py-6 md:py-8">
-			<p class="text-fg-muted text-base leading-relaxed md:text-lg">{entry.blurb}</p>
-			<a
-				href={`/log/${entry.slug}`}
-				class="text-accent mt-3 inline-block text-sm font-medium hover:underline"
-			>
-				read →
-			</a>
-		</div>
-	</article>
-{/each}
+<div class="bg-surface">
+	{#each LOG_ENTRIES as entry (entry.slug)}
+		<article class="mx-auto mb-12 w-full max-w-3xl px-6 pt-12 md:mb-20 md:pt-20">
+			<div class="overflow-hidden rounded-lg">
+				<LogHero
+					id={entry.slug}
+					href={`/log/${entry.slug}`}
+					title={entry.title}
+					eyebrow={entry.eyebrow}
+					heroImage={entry.heroImage}
+					clickable={true}
+					headingLevel={2}
+				/>
+			</div>
+			<div class="py-6 md:py-8">
+				<p class="text-fg-muted text-base leading-relaxed md:text-lg">{entry.blurb}</p>
+				<a
+					href={`/log/${entry.slug}`}
+					class="text-fg-subtle hover:text-coin mt-3 inline-block text-xs tracking-widest uppercase transition-colors"
+				>
+					read →
+				</a>
+			</div>
+		</article>
+	{/each}
+</div>
 
 <!-- linkedin feed -->
 <div class="bg-surface min-h-screen">
