@@ -32,58 +32,53 @@
 <article class="mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
 	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<p class="text-fg-muted text-lg leading-relaxed">
-			my wife offered me tea. i chose 'garden party.' it landed me on the impulse i'd been deferring — port my digital garden over to the framework i actually wanted to use. a 1:1 swap of <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> from Next.js to SvelteKit, no design changes, no feature changes. here's what we found.
+			my wife offered me tea. i picked 'garden party.' that's how i ended up porting <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> from Next.js to SvelteKit — same routes, same design, same everything. a 1:1 swap. here's what happened.
 		</p>
 
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">why</h2>
 			<p>
-				threesam.com was draft-factoried — started as a draft, kept getting built on, never revisited
-				the foundation. the framework was Next.js + React because that's what was already there, not
-				because it was chosen. that's how it goes: reach for the default, start building, accumulate.
+				threesam.com was draft-factoried. started as a draft, kept getting built on, never revisited
+				the foundation. Next.js + React because that's what was already there. not because i chose
+				it. that's how defaults work — you reach for them once and then they're just the thing you're
+				using.
 			</p>
 			<p class="mt-4">
-				Sam had wanted to move to SvelteKit for a while. personally prefers it; the mental model fits
-				better for the kind of sites he builds. but it stayed in the "eventually" pile the way things
-				do when the cost of moving feels large relative to the benefit.
+				i'd wanted SvelteKit for a while. the mental model fits better for the kind of sites i build.
+				but it sat in the eventually pile the way things do when the cost of switching feels bigger
+				than the benefit of fixing.
 			</p>
 			<p class="mt-4">
-				the impulse was simple: why not actually try, rather than just stay on the default? the cost
-				of migrating a medium-sized personal site had always been the blocker. with LLM tooling where
-				it is now, that assumption felt worth testing. so we tested it.
+				with LLM tooling where it is now, that assumption felt worth testing. so we tested it.
 			</p>
 		</section>
 
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">purpose</h2>
 			<p>
-				two questions we wanted answered:
+				two questions. is a 1:1 port across frameworks even possible? not "mostly done" — a complete
+				transfer, same routes, same sketches, same visual output, zero regressions. and if it's
+				possible, how good can it get? visual parity? performance parity? better?
 			</p>
 			<p class="mt-4">
-				first, the existence question: is a 1:1 port across frameworks even possible with current LLM
-				tooling? not "mostly done" or "good enough" — a complete transfer, same routes, same
-				sketches, same visual output, zero feature regressions.
+				we wanted a real measurement against a live production baseline. not a toy project. not a
+				greenfield rewrite.
 			</p>
 			<p class="mt-4">
-				second, the degree question: if the port is possible, what level of quality can it reach?
-				visual parity with the original? performance parity? better? we wanted a real measurement
-				against a live production baseline — not a toy project, not a greenfield rewrite.
-			</p>
-			<p class="mt-4">
-				threesam.com is canvas-heavy and imperative by nature: 31 generative sketches, WebGL cloud
-				shaders, voronoi images, metaball simulations, particle-text effects, a three.js scene.
-				things that directly touch the DOM frame-by-frame. React's value is diffing a tree and
-				batching updates. canvas and WebGL bypass the DOM entirely. the component tree was already
-				mostly <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> hooks
-				pretending to be declarative. React's mental model was fighting the actual code shape — which
-				made it a good test case for whether the better-fit framework actually shows up in the numbers.
+				threesam.com made it a good test. canvas-heavy and imperative by nature: 31 generative
+				sketches, WebGL cloud shaders, voronoi images, metaball simulations, particle-text effects,
+				a three.js scene. things that touch the DOM frame-by-frame. React's value is diffing a tree
+				and batching updates. canvas and WebGL bypass the DOM entirely. the component tree was
+				already mostly <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> hooks
+				pretending to be declarative — React's mental model fighting the actual code shape. which
+				made it a clean test case: does the better-fit framework actually show up in the numbers?
 			</p>
 		</section>
 
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">findings</h2>
 			<p>
-				the port is possible, and the quality landed higher than the baseline. here's what we found.
+				it's possible. and it landed higher than the baseline.
 			</p>
 
 			<div class="border-border mt-6 overflow-x-auto rounded-lg border">
@@ -217,21 +212,19 @@
 			</div>
 
 			<p class="mt-8">
-				the port was also a forcing function for cleanup that was overdue. one commit deleted 5,557
-				lines: a dead audio system, orphan hero canvas components, deprecated case-study route
-				stubs, and duplicate lib files that had been shadowing each other between the Next.js root
-				and the SvelteKit <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code
-				> tree.
+				the port was a pruning pass too. one commit deleted 5,557 lines: a dead audio system, orphan
+				hero canvas components, deprecated case-study route stubs, duplicate lib files shadowing
+				each other between the Next.js root and the SvelteKit <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code> tree.
 			</p>
 			<p class="mt-4">
-				the component shape got simpler too. canvas logic that had been jammed into
+				the component shape got simpler. canvas logic that had been jammed into
 				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> cleanup cycles
-				— with the usual footguns around stale refs, double-mounts in strict mode, and cleanup ordering
-				— moved into Svelte actions. an action is: here's a node, do something to it, here's how to undo
-				it. that's the exact shape the sketches were already written in. the friction disappeared.
+				— stale refs, double-mounts in strict mode, cleanup ordering — moved into Svelte actions. an
+				action is: here's a node, do something to it, here's how to undo it. that's the exact shape
+				the sketches were already written in. the friction disappeared.
 			</p>
 			<p class="mt-4">
-				Svelte 5 runes also made reactivity more explicit. <code
+				Svelte 5 runes made reactivity explicit. <code
 					class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">$state</code
 				>,
 				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">$derived</code>,
@@ -239,52 +232,48 @@
 				and you know exactly what's reactive and why. no implicit dependency arrays to audit.
 			</p>
 			<p class="mt-4">
-				honest aside: we could have shipped the port faster. lift-and-shift, leave the dead code
-				alone, move on. instead we paused to prune — and that pass took days, not hours. the agent
-				reads every file during a port anyway, so orphan code surfaces naturally. the cost of
-				<em>noticing</em> it is essentially zero. the cost is the decision to stop and remove it.
-				that decision is worth making. the audio-reactive subsystem was setting state nothing read;
-				the <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">/api/counters</code> endpoint
+				we could have shipped the port faster. lift-and-shift, leave the dead code alone, move on.
+				instead we paused to prune — and that pass took days, not hours. the agent reads every file
+				during a port anyway, so orphan code surfaces naturally. the cost of <em>noticing</em> it is
+				essentially zero. the cost is deciding to stop and remove it. worth making. the audio-reactive
+				subsystem was setting state nothing read; the <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">/api/counters</code> endpoint
 				had zero callers; the deprecated case-study routes weren't linked from anywhere. none of it
 				was doing anything — it just looked like it might be.
 			</p>
 			<p class="mt-4">
-				the payoff compounds. every change since has been faster because there's less surface area to
-				navigate. prototyping a new section is hours, not a day. tinkering with an interaction
-				doesn't start with "wait, does this audio system still matter?" a smaller codebase is a
-				faster codebase to think in. for a long-lived personal site, the time you spend pruning
-				during a re-platform pays back the next time you sit down to build something. when we do
-				this kind of work for a client, the cleanup pass isn't scope creep — it's the part that
-				makes the next year of changes cheap.
+				every change since has been faster. less surface area. prototyping a new section is hours,
+				not a day. tinkering with an interaction doesn't start with "wait, does this audio system
+				still matter?" a smaller codebase is a faster codebase to think in. for a long-lived
+				personal site, the time spent pruning during a re-platform pays back the next time you sit
+				down to build something. when we do this for a client, the cleanup pass isn't scope creep —
+				it's the part that makes the next year of changes cheap.
 			</p>
 
 			<p class="mt-8">
-				what we found about the cost equation: this port was driven by an AI agent — 78 commits,
-				multi-day execution, granular and reviewable. total LLM cost was roughly tens of dollars in
-				API tokens — closer to a single consulting hour than a sprint. the 1:1 visual fidelity was
-				verified by automated screenshot diffs against the live production site, route by route.
+				this port was driven by an AI agent — 78 commits, multi-day execution, granular and
+				reviewable. total LLM cost was roughly tens of dollars in API tokens. closer to a single
+				consulting hour than a sprint. the 1:1 visual fidelity was verified by automated screenshot
+				diffs against the live production site, route by route.
 			</p>
 			<p class="mt-4">
-				that changes the math on framework choice. the older argument for staying with Next.js + React
-				— even when the fit wasn't great — was cost. re-platforming was a major engineering project.
-				weeks of refactor work, regression risk, testing burden, team retraining. so studios and teams
-				reached for the defaults and stayed there. when the grunt work compresses from an engineering
-				quarter to a few days and a small API bill, that constraint melts. framework choice becomes a
-				tactical perf bet with measurable payback — not a strategic multi-year commitment.
+				that changes the math on framework choice. the old argument for staying on Next.js + React —
+				even when the fit was bad — was cost. re-platforming meant weeks of refactor work, regression
+				risk, team retraining. studios and teams reached for the defaults and stayed there. when that
+				work compresses to a few days and a small API bill, the constraint melts. framework choice
+				becomes a tactical bet with measurable payback — not a multi-year commitment you're locked
+				into.
 			</p>
 			<p class="mt-4">
-				this isn't a svelte-beats-react take. it's a meta-point: pick the tool that fits your app's
-				actual shape. you can read what an app actually does, pick accordingly, measure the win, and
-				know whether it was worth it. sometimes that answer is Next.js. here it wasn't.
+				this isn't a svelte-beats-react take. the point is: you can read what an app actually does,
+				pick accordingly, and know whether it paid off. sometimes that answer is Next.js. here it
+				wasn't.
 			</p>
 		</section>
 
 		<footer class="border-border mt-12 border-t pt-8">
 			<p class="text-fg-muted text-sm">
-				the result is live at <a href="https://threesam.com" class="text-accent hover:underline"
-					>threesam.com</a
-				>. if you've been side-eyeing your stack because the cost of moving felt too high — that
-				math has changed. <a href="/" class="text-accent hover:underline">happy to talk</a>.
+				live at <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a>.
+				if your stack has been sitting in the eventually pile — <a href="/" class="text-accent hover:underline">let's talk</a>.
 			</p>
 		</footer>
 	</div>
