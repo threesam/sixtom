@@ -7,8 +7,12 @@
 		<p class="eyebrow text-sm">two ways in</p>
 		<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">Start small. Or go.</h2>
 
-		<div class="mt-12 grid gap-8 md:grid-cols-2">
-			<article class="border-border flex flex-col rounded-lg border p-8">
+		<div
+			class="-mx-6 mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-px-6 px-6 pb-4 md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0"
+		>
+			<article
+				class="border-border flex w-[80vw] shrink-0 snap-start flex-col rounded-lg border p-8 md:w-auto"
+			>
 				<p class="eyebrow text-xs">step 1 — start here</p>
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.audit.name}.
@@ -32,7 +36,9 @@
 				</div>
 			</article>
 
-			<article class="border-border-strong ring-border flex flex-col rounded-lg border p-8 ring-1">
+			<article
+				class="border-border-strong ring-border flex w-[80vw] shrink-0 snap-start flex-col rounded-lg border p-8 ring-1 md:w-auto"
+			>
 				<p class="eyebrow text-xs">step 2 — when you're ready</p>
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					The {site.sprint.name}.
