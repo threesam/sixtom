@@ -1,0 +1,57 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link "← sixtom" [ref=e7] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e8]: the log
+      - heading "What I'm shipping, in public." [level=1] [ref=e9]
+      - paragraph [ref=e10]: Posts as they hit LinkedIn. Notes, builds, opinions, the occasional rant.
+    - list [ref=e11]:
+      - listitem [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.linkedin.com/feed/update/urn:li:share:7462504109905117184
+          - article [ref=e14]:
+            - generic [ref=e15]:
+              - time [ref=e16]: May 19, 2026
+              - generic [ref=e17]: →
+            - paragraph [ref=e18]: domain experts can build with AI but can they ship? 🚢💨 not without the last mile. i'm onboarding folks who in their first week fire 30k lines out of a cannon before fully understanding what a PR is. what they can't do is the part that turns "it works on my machine" into "it lives in a codebase without busting the next person's vibes." merge conflicts. design system drift. security review. the test suite. the guardrails we set up for Claude's next battle. am i a code-review bot? a Claude whisperer? more like a reformed control freak helping a startup's internals survive five non-engineers shipping multiple times a day. whatever we call that now, it's the job.
+      - listitem [ref=e19]:
+        - link [ref=e20] [cursor=pointer]:
+          - /url: https://www.linkedin.com/feed/update/urn:li:share:7461778354963120128
+          - article [ref=e21]:
+            - generic [ref=e22]:
+              - time [ref=e23]: May 17, 2026
+              - generic [ref=e24]: →
+            - paragraph [ref=e25]: i've been coding for about how long i've been a dad, 8 years. i've been using AI seriously for 8 months. some days i feel like i'm running circles around me a year ago. some days things get launched that i wouldn't have even swung on. other days i feel like i'm playing pretend, like the fire i've been given will burn out just as quick as it started. maybe. but whatever's happening is too new for anyone to actually feel like they belong, so just keep shipping until the doubt fades to noise. ✌️
+      - listitem [ref=e26]:
+        - link [ref=e27] [cursor=pointer]:
+          - /url: https://www.linkedin.com/feed/update/urn:li:share:7460692370108628993
+          - article [ref=e28]:
+            - generic [ref=e29]:
+              - time [ref=e30]: May 14, 2026
+              - generic [ref=e31]: →
+            - paragraph [ref=e32]: rules people have to hold in their head rarely transfer to their hands. i want to go fast. i want my team to go fast. and i want to scale — not spend my productivity gains policing standards after the fact. so i flipped every type to strict. every lint rule to error. every function necessary and tested. in practice, three Claude agents (and me) cleared 320 violations in 10 minutes, validated in 20. the kind of "nice to have" that i never would have gotten around to. a dark factory should have neon guardrails.
+      - listitem [ref=e33]:
+        - link [ref=e34] [cursor=pointer]:
+          - /url: https://www.linkedin.com/feed/update/urn:li:share:7460329867750842368
+          - article [ref=e35]:
+            - generic [ref=e36]:
+              - time [ref=e37]: May 13, 2026
+              - generic [ref=e38]: →
+            - paragraph [ref=e39]: rules people have to hold in their head rarely transfer to their hands. i want to go fast. i want my team to go fast. and i want to scale — not spend my productivity gains policing standards after the fact. so i flipped every type to strict. every lint rule to error. every function necessary and tested. in practice, three Claude agents (and me) cleared 320 violations in 10 minutes, validated in 20. the kind of "nice to have" that i never would have gotten around to. a dark factory should have neon guardrails.
+      - listitem [ref=e40]:
+        - link [ref=e41] [cursor=pointer]:
+          - /url: https://www.linkedin.com/feed/update/urn:li:share:7459603354135138304
+          - article [ref=e42]:
+            - generic [ref=e43]:
+              - time [ref=e44]: May 11, 2026
+              - generic [ref=e45]: →
+            - paragraph [ref=e46]: "everyone's looking for 10x productivity in the wrong seat. it's not your engineers. the pairing nobody's measuring: a domain expert — ops lead, finance analyst, growth marketer, founder — driving agents, and an engineer supervising the diff. process can't be an afterthought and documentation is key infrastructure. pair programming takes on a new meaning."
+      - listitem [ref=e47]:
+        - link [ref=e48] [cursor=pointer]:
+          - /url: https://www.linkedin.com/feed/update/urn:li:share:7457434077999222784
+          - article [ref=e49]:
+            - generic [ref=e50]:
+              - time [ref=e51]: May 5, 2026
+              - generic [ref=e52]: →
+            - paragraph [ref=e53]: synaptic slop. 5x productive. 5x less fulfilled. i let claude do the things i used to do myself. the context window remembers what i was building. i don't. paid for the destination with the journey. not sure that math is mathing.

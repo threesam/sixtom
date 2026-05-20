@@ -14,7 +14,7 @@
 					The {site.audit.name}.
 				</h3>
 				<p class="text-fg mt-3 text-xl font-semibold">
-					${site.audit.priceUSD}. {site.audit.cadence}
+					${site.audit.priceUSD.toLocaleString()}. {site.audit.cadence}
 				</p>
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
 					{site.audit.promise}
@@ -40,6 +40,12 @@
 				<p class="text-fg mt-3 text-xl font-semibold">
 					${site.sprint.priceUSD.toLocaleString()}. {site.sprint.cadence}
 				</p>
+				{#if site.sprint.introPriceUSD && site.sprint.introNote}
+					<p class="text-fg-subtle mt-1 text-sm">
+						Intro rate ${site.sprint.introPriceUSD.toLocaleString()} for the {site.sprint
+							.introNote}.
+					</p>
+				{/if}
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
 					{site.sprint.promise}
 				</p>

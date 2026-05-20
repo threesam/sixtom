@@ -19,6 +19,8 @@ export interface Offer {
 	priceUSD: number
 	cadence: string
 	promise: string
+	introPriceUSD?: number
+	introNote?: string
 }
 
 export interface ProcessStep {
