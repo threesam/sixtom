@@ -4,13 +4,13 @@
 		name="description"
 		content="a 1:1 port from Next.js to SvelteKit on a canvas-heavy personal site. Lighthouse numbers, code deleted, and why framework choice should follow what the app actually does."
 	/>
-	<link rel="canonical" href="https://sixtom.com/log/threesam-sveltekit-port" />
+	<link rel="canonical" href="https://sixtom.com/log/garden-porty" />
 	<meta property="og:title" content="we ported threesam.com to SvelteKit. here's what changed." />
 	<meta
 		property="og:description"
 		content="a 1:1 port from Next.js to SvelteKit. Lighthouse numbers, 5,557 lines deleted, and why LLMs make framework choice a tactical decision instead of a strategic commitment."
 	/>
-	<meta property="og:url" content="https://sixtom.com/log/threesam-sveltekit-port" />
+	<meta property="og:url" content="https://sixtom.com/log/garden-porty" />
 	<meta name="twitter:card" content="summary" />
 </svelte:head>
 
