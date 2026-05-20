@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types'
 	import { site } from '$lib/content'
+	import LogHero from '$lib/components/LogHero.svelte'
+	import { LOG_ENTRIES } from '$lib/log'
 
 	let { data }: { data: PageData } = $props()
 
@@ -29,8 +31,35 @@
 	/>
 	<meta property="og:url" content={`${site.siteUrl}/log`} />
 	<meta property="og:type" content="website" />
+	{#if LOG_ENTRIES[0]}
+		<link rel="preload" as="image" href={LOG_ENTRIES[0].heroImage} />
+	{/if}
 </svelte:head>
 
+<!-- case studies -->
+{#each LOG_ENTRIES as entry (entry.slug)}
+	<article class="mb-12 md:mb-20">
+		<LogHero
+			href={`/log/${entry.slug}`}
+			title={entry.title}
+			eyebrow={entry.eyebrow}
+			heroImage={entry.heroImage}
+			clickable={true}
+			headingLevel={2}
+		/>
+		<div class="mx-auto w-full max-w-2xl px-6 py-6 md:py-8">
+			<p class="text-fg-muted text-base leading-relaxed md:text-lg">{entry.blurb}</p>
+			<a
+				href={`/log/${entry.slug}`}
+				class="text-accent mt-3 inline-block text-sm font-medium hover:underline"
+			>
+				read →
+			</a>
+		</div>
+	</article>
+{/each}
+
+<!-- linkedin feed -->
 <div class="bg-surface min-h-screen">
 	<div class="mx-auto w-full max-w-3xl px-6 py-20">
 		<header class="mb-20">
@@ -42,9 +71,9 @@
 				← sixtom
 			</a>
 			<p class="eyebrow mt-12 text-sm">the log</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">
+			<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">
 				What I'm shipping, in public.
-			</h1>
+			</h2>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				Posts as they hit LinkedIn. Notes, builds, opinions, the occasional rant.
 			</p>
@@ -91,9 +120,9 @@
 									</a>
 								{/if}
 							</div>
-							<p
-								class="text-fg mt-4 text-base leading-relaxed break-words whitespace-pre-wrap"
-							>{post.text}</p>
+							<p class="text-fg mt-4 text-base leading-relaxed break-words whitespace-pre-wrap"
+								>{post.text}</p
+							>
 							{#if post.imageUrl}
 								<img
 									src={post.imageUrl}

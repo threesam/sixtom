@@ -1,0 +1,13 @@
+import { chromium } from '@playwright/test'
+const b = await chromium.launch({ headless: true })
+const ctx = await b.newContext({ viewport: { width: 1280, height: 800 } })
+const p = await ctx.newPage()
+await p.goto('http://localhost:5173/log')
+await p.waitForTimeout(500)
+const card = p.locator('a[href="/log/garden-porty"]').first()
+await card.click()
+await p.waitForURL('**/log/garden-porty', { timeout: 2000 })
+console.log('navigated to:', p.url())
+const h1 = await p.locator('h1').first().textContent()
+console.log('h1:', h1)
+await b.close()

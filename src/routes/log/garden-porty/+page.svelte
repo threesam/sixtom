@@ -1,3 +1,7 @@
+<script lang="ts">
+	import LogHero from '$lib/components/LogHero.svelte'
+</script>
+
 <svelte:head>
 	<title>garden port — SIXTOM log</title>
 	<meta
@@ -15,23 +19,14 @@
 	<link rel="preload" as="image" href="/assets/clouds.webp" />
 </svelte:head>
 
-<!-- HERO: clouds + H1 overlaid -->
-<section class="relative h-[55dvh] w-full overflow-hidden md:h-[65dvh]">
-	<img
-		src="/assets/clouds.webp"
-		alt=""
-		aria-hidden="true"
-		class="absolute inset-0 h-full w-full object-cover"
-		fetchpriority="high"
-	/>
-	<p class="eyebrow absolute top-6 left-6 text-sm md:top-10 md:left-10" style="color: var(--color-coin)">— log / 2026-05-18</p>
-	<h1
-		class="pointer-events-none absolute bottom-6 left-6 z-10 font-mono text-4xl font-bold uppercase tracking-[0.08em] md:bottom-12 md:left-12 md:text-7xl"
-		style="color: var(--color-coin)"
-	>
-		garden port
-	</h1>
-</section>
+<LogHero
+	href="/log/garden-porty"
+	title="garden port"
+	eyebrow="— log / 2026-05-18"
+	heroImage="/assets/clouds.webp"
+	clickable={false}
+	headingLevel={1}
+/>
 
 <!-- READ BOX -->
 <article class="mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
