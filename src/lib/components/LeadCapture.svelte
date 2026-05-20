@@ -76,6 +76,7 @@
 		>
 			<div class="flex items-center gap-4">
 				<span>© {year} sixtom</span>
+				<a href="/log" class="hover:text-fg transition-colors">log</a>
 				<a href="/privacy" class="hover:text-fg transition-colors">privacy</a>
 				<a href="/terms" class="hover:text-fg transition-colors">terms</a>
 			</div>
