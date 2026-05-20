@@ -3,7 +3,7 @@
 </script>
 
 <section id="offers" class="snap-section bg-surface">
-	<div class="mx-auto w-full max-w-4xl px-6">
+	<div class="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
 		<p class="eyebrow text-sm">two ways in</p>
 		<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">Start small. Or go.</h2>
 
@@ -67,7 +67,7 @@
 
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<dl class="grid grid-cols-3 gap-6">
+		<dl class="grid grid-cols-1 gap-6 md:grid-cols-3">
 			{#each site.stats as { value, label } (label)}
 				<div>
 					<dt class="text-fg text-3xl font-bold tracking-tight md:text-5xl">{value}</dt>
