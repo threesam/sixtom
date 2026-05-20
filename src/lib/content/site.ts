@@ -7,40 +7,40 @@ export const site: Site = {
 	bookingUrl: 'https://cal.com/sam-dangelo/sprint-intro',
 	gardenUrl: 'https://threesam.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
-	thesis: 'Vibe coding is how you slowly become the intern of your own codebase.',
+	thesis: 'vibe coding is how you slowly become the intern of your own codebase.',
 	thesisBody:
-		'AI gets you to a demo. Agents do the typing. I do the judgment. Together we ship a product.',
+		'AI gets you to a demo. agents do the typing. i do the judgment. together we ship a product.',
 	hero: {
-		h1: 'AI ships demos. I ship products.',
+		h1: 'AI ships demos. i ship products.',
 		subhead:
-			'I run a fleet of agents in parallel. They type, I judge. Two weeks to a working version live in production. Daily drops. No calendar tetris.',
-		ctaPrimary: 'Book a 30-min intro call',
-		ctaSecondary: 'Notify me'
+			"i run a fleet of agents in parallel. they type, i judge. two weeks to a working version live in production. daily drops. no calendar tetris.",
+		ctaPrimary: 'book a 30-min intro call',
+		ctaSecondary: 'notify me'
 	},
 	operator: {
 		name: "Sam D'Angelo",
-		jobTitle: 'Lead Engineer',
+		jobTitle: 'lead engineer',
 		currentEmployer: 'Made In Cookware',
 		formerEmployer: 'Rhone',
-		credentialsChip: 'Lead engineer at Made In Cookware. Formerly at Rhone.'
+		credentialsChip: 'lead engineer at Made In Cookware. formerly at Rhone.'
 	},
 	audit: {
-		name: 'Audit',
+		name: 'audit',
 		longName: 'the audit',
 		priceUSD: 1500,
 		cadence: 'turnaround within a week.',
 		promise:
-			"Send me your repo and the thing you've been trying to ship. I send back a 1-pager and a 15-min Loom — what's blocking, what I'd do, whether a sprint makes sense. Credited toward a sprint if you book within 30 days."
+			"send me your repo and the thing you've been trying to ship. i send back a 1-pager and a 15-min Loom — what's blocking, what i'd do, whether a sprint makes sense. credited toward a sprint if you book within 30 days."
 	},
 	sprint: {
-		name: 'Async Sprint',
+		name: 'async sprint',
 		longName: 'async sprint',
 		priceUSD: 10000,
 		introPriceUSD: 7500,
 		introNote: 'first 3 clients',
 		cadence: '1 client a month, by appointment.',
 		promise:
-			'Two weeks. Agents do the typing — drafts, fixes, accessibility passes, the boring 10%. I do the judgment. Daily drops. Live in production on day 10.'
+			'two weeks. agents do the typing — drafts, fixes, accessibility passes, the boring 10%. i do the judgment. daily drops. live in production on day 10.'
 	},
 	process: [
 		{

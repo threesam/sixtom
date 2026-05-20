@@ -5,7 +5,7 @@
 <section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
 		<p class="eyebrow text-sm">two ways in</p>
-		<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">Start small. Or go.</h2>
+		<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">start small. or go.</h2>
 
 		<div
 			class="-mx-6 mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-px-6 px-6 pb-4 md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0"
@@ -15,7 +15,7 @@
 			>
 				<p class="eyebrow text-xs">step 1 — start here</p>
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
-					The {site.audit.name}.
+					the {site.audit.name}.
 				</h3>
 				<p class="text-fg mt-3 text-xl font-semibold">
 					${site.audit.priceUSD.toLocaleString()}. {site.audit.cadence}
@@ -31,7 +31,7 @@
 						rel="noopener noreferrer"
 						target="_blank"
 					>
-						Start the audit →
+						start the audit →
 					</a>
 				</div>
 			</article>
@@ -41,14 +41,14 @@
 			>
 				<p class="eyebrow text-xs">step 2 — when you're ready</p>
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
-					The {site.sprint.name}.
+					the {site.sprint.name}.
 				</h3>
 				<p class="text-fg mt-3 text-xl font-semibold">
 					${site.sprint.priceUSD.toLocaleString()}. {site.sprint.cadence}
 				</p>
 				{#if site.sprint.introPriceUSD && site.sprint.introNote}
 					<p class="text-fg-subtle mt-1 text-sm">
-						Intro rate ${site.sprint.introPriceUSD.toLocaleString()} for the {site.sprint
+						intro rate ${site.sprint.introPriceUSD.toLocaleString()} for the {site.sprint
 							.introNote}.
 					</p>
 				{/if}
@@ -63,7 +63,7 @@
 						rel="noopener noreferrer"
 						target="_blank"
 					>
-						Book the call →
+						book the call →
 					</a>
 				</div>
 			</article>

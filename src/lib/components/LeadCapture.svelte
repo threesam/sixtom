@@ -10,12 +10,12 @@
 <section class="snap-section bg-surface relative !justify-between">
 	<div class="flex w-full flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<p class="eyebrow text-sm">Not ready yet?</p>
+			<p class="eyebrow text-sm">not ready yet?</p>
 			<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
-				Heads-up when the next slot opens.
+				heads-up when the next slot opens.
 			</h2>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
-				One client a month. Drop your email and I'll let you know when I'm taking the next one.
+				one client a month. drop your email and i'll let you know when i'm taking the next one.
 			</p>
 
 			<form
