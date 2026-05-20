@@ -12,23 +12,34 @@
 	/>
 	<meta property="og:url" content="https://sixtom.com/log/garden-porty" />
 	<meta name="twitter:card" content="summary" />
+	<link rel="preload" as="image" href="/assets/clouds.webp" />
 </svelte:head>
 
+<!-- HERO: clouds + H1 overlaid -->
+<section class="relative h-[55dvh] w-full overflow-hidden md:h-[65dvh]">
+	<img
+		src="/assets/clouds.webp"
+		alt=""
+		aria-hidden="true"
+		class="absolute inset-0 h-full w-full object-cover"
+		fetchpriority="high"
+	/>
+	<p class="eyebrow absolute top-6 left-6 text-sm md:top-10 md:left-10" style="color: var(--color-coin)">— log / 2026-05-18</p>
+	<h1
+		class="pointer-events-none absolute bottom-6 left-6 z-10 font-mono text-4xl font-bold uppercase tracking-[0.08em] md:bottom-12 md:left-12 md:text-7xl"
+		style="color: var(--color-coin)"
+	>
+		garden port
+	</h1>
+</section>
+
+<!-- READ BOX -->
 <article class="mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
-	<header class="mb-12">
-		<p class="eyebrow mb-4 text-sm">— log / 2026-05-18</p>
-		<h1
-			class="text-fg mb-2 text-3xl leading-tight font-semibold tracking-tight md:text-4xl lg:text-5xl"
-		>
-			garden port
-		</h1>
-		<p class="mb-6 text-xl font-semibold md:text-2xl" style="color: var(--color-coin)">y?</p>
+	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<p class="text-fg-muted text-lg leading-relaxed">
 			a 1:1 port of <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> from Next.js to SvelteKit. here's the impulse, what we were trying to find out, and what we actually learned.
 		</p>
-	</header>
 
-	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">why</h2>
 			<p>
