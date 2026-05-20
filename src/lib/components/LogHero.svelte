@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation'
 
 	interface Props {
+		id?: string
 		href: string
 		title: string
 		eyebrow: string
@@ -12,6 +13,7 @@
 	}
 
 	let {
+		id,
 		href,
 		title,
 		eyebrow,
@@ -27,16 +29,16 @@
 		if (!clickable) return
 		if (e.metaKey || e.ctrlKey || e.shiftKey) return
 		e.preventDefault()
-		if (cardEl) {
-			cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
-			await new Promise((r) => setTimeout(r, 500))
-		}
+		if (id) history.replaceState(null, '', `#${id}`)
+		cardEl?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+		await new Promise((r) => setTimeout(r, 500))
 		await goto(href)
 	}
 </script>
 
 <a
 	bind:this={cardEl}
+	{id}
 	{href}
 	onclick={navigate}
 	class="log-hero-card relative block h-[35dvh] w-full overflow-hidden md:h-[45dvh]"
@@ -51,21 +53,21 @@
 		fetchpriority="high"
 	/>
 	<p
-		class="eyebrow absolute top-6 left-6 text-sm md:top-10 md:left-10"
+		class="eyebrow absolute top-6 left-1/2 z-10 -translate-x-1/2 text-sm md:top-8"
 		style="color: {accentColor}"
 	>
 		{eyebrow}
 	</p>
 	{#if headingLevel === 1}
 		<h1
-			class="pointer-events-none absolute bottom-6 left-6 z-10 font-mono text-4xl font-bold uppercase tracking-[0.08em] md:bottom-12 md:left-12 md:text-7xl"
+			class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6 text-center font-mono text-4xl font-bold tracking-[0.08em] uppercase md:text-7xl"
 			style="color: oklch(14.5% 0 0)"
 		>
 			{title}
 		</h1>
 	{:else}
 		<h2
-			class="pointer-events-none absolute bottom-6 left-6 z-10 font-mono text-4xl font-bold uppercase tracking-[0.08em] md:bottom-12 md:left-12 md:text-7xl"
+			class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6 text-center font-mono text-4xl font-bold tracking-[0.08em] uppercase md:text-7xl"
 			style="color: oklch(14.5% 0 0)"
 		>
 			{title}
