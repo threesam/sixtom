@@ -1,0 +1,64 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - paragraph [ref=e6]: SIXTOM — async sprints
+    - heading "AI ships demos. I ship products." [level=1] [ref=e7]
+    - paragraph [ref=e8]: I run a fleet of agents in parallel. They type, I judge. Two weeks to a working version live in production. Daily drops. No calendar tetris.
+    - link "Book a 30-min intro call →" [ref=e10] [cursor=pointer]:
+      - /url: https://cal.com/sam-dangelo/sprint-intro
+    - paragraph [ref=e11]: "@ Made In Cookware · Formerly @ Rhone"
+  - generic [ref=e13]:
+    - paragraph [ref=e14]: — the thesis
+    - paragraph [ref=e15]: Vibe coding is how you slowly become the intern of your own codebase.
+    - paragraph [ref=e16]: AI gets you to a demo. Agents do the typing. I do the judgment. Together we ship a product.
+  - generic [ref=e18]:
+    - paragraph [ref=e19]: two ways in
+    - heading "Start small. Or go." [level=2] [ref=e20]
+    - generic [ref=e21]:
+      - article [ref=e22]:
+        - paragraph [ref=e23]: step 1 — start here
+        - heading "The Audit." [level=3] [ref=e24]
+        - paragraph [ref=e25]: $750. turnaround within a week.
+        - paragraph [ref=e26]: "Send me your repo and the thing you've been trying to ship. I send back a 1-pager and a 15-min Loom: what's blocking, what I'd do, whether a sprint makes sense. Start here."
+        - link "Start the audit →" [ref=e28] [cursor=pointer]:
+          - /url: https://cal.com/sam-dangelo/sprint-intro
+      - article [ref=e29]:
+        - paragraph [ref=e30]: step 2 — when you're ready
+        - heading "The Async Sprint." [level=3] [ref=e31]
+        - paragraph [ref=e32]: $7,500. 1 client a month, by appointment.
+        - paragraph [ref=e33]: Two weeks. Agents do the typing — drafts, fixes, accessibility passes, the boring 10%. I do the judgment. Daily drops. Live in production on day 10.
+        - link "Book the call →" [ref=e35] [cursor=pointer]:
+          - /url: https://cal.com/sam-dangelo/sprint-intro
+  - generic [ref=e37]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - term [ref=e40]: 2 weeks
+        - definition [ref=e41]: per sprint
+      - generic [ref=e42]:
+        - term [ref=e43]: all async
+        - definition [ref=e44]: no standups
+      - generic [ref=e45]:
+        - term [ref=e46]: $7,500
+        - definition [ref=e47]: fixed
+    - blockquote [ref=e48]:
+      - text: “He's built three sites for me and with each one, the unique needs and goals of the site dictated his approach, no cookie cutting corners.”
+      - generic [ref=e49]: — Eleanor Goldfield
+  - generic [ref=e50]:
+    - generic [ref=e52]:
+      - paragraph [ref=e53]: Not ready yet?
+      - heading "Heads-up when the next slot opens." [level=2] [ref=e54]
+      - paragraph [ref=e55]: One client a month. Drop your email and I'll let you know when I'm taking the next one.
+      - generic [ref=e56]:
+        - generic [ref=e57]: Email address
+        - textbox "Email address" [ref=e58]:
+          - /placeholder: email you actually check
+        - textbox [ref=e59]
+        - button "Notify me" [ref=e60]
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]: © 2026 sixtom
+        - link "privacy" [ref=e65] [cursor=pointer]:
+          - /url: /privacy
+        - link "terms" [ref=e66] [cursor=pointer]:
+          - /url: /terms
+      - link "threesam.com →" [ref=e67] [cursor=pointer]:
+        - /url: https://threesam.com

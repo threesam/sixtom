@@ -1,0 +1,9 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link "← sixtom" [ref=e7] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e8]: the log
+      - heading "What I'm shipping, in public." [level=1] [ref=e9]
+      - paragraph [ref=e10]: Posts as they hit LinkedIn. Notes, builds, opinions, the occasional rant.
+    - paragraph [ref=e11]: No posts yet. Check back soon.

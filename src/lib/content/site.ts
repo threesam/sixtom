@@ -27,15 +27,17 @@ export const site: Site = {
 	audit: {
 		name: 'Audit',
 		longName: 'the audit',
-		priceUSD: 750,
+		priceUSD: 1500,
 		cadence: 'turnaround within a week.',
 		promise:
-			"Send me your repo and the thing you've been trying to ship. I send back a 1-pager and a 15-min Loom: what's blocking, what I'd do, whether a sprint makes sense. Start here."
+			"Send me your repo and the thing you've been trying to ship. I send back a 1-pager and a 15-min Loom — what's blocking, what I'd do, whether a sprint makes sense. Credited toward a sprint if you book within 30 days."
 	},
 	sprint: {
 		name: 'Async Sprint',
 		longName: 'async sprint',
-		priceUSD: 7500,
+		priceUSD: 10000,
+		introPriceUSD: 7500,
+		introNote: 'first 3 clients',
 		cadence: '1 client a month, by appointment.',
 		promise:
 			'Two weeks. Agents do the typing — drafts, fixes, accessibility passes, the boring 10%. I do the judgment. Daily drops. Live in production on day 10.'
@@ -57,7 +59,7 @@ export const site: Site = {
 	stats: [
 		{ value: '2 weeks', label: 'per sprint' },
 		{ value: 'all async', label: 'no standups' },
-		{ value: '$7,500', label: 'fixed' }
+		{ value: '$10,000', label: 'fixed' }
 	],
 	testimonial: {
 		quote:

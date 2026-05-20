@@ -1,0 +1,3 @@
+[    3454ms] [WARNING] The default export of @sanity/image-url has been deprecated. Use the named export `createImageUrlBuilder` instead. @ https://lailawolf.com/_app/immutable/chunks/CKf0n1X0.js:11
+[    3603ms] [LOG] %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ https://va.vercel-scripts.com/v1/script.debug.js:0
+[    3604ms] [LOG] %c[Vercel Web Analytics]%c [view] https://lailawolf.com/ color: rgb(120, 120, 120) color: inherit {o: https://lailawolf.com/, sv: 0.1.3, sdkn: @vercel/analytics, sdkv: 2.0.1, ts: 1779231478058} /_vercel/insights/view @ https://va.vercel-scripts.com/v1/script.debug.js:0
