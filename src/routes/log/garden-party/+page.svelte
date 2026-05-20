@@ -122,18 +122,22 @@
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">why</h2>
 			<p>
-				threesam.com was draft-factoried. started as a draft, kept getting built on, never revisited
-				the foundation. Next.js + React because that's what was already there. not because i chose
-				it. that's how defaults work — you reach for them once and then they're just the thing you're
-				using.
+				threesam.com started as a throwaway. a portfolio AI was going to make for me — ramble at
+				the model, stash what came back, ship it. low effort by design. and the original build
+				showed it: Next.js + React because that's what the model defaulted to, canvas sketches
+				stuffed into <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code>
+				cleanups, a dead audio system, deprecated routes nobody hit. vibe-coded.
 			</p>
 			<p class="mt-4">
-				i'd wanted SvelteKit for a while. the mental model fits better for the kind of sites i build.
-				but it sat in the eventually pile the way things do when the cost of switching feels bigger
-				than the benefit of fixing.
+				but i kept opening it. and the more time i actually spent — shaping what i wanted, reading
+				diffs, deleting what wasn't pulling weight — the better it got. garbage in, garbage out.
+				the inverse holds too: care in, care out. the law runs both directions.
 			</p>
 			<p class="mt-4">
-				with LLM tooling where it is now, that assumption felt worth testing. so we tested it.
+				at some point the framework itself started showing as friction — React was the inherited
+				default i'd never re-examined. SvelteKit had been in the eventually pile for that exact
+				reason; the cost of switching always felt bigger than the benefit of fixing. with LLM
+				tooling where it is now, that assumption felt worth testing. so we tested it.
 			</p>
 		</section>
 
