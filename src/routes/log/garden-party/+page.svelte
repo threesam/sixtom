@@ -36,16 +36,30 @@
 	];
 
 	const ROWS = [
-		{ route: '/', next: '50', svk: '85', delta: '35' },
-		{ route: '/deana', next: '67', svk: '95', delta: '28' },
-		{ route: '/sounds', next: '70', svk: '96', delta: '26' },
-		{ route: '/anything-but-analog', next: '72', svk: '95', delta: '23' },
-		{ route: '/shelf', next: '75', svk: '90', delta: '15' },
-		{ route: '/dad', next: '76', svk: '90', delta: '14' },
-		{ route: '/canvas/self', next: '62', svk: '70', delta: '8' },
-		{ route: '/thoughts', next: '91', svk: '96', delta: '5' },
-		{ route: '/benny', next: '88', svk: '90', delta: '2' },
-	];
+		{ route: '/', next: 50, svk: 85 },
+		{ route: '/deana', next: 67, svk: 95 },
+		{ route: '/sounds', next: 70, svk: 96 },
+		{ route: '/anything-but-analog', next: 72, svk: 95 },
+		{ route: '/shelf', next: 75, svk: 90 },
+		{ route: '/dad', next: 76, svk: 90 },
+		{ route: '/canvas/self', next: 62, svk: 70 },
+		{ route: '/thoughts', next: 91, svk: 96 },
+		{ route: '/benny', next: 88, svk: 90 },
+	].map((r) => ({ ...r, delta: r.svk - r.next }));
+
+	// sorted by delta descending so the largest wins read first
+	const CHART_ROWS = [...ROWS].sort((a, b) => b.delta - a.delta);
+
+	// SVG layout constants
+	const LEFT = 175;
+	const TRACK_W = 390;
+	const ROW_H = 34;
+	const TOP = 28;
+	const GRID = [0, 25, 50, 75, 100];
+
+	function xOf(score: number) {
+		return LEFT + (score / 100) * TRACK_W;
+	}
 </script>
 
 <svelte:head>
@@ -121,26 +135,6 @@
 			<p class="mt-4">
 				with LLM tooling where it is now, that assumption felt worth testing. so we tested it.
 			</p>
-
-			<!-- STACK CHIPS -->
-			<div class="my-12 grid gap-6 md:grid-cols-2">
-				<div>
-					<h3 class="mb-3 text-xs uppercase tracking-wider" style="color: var(--color-fg-muted);">before</h3>
-					<ul class="flex flex-wrap gap-2 text-sm" style="color: var(--color-fg);">
-						<li class="rounded-md border px-3 py-1.5" style="border-color: var(--color-border);">Next.js 16</li>
-						<li class="rounded-md border px-3 py-1.5" style="border-color: var(--color-border);">React 19</li>
-						<li class="rounded-md border px-3 py-1.5" style="border-color: var(--color-border);">Vercel</li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="mb-3 text-xs uppercase tracking-wider" style="color: var(--color-fg-muted);">after</h3>
-					<ul class="flex flex-wrap gap-2 text-sm">
-						<li class="rounded-md border px-3 py-1.5" style="border-color: var(--color-accent); color: var(--color-accent);">SvelteKit 2</li>
-						<li class="rounded-md border px-3 py-1.5" style="border-color: var(--color-accent); color: var(--color-accent);">Svelte 5 runes</li>
-						<li class="rounded-md border px-3 py-1.5" style="border-color: var(--color-border); color: var(--color-fg);">Vercel</li>
-					</ul>
-				</div>
-			</div>
 		</section>
 
 		<section>
@@ -174,38 +168,139 @@
 				it's possible. and it landed higher than the baseline.
 			</p>
 
-			<!-- ENRICHED DATA TABLE -->
-			<div class="my-12 md:my-16">
-				<table class="w-full border-collapse text-sm md:text-base">
-					<thead>
-						<tr class="border-b" style="border-color: var(--color-border);">
-							<th class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider" style="color: var(--color-fg-muted);">route</th>
-							<th class="px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider" style="color: var(--color-fg-muted);">next</th>
-							<th class="px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider" style="color: var(--color-fg-muted);">sveltekit</th>
-							<th class="px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider" style="color: var(--color-fg-muted);">Δ</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each ROWS as row (row.route)}
-							<tr class="border-b last:border-b-0" style="border-color: var(--color-border);">
-								<td class="px-3 py-3 font-mono" style="color: var(--color-fg);">{row.route}</td>
-								<td class="px-3 py-3 text-right tabular-nums" style="color: var(--color-fg-muted);">{row.next}</td>
-								<td class="px-3 py-3 text-right font-semibold tabular-nums" style="color: var(--color-fg);">{row.svk}</td>
-								<td class="px-3 py-3 text-right font-mono tabular-nums" style="color: var(--color-accent);">+{row.delta}</td>
+			<!-- LOLLIPOP CHART -->
+			<figure class="my-12 md:my-16">
+				<figcaption class="mb-5 text-xs uppercase tracking-wider" style="color: var(--color-fg-muted);">
+					lighthouse perf, per route — next.js → sveltekit
+				</figcaption>
+
+				<svg
+					viewBox="0 0 {LEFT + TRACK_W + 60} {TOP + CHART_ROWS.length * ROW_H + 26}"
+					class="w-full"
+					role="img"
+					aria-label="lighthouse performance score per route, before and after the sveltekit port"
+				>
+					<!-- grid lines -->
+					{#each GRID as v (v)}
+						{@const x = xOf(v)}
+						<line
+							x1={x}
+							y1={TOP - 12}
+							x2={x}
+							y2={TOP + CHART_ROWS.length * ROW_H - 6}
+							stroke="var(--color-border)"
+							stroke-width="1"
+							stroke-dasharray="2 4"
+						/>
+						<text
+							x={x}
+							y={TOP + CHART_ROWS.length * ROW_H + 16}
+							text-anchor="middle"
+							font-size="9"
+							fill="var(--color-fg-subtle)"
+							font-family="var(--font-sans)"
+							letter-spacing="0.05em">{v}</text
+						>
+					{/each}
+
+					<!-- rows -->
+					{#each CHART_ROWS as row, i (row.route)}
+						{@const y = TOP + i * ROW_H}
+						{@const xNext = xOf(row.next)}
+						{@const xSvk = xOf(row.svk)}
+
+						<!-- route label -->
+						<text
+							x={LEFT - 8}
+							y={y + 4}
+							text-anchor="end"
+							font-size="11"
+							font-family="var(--font-sans)"
+							fill="var(--color-fg)">{row.route}</text
+						>
+
+						<!-- connecting line -->
+						<line
+							x1={xNext}
+							y1={y}
+							x2={xSvk}
+							y2={y}
+							stroke="var(--color-accent)"
+							stroke-width="2"
+							stroke-opacity="0.35"
+						/>
+
+						<!-- Next.js dot -->
+						<circle cx={xNext} cy={y} r="4" fill="var(--color-fg-subtle)" />
+
+						<!-- SvelteKit dot -->
+						<circle cx={xSvk} cy={y} r="5.5" fill="var(--color-accent)" />
+
+						<!-- delta label -->
+						<text
+							x={xSvk + 10}
+							y={y + 4}
+							font-size="11"
+							font-family="var(--font-sans)"
+							fill="var(--color-accent)"
+							font-weight="600">+{row.delta}</text
+						>
+					{/each}
+				</svg>
+
+				<!-- legend -->
+				<div class="mt-2 flex items-center justify-center gap-6 text-xs" style="color: var(--color-fg-muted);">
+					<span class="flex items-center gap-2">
+						<span
+							class="inline-block h-2 w-2 rounded-full"
+							style="background: var(--color-fg-subtle);"
+						></span>
+						next.js
+					</span>
+					<span class="flex items-center gap-2">
+						<span
+							class="inline-block h-2 w-2 rounded-full"
+							style="background: var(--color-accent);"
+						></span>
+						sveltekit
+					</span>
+				</div>
+
+				<!-- accessible fallback -->
+				<details class="mt-4 text-xs" style="color: var(--color-fg-muted);">
+					<summary class="cursor-pointer">see the numbers</summary>
+					<table class="mt-3 w-full text-left tabular-nums">
+						<thead style="color: var(--color-fg-subtle);">
+							<tr>
+								<th class="py-1 pr-3 font-semibold">route</th>
+								<th class="py-1 pr-3 font-semibold">next</th>
+								<th class="py-1 pr-3 font-semibold">sveltekit</th>
+								<th class="py-1 font-semibold">Δ</th>
 							</tr>
-						{/each}
-						<tr class="border-t-2" style="border-color: var(--color-border-strong);">
-							<td class="px-3 py-3 text-xs font-semibold uppercase tracking-wider" style="color: var(--color-fg);">average</td>
-							<td class="px-3 py-3 text-right tabular-nums" style="color: var(--color-fg-muted);">72.3</td>
-							<td class="px-3 py-3 text-right font-semibold tabular-nums" style="color: var(--color-fg);">89.7</td>
-							<td class="px-3 py-3 text-right font-mono tabular-nums" style="color: var(--color-accent);">+17.3</td>
-						</tr>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{#each CHART_ROWS as row (row.route)}
+								<tr>
+									<td class="py-1 pr-3 font-mono">{row.route}</td>
+									<td class="py-1 pr-3">{row.next}</td>
+									<td class="py-1 pr-3">{row.svk}</td>
+									<td class="py-1" style="color: var(--color-accent);">+{row.delta}</td>
+								</tr>
+							{/each}
+							<tr class="border-t" style="border-color: var(--color-border);">
+								<td class="py-1 pr-3 font-semibold uppercase tracking-wider">avg</td>
+								<td class="py-1 pr-3">72.3</td>
+								<td class="py-1 pr-3 font-semibold">89.7</td>
+								<td class="py-1 font-semibold" style="color: var(--color-accent);">+17.3</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+
 				<p class="mt-3 text-xs leading-relaxed" style="color: var(--color-fg-subtle);">
-					lighthouse performance scores. next.js live-production baseline vs sveltekit with perf work applied. a11y / best practices / seo: 100 / 99.6 / 100 — held across both.
+					next.js live-production baseline vs sveltekit with perf work applied. a11y / best practices / seo: 100 / 99.6 / 100 — held across both.
 				</p>
-			</div>
+			</figure>
 
 			<div class="border-border mt-6 rounded-lg border p-5">
 				<p class="text-fg mb-1 font-medium">net</p>
@@ -318,8 +413,9 @@ export function cloudShader(node, params) {
 			<p class="mt-8">
 				this port was driven by an AI agent — 78 commits, multi-day execution, granular and
 				reviewable. total LLM cost was roughly tens of dollars in API tokens. closer to a single
-				consulting hour than a sprint. the 1:1 visual fidelity was verified by automated screenshot
-				diffs against the live production site, route by route.
+				consulting hour than a sprint. the loop: spec → plan → fresh agent per task → two-stage
+				review → visual regression against prod → lighthouse re-measure. the 1:1 visual fidelity was
+				verified by automated screenshot diffs against the live production site, route by route.
 			</p>
 			<p class="mt-4">
 				that changes the math on framework choice. the old argument for staying on Next.js + React —
@@ -340,6 +436,13 @@ export function cloudShader(node, params) {
 			<p class="text-fg-muted text-sm">
 				live at <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a>.
 				if your stack has been sitting in the eventually pile — <a href="/" class="text-accent hover:underline">let's talk</a>.
+			</p>
+			<p class="text-fg-subtle mt-3 text-xs">
+				the work is public:
+				<a href="https://github.com/threesam/garden/pull/29" class="text-accent hover:underline">#29</a> (port),
+				<a href="https://github.com/threesam/garden/pull/30" class="text-accent hover:underline">#30</a> (perf),
+				<a href="https://github.com/threesam/garden/pull/31" class="text-accent hover:underline">#31</a> (content-prerender hotfix),
+				<a href="https://github.com/threesam/garden/pull/33" class="text-accent hover:underline">#33</a> (route rename).
 			</p>
 		</footer>
 	</div>
