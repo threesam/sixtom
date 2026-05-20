@@ -6,7 +6,7 @@
 	<title>terms — sixtom</title>
 	<meta
 		name="description"
-		content="How engagement with sixtom works. Plain-English terms for the audit and async sprint."
+		content="how engagement with sixtom works. plain-English terms for the audit and the sprint."
 	/>
 	<link rel="canonical" href={`${site.siteUrl}/terms`} />
 </svelte:head>
@@ -22,53 +22,43 @@
 				← sixtom
 			</a>
 			<p class="eyebrow mt-12 text-sm">legal</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">Terms.</h1>
-			<p class="text-fg-muted mt-6 text-lg leading-relaxed">How engagement works. Plain English.</p>
+			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">terms.</h1>
+			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
+				how engagement works. pricing, scope, and cadence live on the home page; this page covers
+				the boring bits when it goes sideways.
+			</p>
 		</header>
 
 		<div class="text-fg-muted space-y-10 text-base leading-relaxed">
 			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">Two things I sell</h2>
+				<h2 class="text-fg text-xl font-semibold tracking-tight">refunds</h2>
 				<p class="mt-3">
-					The {site.audit.name} — ${site.audit.priceUSD}. Send your repo + the thing you've been trying
-					to ship; I send back a 1-pager and a 15-min Loom within a week.
+					the audit — non-refundable once i've started. full refund if i haven't started within 7
+					days of payment.
 				</p>
 				<p class="mt-3">
-					The {site.sprint.name} — ${site.sprint.priceUSD.toLocaleString()}. Two weeks, fixed scope
-					agreed up front, daily drops. Live in production day 10.
-				</p>
-			</section>
-
-			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">Refunds</h2>
-				<p class="mt-3">
-					Audit: non-refundable once I've started. Full refund if I haven't started within 7 days of
-					payment.
-				</p>
-				<p class="mt-3">
-					Sprint: if by day 5 we both agree it won't ship in scope, we stop. You keep what was built
-					and I refund 50%.
+					the sprint — if we hit the agreed scope-check date and both see it won't ship as scoped,
+					we stop. you keep what was built, i refund 50%.
 				</p>
 			</section>
 
 			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">Code ownership</h2>
+				<h2 class="text-fg text-xl font-semibold tracking-tight">code ownership</h2>
 				<p class="mt-3">
-					Code I write for you is yours, no strings. I retain the right to discuss approach and
-					outcomes publicly with names and identifying details removed, unless you say otherwise in
-					writing.
+					code i write for you is yours. i retain the right to discuss approach and outcomes
+					publicly with names and identifying details removed, unless you say otherwise in writing.
 				</p>
 			</section>
 
 			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">If something breaks</h2>
+				<h2 class="text-fg text-xl font-semibold tracking-tight">if something breaks</h2>
 				<p class="mt-3">
-					Email me. I'll fix what's mine. Implied warranties and indirect or consequential damages
-					are excluded, but I'm not going to be difficult about real problems.
+					email me. i'll fix what's mine. implied warranties and indirect or consequential damages
+					are excluded, but i'm not going to be difficult about real problems.
 				</p>
 			</section>
 
-			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">Last updated: May 2026</p>
+			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">last updated: may 2026</p>
 		</div>
 	</div>
 </div>
