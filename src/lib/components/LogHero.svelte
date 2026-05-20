@@ -39,7 +39,7 @@
 	bind:this={cardEl}
 	{href}
 	onclick={navigate}
-	class="log-hero-card relative block h-[55dvh] w-full overflow-hidden md:h-[65dvh]"
+	class="log-hero-card relative block h-[35dvh] w-full overflow-hidden md:h-[45dvh]"
 	class:clickable
 	data-clickable={clickable}
 >
@@ -59,14 +59,14 @@
 	{#if headingLevel === 1}
 		<h1
 			class="pointer-events-none absolute bottom-6 left-6 z-10 font-mono text-4xl font-bold uppercase tracking-[0.08em] md:bottom-12 md:left-12 md:text-7xl"
-			style="color: {accentColor}"
+			style="color: oklch(14.5% 0 0)"
 		>
 			{title}
 		</h1>
 	{:else}
 		<h2
 			class="pointer-events-none absolute bottom-6 left-6 z-10 font-mono text-4xl font-bold uppercase tracking-[0.08em] md:bottom-12 md:left-12 md:text-7xl"
-			style="color: {accentColor}"
+			style="color: oklch(14.5% 0 0)"
 		>
 			{title}
 		</h2>

@@ -3,25 +3,25 @@
 </script>
 
 <svelte:head>
-	<title>garden port — SIXTOM log</title>
+	<title>garden party — SIXTOM log</title>
 	<meta
 		name="description"
 		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
-	<link rel="canonical" href="https://sixtom.com/log/garden-porty" />
-	<meta property="og:title" content="garden port" />
+	<link rel="canonical" href="https://sixtom.com/log/garden-party" />
+	<meta property="og:title" content="garden party" />
 	<meta
 		property="og:description"
 		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
-	<meta property="og:url" content="https://sixtom.com/log/garden-porty" />
+	<meta property="og:url" content="https://sixtom.com/log/garden-party" />
 	<meta name="twitter:card" content="summary" />
 	<link rel="preload" as="image" href="/assets/clouds.webp" />
 </svelte:head>
 
 <LogHero
-	href="/log/garden-porty"
-	title="garden port"
+	href="/log/garden-party"
+	title="garden party"
 	eyebrow="— log / 2026-05-18"
 	heroImage="/assets/clouds.webp"
 	clickable={false}
@@ -32,7 +32,7 @@
 <article class="mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
 	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<p class="text-fg-muted text-lg leading-relaxed">
-			a 1:1 port of <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> from Next.js to SvelteKit. here's the impulse, what we were trying to find out, and what we actually learned.
+			my wife offered me tea. i chose 'garden party.' it landed me on the impulse i'd been deferring — port my digital garden over to the framework i actually wanted to use. a 1:1 swap of <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> from Next.js to SvelteKit, no design changes, no feature changes. here's what we found.
 		</p>
 
 		<section>
