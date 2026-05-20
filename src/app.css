@@ -105,9 +105,7 @@
 html {
 	color: var(--color-fg);
 	background: var(--color-surface);
-	/* proximity lets mobile users scroll within tall sections (offers cards
-	   stack 2-high on mobile and exceed 100svh) without mandatory snap fighting them. */
-	scroll-snap-type: y proximity;
+	scroll-snap-type: y mandatory;
 	scroll-behavior: smooth;
 }
 
