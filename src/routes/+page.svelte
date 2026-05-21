@@ -2,6 +2,7 @@
 	import Hero from '$lib/components/Hero.svelte'
 	import OfferSection from '$lib/components/OfferSection.svelte'
 	import LeadCapture from '$lib/components/LeadCapture.svelte'
+	import VibeTaxCalculator from '$lib/components/VibeTaxCalculator.svelte'
 	import { site } from '$lib/content'
 	import type { FormResult } from '$lib/types'
 
@@ -24,5 +25,6 @@
 	</div>
 </section>
 
+<VibeTaxCalculator />
 <OfferSection />
 <LeadCapture {form} />
