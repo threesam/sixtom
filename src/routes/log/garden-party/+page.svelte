@@ -453,8 +453,9 @@ export function cloudShader(node, params) {
 			</p>
 			<p class="mt-4">
 				the second-order effect: the old "Next.js wins because the model knows it best" argument
-				was real for a minute. official docs MCPs killed it — the model can read any framework's
-				source of truth on demand. defaults that compounded for years are now just defaults.
+				was real for a minute. framework MCP servers killed it — the model can read any
+				framework's source of truth on demand. defaults that compounded for years are now just
+				defaults.
 			</p>
 			<p class="mt-4">
 				this isn't a svelte-beats-react take. the point is: you can read what an app actually does,
