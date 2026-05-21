@@ -15,11 +15,9 @@
 		</p>
 		<div class="mt-12">
 			<a
-				href={site.bookingUrl}
+				href="/book"
 				data-umami-event="cta_hero_book"
 				class="btn-accent px-8 py-4 text-lg hover:opacity-90"
-				rel="noopener noreferrer"
-				target="_blank"
 			>
 				{site.hero.ctaPrimary} →
 			</a>

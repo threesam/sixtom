@@ -25,11 +25,9 @@
 						${site.audit.priceUSD.toLocaleString()}. {site.audit.cadence}
 					</p>
 					<a
-						href={site.bookingUrl}
+						href="/book"
 						data-umami-event="cta_audit_book"
 						class="btn-accent mt-6 px-6 py-3 text-base hover:opacity-90"
-						rel="noopener noreferrer"
-						target="_blank"
 					>
 						start the audit →
 					</a>
@@ -62,11 +60,9 @@
 						</p>
 					{/if}
 					<a
-						href={site.bookingUrl}
+						href="/book"
 						data-umami-event="cta_sprint_book"
 						class="btn-accent mt-6 px-6 py-3 text-base hover:opacity-90"
-						rel="noopener noreferrer"
-						target="_blank"
 					>
 						book the call →
 					</a>
