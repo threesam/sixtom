@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms'
 	import { site } from '$lib/content'
 	import type { ActionData } from './$types'
-	import { STAGE_OPTIONS, BUDGET_OPTIONS, AUTHORITY_OPTIONS } from './+page.server'
+	import { STAGE_OPTIONS, BUDGET_OPTIONS, AUTHORITY_OPTIONS } from './options'
 
 	let { form }: { form: ActionData } = $props()
 

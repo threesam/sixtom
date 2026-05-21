@@ -2,29 +2,12 @@ import { fail } from '@sveltejs/kit'
 import { site } from '$lib/content'
 import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
 import type { Actions } from './$types'
-
-const STAGE_OPTIONS = [
-	{ value: 'demo-only', label: 'demo works for me only' },
-	{ value: 'few-users', label: 'a few real users on it' },
-	{ value: 'paying-breaking', label: 'paying customers but breaking' },
-	{ value: 'pre-build', label: 'pre-build, just an idea' }
-] as const
-
-const BUDGET_OPTIONS = [
-	{ value: 'under-1500', label: 'under $1,500' },
-	{ value: '1500-10k', label: '$1,500–$10,000' },
-	{ value: '10k-25k', label: '$10,000–$25,000' },
-	{ value: '25k+', label: '$25,000+' },
-	{ value: 'not-sure', label: 'not sure yet' }
-] as const
-
-const AUTHORITY_OPTIONS = [
-	{ value: 'yes', label: 'yes' },
-	{ value: 'no', label: "no, i'll need to bring someone in" }
-] as const
-
-// Stage that auto-disqualifies — sixtom isn't greenfield.
-const DISQUALIFY_STAGE = 'pre-build'
+import {
+	AUTHORITY_OPTIONS,
+	BUDGET_OPTIONS,
+	DISQUALIFY_STAGE,
+	STAGE_OPTIONS
+} from './options'
 
 function lookupLabel(
 	options: ReadonlyArray<{ value: string; label: string }>,
@@ -145,5 +128,3 @@ export const actions = {
 		}
 	}
 } satisfies Actions
-
-export { STAGE_OPTIONS, BUDGET_OPTIONS, AUTHORITY_OPTIONS }
