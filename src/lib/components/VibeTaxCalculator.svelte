@@ -20,15 +20,18 @@
 		{ value: 'enterprise', label: 'enterprise-ready (SOC2 / SSO)' }
 	]
 
-	let mau = $state(1000)
+	let mau = $state<number | null>(1000)
 	let goal = $state<Goal>('stop')
 	let firefightingHours = $state(10)
-	let hourlyCost = $state(150)
+	let hourlyCost = $state<number | null>(150)
 
+	// Clamp non-negative; cleared <input type="number"> binds to null in Svelte 5.
+	const safeHours = $derived(Math.max(0, firefightingHours ?? 0))
+	const safeCost = $derived(Math.max(0, hourlyCost ?? 0))
 	const slowdown = $derived(SLOWDOWN[goal])
 	const weeksUntilBlocked = $derived(WEEKS_UNTIL_BLOCKED[goal])
-	const hoursPerYear = $derived(firefightingHours * 52)
-	const annualTax = $derived(Math.round(hoursPerYear * hourlyCost * slowdown))
+	const hoursPerYear = $derived(safeHours * 52)
+	const annualTax = $derived(Math.round(hoursPerYear * safeCost * slowdown))
 
 	const usd = new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -84,10 +87,13 @@
 					max="40"
 					step="1"
 					bind:value={firefightingHours}
+					aria-describedby="vt-hours-readout"
 					class="mt-2 w-full accent-current"
 					style="color: var(--color-accent);"
 				/>
-				<p class="text-fg-subtle mt-1 text-xs tabular-nums">{firefightingHours} h/week</p>
+				<p id="vt-hours-readout" class="text-fg-subtle mt-1 text-xs tabular-nums">
+					{safeHours} h/week
+				</p>
 			</div>
 
 			<div>
