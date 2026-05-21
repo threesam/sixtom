@@ -8,6 +8,7 @@
 
 	let formStartedAt = $state('')
 	let enhanced = $state('')
+	let submitting = $state(false)
 	$effect(() => {
 		formStartedAt = String(Date.now())
 		enhanced = '1'
@@ -54,6 +55,14 @@
 				<div class="border-border rounded-lg border p-8">
 					<p class="eyebrow text-sm">not a fit, yet</p>
 					<p class="text-fg mt-4 text-lg leading-relaxed">{form.message}</p>
+					<a
+						href="/book"
+						data-sveltekit-reload
+						data-umami-event="book_disqualified_restart"
+						class="text-fg-subtle hover:text-coin mt-6 inline-block text-xs tracking-widest uppercase transition-colors"
+					>
+						start over →
+					</a>
 				</div>
 			{:else}
 				<div class="border-border-strong ring-border rounded-lg border p-8 ring-1">
@@ -73,7 +82,17 @@
 				</div>
 			{/if}
 		{:else}
-			<form method="post" use:enhance class="space-y-8">
+			<form
+				method="post"
+				use:enhance={() => {
+					submitting = true
+					return async ({ update }) => {
+						await update()
+						submitting = false
+					}
+				}}
+				class="space-y-8"
+			>
 				<div>
 					<label for="name" class={labelClass}>your name</label>
 					<input
@@ -108,6 +127,7 @@
 						name="company_url"
 						type="url"
 						required
+						maxlength="500"
 						placeholder="https://"
 						autocomplete="url"
 						class="{inputClass} mt-2"
@@ -121,6 +141,7 @@
 						name="built"
 						type="text"
 						required
+						maxlength="500"
 						placeholder="live URL, repo, Loom, or screenshot link"
 						class="{inputClass} mt-2"
 					/>
@@ -145,7 +166,7 @@
 						name="deliverable"
 						required
 						rows="4"
-						maxlength="5000"
+						maxlength="4000"
 						placeholder="scale to X users, pass SOC2 review, stop the 3am pages…"
 						class="{inputClass} mt-2"
 					></textarea>
@@ -186,14 +207,17 @@
 				<button
 					type="submit"
 					data-umami-event="book_submit"
+					disabled={submitting}
 					class="btn-accent w-full px-6 py-3 text-base hover:opacity-90 disabled:opacity-60"
 				>
-					send it →
+					{submitting ? 'sending…' : 'send it →'}
 				</button>
 
-				{#if form?.status === 'error'}
-					<p class="text-error text-sm">{form.message}</p>
-				{/if}
+				<div role="alert" aria-live="polite">
+					{#if form?.status === 'error'}
+						<p class="text-error text-sm">{form.message}</p>
+					{/if}
+				</div>
 			</form>
 		{/if}
 	</div>

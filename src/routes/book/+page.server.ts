@@ -70,12 +70,19 @@ export const actions = {
 		}
 
 		const formData = await event.request.formData()
-		const built = String(formData.get('built') ?? '').trim()
+		// Strip CRLF from single-line fields (and length-cap them) so they can't
+		// fabricate extra "field: value" lines in the email body Sam reads.
+		// Cap deliverable too so composedMessage stays under MAX_MESSAGE_LENGTH
+		// (5000) — a wall of text in deliverable + built would silently 400.
+		const stripNewlines = (s: string) => s.replace(/[\r\n]+/g, ' ').trim()
+		const normalizeNewlines = (s: string) => s.replace(/\r\n/g, '\n').trim()
+
+		const built = stripNewlines(String(formData.get('built') ?? '')).slice(0, 500)
 		const stage = String(formData.get('stage') ?? '')
-		const deliverable = String(formData.get('deliverable') ?? '').trim()
+		const deliverable = normalizeNewlines(String(formData.get('deliverable') ?? '')).slice(0, 4000)
 		const budget = String(formData.get('budget') ?? '')
 		const authority = String(formData.get('authority') ?? '')
-		const companyUrl = String(formData.get('company_url') ?? '').trim()
+		const companyUrl = stripNewlines(String(formData.get('company_url') ?? '')).slice(0, 500)
 
 		const missing =
 			!built || !stage || !deliverable || !budget || !authority || !companyUrl
