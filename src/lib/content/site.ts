@@ -13,7 +13,7 @@ export const site: Site = {
 	hero: {
 		h1: 'AI ships demos. i ship solutions.',
 		subhead:
-			"you got to a working demo with AI. it falls over the moment a real user hits it. two weeks of guardrailed builds — fixed price, daily drops, live in production day 10.",
+			"you've got a working demo. now it needs to scale, secure, survive real traffic — without you up at 2am. two weeks of reviewed builds, fixed price, live in production day 10.",
 		ctaPrimary: 'book a 30-min intro call',
 		ctaSecondary: 'notify me'
 	},
@@ -30,7 +30,7 @@ export const site: Site = {
 		priceUSD: 1500,
 		cadence: 'turnaround within a week.',
 		promise:
-			"send me your repo and the thing you've been stuck on. within a week i send back a 1-pager and a 15-min Loom — what's blocking, what i'd do, and what it's costing you in opportunity to leave it as-is. credited toward a sprint if you book within 30 days."
+			"send me your repo and the thing you've been stuck on. within a week i send back a 1-pager and a 15-min Loom — your X, my solve, what it's costing you to leave it as-is. credited toward a sprint if you book within 30 days."
 	},
 	sprint: {
 		name: 'sprint',
@@ -41,7 +41,7 @@ export const site: Site = {
 		cadence: '1 client a month, by appointment.',
 		paymentPlan: '4 weekly payments of $2,500',
 		promise:
-			"you've built the thing with AI. it works in dev. you're scared to put real traffic on it. two weeks of guardrailed builds — fixed scope, daily drops, live in production day 10. i orchestrate the agents and review every change. you ship, you own it."
+			"the thing works in dev. you're scared to put real traffic on it. two weeks of reviewed builds — fixed scope, daily drops, live in production day 10. agents type; i review, judge, defend the architecture. shipped, not vibed."
 	},
 	process: [
 		{
@@ -77,22 +77,22 @@ export const calEvent: CalEvent = {
 		"A 30-min call. Tell me about the thing you've been trying to ship and whether the audit or the sprint is the right next step.",
 	intakeQuestions: [
 		{
-			label: "What's the thing you've been close on but haven't shipped?",
+			label: "what's the thing you've been close on but haven't shipped?",
 			type: 'longText',
 			required: true
 		},
 		{
-			label: 'Send a link to the repo or a screenshot of where it is',
+			label: 'send a link to the repo or a screenshot of where it is',
 			type: 'text',
 			required: false
 		},
 		{
-			label: 'Audit ($750) or sprint ($7,500)?',
+			label: 'audit ($1,500) or sprint ($10,000)?',
 			type: 'select',
 			options: [
-				'Audit — figure it out first',
-				'Sprint — I know what I need',
-				'Not sure, want to talk it through'
+				'audit ($1,500) — figure it out first',
+				'sprint ($10,000) — i know what i need',
+				'not sure, want to talk it through'
 			],
 			required: true
 		}

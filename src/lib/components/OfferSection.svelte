@@ -17,17 +17,17 @@
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					the {site.audit.name}.
 				</h3>
-				<p class="text-fg mt-3 text-xl font-semibold">
-					${site.audit.priceUSD.toLocaleString()}. {site.audit.cadence}
-				</p>
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
 					{site.audit.promise}
 				</p>
 				<div class="mt-auto pt-8">
+					<p class="text-fg text-xl font-semibold">
+						${site.audit.priceUSD.toLocaleString()}. {site.audit.cadence}
+					</p>
 					<a
 						href={site.bookingUrl}
 						data-umami-event="cta_audit_book"
-						class="btn-accent px-6 py-3 text-base hover:opacity-90"
+						class="btn-accent mt-6 px-6 py-3 text-base hover:opacity-90"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
@@ -43,28 +43,28 @@
 				<h3 class="text-fg mt-2 text-2xl font-bold tracking-tight md:text-3xl">
 					the {site.sprint.name}.
 				</h3>
-				<p class="text-fg mt-3 text-xl font-semibold">
-					${site.sprint.priceUSD.toLocaleString()}. {site.sprint.cadence}
-				</p>
-				{#if site.sprint.introPriceUSD && site.sprint.introNote}
-					<p class="text-fg-subtle mt-1 text-sm">
-						intro rate ${site.sprint.introPriceUSD.toLocaleString()} for the {site.sprint
-							.introNote}.
-					</p>
-				{/if}
-				{#if site.sprint.paymentPlan}
-					<p class="text-fg-subtle mt-1 text-sm">
-						or {site.sprint.paymentPlan}.
-					</p>
-				{/if}
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
 					{site.sprint.promise}
 				</p>
 				<div class="mt-auto pt-8">
+					<p class="text-fg text-xl font-semibold">
+						${site.sprint.priceUSD.toLocaleString()}. {site.sprint.cadence}
+					</p>
+					{#if site.sprint.introPriceUSD && site.sprint.introNote}
+						<p class="text-fg-subtle mt-1 text-sm">
+							intro rate ${site.sprint.introPriceUSD.toLocaleString()} for the {site.sprint
+								.introNote}.
+						</p>
+					{/if}
+					{#if site.sprint.paymentPlan}
+						<p class="text-fg-subtle mt-1 text-sm">
+							or {site.sprint.paymentPlan}.
+						</p>
+					{/if}
 					<a
 						href={site.bookingUrl}
 						data-umami-event="cta_sprint_book"
-						class="btn-accent px-6 py-3 text-base hover:opacity-90"
+						class="btn-accent mt-6 px-6 py-3 text-base hover:opacity-90"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
