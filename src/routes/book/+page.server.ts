@@ -37,8 +37,15 @@ function composeMessage(input: {
 	return lines.join('\n\n')
 }
 
+// Hard-wire the booking origin so a future site.bookingUrl typo or env-driven
+// override can't turn the qualified-lead success card into an open redirect.
+const CAL_ORIGIN = 'https://cal.com'
+
 function buildCalComUrl(input: { name: string; email: string; notes: string }): string {
 	const url = new URL(site.bookingUrl)
+	if (url.origin !== CAL_ORIGIN) {
+		throw new Error(`booking URL must be on ${CAL_ORIGIN}, got ${url.origin}`)
+	}
 	url.searchParams.set('name', input.name)
 	url.searchParams.set('email', input.email)
 	url.searchParams.set('notes', input.notes)

@@ -63,7 +63,7 @@
 </section>
 
 <!-- how this works -->
-<section class="snap-section bg-surface">
+<section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<p class="eyebrow text-sm">— how this works</p>
 		<h2
