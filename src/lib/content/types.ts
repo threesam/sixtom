@@ -21,6 +21,7 @@ export interface Offer {
 	promise: string
 	introPriceUSD?: number
 	introNote?: string
+	paymentPlan?: string
 }
 
 export interface ProcessStep {
