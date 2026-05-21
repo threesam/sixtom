@@ -134,10 +134,17 @@
 				the inverse holds too: care in, care out. the law runs both directions.
 			</p>
 			<p class="mt-4">
-				at some point the framework itself started showing as friction — React was the inherited
-				default i'd never re-examined. SvelteKit had been in the eventually pile for that exact
-				reason; the cost of switching always felt bigger than the benefit of fixing. with LLM
-				tooling where it is now, that assumption felt worth testing. so we tested it.
+				the trade-off: it kept growing. by the time i decided to port, the codebase was past the
+				wall — ~30,000 lines of React components, <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code>
+				hooks, half-finished routes. any model that touched it had to swallow the whole tree
+				before it could help with any of it. the assists were getting noisier, not better — the
+				opposite of why you reach for AI in the first place.
+			</p>
+			<p class="mt-4">
+				the framework itself was also starting to show as friction — React was the inherited
+				default i'd never re-examined; SvelteKit had been in the eventually pile for that exact
+				reason. with LLM tooling where it is now, both assumptions felt worth testing in the same
+				pass. so we did.
 			</p>
 		</section>
 
@@ -379,7 +386,9 @@ export function cloudShader(node, params) {
 			<p class="mt-8">
 				the port was a pruning pass too. one commit deleted 5,557 lines: a dead audio system, orphan
 				hero canvas components, deprecated case-study route stubs, duplicate lib files shadowing
-				each other between the Next.js root and the SvelteKit <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code> tree.
+				each other between the Next.js root and the SvelteKit <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code> tree. the
+				codebase landed at roughly 60% of its original size — back below the context-window wall.
+				every subsequent AI session can hold the whole thing in its head again.
 			</p>
 			<p class="mt-4">
 				the component shape got simpler. canvas logic that had been jammed into
@@ -415,11 +424,24 @@ export function cloudShader(node, params) {
 			</p>
 
 			<p class="mt-8">
-				this port was driven by an AI agent — 78 commits, multi-day execution, granular and
-				reviewable. total LLM cost was roughly tens of dollars in API tokens. closer to a single
-				consulting hour than a sprint. the loop: spec → plan → fresh agent per task → two-stage
-				review → visual regression against prod → lighthouse re-measure. the 1:1 visual fidelity was
-				verified by automated screenshot diffs against the live production site, route by route.
+				this port was driven by an AI agent. 78 commits, multi-day window, ~5–6 hours of active
+				code transformation; the rest was spec, plan, visual diff, and perf work — the human
+				judgment loop. total LLM cost: tens of dollars in API tokens. closer to a single consulting
+				hour than a sprint.
+			</p>
+			<p class="mt-4">
+				at peak, 37 sub-agents ran in parallel. each one got a single tiny, scoped chunk — small
+				enough to spec and review independently. i call it the review train: small offshoot, heavy
+				review, merge, next chunk. no chunk was ever the whole codebase, so no agent ever ran into
+				the wall. the loop: spec → plan → fresh agent per task → two-stage review → visual
+				regression against prod → lighthouse re-measure. 1:1 visual fidelity was verified by
+				automated screenshot diffs against the live production site, route by route.
+			</p>
+			<p class="mt-4">
+				none of this is magic. it works because of guardrails — the right docs piped in (Svelte
+				MCP for the new framework, the existing repo as the source of truth for the old), the
+				methodology spec'd up front, and tight per-chunk reviews. agents handed loose instructions
+				still vibe-code; agents handed scoped chunks under heavy review ship code you can defend.
 			</p>
 			<p class="mt-4">
 				that changes the math on framework choice. the old argument for staying on Next.js + React —
@@ -428,6 +450,11 @@ export function cloudShader(node, params) {
 				work compresses to a few days and a small API bill, the constraint melts. framework choice
 				becomes a tactical bet with measurable payback — not a multi-year commitment you're locked
 				into.
+			</p>
+			<p class="mt-4">
+				the second-order effect: the old "Next.js wins because the model knows it best" argument
+				was real for a minute. official docs MCPs killed it — the model can read any framework's
+				source of truth on demand. defaults that compounded for years are now just defaults.
 			</p>
 			<p class="mt-4">
 				this isn't a svelte-beats-react take. the point is: you can read what an app actually does,
