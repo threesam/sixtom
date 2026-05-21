@@ -25,7 +25,16 @@
 			</a>
 		</div>
 		<p class="text-fg-subtle mt-12 text-xs tracking-widest uppercase">
-			@ {site.operator.currentEmployer} · formerly @ {site.operator.formerEmployer}
+			@ {site.operator.currentEmployer} · formerly @ {site.operator.formerEmployer} ·
+			<a
+				href={site.gardenUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				data-umami-event="cta_hero_garden"
+				class="hover:text-coin transition-colors"
+			>
+				portfolio →
+			</a>
 		</p>
 	</div>
 </section>
