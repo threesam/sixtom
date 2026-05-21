@@ -94,7 +94,7 @@
 				</button>
 			</form>
 
-			<div role="alert" aria-live="polite">
+			<div aria-live="polite">
 				{#if form?.status === 'success'}
 					<p class="text-accent mt-4 text-base">{form.message}</p>
 				{:else if form?.status === 'error'}

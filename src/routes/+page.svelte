@@ -100,11 +100,8 @@
 				the case study →
 			</a>
 		</p>
-		<p class="text-fg-subtle mt-12 text-xs tracking-widest uppercase">
-			lead engineer @ {site.operator.currentEmployer} · formerly @ {site.operator.formerEmployer}
-		</p>
 		<blockquote
-			class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg"
+			class="text-fg-muted mt-12 max-w-2xl text-base leading-relaxed italic md:text-lg"
 		>
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
@@ -134,7 +131,7 @@
 				data-umami-event="cta_final_book"
 				class="btn-accent mt-12 inline-block px-8 py-4 text-lg hover:opacity-90"
 			>
-				book the working session →
+				{site.hero.ctaPrimary} →
 			</a>
 		</div>
 	</div>
