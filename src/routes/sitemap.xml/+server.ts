@@ -19,6 +19,12 @@ export function GET(): Response {
 		<priority>0.8</priority>
 	</url>
 	<url>
+		<loc>${site.siteUrl}/tax</loc>
+		<lastmod>${today}</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>${site.siteUrl}/privacy</loc>
 		<lastmod>${today}</lastmod>
 		<changefreq>yearly</changefreq>

@@ -1,2 +1,2 @@
-// Zero-JS marketing page; form posts via action, lazy-enhanced by static/enhance-form.js.
+// Zero-JS marketing page; all CTAs are plain links — no client hydration needed.
 export const csr = false

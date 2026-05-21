@@ -1,19 +1,47 @@
 <script lang="ts">
+	import { enhance } from '$app/forms'
+	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import { site } from '$lib/content'
-	import type { FormResult } from '$lib/types'
+	import type { ActionData } from './$types'
 
-	let { form }: { form: FormResult | null } = $props()
+	let { form }: { form: ActionData } = $props()
 
-	const year = new Date().getFullYear()
+	let formStartedAt = $state('')
+	let enhanced = $state('')
+	let submitting = $state(false)
+	$effect(() => {
+		formStartedAt = String(Date.now())
+		enhanced = '1'
+	})
 </script>
 
-<section class="snap-section bg-surface relative !justify-between">
-	<div class="flex w-full flex-1 items-center px-6 py-16">
+<svelte:head>
+	<title>notify — sixtom</title>
+	<meta
+		name="description"
+		content="one client a month. drop your email to hear when the next sprint slot opens."
+	/>
+	<link rel="canonical" href={`${site.siteUrl}/notify`} />
+	<meta name="robots" content="noindex, follow" />
+</svelte:head>
+
+<div class="bg-surface flex min-h-screen flex-col">
+	<div class="mx-auto w-full max-w-2xl px-6 pt-12">
+		<a
+			href="/"
+			class="eyebrow text-fg-subtle hover:text-coin text-xs transition-colors"
+			data-umami-event="notify_back_home"
+		>
+			← sixtom
+		</a>
+	</div>
+
+	<section class="flex flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
 			<p class="eyebrow text-sm">not ready yet?</p>
-			<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
+			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
 				heads-up when the next slot opens.
-			</h2>
+			</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				one client a month. drop your email and i'll let you know when i'm taking the next one.
 			</p>
@@ -21,10 +49,16 @@
 			<form
 				method="post"
 				action="?/notify"
-				data-enhance-form
+				use:enhance={() => {
+					submitting = true
+					return async ({ update }) => {
+						await update()
+						submitting = false
+					}
+				}}
 				class="mt-10 flex flex-col gap-3 sm:flex-row"
 			>
-				<label class="sr-only" for="email">Email address</label>
+				<label class="sr-only" for="email">email address</label>
 				<input
 					id="email"
 					name="email"
@@ -40,8 +74,8 @@
 					name="message"
 					value="Wants notification when next sprint slot opens."
 				/>
-				<input type="hidden" name="formStartedAt" value="" data-form-started-at />
-				<input type="hidden" name="enhanced" value="" data-form-enhanced />
+				<input type="hidden" name="formStartedAt" bind:value={formStartedAt} />
+				<input type="hidden" name="enhanced" bind:value={enhanced} />
 				<input
 					type="text"
 					name="company"
@@ -53,14 +87,14 @@
 				<button
 					type="submit"
 					data-umami-event="cta_notify_submit"
-					data-enhance-submit
+					disabled={submitting}
 					class="btn-accent px-6 py-3 text-lg hover:opacity-90 disabled:opacity-60"
 				>
-					{site.hero.ctaSecondary}
+					{submitting ? 'sending…' : 'notify me →'}
 				</button>
 			</form>
 
-			<div data-enhance-result aria-live="polite">
+			<div aria-live="polite">
 				{#if form?.status === 'success'}
 					<p class="text-accent mt-4 text-base">{form.message}</p>
 				{:else if form?.status === 'error'}
@@ -68,27 +102,7 @@
 				{/if}
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<footer class="border-border text-fg-subtle w-full border-t px-6 py-4 text-xs">
-		<div
-			class="mx-auto flex w-full max-w-2xl flex-col items-center justify-between gap-2 sm:flex-row"
-		>
-			<div class="flex items-center gap-4">
-				<span>© {year} sixtom</span>
-				<a href="/log" class="hover:text-fg transition-colors">log</a>
-				<a href="/privacy" class="hover:text-fg transition-colors">privacy</a>
-				<a href="/terms" class="hover:text-fg transition-colors">terms</a>
-			</div>
-			<a
-				href={site.gardenUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				data-umami-event="cta_garden_link"
-				class="hover:text-coin transition-colors"
-			>
-				threesam.com →
-			</a>
-		</div>
-	</footer>
-</section>
+	<SiteFooter />
+</div>

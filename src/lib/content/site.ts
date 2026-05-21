@@ -13,8 +13,8 @@ export const site: Site = {
 	hero: {
 		h1: 'AI ships demos. i ship solutions.',
 		subhead:
-			"you've got a working demo. now it needs to scale, secure, survive real traffic — without you up at 2am. two weeks of reviewed builds, fixed price, live in production day 10.",
-		ctaPrimary: 'book a 30-min intro call',
+			"you shipped the demo. now you need it to scale, secure, survive real traffic — without you up at 2am. two weeks of reviewed builds, fixed price, live in production day 10.",
+		ctaPrimary: 'book the working session',
 		ctaSecondary: 'notify me'
 	},
 	operator: {

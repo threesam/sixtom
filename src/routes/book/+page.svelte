@@ -55,14 +55,23 @@
 				<div class="border-border rounded-lg border p-8">
 					<p class="eyebrow text-sm">not a fit, yet</p>
 					<p class="text-fg mt-4 text-lg leading-relaxed">{form.message}</p>
-					<a
-						href="/book"
-						data-sveltekit-reload
-						data-umami-event="book_disqualified_restart"
-						class="text-fg-subtle hover:text-coin mt-6 inline-block text-xs tracking-widest uppercase transition-colors"
-					>
-						start over →
-					</a>
+					<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
+						<a
+							href="/notify"
+							data-umami-event="book_disqualified_notify"
+							class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
+						>
+							get notified when ready →
+						</a>
+						<a
+							href="/book"
+							data-sveltekit-reload
+							data-umami-event="book_disqualified_restart"
+							class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
+						>
+							start over →
+						</a>
+					</div>
 				</div>
 			{:else}
 				<div class="border-border-strong ring-border rounded-lg border p-8 ring-1">
