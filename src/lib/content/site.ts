@@ -9,11 +9,11 @@ export const site: Site = {
 	tagline: 'we just want to build cool shit and help people chase their dreams',
 	thesis: 'vibe coding is how you slowly become the intern of your own codebase.',
 	thesisBody:
-		'AI gets you to a demo. agents do the typing. i do the judgment. together we ship a product.',
+		"AI gets you to a demo because the model can hold the whole thing in its head. once the codebase outgrows that window, the AI starts making it worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.",
 	hero: {
-		h1: 'AI ships demos. i ship products.',
+		h1: 'AI ships demos. i ship solutions.',
 		subhead:
-			"i run a fleet of agents in parallel. they type, i judge. two weeks to a working version live in production. daily drops. no calendar tetris.",
+			"you got to a working demo with AI. it falls over the moment a real user hits it. two weeks of guardrailed builds — fixed price, daily drops, live in production day 10.",
 		ctaPrimary: 'book a 30-min intro call',
 		ctaSecondary: 'notify me'
 	},
@@ -30,17 +30,18 @@ export const site: Site = {
 		priceUSD: 1500,
 		cadence: 'turnaround within a week.',
 		promise:
-			"send me your repo and the thing you've been trying to ship. i send back a 1-pager and a 15-min Loom — what's blocking, what i'd do, whether a sprint makes sense. credited toward a sprint if you book within 30 days."
+			"send me your repo and the thing you've been stuck on. within a week i send back a 1-pager and a 15-min Loom — what's blocking, what i'd do, and what it's costing you in opportunity to leave it as-is. credited toward a sprint if you book within 30 days."
 	},
 	sprint: {
-		name: 'async sprint',
+		name: 'sprint',
 		longName: 'async sprint',
 		priceUSD: 10000,
 		introPriceUSD: 7500,
 		introNote: 'first 3 clients',
 		cadence: '1 client a month, by appointment.',
+		paymentPlan: '4 weekly payments of $2,500',
 		promise:
-			'two weeks. agents do the typing — drafts, fixes, accessibility passes, the boring 10%. i do the judgment. daily drops. live in production on day 10.'
+			"you've built the thing with AI. it works in dev. you're scared to put real traffic on it. two weeks of guardrailed builds — fixed scope, daily drops, live in production day 10. i orchestrate the agents and review every change. you ship, you own it."
 	},
 	process: [
 		{

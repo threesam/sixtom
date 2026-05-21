@@ -52,6 +52,11 @@
 							.introNote}.
 					</p>
 				{/if}
+				{#if site.sprint.paymentPlan}
+					<p class="text-fg-subtle mt-1 text-sm">
+						or {site.sprint.paymentPlan}.
+					</p>
+				{/if}
 				<p class="text-fg-muted mt-4 text-base leading-relaxed">
 					{site.sprint.promise}
 				</p>
