@@ -13,7 +13,7 @@ export const site: Site = {
 	hero: {
 		h1: 'AI ships demos. i ship solutions.',
 		subhead:
-			"you built it with AI. it works for you. now it has to work for your customers — every busy day, every security review, every weekend without you. two weeks. fixed price. live and stable in 10 days.",
+			"you built it with AI. it works for you. now it has to work for everyone else.",
 		ctaPrimary: 'book the working session',
 		ctaSecondary: 'notify me'
 	},

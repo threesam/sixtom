@@ -24,17 +24,28 @@
 <!-- recognize any of these -->
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class="eyebrow text-sm">— recognize any of these?</p>
 		<h2
-			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
+			class="text-fg text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
 		>
-			uptime. security. scale. peace of mind.
+			recognize any of these?
 		</h2>
-		<ul class="text-fg-muted mt-10 space-y-4 text-lg leading-relaxed md:text-xl">
-			<li>— your biggest customer is asking about uptime you can't promise.</li>
-			<li>— a sale is stuck waiting on a security review you don't pass yet.</li>
-			<li>— you're afraid to launch new features because something always breaks.</li>
-			<li>— investors are asking how this scales and the answer is "we'll figure it out."</li>
+		<ul class="text-fg-muted mt-10 space-y-6 text-base leading-relaxed md:text-lg">
+			<li>
+				<span class="text-fg font-semibold">uptime.</span>
+				your biggest customer wants a number you can't give.
+			</li>
+			<li>
+				<span class="text-fg font-semibold">security.</span>
+				a sale is stuck waiting on a review you don't pass.
+			</li>
+			<li>
+				<span class="text-fg font-semibold">scale.</span>
+				investors keep asking how. you keep saying "we'll figure it out."
+			</li>
+			<li>
+				<span class="text-fg font-semibold">peace of mind.</span>
+				every time you launch a feature, something else breaks.
+			</li>
 		</ul>
 	</div>
 </section>
@@ -46,11 +57,12 @@
 		<p
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight italic md:text-5xl lg:text-6xl"
 		>
-			every week you wait, it gets harder for anyone to touch — including the AI you built it with.
+			every week you wait, it gets harder to touch.
 		</p>
 		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			your time fighting fires, times what your time is worth, times how much slower it gets every
-			month. usually six figures a year, compounding quietly.
+			even the AI that built it stops being able to help. your time fighting fires, times your
+			hourly rate, times how much slower it gets every month. usually six figures a year,
+			compounding quietly.
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
@@ -88,12 +100,11 @@
 		<p
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
 		>
-			i ship for a brand you know by day.
+			day job: lead engineer at Made In Cookware.
 		</p>
 		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			lead engineer at Made In Cookware — multi-million visitors a month. i rebuilt my own creative
-			work on the same methods: 5 hours of actual build time, 40% smaller, every measurable score
-			went up.
+			multi-million visitors a month. i rebuilt my own creative work — the Garden — on the same
+			methods: 5 hours of actual build time, 40% smaller, every measurable score went up.
 		</p>
 		<p class="mt-6 flex flex-wrap gap-6 text-sm">
 			<a

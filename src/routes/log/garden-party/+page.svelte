@@ -92,10 +92,9 @@
 <article class="mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
 	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<p class="text-fg-muted text-lg leading-relaxed">
-			my wife offered me tea. i picked 'garden party.' that's how i ended up porting <a
-				href="https://threesam.com"
-				class="text-accent hover:underline">threesam.com</a
-			> from Next.js to SvelteKit — same routes, same design, same everything. a 1:1 swap. here's what
+			my wife offered me tea. i picked 'garden party.' that's how i ended up porting my garden —
+			<a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> — from
+			Next.js to SvelteKit. same routes, same design, same everything. a 1:1 swap. here's what
 			happened.
 		</p>
 
@@ -122,51 +121,38 @@
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">why</h2>
 			<p>
-				threesam.com started as a throwaway. a portfolio AI was going to make for me — ramble at
-				the model, stash what came back, ship it. low effort by design. and the original build
-				showed it: Next.js + React because that's what the model defaulted to, canvas sketches
-				stuffed into <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code>
-				cleanups, a dead audio system, deprecated routes nobody hit. vibe-coded.
+				the Garden started as a throwaway. AI was going to make a portfolio for me — ramble at the
+				model, stash what came back, ship it. low effort by design. the original build showed it:
+				Next.js + React because that's what the model defaulted to, canvas sketches stuffed into
+				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> cleanups,
+				dead code everywhere. vibe-coded.
 			</p>
 			<p class="mt-4">
-				but i kept opening it. and the more time i actually spent — shaping what i wanted, reading
-				diffs, deleting what wasn't pulling weight — the better it got. garbage in, garbage out.
-				the inverse holds too: care in, care out. the law runs both directions.
+				but i kept opening it. the more time i spent — shaping what i wanted, reading diffs,
+				deleting what wasn't pulling weight — the better it got. garbage in, garbage out. care in,
+				care out. the law runs both directions.
 			</p>
 			<p class="mt-4">
-				the trade-off: it kept growing. by the time i decided to port, the codebase was past the
-				wall — ~30,000 lines of React components, <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code>
-				hooks, half-finished routes. any model that touched it had to swallow the whole tree
-				before it could help with any of it. the assists were getting noisier, not better — the
-				opposite of why you reach for AI in the first place.
-			</p>
-			<p class="mt-4">
-				the framework itself was also starting to show as friction — React was the inherited
-				default i'd never re-examined; SvelteKit had been in the eventually pile for that exact
-				reason. with LLM tooling where it is now, both assumptions felt worth testing in the same
-				pass. so we did.
+				by port time it was past the wall — ~30,000 lines. any model that touched it had to swallow
+				the whole tree before it could help. the assists were getting noisier, not better. the
+				framework had also become a default i'd never re-examined. time to test both in the same
+				pass.
 			</p>
 		</section>
 
 		<section>
 			<h2 class="text-fg mb-3 text-xl font-semibold">purpose</h2>
 			<p>
-				two questions. is a 1:1 port across frameworks even possible? not "mostly done" — a complete
-				transfer, same routes, same sketches, same visual output, zero regressions. and if it's
-				possible, how good can it get? visual parity? performance parity? better?
+				two questions. is a 1:1 port across frameworks even possible — same routes, same sketches,
+				same visual output, zero regressions? and if it is, how good can it get?
 			</p>
 			<p class="mt-4">
-				we wanted a real measurement against a live production baseline. not a toy project. not a
-				greenfield rewrite.
-			</p>
-			<p class="mt-4">
-				threesam.com made it a good test. canvas-heavy and imperative by nature: 31 generative
-				sketches, WebGL cloud shaders, voronoi images, metaball simulations, particle-text effects,
-				a three.js scene. things that touch the DOM frame-by-frame. React's value is diffing a tree
-				and batching updates. canvas and WebGL bypass the DOM entirely. the component tree was
-				already mostly <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> hooks
-				pretending to be declarative — React's mental model fighting the actual code shape. which
-				made it a clean test case: does the better-fit framework actually show up in the numbers?
+				the Garden made a clean test: canvas-heavy and imperative by nature. 31 generative sketches,
+				WebGL cloud shaders, voronoi images, metaball simulations, particle-text effects, a three.js
+				scene. React's value is diffing a tree and batching updates; canvas and WebGL bypass the DOM
+				entirely. the component tree was already mostly <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code>
+				hooks pretending to be declarative. clean test for whether a better-fit framework shows up
+				in the numbers.
 			</p>
 		</section>
 
@@ -277,199 +263,57 @@
 					</span>
 				</div>
 
-				<!-- accessible fallback -->
-				<details class="mt-4 text-xs" style="color: var(--color-fg-muted);">
-					<summary class="cursor-pointer">see the numbers</summary>
-					<table class="mt-3 w-full text-left tabular-nums">
-						<thead style="color: var(--color-fg-subtle);">
-							<tr>
-								<th class="py-1 pr-3 font-semibold">route</th>
-								<th class="py-1 pr-3 font-semibold">next</th>
-								<th class="py-1 pr-3 font-semibold">sveltekit</th>
-								<th class="py-1 font-semibold">Δ</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each CHART_ROWS as row (row.route)}
-								<tr>
-									<td class="py-1 pr-3 font-mono">{row.route}</td>
-									<td class="py-1 pr-3">{row.next}</td>
-									<td class="py-1 pr-3">{row.svk}</td>
-									<td class="py-1" style="color: var(--color-accent);">+{row.delta}</td>
-								</tr>
-							{/each}
-							<tr class="border-t" style="border-color: var(--color-border);">
-								<td class="py-1 pr-3 font-semibold uppercase tracking-wider">avg</td>
-								<td class="py-1 pr-3">72.3</td>
-								<td class="py-1 pr-3 font-semibold">89.7</td>
-								<td class="py-1 font-semibold" style="color: var(--color-accent);">+17.3</td>
-							</tr>
-						</tbody>
-					</table>
-				</details>
-
 				<p class="mt-3 text-xs leading-relaxed" style="color: var(--color-fg-subtle);">
-					next.js live-production baseline vs sveltekit with perf work applied. a11y / best practices / seo: 100 / 99.6 / 100 — held across both.
+					next.js live-production baseline vs sveltekit with perf work applied. a11y / best
+					practices / seo: 100 / 99.6 / 100 — held across both. /canvas/self is the outlier at 70
+					— a WebGL-canvas ceiling, not a framework issue.
 				</p>
 			</figure>
 
-			<div class="border-border mt-6 rounded-lg border p-5">
-				<p class="text-fg mb-1 font-medium">net</p>
-				<ul class="text-fg-muted mt-2 space-y-1.5 text-sm">
-					<li>perf: avg +17.3 pts. best gain +35 on /. 8 of 9 routes now at 90+.</li>
-					<li>
-						/canvas/self is the outlier at 70 — that's a WebGL-canvas ceiling, not a framework
-						issue.
-					</li>
-					<li>a11y / best practices / seo: 100 / 99.6 / 100 — held everywhere, both before and after.</li>
-					<li>/canvas/self payload: 6.3 MB → ~1.5 MB (album-art WebP conversion).</li>
-					<li
-						>/deana initial JS: 220 KB → 5.5 KB (−97.5%; canvas + message components
-						dynamic-imported).</li
-					>
-					<li>/shelf TTFB: 2.6s → ~0 (prerendered; Goodreads RSS fetch moved to build time).</li>
-				</ul>
-			</div>
-
-			<!-- CODE SNIPPET: React → Svelte -->
-			<div class="my-12 grid gap-6 md:grid-cols-2 md:gap-8">
-				<figure>
-					<figcaption class="mb-2 text-xs uppercase tracking-wider" style="color: var(--color-fg-muted);">Next.js — React component</figcaption>
-					<pre class="overflow-x-auto rounded-md border p-4 text-xs leading-relaxed md:text-sm" style="border-color: var(--color-border); background-color: var(--color-surface);"><code>{`function CloudCanvas({ mirror }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const canvas = ref.current;
-    const gl = canvas.getContext("webgl");
-    const cleanup = setupShader(gl);
-    let raf = requestAnimationFrame(loop);
-    function loop() {
-      /* draw */
-      raf = requestAnimationFrame(loop);
-    }
-    return () => {
-      cancelAnimationFrame(raf);
-      cleanup();
-    };
-  }, []);
-  return (
-    <canvas
-      ref={ref}
-      className={mirror ? "..." : "..."}
-    />
-  );
-}`}</code></pre>
-				</figure>
-				<figure>
-					<figcaption class="mb-2 text-xs uppercase tracking-wider" style="color: var(--color-fg-muted);">SvelteKit — action</figcaption>
-					<pre class="overflow-x-auto rounded-md border p-4 text-xs leading-relaxed md:text-sm" style="border-color: var(--color-border); background-color: var(--color-surface);"><code>{`<!-- CloudCanvas.svelte -->
-<canvas use:cloudShader={{ mirror }} />
-
-// cloud-shader.ts
-export function cloudShader(node, params) {
-  const gl = node.getContext("webgl");
-  const cleanup = setupShader(gl);
-  let raf = requestAnimationFrame(loop);
-  function loop() {
-    /* draw */
-    raf = requestAnimationFrame(loop);
-  }
-  return {
-    destroy() {
-      cancelAnimationFrame(raf);
-      cleanup();
-    },
-  };
-}`}</code></pre>
-				</figure>
-			</div>
-
 			<p class="mt-8">
-				the port was a pruning pass too. one commit deleted 5,557 lines: a dead audio system, orphan
-				hero canvas components, deprecated case-study route stubs, duplicate lib files shadowing
-				each other between the Next.js root and the SvelteKit <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code> tree. the
-				codebase landed at roughly 60% of its original size — back below the context-window wall.
-				every subsequent AI session can hold the whole thing in its head again.
+				the port was a pruning pass too. one commit deleted 5,557 lines: dead audio code, orphan
+				canvases, deprecated route stubs, duplicate libs shadowing each other across the old and
+				new <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">src/</code> trees. the
+				codebase landed at ~60% of its original size — back below the wall. the model can hold the
+				whole thing in its head again.
 			</p>
 			<p class="mt-4">
-				the component shape got simpler. canvas logic that had been jammed into
-				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> cleanup cycles
-				— stale refs, double-mounts in strict mode, cleanup ordering — moved into Svelte actions. an
-				action is: here's a node, do something to it, here's how to undo it. that's the exact shape
-				the sketches were already written in. the friction disappeared.
-			</p>
-			<p class="mt-4">
-				Svelte 5 runes made reactivity explicit. <code
-					class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">$state</code
-				>,
-				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">$derived</code>,
-				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">$effect</code> — you read a component
-				and you know exactly what's reactive and why. no implicit dependency arrays to audit.
-			</p>
-			<p class="mt-4">
-				we could have shipped the port faster. lift-and-shift, leave the dead code alone, move on.
-				instead we paused to prune — and that pass took days, not hours. the agent reads every file
-				during a port anyway, so orphan code surfaces naturally. the cost of <em>noticing</em> it is
-				essentially zero. the cost is deciding to stop and remove it. worth making. the audio-reactive
-				subsystem was setting state nothing read; the <code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">/api/counters</code> endpoint
-				had zero callers; the deprecated case-study routes weren't linked from anywhere. none of it
-				was doing anything — it just looked like it might be.
-			</p>
-			<p class="mt-4">
-				every change since has been faster. less surface area. prototyping a new section is hours,
-				not a day. tinkering with an interaction doesn't start with "wait, does this audio system
-				still matter?" a smaller codebase is a faster codebase to think in. for a long-lived
-				personal site, the time spent pruning during a re-platform pays back the next time you sit
-				down to build something. when we do this for a client, the cleanup pass isn't scope creep —
-				it's the part that makes the next year of changes cheap.
+				the component shape got simpler too. canvas logic that had been jammed into
+				<code class="bg-border rounded px-1.5 py-0.5 font-mono text-sm">useEffect</code> cleanup
+				cycles — stale refs, double-mounts in strict mode, cleanup ordering — moved into Svelte
+				actions. an action is just: here's a node, do something to it, here's how to undo it.
+				that's the exact shape the sketches were already written in. the friction disappeared.
 			</p>
 
 			<p class="mt-8">
-				this port was driven by an AI agent. 78 commits, multi-day window, ~5–6 hours of active
-				code transformation; the rest was spec, plan, visual diff, and perf work — the human
-				judgment loop. total LLM cost: tens of dollars in API tokens. closer to a single consulting
-				hour than a sprint.
+				driven by an AI agent. 78 commits, multi-day window, ~5–6 hours of active code
+				transformation; the rest was spec, plan, visual diff, perf work — the human judgment loop.
+				total LLM cost: tens of dollars.
 			</p>
 			<p class="mt-4">
-				at peak, 37 sub-agents ran in parallel. each one got a single tiny, scoped chunk — small
-				enough to spec and review independently. i call it the review train: small offshoot, heavy
-				review, merge, next chunk. no chunk was ever the whole codebase, so no agent ever ran into
-				the wall. the loop: spec → plan → fresh agent per task → two-stage review → visual
-				regression against prod → lighthouse re-measure. 1:1 visual fidelity was verified by
-				automated screenshot diffs against the live production site, route by route.
+				at peak, 37 sub-agents ran in parallel. each one got one tiny, scoped chunk — small enough
+				to spec and review independently. i call it the review train: small offshoot, heavy review,
+				merge, next chunk. no chunk was ever the whole codebase, so no agent ever hit the wall.
 			</p>
 			<p class="mt-4">
-				none of this is magic. it works because of guardrails — the right docs piped in (Svelte
-				MCP for the new framework, the existing repo as the source of truth for the old), the
-				methodology spec'd up front, and tight per-chunk reviews. agents handed loose instructions
-				still vibe-code; agents handed scoped chunks under heavy review ship code you can defend.
+				guardrails are why it worked — right docs piped in (Svelte MCP for the new framework, the
+				existing repo as the source of truth for the old), methodology spec'd up front, tight
+				per-chunk reviews. agents handed loose instructions vibe-code. agents handed scoped chunks
+				under heavy review ship code you can defend.
 			</p>
 			<p class="mt-4">
-				that changes the math on framework choice. the old argument for staying on Next.js + React —
-				even when the fit was bad — was cost. re-platforming meant weeks of refactor work, regression
-				risk, team retraining. studios and teams reached for the defaults and stayed there. when that
-				work compresses to a few days and a small API bill, the constraint melts. framework choice
-				becomes a tactical bet with measurable payback — not a multi-year commitment you're locked
-				into.
+				framework MCP servers killed the old "Next.js wins because the model knows it best"
+				argument. the model can read any framework's source of truth on demand. defaults that
+				compounded for years are just defaults now.
 			</p>
 			<p class="mt-4">
-				the second-order effect: the old "Next.js wins because the model knows it best" argument
-				was real for a minute. framework MCP servers killed it — the model can read any
-				framework's source of truth on demand. defaults that compounded for years are now just
-				defaults.
-			</p>
-			<p class="mt-4">
-				this isn't a svelte-beats-react take. the point is: you can read what an app actually does,
-				pick accordingly, and know whether it paid off. sometimes that answer is Next.js. here it
-				wasn't.
+				this isn't a svelte-beats-react take. you can read what an app actually does and pick
+				accordingly. sometimes the answer is Next.js. here it wasn't.
 			</p>
 		</section>
 
 		<footer class="border-border mt-12 border-t pt-8">
-			<p class="text-fg-muted text-sm">
-				live at <a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a>.
-				if your stack has been sitting in the eventually pile — <a href="/" class="text-accent hover:underline">let's talk</a>.
-			</p>
-			<p class="text-fg-subtle mt-3 text-xs">
+			<p class="text-fg-subtle text-xs">
 				the work is public:
 				<a href="https://github.com/threesam/garden/pull/29" class="text-accent hover:underline">#29</a> (port),
 				<a href="https://github.com/threesam/garden/pull/30" class="text-accent hover:underline">#30</a> (perf),
