@@ -4,7 +4,10 @@
 
 <svelte:head>
 	<title>privacy — sixtom</title>
-	<meta name="description" content="what sixtom collects, what it doesn't, and how to get it deleted." />
+	<meta
+		name="description"
+		content="what sixtom collects, what it doesn't, and how to get it deleted."
+	/>
 	<link rel="canonical" href={`${site.siteUrl}/privacy`} />
 </svelte:head>
 

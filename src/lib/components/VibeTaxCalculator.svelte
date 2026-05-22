@@ -22,7 +22,7 @@
 
 	let mau = $state<number | null>(1000)
 	let goal = $state<Goal>('stop')
-	let firefightingHours = $state(10)
+	let firefightingHours = $state<number | null>(10)
 	let hourlyCost = $state<number | null>(150)
 
 	// Clamp non-negative; cleared <input type="number"> binds to null in Svelte 5.

@@ -18,13 +18,13 @@ function parsePositiveNumber(value: string | undefined, fallback: number): numbe
 	return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : fallback
 }
 
-const MIN_SUBMIT_MS = parsePositiveNumber(env.CONTACT_FORM_MIN_SUBMIT_MS, DEFAULT_MIN_SUBMIT_MS)
+const MIN_SUBMIT_MS = parsePositiveNumber(env['CONTACT_FORM_MIN_SUBMIT_MS'], DEFAULT_MIN_SUBMIT_MS)
 const RATE_LIMIT_WINDOW_MS = parsePositiveNumber(
-	env.CONTACT_FORM_RATE_LIMIT_WINDOW_MS,
+	env['CONTACT_FORM_RATE_LIMIT_WINDOW_MS'],
 	DEFAULT_RATE_LIMIT_WINDOW_MS
 )
 const RATE_LIMIT_MAX_REQUESTS = parsePositiveNumber(
-	env.CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS,
+	env['CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS'],
 	DEFAULT_MAX_REQUESTS_PER_WINDOW
 )
 
@@ -147,7 +147,7 @@ export async function processSubmission(
 	}
 
 	// E2E bypass; env var unset in production, exact-match comparison.
-	const testEmailRaw = env.CONTACT_FORM_TEST_EMAIL
+	const testEmailRaw = env['CONTACT_FORM_TEST_EMAIL']
 	const testEmail = typeof testEmailRaw === 'string' ? testEmailRaw.trim() : ''
 	if (testEmail !== '' && email === testEmail) {
 		return { ok: true, message: SUCCESS_MESSAGE }

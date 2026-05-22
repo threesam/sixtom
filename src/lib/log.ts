@@ -14,6 +14,7 @@ export const LOG_ENTRIES: LogEntry[] = [
 		eyebrow: '— log / 2026-05-18',
 		heroImage: '/assets/clouds.webp',
 		date: '2026-05-18',
-		blurb: 'a 1:1 port of threesam.com from Next.js to SvelteKit. the impulse, the experiment, what the numbers showed.',
-	},
+		blurb:
+			'a 1:1 port of threesam.com from Next.js to SvelteKit. the impulse, the experiment, what the numbers showed.'
+	}
 ]
