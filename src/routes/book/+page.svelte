@@ -13,9 +13,6 @@
 	let built = $state('')
 	let deliverable = $state('')
 	let budget = $state('')
-	let name = $state('')
-	let email = $state('')
-	let companyUrl = $state('')
 
 	let formStartedAt = $state('')
 	let enhanced = $state('')
@@ -248,7 +245,6 @@
 							required
 							maxlength="120"
 							autocomplete="name"
-							bind:value={name}
 							class="{inputClass} mt-2"
 						/>
 					</div>
@@ -261,7 +257,6 @@
 							required
 							maxlength="254"
 							autocomplete="email"
-							bind:value={email}
 							class="{inputClass} mt-2"
 						/>
 						<p class={hintClass}>personal Gmail counts; just expect a slower reply.</p>
@@ -276,7 +271,6 @@
 							maxlength="500"
 							placeholder="https://"
 							autocomplete="url"
-							bind:value={companyUrl}
 							class="{inputClass} mt-2"
 						/>
 					</div>

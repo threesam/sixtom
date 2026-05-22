@@ -5,7 +5,7 @@
 
 <footer class="border-border bg-surface w-full border-t px-6 py-8">
 	<div
-		class="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+		class="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 sm:flex-row sm:justify-between sm:gap-4"
 	>
 		<a
 			href="/"
