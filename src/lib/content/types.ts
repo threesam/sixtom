@@ -48,7 +48,6 @@ export interface Site {
 	hero: {
 		subhead: string
 		ctaPrimary: string
-		ctaSecondary: string
 	}
 	operator: Operator
 	audit: Offer
