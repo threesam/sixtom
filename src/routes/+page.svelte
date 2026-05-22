@@ -50,9 +50,28 @@
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>what's it costing you?</h2>
-		<p class={bodyClass}>
-			your time fighting fires, times your hourly rate, times how much slower it gets every
-			month. usually six figures a year.
+		<dl
+			class="text-fg mt-10 max-w-md space-y-2 text-xl leading-tight tabular-nums md:text-3xl"
+			aria-label="cost formula"
+		>
+			<div class="flex items-baseline gap-3">
+				<dt class="text-fg-subtle w-6">&nbsp;</dt>
+				<dd>hours firefighting</dd>
+			</div>
+			<div class="flex items-baseline gap-3">
+				<dt class="text-fg-subtle w-6">×</dt>
+				<dd>hourly rate</dd>
+			</div>
+			<div class="flex items-baseline gap-3">
+				<dt class="text-fg-subtle w-6">×</dt>
+				<dd>slowdown / month</dd>
+			</div>
+			<div class="border-border-strong flex items-baseline gap-3 border-t pt-2">
+				<dt class="text-fg-subtle w-6">=</dt>
+				<dd>six figures / year</dd>
+			</div>
+		</dl>
+		<p class="mt-10 text-base md:text-lg">
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
