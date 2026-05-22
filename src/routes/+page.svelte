@@ -97,7 +97,7 @@
 				target="_blank"
 				rel="noopener noreferrer"
 				data-umami-event="cta_garden_link_why"
-				class="text-fg hover:text-coin underline underline-offset-4 transition-colors"
+				class="text-fg hover:text-coin transition-colors"
 			>
 				see the work →
 			</a>
