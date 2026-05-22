@@ -2,6 +2,11 @@
 	import Hero from '$lib/components/Hero.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import { site } from '$lib/content'
+
+	const h2Class =
+		'text-fg text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl'
+	const bodyClass =
+		'text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-lg'
 </script>
 
 <Hero />
@@ -9,14 +14,9 @@
 <!-- who this is for -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class="eyebrow text-fg text-sm">— who this is for</p>
-		<h2
-			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
-		>
-			you already built it. it works when you use it.
-		</h2>
-		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			real customers are about to break it — or already are. you know it. that's why you're here.
+		<h2 class={h2Class}>who this is for</h2>
+		<p class={bodyClass}>
+			you already built it. real customers are about to break it — or already are. you know it.
 		</p>
 	</div>
 </section>
@@ -24,11 +24,7 @@
 <!-- recognize any of these -->
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2
-			class="text-fg text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
-		>
-			recognize any of these?
-		</h2>
+		<h2 class={h2Class}>recognize any of these?</h2>
 		<ul class="text-fg-muted mt-10 space-y-6 text-base leading-relaxed md:text-lg">
 			<li>
 				<span class="text-fg font-semibold">uptime.</span>
@@ -53,16 +49,10 @@
 <!-- what's it costing you -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class="eyebrow text-fg text-sm">— what's it costing you?</p>
-		<p
-			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight italic md:text-5xl lg:text-6xl"
-		>
-			every week you wait, it gets harder to touch.
-		</p>
-		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			even the AI that built it stops being able to help. your time fighting fires, times your
-			hourly rate, times how much slower it gets every month. usually six figures a year,
-			compounding quietly.
+		<h2 class={h2Class}>what's it costing you?</h2>
+		<p class={bodyClass}>
+			your time fighting fires, times your hourly rate, times how much slower it gets every
+			month. usually six figures a year.
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
@@ -77,18 +67,12 @@
 <!-- how this works -->
 <section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class="eyebrow text-sm">— how this works</p>
-		<h2
-			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
-		>
-			a 2-week sprint. live and stable in 10 days.
-		</h2>
-		<p class="text-fg-muted mt-8 text-lg leading-relaxed md:text-xl">
-			fixed scope agreed up front — no surprises, no creep. you see progress every day. i sit
-			alongside whatever you've already built (yours, your contractor's, doesn't matter) and fix
-			what's blocking you. every change is reviewed before it goes live. you own everything.
+		<h2 class={h2Class}>how this works</h2>
+		<p class={bodyClass}>
+			2 weeks. fixed scope, agreed up front. you see progress every day. live and stable in 10
+			days. every change reviewed before it goes live. you own everything.
 			<span class="text-fg font-semibold">${site.sprint.priceUSD.toLocaleString()} flat</span>
-			(or {site.sprint.paymentPlan}). 1 client a month, by appointment.
+			(or {site.sprint.paymentPlan}). 1 client a month.
 		</p>
 	</div>
 </section>
@@ -96,15 +80,11 @@
 <!-- why me -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class="eyebrow text-fg text-sm">— why me</p>
-		<p
-			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
-		>
-			day job: lead engineer at Made In Cookware.
-		</p>
-		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			multi-million visitors a month. i rebuilt my own creative work — the Garden — on the same
-			methods: 5 hours of actual build time, 40% smaller, every measurable score went up.
+		<h2 class={h2Class}>why me</h2>
+		<p class={bodyClass}>
+			day job: lead engineer at Made In Cookware. multi-million visitors a month. i rebuilt my
+			own creative work — the Garden — on the same methods. 5 hours of build time, 40% smaller,
+			every score up.
 		</p>
 		<p class="mt-6 flex flex-wrap gap-6 text-sm">
 			<a
@@ -139,17 +119,15 @@
 <section class="snap-section bg-surface !justify-between">
 	<div class="flex w-full flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-3xl">
-			<p class="eyebrow text-sm">— want to look at it together?</p>
 			<h2
-				class="text-fg mt-4 text-4xl leading-tight font-bold tracking-tight md:text-6xl lg:text-7xl"
+				class="text-fg text-4xl leading-tight font-bold tracking-tight md:text-6xl lg:text-7xl"
 			>
-				let's see if a sprint fits.
+				want to look at it together?
 			</h2>
-			<p class="text-fg-muted mt-8 text-lg leading-relaxed md:text-xl">
-				${site.audit.priceUSD.toLocaleString()} to look at what you've got. send me the link or
-				access, however your build is set up. within a week you get a written breakdown and a
-				short video walkthrough — what's broken, what i'd fix, what it's costing you to leave it.
-				credited toward the sprint if you book one within 30 days.
+			<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
+				${site.audit.priceUSD.toLocaleString()} to look at what you've got. within a week: a written
+				breakdown plus a short video walkthrough. credited toward the sprint if you book one within
+				30 days.
 			</p>
 			<a
 				href="/book"
