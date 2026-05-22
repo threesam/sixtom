@@ -28,9 +28,7 @@ export const site: Site = {
 		name: 'audit',
 		longName: 'the audit',
 		priceUSD: 1500,
-		cadence: 'turnaround within a week.',
-		promise:
-			"send me what you've built — link, login, however it's set up. within a week, i send back a written breakdown and a short video walkthrough: what's blocking you, what i'd do about it, what it's costing you to leave it as-is. credited toward the sprint if you book one within 30 days."
+		cadence: 'turnaround within a week.'
 	},
 	sprint: {
 		name: 'sprint',
@@ -39,9 +37,7 @@ export const site: Site = {
 		introPriceUSD: 7500,
 		introNote: 'first 3 clients',
 		cadence: '1 client a month, by appointment.',
-		paymentPlan: '4 weekly payments of $2,500',
-		promise:
-			"it works for you. you're not ready for real customers yet. two weeks. fixed scope agreed up front. you see progress every day. live and stable in 10 days. every change reviewed before it goes live. you own everything."
+		paymentPlan: '4 weekly payments of $2,500'
 	},
 	process: [
 		{
