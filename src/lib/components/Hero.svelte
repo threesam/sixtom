@@ -9,7 +9,7 @@
 			class="text-fg mt-6 text-5xl leading-[1.02] font-bold tracking-tight md:text-7xl lg:text-8xl"
 		>
 			<span class="block">it works for you.</span>
-			<span class="block">it breaks for everyone else.</span>
+			<span class="block">it dies in production.</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
 			the demo was the easy part. i ship <span class="text-fg">solutions</span>.
