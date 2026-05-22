@@ -52,26 +52,31 @@
 		<h2 class={h2Class}>what's it costing you?</h2>
 		<dl
 			class="text-fg mt-10 max-w-md space-y-2 text-xl leading-tight tabular-nums md:text-3xl"
-			aria-label="cost formula"
+			aria-label="cost example"
 		>
 			<div class="flex items-baseline gap-3">
 				<dt class="text-fg-subtle w-6">&nbsp;</dt>
-				<dd>hours firefighting</dd>
+				<dd>10 hrs/wk firefighting</dd>
 			</div>
 			<div class="flex items-baseline gap-3">
 				<dt class="text-fg-subtle w-6">×</dt>
-				<dd>hourly rate</dd>
+				<dd>$200/hr</dd>
 			</div>
 			<div class="flex items-baseline gap-3">
 				<dt class="text-fg-subtle w-6">×</dt>
-				<dd>slowdown / month</dd>
+				<dd>3× slowdown</dd>
+			</div>
+			<div class="flex items-baseline gap-3">
+				<dt class="text-fg-subtle w-6">×</dt>
+				<dd>52 wks/yr</dd>
 			</div>
 			<div class="border-border-strong flex items-baseline gap-3 border-t pt-2">
 				<dt class="text-fg-subtle w-6">=</dt>
-				<dd>six figures / year</dd>
+				<dd class="font-semibold">$312,000 / yr</dd>
 			</div>
 		</dl>
-		<p class="mt-10 text-base md:text-lg">
+		<p class="text-fg-muted mt-10 text-base md:text-lg">
+			a typical case.
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
