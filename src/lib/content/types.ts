@@ -18,7 +18,6 @@ export interface Offer {
 	longName: string
 	priceUSD: number
 	cadence: string
-	promise: string
 	introPriceUSD?: number
 	introNote?: string
 	paymentPlan?: string

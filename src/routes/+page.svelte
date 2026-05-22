@@ -13,10 +13,10 @@
 		<h2
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
 		>
-			you already built it. it works in dev.
+			you already built it. it works when you use it.
 		</h2>
 		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			real users are going to break it. you know it. that's why you're here.
+			real customers are about to break it — or already are. you know it. that's why you're here.
 		</p>
 	</div>
 </section>
@@ -28,13 +28,13 @@
 		<h2
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
 		>
-			safety. security. scalability. peace of mind.
+			uptime. security. scale. peace of mind.
 		</h2>
 		<ul class="text-fg-muted mt-10 space-y-4 text-lg leading-relaxed md:text-xl">
-			<li>— the 2am bug you can't reproduce.</li>
-			<li>— the SOC2 or SSO review you can't pass yet.</li>
-			<li>— traffic that breaks what worked yesterday.</li>
-			<li>— code you can't defend in a review.</li>
+			<li>— your biggest customer is asking about uptime you can't promise.</li>
+			<li>— a sale is stuck waiting on a security review you don't pass yet.</li>
+			<li>— you're afraid to launch new features because something always breaks.</li>
+			<li>— investors are asking how this scales and the answer is "we'll figure it out."</li>
 		</ul>
 	</div>
 </section>
@@ -46,11 +46,11 @@
 		<p
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight italic md:text-5xl lg:text-6xl"
 		>
-			every week you wait, the codebase grows past the wall.
+			every week you wait, it gets harder for anyone to touch — including the AI you built it with.
 		</p>
 		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			firefighting hours × your hourly rate × the slowdown multiplier. the number is usually six
-			figures a year, and it's quietly compounding.
+			your time fighting fires, times what your time is worth, times how much slower it gets every
+			month. usually six figures a year, compounding quietly.
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
@@ -69,11 +69,12 @@
 		<h2
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
 		>
-			a 2-week sprint. live in production day 10.
+			a 2-week sprint. live and stable in 10 days.
 		</h2>
 		<p class="text-fg-muted mt-8 text-lg leading-relaxed md:text-xl">
-			fixed scope agreed up front. daily drops. i sit alongside your existing workstream —
-			ride-along — scope what needs to ship, then ship it. you own the code.
+			fixed scope agreed up front — no surprises, no creep. you see progress every day. i sit
+			alongside whatever you've already built (yours, your contractor's, doesn't matter) and fix
+			what's blocking you. every change is reviewed before it goes live. you own everything.
 			<span class="text-fg font-semibold">${site.sprint.priceUSD.toLocaleString()} flat</span>
 			(or {site.sprint.paymentPlan}). 1 client a month, by appointment.
 		</p>
@@ -87,17 +88,29 @@
 		<p
 			class="text-fg mt-4 text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl"
 		>
-			i ran this on my own site first.
+			i ship for a brand you know by day.
 		</p>
 		<p class="text-fg-muted mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-			30,000 lines of React, ported to SvelteKit under tight review in ~5–6 hours of active build.
-			40% less code, every lighthouse score up.
+			lead engineer at Made In Cookware — multi-million visitors a month. i rebuilt my own creative
+			work on the same methods: 5 hours of actual build time, 40% smaller, every measurable score
+			went up.
+		</p>
+		<p class="mt-6 flex flex-wrap gap-6 text-sm">
+			<a
+				href={site.gardenUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				data-umami-event="cta_garden_link_why"
+				class="text-fg hover:text-coin underline underline-offset-4 transition-colors"
+			>
+				see the work →
+			</a>
 			<a
 				href="/log/garden-party"
 				data-umami-event="cta_case_study"
-				class="text-fg hover:text-coin underline underline-offset-4 transition-colors"
+				class="text-fg-muted hover:text-coin underline underline-offset-4 transition-colors"
 			>
-				the case study →
+				the writeup →
 			</a>
 		</p>
 		<blockquote
@@ -122,8 +135,9 @@
 				let's see if a sprint fits.
 			</h2>
 			<p class="text-fg-muted mt-8 text-lg leading-relaxed md:text-xl">
-				${site.audit.priceUSD.toLocaleString()} working session. you send your repo, i send back a
-				1-pager and a 15-min Loom — your X, my solve, what it's costing you to leave it as-is.
+				${site.audit.priceUSD.toLocaleString()} to look at what you've got. send me the link or
+				access, however your build is set up. within a week you get a written breakdown and a
+				short video walkthrough — what's broken, what i'd fix, what it's costing you to leave it.
 				credited toward the sprint if you book one within 30 days.
 			</p>
 			<a

@@ -78,7 +78,7 @@
 
 			<div>
 				<label for="vt-hours" class={labelClass}>
-					hours/week firefighting instead of shipping
+					hours/week firefighting instead of building new things
 				</label>
 				<input
 					id="vt-hours"
@@ -97,7 +97,7 @@
 			</div>
 
 			<div>
-				<label for="vt-cost" class={labelClass}>your hourly cost (or fully-loaded eng rate)</label>
+				<label for="vt-cost" class={labelClass}>your hourly rate (yours, or your team's)</label>
 				<input
 					id="vt-cost"
 					type="number"
@@ -124,11 +124,11 @@
 				</li>
 				<li>
 					<span class="text-fg font-semibold tabular-nums">{slowdown}×</span>
-					slowdown vs a production codebase
+					slower than it should be
 				</li>
 				<li>
 					<span class="text-fg font-semibold tabular-nums">{weeksUntilBlocked}</span>
-					weeks until your current stack blocks the goal
+					weeks until you'd have to start over
 				</li>
 			</ul>
 

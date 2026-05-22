@@ -13,7 +13,7 @@ export const site: Site = {
 	hero: {
 		h1: 'AI ships demos. i ship solutions.',
 		subhead:
-			"you shipped the demo. now you need it to scale, secure, survive real traffic — without you up at 2am. two weeks of reviewed builds, fixed price, live in production day 10.",
+			"you built it with AI. it works for you. now it has to work for your customers — every busy day, every security review, every weekend without you. two weeks. fixed price. live and stable in 10 days.",
 		ctaPrimary: 'book the working session',
 		ctaSecondary: 'notify me'
 	},
@@ -28,9 +28,7 @@ export const site: Site = {
 		name: 'audit',
 		longName: 'the audit',
 		priceUSD: 1500,
-		cadence: 'turnaround within a week.',
-		promise:
-			"send me your repo and the thing you've been stuck on. within a week i send back a 1-pager and a 15-min Loom — your X, my solve, what it's costing you to leave it as-is. credited toward a sprint if you book within 30 days."
+		cadence: 'turnaround within a week.'
 	},
 	sprint: {
 		name: 'sprint',
@@ -39,9 +37,7 @@ export const site: Site = {
 		introPriceUSD: 7500,
 		introNote: 'first 3 clients',
 		cadence: '1 client a month, by appointment.',
-		paymentPlan: '4 weekly payments of $2,500',
-		promise:
-			"the thing works in dev. you're scared to put real traffic on it. two weeks of reviewed builds — fixed scope, daily drops, live in production day 10. agents type; i review, judge, defend the architecture. shipped, not vibed."
+		paymentPlan: '4 weekly payments of $2,500'
 	},
 	process: [
 		{
