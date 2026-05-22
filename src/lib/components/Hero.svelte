@@ -30,17 +30,20 @@
 				{site.hero.ctaPrimary} →
 			</a>
 		</div>
-		<p class="text-fg-subtle mt-12 text-xs tracking-widest uppercase">
-			@ {site.operator.currentEmployer} · formerly @ {site.operator.formerEmployer} ·
+		<div
+			class="text-fg-subtle mt-12 flex flex-col gap-1.5 text-xs tracking-widest uppercase sm:flex-row sm:items-center sm:gap-4"
+		>
+			<span>@ {site.operator.currentEmployer}</span>
+			<span>formerly @ {site.operator.formerEmployer}</span>
 			<a
 				href={site.gardenUrl}
 				target="_blank"
 				rel="noopener noreferrer"
 				data-umami-event="cta_hero_garden"
-				class="hover:text-coin transition-colors"
+				class="text-fg hover:text-coin transition-colors"
 			>
 				portfolio →
 			</a>
-		</p>
+		</div>
 	</div>
 </section>
