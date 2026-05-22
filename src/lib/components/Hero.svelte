@@ -12,7 +12,7 @@
 			<span class="block">it breaks for everyone else.</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
-			AI ships demos. i ship <span class="text-fg">solutions</span>.
+			the demo was the easy part. i ship <span class="text-fg">solutions</span>.
 		</p>
 		<div class="mt-12">
 			<a

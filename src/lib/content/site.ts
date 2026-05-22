@@ -12,7 +12,7 @@ export const site: Site = {
 		"AI gets you to a demo because the model can hold the whole thing in its head. once the codebase outgrows that window, the AI starts making it worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.",
 	hero: {
 		h1: 'it works for you. it breaks for everyone else.',
-		subhead: 'AI ships demos. i ship solutions.',
+		subhead: 'the demo was the easy part. i ship solutions.',
 		ctaPrimary: 'solve for X',
 		ctaSecondary: 'notify me'
 	},
