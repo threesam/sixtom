@@ -5,6 +5,17 @@ import svelte from 'eslint-plugin-svelte'
 import globals from 'globals'
 import ts from 'typescript-eslint'
 
+// Files outside the tsconfig's include glob (root configs, e2e specs) that
+// still need type-aware lint. Keep under 8 entries; tseslint warns above that.
+const ALLOW_DEFAULT_PROJECT = [
+	'eslint.config.js',
+	'svelte.config.js',
+	'playwright.config.ts',
+	'e2e/constants.ts',
+	'e2e/notify-form.spec.ts',
+	'e2e/visual-theme.spec.ts'
+]
+
 export default defineConfig(
 	{
 		ignores: [
@@ -16,7 +27,10 @@ export default defineConfig(
 			'coverage/**',
 			'static/**',
 			'playwright-report/**',
-			'test-results/**'
+			'test-results/**',
+			// One-off dev tooling (image capture/optimize, manual nav smoke).
+			// Not part of the production build; skipped from type-aware lint.
+			'scripts/**'
 		]
 	},
 	js.configs.recommended,
@@ -32,16 +46,7 @@ export default defineConfig(
 				...globals.node
 			},
 			parserOptions: {
-				projectService: {
-					allowDefaultProject: [
-						'eslint.config.js',
-						'svelte.config.js',
-						'playwright.config.ts',
-						'e2e/constants.ts',
-						'e2e/notify-form.spec.ts',
-						'e2e/visual-theme.spec.ts'
-					]
-				},
+				projectService: { allowDefaultProject: ALLOW_DEFAULT_PROJECT },
 				extraFileExtensions: ['.svelte'],
 				tsconfigRootDir: import.meta.dirname
 			}
@@ -52,16 +57,7 @@ export default defineConfig(
 		languageOptions: {
 			parserOptions: {
 				parser: ts.parser,
-				projectService: {
-					allowDefaultProject: [
-						'eslint.config.js',
-						'svelte.config.js',
-						'playwright.config.ts',
-						'e2e/constants.ts',
-						'e2e/notify-form.spec.ts',
-						'e2e/visual-theme.spec.ts'
-					]
-				},
+				projectService: { allowDefaultProject: ALLOW_DEFAULT_PROJECT },
 				extraFileExtensions: ['.svelte'],
 				tsconfigRootDir: import.meta.dirname
 			}

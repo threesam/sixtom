@@ -1,5 +1,5 @@
 {
-  "redirects": [
-    { "source": "/log/garden-porty", "destination": "/log/garden-party", "permanent": true }
-  ]
+	"redirects": [
+		{ "source": "/log/garden-porty", "destination": "/log/garden-party", "permanent": true }
+	]
 }

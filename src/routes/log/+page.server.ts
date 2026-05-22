@@ -33,8 +33,8 @@ function safeHttpsUrl(url: string | null): string | null {
 }
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const origin = env.CONTENT_ENGINE_URL
-	const token = env.STUDIO_TOKEN
+	const origin = env['CONTENT_ENGINE_URL']
+	const token = env['STUDIO_TOKEN']
 	if (!origin || !token) {
 		console.warn('[/log] CONTENT_ENGINE_URL or STUDIO_TOKEN missing; rendering empty feed')
 		return { posts: [] }
@@ -45,7 +45,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 			headers: { authorization: `Bearer ${token}` }
 		})
 		if (!res.ok) {
-			console.error(`[/log] content-engine ${res.status} ${res.statusText}`)
+			console.error(`[/log] content-engine ${String(res.status)} ${res.statusText}`)
 			return { posts: [] }
 		}
 		const body = (await res.json()) as { posts: RawPost[] }

@@ -5,8 +5,7 @@
 
 	const h2Class =
 		'text-fg text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl'
-	const bodyClass =
-		'text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-lg'
+	const bodyClass = 'text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-lg'
 </script>
 
 <Hero />
@@ -78,8 +77,7 @@
 			<p>your weekends back.</p>
 		</div>
 		<p class="text-fg-subtle mt-8 text-sm md:text-base">
-			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a
-			month.
+			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a month.
 		</p>
 	</div>
 </section>
@@ -89,9 +87,9 @@
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>why me?</h2>
 		<p class={bodyClass}>
-			day job: lead engineer at Made In Cookware. multi-million visitors a month. i rebuilt my
-			own creative work — the Garden — on the same methods. 5 hours of build time, 40% smaller,
-			every score up.
+			day job: lead engineer at Made In Cookware. multi-million visitors a month. i rebuilt my own
+			creative work — the Garden — on the same methods. 5 hours of build time, 40% smaller, every
+			score up.
 		</p>
 		<p class="mt-6 flex flex-wrap gap-6 text-sm">
 			<a
@@ -111,9 +109,7 @@
 				the writeup →
 			</a>
 		</p>
-		<blockquote
-			class="text-fg-muted mt-12 max-w-2xl text-base leading-relaxed italic md:text-lg"
-		>
+		<blockquote class="text-fg-muted mt-12 max-w-2xl text-base leading-relaxed italic md:text-lg">
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
 				— {site.testimonial.attribution}
@@ -126,15 +122,12 @@
 <section class="snap-section bg-surface !justify-between">
 	<div class="flex w-full flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-3xl">
-			<h2
-				class="text-fg text-4xl leading-tight font-bold tracking-tight md:text-6xl lg:text-7xl"
-			>
+			<h2 class="text-fg text-4xl leading-tight font-bold tracking-tight md:text-6xl lg:text-7xl">
 				want to look at it together?
 			</h2>
 			<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
-				${site.audit.priceUSD.toLocaleString()} to look at what you've got. within a week: a written
-				breakdown plus a short video walkthrough. credited toward the sprint if you book one within
-				30 days.
+				${site.audit.priceUSD.toLocaleString()} to look at what you've got. within a week: a written breakdown
+				plus a short video walkthrough. credited toward the sprint if you book one within 30 days.
 			</p>
 			<a
 				href="/book"

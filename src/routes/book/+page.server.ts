@@ -4,10 +4,15 @@ import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
 import type { Actions } from './$types'
 import { BUDGET_OPTIONS, DISQUALIFY_STAGE, STAGE_OPTIONS } from './options'
 
-function lookupLabel(
-	options: ReadonlyArray<{ value: string; label: string }>,
-	value: string
-): string {
+// formData.get returns FormDataEntryValue (string | File) | null. File coerces
+// to "[object File]" if stringified; this helper hard-narrows to string so the
+// downstream `String()` + slice/regex chain can't silently produce gibberish.
+function getString(formData: FormData, key: string): string {
+	const val = formData.get(key)
+	return typeof val === 'string' ? val : ''
+}
+
+function lookupLabel(options: readonly { value: string; label: string }[], value: string): string {
 	return options.find((o) => o.value === value)?.label ?? value
 }
 
@@ -60,11 +65,11 @@ export const actions = {
 		const stripNewlines = (s: string) => s.replace(/[\r\n]+/g, ' ').trim()
 		const normalizeNewlines = (s: string) => s.replace(/\r\n/g, '\n').trim()
 
-		const built = stripNewlines(String(formData.get('built') ?? '')).slice(0, 500)
-		const stage = String(formData.get('stage') ?? '')
-		const deliverable = normalizeNewlines(String(formData.get('deliverable') ?? '')).slice(0, 4000)
-		const budget = String(formData.get('budget') ?? '')
-		const companyUrl = stripNewlines(String(formData.get('company_url') ?? '')).slice(0, 500)
+		const built = stripNewlines(getString(formData, 'built')).slice(0, 500)
+		const stage = getString(formData, 'stage')
+		const deliverable = normalizeNewlines(getString(formData, 'deliverable')).slice(0, 4000)
+		const budget = getString(formData, 'budget')
+		const companyUrl = stripNewlines(getString(formData, 'company_url')).slice(0, 500)
 
 		const missing = !built || !stage || !deliverable || !budget || !companyUrl
 		if (missing) {
@@ -109,8 +114,8 @@ export const actions = {
 		}
 
 		const bookingUrl = buildCalComUrl({
-			name: String(formData.get('name') ?? '').trim(),
-			email: String(formData.get('email') ?? '').trim(),
+			name: getString(formData, 'name').trim(),
+			email: getString(formData, 'email').trim(),
 			notes: composedMessage
 		})
 
