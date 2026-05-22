@@ -13,7 +13,7 @@
 			data-umami-event="footer_home"
 			class="text-fg inline-flex items-center text-2xl leading-none font-bold tracking-tight uppercase"
 		>
-			<span class="pr-1">six</span><span class="bg-fg text-surface px-1 py-1">to</span><span class="pl-1">m</span>
+			<span class="pr-1">six</span><span class="bg-fg text-surface p-1">to</span><span class="pl-1">m</span>
 		</a>
 		<div
 			class="text-fg-subtle flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs"
