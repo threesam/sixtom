@@ -2,12 +2,7 @@ import { fail } from '@sveltejs/kit'
 import { site } from '$lib/content'
 import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
 import type { Actions } from './$types'
-import {
-	AUTHORITY_OPTIONS,
-	BUDGET_OPTIONS,
-	DISQUALIFY_STAGE,
-	STAGE_OPTIONS
-} from './options'
+import { BUDGET_OPTIONS, DISQUALIFY_STAGE, STAGE_OPTIONS } from './options'
 
 function lookupLabel(
 	options: ReadonlyArray<{ value: string; label: string }>,
@@ -21,7 +16,6 @@ function composeMessage(input: {
 	stage: string
 	deliverable: string
 	budget: string
-	authority: string
 	companyUrl: string
 	disqualified: boolean
 }): string {
@@ -31,7 +25,6 @@ function composeMessage(input: {
 		`stage: ${lookupLabel(STAGE_OPTIONS, input.stage)}`,
 		`30-day must-be-true: ${input.deliverable}`,
 		`budget: ${lookupLabel(BUDGET_OPTIONS, input.budget)}`,
-		`authority: ${lookupLabel(AUTHORITY_OPTIONS, input.authority)}`,
 		`company: ${input.companyUrl}`
 	].filter((line): line is string => line !== null)
 	return lines.join('\n\n')
@@ -71,11 +64,9 @@ export const actions = {
 		const stage = String(formData.get('stage') ?? '')
 		const deliverable = normalizeNewlines(String(formData.get('deliverable') ?? '')).slice(0, 4000)
 		const budget = String(formData.get('budget') ?? '')
-		const authority = String(formData.get('authority') ?? '')
 		const companyUrl = stripNewlines(String(formData.get('company_url') ?? '')).slice(0, 500)
 
-		const missing =
-			!built || !stage || !deliverable || !budget || !authority || !companyUrl
+		const missing = !built || !stage || !deliverable || !budget || !companyUrl
 		if (missing) {
 			return fail(400, { status: 'error' as const, message: 'Missing required fields.' })
 		}
@@ -86,9 +77,6 @@ export const actions = {
 		if (!BUDGET_OPTIONS.some((o) => o.value === budget)) {
 			return fail(400, { status: 'error' as const, message: 'Invalid budget.' })
 		}
-		if (!AUTHORITY_OPTIONS.some((o) => o.value === authority)) {
-			return fail(400, { status: 'error' as const, message: 'Invalid authority.' })
-		}
 
 		const disqualified = stage === DISQUALIFY_STAGE
 		const composedMessage = composeMessage({
@@ -96,7 +84,6 @@ export const actions = {
 			stage,
 			deliverable,
 			budget,
-			authority,
 			companyUrl,
 			disqualified
 		})
