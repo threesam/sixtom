@@ -144,6 +144,7 @@
 		{:else}
 			<form
 				method="post"
+				novalidate
 				use:enhance={() => {
 					submitting = true
 					return async ({ update }) => {
