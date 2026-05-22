@@ -46,15 +46,15 @@
 	</div>
 </section>
 
-<!-- opportunity cost -->
+<!-- what are you losing -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>your opportunity cost?</h2>
+		<h2 class={h2Class}>what are you losing?</h2>
 		<p class="text-fg mt-10 text-2xl font-semibold tabular-nums md:text-4xl">
 			deals × value × time = $
 		</p>
 		<p class="text-fg-muted mt-6 text-base leading-relaxed md:text-lg">
-			typical case: 1/mo × $50k × 12 = ~$600k/yr.
+			typical case: 1/mo × $50k × 12 = ~$600k/yr. plus the weekends. plus the sleep.
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
