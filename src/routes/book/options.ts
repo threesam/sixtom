@@ -13,10 +13,5 @@ export const BUDGET_OPTIONS = [
 	{ value: 'not-sure', label: 'not sure yet' }
 ] as const
 
-export const AUTHORITY_OPTIONS = [
-	{ value: 'yes', label: 'yes' },
-	{ value: 'no', label: "no, i'll need to bring someone in" }
-] as const
-
 // Stage that auto-disqualifies — sixtom isn't greenfield.
 export const DISQUALIFY_STAGE = 'pre-build'

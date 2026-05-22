@@ -55,10 +55,12 @@
 		</p>
 		<p class="text-fg-muted mt-6 text-base leading-relaxed md:text-lg">
 			typical case: 1/mo × $50k × 12 = ~$600k/yr. plus the weekends. plus the sleep.
+		</p>
+		<p class="mt-6">
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
-				class="text-fg hover:text-coin underline underline-offset-4 transition-colors"
+				class="text-fg hover:text-coin text-base underline underline-offset-4 transition-colors md:text-lg"
 			>
 				run yours →
 			</a>
@@ -69,14 +71,11 @@
 <!-- how this works -->
 <section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>how does this work?</h2>
-		<p class="text-fg mt-8 text-3xl font-bold tracking-tight md:text-5xl">2 weeks.</p>
-		<div class="text-fg-muted mt-8 space-y-2 text-base leading-relaxed md:text-lg">
-			<p>scope drawn day one.</p>
-			<p>drops daily.</p>
-			<p>live day ten.</p>
-			<p>nothing ships unreviewed.</p>
-			<p>you own everything.</p>
+		<h2 class={h2Class}>only two weeks?</h2>
+		<div class="text-fg-muted mt-10 space-y-2 text-base leading-relaxed md:text-lg">
+			<p>daily progress.</p>
+			<p>the answer when they ask.</p>
+			<p>your weekends back.</p>
 		</div>
 		<p class="text-fg-subtle mt-8 text-sm md:text-base">
 			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a
