@@ -14,7 +14,7 @@
 <!-- who this is for -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>who this is for</h2>
+		<h2 class={h2Class}>who is this for?</h2>
 		<p class={bodyClass}>
 			you already built it. real customers are about to break it — or already are. you know it.
 		</p>
@@ -86,12 +86,18 @@
 <!-- how this works -->
 <section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>how this works</h2>
-		<p class={bodyClass}>
-			2 weeks. fixed scope, agreed up front. you see progress every day. live and stable in 10
-			days. every change reviewed before it goes live. you own everything.
-			<span class="text-fg font-semibold">${site.sprint.priceUSD.toLocaleString()} flat</span>
-			(or {site.sprint.paymentPlan}). 1 client a month.
+		<h2 class={h2Class}>how does this work?</h2>
+		<p class="text-fg mt-8 text-3xl font-bold tracking-tight md:text-5xl">2 weeks.</p>
+		<div class="text-fg-muted mt-8 space-y-2 text-base leading-relaxed md:text-lg">
+			<p>scope drawn day one.</p>
+			<p>drops daily.</p>
+			<p>live day ten.</p>
+			<p>nothing ships unreviewed.</p>
+			<p>you own everything.</p>
+		</div>
+		<p class="text-fg-subtle mt-8 text-sm md:text-base">
+			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a
+			month.
 		</p>
 	</div>
 </section>
@@ -99,7 +105,7 @@
 <!-- why me -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>why me</h2>
+		<h2 class={h2Class}>why me?</h2>
 		<p class={bodyClass}>
 			day job: lead engineer at Made In Cookware. multi-million visitors a month. i rebuilt my
 			own creative work — the Garden — on the same methods. 5 hours of build time, 40% smaller,
