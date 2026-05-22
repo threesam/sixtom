@@ -8,13 +8,11 @@
 		<h1
 			class="text-fg mt-6 text-5xl leading-[1.02] font-bold tracking-tight md:text-7xl lg:text-8xl"
 		>
-			<span class="block">AI ships demos.</span>
-			<span class="block">
-				i ship <span class="border-accent border-b-4 pb-1 md:border-b-[6px]">solutions</span>.
-			</span>
+			<span class="block">it works for you.</span>
+			<span class="block">it breaks for everyone else.</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
-			{site.hero.subhead}
+			AI ships demos. i ship <span class="text-fg">solutions</span>.
 		</p>
 		<div class="mt-12">
 			<a
