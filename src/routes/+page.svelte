@@ -46,37 +46,15 @@
 	</div>
 </section>
 
-<!-- what's it costing you -->
+<!-- opportunity cost -->
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>what's it costing you?</h2>
-		<dl
-			class="text-fg mt-10 max-w-md space-y-2 text-xl leading-tight tabular-nums md:text-3xl"
-			aria-label="cost example"
-		>
-			<div class="flex items-baseline gap-3">
-				<dt class="text-fg-subtle w-6">&nbsp;</dt>
-				<dd>10 hrs/wk firefighting</dd>
-			</div>
-			<div class="flex items-baseline gap-3">
-				<dt class="text-fg-subtle w-6">×</dt>
-				<dd>$200/hr</dd>
-			</div>
-			<div class="flex items-baseline gap-3">
-				<dt class="text-fg-subtle w-6">×</dt>
-				<dd>3× slowdown</dd>
-			</div>
-			<div class="flex items-baseline gap-3">
-				<dt class="text-fg-subtle w-6">×</dt>
-				<dd>52 wks/yr</dd>
-			</div>
-			<div class="border-border-strong flex items-baseline gap-3 border-t pt-2">
-				<dt class="text-fg-subtle w-6">=</dt>
-				<dd class="font-semibold">$312,000 / yr</dd>
-			</div>
-		</dl>
-		<p class="text-fg-muted mt-10 text-base md:text-lg">
-			a typical case.
+		<h2 class={h2Class}>your opportunity cost?</h2>
+		<p class="text-fg mt-10 text-2xl font-semibold tabular-nums md:text-4xl">
+			deals × value × time = $
+		</p>
+		<p class="text-fg-muted mt-6 text-base leading-relaxed md:text-lg">
+			typical case: 1/mo × $50k × 12 = ~$600k/yr.
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
