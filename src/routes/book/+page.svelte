@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms'
 	import { site } from '$lib/content'
 	import type { ActionData } from './$types'
-	import { STAGE_OPTIONS, BUDGET_OPTIONS } from './options'
+	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE } from './options'
 
 	let { form }: { form: ActionData } = $props()
 
@@ -22,7 +22,7 @@
 		enhanced = '1'
 	})
 
-	const isPreBuild = $derived(stage === 'pre-build')
+	const isPreBuild = $derived(stage === DISQUALIFY_STAGE)
 
 	function canAdvance(): boolean {
 		if (step === 1) return stage !== '' && !isPreBuild
