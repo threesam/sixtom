@@ -102,26 +102,19 @@ const initBubbles = () => {
 		ctx.restore()
 	}
 
-	let field = buildField()
+	let field = null
 	let raf = 0
 	let running = false
 	let t0 = 0
 
 	const frame = (now) => {
-		field ??= buildField()
-		if (field) {
-			t0 ||= now
-			render(field, reduceMotion ? STATIC_FRAME : (now - t0) * SPEED)
-			if (reduceMotion) {
-				running = false
-				return // one static frame once the canvas is sized
-			}
-		}
+		t0 ||= now
+		render(field, (now - t0) * SPEED)
 		raf = requestAnimationFrame(frame)
 	}
 
 	const startLoop = () => {
-		if (running) return
+		if (running || !field || reduceMotion) return
 		running = true
 		t0 = 0
 		raf = requestAnimationFrame(frame)
@@ -132,16 +125,26 @@ const initBubbles = () => {
 		cancelAnimationFrame(raf)
 	}
 
-	startLoop()
-
-	new ResizeObserver(() => {
+	// Single source of truth for "the canvas has a size". ResizeObserver fires an
+	// initial callback and again whenever the canvas crosses the md breakpoint
+	// (display:none ⇄ block), so there's no need for a blind rAF retry — a hidden
+	// canvas (mobile) simply never builds a field and never loops.
+	const sync = () => {
 		field = buildField()
-		if (reduceMotion && field) render(field, STATIC_FRAME)
-	}).observe(canvas)
+		if (!field) {
+			stopLoop()
+			return
+		}
+		if (reduceMotion) render(field, STATIC_FRAME)
+		else startLoop()
+	}
 
-	document.addEventListener('visibilitychange', () =>
-		document.hidden ? stopLoop() : reduceMotion || startLoop()
-	)
+	new ResizeObserver(sync).observe(canvas)
+
+	document.addEventListener('visibilitychange', () => {
+		if (document.hidden) stopLoop()
+		else startLoop()
+	})
 }
 
 initBubbles()
