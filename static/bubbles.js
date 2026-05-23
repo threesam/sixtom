@@ -3,22 +3,26 @@
 // size. Standalone (no framework) so the home page can stay csr=false — zero
 // SvelteKit JS — while still getting the animation for ~1.3KB. No-ops on any
 // page without a [data-bubble] canvas.
+//
+// The canvas is sized object-cover (a square that fills the hero) and a CSS
+// overlay fades it surface→transparent left→right for text contrast, so the
+// field renders rich and uniform here — no in-canvas alpha ramp.
 const initBubbles = () => {
 	const canvas = document.querySelector('canvas[data-bubble]')
 	if (!canvas) return
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
 
-	const DENSITY = 40
-	const WAVE_CELLS = 7 // wave wavelength in cells — set relative to cell size so the
-	// sway stays a coherent traveling wave at any viewport (a fixed spatial frequency
-	// drifts in/out of phase as the responsive cell size changes, which reads as
-	// circles "dancing in place" rather than rippling).
-	const SPEED = 0.00045 // sway units per ms (slow ambient drift)
+	const DENSITY = 44
+	const WAVE_CELLS = 7 // wave wavelength in cells — frequency is set relative to cell
+	// size so the sway stays a coherent traveling wave at any scale (a fixed spatial
+	// frequency drifts in/out of phase as the cell size changes when blown up, which
+	// reads as circles "dancing in place" rather than rippling).
+	const SPEED = 0.0018 // sway units per ms (matches the live sketch)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
 	const FPS = 20 // cap render rate — a slow ambient sway needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
-	const MAX_ALPHA = 0.33 // opacity at the right edge; ramps from 0 on the left
+	const ALPHA = 0.8 // flat opacity; the CSS overlay handles the left→right fade
 
 	const fade = (t) => t * t * (3 - 2 * t)
 
@@ -61,65 +65,49 @@ const initBubbles = () => {
 		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-		// Tile the full canvas (centered origin). Cell size scales with the short
-		// side but is floor-capped so a tall/narrow phone canvas doesn't explode
-		// the point count.
+		// Tile the full (square, object-cover) canvas from a centered origin.
 		const halfW = width / 2
 		const halfH = height / 2
 		const multi = 0.025
-		const space = Math.max(Math.min(width, height) / DENSITY, 12)
-		// Positional sway (~0.6 cell at full strength) ramps with x: calm under the
-		// copy on the left, full on the right.
-		const baseAmp = space * 0.6
-		// Cell-relative wave frequency → coherent ripple at any viewport. Size
-		// "breathe" is a small, separate pulse so the high-amplitude right side
-		// undulates instead of pulsing violently.
-		const freq = (Math.PI * 2) / (space * WAVE_CELLS)
-		const breathe = space * 0.12
+		const space = Math.max((Math.min(width, height) * 0.75) / DENSITY, 10)
+		const waveAmp = space * 0.6 // uniform sway; the overlay (not amplitude) shapes the reveal
+		const freq = (Math.PI * 2) / (space * WAVE_CELLS) // cell-relative → coherent at any scale
 
-		// Each bubble's colour follows the CTA gradient (oklch 72% .15 200 → 64%
-		// .16 178) by x, with lightness/hue jittered by the noise field so the
-		// field reads organic and mottled rather than a smooth wash. Opacity is a
-		// clean left→right ramp (0 → MAX_ALPHA): exactly 0 at the left edge so it
-		// can't hurt text contrast over the copy. Baked into a fill string here so
-		// the per-frame loop never builds strings.
+		// Each bubble's size and blue-green colour are driven by the noise field
+		// (the og sketch's organic texture). Colour is baked into a fill string here
+		// so the per-frame loop never builds strings.
 		const points = []
 		for (let x = -halfW; x < halfW; x += space) {
 			for (let y = -halfH; y < halfH; y += space) {
 				const n = noise(x * multi, y * multi)
-				const tx = map(x, -halfW, halfW, 0, 1) // 0 left → 1 right
-				const l = map(tx, 0, 1, 72, 64) + map(n, 0, 1, -6, 6)
-				const c = map(tx, 0, 1, 0.15, 0.16)
-				const hue = map(tx, 0, 1, 200, 178) + map(n, 0, 1, -8, 8)
-				const alpha = tx * MAX_ALPHA
+				const g = Math.floor(map(n, 0, 1, 100, 200))
+				const b = Math.floor(map(n, 0, 1, 130, 255))
 				points.push({
 					x,
 					y,
-					// Tight radius range (~0.42–0.56 cell) keeps the dots distinct so the
-					// tone variation reads — a wide size range let big circles overlap
-					// into blobs and washed the texture out.
-					r: map(n, 0, 1, space * 0.42, space * 0.56),
-					wamp: baseAmp * tx,
-					fill: `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${hue.toFixed(1)} / ${alpha.toFixed(3)})`
+					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
+					fill: `rgba(0,${g},${b},${ALPHA})`
 				})
 			}
 		}
-		return { width, height, freq, breathe, points }
+		return { width, height, waveAmp, freq, points }
 	}
 
 	const render = (field, offset) => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		const { freq, breathe, points } = field
-		for (let i = 0; i < points.length; i++) {
-			const p = points[i]
-			const cx = p.x + Math.sin(p.y * freq + offset) * p.wamp
-			const cy = p.y + Math.sin(p.x * freq + offset) * p.wamp
-			const r = Math.max(0.5, p.r + Math.sin((p.x + p.y) * freq + offset) * breathe)
+		const { waveAmp, freq, points } = field
+		for (const p of points) {
 			ctx.fillStyle = p.fill
 			ctx.beginPath()
-			ctx.arc(cx, cy, r, 0, Math.PI * 2)
+			ctx.arc(
+				p.x + Math.sin(p.y * freq + offset) * waveAmp,
+				p.y + Math.sin(p.x * freq + offset) * waveAmp,
+				Math.max(1, (p.size + Math.sin((p.x + p.y) * freq + offset) * waveAmp) / 2),
+				0,
+				Math.PI * 2
+			)
 			ctx.fill()
 		}
 		ctx.restore()

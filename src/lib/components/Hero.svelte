@@ -10,16 +10,21 @@
 </script>
 
 <section class="snap-section bg-surface relative">
-	<!-- Bubble field (threesam day20 "sea of shapes" port), full-bleed behind the
-	     text. Its own overflow-hidden wrapper clips the bleed without constraining
-	     the section (oversized type can exceed 100svh on short/zoomed viewports and
-	     must stay un-clipped). Animated by static/bubbles.js (wired in app.html) so
-	     the page keeps csr=false — the canvas is plain markup that survives
-	     no-hydration; the script no-ops elsewhere. Decorative + aria-hidden; opacity
-	     ramps to 0 on the left so it can't hurt text contrast where it overlaps the
-	     copy. -->
+	<!-- Bubble field (threesam day20 "sea of shapes" port). The canvas is a square
+	     sized object-cover (min-h/w-full + aspect-square, centered) so the proven
+	     square sketch fills the hero without distorting — then a left→right
+	     surface→transparent overlay fades it out under the copy for text contrast.
+	     overflow-hidden clips the square's overscan without constraining the section
+	     (oversized type can exceed 100svh and must stay un-clipped). Animated by
+	     static/bubbles.js (wired in app.html) so the page keeps csr=false — the
+	     canvas is plain markup that survives no-hydration; the script no-ops
+	     elsewhere. Decorative + aria-hidden. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
+		<canvas
+			data-bubble
+			class="absolute top-1/2 left-1/2 block aspect-square min-h-full min-w-full -translate-x-1/2 -translate-y-1/2"
+		></canvas>
+		<div class="absolute inset-0 bg-gradient-to-r from-surface from-45% to-transparent"></div>
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6">
