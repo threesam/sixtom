@@ -18,9 +18,7 @@ const initBubbles = () => {
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
 	const FPS = 20 // cap render rate — a slow ambient sway needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
-	const BUCKETS = 13 // distinct fill tones; the whole field draws in BUCKETS fill()
-	// calls instead of one per circle (no per-circle colour-string parsing/fill setup).
-	const MAX_ALPHA = 0.69 // opacity at the right edge; ramps from 0 on the left
+	const MAX_ALPHA = 0.33 // opacity at the right edge; ramps from 0 on the left
 
 	const fade = (t) => t * t * (3 - 2 * t)
 
@@ -49,24 +47,12 @@ const initBubbles = () => {
 	}
 
 	const map = (v, a1, a2, b1, b2) => b1 + ((v - a1) * (b2 - b1)) / (a2 - a1)
-	const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v)
 
 	const noise = makeNoise(20)
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-	// BUCKETS fixed fills sampled along the CTA gradient (oklch 72% .15 200 →
-	// 64% .16 178), opacity ramping 0 → MAX_ALPHA. Computed once; points reference
-	// these by index so the render loop can batch one fill() per tone.
-	const bucketFills = Array.from({ length: BUCKETS }, (_, i) => {
-		const f = i / (BUCKETS - 1)
-		const l = map(f, 0, 1, 72, 64)
-		const c = map(f, 0, 1, 0.15, 0.16)
-		const hue = map(f, 0, 1, 200, 178)
-		return `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${hue.toFixed(1)} / ${(f * MAX_ALPHA).toFixed(3)})`
-	})
-
-	// Returns an immutable field (geometry + bucketed points) or null until the
-	// canvas has a real laid-out size. Rebuilt on resize rather than mutating globals.
+	// Returns an immutable field (geometry + points) or null until the canvas
+	// has a real laid-out size. Rebuilt on resize rather than mutating globals.
 	const buildField = () => {
 		const dpr = Math.min(window.devicePixelRatio || 1, 2)
 		const { width, height } = canvas.getBoundingClientRect()
@@ -91,50 +77,49 @@ const initBubbles = () => {
 		const freq = (Math.PI * 2) / (space * WAVE_CELLS)
 		const breathe = space * 0.12
 
-		// Spans the whole screen. Each point is sorted into a tone bucket by its x
-		// position dithered by the noise field — the dither (smooth value noise)
-		// turns the BUCKETS hard tone steps into organic, blobby boundaries.
-		const buckets = Array.from({ length: BUCKETS }, () => [])
+		// Each bubble's colour follows the CTA gradient (oklch 72% .15 200 → 64%
+		// .16 178) by x, with lightness/hue jittered by the noise field so the
+		// field reads organic and mottled rather than a smooth wash. Opacity is a
+		// clean left→right ramp (0 → MAX_ALPHA): exactly 0 at the left edge so it
+		// can't hurt text contrast over the copy. Baked into a fill string here so
+		// the per-frame loop never builds strings.
+		const points = []
 		for (let x = -halfW; x < halfW; x += space) {
 			for (let y = -halfH; y < halfH; y += space) {
 				const n = noise(x * multi, y * multi)
 				const tx = map(x, -halfW, halfW, 0, 1) // 0 left → 1 right
-				const shade = clamp01(tx + (n - 0.5) * 0.32)
-				const bi = Math.round(shade * (BUCKETS - 1))
-				buckets[bi].push({
+				const l = map(tx, 0, 1, 72, 64) + map(n, 0, 1, -6, 6)
+				const c = map(tx, 0, 1, 0.15, 0.16)
+				const hue = map(tx, 0, 1, 200, 178) + map(n, 0, 1, -8, 8)
+				const alpha = tx * MAX_ALPHA
+				points.push({
 					x,
 					y,
 					// Tight radius range (~0.42–0.56 cell) keeps the dots distinct so the
 					// tone variation reads — a wide size range let big circles overlap
 					// into blobs and washed the texture out.
 					r: map(n, 0, 1, space * 0.42, space * 0.56),
-					wamp: baseAmp * tx
+					wamp: baseAmp * tx,
+					fill: `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${hue.toFixed(1)} / ${alpha.toFixed(3)})`
 				})
 			}
 		}
-		return { width, height, freq, breathe, buckets }
+		return { width, height, freq, breathe, points }
 	}
 
-	// One fill() per bucket: set the tone, trace every circle in it into a single
-	// path (moveTo before each arc so the subpaths don't connect), fill once.
 	const render = (field, offset) => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		const { freq, breathe, buckets } = field
-		for (let b = 0; b < buckets.length; b++) {
-			const pts = buckets[b]
-			if (pts.length === 0) continue
-			ctx.fillStyle = bucketFills[b]
+		const { freq, breathe, points } = field
+		for (let i = 0; i < points.length; i++) {
+			const p = points[i]
+			const cx = p.x + Math.sin(p.y * freq + offset) * p.wamp
+			const cy = p.y + Math.sin(p.x * freq + offset) * p.wamp
+			const r = Math.max(0.5, p.r + Math.sin((p.x + p.y) * freq + offset) * breathe)
+			ctx.fillStyle = p.fill
 			ctx.beginPath()
-			for (let i = 0; i < pts.length; i++) {
-				const p = pts[i]
-				const cx = p.x + Math.sin(p.y * freq + offset) * p.wamp
-				const cy = p.y + Math.sin(p.x * freq + offset) * p.wamp
-				const r = Math.max(0.5, p.r + Math.sin((p.x + p.y) * freq + offset) * breathe)
-				ctx.moveTo(cx + r, cy)
-				ctx.arc(cx, cy, r, 0, Math.PI * 2)
-			}
+			ctx.arc(cx, cy, r, 0, Math.PI * 2)
 			ctx.fill()
 		}
 		ctx.restore()
@@ -144,17 +129,19 @@ const initBubbles = () => {
 	let raf = 0
 	let running = false
 	let onScreen = true
-	let t0 = 0
+	let elapsed = 0 // accumulated animation time (ms), persists across pauses
 	let lastRender = 0
 
 	// rAF fires at display rate (~60/120Hz) but we only redraw at FPS — the loop
-	// body is a cheap timestamp check on skipped frames. Motion is time-based, so
-	// throttling lowers cost without changing the sway speed.
+	// body is a cheap timestamp check on skipped frames. `elapsed` accumulates only
+	// the time between rendered frames, so pausing (tab hidden / scrolled away) and
+	// resuming continues the sway from where it left off instead of snapping back.
 	const frame = (now) => {
+		if (!running) return
 		if (now - lastRender >= FRAME_MS) {
-			t0 ||= now
+			if (lastRender) elapsed += now - lastRender
 			lastRender = now
-			render(field, (now - t0) * SPEED)
+			render(field, elapsed * SPEED)
 		}
 		raf = requestAnimationFrame(frame)
 	}
@@ -162,8 +149,7 @@ const initBubbles = () => {
 	const startLoop = () => {
 		if (running || !field || reduceMotion || document.hidden || !onScreen) return
 		running = true
-		t0 = 0
-		lastRender = 0
+		lastRender = 0 // re-anchor without advancing elapsed → no phase jump on resume
 		raf = requestAnimationFrame(frame)
 	}
 
@@ -173,9 +159,8 @@ const initBubbles = () => {
 	}
 
 	// Single source of truth for "the canvas has a size". ResizeObserver fires an
-	// initial callback and again whenever the canvas crosses the md breakpoint
-	// (display:none ⇄ block), so there's no need for a blind rAF retry — a hidden
-	// canvas (mobile) simply never builds a field and never loops.
+	// initial callback and again on any layout change, so there's no need for a
+	// blind rAF retry — a 0-sized canvas simply never builds a field and never loops.
 	const sync = () => {
 		field = buildField()
 		if (!field) {
