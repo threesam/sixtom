@@ -4,9 +4,11 @@
 // SvelteKit JS — while still getting the animation for ~1.3KB. No-ops on any
 // page without a [data-bubble] canvas.
 //
-// The canvas is sized object-cover (a square that fills the hero) and a CSS
-// overlay fades it surface→transparent left→right for text contrast, so the
-// field renders rich and uniform here — no in-canvas alpha ramp.
+// Rendered into a fixed REF×REF buffer and CSS-scaled up (the canvas element is
+// sized object-cover): this reproduces the live sketch exactly — same point
+// count, noise frequency and wave coherence — just enlarged, rather than
+// re-deriving the field at full-screen coordinates (which changes the texture).
+// A left→right surface→transparent CSS overlay fades it under the copy.
 const initBubbles = () => {
 	const canvas = document.querySelector('canvas[data-bubble]')
 	if (!canvas) return
@@ -14,10 +16,7 @@ const initBubbles = () => {
 	if (!ctx) return
 
 	const DENSITY = 44
-	const WAVE_CELLS = 7 // wave wavelength in cells — frequency is set relative to cell
-	// size so the sway stays a coherent traveling wave at any scale (a fixed spatial
-	// frequency drifts in/out of phase as the cell size changes when blown up, which
-	// reads as circles "dancing in place" rather than rippling).
+	const REF = 760 // fixed render resolution; CSS scales the canvas element up to cover
 	const SPEED = 0.0018 // sway units per ms (matches the live sketch)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
 	const FPS = 20 // cap render rate — a slow ambient sway needs no more, keeps cost low
@@ -55,30 +54,26 @@ const initBubbles = () => {
 	const noise = makeNoise(20)
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-	// Returns an immutable field (geometry + points) or null until the canvas
-	// has a real laid-out size. Rebuilt on resize rather than mutating globals.
+	// Returns an immutable field (geometry + points) or null while the canvas is
+	// unsized (display:none / not laid out). The buffer is fixed at REF — only the
+	// laid-out check uses the element box. Rebuilt on resize, not mutated.
 	const buildField = () => {
-		const dpr = Math.min(window.devicePixelRatio || 1, 2)
 		const { width, height } = canvas.getBoundingClientRect()
 		if (width === 0 || height === 0) return null
-		canvas.width = Math.round(width * dpr)
-		canvas.height = Math.round(height * dpr)
+		const dpr = Math.min(window.devicePixelRatio || 1, 2)
+		canvas.width = canvas.height = Math.round(REF * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-		// Tile the full (square, object-cover) canvas from a centered origin.
-		const halfW = width / 2
-		const halfH = height / 2
+		const half = REF / 2
 		const multi = 0.025
-		const space = Math.max((Math.min(width, height) * 0.75) / DENSITY, 10)
-		const waveAmp = space * 0.6 // uniform sway; the overlay (not amplitude) shapes the reveal
-		const freq = (Math.PI * 2) / (space * WAVE_CELLS) // cell-relative → coherent at any scale
+		const space = (REF * 0.75) / DENSITY
+		const waveAmp = space * 0.6
 
-		// Each bubble's size and blue-green colour are driven by the noise field
-		// (the og sketch's organic texture). Colour is baked into a fill string here
-		// so the per-frame loop never builds strings.
+		// Size and blue-green colour are driven by the noise field (the og sketch's
+		// organic texture); colour baked into a fill string so the loop builds none.
 		const points = []
-		for (let x = -halfW; x < halfW; x += space) {
-			for (let y = -halfH; y < halfH; y += space) {
+		for (let x = -half; x < half; x += space) {
+			for (let y = -half; y < half; y += space) {
 				const n = noise(x * multi, y * multi)
 				const g = Math.floor(map(n, 0, 1, 100, 200))
 				const b = Math.floor(map(n, 0, 1, 130, 255))
@@ -90,21 +85,24 @@ const initBubbles = () => {
 				})
 			}
 		}
-		return { width, height, waveAmp, freq, points }
+		return { dim: REF, waveAmp, points }
 	}
 
+	// Sway frequency 0.41 matches the live sketch and stays a coherent wave at REF's
+	// cell size (a fixed frequency only reads as a ripple — not "dancing" — when the
+	// cell size it was tuned for is held constant, which the fixed buffer guarantees).
 	const render = (field, offset) => {
-		ctx.clearRect(0, 0, field.width, field.height)
+		ctx.clearRect(0, 0, field.dim, field.dim)
 		ctx.save()
-		ctx.translate(field.width / 2, field.height / 2)
-		const { waveAmp, freq, points } = field
+		ctx.translate(field.dim / 2, field.dim / 2)
+		const { waveAmp, points } = field
 		for (const p of points) {
 			ctx.fillStyle = p.fill
 			ctx.beginPath()
 			ctx.arc(
-				p.x + Math.sin(p.y * freq + offset) * waveAmp,
-				p.y + Math.sin(p.x * freq + offset) * waveAmp,
-				Math.max(1, (p.size + Math.sin((p.x + p.y) * freq + offset) * waveAmp) / 2),
+				p.x + Math.sin(p.y * 0.41 + offset) * waveAmp,
+				p.y + Math.sin(p.x * 0.41 + offset) * waveAmp,
+				Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * waveAmp) / 2),
 				0,
 				Math.PI * 2
 			)
