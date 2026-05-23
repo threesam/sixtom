@@ -12,7 +12,7 @@
 			<span class="block">and peace of mind?</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
-			AI built your demo. i build <span class="text-fg">solutions</span>.
+			AI built your demo. i build <span class="text-fg">your solution</span>.
 		</p>
 		<div class="mt-12">
 			<a
