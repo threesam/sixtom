@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BubbleField from '$lib/components/BubbleField.svelte'
 	import { site } from '$lib/content'
 
 	const headlineClass =
@@ -6,18 +7,19 @@
 </script>
 
 <section class="snap-section bg-surface relative">
-	<!-- Atmospheric glow, desktop only. Clipped to the section via its own
-	     overflow-hidden wrapper so it can't add scrollbars or clip hero content
-	     (the section itself must stay un-clipped — oversized type can exceed
-	     100svh on short/zoomed viewports and needs to grow, not get cut off). -->
+	<!-- Bubble field (threesam day20 "sea of shapes" port), desktop only, snapped
+	     to the right and bleeding slightly off-edge, behind the text. Its own
+	     overflow-hidden wrapper clips the bleed without constraining the section
+	     (oversized type can exceed 100svh on short/zoomed viewports and must stay
+	     un-clipped). Decorative + aria-hidden; very low alpha so it can't hurt
+	     text contrast where it overlaps the copy. -->
 	<div
 		class="pointer-events-none absolute inset-0 hidden overflow-hidden md:block"
 		aria-hidden="true"
 	>
-		<div
-			class="absolute top-1/2 left-[-12%] h-[700px] w-[700px] -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px]"
-			style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%)"
-		></div>
+		<div class="absolute inset-y-[8%] right-[-6%] aspect-square">
+			<BubbleField />
+		</div>
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6">
