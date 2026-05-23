@@ -10,6 +10,10 @@ const initBubbles = () => {
 	if (!ctx) return
 
 	const DENSITY = 44
+	const WAVE_CELLS = 7 // wave wavelength in cells — set relative to cell size so the
+	// sway stays a coherent traveling wave at any viewport (a fixed spatial frequency
+	// drifts in/out of phase as the responsive cell size changes, which reads as
+	// circles "dancing in place" rather than rippling).
 	const SPEED = 0.000225 // sway units per ms (~20x slower than the original; ~28s loop)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
 	const FPS = 24 // cap render rate — a very slow ambient sway needs no more, keeps cost low
@@ -63,10 +67,14 @@ const initBubbles = () => {
 		const halfH = height / 2
 		const multi = 0.025
 		const space = Math.max(Math.min(width, height) / DENSITY, 12)
-		// Wave amplitude (~0.9 of a cell at full strength) is enveloped to the right
-		// 2/3: zero through the left third (calm under the copy), ramping to full at
-		// the right edge — so the ripple "hits" across the visible right side.
-		const baseAmp = space * 0.9
+		// Positional sway (~0.6 cell at full strength) is enveloped to the right 2/3:
+		// zero through the left third, ramping to full at the right edge.
+		const baseAmp = space * 0.6
+		// Cell-relative wave frequency → coherent ripple at any viewport. Size
+		// "breathe" is a small, separate pulse so the high-amplitude right side
+		// undulates instead of pulsing violently.
+		const freq = (Math.PI * 2) / (space * WAVE_CELLS)
+		const breathe = space * 0.12
 
 		// Each bubble's colour is sampled along the CTA gradient (oklch 72% .15 200
 		// → 64% .16 178) by its x position; alpha ramps left→0 so the field can't
@@ -93,25 +101,28 @@ const initBubbles = () => {
 				points.push({
 					x,
 					y,
-					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
+					// Tight radius range (~0.42–0.56 cell) keeps the dots distinct so the
+					// colour/opacity noise reads — a wide size range let big circles
+					// overlap into blobs and washed the texture out.
+					r: map(n, 0, 1, space * 0.42, space * 0.56),
 					wamp: baseAmp * ramp,
 					fill: `oklch(${l}% ${c} ${hue} / ${alpha})`
 				})
 			}
 		}
-		return { width, height, points }
+		return { width, height, freq, breathe, points }
 	}
 
 	// Curried renderer: fix the frame's offset, return a per-point draw. Each point
 	// carries its own wave amplitude (p.wamp) — enveloped so the ripple "hits" the
 	// right side and fades out toward the (skipped) left third.
-	const drawPoint = (offset) => (p) => {
+	const drawPoint = (offset, freq, breathe) => (p) => {
 		ctx.fillStyle = p.fill
 		ctx.beginPath()
 		ctx.arc(
-			p.x + Math.sin(p.y * 0.41 + offset) * p.wamp,
-			p.y + Math.sin(p.x * 0.41 + offset) * p.wamp,
-			Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * p.wamp) / 2),
+			p.x + Math.sin(p.y * freq + offset) * p.wamp,
+			p.y + Math.sin(p.x * freq + offset) * p.wamp,
+			Math.max(0.5, p.r + Math.sin((p.x + p.y) * freq + offset) * breathe),
 			0,
 			Math.PI * 2
 		)
@@ -122,7 +133,7 @@ const initBubbles = () => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		field.points.forEach(drawPoint(offset))
+		field.points.forEach(drawPoint(offset, field.freq, field.breathe))
 		ctx.restore()
 	}
 
