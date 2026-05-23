@@ -10,24 +10,20 @@
 </script>
 
 <section class="snap-section bg-surface relative">
-	<!-- Bubble field (threesam day20 "sea of shapes" port). The canvas is a square
-	     sized object-cover (min-h/w-full + aspect-square, centered) so the proven
-	     square sketch fills the hero without distorting — then a left→right
-	     surface→transparent overlay fades it out under the copy for text contrast.
-	     overflow-hidden clips the square's overscan without constraining the section
-	     (oversized type can exceed 100svh and must stay un-clipped). Animated by
-	     static/bubbles.js (wired in app.html) so the page keeps csr=false — the
+	<!-- Bubble field ("sea of shapes"), full-bleed and rendered crisp at native pixel
+	     size. A left→right black overlay (0.69 over the copy → 0.13 over the bubbles)
+	     darkens the text side for contrast while leaving a light veil on the field.
+	     overflow-hidden keeps it from adding scrollbars without constraining the
+	     section (oversized type can exceed 100svh and must stay un-clipped). Animated
+	     by static/bubbles.js (wired in app.html) so the page keeps csr=false — the
 	     canvas is plain markup that survives no-hydration; the script no-ops
 	     elsewhere. Decorative + aria-hidden. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-		<canvas
-			data-bubble
-			class="absolute top-1/2 left-1/2 block aspect-square min-h-full min-w-full -translate-x-1/2 -translate-y-1/2"
-		></canvas>
-		<div class="absolute inset-0 bg-gradient-to-r from-surface from-45% to-transparent"></div>
+		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
+		<div class="absolute inset-0 bg-gradient-to-r from-[#000000b0] to-[#00000021]"></div>
 	</div>
 
-	<div class="relative mx-auto w-full max-w-6xl px-6">
+	<div class="relative mx-auto w-full max-w-6xl px-6 max-md:pb-28">
 		<h1 class="text-fg">
 			<span class="eyebrow block text-sm leading-none lg:text-base" data-hero style="--rise: 0ms"
 				>AI built</span
@@ -51,11 +47,17 @@
 		>
 			what's the <span class="text-accent">X</span> between you and peace of mind?
 		</p>
-		<div class="mt-12" data-hero style="--rise: 440ms">
+		<!-- Desktop: inline CTA. Mobile: full-width bar fixed to the bottom of the
+		     viewport (it's the only CTA, so keep it always in reach). -->
+		<div
+			class="mt-12 max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:z-40 max-md:mt-0 max-md:border-t max-md:border-border max-md:bg-surface/85 max-md:p-4 max-md:backdrop-blur"
+			data-hero
+			style="--rise: 440ms"
+		>
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
-				class="btn-accent px-8 py-4 text-lg font-bold hover:opacity-90"
+				class="btn-accent block w-full px-8 py-4 text-center text-lg font-bold hover:opacity-90 md:inline-block md:w-auto md:text-left"
 			>
 				{site.hero.ctaPrimary} →
 			</a>

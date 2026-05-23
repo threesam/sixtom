@@ -1,27 +1,22 @@
-// Hero bubble field — self-contained port of threesam.com's day20 "sea of
-// shapes": a grid of blue-green circles that sway via sine waves and breathe in
-// size. Standalone (no framework) so the home page can stay csr=false — zero
-// SvelteKit JS — while still getting the animation for ~1.3KB. No-ops on any
-// page without a [data-bubble] canvas.
-//
-// Rendered into a fixed REF×REF buffer and CSS-scaled up (the canvas element is
-// sized object-cover): this reproduces the live sketch exactly — same point
-// count, noise frequency and wave coherence — just enlarged, rather than
-// re-deriving the field at full-screen coordinates (which changes the texture).
-// A left→right surface→transparent CSS overlay fades it under the copy.
+// Hero bubble field — a "sea of shapes" descended from threesam.com's day20
+// sketch: a dot grid whose circles swell and brighten where a slow-drifting
+// value-noise field is high, so contiguous blobs of blue-green drift through
+// rather than rippling uniformly in place. Standalone (no framework) so the home
+// page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
+// without a [data-bubble] canvas. A left→right CSS overlay fades it under the copy.
 const initBubbles = () => {
 	const canvas = document.querySelector('canvas[data-bubble]')
 	if (!canvas) return
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
 
-	const DENSITY = 44
-	const REF = 760 // fixed render resolution; CSS scales the canvas element up to cover
-	const SPEED = 0.0018 // sway units per ms (matches the live sketch)
-	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
-	const FPS = 20 // cap render rate — a slow ambient sway needs no more, keeps cost low
+	const DENSITY = 46 // grid cells across the short side
+	const BLOBS = 4.5 // noise blobs across the short side — low → big contiguous blobs
+	const NDRIFT = 0.00012 // noise-units/ms the field scrolls (blobs "move through")
+	const ALPHA_MAX = 0.85 // peak opacity at a blob's core; the CSS overlay fades left→right
+	const STATIC_FRAME = 3400 // reduced-motion: a representative mid-drift elapsed (ms)
+	const FPS = 20 // cap render rate — a slow ambient drift needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
-	const ALPHA = 0.8 // flat opacity; the CSS overlay handles the left→right fade
 
 	const fade = (t) => t * t * (3 - 2 * t)
 
@@ -54,61 +49,52 @@ const initBubbles = () => {
 	const noise = makeNoise(20)
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-	// Returns an immutable field (geometry + points) or null while the canvas is
-	// unsized (display:none / not laid out). The buffer is fixed at REF — only the
-	// laid-out check uses the element box. Rebuilt on resize, not mutated.
+	// Returns the field (geometry + fixed point positions) or null while the canvas
+	// is unsized. Rendered at the element's real pixel size (crisp, no upscale); the
+	// noise blob scale is tied to the short side so blobs are a fixed fraction of the
+	// viewport regardless of resolution. Positions carry a small static jitter so the
+	// grid doesn't read as a grid. Rebuilt on resize, not mutated.
 	const buildField = () => {
 		const { width, height } = canvas.getBoundingClientRect()
 		if (width === 0 || height === 0) return null
 		const dpr = Math.min(window.devicePixelRatio || 1, 2)
-		canvas.width = canvas.height = Math.round(REF * dpr)
+		canvas.width = Math.round(width * dpr)
+		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-		const half = REF / 2
-		const multi = 0.025
-		const space = (REF * 0.75) / DENSITY
-		const waveAmp = space * 0.6
+		const minDim = Math.min(width, height)
+		const space = minDim / DENSITY
+		const blobScale = BLOBS / minDim
 
-		// Size and blue-green colour are driven by the noise field (the og sketch's
-		// organic texture); colour baked into a fill string so the loop builds none.
 		const points = []
-		for (let x = -half; x < half; x += space) {
-			for (let y = -half; y < half; y += space) {
-				const n = noise(x * multi, y * multi)
-				const g = Math.floor(map(n, 0, 1, 100, 200))
-				const b = Math.floor(map(n, 0, 1, 130, 255))
+		for (let x = space / 2; x < width; x += space) {
+			for (let y = space / 2; y < height; y += space) {
 				points.push({
-					x,
-					y,
-					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
-					fill: `rgba(0,${g},${b},${ALPHA})`
+					x: x + (noise(x * 0.1, y * 0.1) - 0.5) * space * 0.5,
+					y: y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5
 				})
 			}
 		}
-		return { dim: REF, waveAmp, points }
+		return { width, height, space, blobScale, points }
 	}
 
-	// Sway frequency 0.41 matches the live sketch and stays a coherent wave at REF's
-	// cell size (a fixed frequency only reads as a ripple — not "dancing" — when the
-	// cell size it was tuned for is held constant, which the fixed buffer guarantees).
-	const render = (field, offset) => {
-		ctx.clearRect(0, 0, field.dim, field.dim)
-		ctx.save()
-		ctx.translate(field.dim / 2, field.dim / 2)
-		const { waveAmp, points } = field
+	// Each frame, sample the noise at every point with a time offset (the drift) so
+	// the high-noise regions — blobs — translate across the grid. A point's radius,
+	// blue-green colour and opacity all track its local noise value, so a blob reads
+	// as a swelling, brightening cluster sliding through.
+	const render = (field, elapsed) => {
+		ctx.clearRect(0, 0, field.width, field.height)
+		const { space, blobScale, points } = field
+		const drift = elapsed * NDRIFT
 		for (const p of points) {
-			ctx.fillStyle = p.fill
+			const n = noise(p.x * blobScale + drift, p.y * blobScale + drift * 0.4)
+			const g = Math.floor(map(n, 0, 1, 100, 200))
+			const b = Math.floor(map(n, 0, 1, 130, 255))
+			ctx.fillStyle = `rgba(0,${g},${b},${map(n, 0, 1, 0.1, ALPHA_MAX).toFixed(3)})`
 			ctx.beginPath()
-			ctx.arc(
-				p.x + Math.sin(p.y * 0.41 + offset) * waveAmp,
-				p.y + Math.sin(p.x * 0.41 + offset) * waveAmp,
-				Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * waveAmp) / 2),
-				0,
-				Math.PI * 2
-			)
+			ctx.arc(p.x, p.y, space * map(n, 0, 1, 0.12, 0.95), 0, Math.PI * 2)
 			ctx.fill()
 		}
-		ctx.restore()
 	}
 
 	let field = null
@@ -121,13 +107,13 @@ const initBubbles = () => {
 	// rAF fires at display rate (~60/120Hz) but we only redraw at FPS — the loop
 	// body is a cheap timestamp check on skipped frames. `elapsed` accumulates only
 	// the time between rendered frames, so pausing (tab hidden / scrolled away) and
-	// resuming continues the sway from where it left off instead of snapping back.
+	// resuming continues the drift from where it left off instead of snapping back.
 	const frame = (now) => {
 		if (!running) return
 		if (now - lastRender >= FRAME_MS) {
 			if (lastRender) elapsed += now - lastRender
 			lastRender = now
-			render(field, elapsed * SPEED)
+			render(field, elapsed)
 		}
 		raf = requestAnimationFrame(frame)
 	}
@@ -135,7 +121,7 @@ const initBubbles = () => {
 	const startLoop = () => {
 		if (running || !field || reduceMotion || document.hidden || !onScreen) return
 		running = true
-		lastRender = 0 // re-anchor without advancing elapsed → no phase jump on resume
+		lastRender = 0 // re-anchor without advancing elapsed → no jump on resume
 		raf = requestAnimationFrame(frame)
 	}
 
