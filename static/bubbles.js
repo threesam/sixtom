@@ -114,7 +114,7 @@ const initBubbles = () => {
 	}
 
 	const startLoop = () => {
-		if (running || !field || reduceMotion) return
+		if (running || !field || reduceMotion || document.hidden) return
 		running = true
 		t0 = 0
 		raf = requestAnimationFrame(frame)
