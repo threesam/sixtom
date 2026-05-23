@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { site } from '$lib/content'
+
+	const headlineClass =
+		'mt-2 block text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-8xl lg:leading-[0.92] xl:text-[7.5rem]'
 </script>
 
 <section class="snap-section bg-surface relative overflow-hidden">
@@ -14,19 +17,11 @@
 	<div class="relative mx-auto w-full max-w-6xl px-6">
 		<h1 class="text-fg">
 			<span class="eyebrow block text-sm md:text-base" data-hero style="--rise: 0ms">AI built</span>
-			<span
-				class="mt-2 block text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-8xl lg:leading-[0.92] xl:text-[7.5rem]"
-				data-hero
-				style="--rise: 80ms">your demo.</span
-			>
+			<span class={headlineClass} data-hero style="--rise: 80ms">your demo.</span>
 			<span class="eyebrow mt-10 block text-sm md:text-base" data-hero style="--rise: 160ms"
 				>i build</span
 			>
-			<span
-				class="mt-2 block text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-8xl lg:leading-[0.92] xl:text-[7.5rem]"
-				data-hero
-				style="--rise: 240ms">your solution.</span
-			>
+			<span class={headlineClass} data-hero style="--rise: 240ms">your solution.</span>
 		</h1>
 		<p
 			class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl"
