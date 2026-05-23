@@ -13,6 +13,8 @@ const initBubbles = () => {
 	const ALPHA_SCALE = 0.3 // right-edge cap; left edge ramps to 0 over the copy
 	const SPEED = 0.0018 // sway units per ms (~2.5x slower than the original)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
+	const FPS = 30 // cap render rate — a slow ambient sway needs no more, ~halves the cost
+	const FRAME_MS = 1000 / FPS
 
 	const fade = (t) => t * t * (3 - 2 * t)
 
@@ -62,6 +64,10 @@ const initBubbles = () => {
 		const halfH = height / 2
 		const multi = 0.025
 		const space = Math.max(Math.min(width, height) / DENSITY, 12)
+		// Uniform sway amplitude (~0.9 of a cell) so the ripple reads everywhere,
+		// including the visible right side — the original ramped it to 0 on the
+		// right, which is exactly where the full-bleed field is most visible.
+		const amp = space * 0.9
 
 		// Each bubble's colour is sampled along the CTA gradient (oklch 72% .15 200
 		// → 64% .16 178) by its x position; alpha ramps left→0 so the field can't
@@ -83,19 +89,18 @@ const initBubbles = () => {
 				})
 			}
 		}
-		return { width, height, halfW, halfH, points }
+		return { width, height, amp, points }
 	}
 
-	// Curried renderer: fix the frame's offset + field bounds, return a per-point draw.
-	const drawPoint = (offset, halfW, halfH) => (p) => {
-		const waveX = map(p.x, -halfW, halfW, 10, 0)
-		const waveY = map(p.y, -halfH, halfH, 10, 0)
+	// Curried renderer: fix the frame's offset + sway amplitude, return a per-point
+	// draw. Sway is uniform so the ripple reads across the whole field.
+	const drawPoint = (offset, amp) => (p) => {
 		ctx.fillStyle = p.fill
 		ctx.beginPath()
 		ctx.arc(
-			p.x + Math.sin(p.y * 0.41 + offset) * waveX,
-			p.y + Math.sin(p.x * 0.41 + offset) * waveY,
-			Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * waveX) / 2),
+			p.x + Math.sin(p.y * 0.41 + offset) * amp,
+			p.y + Math.sin(p.x * 0.41 + offset) * amp,
+			Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * amp) / 2),
 			0,
 			Math.PI * 2
 		)
@@ -106,7 +111,7 @@ const initBubbles = () => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		field.points.forEach(drawPoint(offset, field.halfW, field.halfH))
+		field.points.forEach(drawPoint(offset, field.amp))
 		ctx.restore()
 	}
 
@@ -114,10 +119,17 @@ const initBubbles = () => {
 	let raf = 0
 	let running = false
 	let t0 = 0
+	let lastRender = 0
 
+	// rAF fires at display rate (~60/120Hz) but we only redraw at FPS — the loop
+	// body is a cheap timestamp check on skipped frames. Motion is time-based, so
+	// throttling lowers cost without changing the sway speed.
 	const frame = (now) => {
-		t0 ||= now
-		render(field, (now - t0) * SPEED)
+		if (now - lastRender >= FRAME_MS) {
+			t0 ||= now
+			lastRender = now
+			render(field, (now - t0) * SPEED)
+		}
 		raf = requestAnimationFrame(frame)
 	}
 
@@ -125,6 +137,7 @@ const initBubbles = () => {
 		if (running || !field || reduceMotion || document.hidden) return
 		running = true
 		t0 = 0
+		lastRender = 0
 		raf = requestAnimationFrame(frame)
 	}
 
