@@ -15,7 +15,7 @@
 		aria-hidden="true"
 	>
 		<div
-			class="absolute top-1/2 left-[-12%] h-[75vh] w-[75vh] -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px]"
+			class="absolute top-1/2 left-[-12%] h-[700px] w-[700px] -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px]"
 			style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%)"
 		></div>
 	</div>
