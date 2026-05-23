@@ -23,7 +23,7 @@
 		<div class="absolute inset-0 bg-gradient-to-r from-[#000000b0] to-[#00000021]"></div>
 	</div>
 
-	<div class="relative mx-auto w-full max-w-6xl px-6 max-md:pb-28">
+	<div class="relative mx-auto w-full max-w-6xl px-6">
 		<h1 class="text-fg">
 			<span class="eyebrow block text-sm leading-none lg:text-base" data-hero style="--rise: 0ms"
 				>AI built</span
@@ -47,17 +47,11 @@
 		>
 			what's the <span class="text-accent">X</span> between you and peace of mind?
 		</p>
-		<!-- Desktop: inline CTA. Mobile: full-width bar fixed to the bottom of the
-		     viewport (it's the only CTA, so keep it always in reach). -->
-		<div
-			class="mt-12 max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:z-40 max-md:mt-0 max-md:border-t max-md:border-border max-md:bg-surface/85 max-md:p-4 max-md:backdrop-blur"
-			data-hero
-			style="--rise: 440ms"
-		>
+		<div class="mt-12" data-hero style="--rise: 440ms">
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
-				class="btn-accent block w-full px-8 py-4 text-center text-lg font-bold hover:opacity-90 md:inline-block md:w-auto md:text-left"
+				class="btn-accent px-8 py-4 text-lg font-bold hover:opacity-90"
 			>
 				{site.hero.ctaPrimary} →
 			</a>
