@@ -1,38 +1,36 @@
 # SIXTOM
 
-> AI ships demos. I ship products. I run a fleet of AI agents in parallel — agents type, I judge. Two weeks to a working version. $750 audit. $7,500 sprint. 1 client a month.
+> AI built your demo. I build your solution. Two-week engagements that take your AI-built prototype from working-for-you to production-grade. $1,500 audit. $10,000 sprint. 1 client a month.
 
 ## What I do
 
-- **The Audit — $750.** You send me your repo and the thing you're stuck on. I send back a 1-pager and a 15-min Loom — what's blocking, what I'd do, whether a sprint makes sense. About a week turnaround. Start here.
-- **The Async Sprint — $7,500.** Two weeks. Agents do the typing — drafts, fixes, accessibility passes, the boring 10%. I do the judgment. You get a daily drop and a working version live on day 10.
+- **The Audit — $1,500.** You send me your repo and the thing you're stuck on. I send back a written breakdown plus a short video walkthrough — what's blocking, what I'd do, whether a sprint makes sense. About a week turnaround. Start here.
+- **The Sprint — $10,000.** Two weeks. From working-for-you to production-grade. Daily progress drops in your channel. Live on day 10.
 
 ## Who it's for
 
-- A prototype that won't ship.
-- An internal tool that won't scale past the person who built it.
-- A team that built with AI but stalls before production.
+You already built something — usually with AI assistance. It works for you. Real customers are about to break it, or already are. You're losing sleep over uptime, security, or scale. You want peace of mind. The "X" in "solve for X" is the specific thing standing between you and that peace of mind.
 
 ## How the sprint goes
 
-- Week 1 day 0: 30-min call (or skip if you did the audit). We figure out the thing.
-- Days 1–7: Agents build. I steer. Daily Loom + code drop in your channel.
+- Week 1 day 0: 30-min call (or skip if you did the audit). We define the X — the specific thing standing between you and peace of mind.
+- Days 1–7: I build. Daily progress drops in your channel.
 - Mid-sprint: 1 short sync. Course-correct if needed.
-- Day 5 (scope check): If we can both see it won't ship in scope, we stop here. You keep what we built.
-- Day 10: Live in production. You own it.
-- Day 30: Check-in.
-
-## How I work
-
-I orchestrate AI agents continuously. Agents handle the typing — drafts, fixes, accessibility passes, the parts that don't need taste. I bring the taste. The fleet runs in parallel, which is why a two-week sprint can produce a shipping-ready product. You don't have to be on a call; the work happens in the background.
+- Day 5: scope check. If we can both see it won't ship in scope, we stop. You keep what was built.
+- Day 10: live in production. You own it.
+- Day 30: check-in.
 
 ## Pricing
 
-- Audit: $750 USD, fixed. Turnaround within a week.
-- Sprint: $7,500 USD, fixed. 1 client a month, by appointment.
-- If by sprint day 5 we can both see it won't ship in scope, we stop. You keep what we built. Pay for the time, that's it.
+- Audit: $1,500 USD, fixed. Turnaround within a week.
+- Sprint: $10,000 USD flat, or 4 weekly payments of $2,500. 1 client a month, by appointment.
+- If by sprint day 5 we can both see it won't ship in scope, we stop. You keep what was built. You pay for the time used, that's it.
+
+## Who I am
+
+Sam D'Angelo. Lead engineer at Made In Cookware (multi-million visitors a month). Formerly at Rhone. Personal site / portfolio: https://threesam.com.
 
 ## How to engage
 
-- Book a 30-min intro call (link on the homepage).
-- Notify list for the next open slot (form on the homepage).
+- "Solve for X" — the booking form on the homepage at https://sixtom.com/book.
+- Notify list for the next open slot: https://sixtom.com/notify.

@@ -10,7 +10,6 @@
 		name="description"
 		content="how much your vibe-coded prototype is costing you per year. 4 inputs, instant number, no email."
 	/>
-	<link rel="canonical" href={`${site.siteUrl}/tax`} />
 	<meta property="og:title" content="vibe-code tax — sixtom" />
 	<meta
 		property="og:description"

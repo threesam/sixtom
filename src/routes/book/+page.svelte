@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import { site } from '$lib/content'
 	import type { ActionData } from './$types'
 	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE } from './options'
 
@@ -54,7 +53,6 @@
 		name="description"
 		content="qualify for an audit or sprint with sixtom. 3 quick steps, then the booking link."
 	/>
-	<link rel="canonical" href={`${site.siteUrl}/book`} />
 </svelte:head>
 
 <div class="bg-surface min-h-screen">

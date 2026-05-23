@@ -17,6 +17,15 @@ export interface PersonLd {
 	sameAs: readonly string[]
 }
 
+export interface WebSiteLd {
+	'@context': 'https://schema.org'
+	'@type': 'WebSite'
+	name: string
+	alternateName: readonly string[]
+	url: string
+	publisher: { '@type': 'Person'; name: string; url: string }
+}
+
 export interface ServiceLd {
 	'@context': 'https://schema.org'
 	'@type': 'ProfessionalService'
@@ -44,6 +53,21 @@ export function personJsonLd(): PersonLd {
 		alumniOf: { '@type': 'Organization', name: site.operator.formerEmployer },
 		url: site.siteUrl,
 		sameAs: [site.gardenUrl]
+	}
+}
+
+export function webSiteJsonLd(): WebSiteLd {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'SIXTOM',
+		alternateName: ['sixtom', 'Sixtom'],
+		url: site.siteUrl,
+		publisher: {
+			'@type': 'Person',
+			name: site.operator.name,
+			url: site.gardenUrl
+		}
 	}
 }
 

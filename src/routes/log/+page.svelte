@@ -23,7 +23,6 @@
 		name="description"
 		content="Everything I'm publishing on LinkedIn, mirrored here in one place."
 	/>
-	<link rel="canonical" href={`${site.siteUrl}/log`} />
 	<meta property="og:title" content="log — sixtom" />
 	<meta
 		property="og:description"

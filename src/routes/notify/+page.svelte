@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import { site } from '$lib/content'
 	import type { ActionData } from './$types'
 
 	let { form }: { form: ActionData } = $props()
@@ -21,7 +20,6 @@
 		name="description"
 		content="one client a month. drop your email to hear when the next sprint slot opens."
 	/>
-	<link rel="canonical" href={`${site.siteUrl}/notify`} />
 	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 

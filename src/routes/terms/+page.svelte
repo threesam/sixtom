@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { site } from '$lib/content'
 </script>
 
 <svelte:head>
@@ -8,7 +7,6 @@
 		name="description"
 		content="how engagement with sixtom works. plain-English terms for the audit and the sprint."
 	/>
-	<link rel="canonical" href={`${site.siteUrl}/terms`} />
 </svelte:head>
 
 <div class="bg-surface min-h-screen">
