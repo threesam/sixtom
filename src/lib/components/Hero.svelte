@@ -6,19 +6,19 @@
 </script>
 
 <section class="snap-section bg-surface relative">
-	<!-- Bubble field (threesam day20 "sea of shapes" port), desktop only, snapped
-	     to the right and bleeding slightly off-edge, behind the text. Its own
-	     overflow-hidden wrapper clips the bleed without constraining the section
-	     (oversized type can exceed 100svh on short/zoomed viewports and must stay
-	     un-clipped). Animated by static/bubbles.js (wired in app.html) so the page
+	<!-- Bubble field (threesam day20 "sea of shapes" port), behind the text. Its
+	     own overflow-hidden wrapper clips the bleed without constraining the
+	     section (oversized type can exceed 100svh on short/zoomed viewports and
+	     must stay un-clipped). Desktop: a square snapped right into the void beside
+	     the copy. Mobile: a square centered behind the copy (no right-side void on
+	     a phone). Animated by static/bubbles.js (wired in app.html) so the page
 	     keeps csr=false — the canvas is plain markup that survives no-hydration;
 	     the script no-ops elsewhere. Decorative + aria-hidden; alpha ramps to 0 on
 	     the left so it can't hurt text contrast where it overlaps the copy. -->
-	<div
-		class="pointer-events-none absolute inset-0 hidden overflow-hidden md:block"
-		aria-hidden="true"
-	>
-		<div class="absolute inset-y-[8%] right-[-6%] aspect-square">
+	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+		<div
+			class="absolute aspect-square max-md:top-1/2 max-md:left-1/2 max-md:h-[80%] max-md:-translate-x-1/2 max-md:-translate-y-1/2 md:inset-y-[8%] md:right-[-6%]"
+		>
 			<canvas data-bubble class="block h-full w-full"></canvas>
 		</div>
 	</div>
