@@ -10,9 +10,9 @@ const initBubbles = () => {
 	if (!ctx) return
 
 	const DENSITY = 44
-	const SPEED = 0.0009 // sway units per ms (~5x slower than the original; ~7s loop)
+	const SPEED = 0.00045 // sway units per ms (~10x slower than the original; ~14s loop)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
-	const FPS = 24 // cap render rate — a slow ambient sway needs no more, keeps cost low
+	const FPS = 12 // cap render rate — a very slow ambient sway needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
 
 	const fade = (t) => t * t * (3 - 2 * t)
