@@ -13,7 +13,7 @@ const initBubbles = () => {
 	const ALPHA_SCALE = 0.3 // right-edge cap; left edge ramps to 0 over the copy
 	const SPEED = 0.0018 // sway units per ms (~2.5x slower than the original)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
-	const FPS = 30 // cap render rate — a slow ambient sway needs no more, ~halves the cost
+	const FPS = 24 // cap render rate — a slow ambient sway needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
 
 	const fade = (t) => t * t * (3 - 2 * t)
@@ -64,43 +64,51 @@ const initBubbles = () => {
 		const halfH = height / 2
 		const multi = 0.025
 		const space = Math.max(Math.min(width, height) / DENSITY, 12)
-		// Uniform sway amplitude (~0.9 of a cell) so the ripple reads everywhere,
-		// including the visible right side — the original ramped it to 0 on the
-		// right, which is exactly where the full-bleed field is most visible.
-		const amp = space * 0.9
+		// Wave amplitude (~0.9 of a cell at full strength) is enveloped to the right
+		// 2/3: zero through the left third (calm under the copy), ramping to full at
+		// the right edge — so the ripple "hits" across the visible right side.
+		const baseAmp = space * 0.9
 
 		// Each bubble's colour is sampled along the CTA gradient (oklch 72% .15 200
 		// → 64% .16 178) by its x position; alpha ramps left→0 so the field can't
 		// hurt text contrast over the copy. Both are baked into a fill string here
 		// so the per-frame loop never builds strings.
 		const points = []
-		for (let x = -halfW; x < halfW; x += space) {
+		// Skip the left third entirely — it ramps to ~0 alpha and 0 wave anyway, so
+		// it's pure waste. ~33% fewer drawn circles.
+		for (let x = -halfW / 3; x < halfW; x += space) {
 			for (let y = -halfH; y < halfH; y += space) {
 				const n = noise(x * multi, y * multi)
 				const tx = map(x, -halfW, halfW, 0, 1)
-				const l = map(tx, 0, 1, 72, 64)
+				// Colour follows the CTA gradient by x, but lightness/hue/opacity are
+				// jittered by the noise field so the bubbles read organic and mottled
+				// (like the original) rather than a smooth uniform wash.
+				const l = map(tx, 0, 1, 72, 64) + map(n, 0, 1, -6, 6)
 				const c = map(tx, 0, 1, 0.15, 0.16)
-				const hue = map(tx, 0, 1, 200, 178)
+				const hue = map(tx, 0, 1, 200, 178) + map(n, 0, 1, -8, 8)
+				const alpha = tx * ALPHA_SCALE * map(n, 0, 1, 0.45, 1.25)
 				points.push({
 					x,
 					y,
 					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
-					fill: `oklch(${l}% ${c} ${hue} / ${tx * ALPHA_SCALE})`
+					wamp: baseAmp * Math.max(0, (3 * tx - 1) / 2), // 0 at left edge of kept field → full at right
+					fill: `oklch(${l}% ${c} ${hue} / ${alpha})`
 				})
 			}
 		}
-		return { width, height, amp, points }
+		return { width, height, points }
 	}
 
-	// Curried renderer: fix the frame's offset + sway amplitude, return a per-point
-	// draw. Sway is uniform so the ripple reads across the whole field.
-	const drawPoint = (offset, amp) => (p) => {
+	// Curried renderer: fix the frame's offset, return a per-point draw. Each point
+	// carries its own wave amplitude (p.wamp) — enveloped so the ripple "hits" the
+	// right side and fades out toward the (skipped) left third.
+	const drawPoint = (offset) => (p) => {
 		ctx.fillStyle = p.fill
 		ctx.beginPath()
 		ctx.arc(
-			p.x + Math.sin(p.y * 0.41 + offset) * amp,
-			p.y + Math.sin(p.x * 0.41 + offset) * amp,
-			Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * amp) / 2),
+			p.x + Math.sin(p.y * 0.41 + offset) * p.wamp,
+			p.y + Math.sin(p.x * 0.41 + offset) * p.wamp,
+			Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * p.wamp) / 2),
 			0,
 			Math.PI * 2
 		)
@@ -111,7 +119,7 @@ const initBubbles = () => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		field.points.forEach(drawPoint(offset, field.amp))
+		field.points.forEach(drawPoint(offset))
 		ctx.restore()
 	}
 
