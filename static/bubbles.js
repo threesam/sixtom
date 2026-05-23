@@ -10,7 +10,8 @@ const initBubbles = () => {
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
 
-	const DENSITY = 46 // grid cells across the short side
+	const DENSITY = 46 // grid cells across the short side (desktop)
+	const MOBILE_DENSITY = 32 // ~half the circle count on narrow screens (count ∝ density²)
 	const BLOBS = 4.5 // noise blobs across the short side — low → big contiguous blobs
 	const NDRIFT = 0.00012 // noise-units/ms the field scrolls (blobs "move through")
 	const ALPHA_MAX = 0.85 // peak opacity at a blob's core; the CSS overlay fades left→right
@@ -63,7 +64,7 @@ const initBubbles = () => {
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
 		const minDim = Math.min(width, height)
-		const space = minDim / DENSITY
+		const space = minDim / (width < 768 ? MOBILE_DENSITY : DENSITY)
 		const blobScale = BLOBS / minDim
 
 		const points = []
