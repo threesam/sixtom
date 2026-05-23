@@ -61,21 +61,20 @@ const initBubbles = () => {
 		const end = smallSide * 0.4
 		const space = smallSide / DENSITY
 
-		const coords = []
+		const points = []
 		for (let x = start; x < end; x += space) {
-			for (let y = start; y < end; y += space) coords.push([x, y])
-		}
-		const points = coords.map(([x, y]) => {
-			const n = noise(x * multi, y * multi)
-			return {
-				x,
-				y,
-				size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
-				g: Math.floor(map(n, 0, 1, 100, 200)),
-				b: Math.floor(map(n, 0, 1, 130, 255)),
-				a: map(x, start, end, 0, 1) // left -> right alpha ramp (0..1)
+			for (let y = start; y < end; y += space) {
+				const n = noise(x * multi, y * multi)
+				points.push({
+					x,
+					y,
+					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
+					g: Math.floor(map(n, 0, 1, 100, 200)),
+					b: Math.floor(map(n, 0, 1, 130, 255)),
+					a: map(x, start, end, 0, 1) // left -> right alpha ramp (0..1)
+				})
 			}
-		})
+		}
 		return { width, height, start, end, points }
 	}
 
