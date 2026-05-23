@@ -5,20 +5,26 @@
 		'mt-2 block text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-8xl lg:leading-[0.92] xl:text-[7.5rem]'
 </script>
 
-<section class="snap-section bg-surface relative overflow-hidden">
-	<!-- Atmospheric glow, desktop only — gives the oversized type depth instead of
-	     floating on flat black. Hidden on mobile so the mobile layout is untouched. -->
+<section class="snap-section bg-surface relative">
+	<!-- Atmospheric glow, desktop only. Clipped to the section via its own
+	     overflow-hidden wrapper so it can't add scrollbars or clip hero content
+	     (the section itself must stay un-clipped — oversized type can exceed
+	     100svh on short/zoomed viewports and needs to grow, not get cut off). -->
 	<div
-		class="pointer-events-none absolute top-1/2 left-[-12%] hidden h-[75vh] w-[75vh] -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px] md:block"
-		style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%)"
+		class="pointer-events-none absolute inset-0 hidden overflow-hidden md:block"
 		aria-hidden="true"
-	></div>
+	>
+		<div
+			class="absolute top-1/2 left-[-12%] h-[75vh] w-[75vh] -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px]"
+			style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%)"
+		></div>
+	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6">
 		<h1 class="text-fg">
-			<span class="eyebrow block text-sm md:text-base" data-hero style="--rise: 0ms">AI built</span>
+			<span class="eyebrow block text-sm lg:text-base" data-hero style="--rise: 0ms">AI built</span>
 			<span class={headlineClass} data-hero style="--rise: 80ms">your demo.</span>
-			<span class="eyebrow mt-10 block text-sm md:text-base" data-hero style="--rise: 160ms"
+			<span class="eyebrow mt-10 block text-sm lg:text-base" data-hero style="--rise: 160ms"
 				>i build</span
 			>
 			<span class={headlineClass} data-hero style="--rise: 240ms">your solution.</span>
