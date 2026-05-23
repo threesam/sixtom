@@ -1,18 +1,23 @@
-// Hero bubble field — self-contained port of threesam.com's day20 "sea of
-// shapes": a grid of blue-green circles that sway via sine waves and breathe in
-// size. Standalone (no framework) so the home page can stay csr=false — zero
-// SvelteKit JS — while still getting the animation for ~1.3KB. No-ops on any
-// page without a [data-bubble] canvas.
+// Hero bubble field — a "sea of shapes" descended from threesam.com's day20
+// sketch: a dot grid whose circles swell and brighten where a slow-drifting
+// value-noise field is high, so contiguous blobs of blue-green drift through
+// rather than rippling uniformly in place. Standalone (no framework) so the home
+// page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
+// without a [data-bubble] canvas. A left→right CSS overlay fades it under the copy.
 const initBubbles = () => {
 	const canvas = document.querySelector('canvas[data-bubble]')
 	if (!canvas) return
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
 
-	const DENSITY = 44
-	const ALPHA_SCALE = 0.55 // right-edge cap; left edge ramps to 0 over the copy
-	const SPEED = 0.0018 // sway units per ms (~2.5x slower than the original)
-	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
+	const DENSITY = 46 // grid cells across the short side (desktop)
+	const MOBILE_DENSITY = 32 // ~half the circle count on narrow screens (count ∝ density²)
+	const BLOBS = 4.5 // noise blobs across the short side — low → big contiguous blobs
+	const NDRIFT = 0.00012 // noise-units/ms the field scrolls (blobs "move through")
+	const ALPHA_MAX = 0.85 // peak opacity at a blob's core; the CSS overlay fades left→right
+	const STATIC_FRAME = 3400 // reduced-motion: a representative mid-drift elapsed (ms)
+	const FPS = 20 // cap render rate — a slow ambient drift needs no more, keeps cost low
+	const FRAME_MS = 1000 / FPS
 
 	const fade = (t) => t * t * (3 - 2 * t)
 
@@ -45,78 +50,79 @@ const initBubbles = () => {
 	const noise = makeNoise(20)
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-	// Returns an immutable field (geometry + points) or null until the canvas
-	// has a real laid-out size. Rebuilt on resize rather than mutating globals.
+	// Returns the field (geometry + fixed point positions) or null while the canvas
+	// is unsized. Rendered at the element's real pixel size (crisp, no upscale); the
+	// noise blob scale is tied to the short side so blobs are a fixed fraction of the
+	// viewport regardless of resolution. Positions carry a small static jitter so the
+	// grid doesn't read as a grid. Rebuilt on resize, not mutated.
 	const buildField = () => {
-		const dpr = Math.min(window.devicePixelRatio || 1, 2)
 		const { width, height } = canvas.getBoundingClientRect()
 		if (width === 0 || height === 0) return null
+		const dpr = Math.min(window.devicePixelRatio || 1, 2)
 		canvas.width = Math.round(width * dpr)
 		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-		const smallSide = Math.min(width, height) * 0.75
-		const multi = 0.025
-		const start = -smallSide * 0.4
-		const end = smallSide * 0.4
-		const space = smallSide / DENSITY
+		const minDim = Math.min(width, height)
+		const space = minDim / (width < 768 ? MOBILE_DENSITY : DENSITY)
+		const blobScale = BLOBS / minDim
 
 		const points = []
-		for (let x = start; x < end; x += space) {
-			for (let y = start; y < end; y += space) {
-				const n = noise(x * multi, y * multi)
+		for (let x = space / 2; x < width; x += space) {
+			for (let y = space / 2; y < height; y += space) {
 				points.push({
-					x,
-					y,
-					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
-					g: Math.floor(map(n, 0, 1, 100, 200)),
-					b: Math.floor(map(n, 0, 1, 130, 255)),
-					a: map(x, start, end, 0, 1) // left -> right alpha ramp (0..1)
+					x: x + (noise(x * 0.1, y * 0.1) - 0.5) * space * 0.5,
+					y: y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5
 				})
 			}
 		}
-		return { width, height, start, end, points }
+		return { width, height, space, blobScale, points }
 	}
 
-	// Curried renderer: fix the frame's offset + field bounds, return a per-point draw.
-	const drawPoint = (offset, start, end) => (p) => {
-		const waveX = map(p.x, start, end, 10, 0)
-		const waveY = map(p.y, start, end, 10, 0)
-		ctx.fillStyle = `rgba(0,${p.g},${p.b},${p.a * ALPHA_SCALE})`
-		ctx.beginPath()
-		ctx.arc(
-			p.x + Math.sin(p.y * 0.41 + offset) * waveX,
-			p.y + Math.sin(p.x * 0.41 + offset) * waveY,
-			Math.max(1, (p.size + Math.sin((p.x + p.y) * 0.41 + offset) * waveX) / 2),
-			0,
-			Math.PI * 2
-		)
-		ctx.fill()
-	}
-
-	const render = (field, offset) => {
+	// Each frame, sample the noise at every point with a time offset (the drift) so
+	// the high-noise regions — blobs — translate across the grid. A point's radius,
+	// blue-green colour and opacity all track its local noise value, so a blob reads
+	// as a swelling, brightening cluster sliding through.
+	const render = (field, elapsed) => {
 		ctx.clearRect(0, 0, field.width, field.height)
-		ctx.save()
-		ctx.translate(field.width / 2, field.height / 2)
-		field.points.forEach(drawPoint(offset, field.start, field.end))
-		ctx.restore()
+		const { space, blobScale, points } = field
+		const drift = elapsed * NDRIFT
+		for (const p of points) {
+			const n = noise(p.x * blobScale + drift, p.y * blobScale + drift * 0.4)
+			const g = Math.floor(map(n, 0, 1, 100, 200))
+			const b = Math.floor(map(n, 0, 1, 130, 255))
+			ctx.fillStyle = `rgba(0,${g},${b},${map(n, 0, 1, 0.1, ALPHA_MAX).toFixed(3)})`
+			ctx.beginPath()
+			ctx.arc(p.x, p.y, space * map(n, 0, 1, 0.12, 0.95), 0, Math.PI * 2)
+			ctx.fill()
+		}
 	}
 
 	let field = null
 	let raf = 0
 	let running = false
-	let t0 = 0
+	let onScreen = true
+	let elapsed = 0 // accumulated animation time (ms), persists across pauses
+	let lastRender = 0
 
+	// rAF fires at display rate (~60/120Hz) but we only redraw at FPS — the loop
+	// body is a cheap timestamp check on skipped frames. `elapsed` accumulates only
+	// the time between rendered frames, so pausing (tab hidden / scrolled away) and
+	// resuming continues the drift from where it left off instead of snapping back.
 	const frame = (now) => {
-		t0 ||= now
-		render(field, (now - t0) * SPEED)
+		if (!running) return
+		if (now - lastRender >= FRAME_MS) {
+			if (lastRender) elapsed += now - lastRender
+			lastRender = now
+			render(field, elapsed)
+		}
 		raf = requestAnimationFrame(frame)
 	}
 
 	const startLoop = () => {
-		if (running || !field || reduceMotion || document.hidden) return
+		if (running || !field || reduceMotion || document.hidden || !onScreen) return
 		running = true
-		t0 = 0
+		lastRender = 0 // re-anchor without advancing elapsed → no jump on resume
 		raf = requestAnimationFrame(frame)
 	}
 
@@ -126,9 +132,8 @@ const initBubbles = () => {
 	}
 
 	// Single source of truth for "the canvas has a size". ResizeObserver fires an
-	// initial callback and again whenever the canvas crosses the md breakpoint
-	// (display:none ⇄ block), so there's no need for a blind rAF retry — a hidden
-	// canvas (mobile) simply never builds a field and never loops.
+	// initial callback and again on any layout change, so there's no need for a
+	// blind rAF retry — a 0-sized canvas simply never builds a field and never loops.
 	const sync = () => {
 		field = buildField()
 		if (!field) {
@@ -140,6 +145,14 @@ const initBubbles = () => {
 	}
 
 	new ResizeObserver(sync).observe(canvas)
+
+	// Pause whenever the hero scrolls out of view — no point painting a canvas
+	// nobody can see while the rest of the page is read.
+	new IntersectionObserver((entries) => {
+		onScreen = entries[0].isIntersecting
+		if (onScreen) startLoop()
+		else stopLoop()
+	}).observe(canvas)
 
 	document.addEventListener('visibilitychange', () => {
 		if (document.hidden) stopLoop()
