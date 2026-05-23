@@ -10,15 +10,14 @@
 </script>
 
 <section class="snap-section bg-surface relative">
-	<!-- Bubble field (threesam day20 "sea of shapes" port), behind the text. Its
-	     own overflow-hidden wrapper clips the bleed without constraining the
-	     section (oversized type can exceed 100svh on short/zoomed viewports and
-	     must stay un-clipped). Desktop: a square snapped right into the void beside
-	     the copy. Mobile: a square centered behind the copy (no right-side void on
-	     a phone). Animated by static/bubbles.js (wired in app.html) so the page
-	     keeps csr=false — the canvas is plain markup that survives no-hydration;
-	     the script no-ops elsewhere. Decorative + aria-hidden; alpha ramps to 0 on
-	     the left so it can't hurt text contrast where it overlaps the copy. -->
+	<!-- Bubble field (threesam day20 "sea of shapes" port), full-bleed behind the
+	     text. Its own overflow-hidden wrapper clips the bleed without constraining
+	     the section (oversized type can exceed 100svh on short/zoomed viewports and
+	     must stay un-clipped). Animated by static/bubbles.js (wired in app.html) so
+	     the page keeps csr=false — the canvas is plain markup that survives
+	     no-hydration; the script no-ops elsewhere. Decorative + aria-hidden; opacity
+	     ramps to 0 on the left so it can't hurt text contrast where it overlaps the
+	     copy. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
 		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 	</div>
@@ -51,7 +50,7 @@
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
-				class="btn-accent px-8 py-4 text-lg hover:opacity-90"
+				class="btn-accent px-8 py-4 text-lg font-bold hover:opacity-90"
 			>
 				{site.hero.ctaPrimary} →
 			</a>

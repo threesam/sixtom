@@ -9,15 +9,18 @@ const initBubbles = () => {
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
 
-	const DENSITY = 44
+	const DENSITY = 40
 	const WAVE_CELLS = 7 // wave wavelength in cells — set relative to cell size so the
 	// sway stays a coherent traveling wave at any viewport (a fixed spatial frequency
 	// drifts in/out of phase as the responsive cell size changes, which reads as
 	// circles "dancing in place" rather than rippling).
-	const SPEED = 0.000225 // sway units per ms (~20x slower than the original; ~28s loop)
+	const SPEED = 0.00045 // sway units per ms (slow ambient drift)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
-	const FPS = 24 // cap render rate — a very slow ambient sway needs no more, keeps cost low
+	const FPS = 20 // cap render rate — a slow ambient sway needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
+	const BUCKETS = 13 // distinct fill tones; the whole field draws in BUCKETS fill()
+	// calls instead of one per circle (no per-circle colour-string parsing/fill setup).
+	const MAX_ALPHA = 0.69 // opacity at the right edge; ramps from 0 on the left
 
 	const fade = (t) => t * t * (3 - 2 * t)
 
@@ -46,12 +49,24 @@ const initBubbles = () => {
 	}
 
 	const map = (v, a1, a2, b1, b2) => b1 + ((v - a1) * (b2 - b1)) / (a2 - a1)
+	const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v)
 
 	const noise = makeNoise(20)
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-	// Returns an immutable field (geometry + points) or null until the canvas
-	// has a real laid-out size. Rebuilt on resize rather than mutating globals.
+	// BUCKETS fixed fills sampled along the CTA gradient (oklch 72% .15 200 →
+	// 64% .16 178), opacity ramping 0 → MAX_ALPHA. Computed once; points reference
+	// these by index so the render loop can batch one fill() per tone.
+	const bucketFills = Array.from({ length: BUCKETS }, (_, i) => {
+		const f = i / (BUCKETS - 1)
+		const l = map(f, 0, 1, 72, 64)
+		const c = map(f, 0, 1, 0.15, 0.16)
+		const hue = map(f, 0, 1, 200, 178)
+		return `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${hue.toFixed(1)} / ${(f * MAX_ALPHA).toFixed(3)})`
+	})
+
+	// Returns an immutable field (geometry + bucketed points) or null until the
+	// canvas has a real laid-out size. Rebuilt on resize rather than mutating globals.
 	const buildField = () => {
 		const dpr = Math.min(window.devicePixelRatio || 1, 2)
 		const { width, height } = canvas.getBoundingClientRect()
@@ -67,8 +82,8 @@ const initBubbles = () => {
 		const halfH = height / 2
 		const multi = 0.025
 		const space = Math.max(Math.min(width, height) / DENSITY, 12)
-		// Positional sway (~0.6 cell at full strength) is enveloped to the right 2/3:
-		// zero through the left third, ramping to full at the right edge.
+		// Positional sway (~0.6 cell at full strength) ramps with x: calm under the
+		// copy on the left, full on the right.
 		const baseAmp = space * 0.6
 		// Cell-relative wave frequency → coherent ripple at any viewport. Size
 		// "breathe" is a small, separate pulse so the high-amplitude right side
@@ -76,70 +91,59 @@ const initBubbles = () => {
 		const freq = (Math.PI * 2) / (space * WAVE_CELLS)
 		const breathe = space * 0.12
 
-		// Each bubble's colour is sampled along the CTA gradient (oklch 72% .15 200
-		// → 64% .16 178) by its x position; alpha ramps left→0 so the field can't
-		// hurt text contrast over the copy. Both are baked into a fill string here
-		// so the per-frame loop never builds strings.
-		const points = []
-		// Skip the left third entirely — it ramps to ~0 alpha and 0 wave anyway, so
-		// it's pure waste. ~33% fewer drawn circles.
-		for (let x = -halfW / 3; x < halfW; x += space) {
+		// Spans the whole screen. Each point is sorted into a tone bucket by its x
+		// position dithered by the noise field — the dither (smooth value noise)
+		// turns the BUCKETS hard tone steps into organic, blobby boundaries.
+		const buckets = Array.from({ length: BUCKETS }, () => [])
+		for (let x = -halfW; x < halfW; x += space) {
 			for (let y = -halfH; y < halfH; y += space) {
 				const n = noise(x * multi, y * multi)
-				const tx = map(x, -halfW, halfW, 0, 1)
-				// 0 at the left edge of the kept field → 1 at the right edge. Drives
-				// both the wave amplitude and the opacity fade-in (so the skip boundary
-				// fades in from transparent rather than showing a hard edge).
-				const ramp = Math.max(0, (3 * tx - 1) / 2)
-				// Colour follows the CTA gradient by x; lightness/hue/opacity are
-				// jittered by the noise field so the bubbles read organic and mottled
-				// (like the original) rather than a smooth uniform wash.
-				const l = map(tx, 0, 1, 72, 64) + map(n, 0, 1, -6, 6)
-				const c = map(tx, 0, 1, 0.15, 0.16)
-				const hue = map(tx, 0, 1, 200, 178) + map(n, 0, 1, -8, 8)
-				const alpha = ramp * map(n, 0, 1, 0.65, 1) // 0 left → ~1 right, mottled
-				points.push({
+				const tx = map(x, -halfW, halfW, 0, 1) // 0 left → 1 right
+				const shade = clamp01(tx + (n - 0.5) * 0.32)
+				const bi = Math.round(shade * (BUCKETS - 1))
+				buckets[bi].push({
 					x,
 					y,
 					// Tight radius range (~0.42–0.56 cell) keeps the dots distinct so the
-					// colour/opacity noise reads — a wide size range let big circles
-					// overlap into blobs and washed the texture out.
+					// tone variation reads — a wide size range let big circles overlap
+					// into blobs and washed the texture out.
 					r: map(n, 0, 1, space * 0.42, space * 0.56),
-					wamp: baseAmp * ramp,
-					fill: `oklch(${l}% ${c} ${hue} / ${alpha})`
+					wamp: baseAmp * tx
 				})
 			}
 		}
-		return { width, height, freq, breathe, points }
+		return { width, height, freq, breathe, buckets }
 	}
 
-	// Curried renderer: fix the frame's offset, return a per-point draw. Each point
-	// carries its own wave amplitude (p.wamp) — enveloped so the ripple "hits" the
-	// right side and fades out toward the (skipped) left third.
-	const drawPoint = (offset, freq, breathe) => (p) => {
-		ctx.fillStyle = p.fill
-		ctx.beginPath()
-		ctx.arc(
-			p.x + Math.sin(p.y * freq + offset) * p.wamp,
-			p.y + Math.sin(p.x * freq + offset) * p.wamp,
-			Math.max(0.5, p.r + Math.sin((p.x + p.y) * freq + offset) * breathe),
-			0,
-			Math.PI * 2
-		)
-		ctx.fill()
-	}
-
+	// One fill() per bucket: set the tone, trace every circle in it into a single
+	// path (moveTo before each arc so the subpaths don't connect), fill once.
 	const render = (field, offset) => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		field.points.forEach(drawPoint(offset, field.freq, field.breathe))
+		const { freq, breathe, buckets } = field
+		for (let b = 0; b < buckets.length; b++) {
+			const pts = buckets[b]
+			if (pts.length === 0) continue
+			ctx.fillStyle = bucketFills[b]
+			ctx.beginPath()
+			for (let i = 0; i < pts.length; i++) {
+				const p = pts[i]
+				const cx = p.x + Math.sin(p.y * freq + offset) * p.wamp
+				const cy = p.y + Math.sin(p.x * freq + offset) * p.wamp
+				const r = Math.max(0.5, p.r + Math.sin((p.x + p.y) * freq + offset) * breathe)
+				ctx.moveTo(cx + r, cy)
+				ctx.arc(cx, cy, r, 0, Math.PI * 2)
+			}
+			ctx.fill()
+		}
 		ctx.restore()
 	}
 
 	let field = null
 	let raf = 0
 	let running = false
+	let onScreen = true
 	let t0 = 0
 	let lastRender = 0
 
@@ -156,7 +160,7 @@ const initBubbles = () => {
 	}
 
 	const startLoop = () => {
-		if (running || !field || reduceMotion || document.hidden) return
+		if (running || !field || reduceMotion || document.hidden || !onScreen) return
 		running = true
 		t0 = 0
 		lastRender = 0
@@ -183,6 +187,14 @@ const initBubbles = () => {
 	}
 
 	new ResizeObserver(sync).observe(canvas)
+
+	// Pause whenever the hero scrolls out of view — no point painting a canvas
+	// nobody can see while the rest of the page is read.
+	new IntersectionObserver((entries) => {
+		onScreen = entries[0].isIntersecting
+		if (onScreen) startLoop()
+		else stopLoop()
+	}).observe(canvas)
 
 	document.addEventListener('visibilitychange', () => {
 		if (document.hidden) stopLoop()
