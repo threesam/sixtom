@@ -18,7 +18,6 @@ interface ClientEvent {
 const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'cta_hero_book', dir: 'component', path: 'Hero.svelte' },
 	{ event: 'cta_garden_link', dir: 'component', path: 'SiteFooter.svelte' },
-	{ event: 'cta_hero_garden', dir: 'component', path: 'Hero.svelte' },
 	{ event: 'cta_tax_calc', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_case_study', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_garden_link_why', dir: 'route', path: '+page.svelte' },

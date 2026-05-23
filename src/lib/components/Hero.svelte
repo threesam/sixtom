@@ -4,17 +4,12 @@
 
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<p class="eyebrow text-sm">sixtom</p>
-		<h1
-			class="text-fg mt-6 text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-7xl"
-		>
-			<span class="block">what's the <span class="text-accent">X</span></span>
-			<span class="block">between you</span>
-			<span class="block">and</span>
-			<span class="block">peace of mind?</span>
+		<h1 class="text-fg text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-7xl">
+			<span class="block">AI built your demo.</span>
+			<span class="block">i build <span class="text-accent">your solution</span>.</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
-			AI built your demo. i build <span class="text-fg">your solution</span>.
+			what's the <span class="text-fg">X</span> between you and peace of mind?
 		</p>
 		<div class="mt-12">
 			<a
@@ -23,21 +18,6 @@
 				class="btn-accent px-8 py-4 text-lg hover:opacity-90"
 			>
 				{site.hero.ctaPrimary} →
-			</a>
-		</div>
-		<div
-			class="text-fg-subtle mt-12 flex flex-col gap-1.5 text-xs tracking-widest uppercase sm:flex-row sm:items-center sm:gap-4"
-		>
-			<span>@ {site.operator.currentEmployer}</span>
-			<span>formerly @ {site.operator.formerEmployer}</span>
-			<a
-				href={site.gardenUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				data-umami-event="cta_hero_garden"
-				class="text-fg hover:text-coin transition-colors"
-			>
-				portfolio →
 			</a>
 		</div>
 	</div>
