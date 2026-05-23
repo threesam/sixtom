@@ -10,7 +10,6 @@ const initBubbles = () => {
 	if (!ctx) return
 
 	const DENSITY = 44
-	const ALPHA_SCALE = 0.3 // right-edge cap; left edge ramps to 0 over the copy
 	const SPEED = 0.0018 // sway units per ms (~2.5x slower than the original)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
 	const FPS = 24 // cap render rate — a slow ambient sway needs no more, keeps cost low
@@ -80,18 +79,22 @@ const initBubbles = () => {
 			for (let y = -halfH; y < halfH; y += space) {
 				const n = noise(x * multi, y * multi)
 				const tx = map(x, -halfW, halfW, 0, 1)
-				// Colour follows the CTA gradient by x, but lightness/hue/opacity are
+				// 0 at the left edge of the kept field → 1 at the right edge. Drives
+				// both the wave amplitude and the opacity fade-in (so the skip boundary
+				// fades in from transparent rather than showing a hard edge).
+				const ramp = Math.max(0, (3 * tx - 1) / 2)
+				// Colour follows the CTA gradient by x; lightness/hue/opacity are
 				// jittered by the noise field so the bubbles read organic and mottled
 				// (like the original) rather than a smooth uniform wash.
 				const l = map(tx, 0, 1, 72, 64) + map(n, 0, 1, -6, 6)
 				const c = map(tx, 0, 1, 0.15, 0.16)
 				const hue = map(tx, 0, 1, 200, 178) + map(n, 0, 1, -8, 8)
-				const alpha = tx * ALPHA_SCALE * map(n, 0, 1, 0.45, 1.25)
+				const alpha = ramp * map(n, 0, 1, 0.65, 1) // 0 left → ~1 right, mottled
 				points.push({
 					x,
 					y,
 					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
-					wamp: baseAmp * Math.max(0, (3 * tx - 1) / 2), // 0 at left edge of kept field → full at right
+					wamp: baseAmp * ramp,
 					fill: `oklch(${l}% ${c} ${hue} / ${alpha})`
 				})
 			}
