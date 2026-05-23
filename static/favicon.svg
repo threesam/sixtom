@@ -1,1 +1,16 @@
-<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.5a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0zm7 0V3h1v4.293l2.854 2.853-.708.708-3-3A.499.499 0 017 7.5z" fill="currentColor"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+	<title>sixtom</title>
+	<rect width="1024" height="1024" fill="#161616" />
+	<rect x="448" y="384" width="288" height="256" fill="#ffffff" />
+	<g
+		font-family="ui-monospace, 'Fira Mono', Menlo, Monaco, Consolas, monospace"
+		font-weight="900"
+		font-size="220"
+		text-anchor="middle"
+		dominant-baseline="central"
+	>
+		<text x="240" y="512" fill="#ffffff">SIX</text>
+		<text x="592" y="512" fill="#161616">TO</text>
+		<text x="848" y="512" fill="#ffffff">M</text>
+	</g>
+</svg>
