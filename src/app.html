@@ -66,6 +66,9 @@
 			src="https://analytics.sixtom.com/script.js"
 			data-website-id="64398c1a-02a0-4a61-991c-b0d143f01b46"
 		></script>
+		<!-- Hero bubble-field animation. Standalone (no framework) so the home page
+		     stays csr=false; no-ops on pages without a [data-bubble] canvas. -->
+		<script defer src="%sveltekit.assets%/bubbles.js"></script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
