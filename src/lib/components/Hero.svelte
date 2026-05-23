@@ -6,10 +6,12 @@
 	<div class="mx-auto w-full max-w-4xl px-6">
 		<p class="eyebrow text-sm">sixtom</p>
 		<h1
-			class="text-fg mt-6 text-5xl leading-[1.02] font-bold tracking-tight md:text-7xl lg:text-8xl"
+			class="text-fg mt-6 text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-7xl"
 		>
-			<span class="block">what's the <span class="text-accent">X</span> between you</span>
-			<span class="block">and peace of mind?</span>
+			<span class="block">what's the <span class="text-accent">X</span></span>
+			<span class="block">between you</span>
+			<span class="block">and</span>
+			<span class="block">peace of mind?</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
 			AI built your demo. i build <span class="text-fg">your solution</span>.
