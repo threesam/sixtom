@@ -22,7 +22,7 @@
 	<div class="relative mx-auto w-full max-w-6xl px-6">
 		<h1 class="text-fg">
 			<span class="eyebrow block text-sm lg:text-base" data-hero style="--rise: 0ms">AI built</span>
-			<span class={headlineClass} data-hero style="--rise: 80ms">your demo.</span>
+			<span class="{headlineClass} text-fg-muted" data-hero style="--rise: 80ms">your demo.</span>
 			<span class="eyebrow mt-10 block text-sm lg:text-base" data-hero style="--rise: 160ms"
 				>i build</span
 			>
