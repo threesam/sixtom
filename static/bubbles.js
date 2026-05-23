@@ -10,7 +10,7 @@ const initBubbles = () => {
 	if (!ctx) return
 
 	const DENSITY = 44
-	const ALPHA_SCALE = 0.55 // right-edge cap; left edge ramps to 0 over the copy
+	const ALPHA_SCALE = 0.3 // right-edge cap; left edge ramps to 0 over the copy
 	const SPEED = 0.0018 // sway units per ms (~2.5x slower than the original)
 	const STATIC_FRAME = 3.4 // reduced-motion: freeze on a swayed mid-sketch frame
 
@@ -55,34 +55,42 @@ const initBubbles = () => {
 		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-		const smallSide = Math.min(width, height) * 0.75
+		// Tile the full canvas (centered origin). Cell size scales with the short
+		// side but is floor-capped so a tall/narrow phone canvas doesn't explode
+		// the point count.
+		const halfW = width / 2
+		const halfH = height / 2
 		const multi = 0.025
-		const start = -smallSide * 0.4
-		const end = smallSide * 0.4
-		const space = smallSide / DENSITY
+		const space = Math.max(Math.min(width, height) / DENSITY, 12)
 
+		// Each bubble's colour is sampled along the CTA gradient (oklch 72% .15 200
+		// → 64% .16 178) by its x position; alpha ramps left→0 so the field can't
+		// hurt text contrast over the copy. Both are baked into a fill string here
+		// so the per-frame loop never builds strings.
 		const points = []
-		for (let x = start; x < end; x += space) {
-			for (let y = start; y < end; y += space) {
+		for (let x = -halfW; x < halfW; x += space) {
+			for (let y = -halfH; y < halfH; y += space) {
 				const n = noise(x * multi, y * multi)
+				const tx = map(x, -halfW, halfW, 0, 1)
+				const l = map(tx, 0, 1, 72, 64)
+				const c = map(tx, 0, 1, 0.15, 0.16)
+				const hue = map(tx, 0, 1, 200, 178)
 				points.push({
 					x,
 					y,
 					size: Math.floor(map(n, 0, 1, space * 0.69, space * 1.5)),
-					g: Math.floor(map(n, 0, 1, 100, 200)),
-					b: Math.floor(map(n, 0, 1, 130, 255)),
-					a: map(x, start, end, 0, 1) // left -> right alpha ramp (0..1)
+					fill: `oklch(${l}% ${c} ${hue} / ${tx * ALPHA_SCALE})`
 				})
 			}
 		}
-		return { width, height, start, end, points }
+		return { width, height, halfW, halfH, points }
 	}
 
 	// Curried renderer: fix the frame's offset + field bounds, return a per-point draw.
-	const drawPoint = (offset, start, end) => (p) => {
-		const waveX = map(p.x, start, end, 10, 0)
-		const waveY = map(p.y, start, end, 10, 0)
-		ctx.fillStyle = `rgba(0,${p.g},${p.b},${p.a * ALPHA_SCALE})`
+	const drawPoint = (offset, halfW, halfH) => (p) => {
+		const waveX = map(p.x, -halfW, halfW, 10, 0)
+		const waveY = map(p.y, -halfH, halfH, 10, 0)
+		ctx.fillStyle = p.fill
 		ctx.beginPath()
 		ctx.arc(
 			p.x + Math.sin(p.y * 0.41 + offset) * waveX,
@@ -98,7 +106,7 @@ const initBubbles = () => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		ctx.save()
 		ctx.translate(field.width / 2, field.height / 2)
-		field.points.forEach(drawPoint(offset, field.start, field.end))
+		field.points.forEach(drawPoint(offset, field.halfW, field.halfH))
 		ctx.restore()
 	}
 

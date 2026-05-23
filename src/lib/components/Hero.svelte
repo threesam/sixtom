@@ -16,11 +16,7 @@
 	     the script no-ops elsewhere. Decorative + aria-hidden; alpha ramps to 0 on
 	     the left so it can't hurt text contrast where it overlaps the copy. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-		<div
-			class="absolute aspect-square max-md:top-1/2 max-md:left-1/2 max-md:h-[80%] max-md:-translate-x-1/2 max-md:-translate-y-1/2 md:inset-y-[8%] md:right-[-6%]"
-		>
-			<canvas data-bubble class="block h-full w-full"></canvas>
-		</div>
+		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6">
