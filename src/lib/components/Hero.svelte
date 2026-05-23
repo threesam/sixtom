@@ -4,12 +4,22 @@
 
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-4xl px-6">
-		<h1 class="text-fg text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-7xl">
-			<span class="block">AI built your demo.</span>
-			<span class="block">i build <span class="text-accent">your solution</span>.</span>
+		<h1 class="text-fg">
+			<span class="eyebrow block text-sm">AI built</span>
+			<span
+				class="mt-2 block text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-7xl"
+			>
+				your demo.
+			</span>
+			<span class="eyebrow mt-10 block text-sm">i build</span>
+			<span
+				class="mt-2 block text-4xl leading-[1.05] font-bold tracking-tight md:text-6xl lg:text-7xl"
+			>
+				your solution.
+			</span>
 		</h1>
 		<p class="text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-xl">
-			what's the <span class="text-fg">X</span> between you and peace of mind?
+			what's the <span class="text-accent">X</span> between you and peace of mind?
 		</p>
 		<div class="mt-12">
 			<a
