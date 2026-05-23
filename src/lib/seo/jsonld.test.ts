@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { personJsonLd, serviceJsonLd } from './jsonld'
+import { personJsonLd, serviceJsonLd, webSiteJsonLd } from './jsonld'
 import { site } from '$lib/content'
 
 describe('JSON-LD generators', () => {
@@ -19,6 +19,17 @@ describe('JSON-LD generators', () => {
 			'@type': 'Organization',
 			name: site.operator.formerEmployer
 		})
+	})
+
+	it('webSiteJsonLd identifies the brand entity with publisher attribution', () => {
+		const ld = webSiteJsonLd()
+		expect(ld['@context']).toBe('https://schema.org')
+		expect(ld['@type']).toBe('WebSite')
+		expect(ld.name).toBe('SIXTOM')
+		expect(ld.alternateName).toContain('sixtom')
+		expect(ld.url).toBe(site.siteUrl)
+		expect(ld.publisher.name).toBe(site.operator.name)
+		expect(ld.publisher.url).toBe(site.gardenUrl)
 	})
 
 	it('serviceJsonLd lists both offers (audit + sprint)', () => {

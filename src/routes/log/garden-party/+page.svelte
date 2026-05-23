@@ -68,7 +68,6 @@
 		name="description"
 		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
-	<link rel="canonical" href="https://sixtom.com/log/garden-party" />
 	<meta property="og:title" content="garden party" />
 	<meta
 		property="og:description"

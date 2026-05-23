@@ -19,6 +19,18 @@ export function GET(): Response {
 		<priority>0.8</priority>
 	</url>
 	<url>
+		<loc>${site.siteUrl}/log/garden-party</loc>
+		<lastmod>${today}</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>${site.siteUrl}/notify</loc>
+		<lastmod>${today}</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>${site.siteUrl}/tax</loc>
 		<lastmod>${today}</lastmod>
 		<changefreq>monthly</changefreq>

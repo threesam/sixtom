@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { site } from '$lib/content'
 </script>
 
 <svelte:head>
@@ -8,7 +7,6 @@
 		name="description"
 		content="what sixtom collects, what it doesn't, and how to get it deleted."
 	/>
-	<link rel="canonical" href={`${site.siteUrl}/privacy`} />
 </svelte:head>
 
 <div class="bg-surface min-h-screen">
