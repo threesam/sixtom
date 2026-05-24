@@ -22,13 +22,15 @@
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 text-center">
-		<!-- Two lines, each fluid (vw) so it fills the width on mobile — the longer
-		     setup line smaller, the bright payoff larger — clamped for desktop. -->
+		<!-- One sentence per line, each fluid (vw) so it fills the width on mobile,
+		     clamped for desktop. Only "your solution." (the payoff) is bright. -->
 		<h1 class="font-bold tracking-tight" data-hero style="--rise: 0ms">
-			<span class="text-fg-muted block leading-[1.1] text-[clamp(1rem,5.8vw,2.25rem)]"
-				>AI built your first draft. i build</span
+			<span class="text-fg-muted block leading-[1.1] text-[clamp(1.25rem,7.1vw,3rem)]"
+				>AI built your first draft.</span
 			>
-			<span class="text-fg block leading-[1] text-[clamp(2rem,12.4vw,5rem)]">your solution.</span>
+			<span class="text-fg-muted block leading-[1.05] text-[clamp(1.5rem,8.2vw,3.5rem)]"
+				>i build <span class="text-fg">your solution.</span></span
+			>
 		</h1>
 		<p
 			class="text-fg mx-auto mt-8 max-w-2xl text-lg leading-relaxed md:text-2xl"
