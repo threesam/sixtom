@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { site } from '$lib/content'
 
-	// One sentence; everything is damped except "your solution." (the payoff) so the
-	// eye lands on the offering.
+	// One sentence broken into its two clauses (a clause per line); everything is
+	// damped except "your solution." (the payoff) so the eye lands on the offering.
+	// Mobile is sized so the longer clause still fits on one line.
 	const headlineClass =
-		'text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl'
+		'text-[1.75rem] leading-[1.15] font-bold tracking-tight sm:text-4xl md:text-6xl lg:text-7xl'
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -22,7 +23,7 @@
 
 	<div class="relative mx-auto w-full max-w-6xl px-6">
 		<h1 class="{headlineClass} text-fg-muted" data-hero style="--rise: 0ms">
-			AI built your demo. i build <span class="text-fg">your solution.</span>
+			AI built your demo.<br />i build <span class="text-fg">your solution.</span>
 		</h1>
 		<p
 			class="text-fg mt-8 max-w-2xl text-lg leading-relaxed md:text-2xl"
