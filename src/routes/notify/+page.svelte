@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>notify — sixtom</title>
+	<title>notify | SIXTOM</title>
 	<meta
 		name="description"
 		content="one client a month. drop your email to hear when the next sprint slot opens."

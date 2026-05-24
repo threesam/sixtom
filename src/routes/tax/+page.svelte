@@ -5,12 +5,12 @@
 </script>
 
 <svelte:head>
-	<title>vibe-code tax — sixtom</title>
+	<title>vibe-code tax | SIXTOM</title>
 	<meta
 		name="description"
 		content="how much your vibe-coded prototype is costing you per year. 4 inputs, instant number, no email."
 	/>
-	<meta property="og:title" content="vibe-code tax — sixtom" />
+	<meta property="og:title" content="vibe-code tax | SIXTOM" />
 	<meta
 		property="og:description"
 		content="how much your vibe-coded prototype is costing you per year."

@@ -18,12 +18,12 @@
 </script>
 
 <svelte:head>
-	<title>log — sixtom</title>
+	<title>log | SIXTOM</title>
 	<meta
 		name="description"
 		content="Everything I'm publishing on LinkedIn, mirrored here in one place."
 	/>
-	<meta property="og:title" content="log — sixtom" />
+	<meta property="og:title" content="log | SIXTOM" />
 	<meta
 		property="og:description"
 		content="Everything I'm publishing on LinkedIn, mirrored here in one place."
