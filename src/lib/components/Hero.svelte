@@ -1,27 +1,18 @@
 <script lang="ts">
 	import { site } from '$lib/content'
-
-	// Centered, escalating hierarchy: "AI built your demo." (smaller — the setup),
-	// then "i build your solution." bigger with only "your solution." bright. The
-	// payoff is one line on desktop; it only breaks (i build / your solution) on
-	// narrow screens, where it wouldn't fit otherwise.
-	const setupSize = 'mb-3 block text-2xl leading-[1.15] md:mb-4 md:text-3xl lg:text-5xl'
-	const payoffSize = 'block text-5xl leading-[1.05] lg:text-7xl'
 </script>
 
 <section class="snap-section bg-surface relative">
 	<!-- Bubble field ("sea of shapes"), full-bleed and rendered crisp at native pixel
-	     size. A left→right black overlay darkens the text side for contrast while
-	     leaving a lighter veil on the field. overflow-hidden keeps it from adding
-	     scrollbars without constraining the section (oversized type can exceed 100svh
-	     and must stay un-clipped). Animated by static/bubbles.js (wired in app.html)
-	     so the page keeps csr=false — the canvas is plain markup that survives
-	     no-hydration; the script no-ops elsewhere. Decorative + aria-hidden. -->
+	     size. Mobile (portrait, centered copy): a symmetric vertical scrim — dark
+	     behind the copy, easing off so the field glows top & bottom. Desktop: a
+	     left→right scrim. overflow-hidden keeps it from adding scrollbars without
+	     constraining the section (oversized type can exceed 100svh and must stay
+	     un-clipped). Animated by static/bubbles.js (wired in app.html) so the page
+	     keeps csr=false — the canvas is plain markup that survives no-hydration; the
+	     script no-ops elsewhere. Decorative + aria-hidden. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
 		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-		<!-- Mobile (portrait, centered copy): a symmetric vertical scrim — dark behind
-		     the copy band, easing off so the field glows at the top and bottom edges.
-		     Desktop (copy sits left-of-centre): a left→right scrim. -->
 		<div
 			class="absolute inset-0 bg-gradient-to-b from-[#0000005c] via-[#000000eb] to-[#00000080] md:hidden"
 		></div>
@@ -31,20 +22,24 @@
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 text-center">
-		<h1 class="text-fg-muted font-bold tracking-tight">
-			<span class={setupSize} data-hero style="--rise: 0ms">AI built your demo.</span>
-			<span class={payoffSize} data-hero style="--rise: 80ms"
-				>i build <br class="md:hidden" /><span class="text-fg">your solution.</span></span
+		<!-- One sentence per line, each fluid (vw) so it fills the width on mobile,
+		     clamped for desktop. Only "your solution." (the payoff) is bright. -->
+		<h1 class="text-fg-muted font-bold tracking-tight" data-hero style="--rise: 0ms">
+			<span class="block text-[clamp(1.25rem,7.1vw,3rem)] leading-[1.1]"
+				>AI built your first draft.</span
+			>
+			<span class="block text-[clamp(1.5rem,8.2vw,3.5rem)] leading-[1.05]"
+				>i build <span class="text-fg">your solution.</span></span
 			>
 		</h1>
 		<p
 			class="text-fg mx-auto mt-8 max-w-2xl text-lg leading-relaxed md:text-2xl"
 			data-hero
-			style="--rise: 200ms"
+			style="--rise: 120ms"
 		>
 			what's the X between you<br />and peace of mind?
 		</p>
-		<div class="mt-12" data-hero style="--rise: 300ms">
+		<div class="mt-12" data-hero style="--rise: 240ms">
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
