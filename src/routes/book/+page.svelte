@@ -40,7 +40,7 @@
 
 	const inputClass =
 		'border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60'
-	const labelClass = 'block text-fg text-sm'
+	const labelClass = 'sr-only'
 	const hintClass = 'text-fg-subtle mt-1 text-xs'
 	const stepEyebrowClass = 'eyebrow text-fg-subtle text-xs'
 	const stepHeadClass = 'text-fg mt-2 text-2xl font-semibold tracking-tight md:text-3xl'
@@ -158,7 +158,7 @@
 						<legend class="sr-only">stage</legend>
 						{#each STAGE_OPTIONS as opt (opt.value)}
 							<label
-								class="border-border bg-surface hover:border-fg-subtle flex cursor-pointer items-center gap-3 rounded-md border p-4 transition-colors {stage ===
+								class="border-border bg-surface hover:border-fg-subtle flex cursor-pointer items-center gap-3 rounded-full border px-6 py-4 transition-colors {stage ===
 								opt.value
 									? 'border-accent ring-accent ring-1'
 									: ''}"
@@ -183,7 +183,7 @@
 						<h2 class={stepHeadClass}>what does done look like?</h2>
 					</div>
 					<div>
-						<label for="built" class={labelClass}>link to what you've built</label>
+						<label for="built" class={labelClass}>where can I see what you've made?</label>
 						<input
 							id="built"
 							name="built"
@@ -191,13 +191,13 @@
 							required
 							maxlength="500"
 							bind:value={built}
-							placeholder="live URL, repo, or Loom"
+							placeholder="where can I see it? paste a link"
 							class="{inputClass} mt-2"
 						/>
 					</div>
 					<div>
 						<label for="deliverable" class={labelClass}>
-							what has to be true in 30 days for this to be worth your money?
+							what would make this worth it for you?
 						</label>
 						<textarea
 							id="deliverable"
@@ -206,12 +206,12 @@
 							rows="4"
 							maxlength="4000"
 							bind:value={deliverable}
-							placeholder="scale to X users, pass the security review, stop the 3am pages…"
+							placeholder="in 30 days, what has to be true for this to feel worth it?"
 							class="{inputClass} mt-2"
 						></textarea>
 					</div>
 					<div>
-						<label for="budget" class={labelClass}>budget set aside for this</label>
+						<label for="budget" class={labelClass}>how much have you set aside for this?</label>
 						<select
 							id="budget"
 							name="budget"
@@ -219,7 +219,7 @@
 							bind:value={budget}
 							class="{inputClass} mt-2"
 						>
-							<option value="">—</option>
+							<option value="" disabled>how much have you set aside for this?</option>
 							{#each BUDGET_OPTIONS as opt (opt.value)}
 								<option value={opt.value}>{opt.label}</option>
 							{/each}
@@ -236,7 +236,7 @@
 						</p>
 					</div>
 					<div>
-						<label for="name" class={labelClass}>your name</label>
+						<label for="name" class={labelClass}>what's your name?</label>
 						<input
 							id="name"
 							name="name"
@@ -244,11 +244,12 @@
 							required
 							maxlength="120"
 							autocomplete="name"
+							placeholder="your name"
 							class="{inputClass} mt-2"
 						/>
 					</div>
 					<div>
-						<label for="email" class={labelClass}>work email</label>
+						<label for="email" class={labelClass}>what's the best email to reach you?</label>
 						<input
 							id="email"
 							name="email"
@@ -256,19 +257,20 @@
 							required
 							maxlength="254"
 							autocomplete="email"
+							placeholder="the best email to reach you"
 							class="{inputClass} mt-2"
 						/>
-						<p class={hintClass}>personal Gmail counts; just expect a slower reply.</p>
+						<p class={hintClass}>a personal email's fine — just expect a slower reply.</p>
 					</div>
 					<div>
-						<label for="company_url" class={labelClass}>company URL</label>
+						<label for="company_url" class={labelClass}>what's your company's website?</label>
 						<input
 							id="company_url"
 							name="company_url"
 							type="url"
 							required
 							maxlength="500"
-							placeholder="https://"
+							placeholder="your company's website (https://…)"
 							autocomplete="url"
 							class="{inputClass} mt-2"
 						/>
