@@ -24,11 +24,11 @@
 	<div class="relative mx-auto w-full max-w-6xl px-6 text-center">
 		<!-- One sentence per line, each fluid (vw) so it fills the width on mobile,
 		     clamped for desktop. Only "your solution." (the payoff) is bright. -->
-		<h1 class="font-bold tracking-tight" data-hero style="--rise: 0ms">
-			<span class="text-fg-muted block leading-[1.1] text-[clamp(1.25rem,7.1vw,3rem)]"
+		<h1 class="text-fg-muted font-bold tracking-tight" data-hero style="--rise: 0ms">
+			<span class="block text-[clamp(1.25rem,7.1vw,3rem)] leading-[1.1]"
 				>AI built your first draft.</span
 			>
-			<span class="text-fg-muted block leading-[1.05] text-[clamp(1.5rem,8.2vw,3.5rem)]"
+			<span class="block text-[clamp(1.5rem,8.2vw,3.5rem)] leading-[1.05]"
 				>i build <span class="text-fg">your solution.</span></span
 			>
 		</h1>
