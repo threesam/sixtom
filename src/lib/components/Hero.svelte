@@ -1,5 +1,6 @@
 <script lang="ts">
 	import XMark from './XMark.svelte'
+	import BookCta from './BookCta.svelte'
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -40,13 +41,7 @@
 			AI built your first draft. i build <span class="font-bold whitespace-nowrap">your solution.</span>
 		</p>
 		<div class="mt-12" data-hero style="--rise: 240ms">
-			<a
-				href="/book"
-				data-umami-event="cta_hero_book"
-				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
-			>
-				solve for <XMark class="bg-[#161616] text-accent text-[1.35em]" />
-			</a>
+			<BookCta event="cta_hero_book" />
 		</div>
 	</div>
 </section>

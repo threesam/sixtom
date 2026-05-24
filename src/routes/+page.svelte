@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte'
+	import BookCta from '$lib/components/BookCta.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import { site } from '$lib/content'
 
@@ -140,13 +141,7 @@
 				${site.audit.priceUSD.toLocaleString()} to look at what you've got. within a week: a written breakdown
 				plus a short video walkthrough. credited toward the sprint if you book one within 30 days.
 			</p>
-			<a
-				href="/book"
-				data-umami-event="cta_final_book"
-				class="btn-accent mt-12 inline-block px-8 py-4 text-lg hover:opacity-90"
-			>
-				{site.hero.ctaPrimary} →
-			</a>
+			<BookCta event="cta_final_book" class="mt-12" />
 		</div>
 	</div>
 	<SiteFooter />
