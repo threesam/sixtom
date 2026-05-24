@@ -5,8 +5,8 @@
 	// then "i build your solution." bigger with only "your solution." bright. The
 	// payoff is one line on desktop; it only breaks (i build / your solution) on
 	// narrow screens, where it wouldn't fit otherwise.
-	const setupSize = 'block text-2xl leading-[1.15] md:text-3xl lg:text-5xl'
-	const payoffSize = 'block text-4xl leading-[1.05] md:text-5xl lg:text-7xl'
+	const setupSize = 'mb-3 block text-2xl leading-[1.15] md:mb-4 md:text-3xl lg:text-5xl'
+	const payoffSize = 'block text-5xl leading-[1.05] lg:text-7xl'
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -48,7 +48,7 @@
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
-				class="btn-accent block w-full px-8 py-4 text-center text-lg font-bold hover:opacity-90 md:inline-block md:w-auto"
+				class="btn-accent block w-full px-8 py-4 text-center text-xl font-bold hover:opacity-90 md:inline-block md:w-auto"
 			>
 				{site.hero.ctaPrimary} →
 			</a>
