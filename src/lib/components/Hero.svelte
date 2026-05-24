@@ -2,9 +2,11 @@
 	import { site } from '$lib/content'
 
 	// Centered, escalating hierarchy: "AI built your demo." (smaller — the setup),
-	// then "i build" / "your solution." bigger, with only the last line bright.
-	const setupSize = 'block text-2xl leading-[1.15] md:text-4xl lg:text-6xl'
-	const payoffSize = 'block text-4xl leading-[1.05] md:text-6xl lg:text-8xl'
+	// then "i build your solution." bigger with only "your solution." bright. The
+	// payoff is one line on desktop; it only breaks (i build / your solution) on
+	// narrow screens, where it wouldn't fit otherwise.
+	const setupSize = 'block text-2xl leading-[1.15] md:text-3xl lg:text-5xl'
+	const payoffSize = 'block text-4xl leading-[1.05] md:text-5xl lg:text-7xl'
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -23,17 +25,18 @@
 	<div class="relative mx-auto w-full max-w-6xl px-6 text-center">
 		<h1 class="text-fg-muted font-bold tracking-tight">
 			<span class={setupSize} data-hero style="--rise: 0ms">AI built your demo.</span>
-			<span class={payoffSize} data-hero style="--rise: 80ms">i build</span>
-			<span class="{payoffSize} text-fg" data-hero style="--rise: 160ms">your solution.</span>
+			<span class={payoffSize} data-hero style="--rise: 80ms"
+				>i build <br class="md:hidden" /><span class="text-fg">your solution.</span></span
+			>
 		</h1>
 		<p
 			class="text-fg mx-auto mt-8 max-w-2xl text-lg leading-relaxed md:text-2xl"
 			data-hero
-			style="--rise: 260ms"
+			style="--rise: 200ms"
 		>
 			what's the X between you<br />and peace of mind?
 		</p>
-		<div class="mt-12" data-hero style="--rise: 360ms">
+		<div class="mt-12" data-hero style="--rise: 300ms">
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
