@@ -38,6 +38,8 @@
 		if (step > 1) step -= 1
 	}
 
+	const budgetQuestion = 'how much have you set aside for this?'
+
 	const inputClass =
 		'border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60'
 	const labelClass = 'sr-only'
@@ -211,7 +213,7 @@
 						></textarea>
 					</div>
 					<div>
-						<label for="budget" class={labelClass}>how much have you set aside for this?</label>
+						<label for="budget" class={labelClass}>{budgetQuestion}</label>
 						<select
 							id="budget"
 							name="budget"
@@ -219,7 +221,7 @@
 							bind:value={budget}
 							class="{inputClass} mt-2"
 						>
-							<option value="" disabled>how much have you set aside for this?</option>
+							<option value="" disabled>{budgetQuestion}</option>
 							{#each BUDGET_OPTIONS as opt (opt.value)}
 								<option value={opt.value}>{opt.label}</option>
 							{/each}
