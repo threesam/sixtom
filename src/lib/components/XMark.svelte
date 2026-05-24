@@ -8,6 +8,6 @@
 </script>
 
 <span
-	class="mx-[0.08em] inline-flex aspect-square h-[1.05em] items-center justify-center rounded-[0.12em] align-middle {cls}"
+	class="mx-[0.08em] inline-flex aspect-square h-[1.25em] items-center justify-center border-2 border-current align-middle {cls}"
 	aria-hidden="true"><span class="text-[0.95em] leading-none font-black">X</span></span
 ><span class="sr-only">X</span>
