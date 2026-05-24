@@ -21,23 +21,23 @@
 		></div>
 	</div>
 
-	<div class="relative mx-auto w-full max-w-6xl px-6 text-center">
-		<!-- One sentence per line, each fluid (vw) so it fills the width on mobile,
-		     clamped for desktop. Only "your solution." (the payoff) is bright. -->
-		<h1 class="text-fg-muted font-bold tracking-tight" data-hero style="--rise: 0ms">
-			<span class="block text-[clamp(1.25rem,7.1vw,4.5rem)] leading-[1.1]"
-				>AI built your first draft.</span
-			>
-			<span class="block text-[clamp(1.5rem,8.5vw,6.5rem)] leading-[1.02]"
-				>i build <span class="text-fg">your solution.</span></span
-			>
+	<div class="relative mx-auto w-full max-w-6xl px-6 text-left md:text-center">
+		<!-- Lead with the question as the hero title; the positioning line follows,
+		     bright and bold (the wedge, not a footnote), with "your solution" the
+		     emphasized payoff. -->
+		<h1
+			class="text-fg text-[clamp(2.25rem,9.5vw,4.75rem)] font-bold leading-[1.08] tracking-tight"
+			data-hero
+			style="--rise: 0ms"
+		>
+			what's the X between you and peace of mind?
 		</h1>
 		<p
-			class="text-fg mx-auto mt-8 max-w-2xl text-lg leading-relaxed md:text-2xl"
+			class="text-fg mx-auto mt-6 max-w-3xl text-xl font-medium leading-snug md:mt-8 md:text-3xl"
 			data-hero
 			style="--rise: 120ms"
 		>
-			what's the X between you<br />and peace of mind?
+			AI built your first draft. i build <span class="font-bold whitespace-nowrap">your solution.</span>
 		</p>
 		<div class="mt-12" data-hero style="--rise: 240ms">
 			<a
