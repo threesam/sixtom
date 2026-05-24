@@ -37,10 +37,20 @@ describe('Umami CRO event instrumentation', () => {
 			// survives ternaries / snippet refactors.
 			const literalForm = `data-umami-event="${event}"`
 			const dynamicForm = new RegExp(`data-umami-event=\\{[^}]*['"]${event}['"]`)
-			const hit = contents.includes(literalForm) || dynamicForm.test(contents)
+			// CTAs may delegate rendering to <BookCta event="…">, which emits the
+			// data-umami-event attr; the owning file then pins the event string via
+			// the prop. Accept that form too (BookCta's wiring is pinned below).
+			const propForm = `event="${event}"`
+			const hit =
+				contents.includes(literalForm) || dynamicForm.test(contents) || contents.includes(propForm)
 			expect(hit, `${label} should reference "${event}" on a data-umami-event attr`).toBe(true)
 		})
 	}
+
+	it('BookCta wires data-umami-event to its event prop', () => {
+		const contents = readFileSync(resolve(COMPONENT_DIR, 'BookCta.svelte'), 'utf-8')
+		expect(contents).toContain('data-umami-event={event}')
+	})
 
 	it('fires "notify_signup_success" server-side from the notify action', () => {
 		const contents = readFileSync(resolve(ROUTES_DIR, 'notify/+page.server.ts'), 'utf-8')

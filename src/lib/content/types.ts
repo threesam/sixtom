@@ -47,7 +47,6 @@ export interface Site {
 	thesisBody: string
 	hero: {
 		subhead: string
-		ctaPrimary: string
 	}
 	operator: Operator
 	audit: Offer

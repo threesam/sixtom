@@ -11,8 +11,7 @@ export const site: Site = {
 	thesisBody:
 		"AI gets you to a demo because the model can hold the whole thing in its head. once the codebase outgrows that window, the AI starts making it worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.",
 	hero: {
-		subhead: 'AI built your first draft. i build your solution.',
-		ctaPrimary: 'solve for X'
+		subhead: 'AI built your first draft. i build your solution.'
 	},
 	operator: {
 		name: "Sam D'Angelo",
