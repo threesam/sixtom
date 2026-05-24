@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { site } from '$lib/content'
+	import XMark from './XMark.svelte'
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -30,7 +30,7 @@
 			data-hero
 			style="--rise: 0ms"
 		>
-			what's the X between you and peace of mind?
+			what's the <XMark class="bg-fg text-surface" /> between you and peace of mind?
 		</h1>
 		<p
 			class="text-fg mx-auto mt-6 max-w-3xl text-xl font-medium leading-snug md:mt-8 md:text-3xl"
@@ -45,7 +45,7 @@
 				data-umami-event="cta_hero_book"
 				class="block w-full rounded-full bg-coin px-8 py-4 text-center text-xl font-bold text-[#161616] transition hover:brightness-110 md:inline-block md:w-auto md:px-12 md:py-5 md:text-2xl"
 			>
-				{site.hero.ctaPrimary} →
+				solve for <XMark class="bg-[#161616] text-coin" />
 			</a>
 		</div>
 	</div>
