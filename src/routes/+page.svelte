@@ -8,6 +8,17 @@
 	const bodyClass = 'text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-lg'
 </script>
 
+<!-- Scroll-snap is the home page's full-screen-section experience only. Scope it
+     to this route via the head so every other (overflowing) route — book,
+     notify, tax, … — scrolls freely instead of being snap-jacked. -->
+<svelte:head>
+	<style>
+		html {
+			scroll-snap-type: y mandatory;
+		}
+	</style>
+</svelte:head>
+
 <Hero />
 
 <!-- who this is for -->
