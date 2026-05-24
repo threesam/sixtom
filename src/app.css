@@ -117,11 +117,14 @@ input[type='checkbox'] {
 	accent-color: var(--color-accent);
 }
 
-/* Selected radio: a solid teal disc — no white center dot, no ring gap, filled
- * all the way in. Overrides the @tailwindcss/forms checked dot (its background
- * radial-gradient) with a flat teal fill + matching border. */
-input[type='radio']:checked {
+/* Radio options render as flat discs — white by default, solid teal when
+ * selected — with no @tailwindcss/forms center dot or ring gap either way. */
+input[type='radio'] {
 	background-image: none;
+	background-color: #fff;
+	border-color: #fff;
+}
+input[type='radio']:checked {
 	background-color: var(--color-accent);
 	border-color: var(--color-accent);
 }
