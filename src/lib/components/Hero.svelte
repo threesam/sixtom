@@ -43,7 +43,7 @@
 			<a
 				href="/book"
 				data-umami-event="cta_hero_book"
-				class="block w-full rounded-full bg-coin px-8 py-4 text-center text-xl font-bold text-[#161616] transition hover:brightness-110 md:inline-block md:w-auto md:px-12 md:py-5 md:text-2xl"
+				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
 			>
 				solve for <XMark class="bg-[#161616] text-accent text-[1.35em]" />
 			</a>
