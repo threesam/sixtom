@@ -39,9 +39,14 @@
 		maximumFractionDigits: 0
 	})
 
+	// Shared with the /book form for a consistent look.
 	const inputClass =
-		'border-border bg-surface text-fg focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none'
-	const labelClass = 'text-fg-muted block text-xs tracking-widest uppercase'
+		'border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60'
+	// Pre-filled fields can't rely on placeholders (a value hides them), so the
+	// question stays visible — plain, matching the book form's tone.
+	const labelClass = 'text-fg-muted mb-2 block text-sm'
+	const radioCardClass =
+		'border-border bg-surface hover:border-fg-subtle flex cursor-pointer items-center gap-3 rounded-full border px-6 py-4 transition-colors'
 </script>
 
 <section class="snap-section bg-surface">
@@ -50,30 +55,35 @@
 		<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
 			what's it costing you?
 		</h2>
-		<p class="text-fg-muted mt-4 text-base leading-relaxed">
-			4 questions. instant number. no email.
-		</p>
+		<p class="text-fg-muted mt-4 text-base leading-relaxed">4 questions. instant number. no email.</p>
 
-		<div class="mt-10 grid gap-6 md:grid-cols-2">
-			<div>
-				<label for="vt-mau" class={labelClass}>monthly active users today</label>
-				<input
-					id="vt-mau"
-					type="number"
-					min="0"
-					step="100"
-					bind:value={mau}
-					class="{inputClass} mt-2"
-				/>
-			</div>
+		<div class="mt-10 space-y-6">
+			<div class="grid gap-6 md:grid-cols-2">
+				<div>
+					<label for="vt-mau" class={labelClass}>monthly active users today</label>
+					<input
+						id="vt-mau"
+						type="number"
+						min="0"
+						step="100"
+						bind:value={mau}
+						placeholder="e.g. 1,000"
+						class={inputClass}
+					/>
+				</div>
 
-			<div>
-				<label for="vt-goal" class={labelClass}>where do you want to be in 90 days?</label>
-				<select id="vt-goal" bind:value={goal} class="{inputClass} mt-2">
-					{#each GOAL_OPTIONS as opt (opt.value)}
-						<option value={opt.value}>{opt.label}</option>
-					{/each}
-				</select>
+				<div>
+					<label for="vt-cost" class={labelClass}>your hourly rate (yours, or your team's)</label>
+					<input
+						id="vt-cost"
+						type="number"
+						min="0"
+						step="25"
+						bind:value={hourlyCost}
+						placeholder="e.g. 150"
+						class={inputClass}
+					/>
+				</div>
 			</div>
 
 			<div>
@@ -88,7 +98,7 @@
 					step="1"
 					bind:value={firefightingHours}
 					aria-describedby="vt-hours-readout"
-					class="mt-2 w-full accent-current"
+					class="w-full accent-current"
 					style="color: var(--color-accent);"
 				/>
 				<p id="vt-hours-readout" class="text-fg-subtle mt-1 text-xs tabular-nums">
@@ -96,17 +106,15 @@
 				</p>
 			</div>
 
-			<div>
-				<label for="vt-cost" class={labelClass}>your hourly rate (yours, or your team's)</label>
-				<input
-					id="vt-cost"
-					type="number"
-					min="0"
-					step="25"
-					bind:value={hourlyCost}
-					class="{inputClass} mt-2"
-				/>
-			</div>
+			<fieldset class="space-y-3">
+				<legend class={labelClass}>where do you want to be in 90 days?</legend>
+				{#each GOAL_OPTIONS as opt (opt.value)}
+					<label class="{radioCardClass} {goal === opt.value ? 'border-accent ring-accent ring-1' : ''}">
+						<input type="radio" name="goal" value={opt.value} bind:group={goal} class="accent-accent" />
+						<span class="text-fg text-base">{opt.label}</span>
+					</label>
+				{/each}
+			</fieldset>
 		</div>
 
 		<div class="border-border mt-12 border-t pt-10">
@@ -135,9 +143,9 @@
 			<a
 				href="/book"
 				data-umami-event="cta_calc_book"
-				class="btn-accent mt-10 inline-block px-6 py-3 text-base hover:opacity-90"
+				class="btn-accent mt-10 w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
 			>
-				see if a sprint can fix this →
+				see if a sprint can fix this
 			</a>
 		</div>
 	</div>
