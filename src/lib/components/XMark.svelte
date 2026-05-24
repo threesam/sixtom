@@ -9,5 +9,7 @@
 
 <span
 	class="mx-[0.08em] inline-flex aspect-square h-[1.25em] items-center justify-center rounded-[0.2em] border-2 border-current align-middle {cls}"
-	aria-hidden="true"><span class="text-[0.95em] leading-none font-black">X</span></span
-><span class="sr-only">X</span>
+	aria-hidden="true"><span
+		class="bg-[linear-gradient(95deg,oklch(72%_0.15_200),oklch(64%_0.16_178))] bg-clip-text text-[0.95em] leading-none font-black text-transparent"
+		>X</span
+	></span><span class="sr-only">X</span>
