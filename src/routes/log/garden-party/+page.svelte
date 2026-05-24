@@ -63,12 +63,12 @@
 </script>
 
 <svelte:head>
-	<title>garden party — SIXTOM log</title>
+	<title>garden party | SIXTOM</title>
 	<meta
 		name="description"
 		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
-	<meta property="og:title" content="garden party" />
+	<meta property="og:title" content="garden party | SIXTOM" />
 	<meta
 		property="og:description"
 		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."

@@ -49,7 +49,7 @@
 </script>
 
 <svelte:head>
-	<title>book — sixtom</title>
+	<title>book | SIXTOM</title>
 	<meta name="robots" content="noindex, nofollow" />
 	<meta
 		name="description"

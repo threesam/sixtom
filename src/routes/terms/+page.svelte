@@ -2,7 +2,7 @@
 </script>
 
 <svelte:head>
-	<title>terms — sixtom</title>
+	<title>terms | SIXTOM</title>
 	<meta
 		name="description"
 		content="how engagement with sixtom works. plain-English terms for the audit and the sprint."

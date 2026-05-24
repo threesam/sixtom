@@ -2,7 +2,7 @@
 </script>
 
 <svelte:head>
-	<title>privacy — sixtom</title>
+	<title>privacy | SIXTOM</title>
 	<meta
 		name="description"
 		content="what sixtom collects, what it doesn't, and how to get it deleted."
