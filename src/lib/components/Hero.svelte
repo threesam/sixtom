@@ -19,7 +19,15 @@
 	     no-hydration; the script no-ops elsewhere. Decorative + aria-hidden. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
 		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-		<div class="absolute inset-0 bg-gradient-to-r from-[#000000d9] to-[#00000073]"></div>
+		<!-- Mobile (portrait, centered copy): a symmetric vertical scrim — dark behind
+		     the copy band, easing off so the field glows at the top and bottom edges.
+		     Desktop (copy sits left-of-centre): a left→right scrim. -->
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-[#0000005c] via-[#000000eb] to-[#00000080] md:hidden"
+		></div>
+		<div
+			class="absolute inset-0 hidden bg-gradient-to-r from-[#000000d9] to-[#00000073] md:block"
+		></div>
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 text-center">
