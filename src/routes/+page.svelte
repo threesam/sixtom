@@ -9,8 +9,8 @@
 </script>
 
 <!-- Scroll-snap is the home page's full-screen-section experience only. Scope it
-     to this route via the head so content/form routes (book, notify, …), which
-     overflow, scroll freely instead of being snap-jacked. -->
+     to this route via the head so every other (overflowing) route — book,
+     notify, tax, … — scrolls freely instead of being snap-jacked. -->
 <svelte:head>
 	<style>
 		html {

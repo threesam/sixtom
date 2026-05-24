@@ -108,9 +108,12 @@ html {
 	scroll-behavior: smooth;
 }
 
-/* Native form controls use the brand teal, not the browser default (blue). */
+/* Form controls use the brand teal, not the default blue. @tailwindcss/forms
+ * sets appearance:none and paints the checked state with currentColor, so the
+ * `color` is what drives the dot/check; accent-color is the native fallback. */
 input[type='radio'],
 input[type='checkbox'] {
+	color: var(--color-accent);
 	accent-color: var(--color-accent);
 }
 
