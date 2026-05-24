@@ -1,8 +1,8 @@
 export const STAGE_OPTIONS = [
-	{ value: 'demo-only', label: 'demo works for me only' },
-	{ value: 'few-users', label: 'a few real users on it' },
-	{ value: 'paying-breaking', label: 'paying customers but breaking' },
-	{ value: 'pre-build', label: 'pre-build, just an idea' }
+	{ value: 'demo-only', label: 'it works when I show it off' },
+	{ value: 'few-users', label: 'a few real people are using it' },
+	{ value: 'paying-breaking', label: 'paying customers, and it keeps breaking' },
+	{ value: 'pre-build', label: 'still just an idea in my head' }
 ] as const
 
 export const BUDGET_OPTIONS = [
