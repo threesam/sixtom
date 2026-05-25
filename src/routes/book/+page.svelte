@@ -43,7 +43,6 @@
 	const inputClass =
 		'border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60'
 	const labelClass = 'sr-only'
-	const hintClass = 'text-fg-subtle mt-1 text-xs'
 	const stepEyebrowClass = 'eyebrow text-fg-subtle text-xs'
 	const stepHeadClass = 'text-fg mt-2 text-2xl font-semibold tracking-tight md:text-3xl'
 </script>
@@ -72,6 +71,7 @@
 			</h1>
 			<p class="text-fg-muted mt-6 text-base leading-relaxed">
 				3 quick steps. ~60 seconds. you'll get the booking link with your context pre-filled.
+				<span class="text-fg-subtle">every field's required.</span>
 			</p>
 		</header>
 
@@ -262,7 +262,6 @@
 							placeholder="the best email to reach you"
 							class="{inputClass} mt-2"
 						/>
-						<p class={hintClass}>a personal email's fine — just expect a slower reply.</p>
 					</div>
 					<div>
 						<label for="company_url" class={labelClass}>what's your company's website?</label>
