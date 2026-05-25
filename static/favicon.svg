@@ -2,15 +2,4 @@
 	<title>sixtom</title>
 	<rect width="1024" height="1024" fill="#161616" />
 	<rect x="448" y="384" width="288" height="256" fill="#ffffff" />
-	<g
-		font-family="ui-monospace, 'Fira Mono', Menlo, Monaco, Consolas, monospace"
-		font-weight="700"
-		font-size="220"
-		text-anchor="middle"
-		dominant-baseline="central"
-	>
-		<text x="240" y="512" fill="#ffffff">SIX</text>
-		<text x="592" y="512" fill="#161616">TO</text>
-		<text x="848" y="512" fill="#ffffff">M</text>
-	</g>
 </svg>

@@ -3,8 +3,8 @@ import type { Site, CalEvent } from './types'
 export const site: Site = {
 	// Replace pre-launch with the production domain.
 	siteUrl: 'https://sixtom.com',
-	// Replace pre-launch with the operator's actual Cal.com URL.
-	bookingUrl: 'https://cal.com/sam-dangelo/sprint-intro',
+	// Kept in sync with calEvent.slug below; `pnpm cal:sync` pushes calEvent to Cal.com.
+	bookingUrl: 'https://cal.com/sixtom/discovery',
 	gardenUrl: 'https://threesam.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
 	thesis: 'vibe coding is how you slowly become the intern of your own codebase.',
@@ -14,7 +14,7 @@ export const site: Site = {
 		subhead: 'AI built your first draft. i build your solution.'
 	},
 	operator: {
-		name: "Sam D'Angelo",
+		name: "Salvatore D'Angelo",
 		jobTitle: 'lead engineer',
 		currentEmployer: 'Made In Cookware',
 		formerEmployer: 'Rhone',
@@ -62,11 +62,11 @@ export const site: Site = {
 }
 
 export const calEvent: CalEvent = {
-	title: '30-min intro call — Sixtom',
-	slug: 'sprint-intro',
+	title: 'solve for X — intro call',
+	slug: 'discovery',
 	durationMinutes: 30,
 	description:
-		"A 30-min call. Tell me about the thing you've been trying to ship and whether the audit or the sprint is the right next step.",
+		"30 minutes. tell me what you've built and where it's breaking — we figure out the X between you and shipping, and whether the audit or the sprint is the move. no pitch.",
 	intakeQuestions: [
 		{
 			label: "what's the thing you've been close on but haven't shipped?",
