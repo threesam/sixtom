@@ -28,9 +28,10 @@ You already built something — usually with AI assistance. It works for you. Re
 
 ## Who I am
 
-Sam D'Angelo. Lead engineer at Made In Cookware (multi-million visitors a month). Formerly at Rhone. Personal site / portfolio: https://threesam.com.
+Sam D'Angelo. Lead engineer at Made In Cookware (multi-million visitors a month). Formerly at Rhone. Personal site / portfolio: [threesam.com](https://threesam.com).
 
 ## How to engage
 
-- "Solve for X" — the booking form on the homepage at https://sixtom.com/book.
-- Notify list for the next open slot: https://sixtom.com/notify.
+- [Solve for X — book a call](https://sixtom.com/book): the qualifying booking form on the homepage. Start here if you know you want the sprint.
+- [The vibe-code tax calculator](https://sixtom.com/tax): a quick estimate of what the gap is costing you per year. No email.
+- [Notify list](https://sixtom.com/notify): get told when the next slot opens.
