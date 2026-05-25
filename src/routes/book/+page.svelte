@@ -65,7 +65,7 @@
 				class="eyebrow text-fg-subtle hover:text-coin text-xs transition-colors"
 				data-umami-event="book_back_home"
 			>
-				← sixtom
+				sixtom
 			</a>
 			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-5xl">
 				let's see if we're a fit.
@@ -86,7 +86,7 @@
 							data-umami-event="book_disqualified_notify"
 							class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
 						>
-							get notified when ready →
+							get notified when ready
 						</a>
 						<a
 							href="/book"
@@ -94,7 +94,7 @@
 							data-umami-event="book_disqualified_restart"
 							class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
 						>
-							start over →
+							start over
 						</a>
 					</div>
 				</div>
@@ -110,7 +110,7 @@
 							target="_blank"
 							class="btn-accent mt-8 inline-block px-6 py-3 text-base hover:opacity-90"
 						>
-							book the call →
+							book the call
 						</a>
 					{/if}
 				</div>
@@ -129,7 +129,7 @@
 						data-umami-event="book_pre_build_notify"
 						class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
 					>
-						get notified when ready →
+						get notified when ready
 					</a>
 					<button
 						type="button"
@@ -137,7 +137,7 @@
 						data-umami-event="book_pre_build_restart"
 						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
 					>
-						i picked the wrong one →
+						i picked the wrong one
 					</button>
 				</div>
 			</div>

@@ -30,7 +30,7 @@
 			class="eyebrow text-fg-subtle hover:text-coin text-xs transition-colors"
 			data-umami-event="notify_back_home"
 		>
-			← sixtom
+			sixtom
 		</a>
 	</div>
 

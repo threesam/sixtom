@@ -17,7 +17,7 @@
 				class="eyebrow text-fg-subtle hover:text-coin text-xs transition-colors"
 				data-umami-event="legal_back_home"
 			>
-				← sixtom
+				sixtom
 			</a>
 			<p class="eyebrow mt-12 text-sm">legal</p>
 			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">privacy.</h1>

@@ -26,7 +26,7 @@
 			class="eyebrow text-fg-subtle hover:text-coin text-xs transition-colors"
 			data-umami-event="tax_back_home"
 		>
-			← sixtom
+			sixtom
 		</a>
 	</div>
 	<VibeTaxCalculator />

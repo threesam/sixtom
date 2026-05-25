@@ -89,7 +89,7 @@
 				data-umami-event="cta_tax_calc"
 				class="text-fg hover:text-coin text-base underline underline-offset-4 transition-colors md:text-lg"
 			>
-				run yours →
+				run yours
 			</a>
 		</p>
 	</div>
@@ -126,7 +126,7 @@
 		</p>
 		<p class="mt-6 text-sm">
 			<a href="/log/garden-party" data-umami-event="cta_case_study" class="text-fg-muted">
-				the writeup →
+				the writeup
 			</a>
 		</p>
 		<blockquote class="text-fg-muted mt-12 max-w-2xl text-base leading-relaxed italic md:text-lg">
