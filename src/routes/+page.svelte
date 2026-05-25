@@ -26,9 +26,25 @@
 <section class="snap-section surface-uv">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>who is this for?</h2>
-		<p class={bodyClass}>
-			you already built it. real customers are about to break it — or already are. you know it.
-		</p>
+		<p class={bodyClass}>you already built it. you're probably one of these:</p>
+		<ul class="text-fg-muted mt-10 space-y-6 text-base leading-relaxed md:text-lg">
+			<li>
+				<span class="text-fg font-semibold">the demo darling.</span>
+				it killed the pitch, then folded the first time a dozen real people logged in.
+			</li>
+			<li>
+				<span class="text-fg font-semibold">paying &amp; breaking.</span>
+				real customers, real revenue, and a 3am pager that won't quit.
+			</li>
+			<li>
+				<span class="text-fg font-semibold">about to scale.</span>
+				someone just asked you to 10× the users — you said yes and started sweating.
+			</li>
+			<li>
+				<span class="text-fg font-semibold">enterprise-blocked.</span>
+				one contract away from real money, stuck behind a SOC2 / SSO box you can't tick.
+			</li>
+		</ul>
 	</div>
 </section>
 
