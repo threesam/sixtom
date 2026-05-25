@@ -142,7 +142,11 @@ a:not(.btn-accent):not(.no-link) {
 	text-decoration-color: var(--color-accent);
 	text-decoration-thickness: 2px;
 	text-underline-offset: 4px;
-	transition: text-underline-offset 400ms ease;
+	/* color is animated too so links that do recolor on hover (e.g. footer nav)
+	   still fade rather than snap; this rule itself never changes text colour. */
+	transition:
+		text-underline-offset 400ms ease,
+		color 150ms ease;
 }
 a:not(.btn-accent):not(.no-link):hover,
 a:not(.btn-accent):not(.no-link):focus-visible,
