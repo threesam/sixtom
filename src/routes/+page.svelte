@@ -116,24 +116,16 @@
 		<h2 class={h2Class}>why me?</h2>
 		<p class={bodyClass}>
 			day job: lead engineer at Made In Cookware. multi-million visitors a month. i rebuilt my own
-			creative work — the Garden — on the same methods. 5 hours of build time, 40% smaller, every
-			score up.
-		</p>
-		<p class="mt-6 flex flex-wrap gap-6 text-sm">
-			<a
+			creative work — <a
 				href={site.gardenUrl}
 				target="_blank"
 				rel="noopener noreferrer"
 				data-umami-event="cta_garden_link_why"
-				class="text-fg hover:text-coin transition-colors"
-			>
-				see the work →
-			</a>
-			<a
-				href="/log/garden-party"
-				data-umami-event="cta_case_study"
-				class="text-fg-muted hover:text-coin underline underline-offset-4 transition-colors"
-			>
+				class="link-coin">the Garden</a
+			> — on the same methods. 5 hours of build time, 40% smaller, every score up.
+		</p>
+		<p class="mt-6 text-sm">
+			<a href="/log/garden-party" data-umami-event="cta_case_study" class="text-fg-muted">
 				the writeup →
 			</a>
 		</p>
