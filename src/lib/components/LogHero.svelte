@@ -41,7 +41,7 @@
 	{id}
 	{href}
 	onclick={navigate}
-	class="log-hero-card relative block h-[35dvh] w-full overflow-hidden md:h-[45dvh]"
+	class="log-hero-card no-link relative block h-[35dvh] w-full overflow-hidden md:h-[45dvh]"
 	class:clickable
 	data-clickable={clickable}
 >

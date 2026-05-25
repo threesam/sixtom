@@ -11,7 +11,7 @@
 			href="/"
 			aria-label="sixtom home"
 			data-umami-event="footer_home"
-			class="text-fg inline-flex items-center text-2xl leading-none font-bold tracking-tight uppercase"
+			class="no-link text-fg inline-flex items-center text-2xl leading-none font-bold tracking-tight uppercase"
 		>
 			<span class="pr-0.5">six</span><span class="bg-fg text-surface px-px py-px">to</span><span
 				class="pl-px">m</span
