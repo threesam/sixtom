@@ -56,7 +56,7 @@
 					href={`/log/${entry.slug}`}
 					class="text-fg-subtle hover:text-coin mt-3 inline-block text-xs tracking-widest uppercase transition-colors"
 				>
-					read →
+					read
 				</a>
 			</div>
 		</article>
@@ -72,7 +72,7 @@
 				class="eyebrow text-fg-subtle hover:text-coin text-xs transition-colors"
 				data-umami-event="log_back_home"
 			>
-				← sixtom
+				sixtom
 			</a>
 			<p class="eyebrow mt-12 text-sm">the log</p>
 			<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">

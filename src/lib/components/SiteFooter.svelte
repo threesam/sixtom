@@ -28,9 +28,9 @@
 				target="_blank"
 				rel="noopener noreferrer"
 				data-umami-event="cta_garden_link"
-				class="text-fg hover:text-coin transition-colors"
+				class="text-fg link-coin"
 			>
-				threesam.com →
+				threesam.com
 			</a>
 		</div>
 	</div>
