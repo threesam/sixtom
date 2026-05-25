@@ -131,32 +131,26 @@ input[type='radio']:checked {
 	border-color: var(--color-accent);
 }
 
-/* Text links: a teal 2px bar 4px under the text, drawn as an absolutely
- * positioned ::after so it adds no box height — links stay aligned with the
- * text beside them. On hover / focus / tap the bar slides up from 4px to 2px
- * below the text (400ms). The text colour never changes; only the bar is
- * coloured. Buttons (.btn-accent)
- * and the wordmark / card links (.no-link) opt out; the coin variant (the
- * Garden / threesam.com) uses a gold bar. */
+/* Text links: a teal 2px underline tucked 4px below the text; on hover / focus
+ * / tap the underline slides up to 2px (400ms). text-underline-offset adds no
+ * box height (so links stay aligned with neighbouring text) and underlines each
+ * line fragment when a link wraps. The text colour never changes — only the
+ * underline is coloured. Buttons (.btn-accent) and the wordmark / card links
+ * (.no-link) opt out; the coin variant (the Garden / threesam.com) is gold. */
 a:not(.btn-accent):not(.no-link) {
-	position: relative;
+	text-decoration-line: underline;
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 4px;
+	transition: text-underline-offset 400ms ease;
 }
-a:not(.btn-accent):not(.no-link)::after {
-	content: '';
-	position: absolute;
-	inset-inline: 0;
-	bottom: -4px;
-	height: 2px;
-	background-color: var(--color-accent);
-	transition: bottom 400ms ease;
+a:not(.btn-accent):not(.no-link):hover,
+a:not(.btn-accent):not(.no-link):focus-visible,
+a:not(.btn-accent):not(.no-link):active {
+	text-underline-offset: 2px;
 }
-a:not(.btn-accent):not(.no-link):hover::after,
-a:not(.btn-accent):not(.no-link):focus-visible::after,
-a:not(.btn-accent):not(.no-link):active::after {
-	bottom: -2px;
-}
-a.link-coin:not(.btn-accent):not(.no-link)::after {
-	background-color: var(--color-coin);
+a.link-coin:not(.btn-accent):not(.no-link) {
+	text-decoration-color: var(--color-coin);
 }
 
 .snap-section {
