@@ -15,11 +15,9 @@
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
 		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 		<div
-			class="absolute inset-0 bg-gradient-to-b from-[#0000005c] via-[#000000eb] to-[#00000080] md:hidden"
+			class="absolute inset-0 bg-gradient-to-b from-black/36 via-black/92 to-black/50 md:hidden"
 		></div>
-		<div
-			class="absolute inset-0 hidden bg-gradient-to-r from-[#000000d9] to-[#00000073] md:block"
-		></div>
+		<div class="absolute inset-0 hidden bg-gradient-to-r from-black/85 to-black/45 md:block"></div>
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 text-left md:text-center">
@@ -27,20 +25,20 @@
 		     bright and bold (the wedge, not a footnote), with "your solution" the
 		     emphasized payoff. -->
 		<h1
-			class="text-fg text-[clamp(2.25rem,9.5vw,4.75rem)] font-bold leading-[1.08] tracking-tight"
+			class="text-fg text-[clamp(2.25rem,9.5vw,4.75rem)] leading-[1.08] font-bold tracking-tight [--rise:0ms]"
 			data-hero
-			style="--rise: 0ms"
 		>
-			what's the <XMark class="bg-[#161616] text-accent" /> between you and peace of mind?
+			what's the <XMark class="text-accent bg-surface" /> between you and peace of mind?
 		</h1>
 		<p
-			class="text-fg mx-auto mt-6 max-w-3xl text-xl font-medium leading-snug md:mt-8 md:text-3xl"
+			class="text-fg mx-auto mt-6 max-w-3xl text-xl leading-snug font-medium [--rise:120ms] md:mt-8 md:text-3xl"
 			data-hero
-			style="--rise: 120ms"
 		>
-			AI built your first draft. i build <span class="font-bold whitespace-nowrap">your solution.</span>
+			AI built your first draft. i build <span class="font-bold whitespace-nowrap"
+				>your solution.</span
+			>
 		</p>
-		<div class="mt-12" data-hero style="--rise: 240ms">
+		<div class="mt-12 [--rise:240ms]" data-hero>
 			<BookCta event="cta_hero_book" />
 		</div>
 	</div>

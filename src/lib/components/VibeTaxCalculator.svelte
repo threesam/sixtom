@@ -55,7 +55,9 @@
 		<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
 			what's it costing you?
 		</h2>
-		<p class="text-fg-muted mt-4 text-base leading-relaxed">4 questions. instant number. no email.</p>
+		<p class="text-fg-muted mt-4 text-base leading-relaxed">
+			4 questions. instant number. no email.
+		</p>
 
 		<div class="mt-10 space-y-6">
 			<div class="grid gap-6 md:grid-cols-2">
@@ -98,8 +100,7 @@
 					step="1"
 					bind:value={firefightingHours}
 					aria-describedby="vt-hours-readout"
-					class="w-full accent-current"
-					style="color: var(--color-accent);"
+					class="accent-accent w-full"
 				/>
 				<p id="vt-hours-readout" class="text-fg-subtle mt-1 text-xs tabular-nums">
 					{safeHours} h/week
@@ -109,8 +110,16 @@
 			<fieldset class="space-y-3">
 				<legend class={labelClass}>where do you want to be in 90 days?</legend>
 				{#each GOAL_OPTIONS as opt (opt.value)}
-					<label class="{radioCardClass} {goal === opt.value ? 'border-accent ring-accent ring-1' : ''}">
-						<input type="radio" name="goal" value={opt.value} bind:group={goal} class="accent-accent" />
+					<label
+						class="{radioCardClass} {goal === opt.value ? 'border-accent ring-accent ring-1' : ''}"
+					>
+						<input
+							type="radio"
+							name="goal"
+							value={opt.value}
+							bind:group={goal}
+							class="accent-accent"
+						/>
 						<span class="text-fg text-base">{opt.label}</span>
 					</label>
 				{/each}

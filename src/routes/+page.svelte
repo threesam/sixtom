@@ -83,11 +83,11 @@
 		<p class="text-fg-muted mt-6 text-base leading-relaxed md:text-lg">
 			typical case: 1/mo × $50k × 12 = ~$600k/yr. plus the weekends. plus the sleep.
 		</p>
-		<p class="mt-6">
+		<p class="mt-10">
 			<a
 				href="/tax"
 				data-umami-event="cta_tax_calc"
-				class="text-fg hover:text-coin text-base underline underline-offset-4 transition-colors md:text-lg"
+				class="no-link border-fg text-fg hover:border-accent hover:bg-accent inline-block rounded-full border-2 px-8 py-3 text-lg font-bold transition-colors duration-[400ms] md:px-10 md:py-4 md:text-xl"
 			>
 				run yours
 			</a>

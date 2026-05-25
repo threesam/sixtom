@@ -41,6 +41,8 @@
 	--color-on-accent: oklch(14.5% 0 0);
 	--color-coin: #e8a317;
 	--color-error: oklch(71.2% 0.194 13.428);
+	/* Brand accent gradient (matches the .btn-accent fill); reused by the X chip. */
+	--gradient-accent: linear-gradient(95deg, oklch(72% 0.15 200), oklch(64% 0.16 178));
 }
 
 /* Blacklight effect: white surface, black text, neon accents fluoresce via shadow.
@@ -129,41 +131,30 @@ input[type='radio']:checked {
 	border-color: var(--color-accent);
 }
 
-/* Text links: a teal underline tucked 4px under the text; on hover / focus /
- * tap the whole link goes teal and the underline pulls in to 2px (400ms). It
- * stays teal once visited (the offset can't animate for :visited — a browser
- * privacy restriction — but the colour does). Buttons (.btn-accent) and the
- * wordmark / card links (.no-link) opt out. */
+/* Text links: a teal 2px underline tucked 4px below the text; on hover / focus
+ * / tap the underline slides up to 2px (400ms). text-underline-offset adds no
+ * box height (so links stay aligned with neighbouring text) and underlines each
+ * line fragment when a link wraps. The text colour never changes — only the
+ * underline is coloured. Buttons (.btn-accent) and the wordmark / card links
+ * (.no-link) opt out; the coin variant (the Garden / threesam.com) is gold. */
 a:not(.btn-accent):not(.no-link) {
 	text-decoration-line: underline;
 	text-decoration-color: var(--color-accent);
 	text-decoration-thickness: 2px;
 	text-underline-offset: 4px;
+	/* color is animated too so links that do recolor on hover (e.g. footer nav)
+	   still fade rather than snap; this rule itself never changes text colour. */
 	transition:
-		color 400ms ease,
-		text-decoration-color 400ms ease,
-		text-underline-offset 400ms ease;
+		text-underline-offset 400ms ease,
+		color 150ms ease;
 }
 a:not(.btn-accent):not(.no-link):hover,
 a:not(.btn-accent):not(.no-link):focus-visible,
 a:not(.btn-accent):not(.no-link):active {
-	color: var(--color-accent);
 	text-underline-offset: 2px;
 }
-a:not(.btn-accent):not(.no-link):visited {
-	color: var(--color-accent);
-}
-
-/* Coin variant — the Garden (external personal work) gets a gold underline to
- * set it apart from the teal content links; same offset/hover motion. */
 a.link-coin:not(.btn-accent):not(.no-link) {
 	text-decoration-color: var(--color-coin);
-}
-a.link-coin:not(.btn-accent):not(.no-link):hover,
-a.link-coin:not(.btn-accent):not(.no-link):focus-visible,
-a.link-coin:not(.btn-accent):not(.no-link):active,
-a.link-coin:not(.btn-accent):not(.no-link):visited {
-	color: var(--color-coin);
 }
 
 .snap-section {

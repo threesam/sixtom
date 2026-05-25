@@ -13,5 +13,5 @@
 	data-umami-event={event}
 	class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl {cls}"
 >
-	solve for <XMark class="bg-[#161616] text-accent text-[1.35em]" />
+	solve for <XMark class="text-accent bg-surface text-[1.35em]" />
 </a>
