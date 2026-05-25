@@ -38,7 +38,7 @@
 			</li>
 			<li>
 				<span class="text-fg font-semibold">about to scale.</span>
-				someone just asked you to 10× the users — you said yes and started sweating.
+				someone just asked you to 10× the users. you said yes and started sweating.
 			</li>
 			<li>
 				<span class="text-fg font-semibold">enterprise-blocked.</span>
