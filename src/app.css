@@ -133,8 +133,9 @@ input[type='radio']:checked {
 
 /* Text links: a teal 2px bar 4px under the text, drawn as an absolutely
  * positioned ::after so it adds no box height — links stay aligned with the
- * text beside them. On hover / focus / tap the bar pulls in to 2px (400ms). The
- * text colour never changes; only the bar is coloured. Buttons (.btn-accent)
+ * text beside them. On hover / focus / tap the bar slides up from 4px to 2px
+ * below the text (400ms). The text colour never changes; only the bar is
+ * coloured. Buttons (.btn-accent)
  * and the wordmark / card links (.no-link) opt out; the coin variant (the
  * Garden / threesam.com) uses a gold bar. */
 a:not(.btn-accent):not(.no-link) {
