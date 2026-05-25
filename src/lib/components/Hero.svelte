@@ -24,21 +24,16 @@
 		<!-- Lead with the question as the hero title; the positioning line follows,
 		     bright and bold (the wedge, not a footnote), with "your solution" the
 		     emphasized payoff. -->
-		<h1
-			class="text-fg text-[clamp(2.25rem,9.5vw,4.75rem)] leading-[1.08] font-bold tracking-tight [--rise:0ms]"
-			data-hero
-		>
-			what's the <XMark class="text-accent bg-surface" /> between you and peace of mind?
+		<h1 class="text-fg text-[clamp(2.25rem,9.5vw,4.75rem)] leading-[1.08] font-bold tracking-tight">
+			what's the <XMark class="text-accent bg-surface border-2 border-current" /> between you and peace
+			of mind?
 		</h1>
-		<p
-			class="text-fg mx-auto mt-6 max-w-3xl text-xl leading-snug font-medium [--rise:120ms] md:mt-8 md:text-3xl"
-			data-hero
-		>
+		<p class="text-fg mx-auto mt-6 max-w-3xl text-xl leading-snug font-medium md:mt-8 md:text-3xl">
 			AI built your first draft. i build <span class="font-bold whitespace-nowrap"
 				>your solution.</span
 			>
 		</p>
-		<div class="mt-12 [--rise:240ms]" data-hero>
+		<div class="mt-12">
 			<BookCta event="cta_hero_book" />
 		</div>
 	</div>
