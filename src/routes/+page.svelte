@@ -30,11 +30,11 @@
 		<ul class="text-fg-muted mt-10 space-y-6 text-base leading-relaxed md:text-lg">
 			<li>
 				<span class="text-fg font-semibold">the demo darling.</span>
-				it killed the pitch, then folded the first time a dozen real people logged in.
+				you killed the pitch, then it folded the first time a dozen real people logged in.
 			</li>
 			<li>
 				<span class="text-fg font-semibold">paying &amp; breaking.</span>
-				real customers, real revenue, and a 3am pager that won't quit.
+				real revenue, and all-nighters fixing production.
 			</li>
 			<li>
 				<span class="text-fg font-semibold">about to scale.</span>
@@ -42,7 +42,7 @@
 			</li>
 			<li>
 				<span class="text-fg font-semibold">enterprise-blocked.</span>
-				one contract away from real money, stuck behind a SOC2 / SSO box you can't tick.
+				one contract away from real money, stuck behind a brick wall of compliance.
 			</li>
 		</ul>
 	</div>
