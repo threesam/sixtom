@@ -11,11 +11,10 @@
 			href="/"
 			aria-label="sixtom home"
 			data-umami-event="footer_home"
-			class="no-link text-fg inline-flex items-center text-2xl leading-none font-bold tracking-tight uppercase"
+			class="no-link text-fg inline-flex items-baseline text-2xl leading-none font-bold tracking-tight uppercase"
 		>
-			<span class="pr-0.5">six</span><span class="bg-fg text-surface px-px py-px">to</span><span
-				class="pl-px">m</span
-			>
+			<span class="pr-0.5">six</span><span class="bg-fg text-surface px-px pt-0.5 pb-px">to</span
+			><span class="pl-px">m</span>
 		</a>
 		<div class="text-fg-subtle flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
 			<span>© {year}</span>
