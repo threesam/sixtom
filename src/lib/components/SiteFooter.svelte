@@ -20,6 +20,7 @@
 		<div class="text-fg-subtle flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
 			<span>© {year}</span>
 			<a href="/log" class="hover:text-fg transition-colors">log</a>
+			<a href="/faq" class="hover:text-fg transition-colors">faq</a>
 			<a href="/notify" class="hover:text-fg transition-colors">notify</a>
 			<a href="/privacy" class="hover:text-fg transition-colors">privacy</a>
 			<a href="/terms" class="hover:text-fg transition-colors">terms</a>

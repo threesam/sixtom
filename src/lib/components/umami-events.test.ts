@@ -22,6 +22,7 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'cta_case_study', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_garden_link_why', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_final_book', dir: 'route', path: '+page.svelte' },
+	{ event: 'cta_faq_book', dir: 'route', path: 'faq/+page.svelte' },
 	{ event: 'cta_notify_submit', dir: 'route', path: 'notify/+page.svelte' },
 	{ event: 'cta_calc_book', dir: 'component', path: 'VibeTaxCalculator.svelte' }
 ]

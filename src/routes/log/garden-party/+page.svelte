@@ -1,6 +1,13 @@
 <script lang="ts">
 	import LogHero from '$lib/components/LogHero.svelte'
 	import MediaSlider from '$lib/components/MediaSlider.svelte'
+	import { LOG_ENTRIES } from '$lib/log'
+	import { blogPostingJsonLd, renderJsonLd } from '$lib/seo/jsonld'
+
+	// BlogPosting schema for this writeup, sourced from the same LOG_ENTRIES used by
+	// the /log feed so headline/date/image never drift from what's listed there.
+	const entry = LOG_ENTRIES.find((e) => e.slug === 'garden-party')
+	const articleLd = entry ? renderJsonLd(blogPostingJsonLd(entry)) : ''
 
 	const SCREENSHOTS = [
 		{
@@ -76,6 +83,8 @@
 	<meta property="og:url" content="https://sixtom.com/log/garden-party" />
 	<meta name="twitter:card" content="summary" />
 	<link rel="preload" as="image" href="/assets/clouds.webp" />
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
+	{@html articleLd}
 </svelte:head>
 
 <LogHero
