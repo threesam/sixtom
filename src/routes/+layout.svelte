@@ -7,9 +7,9 @@
 
 	let { children }: { children: Snippet } = $props()
 
-	// Site-wide entity graph (WebSite + Person + ProfessionalService), present on
-	// every route. Per-page nodes (home FAQ, /faq, /log, the writeup) are emitted
-	// by those routes and merge in by shared @id.
+	// Site-wide entity graph (WebSite + Person + Service), present on every route.
+	// Per-page nodes (/faq, /log, the writeup) are emitted by those routes and
+	// merge in by shared @id.
 	const jsonLdHtml = renderJsonLd(webSiteJsonLd(), personJsonLd(), serviceJsonLd())
 </script>
 

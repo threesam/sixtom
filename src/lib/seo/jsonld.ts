@@ -10,6 +10,7 @@ import type { LogEntry } from '$lib/log'
 const PERSON_ID = `${site.siteUrl}/#person`
 const WEBSITE_ID = `${site.siteUrl}/#website`
 const SERVICE_ID = `${site.siteUrl}/#service`
+const BLOG_ID = `${site.siteUrl}/log#blog`
 
 interface Org {
 	'@type': 'Organization'
@@ -157,10 +158,9 @@ export interface FaqPageLd {
 	}[]
 }
 
-// Build a FAQPage from question/answer pairs. Used both visibly (/faq) and
-// invisibly (home, mirroring the on-page question-led sections). `url` is the
-// page the questions are answered on; engines require that answer text be present
-// on that page, which holds for both callers.
+// Build a FAQPage from question/answer pairs (the /faq route). `url` is the page
+// the questions are answered on; engines require the answer text be present on
+// that page, which holds for /faq.
 export function faqPageJsonLd(items: readonly QA[], url: string): FaqPageLd {
 	return {
 		'@context': 'https://schema.org',
@@ -191,7 +191,7 @@ export function blogJsonLd(description: string): BlogLd {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'Blog',
-		'@id': `${url}#blog`,
+		'@id': BLOG_ID,
 		name: 'the log',
 		description,
 		url,
@@ -233,7 +233,7 @@ export function blogPostingJsonLd(entry: LogEntry): BlogPostingLd {
 		mainEntityOfPage: url,
 		author: { '@id': PERSON_ID },
 		publisher: { '@id': PERSON_ID },
-		isPartOf: { '@id': `${site.siteUrl}/log#blog` }
+		isPartOf: { '@id': BLOG_ID }
 	}
 }
 
@@ -242,7 +242,7 @@ const LDJSON_CLOSE = '</script>'
 
 // Serialize JSON-LD nodes into <script> tags, escaping `<` so a string value can
 // never break out of the script block. Shared by the layout (site-wide graph) and
-// the pages that contribute their own nodes (home FAQ, /faq, /log, the writeup).
+// the pages that contribute their own nodes (/faq, /log, the writeup).
 export function renderJsonLd(...nodes: object[]): string {
 	return nodes
 		.map((node) => LDJSON_OPEN + JSON.stringify(node).replace(/</g, '\\u003c') + LDJSON_CLOSE)

@@ -5,11 +5,13 @@
 // into SVG circles (oklch -> sRGB). The foreground renders the *actual* wordmark
 // markup — six + inverted "to" chip + m — in the real Recursive webfont via headless
 // Chromium, so the logo matches the site exactly (Recursive is proportional, so it
-// can't be faked on a monospace SVG grid). Deterministic: same field, same output.
+// can't be faked on a monospace SVG grid). The bubble field is fully deterministic;
+// the rasterized text depends on the local chromium + magick versions.
 //
 // Run: node scripts/og-source/build-og.mjs   (needs playwright chromium + magick)
 import { execFileSync } from 'node:child_process'
 import { readFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from '@playwright/test'
@@ -135,14 +137,19 @@ body{background:#161616;position:relative;font-family:'Recursive',ui-monospace,m
 <div class="domain">sixtom.com</div>
 </body></html>`
 
-const browser = await chromium.launch({ args: ['--no-sandbox', '--force-color-profile=srgb'] })
-const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 2 })
-await page.setContent(html, { waitUntil: 'load' })
-await page.evaluate(() => document.fonts.ready)
-const shot2x = resolve(DIR, 'og-2x.png')
+// Temp lives in the OS temp dir (never the source tree) so a failed run can't
+// leave a stray 2x artifact behind; try/finally guarantees the browser closes.
+const shot2x = resolve(tmpdir(), 'sixtom-og-2x.png')
 const pngPath = resolve(ROOT, 'static/og.png')
-await page.screenshot({ path: shot2x, clip: { x: 0, y: 0, width: W, height: H } })
-await browser.close()
+const browser = await chromium.launch({ args: ['--no-sandbox', '--force-color-profile=srgb'] })
+try {
+	const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 2 })
+	await page.setContent(html, { waitUntil: 'load' })
+	await page.evaluate(() => document.fonts.ready)
+	await page.screenshot({ path: shot2x, clip: { x: 0, y: 0, width: W, height: H } })
+} finally {
+	await browser.close()
+}
 
 // Downsample the 2x supersample to the declared 1200x630 for crisp edges.
 execFileSync('magick', [shot2x, '-resize', `${W}x${H}`, '-strip', pngPath])
