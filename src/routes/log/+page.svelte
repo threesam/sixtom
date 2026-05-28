@@ -2,8 +2,12 @@
 	import type { PageData } from './$types'
 	import { site } from '$lib/content'
 	import { LOG_ENTRIES, type LogEntry } from '$lib/log'
+	import { blogJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 
 	let { data }: { data: PageData } = $props()
+
+	const blogDescription = "Everything I'm publishing on LinkedIn, mirrored here in one place."
+	const blogLd = renderJsonLd(blogJsonLd(blogDescription))
 
 	// UTC so a calendar date like "2026-05-18" (parsed as UTC midnight) isn't
 	// rolled back a day when formatted in a behind-UTC local timezone.
@@ -42,17 +46,13 @@
 
 <svelte:head>
 	<title>log | SIXTOM</title>
-	<meta
-		name="description"
-		content="Everything I'm publishing on LinkedIn, mirrored here in one place."
-	/>
+	<meta name="description" content={blogDescription} />
 	<meta property="og:title" content="log | SIXTOM" />
-	<meta
-		property="og:description"
-		content="Everything I'm publishing on LinkedIn, mirrored here in one place."
-	/>
+	<meta property="og:description" content={blogDescription} />
 	<meta property="og:url" content={`${site.siteUrl}/log`} />
 	<meta property="og:type" content="website" />
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
+	{@html blogLd}
 </svelte:head>
 
 <div class="bg-surface min-h-screen">
@@ -78,7 +78,7 @@
 			<p class="text-fg-subtle text-base">No posts yet. Check back soon.</p>
 		{:else}
 			<ul class="m-0 list-none p-0">
-				{#each feed as item (item.kind === 'post' ? `p${item.post.id}` : `w-${item.entry.slug}`)}
+				{#each feed as item (item.kind === 'post' ? `p${String(item.post.id)}` : `w-${item.entry.slug}`)}
 					<li class="border-border border-t py-10">
 						{#if item.kind === 'post'}
 							<article>
@@ -128,7 +128,7 @@
 									/>
 								{/if}
 							</article>
-						{:else}
+						{:else if item.kind === 'writeup'}
 							<article>
 								<div class="flex items-center gap-3">
 									<time

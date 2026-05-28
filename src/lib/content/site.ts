@@ -18,7 +18,8 @@ export const site: Site = {
 		jobTitle: 'lead engineer',
 		currentEmployer: 'Made In Cookware',
 		formerEmployer: 'Rhone',
-		credentialsChip: 'lead engineer at Made In Cookware. formerly at Rhone.'
+		credentialsChip: 'lead engineer at Made In Cookware. formerly at Rhone.',
+		linkedinUrl: 'https://www.linkedin.com/in/threesam'
 	},
 	audit: {
 		name: 'audit',

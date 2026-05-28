@@ -28,10 +28,11 @@ You already built something — usually with AI assistance. It works for you. Re
 
 ## Who I am
 
-Salvatore D'Angelo. Lead engineer at Made In Cookware (multi-million visitors a month). Formerly at Rhone. Personal site / portfolio: [threesam.com](https://threesam.com).
+Salvatore D'Angelo. Lead engineer at Made In Cookware (multi-million visitors a month). Formerly at Rhone. Personal site / portfolio: [threesam.com](https://threesam.com). LinkedIn: [linkedin.com/in/threesam](https://www.linkedin.com/in/threesam).
 
 ## How to engage
 
 - [Solve for X — book a call](https://sixtom.com/book): the qualifying booking form on the homepage. Start here if you know you want the sprint.
+- [FAQ](https://sixtom.com/faq): straight answers — price, audit vs sprint, timeline, the day-5 scope guarantee, who's behind it.
 - [The vibe-code tax calculator](https://sixtom.com/tax): a quick estimate of what the gap is costing you per year. No email.
 - [Notify list](https://sixtom.com/notify): get told when the next slot opens.

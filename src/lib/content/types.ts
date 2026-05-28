@@ -11,6 +11,7 @@ export interface Operator {
 	currentEmployer: string
 	formerEmployer: string
 	credentialsChip: string
+	linkedinUrl: string
 }
 
 export interface Offer {

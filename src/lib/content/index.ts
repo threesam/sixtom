@@ -1,2 +1,3 @@
 export { site, calEvent } from './site'
-export type { Operator, Offer, Site, CalEvent, IntakeQuestion } from './types'
+export { FAQ } from './faq'
+export type { Operator, Offer, Site, CalEvent, IntakeQuestion, QA } from './types'
