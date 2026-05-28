@@ -9,7 +9,7 @@
 //
 // Run: node scripts/og-source/build-og.mjs   (needs playwright chromium + magick)
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { readFileSync, rmSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from '@playwright/test'
@@ -146,5 +146,5 @@ await browser.close()
 
 // Downsample the 2x supersample to the declared 1200x630 for crisp edges.
 execFileSync('magick', [shot2x, '-resize', `${W}x${H}`, '-strip', pngPath])
-execFileSync('rm', ['-f', shot2x])
+rmSync(shot2x, { force: true })
 console.log(`og.png written (${String(circles.length)} bubbles, real Recursive logo) -> ${pngPath}`)
