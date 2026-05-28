@@ -121,9 +121,9 @@ html,body{width:${W}px;height:${H}px;overflow:hidden;}
 body{background:#161616;position:relative;font-family:'Recursive',ui-monospace,monospace;color:#f7f7f7;}
 .bg{position:absolute;inset:0;width:100%;height:100%;}
 .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding-bottom:24px;}
-.logo{display:inline-flex;align-items:center;font-weight:700;font-size:168px;line-height:1;letter-spacing:-0.03em;text-transform:uppercase;}
+.logo{display:inline-flex;align-items:baseline;font-weight:700;font-size:168px;line-height:1;letter-spacing:-0.03em;text-transform:uppercase;}
 .logo .a{padding-right:3px;}
-.logo .chip{background:#f7f7f7;color:#161616;padding:2px 6px;}
+.logo .chip{background:#f7f7f7;color:#161616;padding:6px 6px 2px 6px;}
 .logo .b{padding-left:3px;}
 .sub{font-size:36px;font-weight:500;letter-spacing:-0.01em;color:#c8c8c8;}
 .sub b{color:#f7f7f7;font-weight:700;}
