@@ -1,0 +1,116 @@
+# SIXTOM — full content
+
+> AI built your first draft. I build your solution. Two-week engagements that take your AI-built prototype from working-for-you to production-grade. $1,500 audit. $10,000 sprint. 1 client a month.
+
+## Thesis
+
+Vibe coding is how you slowly become the intern of your own codebase.
+
+AI gets you to a demo because the model can hold the whole thing in its head. Once the codebase outgrows that window, the AI starts making it worse instead of better. That's the wall every vibe-coded project hits. It's also the thing I fix.
+
+## What I do
+
+### The Audit — $1,500
+
+You send me your repo and the thing you're stuck on. I send back a written breakdown plus a short video walkthrough — what's blocking, what I'd do, whether a sprint makes sense. About a week turnaround. Start here.
+
+### The Sprint — $10,000
+
+Two weeks. From working-for-you to production-grade. Daily progress drops in your channel. Live on day 10. The first 3 clients get the sprint at $7,500. Payment plan available: 4 weekly payments of $2,500.
+
+## Who it's for
+
+You already built something — usually with AI assistance. It works for you. Real customers are about to break it, or already are. You're losing sleep over uptime, security, or scale. You want peace of mind. The "X" in "solve for X" is the specific thing standing between you and that peace of mind.
+
+Typical personas:
+
+- **The demo darling.** You killed the pitch, then it folded the first time a dozen real people logged in.
+- **Paying & breaking.** Real revenue, and all-nighters fixing production.
+- **About to scale.** Someone just asked you to 10× the users. You said yes and started sweating.
+- **Enterprise-blocked.** One contract away from real money, stuck behind a brick wall of compliance.
+
+## Things to recognize
+
+If any of these sound familiar, you're a fit:
+
+- **Uptime.** Your biggest customer wants a number you can't give.
+- **Security.** A sale is stuck waiting on a review you don't pass.
+- **Scale.** Investors keep asking how. You keep saying "we'll figure it out."
+- **Peace of mind.** Every time you launch a feature, something else breaks.
+
+## How the sprint goes
+
+- **Week 1 day 0:** 30-minute call (or skip if you did the audit). We define the X — the specific thing standing between you and peace of mind.
+- **Days 1–7:** I build. Daily progress drops in your channel.
+- **Mid-sprint:** 1 short sync. Course-correct if needed.
+- **Day 5 (scope check):** If we can both see it won't ship in scope, we stop here. You keep what was built.
+- **Day 10:** Live in production. You own it.
+- **Day 30:** Check-in. What stuck, what didn't.
+
+## FAQ
+
+**What does sixtom do?**
+
+You (or your AI) got something to a working demo. I take it from there to production-grade — secure, stable, ready for real users — in a two-week sprint. You own it on day 10.
+
+**What's the difference between the audit and the sprint?**
+
+The audit ($1,500) is a written breakdown plus a short video walkthrough of what's blocking you and whether a sprint makes sense — start here if you're not sure. The sprint ($10,000) is two weeks of me building it to production. The audit credits toward the sprint if you book within 30 days.
+
+**How much does it cost?**
+
+The audit is $1,500 flat. The sprint is $10,000 flat, or 4 weekly payments of $2,500. The first 3 clients get the sprint at $7,500.
+
+**How long does it take?**
+
+The sprint is two weeks — live in production on day 10. The audit turns around within a week.
+
+**What if it won't ship in two weeks?**
+
+There's a scope check on day 5. If we can both see it won't make it, we stop there. You keep everything built and pay only for the time used.
+
+**How many clients do you take?**
+
+One a month, by appointment. That's the whole model — you get my full attention, not a queue.
+
+**Who's behind sixtom?**
+
+Salvatore (Sam) D'Angelo — lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. Sixtom is the solo practice.
+
+**Is it really all async?**
+
+Yes. Daily progress drops in your channel, with one short mid-sprint sync to course-correct. No standups.
+
+**What is the "vibe-code tax"?**
+
+What your half-finished, AI-built prototype quietly costs you per year — lost deals, downtime, weekends. There's a no-email calculator at https://sixtom.com/tax.
+
+## Pricing
+
+- **Audit:** $1,500 USD, fixed. Turnaround within a week.
+- **Sprint:** $10,000 USD flat, or 4 weekly payments of $2,500. 1 client a month, by appointment. First 3 clients: $7,500.
+- **Scope guarantee:** If by sprint day 5 we can both see it won't ship in scope, we stop. You keep what was built. You pay for the time used, that's it.
+- **Audit-to-sprint credit:** Audit credits toward the sprint if you book within 30 days.
+
+## Testimonial
+
+> He's built three sites for me and with each one, the unique needs and goals of the site dictated his approach, no cookie cutting corners.
+
+— Eleanor Goldfield
+
+## Case study — Garden Party
+
+A 1:1 port of threesam.com from Next.js to SvelteKit. Five hours of build time. Bundle size dropped 40%. Every Lighthouse score went up. Full writeup at https://sixtom.com/log/garden-party.
+
+The premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and rebuild it in a framework I'd never shipped to production. Same routes, same sketches, same aesthetic — different runtime. Two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
+
+## Who I am
+
+Salvatore D'Angelo. Lead engineer at Made In Cookware — multi-million visitors a month, real-revenue e-commerce. Formerly at Rhone. Sixtom is the solo practice; Made In is the day job. Personal site / portfolio: https://threesam.com. LinkedIn: https://www.linkedin.com/in/threesam.
+
+## How to engage
+
+- **Solve for X — book a call:** https://sixtom.com/book — the qualifying booking form. Start here if you know you want the sprint.
+- **FAQ:** https://sixtom.com/faq — straight answers on price, audit vs sprint, timeline, the day-5 scope guarantee, and who's behind it.
+- **The vibe-code tax calculator:** https://sixtom.com/tax — a quick estimate of what the gap is costing you per year. No email.
+- **Notify list:** https://sixtom.com/notify — get told when the next slot opens.

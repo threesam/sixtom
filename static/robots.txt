@@ -1,6 +1,47 @@
+# Robots policy for sixtom.com. AI crawlers and answer engines are welcomed —
+# we publish a machine-readable description at /llms.txt and an expanded
+# version at /llms-full.txt. Link response headers advertise both.
+#
+# Content-Signal directives follow the IETF AI Preferences (aipref) draft
+# vocabulary documented at https://contentsignals.org/.
+
 User-agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 Disallow: /sanity
 Disallow: /api/
+
+# Per-bot opt-in — same permissions as the wildcard, signed explicitly so AI
+# crawlers and readiness auditors can confirm intentional welcome.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
 
 Sitemap: https://sixtom.com/sitemap.xml
