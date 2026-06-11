@@ -82,8 +82,10 @@ export function personJsonLd(): PersonLd {
 		alumniOf: { '@type': 'Organization', name: site.operator.formerEmployer },
 		url: site.siteUrl,
 		// sameAs is the strongest entity-grounding signal for answer engines: it
-		// confirms this Person is the same identity across the web.
-		sameAs: [site.gardenUrl, site.operator.linkedinUrl]
+		// confirms this Person is the same identity across the web. Shares
+		// LinkedIn + X with threesam.com's Person node (which reciprocally lists
+		// sixtom.com), so the two sites merge into one authoritative entity.
+		sameAs: [site.gardenUrl, site.operator.linkedinUrl, site.operator.xUrl]
 	}
 }
 

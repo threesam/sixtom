@@ -19,7 +19,8 @@ export const site: Site = {
 		currentEmployer: 'Made In Cookware',
 		formerEmployer: 'Rhone',
 		credentialsChip: 'lead engineer at Made In Cookware. formerly at Rhone.',
-		linkedinUrl: 'https://www.linkedin.com/in/threesam'
+		linkedinUrl: 'https://www.linkedin.com/in/threesam',
+		xUrl: 'https://x.com/six_to_m'
 	},
 	audit: {
 		name: 'audit',
