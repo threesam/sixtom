@@ -85,7 +85,14 @@ export function personJsonLd(): PersonLd {
 		// confirms this Person is the same identity across the web. Shares
 		// LinkedIn + X with threesam.com's Person node (which reciprocally lists
 		// sixtom.com), so the two sites merge into one authoritative entity.
-		sameAs: [site.gardenUrl, site.operator.linkedinUrl, site.operator.xUrl]
+		sameAs: [
+			site.gardenUrl,
+			site.operator.linkedinUrl,
+			site.operator.xUrl,
+			site.operator.githubUrl,
+			site.operator.soundcloudUrl,
+			site.operator.substackUrl
+		]
 	}
 }
 

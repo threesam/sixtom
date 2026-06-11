@@ -13,6 +13,9 @@ export interface Operator {
 	credentialsChip: string
 	linkedinUrl: string
 	xUrl: string
+	githubUrl: string
+	soundcloudUrl: string
+	substackUrl: string
 }
 
 export interface Offer {
