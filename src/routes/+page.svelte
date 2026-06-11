@@ -103,6 +103,7 @@
 			<p>daily progress.</p>
 			<p>the answer when they ask.</p>
 			<p>your weekends back.</p>
+			<p>live in production on day 10. you own it.</p>
 		</div>
 		<p class="text-fg-subtle mt-8 text-sm md:text-base">
 			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a month.
