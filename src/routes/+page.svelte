@@ -99,12 +99,12 @@
 <section id="offers" class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>only two weeks?</h2>
-		<div class="text-fg-muted mt-10 space-y-2 text-base leading-relaxed md:text-lg">
-			<p>daily progress.</p>
-			<p>the answer when they ask.</p>
-			<p>your weekends back.</p>
-			<p>live in production on day 10. you own it.</p>
-		</div>
+		<ul class="text-fg-muted mt-10 space-y-2 text-base leading-relaxed md:text-lg">
+			<li>daily progress.</li>
+			<li>the answer when they ask.</li>
+			<li>your weekends back.</li>
+			<li>live in production on day 10. you own it.</li>
+		</ul>
 		<p class="text-fg-subtle mt-8 text-sm md:text-base">
 			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a month.
 		</p>
