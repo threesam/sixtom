@@ -16,10 +16,9 @@
 		     using $app/state's page.url.pathname; do not hardcode here to avoid
 		     duplicate canonical tags on non-home routes. -->
 
-		<!-- Search engine ownership verification. Tokens come from each console;
-		     leave the TODO values until you paste in real ones, then verify. -->
-		<meta name="google-site-verification" content="TODO_paste_from_search_console" />
-		<meta name="msvalidate.01" content="TODO_paste_from_bing_webmaster" />
+		<!-- Search-engine ownership: verify via DNS TXT record on the domain
+		     (Search Console "Domain property" / Bing import) — covers every
+		     subdomain with zero markup. No placeholder meta tags in prod. -->
 
 		<link rel="preconnect" href="https://analytics.sixtom.com" />
 		<link
@@ -43,7 +42,8 @@
 			content="production-grade in two weeks. $10,000 flat, 1 client a month."
 		/>
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://sixtom.com/" />
+		<!-- og:url lives in +layout.svelte (per-route, alongside canonical) — a
+		     static one here would duplicate it and scrapers take the first. -->
 		<meta property="og:image" content="https://sixtom.com/og.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />

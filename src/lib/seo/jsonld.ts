@@ -90,8 +90,7 @@ export function personJsonLd(): PersonLd {
 			site.operator.linkedinUrl,
 			site.operator.xUrl,
 			site.operator.githubUrl,
-			site.operator.soundcloudUrl,
-			site.operator.substackUrl
+			site.operator.soundcloudUrl
 		]
 	}
 }

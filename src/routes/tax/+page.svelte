@@ -1,7 +1,6 @@
 <script lang="ts">
 	import VibeTaxCalculator from '$lib/components/VibeTaxCalculator.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import { site } from '$lib/content'
 </script>
 
 <svelte:head>
@@ -15,7 +14,6 @@
 		property="og:description"
 		content="how much your vibe-coded prototype is costing you per year."
 	/>
-	<meta property="og:url" content={`${site.siteUrl}/tax`} />
 	<meta property="og:type" content="website" />
 </svelte:head>
 

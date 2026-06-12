@@ -19,7 +19,6 @@
 		property="og:description"
 		content="what sixtom does, what it costs, and how the audit and sprint work."
 	/>
-	<meta property="og:url" content={`${site.siteUrl}/faq`} />
 	<meta property="og:type" content="website" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html faqLd}
