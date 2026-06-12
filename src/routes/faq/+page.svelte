@@ -12,7 +12,7 @@
 	<title>faq | SIXTOM</title>
 	<meta
 		name="description"
-		content="what sixtom does, what it costs, how the audit and sprint work, and what happens if it won't ship in two weeks."
+		content="what sixtom does, what it costs, how the audit, sprint, and retainer work, and what happens if it won't ship in two weeks."
 	/>
 	<meta property="og:title" content="faq | SIXTOM" />
 	<meta

@@ -42,6 +42,14 @@ export const site: Site = {
 		cadence: '1 client a month, by appointment.',
 		paymentPlan: '4 weekly payments of $2,500'
 	},
+	// The recurring rung: only offered after a sprint, deliberately capped so it
+	// stays a floor under the practice, not a second job on top of it.
+	retainer: {
+		name: 'retainer',
+		longName: 'i keep it running',
+		priceUSD: 1500,
+		cadence: 'monthly. post-sprint clients only. 4 seats.'
+	},
 	process: [
 		{
 			label: 'Week 1, day 0',

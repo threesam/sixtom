@@ -121,6 +121,7 @@ export function serviceJsonLd(): ServiceLd {
 	]
 		.filter(Boolean)
 		.join(' ')
+	const retainerDescription = `keep me on it after the sprint — monitoring, small iterations, priority access. ${site.retainer.cadence}`
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'Service',
@@ -146,6 +147,15 @@ export function serviceJsonLd(): ServiceLd {
 				name: site.sprint.name,
 				description: sprintDescription,
 				price: String(site.sprint.priceUSD),
+				priceCurrency: 'USD',
+				availability: 'https://schema.org/LimitedAvailability',
+				url: bookUrl
+			},
+			{
+				'@type': 'Offer',
+				name: site.retainer.name,
+				description: retainerDescription,
+				price: String(site.retainer.priceUSD),
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/LimitedAvailability',
 				url: bookUrl

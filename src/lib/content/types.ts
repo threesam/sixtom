@@ -55,6 +55,7 @@ export interface Site {
 	operator: Operator
 	audit: Offer
 	sprint: Offer
+	retainer: Offer
 	process: readonly ProcessStep[]
 	stats: readonly Stat[]
 	testimonial: Testimonial
