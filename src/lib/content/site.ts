@@ -22,8 +22,10 @@ export const site: Site = {
 		linkedinUrl: 'https://www.linkedin.com/in/threesam',
 		xUrl: 'https://x.com/six_to_m',
 		githubUrl: 'https://github.com/threesam',
-		soundcloudUrl: 'https://soundcloud.com/threesam',
-		substackUrl: 'https://substack.com/@threesam'
+		soundcloudUrl: 'https://soundcloud.com/threesam'
+		// Substack deliberately unlisted: the profile has no publication yet, and
+		// a sameAs pointing at an empty shell is an anti-signal. Re-add when
+		// essays actually syndicate there.
 	},
 	audit: {
 		name: 'audit',

@@ -15,7 +15,6 @@ export interface Operator {
 	xUrl: string
 	githubUrl: string
 	soundcloudUrl: string
-	substackUrl: string
 }
 
 export interface Offer {
