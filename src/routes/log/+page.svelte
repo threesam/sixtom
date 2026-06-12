@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { site } from '$lib/content'
 	import { LOG_ENTRIES } from '$lib/log'
 	import { blogJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 

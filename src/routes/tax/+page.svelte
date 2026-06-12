@@ -1,7 +1,6 @@
 <script lang="ts">
 	import VibeTaxCalculator from '$lib/components/VibeTaxCalculator.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import { site } from '$lib/content'
 </script>
 
 <svelte:head>
