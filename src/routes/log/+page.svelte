@@ -30,7 +30,6 @@
 	<meta name="description" content={blogDescription} />
 	<meta property="og:title" content="log | SIXTOM" />
 	<meta property="og:description" content={blogDescription} />
-	<meta property="og:url" content={`${site.siteUrl}/log`} />
 	<meta property="og:type" content="website" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html blogLd}

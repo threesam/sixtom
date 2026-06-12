@@ -15,7 +15,6 @@
 		property="og:description"
 		content="how much your vibe-coded prototype is costing you per year."
 	/>
-	<meta property="og:url" content={`${site.siteUrl}/tax`} />
 	<meta property="og:type" content="website" />
 </svelte:head>
 

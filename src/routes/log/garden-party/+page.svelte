@@ -80,7 +80,6 @@
 		property="og:description"
 		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
 	/>
-	<meta property="og:url" content="https://sixtom.com/log/garden-party" />
 	<meta name="twitter:card" content="summary" />
 	<link rel="preload" as="image" href="/assets/clouds.webp" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->

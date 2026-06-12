@@ -15,6 +15,7 @@
 
 <svelte:head>
 	<link rel="canonical" href={`${site.siteUrl}${page.url.pathname}`} />
+	<meta property="og:url" content={`${site.siteUrl}${page.url.pathname}`} />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html jsonLdHtml}
 </svelte:head>
