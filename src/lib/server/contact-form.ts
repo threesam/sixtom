@@ -75,14 +75,16 @@ function hasHeaderInjection(value: string): boolean {
 }
 
 export type SubmissionResult =
-	| { ok: true; message: string }
+	| { ok: true; message: string; suspicious?: true }
 	| { ok: false; status: number; message: string }
 
 export const SUCCESS_MESSAGE = "You're on the list."
 
-// Honeypot + time-trap silently 200 so attackers can't learn which layer filtered them.
+// Honeypot + time-trap silently 200 so attackers can't learn which layer
+// filtered them. `suspicious` lets callers skip side effects (e.g. the /notify
+// listmonk subscribe) without breaking the fake success the bot sees.
 function suspicious(): SubmissionResult {
-	return { ok: true, message: SUCCESS_MESSAGE }
+	return { ok: true, message: SUCCESS_MESSAGE, suspicious: true }
 }
 
 let cachedTransporter: Transporter | null = null
