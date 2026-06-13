@@ -108,6 +108,9 @@
 		<p class="text-fg-subtle mt-8 text-sm md:text-base">
 			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a month.
 		</p>
+		<p class="text-fg-subtle mt-2 text-sm md:text-base">
+			after: ${site.retainer.priceUSD.toLocaleString()}/mo keeps me on it. post-sprint only, 4 seats.
+		</p>
 	</div>
 </section>
 

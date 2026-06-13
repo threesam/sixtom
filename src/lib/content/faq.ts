@@ -17,7 +17,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'how much does it cost?',
 		answer:
-			'the audit is $1,500 flat. the sprint is $10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get the sprint at $7,500.'
+			'the audit is $1,500 flat. the sprint is $10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get the sprint at $7,500. after a sprint, the retainer is $1,500 a month.'
 	},
 	{
 		question: 'how long does it take?',
@@ -33,6 +33,11 @@ export const FAQ: readonly QA[] = [
 		question: 'how many clients do you take?',
 		answer:
 			"one a month, by appointment. that's the whole model — you get my full attention, not a queue."
+	},
+	{
+		question: 'what happens after the sprint?',
+		answer:
+			"you own everything either way. if you want me to stay on, there's the retainer — $1,500 a month: i keep it running, ship small iterations, and you get priority access when something breaks. post-sprint clients only, capped at 4 at a time."
 	},
 	{
 		question: "who's behind sixtom?",
