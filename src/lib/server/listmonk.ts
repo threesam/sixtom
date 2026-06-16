@@ -28,10 +28,7 @@ export async function subscribeToList(email: string, listUuid: string): Promise<
 		}
 		return true
 	} catch (error) {
-		console.error(
-			'listmonk subscribe failed:',
-			error instanceof Error ? error.message : 'unknown'
-		)
+		console.error('listmonk subscribe failed:', error instanceof Error ? error.message : 'unknown')
 		return false
 	}
 }

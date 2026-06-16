@@ -45,19 +45,22 @@ describe('JSON-LD generators', () => {
 		expect(ld.publisher['@id']).toBe(PERSON_ID)
 	})
 
-	it('serviceJsonLd lists both offers and links the person as provider by @id', () => {
+	it('serviceJsonLd lists all three offers and links the person as provider by @id', () => {
 		const ld = serviceJsonLd()
 		expect(ld['@context']).toBe('https://schema.org')
 		expect(ld['@type']).toBe('Service')
 		expect(ld.provider['@id']).toBe(PERSON_ID)
 		expect(ld.areaServed).toBe('Worldwide')
-		expect(ld.offers).toHaveLength(2)
+		expect(ld.offers).toHaveLength(3)
 		expect(ld.offers[0]?.name).toBe(site.audit.name)
 		expect(ld.offers[0]?.price).toBe(String(site.audit.priceUSD))
 		expect(ld.offers[0]?.availability).toBe('https://schema.org/InStock')
 		expect(ld.offers[1]?.name).toBe(site.sprint.name)
 		expect(ld.offers[1]?.price).toBe(String(site.sprint.priceUSD))
 		expect(ld.offers[1]?.availability).toBe('https://schema.org/LimitedAvailability')
+		expect(ld.offers[2]?.name).toBe(site.retainer.name)
+		expect(ld.offers[2]?.price).toBe(String(site.retainer.priceUSD))
+		expect(ld.offers[2]?.availability).toBe('https://schema.org/LimitedAvailability')
 	})
 
 	it('faqPageJsonLd maps Q&A pairs to a FAQPage', () => {
