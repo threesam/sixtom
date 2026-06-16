@@ -2,6 +2,7 @@
 	import { site, FAQ } from '$lib/content'
 	import { faqPageJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 	import BookCta from '$lib/components/BookCta.svelte'
+	import SiteFooter from '$lib/components/SiteFooter.svelte'
 
 	// Visible FAQ + matching FAQPage schema (engines require the answer text be on
 	// the page, which it is). Questions/answers live in src/lib/content/faq.ts.
@@ -24,8 +25,8 @@
 	{@html faqLd}
 </svelte:head>
 
-<div class="bg-surface min-h-screen">
-	<div class="mx-auto w-full max-w-3xl px-6 py-20">
+<div class="bg-surface flex min-h-screen flex-col">
+	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">
 		<header class="mb-16">
 			<a
 				href="/"
@@ -58,4 +59,5 @@
 			<BookCta event="cta_faq_book" class="mt-8" />
 		</div>
 	</div>
+	<SiteFooter />
 </div>
