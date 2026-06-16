@@ -1,6 +1,8 @@
 <script lang="ts">
 	import LogHero from '$lib/components/LogHero.svelte'
 	import MediaSlider from '$lib/components/MediaSlider.svelte'
+	import BookCta from '$lib/components/BookCta.svelte'
+	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import { LOG_ENTRIES } from '$lib/log'
 	import { blogPostingJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 
@@ -372,3 +374,14 @@
 		</footer>
 	</div>
 </article>
+
+<section class="mx-auto w-full max-w-2xl px-6 pb-20 md:pb-28">
+	<div class="border-border border-t pt-10">
+		<p class="text-fg text-lg leading-relaxed md:text-xl">
+			that was my own garden. yours is next — production-grade in two weeks, and you own it.
+		</p>
+		<BookCta event="cta_case_study_book" class="mt-8" />
+	</div>
+</section>
+
+<SiteFooter />
