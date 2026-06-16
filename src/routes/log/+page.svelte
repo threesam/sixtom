@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { LOG_ENTRIES } from '$lib/log'
 	import { blogJsonLd, renderJsonLd } from '$lib/seo/jsonld'
+	import SiteFooter from '$lib/components/SiteFooter.svelte'
 
 	const blogDescription =
-		'Case studies and build notes from the work — what I shipped, why, and what the numbers showed.'
+		'case studies and build notes from the work — what i shipped, why, and what the numbers showed.'
 	const blogLd = renderJsonLd(blogJsonLd(blogDescription))
 
 	// UTC so a calendar date like "2026-05-18" (parsed as UTC midnight) isn't
@@ -34,8 +35,8 @@
 	{@html blogLd}
 </svelte:head>
 
-<div class="bg-surface min-h-screen">
-	<div class="mx-auto w-full max-w-3xl px-6 py-20">
+<div class="bg-surface flex min-h-screen flex-col">
+	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">
 		<header class="mb-20">
 			<a
 				href="/"
@@ -45,11 +46,11 @@
 				sixtom
 			</a>
 			<p class="eyebrow mt-12 text-sm">the log</p>
-			<h2 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">
-				What I'm shipping, in public.
-			</h2>
+			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">
+				what i'm shipping, in public.
+			</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
-				Case studies and build notes — the decisions, the experiments, the numbers.
+				case studies and build notes — the decisions, the experiments, the numbers.
 			</p>
 		</header>
 
@@ -96,4 +97,5 @@
 			</ul>
 		{/if}
 	</div>
+	<SiteFooter />
 </div>
