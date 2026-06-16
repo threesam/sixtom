@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SiteFooter from '$lib/components/SiteFooter.svelte'
 </script>
 
 <svelte:head>
@@ -9,8 +10,8 @@
 	/>
 </svelte:head>
 
-<div class="bg-surface min-h-screen">
-	<div class="mx-auto w-full max-w-3xl px-6 py-20">
+<div class="bg-surface flex min-h-screen flex-col">
+	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">
 		<header class="mb-16">
 			<a
 				href="/"
@@ -59,4 +60,5 @@
 			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">last updated: may 2026</p>
 		</div>
 	</div>
+	<SiteFooter />
 </div>
