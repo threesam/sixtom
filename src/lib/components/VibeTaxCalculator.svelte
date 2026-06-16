@@ -52,9 +52,9 @@
 <section class="snap-section bg-surface">
 	<div class="mx-auto w-full max-w-3xl px-6 py-16 md:py-20">
 		<p class="eyebrow text-sm">your vibe-code tax</p>
-		<h2 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
+		<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
 			what's it costing you?
-		</h2>
+		</h1>
 		<p class="text-fg-muted mt-4 text-base leading-relaxed">
 			4 questions. instant number. no email.
 		</p>
