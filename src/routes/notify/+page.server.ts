@@ -21,7 +21,8 @@ export const actions = {
 			// but never for honeypot/time-trap fakes (`suspicious`), or bots would
 			// poison the list through the silent-200 path. Best-effort: a listmonk
 			// outage must not fail the signup the visitor was just promised.
-			const email = String(formData.get('email') ?? '').trim()
+			const emailField = formData.get('email')
+			const email = (typeof emailField === 'string' ? emailField : '').trim()
 			if (!result.suspicious && email) {
 				await subscribeToList(email, SIXTOM_LIST_UUID)
 			}
