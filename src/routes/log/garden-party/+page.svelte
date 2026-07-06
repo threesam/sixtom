@@ -102,8 +102,12 @@
 	<div class="text-fg-muted prose-log space-y-8 text-base leading-relaxed">
 		<p class="text-fg-muted text-lg leading-relaxed">
 			my wife offered me tea. i picked 'garden party.' that's how i ended up porting my garden —
-			<a href="https://threesam.com" class="text-accent hover:underline">threesam.com</a> — from Next.js
-			to SvelteKit. same routes, same design, same everything. a 1:1 swap. here's what happened.
+			<a
+				href="https://threesam.com"
+				data-umami-event="case_study_garden_link"
+				class="text-accent hover:underline">threesam.com</a
+			> — from Next.js to SvelteKit. same routes, same design, same everything. a 1:1 swap. here's what
+			happened.
 		</p>
 
 		<!-- STAT BAND -->
@@ -355,20 +359,32 @@
 		<footer class="border-border mt-12 border-t pt-8">
 			<p class="text-fg-subtle text-xs">
 				the work is public:
-				<a href="https://github.com/threesam/garden/pull/29" class="text-accent hover:underline"
-					>#29</a
+				<a
+					href="https://github.com/threesam/garden/pull/29"
+					data-umami-event="case_study_github_link"
+					data-umami-event-pr="29"
+					class="text-accent hover:underline">#29</a
 				>
 				(port),
-				<a href="https://github.com/threesam/garden/pull/30" class="text-accent hover:underline"
-					>#30</a
+				<a
+					href="https://github.com/threesam/garden/pull/30"
+					data-umami-event="case_study_github_link"
+					data-umami-event-pr="30"
+					class="text-accent hover:underline">#30</a
 				>
 				(perf),
-				<a href="https://github.com/threesam/garden/pull/31" class="text-accent hover:underline"
-					>#31</a
+				<a
+					href="https://github.com/threesam/garden/pull/31"
+					data-umami-event="case_study_github_link"
+					data-umami-event-pr="31"
+					class="text-accent hover:underline">#31</a
 				>
 				(content-prerender hotfix),
-				<a href="https://github.com/threesam/garden/pull/33" class="text-accent hover:underline"
-					>#33</a
+				<a
+					href="https://github.com/threesam/garden/pull/33"
+					data-umami-event="case_study_github_link"
+					data-umami-event-pr="33"
+					class="text-accent hover:underline">#33</a
 				> (route rename).
 			</p>
 		</footer>

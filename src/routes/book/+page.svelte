@@ -296,6 +296,7 @@
 							type="button"
 							onclick={back}
 							data-umami-event="book_step_back"
+							data-umami-event-step={step}
 							class="text-fg-subtle hover:text-fg text-sm tracking-widest uppercase transition-colors"
 						>
 							← back
@@ -307,6 +308,7 @@
 							onclick={next}
 							disabled={!canAdvance()}
 							data-umami-event="book_step_next"
+							data-umami-event-step={step}
 							class="btn-accent ml-auto px-6 py-3 text-base hover:opacity-90 disabled:opacity-60"
 						>
 							next →
