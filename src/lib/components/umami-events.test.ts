@@ -26,6 +26,8 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'cta_notify_submit', dir: 'route', path: 'notify/+page.svelte' },
 	{ event: 'cta_calc_book', dir: 'component', path: 'VibeTaxCalculator.svelte' },
 	{ event: 'cta_case_study_book', dir: 'route', path: 'log/garden-party/+page.svelte' },
+	{ event: 'case_study_garden_link', dir: 'route', path: 'log/garden-party/+page.svelte' },
+	{ event: 'case_study_github_link', dir: 'route', path: 'log/garden-party/+page.svelte' },
 	// These three are read directly by infra's Monday brief.py (ev.get('book_step_next'),
 	// ev.get('book_submit'), ev.get('book_qualified_booking_click')) — a rename here previously
 	// went silent in this repo's own tests but would break that external consumer. Pinned so a
