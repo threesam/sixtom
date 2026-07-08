@@ -34,7 +34,13 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	// rename fails here before the digest quietly zeroes out.
 	{ event: 'book_step_next', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'book_submit', dir: 'route', path: 'book/+page.svelte' },
-	{ event: 'book_qualified_booking_click', dir: 'route', path: 'book/+page.svelte' }
+	{ event: 'book_qualified_booking_click', dir: 'route', path: 'book/+page.svelte' },
+	{ event: 'footer_home', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'footer_log', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'footer_faq', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'footer_notify', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'footer_privacy', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'footer_terms', dir: 'component', path: 'SiteFooter.svelte' }
 ]
 
 describe('Umami CRO event instrumentation', () => {

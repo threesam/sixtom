@@ -18,11 +18,17 @@
 		</a>
 		<div class="text-fg-subtle flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
 			<span>© {year}</span>
-			<a href="/log" class="hover:text-fg transition-colors">log</a>
-			<a href="/faq" class="hover:text-fg transition-colors">faq</a>
-			<a href="/notify" class="hover:text-fg transition-colors">notify</a>
-			<a href="/privacy" class="hover:text-fg transition-colors">privacy</a>
-			<a href="/terms" class="hover:text-fg transition-colors">terms</a>
+			<a href="/log" data-umami-event="footer_log" class="hover:text-fg transition-colors">log</a>
+			<a href="/faq" data-umami-event="footer_faq" class="hover:text-fg transition-colors">faq</a>
+			<a href="/notify" data-umami-event="footer_notify" class="hover:text-fg transition-colors"
+				>notify</a
+			>
+			<a href="/privacy" data-umami-event="footer_privacy" class="hover:text-fg transition-colors"
+				>privacy</a
+			>
+			<a href="/terms" data-umami-event="footer_terms" class="hover:text-fg transition-colors"
+				>terms</a
+			>
 			<a
 				href={site.gardenUrl}
 				target="_blank"
