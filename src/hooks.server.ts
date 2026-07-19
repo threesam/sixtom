@@ -1,4 +1,5 @@
 import type { Handle } from '@sveltejs/kit'
+import { building } from '$app/environment'
 
 const MARKETING_CSP = [
 	"default-src 'self'",
@@ -34,6 +35,20 @@ const SECURITY_HEADERS: Readonly<Record<string, string>> = {
 }
 
 export const handle: Handle = async ({ event, resolve }) => {
+	// testing eject: ?test marks this browser so server-side analytics
+	// (fireServerEvent) skip it; ?test=0 rejoins. Client-side umami is
+	// ejected separately via localStorage in app.html — the cookie only
+	// exists because form-submit events fire from the server, which
+	// can't see localStorage. `building` guard: prerendering forbids
+	// touching url.searchParams.
+	if (!building) {
+		const test = event.url.searchParams.get('test')
+		if (test !== null) {
+			if (test === '0') event.cookies.delete('test_eject', { path: '/' })
+			else event.cookies.set('test_eject', '1', { path: '/', maxAge: 60 * 60 * 24 * 365, httpOnly: false })
+		}
+	}
+
 	const response = await resolve(event)
 
 	// CSP + security headers are only meaningful on HTML; static assets ship with

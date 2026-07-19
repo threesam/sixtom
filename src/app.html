@@ -67,6 +67,19 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
 		<link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png" />
 
+		<script>
+			// testing eject: ?test flips umami's native kill switch for this
+			// browser (persistent); ?test=0 rejoins. Server-side events use the
+			// test_eject cookie (hooks.server.ts) — this covers the client side.
+			try {
+				var q = new URLSearchParams(location.search)
+				if (q.has('test')) {
+					q.get('test') === '0'
+						? localStorage.removeItem('umami.disabled')
+						: localStorage.setItem('umami.disabled', '1')
+				}
+			} catch (e) {}
+		</script>
 		<script
 			defer
 			src="https://analytics.sixtom.com/script.js"

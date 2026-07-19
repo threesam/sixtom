@@ -7,6 +7,11 @@ const HOSTNAME = 'sixtom.com'
 // Fire-and-forget server-side Umami event. For signals that originate on the
 // server (successful form submits) where the client may have JS disabled.
 export function fireServerEvent(eventName: UmamiEvent, request: Request): void {
+	// testing eject: browsers marked by ?test (cookie set in hooks.server)
+	// don't produce server-side events. One guard here covers every caller.
+	if (/(?:^|;\s*)test_eject=1(?:;|$)/.test(request.headers.get('cookie') ?? '')) {
+		return
+	}
 	const userAgent = request.headers.get('user-agent') ?? 'unknown'
 	const referrer = request.headers.get('referer') ?? ''
 	const language = request.headers.get('accept-language')?.split(',')[0] ?? 'en'
