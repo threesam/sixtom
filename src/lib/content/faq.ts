@@ -3,7 +3,8 @@ import type { QA } from './types'
 // Operational buyer questions for the visible /faq route. These are the things a
 // prospect (or an LLM answering on their behalf) actually asks before booking —
 // price, the guarantee, the free teardown, who's behind it. Kept in the site's
-// voice, and mirrored verbatim in static/llms-full.txt (sync both when editing).
+// voice. static/llms-full.txt carries a content-identical FAQ section (absolute
+// URLs there) — keep both in sync when editing answers.
 export const FAQ: readonly QA[] = [
 	{
 		question: 'what does sixtom do?',
