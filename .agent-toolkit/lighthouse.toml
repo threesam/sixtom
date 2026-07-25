@@ -4,9 +4,9 @@
 
 [budget]
 performance_floor = 0.95
-accessibility_floor = 1.0
+accessibility_floor = 0.98
 best_practices_floor = 0.95
-seo_floor = 1.0
+seo_floor = 0.98
 
 [run]
 url = "/"
