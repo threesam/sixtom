@@ -56,7 +56,7 @@ export const calEvent: CalEvent = {
 	slug: 'discovery',
 	durationMinutes: 30,
 	description:
-		"30 minutes. tell me what you've built and where it's breaking — we figure out the X between you and shipping, and whether the audit or the sprint is the move. no pitch.",
+		"30 minutes. tell me what you've built and where it's breaking — we figure out the X between you and shipping, and whether the sprint is the move. no pitch.",
 	intakeQuestions: [
 		{
 			label: "what's the thing you've been close on but haven't shipped?",
@@ -69,13 +69,9 @@ export const calEvent: CalEvent = {
 			required: false
 		},
 		{
-			label: 'audit ($1,500) or sprint ($10,000)?',
+			label: 'where are you in the process?',
 			type: 'select',
-			options: [
-				'audit ($1,500) — figure it out first',
-				'sprint ($10,000) — i know what i need',
-				'not sure, want to talk it through'
-			],
+			options: ['on the waitlist', 'got my free teardown — ready to talk', 'just found sixtom'],
 			required: true
 		}
 	]

@@ -52,7 +52,7 @@
 	<meta name="robots" content="noindex, nofollow" />
 	<meta
 		name="description"
-		content="qualify for an audit or sprint with sixtom. 3 quick steps, then the booking link."
+		content="see if the sprint is a fit. 3 quick steps, then the booking link."
 	/>
 </svelte:head>
 
