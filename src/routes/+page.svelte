@@ -156,7 +156,7 @@
 </section>
 
 <!-- close / waitlist -->
-<section id="waitlist" class="surface-uv flex min-h-svh flex-col justify-between pt-20 md:pt-28">
+<section id="waitlist" class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<p class={eyebrowClass}>{o.close.scarcity}</p>
 		<h2 class={h2Class}>{o.close.heading}</h2>
@@ -207,7 +207,8 @@
 
 		<p class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed">{o.close.reward}</p>
 	</div>
-	<div class="mt-16">
-		<SiteFooter />
-	</div>
 </section>
+
+<!-- Page-level, outside the UV section, so the footer keeps the root dark
+     surface — the page opens dark and closes dark, same as every other route. -->
+<SiteFooter />

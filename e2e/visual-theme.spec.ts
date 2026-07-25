@@ -40,10 +40,11 @@ test.describe('Visual surface — dark/light alternation', () => {
 		}
 		expect(surfaces[0]).not.toBe(surfaces[1])
 
-		// Footer (inside the closing UV section) keeps its explicit dark surface —
-		// the page opens dark and visually closes dark.
+		// SiteFooter (inside the closing UV section) keeps its explicit dark
+		// surface — the page opens dark and visually closes dark. Scoped selector:
+		// the testimonial blockquote also contains a <footer> (attribution).
 		const footerBg = await page
-			.locator('footer')
+			.locator('footer', { has: page.locator('[data-umami-event="footer_home"]') })
 			.evaluate((el) => getComputedStyle(el).backgroundColor)
 		expect(footerBg).toBe(surfaces[0])
 
