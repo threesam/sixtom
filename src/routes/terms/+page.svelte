@@ -6,7 +6,7 @@
 	<title>terms | SIXTOM</title>
 	<meta
 		name="description"
-		content="how engagement with sixtom works. plain-English terms for the audit and the sprint."
+		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the free teardown."
 	/>
 </svelte:head>
 
@@ -30,14 +30,24 @@
 
 		<div class="text-fg-muted space-y-10 text-base leading-relaxed">
 			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">refunds</h2>
+				<h2 class="text-fg text-xl font-semibold tracking-tight">the guarantee</h2>
 				<p class="mt-3">
-					the audit — non-refundable once i've started. full refund if i haven't started within 7
-					days of payment.
+					the sprint — live in production by day 10, or the remaining payments are waived. "live"
+					means the deploy target we name in writing on the day-0 call. the guarantee clock pauses
+					while something i need sits with you — access, approvals, content, feedback — and resumes
+					when i have it.
 				</p>
 				<p class="mt-3">
-					the sprint — if we hit the agreed scope-check date and both see it won't ship as scoped,
-					we stop. you keep what was built, i refund 50%.
+					the day-5 scope check — if we both see it won't ship in scope, we stop there. you keep
+					everything built and pay only for the time used.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="text-fg text-xl font-semibold tracking-tight">the free teardown</h2>
+				<p class="mt-3">
+					the teardown is free, carries no obligation on either side, and i may decline to record
+					one if your project isn't a fit.
 				</p>
 			</section>
 
@@ -57,7 +67,7 @@
 				</p>
 			</section>
 
-			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">last updated: may 2026</p>
+			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">last updated: july 2026</p>
 		</div>
 	</div>
 	<SiteFooter />

@@ -2,42 +2,47 @@ import type { QA } from './types'
 
 // Operational buyer questions for the visible /faq route. These are the things a
 // prospect (or an LLM answering on their behalf) actually asks before booking —
-// price, scope, the day-5 guarantee, who's behind it. Kept in the site's voice.
+// price, the guarantee, the free teardown, who's behind it. Kept in the site's
+// voice, and mirrored verbatim in static/llms-full.txt (sync both when editing).
 export const FAQ: readonly QA[] = [
 	{
 		question: 'what does sixtom do?',
 		answer:
-			'you (or your AI) got something to a working demo. i take it from there to production-grade — secure, stable, ready for real users — in a two-week sprint. you own it on day 10.'
-	},
-	{
-		question: "what's the difference between the audit and the sprint?",
-		answer:
-			"the audit ($1,500) is a written breakdown plus a short video walkthrough of what's blocking you and whether a sprint makes sense — start here if you're not sure. the sprint ($10,000) is two weeks of me building it to production. the audit credits toward the sprint if you book within 30 days."
+			'you (or your AI) got something to a working demo. i take it from there to production-grade — secure, tested, measured, ready for real users — in a two-week sprint. live on day 10, and you own every line of it.'
 	},
 	{
 		question: 'how much does it cost?',
 		answer:
-			'the audit is $1,500 flat. the sprint is $10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get the sprint at $7,500. after a sprint, the retainer is $1,500 a month.'
+			'$10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get it at $7,500. that price buys the whole ledger on the home page — over $28,500 of itemized work.'
+	},
+	{
+		question: "what's the guarantee?",
+		answer:
+			"live in production by day 10, or the remaining payments are free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop — you keep everything built and pay only for the time used."
+	},
+	{
+		question: "what's the free teardown?",
+		answer:
+			"join the waitlist and i'll record a short teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch."
 	},
 	{
 		question: 'how long does it take?',
-		answer:
-			'the sprint is two weeks — live in production on day 10. the audit turns around within a week.'
+		answer: 'two weeks. live in production on day 10. one seat a month, by appointment.'
 	},
 	{
-		question: "what if it won't ship in two weeks?",
+		question: 'do you do SEO and getting found by AI?',
 		answer:
-			"there's a scope check on day 5. if we can both see it won't make it, we stop there. you keep everything built and pay only for the time used."
+			'the sprint lays the foundation: technical SEO, schema, and answer-engine structure, plus analytics so you can see it working. straight with you — search compounds on what you publish over months, so the sprint makes you findable and measurable from day one, and the 90-day growth map shows you where to push after.'
 	},
 	{
 		question: 'how many clients do you take?',
 		answer:
-			"one a month, by appointment. that's the whole model — you get my full attention, not a queue."
+			"one a month, by appointment. that's the whole model — you get my full attention, not a queue. when the seat's taken, the waitlist is open."
 	},
 	{
 		question: 'what happens after the sprint?',
 		answer:
-			"you own everything either way. if you want me to stay on, there's the retainer — $1,500 a month: i keep it running, ship small iterations, and you get priority access when something breaks. post-sprint clients only, capped at 4 at a time."
+			"you own everything either way — the code, the analytics, the runbook. there's a day-30 check-in to see what stuck. if you want me to stay on it after that, we talk then."
 	},
 	{
 		question: "who's behind sixtom?",
@@ -47,7 +52,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'is it really all async?',
 		answer:
-			'yes. daily progress drops in your channel, with one short mid-sprint sync to course-correct. no standups.'
+			'yes. a daily Loom + code drop in your channel, with one short mid-sprint sync to course-correct. no standups.'
 	},
 	{
 		question: 'what is the "vibe-code tax"?',
