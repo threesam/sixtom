@@ -1,0 +1,13 @@
+# Lighthouse budget floors for /lighthouse (advisory deltas + hard floors).
+# The site sells "performance to 100s" — the floors below are the never-breach
+# line, not the aspiration; the aspiration is verified manually per release.
+
+[budget]
+performance_floor = 0.95
+accessibility_floor = 0.98
+best_practices_floor = 0.95
+seo_floor = 0.98
+
+[run]
+url = "/"
+samples = 3

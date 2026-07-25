@@ -63,6 +63,13 @@
 	font-family: var(--font-display);
 }
 
+/* Accent teal at 70% lightness is ~2.5:1 on the white UV surface — small
+ * eyebrow text needs 4.5:1. Darkened teal (~7:1) carries the letterforms;
+ * the neon glow still comes from --shadow-accent where applied. */
+.surface-uv .eyebrow {
+	color: oklch(45% 0.12 195);
+}
+
 /* Register --gradient-angle as <angle> so CSS can interpolate it on transition.
  * Without @property, the gradient would swap instantly instead of rotating. */
 @property --gradient-angle {
