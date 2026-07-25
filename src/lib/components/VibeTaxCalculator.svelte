@@ -154,7 +154,7 @@
 				data-umami-event="cta_calc_book"
 				class="btn-accent mt-10 w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
 			>
-				see if a sprint can fix this
+				see if i can help
 			</a>
 		</div>
 	</div>

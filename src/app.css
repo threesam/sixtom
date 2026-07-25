@@ -33,8 +33,10 @@
 
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
-	--color-fg-muted: oklch(70.8% 0 0);
-	--color-fg-subtle: oklch(60% 0 0);
+	/* Muted/subtle lifted 2026-07-24 (Sam: "contrast not accessible") — subtle
+	 * was 5.01:1 (AA-only); now ~6.3:1 and ~8.9:1 on the dark surface. */
+	--color-fg-muted: oklch(75% 0 0);
+	--color-fg-subtle: oklch(66% 0 0);
 	--color-border: oklch(26.9% 0 0);
 	--color-border-strong: oklch(37.1% 0 0);
 	--color-accent: oklch(70% 0.15 195);
@@ -51,7 +53,7 @@
 	--color-surface: oklch(98% 0.005 85);
 	--color-fg: oklch(15% 0 0);
 	--color-fg-muted: oklch(40% 0 0);
-	--color-fg-subtle: oklch(50% 0 0);
+	--color-fg-subtle: oklch(45% 0 0); /* was 50% — 5.66:1 AA-only; now ~7:1 */
 	--color-border: oklch(86% 0.005 85);
 	--color-border-strong: oklch(72% 0.005 85);
 	--shadow-accent:

@@ -134,7 +134,7 @@ what your half-finished, AI-built prototype quietly costs you per year — lost 
 
 a 1:1 port of threesam.com from Next.js to SvelteKit. five hours of build time. bundle size dropped 40%. every Lighthouse score went up. full writeup at https://sixtom.com/log/garden-party.
 
-the premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and rebuild it in a framework i'd never shipped to production. same routes, same sketches, same aesthetic — different runtime. two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
+the premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and port it to SvelteKit — the framework i prefer and ship freelance, just never at the day job. same routes, same sketches, same aesthetic — different runtime. two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
 
 ## who i am
 

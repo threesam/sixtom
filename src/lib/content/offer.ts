@@ -148,7 +148,17 @@ export const grandSlam: GrandSlamOffer = {
 				]
 			}
 		],
-		payLine: `$${site.sprint.priceUSD.toLocaleString('en-US')} fixed. $${(site.sprint.introPriceUSD ?? 0).toLocaleString('en-US')} for the ${site.sprint.introNote ?? 'first clients'}. or ${site.sprint.paymentPlan ?? ''}.`,
+		// Built from parts (same idiom as jsonld's sprintDescription) so optional
+		// pricing fields drop cleanly instead of emitting "$0 …" or a bare "or .".
+		payLine: [
+			`$${site.sprint.priceUSD.toLocaleString('en-US')} fixed.`,
+			site.sprint.introPriceUSD
+				? `$${site.sprint.introPriceUSD.toLocaleString('en-US')} for the ${site.sprint.introNote ?? 'first clients'}.`
+				: '',
+			site.sprint.paymentPlan ? `or ${site.sprint.paymentPlan}.` : ''
+		]
+			.filter(Boolean)
+			.join(' '),
 		anchorLine:
 			'a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.'
 	},
