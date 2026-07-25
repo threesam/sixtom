@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import { grandSlam } from '$lib/content'
 	import type { ActionData } from './$types'
 
 	let { form }: { form: ActionData } = $props()
+
+	const close = grandSlam.close
 
 	let formStartedAt = $state('')
 	let enhanced = $state('')
@@ -15,12 +18,11 @@
 </script>
 
 <svelte:head>
-	<title>notify | SIXTOM</title>
+	<title>waitlist | SIXTOM</title>
 	<meta
 		name="description"
-		content="one client a month. drop your email to hear when the next sprint slot opens."
+		content="one client a month. join the waitlist — and get a free teardown of your app while you wait."
 	/>
-	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <div class="bg-surface flex min-h-screen flex-col">
@@ -36,13 +38,9 @@
 
 	<section class="flex flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<p class="eyebrow text-sm">not ready yet?</p>
-			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">
-				heads-up when the next slot opens.
-			</h1>
-			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
-				one client a month. drop your email and i'll let you know when i'm taking the next one.
-			</p>
+			<p class="eyebrow text-sm">{close.scarcity}</p>
+			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
+			<p class="text-fg-muted mt-6 text-lg leading-relaxed">{close.reward}</p>
 
 			<form
 				method="post"
@@ -54,7 +52,7 @@
 						submitting = false
 					}
 				}}
-				class="mt-10 flex flex-col gap-3 sm:flex-row"
+				class="mt-10 space-y-4"
 			>
 				<label class="sr-only" for="email">email address</label>
 				<input
@@ -63,15 +61,22 @@
 					type="email"
 					required
 					autocomplete="email"
-					placeholder="email you actually check"
-					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent flex-1 rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none disabled:opacity-60"
+					placeholder={close.emailPlaceholder}
+					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none disabled:opacity-60"
 				/>
-				<input type="hidden" name="name" value="Notify list signup" />
-				<input
-					type="hidden"
-					name="message"
-					value="Wants notification when next sprint slot opens."
-				/>
+				<label class="text-fg-muted block text-sm" for="build">
+					{close.buildLabel}
+					<textarea
+						id="build"
+						name="message"
+						required
+						rows="3"
+						maxlength="4000"
+						placeholder={close.buildPlaceholder}
+						class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent mt-2 w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60"
+					></textarea>
+				</label>
+				<input type="hidden" name="name" value="Waitlist signup" />
 				<input type="hidden" name="formStartedAt" bind:value={formStartedAt} />
 				<input type="hidden" name="enhanced" bind:value={enhanced} />
 				<input
@@ -88,7 +93,7 @@
 					disabled={submitting}
 					class="btn-accent px-6 py-3 text-lg hover:opacity-90 disabled:opacity-60"
 				>
-					{submitting ? 'sending…' : 'notify me →'}
+					{submitting ? 'sending…' : close.button}
 				</button>
 			</form>
 

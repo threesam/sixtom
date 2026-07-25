@@ -1,4 +1,4 @@
-import { site } from '$lib/content'
+import { site, grandSlam } from '$lib/content'
 import type { QA } from '$lib/content'
 import type { LogEntry } from '$lib/log'
 
@@ -109,10 +109,9 @@ export function webSiteJsonLd(): WebSiteLd {
 
 export function serviceJsonLd(): ServiceLd {
 	const bookUrl = `${site.siteUrl}/book`
-	const auditDescription = `a written breakdown plus a short video walkthrough of what's blocking you and whether a sprint makes sense. ${site.audit.cadence}`
 	// Built from parts so the optional intro/payment fields drop cleanly when unset.
 	const sprintDescription = [
-		'two weeks from working-for-you to production-grade.',
+		'two weeks from working demo to production-grade. live in production by day 10 — or the remaining payments are free.',
 		site.sprint.paymentPlan ? `${site.sprint.paymentPlan} available.` : '',
 		site.sprint.introPriceUSD
 			? `$${String(site.sprint.introPriceUSD)} intro for the ${site.sprint.introNote ?? 'first clients'}.`
@@ -121,27 +120,17 @@ export function serviceJsonLd(): ServiceLd {
 	]
 		.filter(Boolean)
 		.join(' ')
-	const retainerDescription = `keep me on it after the sprint — monitoring, small iterations, priority access. ${site.retainer.cadence}`
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'Service',
 		'@id': SERVICE_ID,
 		name: 'SIXTOM',
 		alternateName: ['Sixtom', 'sixtom'],
-		description: site.hero.subhead,
+		description: grandSlam.offerLine,
 		url: site.siteUrl,
 		areaServed: 'Worldwide',
 		provider: { '@id': PERSON_ID },
 		offers: [
-			{
-				'@type': 'Offer',
-				name: site.audit.name,
-				description: auditDescription,
-				price: String(site.audit.priceUSD),
-				priceCurrency: 'USD',
-				availability: 'https://schema.org/InStock',
-				url: bookUrl
-			},
 			{
 				'@type': 'Offer',
 				name: site.sprint.name,
@@ -153,12 +142,13 @@ export function serviceJsonLd(): ServiceLd {
 			},
 			{
 				'@type': 'Offer',
-				name: site.retainer.name,
-				description: retainerDescription,
-				price: String(site.retainer.priceUSD),
+				name: 'free teardown',
+				description:
+					"a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. join the waitlist to get one.",
+				price: '0',
 				priceCurrency: 'USD',
-				availability: 'https://schema.org/LimitedAvailability',
-				url: bookUrl
+				availability: 'https://schema.org/InStock',
+				url: `${site.siteUrl}/notify`
 			}
 		]
 	}

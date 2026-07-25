@@ -4,13 +4,13 @@ Conventions for any agent (Claude Code, Cursor, Codex, Aider, etc.) working on t
 
 ## What this project is
 
-**sixtom** — an offer site for productized services that take an AI-built prototype to production, delivered async:
+**sixtom** — a single grand-slam offer site (Hormozi-style), one client a month:
 
-- **The Audit** — $1,500. A written breakdown + short video walkthrough of what's blocking you and whether a sprint makes sense. ~1 week. Start here.
-- **The Sprint** — $10,000 (or 4 weekly payments of $2,500; first 3 clients $7,500). Two weeks from working-for-you to production-grade. Daily progress drops in the client's channel. Live on day 10; the client owns it.
-- **The Retainer** — $1,500/mo, post-sprint only, 4 seats. Monitoring, small iterations, priority access.
+- **The Production Sprint** — $10,000 flat (or 4 weekly payments of $2,500; first 3 clients $7,500). Two weeks; a 19-line itemized ledger totaling $28,500+ (foundation / growth foundation / brand / close / bonuses). **The guarantee: live in production by day 10, or the remaining payments are free**, with the day-5 scope check as the floor (stop, keep everything, pay only time used).
+- **The free teardown** — $0, via the waitlist (`/notify`): a short recorded teardown of the prospect's app. Top-of-funnel; the old $1,500 audit folded into it.
+- **The retainer is off-page by design** — a private post-sprint continuation pitched at the day-30 check-in, never on the site. Add-on services (content strategy, SEO iteration, experiments) are reactivation offers to past clients, also never on the site.
 
-One client a month, by appointment. Pricing/scope/cadence are the source of truth in `src/lib/content/site.ts`. The operator runs AI agents in parallel — agents type, he judges; the site reflects that operating model honestly.
+Pricing/scope/cadence source of truth: `src/lib/content/site.ts` (sprint, operator, process) + `src/lib/content/offer.ts` (the whole grand-slam page as typed data — ledger, guarantee, proof, close). Honest-at-zero rule: no "X of 3 left" counters anywhere until an intro slot actually sells; scarcity is stated as capacity ("1 client a month") only. The operator runs AI agents in parallel — agents type, he judges — but see voice rule #1: that mechanism is never advertised in buyer-facing copy.
 
 ## Commands
 
@@ -33,13 +33,13 @@ SvelteKit 2 + Svelte 5 (runes) + Tailwind 4, deployed to Vercel.
 
 ### 1. Offer site (multi-page)
 
-The home route (`src/routes/+page.svelte` + `+page.server.ts`) is the marketing page: a vertical scroll-snap deck of full-screen sections (hero → who-is-this-for → recognize → what-are-you-losing → only-two-weeks → why-me → the-ask), composed inline plus `Hero.svelte` and `SiteFooter.svelte`. It's SSR'd and edge-cached via `Cache-Control: s-maxage=86400, stale-while-revalidate=604800` in `src/hooks.server.ts`; `csr = false` in `+page.ts` ships zero SvelteKit client JS on initial paint.
+The home route (`src/routes/+page.svelte`) is the grand-slam page: 8 free-scrolling sections (hero → the wall → the ledger → the guarantee → proof → is-this-you → the two weeks → waitlist close), composed inline from `grandSlam` data plus `Hero.svelte`, with `SiteFooter.svelte` at page level (outside the closing UV section so it keeps the dark surface). The waitlist close is a **native cross-route form POST to `/notify?/notify`** — no JS on this page. It's SSR'd and edge-cached via `Cache-Control` in `src/hooks.server.ts`; `csr = false` in `+page.ts` ships zero SvelteKit client JS on initial paint.
 
 Supporting routes:
 
 - `/tax` — the "vibe-code tax" calculator (`VibeTaxCalculator.svelte`): 4 inputs, instant number, no email — a no-friction lead magnet.
 - `/book` — a 3-step qualification wizard (`book/+page.svelte` + `+page.server.ts`) that gates the Cal.com booking link; pre-build leads route to `/notify`.
-- `/notify` — email capture for "next slot opens"; banks the address in Listmonk (see §3).
+- `/notify` — the waitlist (+ free-teardown reward): email + "what did you build?"; banks the address in Listmonk (see §3). Indexable (in the sitemap) since the grand-slam migration; the schema's free-teardown offer URL points here.
 - `/faq` — Q&A with a matching `FAQPage` JSON-LD twin (copy from `src/lib/content/faq.ts`).
 - `/log` + `/log/garden-party` — build-in-public log + case study, with `Blog`/`BlogPosting` JSON-LD; uses `LogHero.svelte` + `MediaSlider.svelte`.
 - `/privacy`, `/terms` — plain-English legal.
@@ -47,9 +47,9 @@ Supporting routes:
 
 **Components** live in `src/lib/components/` and routes import them directly: `Hero`, `BookCta` (the "solve for X" booking CTA + `XMark`), `SiteFooter` (rendered per-page — there is no global footer in `+layout.svelte`), `VibeTaxCalculator`, `LogHero`, `MediaSlider`, `SanityStudio`.
 
-**Content is the source of truth.** Site-wide constants — operator + audit + sprint + retainer + process + stats + testimonial + URLs — live in `src/lib/content/site.ts`, typed by `Site`/`Offer` in `types.ts` (FAQ copy in `faq.ts`). **Update site.ts and the components AND the schema.org JSON-LD both follow automatically.**
+**Content is the source of truth.** Identity + sprint pricing + process + testimonial + URLs live in `src/lib/content/site.ts`; the entire grand-slam page copy (ledger, guarantee, proof, is-this-you, close) lives in `src/lib/content/offer.ts` typed by `GrandSlamOffer` (FAQ copy in `faq.ts`). **Update the content files and the components AND the schema.org JSON-LD follow automatically.** `content.test.ts` pins the ledger sum ($28,500), the derived pay line, the day-10 guarantee, and two copy rules: no "agent" in customer copy, no slot counters.
 
-Schema.org JSON-LD (Person, WebSite, Service with all three offers, plus per-page FAQPage/Blog/BlogPosting nodes merged by `@id`) is generated in `src/lib/seo/jsonld.ts` and injected via `src/routes/+layout.svelte` + the individual routes. Browser `<title>`, `<meta description>`, canonical, OG/Twitter live in `src/app.html` and per-route `<svelte:head>`. Static AEO files: `static/llms.txt`, `static/llms-full.txt`, `static/robots.txt`, `static/og.png`, `static/favicon.svg`.
+Schema.org JSON-LD (Person, WebSite, Service with the two live offers — sprint + free teardown — plus per-page FAQPage/Blog/BlogPosting nodes merged by `@id`) is generated in `src/lib/seo/jsonld.ts` and injected via `src/routes/+layout.svelte` + the individual routes. Browser `<title>`, `<meta description>`, canonical, OG/Twitter live in `src/app.html` and per-route `<svelte:head>`. Static AEO files: `static/llms.txt`, `static/llms-full.txt`, `static/robots.txt`, `static/og.png`, `static/favicon.svg`.
 
 ### 2. Embedded Sanity Studio (`/sanity/*`)
 
@@ -65,7 +65,7 @@ Both the `/notify` capture and the `/book` qualification wizard post to SvelteKi
 
 - Field validation: required `name`/`email`/`message`, length caps, regex on email, CRLF header-injection check.
 - Honeypot: non-empty `company` field → silent success.
-- Time-trap (gated on `enhanced=1`): submissions before `CONTACT_FORM_MIN_SUBMIT_MS` (default 3000ms) → silent success. The `enhanced` flag is set by `static/enhance-form.js` on page load; if that script never ran (ad-blocker, defer race, no-JS visitor), this layer is skipped so real visitors aren't silent-failed.
+- Time-trap (gated on `enhanced=1`): submissions before `CONTACT_FORM_MIN_SUBMIT_MS` (default 3000ms) → silent success. The `enhanced` flag is set by the page's `$effect` after hydration; if it never ran (no-JS visitor — including every home-page waitlist submit, since home is `csr=false`), this layer is skipped so real visitors aren't silent-failed. The `/notify` action also skips the Listmonk subscribe for `CONTACT_FORM_TEST_EMAIL` so e2e runs never pollute the real list.
 - In-memory IP rate limit (`CONTACT_FORM_RATE_LIMIT_WINDOW_MS` / `CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS`, defaults 60s / 5). Per-process, not durable across cold starts. Keyed off `event.getClientAddress()` (Vercel-resolved, unspoofable).
 
 Request body size cap (`MAX_REQUEST_BYTES`, 20 KB) is enforced in the action before parsing — missing `content-length` is also rejected as 413.
@@ -78,19 +78,19 @@ Reads `site.calEvent` from the content layer, upserts the intro event in Cal.com
 
 ## Design system
 
-`src/app.css` defines semantic tokens via `@theme` and per-section overrides via `.surface-uv` (blacklight: white + black text + glowing accents) and `.surface-dark` (re-establishes the dark palette inside a `.surface-uv` parent — e.g. the marquee bar).
+`src/app.css` defines semantic tokens via `@theme` and per-section overrides via `.surface-uv` (blacklight: white + black text + glowing accents). Elements needing the dark palette inside/after a UV context sit outside the `.surface-uv` element (see `SiteFooter` on home) rather than using an override class.
 
 Tokens: `--color-surface`, `--color-fg`, `--color-fg-muted`, `--color-fg-subtle`, `--color-border`, `--color-border-strong`, `--color-accent` (teal), `--gradient-accent` (subtle horizontal teal flow for `bg-accent`), `--color-on-accent`, `--color-error`, `--shadow-accent` (none on dark, glow on UV), `--font-sans` (Recursive + system mono fallback), `--font-display` (Space Grotesk + system sans fallback).
 
 Custom utilities: `.btn-accent` (gradient bg + dark text + shadow), `.eyebrow` (accent color + tracking + uppercase + shadow), `.text-accent` (accent text + shadow).
 
-Sections alternate D / UV / D / UV / D (marquee bar resets to dark). The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together.
+Home sections alternate D / UV strictly (8 sections, first dark; `SiteFooter` sits at page level so it closes dark — pinned by `e2e/visual-theme.spec.ts`). The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together. Contrast floors (lifted 2026-07-24): dark `fg-subtle` ≈6.3:1, `fg-muted` ≈8.9:1, UV `fg-subtle` ≈7:1.
 
 ## Voice & copy guardrails
 
 **Apply to every change that touches buyer-facing copy.** The operator's published voice (see his "Vibe coding insight" post — wry, observational, terse, _italics for genuine emphasis_, em-dashes only when earned) is the target.
 
-1. **The agent-orchestration narrative IS the value prop** — Sam runs a fleet of agents in parallel; agents type, he judges. Don't write "AI-leveraged" or "AI-accelerated" as generic flavor; do write specifically about what the fleet does.
+1. **Results over mechanism (Sam, 2026-07-24): AI is never advertised as the method.** The word "agent" must not appear in buyer-facing offer copy (pinned by `content.test.ts`). AI appears only as the _client's_ context — the wall they hit, the answer-engines that should recommend them, the AI leverage session that teaches _them_. The method sells as competence and receipts: senior judgment, speed, measured results.
 2. **No "most teams" / "most people"** framing. Frame around what _the operator has been doing_.
 3. **Lowercase everything** — eyebrows, headings, body. The live site is strictly lowercase (`faq.`, `who is this for?`, `what's it costing you?`); the only uppercase is the `SIXTOM` brand wordmark and CSS-uppercased eyebrows. (Article poster titles like `GARDEN PARTY` via `LogHero` are the deliberate exception.)
 4. **Periods over commas when reasonable.** Short. Short. Then long if needed. Then a punchline.
@@ -103,7 +103,7 @@ Sections alternate D / UV / D / UV / D (marquee bar resets to dark). The visual 
 - **One responsibility per file.** Components render; content lives in `src/lib/content/`; SEO logic in `src/lib/seo/`; scripts in `scripts/`.
 - **No barrel re-exports for components.** Routes import components directly from `$lib/components/...`.
 - **Content layer is the source of truth.** Don't hardcode buyer-facing strings in components if they belong in `site.ts`.
-- **Schema follows content.** Adding a new offer field → add to `Site`/`Offer` type → render in component → expose via JSON-LD if SEO-relevant.
+- **Schema follows content.** Adding a new offer field → add to the types in `types.ts` (`Site`/`Offer`/`GrandSlamOffer`) → render in component → expose via JSON-LD if SEO-relevant. The static AEO files (`static/llms.txt`, `static/llms-full.txt`) carry the same offer — keep them in sync with `offer.ts`/`faq.ts` when copy changes.
 
 ## Bloat policy
 
@@ -155,5 +155,5 @@ Items that must be set by Sam, not by an agent:
 ## When in doubt
 
 - Read this file again.
-- Read `src/lib/content/site.ts` (the canonical pricing/copy source of truth).
+- Read `src/lib/content/site.ts` + `src/lib/content/offer.ts` (the canonical pricing/copy sources of truth).
 - Don't add scope without explicit ask. Bias to delete.

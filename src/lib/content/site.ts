@@ -7,12 +7,6 @@ export const site: Site = {
 	bookingUrl: 'https://cal.com/sixtom/discovery',
 	gardenUrl: 'https://threesam.com',
 	tagline: 'we just want to build cool shit and help people chase their dreams',
-	thesis: 'vibe coding is how you slowly become the intern of your own codebase.',
-	thesisBody:
-		"AI gets you to a demo because the model can hold the whole thing in its head. once the codebase outgrows that window, the AI starts making it worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.",
-	hero: {
-		subhead: 'AI built your first draft. i build your solution.'
-	},
 	operator: {
 		name: "Salvatore D'Angelo",
 		jobTitle: 'lead engineer',
@@ -27,47 +21,28 @@ export const site: Site = {
 		// a sameAs pointing at an empty shell is an anti-signal. Re-add when
 		// essays actually syndicate there.
 	},
-	audit: {
-		name: 'audit',
-		longName: 'the audit',
-		priceUSD: 1500,
-		cadence: 'turnaround within a week.'
-	},
 	sprint: {
 		name: 'sprint',
-		longName: 'async sprint',
+		longName: 'the production sprint',
 		priceUSD: 10000,
 		introPriceUSD: 7500,
 		introNote: 'first 3 clients',
 		cadence: '1 client a month, by appointment.',
 		paymentPlan: '4 weekly payments of $2,500'
 	},
-	// The recurring rung: only offered after a sprint, deliberately capped so it
-	// stays a floor under the practice, not a second job on top of it.
-	retainer: {
-		name: 'retainer',
-		longName: 'i keep it running',
-		priceUSD: 1500,
-		cadence: 'monthly. post-sprint clients only. 4 seats.'
-	},
 	process: [
+		{ label: 'wk 1 · day 0', body: 'a 30-minute call. we figure out the thing.' },
 		{
-			label: 'Week 1, day 0',
-			body: '30-min call (or skip if you did the audit). We figure out the thing.'
+			label: 'days 1–7',
+			body: 'heads down. daily Loom + code drop in your channel, so you watch it happen.'
 		},
-		{ label: 'Days 1–7', body: 'Agents build. I steer. Daily Loom + code drop in your channel.' },
-		{ label: 'Mid-sprint', body: '1 short sync. Course-correct if needed.' },
 		{
-			label: 'Day 5 (scope check)',
-			body: "If we can both see it won't ship in scope, we stop here. You keep what we built."
+			label: 'day 5 · scope check',
+			body: "if it can't ship in scope, we stop here. you keep what we built."
 		},
-		{ label: 'Day 10', body: 'Live in production. You own it.' },
-		{ label: 'Day 30', body: "Check-in. What stuck, what didn't." }
-	],
-	stats: [
-		{ value: '2 weeks', label: 'per sprint' },
-		{ value: 'all async', label: 'no standups' },
-		{ value: '$10,000', label: 'fixed' }
+		{ label: 'mid-sprint', body: 'one short sync. course-correct if needed.' },
+		{ label: 'day 10', body: 'live in production. you own it. (or the rest is free.)' },
+		{ label: 'day 30', body: "check-in. what stuck, what didn't." }
 	],
 	testimonial: {
 		quote:
@@ -81,7 +56,7 @@ export const calEvent: CalEvent = {
 	slug: 'discovery',
 	durationMinutes: 30,
 	description:
-		"30 minutes. tell me what you've built and where it's breaking — we figure out the X between you and shipping, and whether the audit or the sprint is the move. no pitch.",
+		"30 minutes. tell me what you've built and where it's breaking — we figure out the X between you and shipping, and whether the sprint is the move. no pitch.",
 	intakeQuestions: [
 		{
 			label: "what's the thing you've been close on but haven't shipped?",
@@ -94,13 +69,9 @@ export const calEvent: CalEvent = {
 			required: false
 		},
 		{
-			label: 'audit ($1,500) or sprint ($10,000)?',
+			label: 'where are you in the process?',
 			type: 'select',
-			options: [
-				'audit ($1,500) — figure it out first',
-				'sprint ($10,000) — i know what i need',
-				'not sure, want to talk it through'
-			],
+			options: ['on the waitlist', 'got my free teardown — ready to talk', 'just found sixtom'],
 			required: true
 		}
 	]

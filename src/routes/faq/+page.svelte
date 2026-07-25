@@ -13,12 +13,12 @@
 	<title>faq | SIXTOM</title>
 	<meta
 		name="description"
-		content="what sixtom does, what it costs, how the audit, sprint, and retainer work, and what happens if it won't ship in two weeks."
+		content="what sixtom costs, how the two-week sprint and the day-10 guarantee work, and how to get the free teardown."
 	/>
 	<meta property="og:title" content="faq | SIXTOM" />
 	<meta
 		property="og:description"
-		content="what sixtom does, what it costs, and how the audit and sprint work."
+		content="what sixtom costs, how the sprint and the day-10 guarantee work."
 	/>
 	<meta property="og:type" content="website" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
