@@ -160,7 +160,7 @@ export const grandSlam: GrandSlamOffer = {
 	proof: {
 		eyebrow: 'proof · something from nothing',
 		heading: 'a solo practice with no way to reach its own clients.',
-		para: 'a men’s-mental-health therapist had a slow, drifting site and one channel: rented directory listings, with insurance deciding who found him. i rebuilt the whole thing custom and gave him a growth engine he owns. the craft shows in the numbers:',
+		para: "a men's-mental-health therapist had a slow, drifting site and one channel: rented directory listings, with insurance deciding who found him. i rebuilt the whole thing custom and gave him a growth engine he owns. the craft shows in the numbers:",
 		tiles: [
 			{ value: '100s', label: 'desktop Lighthouse' },
 			{ value: '8.3s→2.9s', label: 'mobile load' },

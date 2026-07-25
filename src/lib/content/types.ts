@@ -3,8 +3,6 @@ export interface QA {
 	answer: string
 }
 
-export type StringList = readonly string[]
-
 export interface Operator {
 	name: string
 	jobTitle: string
