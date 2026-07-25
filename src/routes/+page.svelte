@@ -1,140 +1,112 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte'
-	import BookCta from '$lib/components/BookCta.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import { site } from '$lib/content'
+	import { site, grandSlam, LEDGER_TOTAL_USD } from '$lib/content'
 
-	const h2Class =
-		'text-fg text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl'
-	const bodyClass = 'text-fg-muted mt-8 max-w-2xl text-base leading-relaxed md:text-lg'
+	const o = grandSlam
+	const eyebrowClass = 'eyebrow text-sm'
+	const h2Class = 'text-fg mt-2 text-3xl leading-tight font-bold tracking-tight md:text-5xl'
+	const bodyClass = 'text-fg-muted mt-6 max-w-2xl text-base leading-relaxed md:text-lg'
+	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 </script>
-
-<!-- Scroll-snap is the home page's full-screen-section experience only. Scope it
-     to this route via the head so every other (overflowing) route — book,
-     notify, tax, … — scrolls freely instead of being snap-jacked. -->
-<svelte:head>
-	<style>
-		html {
-			scroll-snap-type: y mandatory;
-		}
-	</style>
-</svelte:head>
 
 <Hero />
 
-<!-- who this is for -->
-<section class="snap-section surface-uv">
+<!-- the wall -->
+<section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>who is this for?</h2>
-		<p class={bodyClass}>you already built it. you're probably one of these:</p>
-		<ul class="text-fg-muted mt-10 space-y-6 text-base leading-relaxed md:text-lg">
-			<li>
-				<span class="text-fg font-semibold">the demo darling.</span>
-				you killed the pitch, then it folded the first time a dozen real people logged in.
-			</li>
-			<li>
-				<span class="text-fg font-semibold">paying &amp; breaking.</span>
-				real revenue, and all-nighters fixing production.
-			</li>
-			<li>
-				<span class="text-fg font-semibold">about to scale.</span>
-				someone just asked you to 10× the users. you said yes and started sweating.
-			</li>
-			<li>
-				<span class="text-fg font-semibold">enterprise-blocked.</span>
-				one contract away from real money, stuck behind a brick wall of compliance.
-			</li>
+		<p class={eyebrowClass}>{o.wall.eyebrow}</p>
+		<h2 class={h2Class}>{o.wall.thesis}</h2>
+		<p class={bodyClass}>{o.wall.para}</p>
+		<p class="text-fg mt-8 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
+			{o.wall.turn}
+		</p>
+		<ul class="mt-8 grid gap-4 md:grid-cols-3">
+			{#each o.wall.costCards as card (card.title)}
+				<li class="border-border rounded-lg border p-6">
+					<p class="text-fg font-semibold">{card.title}</p>
+					<p class="text-fg-muted mt-2 text-sm leading-relaxed">{card.sub}</p>
+				</li>
+			{/each}
 		</ul>
+		<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
+			{o.wall.taxLine}
+			<a href="/tax" data-umami-event="cta_tax_calc" class="link-coin">run yours →</a>
+		</p>
 	</div>
 </section>
 
-<!-- recognize any of these -->
-<section class="snap-section bg-surface">
+<!-- the ledger -->
+<section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>recognize any of these?</h2>
-		<ul class="text-fg-muted mt-10 space-y-6 text-base leading-relaxed md:text-lg">
-			<li>
-				<span class="text-fg font-semibold">uptime.</span>
-				your biggest customer wants a number you can't give.
-			</li>
-			<li>
-				<span class="text-fg font-semibold">security.</span>
-				a sale is stuck waiting on a review you don't pass.
-			</li>
-			<li>
-				<span class="text-fg font-semibold">scale.</span>
-				investors keep asking how. you keep saying "we'll figure it out."
-			</li>
-			<li>
-				<span class="text-fg font-semibold">peace of mind.</span>
-				every time you launch a feature, something else breaks.
-			</li>
-		</ul>
-	</div>
-</section>
+		<p class={eyebrowClass}>{o.ledger.eyebrow}</p>
+		<h2 class={h2Class}>{o.ledger.heading}</h2>
+		<p class={bodyClass}>{o.ledger.para}</p>
 
-<!-- what are you losing -->
-<section class="snap-section surface-uv">
-	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>what are you losing?</h2>
-		<p class="text-fg mt-10 text-2xl font-semibold tabular-nums md:text-4xl">
-			deals × value × time = $
-		</p>
-		<p class="text-fg-muted mt-6 text-base leading-relaxed md:text-lg">
-			typical case: 1/mo × $50k × 12 = ~$600k/yr. plus the weekends. plus the sleep.
-		</p>
-		<p class="mt-10">
-			<a
-				href="/tax"
-				data-umami-event="cta_tax_calc"
-				class="no-link border-fg text-fg hover:border-accent hover:bg-accent inline-block rounded-full border-2 px-8 py-3 text-lg font-bold transition-colors duration-[400ms] md:px-10 md:py-4 md:text-xl"
+		{#each o.ledger.groups as group (group.title)}
+			<div class="mt-12">
+				<p class="eyebrow text-fg-subtle text-xs">{group.title}</p>
+				<ul class="border-border divide-border mt-4 divide-y border-y">
+					{#each group.lines as item (item.line)}
+						<li class="flex items-baseline justify-between gap-6 py-4">
+							<div>
+								<p class="text-fg text-base font-semibold">{item.line}</p>
+								<p class="text-fg-muted mt-1 text-sm leading-relaxed">{item.sub}</p>
+							</div>
+							<p class="text-fg-subtle shrink-0 text-sm font-semibold tabular-nums">
+								{item.valueUSD === null ? item.valueLabel : usd(item.valueUSD)}
+							</p>
+						</li>
+					{/each}
+				</ul>
+				{#if group.note}
+					<p class="text-fg-subtle mt-4 max-w-2xl text-sm leading-relaxed">{group.note}</p>
+				{/if}
+			</div>
+		{/each}
+
+		<div class="border-border mt-12 border-t pt-8">
+			<div class="flex items-baseline justify-between gap-6">
+				<p class="text-fg text-lg font-bold">total value</p>
+				<p class="text-fg text-lg font-bold tabular-nums">{usd(LEDGER_TOTAL_USD)}+</p>
+			</div>
+			<div
+				class="mt-3 flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between md:gap-6"
 			>
-				run yours
-			</a>
-		</p>
+				<p class="text-fg-muted text-base">you pay</p>
+				<p class="text-fg text-base font-semibold md:text-right">{o.ledger.payLine}</p>
+			</div>
+			<p class="text-fg-subtle mt-8 max-w-2xl text-sm leading-relaxed">{o.ledger.anchorLine}</p>
+		</div>
 	</div>
 </section>
 
-<!-- how this works -->
-<section id="offers" class="snap-section bg-surface">
+<!-- the guarantee -->
+<section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>only two weeks?</h2>
-		<ul class="text-fg-muted mt-10 space-y-2 text-base leading-relaxed md:text-lg">
-			<li>daily progress.</li>
-			<li>the answer when they ask.</li>
-			<li>your weekends back.</li>
-			<li>live in production on day 10. you own it.</li>
+		<p class={eyebrowClass}>{o.guarantee.eyebrow}</p>
+		<h2 class={h2Class}>{o.guarantee.headline}</h2>
+		<p class={bodyClass}>{o.guarantee.body}</p>
+	</div>
+</section>
+
+<!-- proof -->
+<section class="bg-surface py-20 md:py-28">
+	<div class="mx-auto w-full max-w-3xl px-6">
+		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
+		<h2 class={h2Class}>{o.proof.heading}</h2>
+		<p class={bodyClass}>{o.proof.para}</p>
+		<ul class="mt-10 grid list-none grid-cols-2 gap-6 p-0 md:grid-cols-4">
+			{#each o.proof.tiles as tile (tile.label)}
+				<li>
+					<p class="text-fg text-2xl font-bold tabular-nums md:text-3xl">{tile.value}</p>
+					<p class="text-fg-subtle mt-1 text-xs tracking-widest uppercase">{tile.label}</p>
+				</li>
+			{/each}
 		</ul>
-		<p class="text-fg-subtle mt-8 text-sm md:text-base">
-			${site.sprint.priceUSD.toLocaleString()} flat. or {site.sprint.paymentPlan}. 1 client a month.
-		</p>
-		<p class="text-fg-subtle mt-2 text-sm md:text-base">
-			after: ${site.retainer.priceUSD.toLocaleString()}/mo keeps me on it. post-sprint only, 4
-			seats.
-		</p>
-	</div>
-</section>
-
-<!-- why me -->
-<section class="snap-section surface-uv">
-	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>why me?</h2>
-		<p class={bodyClass}>
-			day job: lead engineer at Made In Cookware. multi-million visitors a month. i rebuilt my own
-			creative work — <a
-				href={site.gardenUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				data-umami-event="cta_garden_link_why"
-				class="link-coin">the Garden</a
-			> — on the same methods. 5 hours of build time, 40% smaller, every score up.
-		</p>
-		<p class="mt-6 text-sm">
-			<a href="/log/garden-party" data-umami-event="cta_case_study" class="text-fg-muted">
-				the writeup
-			</a>
-		</p>
-		<blockquote class="text-fg-muted mt-12 max-w-2xl text-base leading-relaxed italic md:text-lg">
+		<p class={bodyClass}>{o.proof.para2}</p>
+		<p class="text-fg-subtle mt-6 max-w-2xl text-sm leading-relaxed">{o.proof.bridge}</p>
+		<blockquote class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg">
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
 				— {site.testimonial.attribution}
@@ -143,19 +115,99 @@
 	</div>
 </section>
 
-<!-- the ask -->
-<section class="snap-section bg-surface !justify-between">
-	<div class="flex w-full flex-1 items-center px-6 py-16">
-		<div class="mx-auto w-full max-w-3xl">
-			<h2 class="text-fg text-4xl leading-tight font-bold tracking-tight md:text-6xl lg:text-7xl">
-				want to look at it together?
-			</h2>
-			<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
-				${site.audit.priceUSD.toLocaleString()} to look at what you've got. within a week: a written breakdown
-				plus a short video walkthrough. credited toward the sprint if you book one within 30 days.
-			</p>
-			<BookCta event="cta_final_book" class="mt-12" />
+<!-- is this you -->
+<section class="surface-uv py-20 md:py-28">
+	<div class="mx-auto w-full max-w-3xl px-6">
+		<p class={eyebrowClass}>{o.isThisYou.eyebrow}</p>
+		<div class="mt-6 grid gap-10 md:grid-cols-2">
+			<div>
+				<p class="text-fg text-lg font-semibold">{o.isThisYou.yesLead}</p>
+				<ul class="text-fg-muted mt-4 space-y-3 text-base leading-relaxed">
+					{#each o.isThisYou.yes as item (item)}
+						<li>{item}</li>
+					{/each}
+				</ul>
+			</div>
+			<div>
+				<p class="text-fg text-lg font-semibold">{o.isThisYou.noLead}</p>
+				<ul class="text-fg-muted mt-4 space-y-3 text-base leading-relaxed">
+					{#each o.isThisYou.no as item (item)}
+						<li>{item}</li>
+					{/each}
+				</ul>
+			</div>
 		</div>
 	</div>
-	<SiteFooter />
+</section>
+
+<!-- the two weeks -->
+<section class="bg-surface py-20 md:py-28">
+	<div class="mx-auto w-full max-w-3xl px-6">
+		<p class={eyebrowClass}>the two weeks</p>
+		<ol class="border-border divide-border mt-8 divide-y border-y">
+			{#each site.process as step (step.label)}
+				<li class="grid gap-1 py-5 md:grid-cols-[12rem_1fr] md:gap-6">
+					<p class="text-fg-subtle text-xs tracking-widest uppercase">{step.label}</p>
+					<p class="text-fg-muted text-base leading-relaxed">{step.body}</p>
+				</li>
+			{/each}
+		</ol>
+	</div>
+</section>
+
+<!-- close / waitlist -->
+<section id="waitlist" class="surface-uv flex min-h-svh flex-col justify-between pt-20 md:pt-28">
+	<div class="mx-auto w-full max-w-3xl px-6">
+		<p class={eyebrowClass}>{o.close.scarcity}</p>
+		<h2 class={h2Class}>{o.close.heading}</h2>
+
+		<!-- csr=false: plain cross-route POST to the /notify action. No JS anywhere
+		     on this page — the visitor lands on /notify with the server-rendered
+		     result. Honeypot + rate limit + validation still apply server-side. -->
+		<form method="post" action="/notify?/notify" class="mt-10 max-w-xl space-y-4">
+			<label class="sr-only" for="waitlist-email">email address</label>
+			<input
+				id="waitlist-email"
+				name="email"
+				type="email"
+				required
+				autocomplete="email"
+				placeholder={o.close.emailPlaceholder}
+				class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none"
+			/>
+			<label class="text-fg-muted block text-sm" for="waitlist-build">
+				{o.close.buildLabel}
+				<textarea
+					id="waitlist-build"
+					name="message"
+					required
+					rows="3"
+					maxlength="4000"
+					placeholder={o.close.buildPlaceholder}
+					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent mt-2 w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none"
+				></textarea>
+			</label>
+			<input type="hidden" name="name" value="Waitlist signup" />
+			<input
+				type="text"
+				name="company"
+				tabindex="-1"
+				autocomplete="off"
+				aria-hidden="true"
+				class="absolute top-auto left-[-9999px] h-px w-px overflow-hidden"
+			/>
+			<button
+				type="submit"
+				data-umami-event="cta_waitlist_submit"
+				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12"
+			>
+				{o.close.button}
+			</button>
+		</form>
+
+		<p class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed">{o.close.reward}</p>
+	</div>
+	<div class="mt-16">
+		<SiteFooter />
+	</div>
 </section>

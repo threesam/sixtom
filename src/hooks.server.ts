@@ -45,7 +45,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const test = event.url.searchParams.get('test')
 		if (test !== null) {
 			if (test === '0') event.cookies.delete('test_eject', { path: '/' })
-			else event.cookies.set('test_eject', '1', { path: '/', maxAge: 60 * 60 * 24 * 365, httpOnly: false })
+			else
+				event.cookies.set('test_eject', '1', {
+					path: '/',
+					maxAge: 60 * 60 * 24 * 365,
+					httpOnly: false
+				})
 		}
 	}
 
