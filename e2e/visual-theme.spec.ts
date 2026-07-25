@@ -16,32 +16,37 @@ async function openPage(browser: Browser, width = 1280, height = 720) {
 }
 
 test.describe('Visual surface — dark/light alternation', () => {
-	test('sections alternate D L D L, first dark, marquee dark', async ({ browser }) => {
+	test('grand-slam page: 8 sections alternate dark/UV, first dark', async ({ browser }) => {
 		const { context, page } = await openPage(browser)
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
 
+		// hero → wall → ledger → guarantee → proof → is-this-you → timeline → close
 		const sections = await page.locator('section').all()
-		expect(sections.length).toBe(5)
+		expect(sections.length).toBe(8)
 
 		const surfaces = await Promise.all(
 			sections.map((s) => s.evaluate((el) => getComputedStyle(el).backgroundColor))
 		)
 
-		// Alternation D L D L D — first/third/fifth dark, second/fourth UV.
+		// Strict D U D U D U D U — two distinct surfaces, alternating, first dark.
 		const distinct = new Set(surfaces)
 		expect(distinct.size, `expected 2 alternating surfaces, got ${[...distinct].join(' | ')}`).toBe(
 			2
 		)
-		expect(surfaces[0]).toBe(surfaces[2])
-		expect(surfaces[2]).toBe(surfaces[4])
-		expect(surfaces[1]).toBe(surfaces[3])
+		for (let i = 2; i < surfaces.length; i++) {
+			expect(surfaces[i], `section ${String(i)} should match section ${String(i - 2)}`).toBe(
+				surfaces[i - 2]
+			)
+		}
 		expect(surfaces[0]).not.toBe(surfaces[1])
 
-		// Marquee link (inside the last UV section) is explicitly dark — visual close on dark.
-		const marqueeBg = await page
-			.locator('[data-umami-event="cta_garden_link"]')
+		// SiteFooter (inside the closing UV section) keeps its explicit dark
+		// surface — the page opens dark and visually closes dark. Scoped selector:
+		// the testimonial blockquote also contains a <footer> (attribution).
+		const footerBg = await page
+			.locator('footer', { has: page.locator('[data-umami-event="footer_home"]') })
 			.evaluate((el) => getComputedStyle(el).backgroundColor)
-		expect(marqueeBg).toBe(surfaces[0])
+		expect(footerBg).toBe(surfaces[0])
 
 		await context.close()
 	})

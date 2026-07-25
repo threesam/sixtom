@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - **Voice:** strict lowercase copy (lowercase `i`; caps only for brand names/acronyms: AI, SEO, Lighthouse, Loom, SIXTOM). Terminal periods. Sub-page titles `<subject> | SIXTOM`; home title is the brand-first exception.
-- **Results over mechanism:** the word "agent" must never appear in customer-facing offer copy (pinned by test in Task 1). AI appears only as the *client's* context.
+- **Results over mechanism:** the word "agent" must never appear in customer-facing offer copy (pinned by test in Task 1). AI appears only as the _client's_ context.
 - **Frozen event names** (external consumers / dashboards): `book_step_next`, `book_submit`, `book_qualified_booking_click` (infra brief.py), `cta_notify_submit`, `notify_signup_success`, `footer_*`, `cta_garden_link`, `cta_tax_calc`, `cta_calc_book`, `cta_case_study_book`. Never rename; new events may be added.
 - **Home stays `csr = false`** (`src/routes/+page.ts`). The home waitlist form must work with zero JS (plain POST, no `use:enhance` on home).
 - **Listmonk hygiene:** never let a test email reach the `sixtom` list. Task 3 adds the guard. E2E uses `CONTACT_FORM_TEST_EMAIL` (env var NAME only — value comes from `e2e/constants.ts`).
@@ -31,6 +31,7 @@
 ### Task 1: Content layer — the offer as data
 
 **Files:**
+
 - Modify: `src/lib/content/types.ts`
 - Create: `src/lib/content/offer.ts`
 - Modify: `src/lib/content/site.ts`
@@ -38,6 +39,7 @@
 - Modify: `src/lib/content/content.test.ts`
 
 **Interfaces:**
+
 - Consumes: existing `Stat`, `ProcessStep`, `Offer` types; `site.sprint` pricing fields.
 - Produces: `grandSlam: GrandSlamOffer` (named export from `$lib/content`), `LEDGER_TOTAL_USD: number`, types `LedgerLine`, `LedgerGroup`, `CostCard`, `GrandSlamOffer`. `Site` loses `audit`, `retainer`, `hero`. Later tasks import `{ site, grandSlam, LEDGER_TOTAL_USD }` from `$lib/content`.
 
@@ -339,8 +341,10 @@ export const grandSlam: GrandSlamOffer = {
 			{ value: '7.5×', label: 'lighter page' },
 			{ value: '+185%', label: 'pageviews, last 30d' }
 		],
-		para2: "traffic reversed from a slow decline to steady growth — and it's HIS execution showing up in the data: he's running the strategy, and the results climb as he does. something from nothing.",
-		bridge: "this one wasn't vibe-coded — just slow and invisible. same hands, same discipline, numbers you can check. the first rescue writeup is on the bench right now."
+		para2:
+			"traffic reversed from a slow decline to steady growth — and it's HIS execution showing up in the data: he's running the strategy, and the results climb as he does. something from nothing.",
+		bridge:
+			"this one wasn't vibe-coded — just slow and invisible. same hands, same discipline, numbers you can check. the first rescue writeup is on the bench right now."
 	},
 	isThisYou: {
 		eyebrow: 'is this you?',
@@ -365,7 +369,8 @@ export const grandSlam: GrandSlamOffer = {
 		buildLabel: 'what did you build?',
 		buildPlaceholder: 'a demo of… it works, but…',
 		button: 'get on the list →',
-		reward: "the seat's booked out? good sign. while you wait, you get a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. no pitch attached."
+		reward:
+			"the seat's booked out? good sign. while you wait, you get a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. no pitch attached."
 	}
 }
 
@@ -423,12 +428,14 @@ export type {
 ### Task 2: The lander — Hero + home rewrite
 
 **Files:**
+
 - Modify: `src/lib/components/Hero.svelte`
 - Modify: `src/routes/+page.svelte` (full rewrite)
 - Modify: `src/app.html` (title/description/og/twitter strings)
 - Modify: `src/lib/components/umami-events.test.ts`
 
 **Interfaces:**
+
 - Consumes: `grandSlam`, `LEDGER_TOTAL_USD`, `site` from `$lib/content`.
 - Produces: home sections with ids `#waitlist` (close form anchor). New events: `cta_hero_waitlist`, `cta_hero_teardown`, `cta_waitlist_submit`. Retired events: `cta_hero_book`, `cta_final_book`, `cta_case_study`, `cta_garden_link_why` (removed from pins — none are externally consumed).
 
@@ -451,44 +458,44 @@ Run `pnpm test` → those three FAIL (not present yet).
 ```
 
 ```svelte
-	<div class="relative mx-auto w-full max-w-6xl px-6 text-left md:text-center">
-		<p class="eyebrow text-fg-subtle text-xs md:text-sm">{grandSlam.chip}</p>
-		<h1
-			class="text-fg mt-6 text-[clamp(2.25rem,9.5vw,4.75rem)] leading-[1.08] font-bold tracking-tight"
+<div class="relative mx-auto w-full max-w-6xl px-6 text-left md:text-center">
+	<p class="eyebrow text-fg-subtle text-xs md:text-sm">{grandSlam.chip}</p>
+	<h1
+		class="text-fg mt-6 text-[clamp(2.25rem,9.5vw,4.75rem)] leading-[1.08] font-bold tracking-tight"
+	>
+		{grandSlam.headline}
+	</h1>
+	<p class="text-fg-muted mx-auto mt-6 max-w-3xl text-base leading-relaxed md:text-lg">
+		{grandSlam.lead}
+	</p>
+	<p class="text-fg mx-auto mt-6 max-w-3xl text-xl leading-snug font-medium md:text-2xl">
+		{grandSlam.offerLine}
+	</p>
+	<div class="mt-10 flex flex-col items-start gap-4 md:items-center">
+		<a
+			href="#waitlist"
+			data-umami-event="cta_hero_waitlist"
+			class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
 		>
-			{grandSlam.headline}
-		</h1>
-		<p class="text-fg-muted mx-auto mt-6 max-w-3xl text-base leading-relaxed md:text-lg">
-			{grandSlam.lead}
-		</p>
-		<p class="text-fg mx-auto mt-6 max-w-3xl text-xl leading-snug font-medium md:text-2xl">
-			{grandSlam.offerLine}
-		</p>
-		<div class="mt-10 flex flex-col items-start gap-4 md:items-center">
-			<a
-				href="#waitlist"
-				data-umami-event="cta_hero_waitlist"
-				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
-			>
-				join the waitlist →
-			</a>
-			<a
-				href="#waitlist"
-				data-umami-event="cta_hero_teardown"
-				class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
-			>
-				or get a free teardown
-			</a>
-		</div>
-		<dl class="mt-12 flex flex-wrap gap-x-10 gap-y-4 md:justify-center">
-			{#each grandSlam.stats as stat (stat.label)}
-				<div>
-					<dt class="text-fg-subtle order-2 text-xs tracking-widest uppercase">{stat.label}</dt>
-					<dd class="text-fg text-lg font-bold tabular-nums md:text-xl">{stat.value}</dd>
-				</div>
-			{/each}
-		</dl>
+			join the waitlist →
+		</a>
+		<a
+			href="#waitlist"
+			data-umami-event="cta_hero_teardown"
+			class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
+		>
+			or get a free teardown
+		</a>
 	</div>
+	<dl class="mt-12 flex flex-wrap gap-x-10 gap-y-4 md:justify-center">
+		{#each grandSlam.stats as stat (stat.label)}
+			<div>
+				<dt class="text-fg-subtle order-2 text-xs tracking-widest uppercase">{stat.label}</dt>
+				<dd class="text-fg text-lg font-bold tabular-nums md:text-xl">{stat.value}</dd>
+			</div>
+		{/each}
+	</dl>
+</div>
 ```
 
 (XMark/BookCta imports drop from Hero; BookCta itself stays — /faq and garden-party still use it.)
@@ -723,12 +730,14 @@ Run `pnpm test` → those three FAIL (not present yet).
 ### Task 3: Waitlist wiring — /notify becomes the waitlist + listmonk test-email guard
 
 **Files:**
+
 - Modify: `src/routes/notify/+page.svelte`
 - Modify: `src/routes/notify/+page.server.ts`
 - Modify: `src/lib/types/index.ts`
 - Modify: `e2e/notify-form.spec.ts`
 
 **Interfaces:**
+
 - Consumes: `grandSlam.close` copy; existing `processSubmission`, `subscribeToList`, `fireServerEvent`.
 - Produces: `/notify?/notify` action unchanged in name/shape (home form depends on it). Event names `cta_notify_submit` + `notify_signup_success` preserved.
 
@@ -793,14 +802,14 @@ import { env } from '$env/dynamic/private'
 and change the subscribe condition to:
 
 ```ts
-			const emailField = formData.get('email')
-			const email = (typeof emailField === 'string' ? emailField : '').trim()
-			// The e2e bypass address must never pollute the real list.
-			const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
-			const isTestEmail = testEmail !== '' && email === testEmail
-			if (!result.suspicious && email && !isTestEmail) {
-				await subscribeToList(email, SIXTOM_LIST_UUID)
-			}
+const emailField = formData.get('email')
+const email = (typeof emailField === 'string' ? emailField : '').trim()
+// The e2e bypass address must never pollute the real list.
+const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
+const isTestEmail = testEmail !== '' && email === testEmail
+if (!result.suspicious && email && !isTestEmail) {
+	await subscribeToList(email, SIXTOM_LIST_UUID)
+}
 ```
 
 - [ ] **Step 3: /notify page rewrite** — same file structure as current (`enhance`, honeypot, hidden `formStartedAt`/`enhanced`), with: `<title>waitlist | SIXTOM</title>`; **remove** `<meta name="robots" content="noindex, follow" />` (this page is now a primary CTA target); heading block from `grandSlam.close` (`heading`, scarcity as the eyebrow, `reward` para below the form); the hidden fixed `message` input becomes the required build `textarea` (same `name="message"`, label `what did you build?`, placeholder from content); hidden `name` value stays `"Waitlist signup"`. Keep `cta_notify_submit` on the submit button. Description meta: `"one client a month. join the waitlist — and get a free teardown of your app while you wait."`
@@ -817,33 +826,35 @@ and change the subscribe condition to:
 ### Task 4: JSON-LD — the schema tells the same story
 
 **Files:**
+
 - Modify: `src/lib/seo/jsonld.ts`
 - Modify: `src/lib/seo/jsonld.test.ts`
 
 **Interfaces:**
+
 - Consumes: `grandSlam.offerLine`, `grandSlam.close.reward` phrasing, `site.sprint`.
 - Produces: `serviceJsonLd()` with exactly 2 offers: the sprint and the free teardown.
 
 - [ ] **Step 1: Failing test** — replace the `serviceJsonLd` block in `jsonld.test.ts`:
 
 ```ts
-	it('serviceJsonLd sells exactly the two live offers: sprint + free teardown', () => {
-		const ld = serviceJsonLd()
-		expect(ld['@context']).toBe('https://schema.org')
-		expect(ld['@type']).toBe('Service')
-		expect(ld.provider['@id']).toBe(PERSON_ID)
-		expect(ld.areaServed).toBe('Worldwide')
-		expect(ld.description).toContain('day 10')
-		expect(ld.offers).toHaveLength(2)
-		expect(ld.offers[0]?.name).toBe(site.sprint.name)
-		expect(ld.offers[0]?.price).toBe(String(site.sprint.priceUSD))
-		expect(ld.offers[0]?.availability).toBe('https://schema.org/LimitedAvailability')
-		expect(ld.offers[0]?.description).toContain('day 10')
-		expect(ld.offers[1]?.name).toBe('free teardown')
-		expect(ld.offers[1]?.price).toBe('0')
-		expect(ld.offers[1]?.availability).toBe('https://schema.org/InStock')
-		expect(ld.offers[1]?.url).toBe(`${site.siteUrl}/notify`)
-	})
+it('serviceJsonLd sells exactly the two live offers: sprint + free teardown', () => {
+	const ld = serviceJsonLd()
+	expect(ld['@context']).toBe('https://schema.org')
+	expect(ld['@type']).toBe('Service')
+	expect(ld.provider['@id']).toBe(PERSON_ID)
+	expect(ld.areaServed).toBe('Worldwide')
+	expect(ld.description).toContain('day 10')
+	expect(ld.offers).toHaveLength(2)
+	expect(ld.offers[0]?.name).toBe(site.sprint.name)
+	expect(ld.offers[0]?.price).toBe(String(site.sprint.priceUSD))
+	expect(ld.offers[0]?.availability).toBe('https://schema.org/LimitedAvailability')
+	expect(ld.offers[0]?.description).toContain('day 10')
+	expect(ld.offers[1]?.name).toBe('free teardown')
+	expect(ld.offers[1]?.price).toBe('0')
+	expect(ld.offers[1]?.availability).toBe('https://schema.org/InStock')
+	expect(ld.offers[1]?.url).toBe(`${site.siteUrl}/notify`)
+})
 ```
 
 Run: `pnpm test` → FAIL (3 offers, audit first).
@@ -851,27 +862,27 @@ Run: `pnpm test` → FAIL (3 offers, audit first).
 - [ ] **Step 2: Implement** — in `jsonld.ts`, add `import { grandSlam } from '$lib/content'`; in `serviceJsonLd()` delete `auditDescription`/`retainerDescription` and the audit/retainer offer objects; set `description: grandSlam.offerLine`; offers become:
 
 ```ts
-		offers: [
-			{
-				'@type': 'Offer',
-				name: site.sprint.name,
-				description: sprintDescription,
-				price: String(site.sprint.priceUSD),
-				priceCurrency: 'USD',
-				availability: 'https://schema.org/LimitedAvailability',
-				url: bookUrl
-			},
-			{
-				'@type': 'Offer',
-				name: 'free teardown',
-				description:
-					"a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. join the waitlist to get one.",
-				price: '0',
-				priceCurrency: 'USD',
-				availability: 'https://schema.org/InStock',
-				url: `${site.siteUrl}/notify`
-			}
-		]
+offers: [
+	{
+		'@type': 'Offer',
+		name: site.sprint.name,
+		description: sprintDescription,
+		price: String(site.sprint.priceUSD),
+		priceCurrency: 'USD',
+		availability: 'https://schema.org/LimitedAvailability',
+		url: bookUrl
+	},
+	{
+		'@type': 'Offer',
+		name: 'free teardown',
+		description:
+			"a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. join the waitlist to get one.",
+		price: '0',
+		priceCurrency: 'USD',
+		availability: 'https://schema.org/InStock',
+		url: `${site.siteUrl}/notify`
+	}
+]
 ```
 
 and extend `sprintDescription`'s first element to carry the guarantee: `'two weeks from working demo to production-grade. live in production by day 10 — or the remaining payments are free.'`
@@ -884,6 +895,7 @@ and extend `sprintDescription`'s first element to carry the guarantee: `'two wee
 ### Task 5: /faq — re-answered for the one offer
 
 **Files:**
+
 - Modify: `src/lib/content/faq.ts` (full replacement of the FAQ array)
 - Modify: `src/routes/faq/+page.svelte` (meta description + og only)
 
@@ -956,6 +968,7 @@ export const FAQ: readonly QA[] = [
 ### Task 6: /terms — the contract matches the promise
 
 **Files:**
+
 - Modify: `src/routes/terms/+page.svelte`
 
 The current refunds section says the sprint scope-stop refunds 50% — the new offer says "pay only for the time used," and the day-10 guarantee + stall clause don't exist here yet. This page is the legal backstop for the guarantee; it ships in the same train or the offer is contradicted at the contract layer.
@@ -963,27 +976,27 @@ The current refunds section says the sprint scope-stop refunds 50% — the new o
 - [ ] **Step 1:** Replace the refunds `<section>` with two sections (keep classes identical to siblings):
 
 ```svelte
-			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">the guarantee</h2>
-				<p class="mt-3">
-					the sprint — live in production by day 10, or the remaining payments are waived. "live"
-					means the deploy target we name in writing on the day-0 call. the guarantee clock pauses
-					while something i need sits with you — access, approvals, content, feedback — and resumes
-					when i have it.
-				</p>
-				<p class="mt-3">
-					the day-5 scope check — if we both see it won't ship in scope, we stop there. you keep
-					everything built and pay only for the time used.
-				</p>
-			</section>
+<section>
+	<h2 class="text-fg text-xl font-semibold tracking-tight">the guarantee</h2>
+	<p class="mt-3">
+		the sprint — live in production by day 10, or the remaining payments are waived. "live" means
+		the deploy target we name in writing on the day-0 call. the guarantee clock pauses while
+		something i need sits with you — access, approvals, content, feedback — and resumes when i have
+		it.
+	</p>
+	<p class="mt-3">
+		the day-5 scope check — if we both see it won't ship in scope, we stop there. you keep
+		everything built and pay only for the time used.
+	</p>
+</section>
 
-			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">the free teardown</h2>
-				<p class="mt-3">
-					the teardown is free, carries no obligation on either side, and i may decline to record
-					one if your project isn't a fit.
-				</p>
-			</section>
+<section>
+	<h2 class="text-fg text-xl font-semibold tracking-tight">the free teardown</h2>
+	<p class="mt-3">
+		the teardown is free, carries no obligation on either side, and i may decline to record one if
+		your project isn't a fit.
+	</p>
+</section>
 ```
 
 - [ ] **Step 2:** Update the header paragraph (drop "pricing, scope, and cadence live on the home page" phrasing only if it's now false — it isn't; keep) and the meta description: `"how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the free teardown."` Bump the "last updated" line to `july 2026`. Code-ownership and if-something-breaks sections stay verbatim.
@@ -994,6 +1007,7 @@ The current refunds section says the sprint scope-stop refunds 50% — the new o
 ### Task 7: cal.com intake + /book sweep
 
 **Files:**
+
 - Modify: `src/lib/content/site.ts` (`calEvent` only)
 - Modify: `src/routes/book/+page.svelte` (meta description only)
 - Modify: `src/routes/book/options.ts` (budget labels/values)
@@ -1021,11 +1035,7 @@ export const calEvent: CalEvent = {
 		{
 			label: 'where are you in the process?',
 			type: 'select',
-			options: [
-				'on the waitlist',
-				'got my free teardown — ready to talk',
-				'just found sixtom'
-			],
+			options: ['on the waitlist', 'got my free teardown — ready to talk', 'just found sixtom'],
 			required: true
 		}
 	]
@@ -1053,6 +1063,7 @@ export const BUDGET_OPTIONS = [
 ### Task 8: Exemplary pass — the site is the receipts
 
 **Files:**
+
 - Create: `.agent-toolkit/lighthouse.toml`
 - Create: `.agent-toolkit/journeys.md`
 - Modify: `AGENTS.md` (offer sections)
@@ -1089,20 +1100,24 @@ samples = 3
 App: `pnpm dev` (SvelteKit, http://localhost:5173). Set CONTACT_FORM_TEST_EMAIL=e2e@test.sixtom.local in the dev env before driving journey 1 — the waitlist form must never hit listmonk or SMTP with a real address.
 
 ## 1. land → read the offer → join the waitlist
+
 1. Open `/`. Expect: h1 "the demo works. production doesn't.", chip "1 client a month · waitlist open", stat "day 10 or free".
 2. Scroll through wall → ledger → guarantee → proof. Expect: ledger shows "total value" of "$28,500+" and a pay line containing "$10,000"; guarantee headline contains "day 10"; proof tiles include "+185%".
 3. Fill `#waitlist-email` with e2e@test.sixtom.local and `#waitlist-build` with any text; submit.
 4. Expect: navigation to `/notify` showing "You're on the list." No console errors, no failed network requests anywhere in the journey.
 
 ## 2. the tax loop
+
 1. Open `/`, click the "run yours →" link in the wall section.
 2. On `/tax`: expect h1 "what's it costing you?" and a non-$0 annual tax figure with default inputs.
 3. Click the calculator CTA (event `cta_calc_book`). Expect `/book` step 1 ("where are you with this thing?") renders. No console errors.
 
 ## 3. faq → book
+
 1. Open `/faq`. Expect: ≥10 questions rendered, one containing "day 10" (the guarantee answer), zero mentions of "$1,500" or "retainer".
 2. Click the BookCta. Expect `/book` step 1 renders. No console errors.
 ```
+
 - [ ] **Step 4:** `AGENTS.md` — update the offer/pricing paragraphs: one $10,000 sprint ($7,500 first 3, 4×$2,500), day-10-or-free guarantee with day-5 floor, free teardown via waitlist (/notify), no public audit/retainer (retainer = private post-sprint continuation, off-page by design), ledger/content lives in `src/lib/content/offer.ts`, "results over mechanism" copy rule (no "agent" in customer copy — pinned by content.test.ts).
 - [ ] **Step 5:** Verify `static/og.png` still shows copy consistent with the new offer; if it carries the old tagline, flag to Sam for a regen from `scripts/og-source` (art asset — his call, not blocking).
 - [ ] **Step 6: Full gates on the integration branch** — `pnpm format && pnpm lint && pnpm check && pnpm test && pnpm test:e2e && pnpm build` (if `e2e/visual-theme.spec.ts` asserts old-home selectors/copy, update those assertions to the new sections as part of this step), then `/rev` the final chunk, then `/drive` the three journeys, then `/lighthouse` against the branch build, then `/a11y` (new UI shipped).
