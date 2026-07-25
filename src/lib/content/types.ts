@@ -66,12 +66,12 @@ export interface CalEvent {
 	intakeQuestions: readonly IntakeQuestion[]
 }
 
-export interface LedgerLine {
+// Discriminated: a line is either priced (valueUSD) or labeled ('core' /
+// 'included') — never neither, so a blank value cell can't compile.
+export type LedgerLine = {
 	line: string
 	sub: string
-	valueUSD: number | null // null → valueLabel renders instead of a price
-	valueLabel?: 'core' | 'included'
-}
+} & ({ valueUSD: number; valueLabel?: never } | { valueUSD: null; valueLabel: 'core' | 'included' })
 
 export interface LedgerGroup {
 	title: string

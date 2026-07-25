@@ -1,116 +1,148 @@
 # SIXTOM — full content
 
-> AI built your first draft. I build your solution. Two-week engagements that take your AI-built prototype from working-for-you to production-grade. $1,500 audit. $10,000 sprint. 1 client a month.
+> the demo works. production doesn't. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat ($7,500 for the first 3 clients). 1 client a month.
 
-## Thesis
+## thesis
 
-Vibe coding is how you slowly become the intern of your own codebase.
+vibe coding is how you slowly become the intern of your own codebase.
 
-AI gets you to a demo because the model can hold the whole thing in its head. Once the codebase outgrows that window, the AI starts making it worse instead of better. That's the wall every vibe-coded project hits. It's also the thing I fix.
+AI gets you to a demo because it can hold the whole thing in its head. once your codebase outgrows that window, it starts making things worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.
 
-## What I do
+you shipped a demo and it felt like magic. then the edits started breaking things you didn't touch. every new feature costs more than the last. you're not building anymore — you're negotiating with a machine that no longer understands what it built. the demo is real. the foundation isn't. and every month it stays that way has a price: the users who hit a bug and never come back, the launch that slips another month, the weekends spent firefighting instead of living.
 
-### The Audit — $1,500
+## the offer — one sprint, everything in it
 
-You send me your repo and the thing you're stuck on. I send back a written breakdown plus a short video walkthrough — what's blocking, what I'd do, whether a sprint makes sense. About a week turnaround. Start here.
+i rebuild it the way i'd build it for myself — the architecture, the security, the tests, the judgment calls you can't vibe your way through. everything in the sprint, and what it'd cost you piecemeal:
 
-### The Sprint — $10,000
+### the foundation
 
-Two weeks. From working-for-you to production-grade. Daily progress drops in your channel. Live on day 10. The first 3 clients get the sprint at $7,500. Payment plan available: 4 weekly payments of $2,500.
+- architecture teardown + premortem — exactly what will break, and why — $3,000
+- the rebuild — your product, standing on foundations that hold — core
+- security review on every commit — nothing ships that i haven't read — $2,000
+- automated test suite — so it stays fixed after i leave — $2,500
+- performance to 100s — and i'll tell you when a third-party script makes that impossible — $1,500
+- accessibility pass — works for everyone who shows up — $1,500
 
-## Who it's for
+### the growth foundation
 
-You already built something — usually with AI assistance. It works for you. Real customers are about to break it, or already are. You're losing sleep over uptime, security, or scale. You want peace of mind. The "X" in "solve for X" is the specific thing standing between you and that peace of mind.
+- analytics + observability — you see what's working from day one — $1,500
+- CRO-ready pages + A/B scaffold — every idea after launch is a test, not a rewrite — $2,500
+- technical SEO foundation — schema, sitemaps, core web vitals — $2,000
+- AEO/GEO foundation — structured for the answer-engines, so AI recommends you too — $2,000
+- infra cost audit — kill the subscriptions your stack is quietly renting — $1,000
 
-Typical personas:
+straight with you: search and answer-engines pay off over months, not days. the sprint makes you findable, measurable, and ready to test from day one — the compounding comes from what you publish after. the growth map shows you where to push.
 
-- **The demo darling.** You killed the pitch, then it folded the first time a dozen real people logged in.
-- **Paying & breaking.** Real revenue, and all-nighters fixing production.
-- **About to scale.** Someone just asked you to 10× the users. You said yes and started sweating.
-- **Enterprise-blocked.** One contract away from real money, stuck behind a brick wall of compliance.
+### the brand
 
-## Things to recognize
+- conversion copy pass — every word on the page earning its keep — $1,500
+- brand kit + 1-of-1 art — colors, type, and an original piece nobody else has — $3,000
 
-If any of these sound familiar, you're a fit:
+### the close
 
-- **Uptime.** Your biggest customer wants a number you can't give.
-- **Security.** A sale is stuck waiting on a review you don't pass.
-- **Scale.** Investors keep asking how. You keep saying "we'll figure it out."
-- **Peace of mind.** Every time you launch a feature, something else breaks.
+- live in production by day 10 — you own 100% of it — included
+- day-30 check-in — what stuck, what didn't — $500
 
-## How the sprint goes
+### the bonuses (land by day 30)
 
-- **Week 1 day 0:** 30-minute call (or skip if you did the audit). We define the X — the specific thing standing between you and peace of mind.
-- **Days 1–7:** I build. Daily progress drops in your channel.
-- **Mid-sprint:** 1 short sync. Course-correct if needed.
-- **Day 5 (scope check):** If we can both see it won't ship in scope, we stop here. You keep what was built.
-- **Day 10:** Live in production. You own it.
-- **Day 30:** Check-in. What stuck, what didn't.
+- the AI leverage session — what to lean on, what to skip, how not to wreck what we just built — $1,000
+- the 90-day growth map — the highest-impact moves, in order — $1,500
+- the runbook + Loom library — so you're never dependent on me again — $1,500
+
+**total value: $28,500+. you pay: $10,000 fixed. $7,500 for the first 3 clients. or 4 weekly payments of $2,500.**
+
+a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.
+
+## the guarantee
+
+live in production by day 10, or the remaining payments are free.
+
+and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there — you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
+
+## the free teardown
+
+join the waitlist and get a short recorded teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch.
+
+## who it's for
+
+this is for you if: you vibe-coded something to a working demo · it has real users, or paying ones · it's breaking, or it just won't reach production · you'd rather own the fix than rent a dev shop.
+
+not yet if: it's still just an idea — nothing built · you want someone to manage a team of engineers · you need it done and gone, no involvement.
+
+## how the sprint goes
+
+- wk 1 · day 0: a 30-minute call. we figure out the thing.
+- days 1–7: heads down. daily Loom + code drop in your channel, so you watch it happen.
+- day 5 · scope check: if it can't ship in scope, we stop here. you keep what we built.
+- mid-sprint: one short sync. course-correct if needed.
+- day 10: live in production. you own it. (or the rest is free.)
+- day 30: check-in. what stuck, what didn't.
 
 ## FAQ
 
-**What does sixtom do?**
+**what does sixtom do?**
 
-You (or your AI) got something to a working demo. I take it from there to production-grade — secure, stable, ready for real users — in a two-week sprint. You own it on day 10.
+you (or your AI) got something to a working demo. i take it from there to production-grade — secure, tested, measured, ready for real users — in a two-week sprint. live on day 10, and you own every line of it.
 
-**What's the difference between the audit and the sprint?**
+**how much does it cost?**
 
-The audit ($1,500) is a written breakdown plus a short video walkthrough of what's blocking you and whether a sprint makes sense — start here if you're not sure. The sprint ($10,000) is two weeks of me building it to production. The audit credits toward the sprint if you book within 30 days.
+$10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get it at $7,500. that price buys the whole ledger on the home page — over $28,500 of itemized work.
 
-**How much does it cost?**
+**what's the guarantee?**
 
-The audit is $1,500 flat. The sprint is $10,000 flat, or 4 weekly payments of $2,500. The first 3 clients get the sprint at $7,500.
+live in production by day 10, or the remaining payments are free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop — you keep everything built and pay only for the time used.
 
-**How long does it take?**
+**what's the free teardown?**
 
-The sprint is two weeks — live in production on day 10. The audit turns around within a week.
+join the waitlist and i'll record a short teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch.
 
-**What if it won't ship in two weeks?**
+**how long does it take?**
 
-There's a scope check on day 5. If we can both see it won't make it, we stop there. You keep everything built and pay only for the time used.
+two weeks. live in production on day 10. one seat a month, by appointment.
 
-**How many clients do you take?**
+**do you do SEO and getting found by AI?**
 
-One a month, by appointment. That's the whole model — you get my full attention, not a queue.
+the sprint lays the foundation: technical SEO, schema, and answer-engine structure, plus analytics so you can see it working. straight with you — search compounds on what you publish over months, so the sprint makes you findable and measurable from day one, and the 90-day growth map shows you where to push after.
 
-**Who's behind sixtom?**
+**how many clients do you take?**
 
-Salvatore (Sam) D'Angelo — lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. Sixtom is the solo practice.
+one a month, by appointment. that's the whole model — you get my full attention, not a queue. when the seat's taken, the waitlist is open.
 
-**Is it really all async?**
+**what happens after the sprint?**
 
-Yes. Daily progress drops in your channel, with one short mid-sprint sync to course-correct. No standups.
+you own everything either way — the code, the analytics, the runbook. there's a day-30 check-in to see what stuck. if you want me to stay on it after that, we talk then.
 
-**What is the "vibe-code tax"?**
+**who's behind sixtom?**
 
-What your half-finished, AI-built prototype quietly costs you per year — lost deals, downtime, weekends. There's a no-email calculator at https://sixtom.com/tax.
+Salvatore (Sam) D'Angelo — lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice.
 
-## Pricing
+**is it really all async?**
 
-- **Audit:** $1,500 USD, fixed. Turnaround within a week.
-- **Sprint:** $10,000 USD flat, or 4 weekly payments of $2,500. 1 client a month, by appointment. First 3 clients: $7,500.
-- **Scope guarantee:** If by sprint day 5 we can both see it won't ship in scope, we stop. You keep what was built. You pay for the time used, that's it.
-- **Audit-to-sprint credit:** Audit credits toward the sprint if you book within 30 days.
+yes. a daily Loom + code drop in your channel, with one short mid-sprint sync to course-correct. no standups.
 
-## Testimonial
+**what is the "vibe-code tax"?**
 
-> He's built three sites for me and with each one, the unique needs and goals of the site dictated his approach, no cookie cutting corners.
+what your half-finished, AI-built prototype quietly costs you per year — lost deals, downtime, weekends. there's a no-email calculator at https://sixtom.com/tax.
+
+## testimonial
+
+> he's built three sites for me and with each one, the unique needs and goals of the site dictated his approach, no cookie cutting corners.
 
 — Eleanor Goldfield
 
-## Case study — Garden Party
+## case study — garden party
 
-A 1:1 port of threesam.com from Next.js to SvelteKit. Five hours of build time. Bundle size dropped 40%. Every Lighthouse score went up. Full writeup at https://sixtom.com/log/garden-party.
+a 1:1 port of threesam.com from Next.js to SvelteKit. five hours of build time. bundle size dropped 40%. every Lighthouse score went up. full writeup at https://sixtom.com/log/garden-party.
 
-The premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and rebuild it in a framework I'd never shipped to production. Same routes, same sketches, same aesthetic — different runtime. Two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
+the premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and rebuild it in a framework i'd never shipped to production. same routes, same sketches, same aesthetic — different runtime. two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
 
-## Who I am
+## who i am
 
-Salvatore D'Angelo. Lead engineer at Made In Cookware — multi-million visitors a month, real-revenue e-commerce. Formerly at Rhone. Sixtom is the solo practice; Made In is the day job. Personal site / portfolio: https://threesam.com. LinkedIn: https://www.linkedin.com/in/threesam.
+Salvatore D'Angelo. lead engineer at Made In Cookware — multi-million visitors a month, real-revenue e-commerce. formerly at Rhone. sixtom is the solo practice; Made In is the day job. personal site / portfolio: https://threesam.com. LinkedIn: https://www.linkedin.com/in/threesam.
 
-## How to engage
+## how to engage
 
-- **Solve for X — book a call:** https://sixtom.com/book — the qualifying booking form. Start here if you know you want the sprint.
-- **FAQ:** https://sixtom.com/faq — straight answers on price, audit vs sprint, timeline, the day-5 scope guarantee, and who's behind it.
-- **The vibe-code tax calculator:** https://sixtom.com/tax — a quick estimate of what the gap is costing you per year. No email.
-- **Notify list:** https://sixtom.com/notify — get told when the next slot opens.
+- **join the waitlist:** https://sixtom.com/notify — one seat a month; waitlist members get the free teardown while they wait.
+- **book the intro call:** https://sixtom.com/book — 3 quick steps, then the booking link.
+- **FAQ:** https://sixtom.com/faq — straight answers on price, the day-10 guarantee, timeline, and who's behind it.
+- **the vibe-code tax calculator:** https://sixtom.com/tax — a quick estimate of what the gap is costing you per year. no email.
