@@ -12,14 +12,16 @@ interface SitemapUrl {
 
 export function GET(): Response {
 	const today = new Date().toISOString().slice(0, 10)
-	// Indexable routes only — /book (noindex,nofollow) and /notify (noindex) are
-	// deliberately excluded. Writeups derive from LOG_ENTRIES so new ones appear
-	// automatically, each stamped with its real publish date (honest lastmod).
+	// Indexable routes only — /book (noindex,nofollow) is deliberately excluded.
+	// /notify is the waitlist + free-teardown offer URL (schema points at it),
+	// indexable since the grand-slam migration. Writeups derive from LOG_ENTRIES
+	// so new ones appear automatically, stamped with their real publish date.
 	const urls: SitemapUrl[] = [
 		{ path: '/', lastmod: today, changefreq: 'monthly', priority: '1.0' },
 		{ path: '/log', lastmod: today, changefreq: 'weekly', priority: '0.8' },
 		{ path: '/faq', lastmod: today, changefreq: 'monthly', priority: '0.7' },
 		{ path: '/tax', lastmod: today, changefreq: 'monthly', priority: '0.6' },
+		{ path: '/notify', lastmod: today, changefreq: 'monthly', priority: '0.6' },
 		...LOG_ENTRIES.map((entry) => ({
 			path: `/log/${entry.slug}`,
 			lastmod: entry.date,

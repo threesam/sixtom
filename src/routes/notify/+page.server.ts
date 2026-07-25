@@ -1,4 +1,5 @@
 import { fail } from '@sveltejs/kit'
+import { env } from '$env/dynamic/private'
 import type { Actions } from './$types'
 import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
 import { SIXTOM_LIST_UUID, subscribeToList } from '$lib/server/listmonk'
@@ -23,7 +24,12 @@ export const actions = {
 			// outage must not fail the signup the visitor was just promised.
 			const emailField = formData.get('email')
 			const email = (typeof emailField === 'string' ? emailField : '').trim()
-			if (!result.suspicious && email) {
+			// The e2e bypass address must never pollute the real list — the
+			// test-email shortcut in processSubmission returns ok without
+			// `suspicious`, so it would otherwise flow straight into listmonk.
+			const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
+			const isTestEmail = testEmail !== '' && email === testEmail
+			if (!result.suspicious && email && !isTestEmail) {
 				await subscribeToList(email, SIXTOM_LIST_UUID)
 			}
 			fireServerEvent('notify_signup_success', event.request)
