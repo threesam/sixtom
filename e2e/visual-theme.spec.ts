@@ -57,6 +57,10 @@ test.describe('Visual surface — dark/light alternation', () => {
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
 		await expect(page.locator('section').first()).toBeVisible()
 
+		// The hero bubble canvas is JS-animated (rAF), so two consecutive captures
+		// never match — hide the decorative layer for a deterministic screenshot.
+		await page.addStyleTag({ content: '[data-bubble] { display: none !important; }' })
+
 		await expect(page).toHaveScreenshot('home.png', {
 			fullPage: true,
 			maxDiffPixelRatio: 0.005

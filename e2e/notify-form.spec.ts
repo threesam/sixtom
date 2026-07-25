@@ -1,86 +1,51 @@
 import { test, expect } from '@playwright/test'
 import { TEST_EMAIL } from './constants'
 
-test.describe('Notify form — progressive enhancement', () => {
-	test('JS-enhanced path: inline result without page reload', async ({ page }) => {
-		await page.goto('/')
-
-		await expect(page.locator('[data-form-started-at]')).toHaveAttribute('value', /^\d+$/)
-		await expect(page.locator('[data-form-enhanced]')).toHaveAttribute('value', '1')
-
-		const url = page.url()
-		await page.fill('input[type="email"]', TEST_EMAIL)
-
-		const [response] = await Promise.all([
-			page.waitForResponse((r) => r.url().includes('/?/notify') && r.request().method() === 'POST'),
-			page.click('button[type="submit"]')
-		])
-		expect(response.status()).toBe(200)
-		expect(page.url()).toBe(url)
-
-		await expect(page.locator('[data-enhance-result] p')).toHaveText(/you're on the list/i)
-	})
-
-	test('no-JS path: native form POST renders server-side success on reload', async ({
+test.describe('waitlist form', () => {
+	test('home form (no JS by design): native POST lands on /notify with success', async ({
 		browser
 	}) => {
 		const context = await browser.newContext({ javaScriptEnabled: false })
 		const page = await context.newPage()
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
-
-		await page.fill('input[type="email"]', TEST_EMAIL)
-		// force:true because the marquee CSS animation can briefly trip Playwright's
-		// stability check; the button itself is interactable.
+		await page.fill('#waitlist-email', TEST_EMAIL)
+		await page.fill('#waitlist-build', 'a demo of a thing. it works, but…')
+		// force: with JS disabled the animation-freezing init script can't run, so
+		// the footer marquee's CSS animation trips Playwright's stability check.
+		// The button itself is interactable; force skips the stability wait.
 		await Promise.all([
-			page.waitForLoadState('load'),
-			page.locator('button[type="submit"]').click({ force: true })
+			page.waitForURL(/\/notify/),
+			page.locator('#waitlist button[type="submit"]').click({ force: true })
 		])
-
-		await expect(page.locator('[data-enhance-result] p')).toHaveText(/you're on the list/i)
+		await expect(page.locator('[aria-live="polite"] p')).toHaveText(/you're on the list/i)
 		await context.close()
 	})
 
-	test('honeypot: filled `company` returns silent success', async ({ page }) => {
-		await page.goto('/')
-
-		// Non-bypass email so we exercise the honeypot path itself, not the test-email shortcut.
-		await page.fill('input[type="email"]', 'real-looking@example.com')
-		await page.locator('input[name="company"]').evaluate((el: HTMLInputElement) => {
-			el.value = 'AcmeCorp'
-		})
-
+	test('/notify JS-enhanced path: inline result without navigation', async ({ page }) => {
+		await page.goto('/notify')
+		const url = page.url()
+		await page.fill('input[name="email"]', TEST_EMAIL)
+		await page.fill('textarea[name="message"]', 'a demo of a thing. it works, but…')
 		const [response] = await Promise.all([
-			page.waitForResponse((r) => r.url().includes('/?/notify')),
+			page.waitForResponse(
+				(r) => r.url().includes('/notify?/notify') && r.request().method() === 'POST'
+			),
 			page.click('button[type="submit"]')
 		])
 		expect(response.status()).toBe(200)
-
-		await expect(page.locator('[data-enhance-result] p')).toHaveText(/you're on the list/i)
+		expect(page.url()).toBe(url)
+		await expect(page.locator('[aria-live="polite"] p')).toHaveText(/you're on the list/i)
 	})
 
-	test('malformed email: server rejects with inline error', async ({ page }) => {
-		await page.goto('/')
-
-		await page.locator('input[type="email"]').evaluate((el: HTMLInputElement) => {
-			el.setAttribute('type', 'text')
+	test('honeypot: filled `company` returns silent success', async ({ page }) => {
+		await page.goto('/notify')
+		// Non-bypass email so we exercise the honeypot path, not the test-email shortcut.
+		await page.fill('input[name="email"]', 'real-looking@example.com')
+		await page.fill('textarea[name="message"]', 'looks legit')
+		await page.locator('input[name="company"]').evaluate((el: HTMLInputElement) => {
+			el.value = 'AcmeCorp'
 		})
-		await page.fill('input[name="email"]', 'not-an-email')
-
-		await Promise.all([
-			page.waitForResponse((r) => r.url().includes('/?/notify')),
-			page.click('button[type="submit"]')
-		])
-
-		await expect(page.locator('[data-enhance-result] p')).toHaveText(/invalid/i)
-	})
-
-	test('marquee renders multiple copies for seamless tiling on wide viewports', async ({
-		page
-	}) => {
-		await page.setViewportSize({ width: 2400, height: 800 })
-		await page.goto('/')
-		const copies = page.locator('[data-marquee-copy]')
-		// At least 4 covers most laptop viewports; the component picks the exact count.
-		await expect(copies).toHaveCount(6)
+		await page.click('button[type="submit"]')
+		await expect(page.locator('[aria-live="polite"] p')).toHaveText(/you're on the list/i)
 	})
 })

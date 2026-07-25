@@ -21,7 +21,7 @@
 			<a href="/log" data-umami-event="footer_log" class="hover:text-fg transition-colors">log</a>
 			<a href="/faq" data-umami-event="footer_faq" class="hover:text-fg transition-colors">faq</a>
 			<a href="/notify" data-umami-event="footer_notify" class="hover:text-fg transition-colors"
-				>notify</a
+				>waitlist</a
 			>
 			<a href="/privacy" data-umami-event="footer_privacy" class="hover:text-fg transition-colors"
 				>privacy</a
