@@ -58,15 +58,26 @@ subset woff2 fixes the brand *and* removes render-blocking third-party font CSS.
 - `logo.png` — 6250×1736, clean two-colour mark. Genuinely good; keep as-is, ship as SVG if the
   vector can be sourced.
 - `hero.png` — technician in PPE treating a wall. Real photography, not stock-looking.
-- **6 service icons** — consistent line-art set in `--brand-sky`: water mitigation, home & health,
-  inspections, remediation, air check, HEPA clean.
-- **5 certification badges + 1 award** — IICRC Certified Technician, ASHI, MICRO Certified Mold
+- **5 certification marks + 1 award** — IICRC Certified Technician, ASHI, MICRO Certified Mold
   Inspector, MICRO Certified Remediation Contractor, MICRO Certified Health & Safety Technician,
   and **Happening List Bucks County's Best 2026 Winner**.
+- ~~6 service icons~~ — line-art set (flashlight, hazmat suit, wind swirl, dripping pipe). **Cut.**
 
-**Those six badges are the most under-used asset on the site.** For a mold customer — deciding who to
-let into their home during a health scare — certification is the entire trust question. They also
-feed E-E-A-T. They get a proper credentials block, and they get marked up (§5).
+### Icons: cut. Credential marks: kept.
+
+The line-art service icons go. A flashlight does not tell anyone what a mold inspection is, and a
+wind swirl does not mean "spring air check" to a person who has never seen the page before. They
+occupy the vertical space where the sentence explaining the service should be. **If an icon needs a
+label to be understood, the label was doing the work.** Services lead with words.
+
+The certification marks stay, and the distinction matters: they aren't decoration, they're
+**evidence**. An IICRC or MICRO seal is a third party asserting something about this company — it
+carries information a word can't, because the point is that someone else vouched. A homeowner may
+not know MICRO by name, but "certified by a body that isn't them" reads instantly.
+
+**They're also the most under-used asset on the site.** For someone deciding who to let into their
+home during a health scare, certification is the entire trust question. They get a real credentials
+block, and they get marked up (§5).
 
 ---
 
@@ -88,8 +99,8 @@ which is exactly why it's static and image-disciplined (§5), not a page builder
 | Section | Content | Reads more at |
 |---|---|---|
 | Hero | what they do + where + since 2013, phone and quote CTA in the first screen | — |
-| Trust strip | the 6 badges + Happening List 2026 award | `/who-we-are` |
-| Services | all 7, each with its icon, one-line promise, 2–3 lines of substance | each service page |
+| Credentials | the 5 certification marks + Happening List 2026 award | `/who-we-are` |
+| Services | all 7 — name, one-line promise, 2–3 lines of substance. No icons. | each service page |
 | Why it matters | what mold actually does to a home and the people in it | — |
 | Process | what happens when you call — inspect, test, remediate, verify | `/mold-inspections` |
 | Who we are | short version, certifications named | `/who-we-are` |
@@ -101,6 +112,8 @@ which is exactly why it's static and image-disciplined (§5), not a page builder
 All seven services on the homepage is deliberate — it's the single highest-value SEO surface and
 currently carries 339 words. Condensed-but-real copy for each service takes it to ~1,200 and gives
 every service an internal link with meaningful anchor text.
+
+This ordering is a starting point, not a commitment. Changing it is moving a line (§4b).
 
 ## 3b. Routes — preserve, don't restructure
 
@@ -147,13 +160,35 @@ component changes.
 
 ```
 src/lib/content/
-  types.ts        Post, Service, SiteSettings — mirroring Sanity document shapes
-  posts.ts        the 2 existing posts as Post[]
-  services.ts     7 services (hardcoded, no CMS planned)
-  site.ts         NAP, hours, service area, credentials, socials
+  types.ts        Post, Service, Review, Credential, SiteSettings
+  posts.ts        the 2 existing posts as Post[]  (Sanity-shaped)
+  services.ts     7 services — slug, name, promise, summary (home), body, faqs[]
+  site.ts         NAP, hours, service area, socials
+  credentials.ts  the 5 certification marks + the award
+  reviews.ts      real Google review text
   loaders.ts      getPosts() / getPost(slug) — the ONLY seam that changes at cutover
+src/lib/sections/  Hero, Services, Credentials, Process, ReviewList,
+                   ServiceArea, Contact, Prose, FAQ, CtaBlock
+src/params/
+  service.ts      matcher — validates a slug against services.ts
 sanity/
   schemas/        written now, deployed later — post, author, category, blockContent
+scripts/
+  import-wix.ts   MCP drain → content modules (when access lands)
+```
+
+Each `Service` carries both its short and long copy, so the homepage and the service page read from
+one record and can never drift out of sync:
+
+```ts
+export type Service = {
+  slug: string          // the URL — unchanged from the current site (§3b)
+  name: string
+  promise: string       // one line, homepage
+  summary: string       // 2-3 lines, homepage
+  body: string[]        // the long-form page
+  faqs: { q: string; a: string }[]   // FAQPage schema + on-page answers
+}
 ```
 
 Writing the Sanity schema files **now**, before they're used, is deliberate: it forces the hardcoded
@@ -195,6 +230,62 @@ mismatch is a compile error rather than a discovery made during migration.
 
 **Services stay plain TS** — `services.ts`, no Sanity shape. They're not going in a CMS, so giving
 them document semantics would be ceremony for its own sake.
+
+---
+
+## 4b. Built to be rearranged
+
+The structure in this document is a first draft written from the outside. After the intro call it
+will change — sections will move, services will merge or split, copy will be replaced wholesale.
+**The build has to make that cheap, or the call's findings get argued against the code instead of
+applied to it.**
+
+Three decisions carry that, and they're all subtraction rather than machinery:
+
+**1. Content is data; components never contain copy.** Every sentence lives in `src/lib/content/*.ts`
+behind a type. Rewriting a service page after the call is editing an object. No component is opened,
+so no component can break.
+
+**2. One route for all seven services, not seven files.** A param matcher validates the slug against
+`services.ts`, so real URLs render and anything else 404s properly:
+
+```
+src/params/service.ts          isService(slug) — checks the services array
+src/routes/[service=service]/  ONE page component, all 7 services
+```
+
+Adding an eighth service is appending to an array. Removing one is deleting a line. Renaming is
+changing a string — and the sitemap, the homepage list, the nav, and the schema all follow, because
+they read from the same array. This is what keeps the flat URLs of §3b from costing seven near-copies
+of the same file.
+
+**3. Sections are shared between the homepage and the long-form pages.** The homepage's condensed
+service block and the service page's full treatment render through the same primitives — `Prose`,
+`FAQ`, `CtaBlock`, `Credentials`, `ReviewList`. Promoting homepage copy into a full page, or pulling
+a page's section onto the homepage, is moving data between fields. Neither move requires new UI.
+
+**Deliberately not building: a section registry.** A `sections: [{type:'hero'},…]` array with a
+component switch would look more configurable and buy nothing — reordering is moving one line either
+way, and the registry adds a layer of indirection between the page and what it renders. The
+homepage composes its sections directly. `// ponytail:` comment on the page says so, so nobody
+"improves" it later.
+
+### Draining Wix via MCP
+
+Their site exposes `/_api/mcp` with `SearchInSite` and `CallWixSiteAPI` (baseline §4). Once we have
+access, that's the content migration: a script pulls pages, posts, and business details and emits
+typed content modules matching `types.ts`.
+
+```
+scripts/import-wix.ts    MCP → src/lib/content/*.ts
+```
+
+This is why the content types get defined before the copy is written. **The import is mechanical
+only if there's a target shape to import into** — otherwise it's a pile of JSON someone hand-sorts.
+Same principle as writing the Sanity schema before the studio exists.
+
+Worth noting for the case study: the platform they're leaving hands over its own content cleanly. No
+scraping required.
 
 ---
 
@@ -303,6 +394,12 @@ pre-rebuild traffic record that exists.
 3. **Service page copy gets rewritten** — 7 pages from ~400 to 800–1,200 words with real FAQ
    sections, plus a service-area page (§6). Structure alone doesn't close a 3,564-word gap.
 4. **Homepage carries everything** (§3); **URLs are preserved, not restructured** (§3b).
+5. **No decorative icons.** The line-art service icons are cut — if an icon needs a label to be
+   understood, the label was doing the work. Third-party certification marks stay, because they're
+   evidence rather than decoration (§2).
+6. **Built to be rearranged** (§4b) — content as data, one route for all services, shared section
+   primitives. The structure here is a first draft; the intro call will change it, and changing it
+   should cost minutes.
 
 ### Still needed from the client
 
@@ -316,4 +413,8 @@ determine how good the rewritten copy actually is, and §6 is where the ranking 
 - **Hours** and a **street address** (or explicit service-area-only status) for `LocalBusiness`.
 - **Reviews**: they have Google reviews; the real text, to mark up properly.
 - **Wix Analytics history** — the sequencing constraint from baseline §6.
+- **Wix account access** — unlocks the MCP content drain (§4b) and the billing line (baseline §9).
 - The **logo as vector**, if it exists.
+
+Everything above is an input to the *copy*, not to the *architecture*. The build proceeds now; the
+call makes it right rather than making it possible.
