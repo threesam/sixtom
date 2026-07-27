@@ -35,23 +35,29 @@ Structured against the sixtom production-sprint ledger — each section maps to 
 number would have been cherry-picking. Medians are reported throughout; ranges are given where the
 spread is the finding.
 
-**Re-running this for the "after" column** — identical method, from the repo root:
+**The tooling lives outside this repo.** It measures other people's sites and belongs to no product,
+so it sits in `~/Code/Me/scripts/case-study/` (see its README). This directory holds only the findings
+and the data.
+
+**Re-running for the "after" column** — identical method, pointed at this directory:
 
 ```sh
-cd case-studies/masteryourmold
-node capture.mjs                          # screenshots + network log
-OUT=runs-after ./lh-median.sh                          # 5 Lighthouse runs per form factor
-RUNS=runs-after LABEL=after OUT=after node build-scorecard.mjs   # → after.json + after.html
-OUT=after node render.mjs                              # → after.png
+cd ~/Code/Me/scripts/case-study
+DATA=~/Code/Me/sixtom/case-studies/masteryourmold
+
+node capture.mjs <site-url> "$DATA"                    # screenshots + network log
+URL=<site-url> DATA="$DATA" OUT=runs-after ./lh-median.sh
+RUNS=runs-after LABEL=after OUT=after node build-scorecard.mjs "$DATA"
+OUT=after node render.mjs "$DATA"
 ```
 
 The comparison is only worth anything if both columns are measured the same way. That's why the
 capture is scripted rather than hand-collected.
 
 **What's in git vs. what isn't.** Committed: this writeup, `before.json` (every cited number as
-structured data), `scorecard.png`, the parsed `raw/*.json`, and the four scripts. Gitignored: the
-underlying blobs — 52 screenshots, 10 Lighthouse runs, 15 raw HTML pages, ~85 MB — because they
-regenerate from the scripts above and this repo deploys to production. The reproducible method is the
+structured data), `scorecard.png`, the parsed `raw/*.json`, and the brand assets. Gitignored: the
+underlying blobs, 52 screenshots, 10 Lighthouse runs, 15 raw HTML pages, ~85 MB, because they
+regenerate from the tooling above and this repo deploys to production. The reproducible method is the
 receipt; stored megabytes aren't.
 
 ---
