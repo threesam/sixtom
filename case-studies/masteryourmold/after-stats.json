@@ -1,0 +1,16 @@
+{
+  "pages": 12,
+  "totalWords": 10870,
+  "images": {
+    "total": 73,
+    "meaningfulAlt": 12
+  },
+  "pagesMissingMetaDescription": [],
+  "jsonldTypes": [
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Service",
+    "WebSite"
+  ]
+}

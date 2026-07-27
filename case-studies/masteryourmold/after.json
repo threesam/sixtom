@@ -1,0 +1,186 @@
+{
+  "site": "https://www.masteryourmold.com/",
+  "business": "Mold Master Remediation",
+  "platform": "SvelteKit, static, zero JS",
+  "capturedAt": "2026-07-27",
+  "label": "after",
+  "lighthouse": {
+    "desktop": {
+      "runs": 5,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "raw": {
+        "performance": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "accessibility": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "best-practices": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "seo": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "agentic-browsing": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "metrics": {
+        "LCP": {
+          "median": 428.76829999999995,
+          "min": 425.95619999999997,
+          "max": 457.58310000000006
+        },
+        "TBT": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "CLS": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "FCP": {
+          "median": 287.1956,
+          "min": 285.9562,
+          "max": 297.5831
+        },
+        "SI": {
+          "median": 287.1956,
+          "min": 285.9562,
+          "max": 306.30832733087186
+        },
+        "TTI": {
+          "median": 430.76829999999995,
+          "min": 427.9562,
+          "max": 457.58310000000006
+        }
+      },
+      "weightKiB": 152,
+      "requests": 13
+    },
+    "mobile": {
+      "runs": 5,
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "raw": {
+        "performance": [
+          99,
+          98,
+          98,
+          98,
+          98
+        ],
+        "accessibility": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "best-practices": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "seo": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "agentic-browsing": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "metrics": {
+        "LCP": {
+          "median": 1804.0756999999999,
+          "min": 1730.2067000000002,
+          "max": 1804.7382
+        },
+        "TBT": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "CLS": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "FCP": {
+          "median": 1054.5659,
+          "min": 1053.9433,
+          "max": 1055.2067
+        },
+        "SI": {
+          "median": 3411.3319000006177,
+          "min": 3392.0200679948994,
+          "max": 3432.1533799980803
+        },
+        "TTI": {
+          "median": 1819.0757,
+          "min": 1752.7067000000002,
+          "max": 1819.7382000000002
+        }
+      },
+      "weightKiB": 164,
+      "requests": 13
+    }
+  },
+  "pages": 12,
+  "totalWords": 10870,
+  "images": {
+    "total": 73,
+    "meaningfulAlt": 12
+  },
+  "pagesMissingMetaDescription": [],
+  "pagesWrongH1": null,
+  "jsonldTypes": [
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Service",
+    "WebSite"
+  ]
+}
