@@ -9,6 +9,9 @@ same way and the delta is checkable by anyone.
 
 Structured against the sixtom production-sprint ledger — each section maps to a paid deliverable.
 
+**The after state is in [`02-after.md`](./02-after.md)**, measured the same way. The scope that
+connects them is [`01-rebuild-scope.md`](./01-rebuild-scope.md).
+
 > **Captured from outside, before owner access.** No Search Console, analytics, billing, or business
 > context at capture time — all expected later, at which point the flagged sections get filled in.
 > That bounds what today's numbers claim: **lab data, not field data; a query sample, not tracked

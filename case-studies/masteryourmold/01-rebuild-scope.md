@@ -1,7 +1,7 @@
 # masteryourmold.com — rebuild scope
 
 Companion to [`00-baseline.md`](./00-baseline.md). The baseline says what's broken; this says what
-gets built. Every item traces to a numbered finding so the case study can show cause → fix → delta.
+gets built; [`02-after.md`](./02-after.md) says what shipped and what it measured. Every item traces to a numbered finding so the case study can show cause → fix → delta.
 
 **Stack:** SvelteKit 2 + Svelte 5 + Tailwind 4 + TypeScript strict, Vercel adapter, Vitest +
 Playwright — mirroring the sixtom repo so the toolchain (`/rev`, `/drive`, `/a11y`, `/lighthouse`)
