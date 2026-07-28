@@ -22,7 +22,7 @@
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-16 text-left md:py-20 md:text-center">
 		<p class="eyebrow text-fg-subtle text-xs md:text-sm">{grandSlam.chip}</p>
 		<h1
-			class="text-fg mt-6 text-[clamp(2.25rem,8.5vw,4.5rem)] leading-[1.08] font-bold tracking-tight"
+			class="text-fg mt-6 text-[clamp(2.25rem,8.5vw,4.5rem)] leading-[1.08] font-bold tracking-tight text-balance"
 		>
 			{grandSlam.headline}
 		</h1>
