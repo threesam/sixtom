@@ -92,7 +92,17 @@
 	font-weight: 500;
 	transition:
 		--gradient-angle 1.8s ease-in-out,
-		opacity 0.15s;
+		opacity 0.15s,
+		transform 0.1s ease;
+}
+/* Tactile press + a keyboard-visible ring (the gradient pill otherwise
+ * relies on the UA default outline, which the border-radius clips oddly). */
+.btn-accent:active {
+	transform: scale(0.98);
+}
+.btn-accent:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 3px;
 }
 .btn-accent:hover {
 	--gradient-angle: 225deg;

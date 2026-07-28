@@ -91,7 +91,6 @@ export interface GrandSlamOffer {
 	offerLine: string
 	stats: readonly Stat[]
 	wall: {
-		eyebrow: string
 		thesis: string
 		para: string
 		turn: string
@@ -106,7 +105,7 @@ export interface GrandSlamOffer {
 		payLine: string
 		anchorLine: string
 	}
-	guarantee: { eyebrow: string; headline: string; body: string }
+	guarantee: { headline: string; body: string }
 	proof: {
 		eyebrow: string
 		heading: string
@@ -116,12 +115,13 @@ export interface GrandSlamOffer {
 		bridge: string
 	}
 	isThisYou: {
-		eyebrow: string
+		heading: string
 		yesLead: string
 		yes: readonly string[]
 		noLead: string
 		no: readonly string[]
 	}
+	timeline: { heading: string }
 	close: {
 		scarcity: string
 		heading: string

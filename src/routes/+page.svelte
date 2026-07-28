@@ -5,7 +5,8 @@
 
 	const o = grandSlam
 	const eyebrowClass = 'eyebrow text-sm'
-	const h2Class = 'text-fg mt-2 text-3xl leading-tight font-bold tracking-tight md:text-5xl'
+	const h2Class =
+		'text-fg mt-2 text-3xl leading-tight font-bold tracking-tight text-balance md:text-5xl'
 	const bodyClass = 'text-fg-muted mt-6 max-w-2xl text-base leading-relaxed md:text-lg'
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 </script>
@@ -15,7 +16,6 @@
 <!-- the wall -->
 <section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.wall.eyebrow}</p>
 		<h2 class={h2Class}>{o.wall.thesis}</h2>
 		<p class={bodyClass}>{o.wall.para}</p>
 		<p class="text-fg mt-8 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
@@ -84,7 +84,6 @@
 <!-- the guarantee -->
 <section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.guarantee.eyebrow}</p>
 		<h2 class={h2Class}>{o.guarantee.headline}</h2>
 		<p class={bodyClass}>{o.guarantee.body}</p>
 	</div>
@@ -118,8 +117,8 @@
 <!-- is this you -->
 <section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.isThisYou.eyebrow}</p>
-		<div class="mt-6 grid gap-10 md:grid-cols-2">
+		<h2 class={h2Class}>{o.isThisYou.heading}</h2>
+		<div class="mt-10 grid gap-10 md:grid-cols-2">
 			<div>
 				<p class="text-fg text-lg font-semibold">{o.isThisYou.yesLead}</p>
 				<ul class="text-fg-muted mt-4 space-y-3 text-base leading-relaxed">
@@ -143,8 +142,8 @@
 <!-- the two weeks -->
 <section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>the two weeks</p>
-		<ol class="border-border divide-border mt-8 divide-y border-y">
+		<h2 class={h2Class}>{o.timeline.heading}</h2>
+		<ol class="border-border divide-border mt-10 divide-y border-y">
 			{#each site.process as step (step.label)}
 				<li class="grid gap-1 py-5 md:grid-cols-[12rem_1fr] md:gap-6">
 					<p class="text-fg-subtle text-xs tracking-widest uppercase">{step.label}</p>

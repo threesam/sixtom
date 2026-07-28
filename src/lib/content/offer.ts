@@ -16,7 +16,6 @@ export const grandSlam: GrandSlamOffer = {
 		{ value: 'day 10 or free', label: 'the guarantee' }
 	],
 	wall: {
-		eyebrow: 'the wall',
 		thesis: 'vibe coding is how you slowly become the intern of your own codebase.',
 		para: "you shipped a demo and it felt like magic. then the edits started breaking things you didn't touch. every new feature costs more than the last. you're not building anymore — you're negotiating with a machine that no longer understands what it built.",
 		turn: "the demo is real. the foundation isn't. and every month it stays that way has a price:",
@@ -163,7 +162,6 @@ export const grandSlam: GrandSlamOffer = {
 			'a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.'
 	},
 	guarantee: {
-		eyebrow: 'the guarantee',
 		headline: 'live in production by day 10, or the remaining payments are free.',
 		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there — you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
@@ -183,7 +181,7 @@ export const grandSlam: GrandSlamOffer = {
 			"this one wasn't vibe-coded — just slow and invisible. same hands, same discipline, numbers you can check. the first rescue writeup is on the bench right now."
 	},
 	isThisYou: {
-		eyebrow: 'is this you?',
+		heading: 'is this you?',
 		yesLead: 'this is for you if:',
 		yes: [
 			'you vibe-coded something to a working demo',
@@ -198,6 +196,7 @@ export const grandSlam: GrandSlamOffer = {
 			'you need it done and gone, no involvement'
 		]
 	},
+	timeline: { heading: 'the two weeks.' },
 	close: {
 		scarcity: 'one seat a month · by appointment',
 		heading: 'join the waitlist.',
