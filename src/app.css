@@ -33,8 +33,6 @@
 
 	--color-surface: oklch(14.5% 0 0);
 	--color-fg: oklch(97% 0 0);
-	/* Muted/subtle lifted 2026-07-24 (Sam: "contrast not accessible") — subtle
-	 * was 5.01:1 (AA-only); now ~6.3:1 and ~8.9:1 on the dark surface. */
 	--color-fg-muted: oklch(75% 0 0);
 	--color-fg-subtle: oklch(66% 0 0);
 	--color-border: oklch(26.9% 0 0);
@@ -53,7 +51,7 @@
 	--color-surface: oklch(98% 0.005 85);
 	--color-fg: oklch(15% 0 0);
 	--color-fg-muted: oklch(40% 0 0);
-	--color-fg-subtle: oklch(45% 0 0); /* was 50% — 5.66:1 AA-only; now ~7:1 */
+	--color-fg-subtle: oklch(45% 0 0);
 	--color-border: oklch(86% 0.005 85);
 	--color-border-strong: oklch(72% 0.005 85);
 	--shadow-accent:
@@ -63,9 +61,6 @@
 	font-family: var(--font-display);
 }
 
-/* Accent teal at 70% lightness is ~2.5:1 on the white UV surface — small
- * eyebrow text needs 4.5:1. Darkened teal (~7:1) carries the letterforms;
- * the neon glow still comes from --shadow-accent where applied. */
 .surface-uv .eyebrow {
 	color: oklch(45% 0.12 195);
 }
@@ -95,8 +90,6 @@
 		opacity 0.15s,
 		transform 0.1s ease;
 }
-/* Tactile press + a keyboard-visible ring (the gradient pill otherwise
- * relies on the UA default outline, which the border-radius clips oddly). */
 .btn-accent:active {
 	transform: scale(0.98);
 }
@@ -161,6 +154,7 @@ a:not(.btn-accent):not(.no-link) {
 	text-decoration-color: var(--color-accent);
 	text-decoration-thickness: 2px;
 	text-underline-offset: 4px;
+	text-decoration-skip-ink: none;
 	/* color is animated too so links that do recolor on hover (e.g. footer nav)
 	   still fade rather than snap; this rule itself never changes text colour. */
 	transition:
