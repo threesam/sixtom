@@ -14,7 +14,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'how much does it cost?',
 		answer:
-			'$10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get it at $7,500. that price buys the whole ledger on the home page — over $28,500 of itemized work.'
+			'$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $28,500 of itemized work. (the $7,500 first-3 intro is closed.)'
 	},
 	{
 		question: "what's the guarantee?",

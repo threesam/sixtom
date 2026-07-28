@@ -1,6 +1,6 @@
 # SIXTOM — full content
 
-> the demo works. production doesn't. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat ($7,500 for the first 3 clients). 1 client a month.
+> the demo works. production doesn't. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat. 1 client a month.
 
 ## thesis
 
@@ -49,7 +49,7 @@ straight with you: search and answer-engines pay off over months, not days. the 
 - the 90-day growth map — the highest-impact moves, in order — $1,500
 - the runbook + Loom library — so you're never dependent on me again — $1,500
 
-**total value: $28,500+. you pay: $10,000 fixed. $7,500 for the first 3 clients. or 4 weekly payments of $2,500.**
+**total value: $28,500+. you pay: $10,000 fixed, or 4 weekly payments of $2,500.** (the $7,500 first-3 intro is closed.)
 
 a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.
 
@@ -86,7 +86,7 @@ you (or your AI) got something to a working demo. i take it from there to produc
 
 **how much does it cost?**
 
-$10,000 flat, or 4 weekly payments of $2,500. the first 3 clients get it at $7,500. that price buys the whole ledger on the home page — over $28,500 of itemized work.
+$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $28,500 of itemized work. (the $7,500 first-3 intro is closed.)
 
 **what's the guarantee?**
 

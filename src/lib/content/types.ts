@@ -22,6 +22,7 @@ export interface Offer {
 	cadence: string
 	introPriceUSD?: number
 	introNote?: string
+	introClosed?: boolean
 	paymentPlan?: string
 }
 
@@ -102,7 +103,7 @@ export interface GrandSlamOffer {
 		heading: string
 		para: string
 		groups: readonly LedgerGroup[]
-		payLine: string
+		payParts: readonly { text: string; struck?: boolean }[]
 		anchorLine: string
 	}
 	guarantee: { headline: string; body: string }

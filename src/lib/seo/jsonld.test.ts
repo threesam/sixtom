@@ -57,6 +57,9 @@ describe('JSON-LD generators', () => {
 		expect(ld.offers[0]?.price).toBe(String(site.sprint.priceUSD))
 		expect(ld.offers[0]?.availability).toBe('https://schema.org/LimitedAvailability')
 		expect(ld.offers[0]?.description).toContain('day 10')
+		// closed intro must not leak into machine surfaces
+		expect(ld.offers[0]?.description).not.toContain('7500')
+		expect(ld.offers[0]?.description).not.toContain('7,500')
 		expect(ld.offers[1]?.name).toBe('free teardown')
 		expect(ld.offers[1]?.price).toBe('0')
 		expect(ld.offers[1]?.availability).toBe('https://schema.org/InStock')

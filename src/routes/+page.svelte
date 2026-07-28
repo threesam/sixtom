@@ -95,7 +95,12 @@
 				class="mt-3 flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between md:gap-6"
 			>
 				<p class="text-fg-muted text-base">you pay</p>
-				<p class="text-fg text-base font-semibold md:text-right">{o.ledger.payLine}</p>
+				<p class="text-fg flex flex-wrap gap-x-1.5 text-base font-semibold md:justify-end">
+					{#each o.ledger.payParts as part (part.text)}
+						{#if part.struck}<s class="text-fg-subtle">{part.text}</s>{:else}<span>{part.text}</span
+							>{/if}
+					{/each}
+				</p>
 			</div>
 			<p class="text-fg-subtle mt-8 max-w-2xl text-sm leading-relaxed">{o.ledger.anchorLine}</p>
 		</div>
