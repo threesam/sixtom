@@ -1,6 +1,6 @@
 # SIXTOM
 
-> the demo works. production doesn't. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat ($7,500 for the first 3 clients). 1 client a month.
+> the demo works. production doesn't. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat. 1 client a month.
 
 ## what i do
 
@@ -26,7 +26,7 @@ you vibe-coded something to a working demo. it has real users, or paying ones. i
 
 ## pricing
 
-- sprint: $10,000 USD fixed, or 4 weekly payments of $2,500. first 3 clients: $7,500. 1 client a month, by appointment.
+- sprint: $10,000 USD fixed, or 4 weekly payments of $2,500. 1 client a month, by appointment. (the $7,500 first-3 intro is closed.)
 - free teardown: $0, via the waitlist at https://sixtom.com/notify.
 
 ## who i am

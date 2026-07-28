@@ -6,7 +6,7 @@ Conventions for any agent (Claude Code, Cursor, Codex, Aider, etc.) working on t
 
 **sixtom** — a single grand-slam offer site (Hormozi-style), one client a month:
 
-- **The Production Sprint** — $10,000 flat (or 4 weekly payments of $2,500; first 3 clients $7,500). Two weeks; a 19-line itemized ledger totaling $28,500+ (foundation / growth foundation / brand / close / bonuses). **The guarantee: live in production by day 10, or the remaining payments are free**, with the day-5 scope check as the floor (stop, keep everything, pay only time used).
+- **The Production Sprint** — $10,000 flat (or 4 weekly payments of $2,500; the $7,500 first-3 intro is CLOSED as of 2026-07-28 — referral margin — shown struck-through on the page, absent from schema/llms). Two weeks; a 19-line itemized ledger totaling $28,500+ (foundation / growth foundation / brand / close / bonuses). **The guarantee: live in production by day 10, or the remaining payments are free**, with the day-5 scope check as the floor (stop, keep everything, pay only time used).
 - **The free teardown** — $0, via the waitlist (`/notify`): a short recorded teardown of the prospect's app. Top-of-funnel; the old $1,500 audit folded into it.
 - **The retainer is off-page by design** — a private post-sprint continuation pitched at the day-30 check-in, never on the site. Add-on services (content strategy, SEO iteration, experiments) are reactivation offers to past clients, also never on the site.
 

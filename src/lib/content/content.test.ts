@@ -19,10 +19,12 @@ describe('content', () => {
 		expect(LEDGER_TOTAL_USD).toBe(sum)
 	})
 
-	it('pay line is derived from sprint pricing (single source of truth)', () => {
-		expect(grandSlam.ledger.payLine).toContain('$10,000')
-		expect(grandSlam.ledger.payLine).toContain('$7,500')
-		expect(grandSlam.ledger.payLine).toContain('4 weekly payments of $2,500')
+	it('pay parts derive from sprint pricing; the closed intro is struck', () => {
+		const parts = grandSlam.ledger.payParts
+		expect(parts.find((p) => p.text.includes('$10,000'))?.struck).toBeFalsy()
+		expect(parts.find((p) => p.text.includes('4 weekly payments of $2,500'))?.struck).toBeFalsy()
+		// The $7,500 first-3 window is closed (referral margin) — visible but struck.
+		expect(parts.find((p) => p.text.includes('$7,500'))?.struck).toBe(true)
 	})
 
 	it('guarantee is the day-10 promise', () => {

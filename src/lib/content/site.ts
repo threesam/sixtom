@@ -27,6 +27,7 @@ export const site: Site = {
 		priceUSD: 10000,
 		introPriceUSD: 7500,
 		introNote: 'first 3 clients',
+		introClosed: true,
 		cadence: '1 client a month, by appointment.',
 		paymentPlan: '4 weekly payments of $2,500'
 	},

@@ -113,7 +113,7 @@ export function serviceJsonLd(): ServiceLd {
 	const sprintDescription = [
 		'two weeks from working demo to production-grade. live in production by day 10 — or the remaining payments are free.',
 		site.sprint.paymentPlan ? `${site.sprint.paymentPlan} available.` : '',
-		site.sprint.introPriceUSD
+		site.sprint.introPriceUSD && !site.sprint.introClosed
 			? `$${String(site.sprint.introPriceUSD)} intro for the ${site.sprint.introNote ?? 'first clients'}.`
 			: '',
 		site.sprint.cadence
