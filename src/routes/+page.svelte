@@ -31,7 +31,7 @@
 		</ul>
 		<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
 			{o.wall.taxLine}
-			<a href="/tax" data-umami-event="cta_tax_calc" class="link-coin">run yours →</a>
+			<a href="/tax" data-umami-event="cta_tax_calc">run yours →</a>
 		</p>
 	</div>
 </section>
@@ -105,7 +105,13 @@
 <!-- the guarantee -->
 <section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<h2 class={h2Class}>{o.guarantee.headline}</h2>
+		<!-- Clause-per-line (\n in the content string); sized so each clause
+		     holds a single line inside max-w-3xl on desktop. -->
+		<h2 class="text-fg mt-2 text-3xl leading-tight font-bold tracking-tight md:text-[2.5rem]">
+			{#each o.guarantee.headline.split('\n') as line (line)}
+				<span class="block">{line}</span>
+			{/each}
+		</h2>
 		<p class={bodyClass}>{o.guarantee.body}</p>
 	</div>
 </section>

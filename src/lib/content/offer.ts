@@ -162,7 +162,8 @@ export const grandSlam: GrandSlamOffer = {
 			'a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.'
 	},
 	guarantee: {
-		headline: 'live in production by day 10, or the remaining payments are free.',
+		// \n = author-controlled line break: clause per line on desktop.
+		headline: 'live in production by day 10,\nor the remaining payments are free.',
 		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there — you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
 	proof: {
@@ -181,8 +182,8 @@ export const grandSlam: GrandSlamOffer = {
 			"this one wasn't vibe-coded — just slow and invisible. same hands, same discipline, numbers you can check. the first rescue writeup is on the bench right now."
 	},
 	isThisYou: {
-		heading: 'is this you?',
-		yesLead: 'this is for you if:',
+		heading: 'is this for you?',
+		yesLead: 'yes, if:',
 		yes: [
 			'you vibe-coded something to a working demo',
 			'it has real users, or paying ones',
