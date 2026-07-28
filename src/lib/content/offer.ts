@@ -190,7 +190,7 @@ export const grandSlam: GrandSlamOffer = {
 			"it's breaking, or it just won't reach production",
 			"you'd rather own the fix than rent a dev shop"
 		],
-		noLead: 'not yet if:',
+		noLead: 'not yet, if:',
 		no: [
 			"it's still just an idea — nothing built",
 			'you want someone to manage a team of engineers',
