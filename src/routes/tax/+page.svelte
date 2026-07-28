@@ -7,7 +7,7 @@
 	<title>vibe-code tax | SIXTOM</title>
 	<meta
 		name="description"
-		content="how much your vibe-coded prototype is costing you per year. 4 inputs, instant number, no email."
+		content="how much your vibe-coded prototype is costing you per year. 3 inputs, instant number, no email."
 	/>
 	<meta property="og:title" content="vibe-code tax | SIXTOM" />
 	<meta

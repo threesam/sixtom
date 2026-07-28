@@ -2,3 +2,6 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# client-research scrapes — third-party HTML/JSON, never format-gated
+case-studies/

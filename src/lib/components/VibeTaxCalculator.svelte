@@ -20,7 +20,6 @@
 		{ value: 'enterprise', label: 'enterprise-ready (SOC2 / SSO)' }
 	]
 
-	let mau = $state<number | null>(1000)
 	let goal = $state<Goal>('stop')
 	let firefightingHours = $state<number | null>(10)
 	let hourlyCost = $state<number | null>(150)
@@ -56,36 +55,21 @@
 			what's it costing you?
 		</h1>
 		<p class="text-fg-muted mt-4 text-base leading-relaxed">
-			4 questions. instant number. no email.
+			3 questions. instant number. no email.
 		</p>
 
 		<div class="mt-10 space-y-6">
-			<div class="grid gap-6 md:grid-cols-2">
-				<div>
-					<label for="vt-mau" class={labelClass}>monthly active users today</label>
-					<input
-						id="vt-mau"
-						type="number"
-						min="0"
-						step="100"
-						bind:value={mau}
-						placeholder="e.g. 1,000"
-						class={inputClass}
-					/>
-				</div>
-
-				<div>
-					<label for="vt-cost" class={labelClass}>your hourly rate (yours, or your team's)</label>
-					<input
-						id="vt-cost"
-						type="number"
-						min="0"
-						step="25"
-						bind:value={hourlyCost}
-						placeholder="e.g. 150"
-						class={inputClass}
-					/>
-				</div>
+			<div>
+				<label for="vt-cost" class={labelClass}>your hourly rate (yours, or your team's)</label>
+				<input
+					id="vt-cost"
+					type="number"
+					min="0"
+					step="25"
+					bind:value={hourlyCost}
+					placeholder="e.g. 150"
+					class={inputClass}
+				/>
 			</div>
 
 			<div>

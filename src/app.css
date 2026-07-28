@@ -125,6 +125,15 @@ html {
 /* Form controls use the brand teal, not the default blue. @tailwindcss/forms
  * sets appearance:none and paints the checked state with currentColor, so the
  * `color` is what drives the dot/check; accent-color is the native fallback. */
+input[type='number'] {
+	appearance: textfield;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
 input[type='radio'],
 input[type='checkbox'] {
 	color: var(--color-accent);
