@@ -43,29 +43,50 @@
 		<h2 class={h2Class}>{o.ledger.heading}</h2>
 		<p class={bodyClass}>{o.ledger.para}</p>
 
-		{#each o.ledger.groups as group (group.title)}
-			<div class="mt-12">
-				<p class="eyebrow text-fg-subtle text-xs">{group.title}</p>
-				<ul class="border-border divide-border mt-4 divide-y border-y">
-					{#each group.lines as item (item.line)}
-						<li class="flex items-baseline justify-between gap-6 py-4">
-							<div>
-								<p class="text-fg text-base font-semibold">{item.line}</p>
-								<p class="text-fg-muted mt-1 text-sm leading-relaxed">{item.sub}</p>
-							</div>
-							<p class="text-fg-subtle shrink-0 text-sm font-semibold tabular-nums">
-								{item.valueUSD === null ? item.valueLabel : usd(item.valueUSD)}
-							</p>
-						</li>
-					{/each}
-				</ul>
-				{#if group.note}
-					<p class="text-fg-subtle mt-4 max-w-2xl text-sm leading-relaxed">{group.note}</p>
-				{/if}
-			</div>
-		{/each}
+		<!-- Groups collapse to a scannable 5-row bill (title + subtotal); native
+		     <details> keeps the page zero-JS. Subtotals gain a "+" when the group
+		     holds an unpriced core/included line, mirroring the grand total's "+". -->
+		<div class="border-border mt-10 border-t">
+			{#each o.ledger.groups as group (group.title)}
+				{@const subtotal = group.lines.reduce((sum, l) => sum + (l.valueUSD ?? 0), 0)}
+				{@const hasUnpriced = group.lines.some((l) => l.valueUSD === null)}
+				<details class="group border-border border-b">
+					<summary
+						class="focus-visible:outline-accent flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
+					>
+						<span class="flex items-baseline gap-3">
+							<span
+								aria-hidden="true"
+								class="text-fg-subtle inline-block transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
+								>+</span
+							>
+							<span class="text-fg text-base font-semibold md:text-lg">{group.title}</span>
+						</span>
+						<span class="text-fg-subtle shrink-0 text-sm font-semibold tabular-nums">
+							{usd(subtotal)}{hasUnpriced ? '+' : ''}
+						</span>
+					</summary>
+					<ul class="divide-border divide-y pb-2">
+						{#each group.lines as item (item.line)}
+							<li class="flex items-baseline justify-between gap-6 py-4 pl-7">
+								<div>
+									<p class="text-fg text-base font-semibold">{item.line}</p>
+									<p class="text-fg-muted mt-1 text-sm leading-relaxed">{item.sub}</p>
+								</div>
+								<p class="text-fg-subtle shrink-0 text-sm font-semibold tabular-nums">
+									{item.valueUSD === null ? item.valueLabel : usd(item.valueUSD)}
+								</p>
+							</li>
+						{/each}
+					</ul>
+					{#if group.note}
+						<p class="text-fg-subtle max-w-2xl pb-5 pl-7 text-sm leading-relaxed">{group.note}</p>
+					{/if}
+				</details>
+			{/each}
+		</div>
 
-		<div class="border-border mt-12 border-t pt-8">
+		<div class="mt-8">
 			<div class="flex items-baseline justify-between gap-6">
 				<p class="text-fg text-lg font-bold">total value</p>
 				<p class="text-fg text-lg font-bold tabular-nums">{usd(LEDGER_TOTAL_USD)}+</p>
