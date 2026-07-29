@@ -152,20 +152,15 @@ input[type='radio']:checked {
 	border-color: var(--color-accent);
 }
 
-/* Text links: a teal 2px underline tucked 4px below the text; on hover / focus
- * / tap the underline slides up to 2px (400ms). text-underline-offset adds no
- * box height (so links stay aligned with neighbouring text) and underlines each
- * line fragment when a link wraps. The text colour never changes — only the
- * underline is coloured. Buttons (.btn-accent) and the wordmark / card links
- * (.no-link) opt out; the coin variant (the Garden / threesam.com) is gold. */
+/* Text links: a 2px underline in the text's own colour, tucked 4px below; on
+ * hover / focus / tap it slides up to 2px (400ms). Buttons (.btn-accent) and
+ * wordmark / nav / card links (.no-link) opt out. */
 a:not(.btn-accent):not(.no-link) {
 	text-decoration-line: underline;
-	text-decoration-color: var(--color-accent);
+	text-decoration-color: currentColor;
 	text-decoration-thickness: 2px;
 	text-underline-offset: 4px;
 	text-decoration-skip-ink: none;
-	/* color is animated too so links that do recolor on hover (e.g. footer nav)
-	   still fade rather than snap; this rule itself never changes text colour. */
 	transition:
 		text-underline-offset 400ms ease,
 		color 150ms ease;
@@ -174,9 +169,6 @@ a:not(.btn-accent):not(.no-link):hover,
 a:not(.btn-accent):not(.no-link):focus-visible,
 a:not(.btn-accent):not(.no-link):active {
 	text-underline-offset: 2px;
-}
-a.link-coin:not(.btn-accent):not(.no-link) {
-	text-decoration-color: var(--color-coin);
 }
 
 .snap-section {
