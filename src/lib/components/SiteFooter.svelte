@@ -74,14 +74,21 @@
 			inset 0 0 0 1.5px var(--color-surface),
 			0 4px 6px -1px rgb(0 0 0 / 0.1),
 			0 2px 4px -2px rgb(0 0 0 / 0.1);
+		rotate: 0deg;
 		transition:
 			transform 300ms ease-in-out,
-			box-shadow 300ms ease-in-out;
+			box-shadow 300ms ease-in-out,
+			rotate 150ms ease-in-out;
 		transform-style: preserve-3d;
 	}
 	.coin-link:hover .coin,
 	.coin-link:focus-visible .coin {
-		transform: rotateY(180deg) rotate(-7deg);
+		transform: rotateY(180deg);
+		rotate: 7deg;
+		transition:
+			transform 300ms ease-in-out,
+			box-shadow 300ms ease-in-out,
+			rotate 150ms ease-in-out 300ms;
 		box-shadow:
 			inset 0 0 0 1.5px var(--color-surface),
 			0 20px 25px -5px rgb(0 0 0 / 0.1),
@@ -118,6 +125,7 @@
 		.coin-link:hover .coin,
 		.coin-link:focus-visible .coin {
 			transform: none;
+			rotate: 0deg;
 		}
 	}
 </style>
