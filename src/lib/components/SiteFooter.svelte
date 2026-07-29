@@ -81,7 +81,7 @@
 	}
 	.coin-link:hover .coin,
 	.coin-link:focus-visible .coin {
-		transform: rotateY(180deg);
+		transform: rotateY(180deg) rotate(-13deg);
 		box-shadow:
 			inset 0 0 0 1.5px var(--color-surface),
 			0 20px 25px -5px rgb(0 0 0 / 0.1),

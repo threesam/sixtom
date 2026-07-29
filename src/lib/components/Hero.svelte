@@ -14,13 +14,15 @@
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
 		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 		<div
-			class="absolute inset-0 bg-gradient-to-b from-black/36 via-black/92 to-black/50 md:hidden"
+			class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/92 to-black/50 md:hidden"
 		></div>
-		<div class="absolute inset-0 hidden bg-gradient-to-r from-black/85 to-black/45 md:block"></div>
+		<div
+			class="absolute inset-0 hidden bg-[radial-gradient(ellipse_60%_70%_at_50%_45%,rgb(0_0_0/0.82),rgb(0_0_0/0.38))] md:block"
+		></div>
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-16 text-left md:py-20 md:text-center">
-		<p class="eyebrow text-fg-subtle text-xs md:text-sm">{grandSlam.chip}</p>
+		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
 		<h1
 			class="text-fg mt-6 text-[clamp(2.25rem,8.5vw,4.5rem)] leading-[1.08] font-bold tracking-tight text-balance"
 		>
@@ -43,7 +45,7 @@
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_teardown"
-				class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
+				class="text-fg hover:text-fg-subtle text-xs tracking-widest uppercase transition-colors"
 			>
 				or get a free teardown
 			</a>
