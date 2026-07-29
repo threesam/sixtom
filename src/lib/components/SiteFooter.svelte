@@ -84,11 +84,11 @@
 	.coin-link:hover .coin,
 	.coin-link:focus-visible .coin {
 		transform: rotateY(180deg);
-		rotate: 7deg;
+		rotate: 13deg;
 		transition:
 			transform 300ms ease-in-out,
 			box-shadow 300ms ease-in-out,
-			rotate 150ms ease-in-out 300ms;
+			rotate 1s ease-in-out 300ms;
 		box-shadow:
 			inset 0 0 0 1.5px var(--color-surface),
 			0 20px 25px -5px rgb(0 0 0 / 0.1),
