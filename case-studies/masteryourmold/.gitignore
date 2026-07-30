@@ -10,3 +10,4 @@ raw/*.html
 # ~1MB duplicate of scorecard.png. The PNG is the artifact of record.
 scorecard.html
 after.html
+deltas.html

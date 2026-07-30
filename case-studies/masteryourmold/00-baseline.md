@@ -3,8 +3,8 @@
 **Mold Master Remediation** · Bucks County, PA · certified mold inspection & remediation since 2013
 Platform: **Wix** · Captured **2026-07-26** · 13 pages, 2 blog posts
 
-This is the *before* state, captured before any work. Every number here has a stored artifact
-(`lighthouse/`, `raw/`, `shots/`) and a re-runnable method, so the *after* column is produced the
+This is the _before_ state, captured before any work. Every number here has a stored artifact
+(`lighthouse/`, `raw/`, `shots/`) and a re-runnable method, so the _after_ column is produced the
 same way and the delta is checkable by anyone.
 
 Structured against the sixtom production-sprint ledger — each section maps to a paid deliverable.
@@ -18,21 +18,21 @@ connects them is [`01-rebuild-scope.md`](./01-rebuild-scope.md).
 > rankings; observed behaviour, not internals.** Every limit is flagged inline and collected in §11.
 > Nothing here requires trusting an unverifiable number.
 >
-> Capturing this *before* access is deliberate — it's the same outside-in view a prospective customer
+> Capturing this _before_ access is deliberate — it's the same outside-in view a prospective customer
 > or a search engine gets, and it means the before-state can't be accused of hindsight.
 
 ---
 
 ## 0. Method
 
-| What | How | Artifact |
-|---|---|---|
-| Lighthouse | v13.4.1 CLI, headless Chrome, **median of 5 runs** per form factor | `lighthouse/runs/*.json` |
-| Screenshots | Playwright, desktop 1440×900 @2x + iPhone 14, scroll-walked for lazy-load | `shots/` |
-| SEO profile | 13 pages fetched raw (no JS), parsed for head/meta/heading/schema | `raw/seo-profile.json` |
-| Content | visible text extracted with escaped-markup handling | `raw/page-text.json` |
-| Search visibility | live query sample, July 2026 | §5 |
-| Network | real browser request log per page | `raw/network.json` |
+| What              | How                                                                       | Artifact                 |
+| ----------------- | ------------------------------------------------------------------------- | ------------------------ |
+| Lighthouse        | v13.4.1 CLI, headless Chrome, **median of 5 runs** per form factor        | `lighthouse/runs/*.json` |
+| Screenshots       | Playwright, desktop 1440×900 @2x + iPhone 14, scroll-walked for lazy-load | `shots/`                 |
+| SEO profile       | 13 pages fetched raw (no JS), parsed for head/meta/heading/schema         | `raw/seo-profile.json`   |
+| Content           | visible text extracted with escaped-markup handling                       | `raw/page-text.json`     |
+| Search visibility | live query sample, July 2026                                              | §5                       |
+| Network           | real browser request log per page                                         | `raw/network.json`       |
 
 **Single run vs median matters here.** Mobile performance ranged 60–81 across five runs. Any single
 number would have been cherry-picking. Medians are reported throughout; ranges are given where the
@@ -65,14 +65,14 @@ receipt; stored megabytes aren't.
 
 ---
 
-## 1. Performance — ledger line: *performance to 100s* ($1,500)
+## 1. Performance — ledger line: _performance to 100s_ ($1,500)
 
 **Median of 5 runs each.**
 
-| | Performance | Accessibility | Best practices | SEO | Agent-ready |
-|---|---|---|---|---|---|
-| **Desktop** | **94** | **91** | 100 | 100 | **67** |
-| **Mobile** | **67** | **95** | 100 | 100 | **67** |
+|             | Performance | Accessibility | Best practices | SEO | Agent-ready |
+| ----------- | ----------- | ------------- | -------------- | --- | ----------- |
+| **Desktop** | **94**      | **91**        | 100            | 100 | **67**      |
+| **Mobile**  | **67**      | **95**        | 100            | 100 | **67**      |
 
 Per-run scores, so the spread is visible rather than hidden behind the median:
 
@@ -81,16 +81,16 @@ Per-run scores, so the spread is visible rather than hidden behind the median:
 
 Core Web Vitals (median, with observed range across the 5 runs):
 
-| Metric | Desktop | Mobile | Google threshold |
-|---|---|---|---|
-| LCP | 1.63 s | **4.32 s** (3.6–16.9) | ≤2.5 s good, >4.0 s **poor** |
-| TBT | 0 ms | **448 ms** (61–546) | ≤200 ms good |
-| CLS | 0.011 | 0.003 | ≤0.1 good ✅ |
-| FCP | 0.48 s | 2.01 s (2.0–2.8) | ≤1.8 s good |
-| Speed Index | 0.87 s | **5.23 s** (2.5–9.3) | ≤3.4 s good |
-| Time to Interactive | 1.63 s | **10.80 s** (7.9–22.5) | ≤3.8 s good |
-| Page weight | 1,322 KiB | 1,557 KiB | — |
-| Requests | ~172 | ~179 | — |
+| Metric              | Desktop   | Mobile                 | Google threshold             |
+| ------------------- | --------- | ---------------------- | ---------------------------- |
+| LCP                 | 1.63 s    | **4.32 s** (3.6–16.9)  | ≤2.5 s good, >4.0 s **poor** |
+| TBT                 | 0 ms      | **448 ms** (61–546)    | ≤200 ms good                 |
+| CLS                 | 0.011     | 0.003                  | ≤0.1 good ✅                 |
+| FCP                 | 0.48 s    | 2.01 s (2.0–2.8)       | ≤1.8 s good                  |
+| Speed Index         | 0.87 s    | **5.23 s** (2.5–9.3)   | ≤3.4 s good                  |
+| Time to Interactive | 1.63 s    | **10.80 s** (7.9–22.5) | ≤3.8 s good                  |
+| Page weight         | 1,322 KiB | 1,557 KiB              | —                            |
+| Requests            | ~172      | ~179                   | —                            |
 
 **Read it straight: desktop is fine.** 94 with a 1.6 s LCP is a perfectly decent desktop experience.
 The problem is mobile, and it is not marginal:
@@ -108,12 +108,12 @@ Lighthouse's own attribution: main-thread work and JS execution dominate (≈550
 available), plus 161 KiB unused JS and 62 KiB unused CSS. That is Wix's runtime. **It is not tunable
 from inside Wix** — which is precisely why this is a rebuild rather than an optimization.
 
-Context for a mold company: the customer is standing in a damp basement holding a phone. Mobile *is*
+Context for a mold company: the customer is standing in a damp basement holding a phone. Mobile _is_
 the product surface.
 
 ---
 
-## 2. Accessibility — ledger line: *accessibility pass* ($1,500)
+## 2. Accessibility — ledger line: _accessibility pass_ ($1,500)
 
 Lighthouse a11y: **91 desktop / 95 mobile** — consistent across all 5 runs each, so the gap is real,
 not noise. Desktop scores lower because a colour-contrast failure only manifests in the desktop layout.
@@ -128,7 +128,7 @@ Failures found:
 
 Beyond Lighthouse, from the page audit:
 
-- **40 of 84 images (48%) have no meaningful alt text.** Many carry the *filename* as alt — `new.png`,
+- **40 of 84 images (48%) have no meaningful alt text.** Many carry the _filename_ as alt — `new.png`,
   `WINNER-2026-HL-Bucks.png`. That passes an automated "has alt attribute" check and fails a human.
   This is why the alt number here is 44/84 "meaningful", not the 58/84 an attribute-presence check
   reports.
@@ -138,7 +138,7 @@ Lighthouse only covers roughly a third of WCAG. This is the automated floor, not
 
 ---
 
-## 3. Technical SEO — ledger line: *technical SEO foundation* ($2,000)
+## 3. Technical SEO — ledger line: _technical SEO foundation_ ($2,000)
 
 Lighthouse SEO reports **100/100** on both form factors. That score is close to meaningless here — it
 checks crawlability mechanics, not whether the site can compete. Underneath it:
@@ -149,23 +149,23 @@ viewport set; CLS effectively zero.
 
 **What's broken:**
 
-| Finding | Detail | Impact |
-|---|---|---|
-| **11 of 13 pages have no meta description** | only `/` (117 chars) and `/spring-air-check` (44) have one | Google writes its own snippet — no control over the click decision |
-| **A staging page is live and indexable** | `/copy-of-who-we-are`, title **"WHO WE ARE - before editing"**, self-canonical, listed in the sitemap | duplicate of `/who-we-are`; an internal draft invited into the index |
-| **Broken H1 structure site-wide** | `/blog` and `/our-services` have **zero** H1s; `/` has 4; `/free-mold-guide` has 3; `/home-health-consults` has 6 | no page states its own topic |
-| **Service pages have no subheadings** | 6 of 7 service pages have **zero H2s** | no scannable structure for readers, crawlers, or answer engines |
-| **Homepage title is 23 chars: "Mold Master Remediation"** | no service, no geography | the highest-value title tag on the site targets only the brand name |
-| **Brand name has 4 variants** | "Mold Master Remediation", "Mold Master Rem" (truncated, in titles *and* schema), "Master Your Mold" (domain), site named "Mold Master Rem" in `llms.txt` | entity confusion for both search and answer engines |
-| **Thin content** | **4,954 words across the entire 13-page site**; homepage 339 words; thinnest pages 105 and 118 | see §5 for what this costs |
-| **Blog abandoned** | 2 posts, both **2024-01-27** — 2.5 years stale | no freshness, no long-tail surface |
+| Finding                                                   | Detail                                                                                                                                                    | Impact                                                               |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **11 of 13 pages have no meta description**               | only `/` (117 chars) and `/spring-air-check` (44) have one                                                                                                | Google writes its own snippet — no control over the click decision   |
+| **A staging page is live and indexable**                  | `/copy-of-who-we-are`, title **"WHO WE ARE - before editing"**, self-canonical, listed in the sitemap                                                     | duplicate of `/who-we-are`; an internal draft invited into the index |
+| **Broken H1 structure site-wide**                         | `/blog` and `/our-services` have **zero** H1s; `/` has 4; `/free-mold-guide` has 3; `/home-health-consults` has 6                                         | no page states its own topic                                         |
+| **Service pages have no subheadings**                     | 6 of 7 service pages have **zero H2s**                                                                                                                    | no scannable structure for readers, crawlers, or answer engines      |
+| **Homepage title is 23 chars: "Mold Master Remediation"** | no service, no geography                                                                                                                                  | the highest-value title tag on the site targets only the brand name  |
+| **Brand name has 4 variants**                             | "Mold Master Remediation", "Mold Master Rem" (truncated, in titles _and_ schema), "Master Your Mold" (domain), site named "Mold Master Rem" in `llms.txt` | entity confusion for both search and answer engines                  |
+| **Thin content**                                          | **4,954 words across the entire 13-page site**; homepage 339 words; thinnest pages 105 and 118                                                            | see §5 for what this costs                                           |
+| **Blog abandoned**                                        | 2 posts, both **2024-01-27** — 2.5 years stale                                                                                                            | no freshness, no long-tail surface                                   |
 
 **The two blog posts, audited:**
 
-| Post | Words | H2s | Schema | Meta description |
-|---|---|---|---|---|
-| "Demystifying Mold: A Comprehensive Guide to Mold Types and Their Impact" | 543 | 5 | `BlogPosting` | ❌ missing |
-| "Unveiling the Culprits: Top Causes of Mold in Your Home" | 583 | 1 | `BlogPosting` | ❌ missing |
+| Post                                                                      | Words | H2s | Schema        | Meta description |
+| ------------------------------------------------------------------------- | ----- | --- | ------------- | ---------------- |
+| "Demystifying Mold: A Comprehensive Guide to Mold Types and Their Impact" | 543   | 5   | `BlogPosting` | ❌ missing       |
+| "Unveiling the Culprits: Top Causes of Mold in Your Home"                 | 583   | 1   | `BlogPosting` | ❌ missing       |
 
 Two things stand out. First, **the abandoned blog is better built than the money pages** — both posts
 carry `BlogPosting` schema and real H2 structure, while all seven service pages have neither. The
@@ -178,7 +178,7 @@ informational queries while the commercial queries in their own county go unansw
 
 **Structured data** — only two site-wide types, both weak:
 
-- `LocalBusiness`: no street address (`addressLocality` is *"Bucks County"* — a county, not a
+- `LocalBusiness`: no street address (`addressLocality` is _"Bucks County"_ — a county, not a
   locality), no `geo`, no `openingHours`, no `priceRange`, no `sameAs`, no `aggregateRating`.
 - **Two conflicting `WebSite` blocks** — one unnamed, one named "Mold Master Rem".
 - **No `Service` schema on any of the 7 service pages.** No `FAQPage`. No `BreadcrumbList`. No
@@ -188,21 +188,21 @@ informational queries while the commercial queries in their own county go unansw
 
 ---
 
-## 4. Answer-engine readiness (AEO/GEO) — ledger line: *AEO/GEO foundation* ($2,000)
+## 4. Answer-engine readiness (AEO/GEO) — ledger line: _AEO/GEO foundation_ ($2,000)
 
 **Lighthouse `agentic-browsing`: 67/100 on both desktop and mobile** (identical across all 10 runs).
 
-| Signal | State |
-|---|---|
-| AI crawler access | ✅ GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, anthropic-ai, OAI-SearchBot all get HTTP 200 |
-| `llms.txt` | ✅ present, passes Lighthouse's check — Wix auto-generated |
-| Content in raw HTML | ✅ server-rendered; readable without JS |
-| **Accessibility tree** | ❌ **malformed — the one failing agentic-browsing audit** |
-| Entity consistency | ❌ four brand-name variants; `llms.txt` calls the business "Mold Master Rem" |
-| Answerable structure | ❌ no FAQ schema, no Service schema, 6/7 service pages have no subheadings |
-| Extractable facts | ❌ no hours, no service-area list, no pricing, no street address in schema |
+| Signal                 | State                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| AI crawler access      | ✅ GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, anthropic-ai, OAI-SearchBot all get HTTP 200 |
+| `llms.txt`             | ✅ present, passes Lighthouse's check — Wix auto-generated                                                |
+| Content in raw HTML    | ✅ server-rendered; readable without JS                                                                   |
+| **Accessibility tree** | ❌ **malformed — the one failing agentic-browsing audit**                                                 |
+| Entity consistency     | ❌ four brand-name variants; `llms.txt` calls the business "Mold Master Rem"                              |
+| Answerable structure   | ❌ no FAQ schema, no Service schema, 6/7 service pages have no subheadings                                |
+| Extractable facts      | ❌ no hours, no service-area list, no pricing, no street address in schema                                |
 
-The site is *reachable* by agents and *not very useful* to them. The accessibility tree is the shared
+The site is _reachable_ by agents and _not very useful_ to them. The accessibility tree is the shared
 substrate — the same malformed tree that fails screen readers fails the agents parsing the page. One
 fix, two wins.
 
@@ -218,28 +218,28 @@ followed.)
 **Method: live query sample, July 2026. This is a spot check, not tracked rank data** — no rank-tracker
 or Search Console access. Directional, and the direction is unambiguous.
 
-| Query | masteryourmold.com | Who ranks |
-|---|---|---|
-| `mold remediation Bucks County PA` | **absent** | Paul Davis, SERVPRO, EcoTech, Rightway, Mack's, C&J, Right On Time |
-| `mold inspection and testing Bucks County PA ERMI` | **absent** | findingthemold, ermitestingnow, Mastertech, Certified Mold Removal |
-| `mold remediation Doylestown / Newtown PA` | **absent** | SERVPRO, Angi, HomeAdvisor, Environmental Mold Solutions, Bulldog, C&J |
-| `Mold Master Remediation Bucks County` (branded) | **present** | — but a directory (primebuyersreport.org) outranks them |
+| Query                                              | masteryourmold.com | Who ranks                                                              |
+| -------------------------------------------------- | ------------------ | ---------------------------------------------------------------------- |
+| `mold remediation Bucks County PA`                 | **absent**         | Paul Davis, SERVPRO, EcoTech, Rightway, Mack's, C&J, Right On Time     |
+| `mold inspection and testing Bucks County PA ERMI` | **absent**         | findingthemold, ermitestingnow, Mastertech, Certified Mold Removal     |
+| `mold remediation Doylestown / Newtown PA`         | **absent**         | SERVPRO, Angi, HomeAdvisor, Environmental Mold Solutions, Bulldog, C&J |
+| `Mold Master Remediation Bucks County` (branded)   | **present**        | — but a directory (primebuyersreport.org) outranks them                |
 
 **They rank for their own name and essentially nothing else.** A local service business that is only
-findable by people who already know it isn't being found — it's being *remembered*. Every non-branded
+findable by people who already know it isn't being found — it's being _remembered_. Every non-branded
 search in their own county goes to a competitor, a franchise, or a lead-gen directory that will sell
 their name back to them.
 
 **Why — the content gap, measured:**
 
-| Page | Words | H2s | Page-level schema |
-|---|---|---|---|
-| C&J Environmental — Levittown | **3,564** | 9 | none |
-| Mack's Mold Removal — Bucks County | 1,546 | 2 | FAQPage, BreadcrumbList |
-| Mastertech — Bucks County | 1,456 | 8 | BreadcrumbList, Organization |
-| EcoTech — Bucks County | 622 | 6 | WebPage |
-| **masteryourmold `/mold-remediation`** | **449** | **0** | **none** |
-| **masteryourmold — entire 13-page site** | **4,954** | | |
+| Page                                     | Words     | H2s   | Page-level schema            |
+| ---------------------------------------- | --------- | ----- | ---------------------------- |
+| C&J Environmental — Levittown            | **3,564** | 9     | none                         |
+| Mack's Mold Removal — Bucks County       | 1,546     | 2     | FAQPage, BreadcrumbList      |
+| Mastertech — Bucks County                | 1,456     | 8     | BreadcrumbList, Organization |
+| EcoTech — Bucks County                   | 622       | 6     | WebPage                      |
+| **masteryourmold `/mold-remediation`**   | **449**   | **0** | **none**                     |
+| **masteryourmold — entire 13-page site** | **4,954** |       |                              |
 
 One competitor page carries **8× the content** of the comparable Mold Master page, and **72% of the
 entire site's word count** on its own. Competitors ship FAQ and breadcrumb schema; this site ships
@@ -247,27 +247,27 @@ neither. There is no keyword trick that closes a gap this size — it's a conten
 
 ---
 
-## 6. Analytics & observability — ledger line: *analytics + observability* ($1,500)
+## 6. Analytics & observability — ledger line: _analytics + observability_ ($1,500)
 
 **Confirmed at runtime**, not just in markup: a real browser loaded all 13 pages on both form factors
 (26 loads, `raw/network.json`) and contacted exactly seven hosts:
 
-| Host | Requests | What it is |
-|---|---|---|
-| `static.parastorage.com` | 2,480 | Wix CDN — the platform runtime |
-| `frog.wix.com` | 322 | **Wix's own telemetry** — feeds the built-in Wix Analytics dashboard |
-| `siteassets.parastorage.com` | 260 | Wix assets |
-| `panorama.wixapps.net` | 202 | Wix error/performance monitoring |
-| `static.wixstatic.com` | 176 | Wix media CDN |
-| `www.masteryourmold.com` | 108 | the site's own origin |
-| `browser.sentry-cdn.com` | 52 | Sentry — **shipped by Wix**, not the owner's |
+| Host                         | Requests | What it is                                                           |
+| ---------------------------- | -------- | -------------------------------------------------------------------- |
+| `static.parastorage.com`     | 2,480    | Wix CDN — the platform runtime                                       |
+| `frog.wix.com`               | 322      | **Wix's own telemetry** — feeds the built-in Wix Analytics dashboard |
+| `siteassets.parastorage.com` | 260      | Wix assets                                                           |
+| `panorama.wixapps.net`       | 202      | Wix error/performance monitoring                                     |
+| `static.wixstatic.com`       | 176      | Wix media CDN                                                        |
+| `www.masteryourmold.com`     | 108      | the site's own origin                                                |
+| `browser.sentry-cdn.com`     | 52       | Sentry — **shipped by Wix**, not the owner's                         |
 
 **Zero Google Analytics, GTM, Meta Pixel, Clarity, Hotjar, or any other third-party analytics.** Gap
 closed: the raw-HTML finding holds under hydration.
 
 The accurate reading is not "no data" — it's **no data they own or can act on**:
 
-- Wix's built-in analytics *is* collecting (that's `frog.wix.com`). The owner likely has a dashboard
+- Wix's built-in analytics _is_ collecting (that's `frog.wix.com`). The owner likely has a dashboard
   with historical traffic. **That's a genuinely useful input to request** — it may supply the traffic
   baseline this case study needs.
 - But there is **no GA4**, so no channel attribution, no Search Console linkage, no custom events, no
@@ -290,7 +290,7 @@ traffic baseline the "after" column needs.
 
 ---
 
-## 7. Conversion — ledger line: *CRO-ready pages + A/B scaffold* ($2,500)
+## 7. Conversion — ledger line: _CRO-ready pages + A/B scaffold_ ($2,500)
 
 Present: click-to-call `tel:1-267-265-4866`, `mailto:info@masteryourmold.com` (one with a pre-filled
 subject line — a nice touch), a Wix contact form, and a **2026 Happening List Bucks County winner**
@@ -304,17 +304,17 @@ reassurance at the moment of highest anxiety.
 
 ---
 
-## 8. Security — ledger line: *security review on every commit* ($2,000)
+## 8. Security — ledger line: _security review on every commit_ ($2,000)
 
-| Header | State |
-|---|---|
-| `strict-transport-security` | ✅ max-age=31556952 |
-| `x-content-type-options` | ✅ nosniff |
-| `content-security-policy` | ❌ missing |
-| `x-frame-options` | ❌ missing |
-| `referrer-policy` | ❌ missing |
-| `permissions-policy` | ❌ missing |
-| `cross-origin-opener-policy` | ❌ missing |
+| Header                       | State               |
+| ---------------------------- | ------------------- |
+| `strict-transport-security`  | ✅ max-age=31556952 |
+| `x-content-type-options`     | ✅ nosniff          |
+| `content-security-policy`    | ❌ missing          |
+| `x-frame-options`            | ❌ missing          |
+| `referrer-policy`            | ❌ missing          |
+| `permissions-policy`         | ❌ missing          |
+| `cross-origin-opener-policy` | ❌ missing          |
 
 TLS: Let's Encrypt, valid to 2026-09-27, auto-renewing. Mail on Google Workspace with SPF (`~all`).
 **No DMARC record found** — worth fixing regardless of the web rebuild.
@@ -325,7 +325,7 @@ structural cost of the platform, and it's the argument for owning the stack.
 
 ---
 
-## 9. Platform & cost — ledger line: *infra cost audit* ($1,000)
+## 9. Platform & cost — ledger line: _infra cost audit_ ($1,000)
 
 Confirmed: Wix (Pepyaka server, `parastorage`/`wixstatic` CDN, Wix DNS, `X-Wix-*` headers), Fastly in
 front, Google Workspace mail.
@@ -360,15 +360,15 @@ You can't test, secure, version, or migrate what you don't own. Everything above
 Named so nobody mistakes the map for the territory. Owner access is expected — each gap notes what
 closes it.
 
-| # | Gap | What closes it |
-|---|---|---|
-| 1 | **CrUX field data unavailable** — keyless PSI quota exhausted at capture; a site this size may have too little traffic to appear in CrUX at all. All perf numbers are **lab, not field**. | PSI/CrUX API key |
-| 2 | **Rankings are a query sample, not tracked data** (§5) | Search Console, or a rank tracker for position history |
-| 3 | ~~Analytics absence needs runtime confirmation~~ — **closed**, confirmed over 26 loads (§6) | — |
-| 4 | **Hosting cost is an estimate from public rates** (§9) | Wix billing access |
-| 5 | **No traffic baseline, lead volume, or seasonality** | Search Console + analytics + owner conversation |
-| 6 | ~~Blog posts not audited individually~~ — **closed**, see §3 | — |
-| 7 | **Lighthouse a11y covers ≈⅓ of WCAG** — automated floor, not an audit | manual WCAG 2.2 AA pass (`/a11y`) |
+| #   | Gap                                                                                                                                                                                       | What closes it                                         |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| 1   | **CrUX field data unavailable** — keyless PSI quota exhausted at capture; a site this size may have too little traffic to appear in CrUX at all. All perf numbers are **lab, not field**. | PSI/CrUX API key                                       |
+| 2   | **Rankings are a query sample, not tracked data** (§5)                                                                                                                                    | Search Console, or a rank tracker for position history |
+| 3   | ~~Analytics absence needs runtime confirmation~~ — **closed**, confirmed over 26 loads (§6)                                                                                               | —                                                      |
+| 4   | **Hosting cost is an estimate from public rates** (§9)                                                                                                                                    | Wix billing access                                     |
+| 5   | **No traffic baseline, lead volume, or seasonality**                                                                                                                                      | Search Console + analytics + owner conversation        |
+| 6   | ~~Blog posts not audited individually~~ — **closed**, see §3                                                                                                                              | —                                                      |
+| 7   | **Lighthouse a11y covers ≈⅓ of WCAG** — automated floor, not an audit                                                                                                                     | manual WCAG 2.2 AA pass (`/a11y`)                      |
 
 Gaps 1, 2, 4, 5 close with owner access — and #5 partly closes from **Wix Analytics history**, which
 the owner already has (§6). **7 is the only remaining work on this side.**

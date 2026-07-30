@@ -1,322 +1,262 @@
 {
-  "colors": [
-    [
-      "fg rgb(0, 0, 0)",
-      149
-    ],
-    [
-      "fg rgb(255, 255, 255)",
-      142
-    ],
-    [
-      "fg rgb(8, 65, 92)",
-      26
-    ],
-    [
-      "bg rgb(255, 255, 255)",
-      12
-    ],
-    [
-      "fg rgb(129, 195, 215)",
-      6
-    ],
-    [
-      "bg rgb(8, 65, 92)",
-      5
-    ],
-    [
-      "fg rgb(41, 50, 65)",
-      5
-    ],
-    [
-      "bg rgb(129, 195, 215)",
-      3
-    ],
-    [
-      "bg rgba(255, 255, 255, 0)",
-      2
-    ],
-    [
-      "fg rgb(0, 0, 238)",
-      2
-    ],
-    [
-      "bg rgba(255, 222, 17, 0)",
-      1
-    ],
-    [
-      "bg rgb(202, 204, 208)",
-      1
-    ],
-    [
-      "fg rgb(90, 183, 232)",
-      1
-    ]
-  ],
-  "fonts": [
-    [
-      "Arial 400",
-      151
-    ],
-    [
-      "poppins-semibold 400",
-      75
-    ],
-    [
-      "poppins-extralight 700",
-      66
-    ],
-    [
-      "poppins-semibold 700",
-      21
-    ],
-    [
-      "arial 700",
-      12
-    ],
-    [
-      "arial 400",
-      4
-    ],
-    [
-      "futura-lt-w01-book 400",
-      2
-    ]
-  ],
-  "imgs": [
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_fd449c90fe844d24b229936da77e4808~mv2.png/v1/fill/w_313,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/new.png",
-      "alt": "new.png",
-      "w": 313,
-      "h": 82
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_e48920f3d8a049eebb2111adb801e354~mv2.png/v1/fill/w_97,h_101,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WINNER-2026-HL-Bucks.png",
-      "alt": "WINNER-2026-HL-Bucks.png",
-      "w": 97,
-      "h": 101
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_334b4827fdb345f88d77b197d7b12caf~mv2.png/v1/fill/w_1440,h_378,al_t,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_334b4827fdb345f88d77b197d7b12caf~mv2.png",
-      "alt": "",
-      "w": 1440,
-      "h": 378
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_761780541aae4c15a6b417658e877c6e~mv2.png/v1/fill/w_118,h_116,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4_edited.png",
-      "alt": "4_edited.png",
-      "w": 118,
-      "h": 116
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_b368608a6e624da19fb21acc2e084d95~mv2.png/v1/crop/x_65,y_65,w_1120,h_1130/fill/w_114,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8_edited.png",
-      "alt": "8_edited.png",
-      "w": 114,
-      "h": 115
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_8e00d0a9e6e249f39b536c750a256584~mv2.png/v1/crop/x_5,y_0,w_1239,h_1250/fill/w_114,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/7_edited.png",
-      "alt": "7_edited.png",
-      "w": 114,
-      "h": 115
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_b8d6cf9625364a8b9d617c07a628ada0~mv2.png/v1/crop/x_305,y_0,w_1190,h_1200/fill/w_104,h_105,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/3.png",
-      "alt": "3.png",
-      "w": 104,
-      "h": 105
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_55df372249994953812da7190d920977~mv2.png/v1/fill/w_118,h_116,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5_edited.png",
-      "alt": "5_edited.png",
-      "w": 118,
-      "h": 116
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_ae14ba7008e34ef98596ad9e7b159541~mv2.png/v1/crop/x_290,y_134,w_1221,h_931/fill/w_127,h_97,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4.png",
-      "alt": "4.png",
-      "w": 127,
-      "h": 97
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_6f744db92fa54d598d0a28693d4ccb23~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5.png",
-      "alt": "5.png",
-      "w": 145,
-      "h": 145
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_9aa0f0485c5744b68203e5da550c1bac~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_9aa0f0485c5744b68203e5da550c1bac~mv2.png",
-      "alt": "",
-      "w": 145,
-      "h": 145
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_28178b9284954aac95cf938c6cd630a8~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_28178b9284954aac95cf938c6cd630a8~mv2.png",
-      "alt": "",
-      "w": 145,
-      "h": 145
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_075e94721e2f4b5a818cd77b3d4fa875~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_075e94721e2f4b5a818cd77b3d4fa875~mv2.png",
-      "alt": "",
-      "w": 145,
-      "h": 145
-    },
-    {
-      "src": "https://static.wixstatic.com/media/75f3ee_0cfebd99ef85464eae09b3635dd8a288~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_0cfebd99ef85464eae09b3635dd8a288~mv2.png",
-      "alt": "",
-      "w": 145,
-      "h": 145
-    }
-  ],
-  "headings": [
-    {
-      "tag": "H1",
-      "text": "Certified mold inspection & remediation experts serving Bucks County, PA and beyond since ",
-      "size": "37px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H2",
-      "text": "OUR SERVICES",
-      "size": "44px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H1",
-      "text": "Click on a Service below to learn more.",
-      "size": "18px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H1",
-      "text": "Not sure which service is right for you?",
-      "size": "24px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H2",
-      "text": "WHO WE ARE",
-      "size": "44px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H2",
-      "text": "HAPPY CUSTOMERS",
-      "size": "44px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H2",
-      "text": "See More Reviews on Google",
-      "size": "44px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H2",
-      "text": "CONTACT US ANYTIME",
-      "size": "44px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "tag": "H1",
-      "text": "You can expect a response within 1 business day.",
-      "size": "18px",
-      "font": "poppins-semibold",
-      "color": "rgb(255, 255, 255)"
-    }
-  ],
-  "ctas": [
-    {
-      "text": "Skip to Main Content",
-      "bg": "rgb(255, 255, 255)",
-      "color": "rgb(17, 109, 255)"
-    },
-    {
-      "text": "(267) 265-4866",
-      "href": "tel:1-267-265-4866",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "info@masteryourmold.com",
-      "href": "mailto:info@masteryourmold.com",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "SCHEDULE ONLINE NOW",
-      "href": "https://calendly.com/mold-master-remediation/on-site-mold-consultation",
-      "bg": "rgb(8, 65, 92)",
-      "color": "rgb(0, 0, 238)"
-    },
-    {
-      "text": "Mold Inspection",
-      "href": "https://www.masteryourmold.com/mold-inspections",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "HEPA Deep Clean",
-      "href": "https://www.masteryourmold.com/hepa-deep-clean",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "Mold Testing",
-      "href": "https://www.masteryourmold.com/mold-testing",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "Water Mitigation",
-      "href": "https://www.masteryourmold.com/water-mitigation",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "Mold Remediation",
-      "href": "https://www.masteryourmold.com/mold-remediation",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "Home & Health Consults",
-      "href": "https://www.masteryourmold.com/home-health-consults",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    },
-    {
-      "text": "GET IN TOUCH",
-      "href": "https://www.masteryourmold.com",
-      "bg": "rgb(129, 195, 215)",
-      "color": "rgb(0, 0, 238)"
-    },
-    {
-      "text": "Learn More About Us Here",
-      "href": "https://www.masteryourmold.com/who-we-are",
-      "bg": "rgb(255, 255, 255)",
-      "color": "rgb(0, 0, 0)"
-    },
-    {
-      "text": "See More Reviews on Google",
-      "href": "https://maps.app.goo.gl/szXbVEDXmVNH7PBfA",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(8, 65, 92)"
-    },
-    {
-      "text": "(267) 265-4866",
-      "href": "tel:1-267-265-4866",
-      "bg": "rgba(0, 0, 0, 0)",
-      "color": "rgb(255, 255, 255)"
-    }
-  ]
+	"colors": [
+		["fg rgb(0, 0, 0)", 149],
+		["fg rgb(255, 255, 255)", 142],
+		["fg rgb(8, 65, 92)", 26],
+		["bg rgb(255, 255, 255)", 12],
+		["fg rgb(129, 195, 215)", 6],
+		["bg rgb(8, 65, 92)", 5],
+		["fg rgb(41, 50, 65)", 5],
+		["bg rgb(129, 195, 215)", 3],
+		["bg rgba(255, 255, 255, 0)", 2],
+		["fg rgb(0, 0, 238)", 2],
+		["bg rgba(255, 222, 17, 0)", 1],
+		["bg rgb(202, 204, 208)", 1],
+		["fg rgb(90, 183, 232)", 1]
+	],
+	"fonts": [
+		["Arial 400", 151],
+		["poppins-semibold 400", 75],
+		["poppins-extralight 700", 66],
+		["poppins-semibold 700", 21],
+		["arial 700", 12],
+		["arial 400", 4],
+		["futura-lt-w01-book 400", 2]
+	],
+	"imgs": [
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_fd449c90fe844d24b229936da77e4808~mv2.png/v1/fill/w_313,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/new.png",
+			"alt": "new.png",
+			"w": 313,
+			"h": 82
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_e48920f3d8a049eebb2111adb801e354~mv2.png/v1/fill/w_97,h_101,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WINNER-2026-HL-Bucks.png",
+			"alt": "WINNER-2026-HL-Bucks.png",
+			"w": 97,
+			"h": 101
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_334b4827fdb345f88d77b197d7b12caf~mv2.png/v1/fill/w_1440,h_378,al_t,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_334b4827fdb345f88d77b197d7b12caf~mv2.png",
+			"alt": "",
+			"w": 1440,
+			"h": 378
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_761780541aae4c15a6b417658e877c6e~mv2.png/v1/fill/w_118,h_116,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4_edited.png",
+			"alt": "4_edited.png",
+			"w": 118,
+			"h": 116
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_b368608a6e624da19fb21acc2e084d95~mv2.png/v1/crop/x_65,y_65,w_1120,h_1130/fill/w_114,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8_edited.png",
+			"alt": "8_edited.png",
+			"w": 114,
+			"h": 115
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_8e00d0a9e6e249f39b536c750a256584~mv2.png/v1/crop/x_5,y_0,w_1239,h_1250/fill/w_114,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/7_edited.png",
+			"alt": "7_edited.png",
+			"w": 114,
+			"h": 115
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_b8d6cf9625364a8b9d617c07a628ada0~mv2.png/v1/crop/x_305,y_0,w_1190,h_1200/fill/w_104,h_105,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/3.png",
+			"alt": "3.png",
+			"w": 104,
+			"h": 105
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_55df372249994953812da7190d920977~mv2.png/v1/fill/w_118,h_116,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5_edited.png",
+			"alt": "5_edited.png",
+			"w": 118,
+			"h": 116
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_ae14ba7008e34ef98596ad9e7b159541~mv2.png/v1/crop/x_290,y_134,w_1221,h_931/fill/w_127,h_97,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4.png",
+			"alt": "4.png",
+			"w": 127,
+			"h": 97
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_6f744db92fa54d598d0a28693d4ccb23~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5.png",
+			"alt": "5.png",
+			"w": 145,
+			"h": 145
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_9aa0f0485c5744b68203e5da550c1bac~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_9aa0f0485c5744b68203e5da550c1bac~mv2.png",
+			"alt": "",
+			"w": 145,
+			"h": 145
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_28178b9284954aac95cf938c6cd630a8~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_28178b9284954aac95cf938c6cd630a8~mv2.png",
+			"alt": "",
+			"w": 145,
+			"h": 145
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_075e94721e2f4b5a818cd77b3d4fa875~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_075e94721e2f4b5a818cd77b3d4fa875~mv2.png",
+			"alt": "",
+			"w": 145,
+			"h": 145
+		},
+		{
+			"src": "https://static.wixstatic.com/media/75f3ee_0cfebd99ef85464eae09b3635dd8a288~mv2.png/v1/fill/w_145,h_145,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/75f3ee_0cfebd99ef85464eae09b3635dd8a288~mv2.png",
+			"alt": "",
+			"w": 145,
+			"h": 145
+		}
+	],
+	"headings": [
+		{
+			"tag": "H1",
+			"text": "Certified mold inspection & remediation experts serving Bucks County, PA and beyond since ",
+			"size": "37px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H2",
+			"text": "OUR SERVICES",
+			"size": "44px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H1",
+			"text": "Click on a Service below to learn more.",
+			"size": "18px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H1",
+			"text": "Not sure which service is right for you?",
+			"size": "24px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H2",
+			"text": "WHO WE ARE",
+			"size": "44px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H2",
+			"text": "HAPPY CUSTOMERS",
+			"size": "44px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H2",
+			"text": "See More Reviews on Google",
+			"size": "44px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H2",
+			"text": "CONTACT US ANYTIME",
+			"size": "44px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"tag": "H1",
+			"text": "You can expect a response within 1 business day.",
+			"size": "18px",
+			"font": "poppins-semibold",
+			"color": "rgb(255, 255, 255)"
+		}
+	],
+	"ctas": [
+		{
+			"text": "Skip to Main Content",
+			"bg": "rgb(255, 255, 255)",
+			"color": "rgb(17, 109, 255)"
+		},
+		{
+			"text": "(267) 265-4866",
+			"href": "tel:1-267-265-4866",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "info@masteryourmold.com",
+			"href": "mailto:info@masteryourmold.com",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "SCHEDULE ONLINE NOW",
+			"href": "https://calendly.com/mold-master-remediation/on-site-mold-consultation",
+			"bg": "rgb(8, 65, 92)",
+			"color": "rgb(0, 0, 238)"
+		},
+		{
+			"text": "Mold Inspection",
+			"href": "https://www.masteryourmold.com/mold-inspections",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "HEPA Deep Clean",
+			"href": "https://www.masteryourmold.com/hepa-deep-clean",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "Mold Testing",
+			"href": "https://www.masteryourmold.com/mold-testing",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "Water Mitigation",
+			"href": "https://www.masteryourmold.com/water-mitigation",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "Mold Remediation",
+			"href": "https://www.masteryourmold.com/mold-remediation",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "Home & Health Consults",
+			"href": "https://www.masteryourmold.com/home-health-consults",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		},
+		{
+			"text": "GET IN TOUCH",
+			"href": "https://www.masteryourmold.com",
+			"bg": "rgb(129, 195, 215)",
+			"color": "rgb(0, 0, 238)"
+		},
+		{
+			"text": "Learn More About Us Here",
+			"href": "https://www.masteryourmold.com/who-we-are",
+			"bg": "rgb(255, 255, 255)",
+			"color": "rgb(0, 0, 0)"
+		},
+		{
+			"text": "See More Reviews on Google",
+			"href": "https://maps.app.goo.gl/szXbVEDXmVNH7PBfA",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(8, 65, 92)"
+		},
+		{
+			"text": "(267) 265-4866",
+			"href": "tel:1-267-265-4866",
+			"bg": "rgba(0, 0, 0, 0)",
+			"color": "rgb(255, 255, 255)"
+		}
+	]
 }

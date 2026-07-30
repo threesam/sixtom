@@ -39,11 +39,11 @@ That is scaffolding, not the product:
 
 Both measurements are kept in the repo rather than the flattering one being reported alone.
 
-| Run set | What it is |
-|---|---|
-| `lighthouse/runs/` | before, `www.masteryourmold.com`, network |
+| Run set                  | What it is                                                            |
+| ------------------------ | --------------------------------------------------------------------- |
+| `lighthouse/runs/`       | before, `www.masteryourmold.com`, network                             |
 | `lighthouse/runs-after/` | after, `moldmaster.vercel.app`, network, **with** the staging noindex |
-| `lighthouse/runs-local/` | after, identical build served without the staging header |
+| `lighthouse/runs-local/` | after, identical build served without the staging header              |
 
 ---
 
@@ -53,17 +53,17 @@ Median of 5 runs per form factor.
 
 ### Desktop
 
-| | Performance | Accessibility | Best practices | SEO | Agent-ready |
-|---|---|---|---|---|---|
-| Before | 94 | 91 | 100 | 100 | **67** |
-| After | **99** | **100** | 100 | 69 *(100 without the staging guard)* | **100** |
+|        | Performance | Accessibility | Best practices | SEO                                  | Agent-ready |
+| ------ | ----------- | ------------- | -------------- | ------------------------------------ | ----------- |
+| Before | 94          | 91            | 100            | 100                                  | **67**      |
+| After  | **99**      | **100**       | 100            | 69 _(100 without the staging guard)_ | **100**     |
 
 ### Mobile
 
-| | Performance | Accessibility | Best practices | SEO | Agent-ready |
-|---|---|---|---|---|---|
-| Before | **67** | 95 | 100 | 100 | **67** |
-| After | **99** | **100** | 100 | 69 *(100 without the staging guard)* | **100** |
+|        | Performance | Accessibility | Best practices | SEO                                  | Agent-ready |
+| ------ | ----------- | ------------- | -------------- | ------------------------------------ | ----------- |
+| Before | **67**      | 95            | 100            | 100                                  | **67**      |
+| After  | **99**      | **100**       | 100            | 69 _(100 without the staging guard)_ | **100**     |
 
 Per-run after scores, so the spread is visible: desktop performance `97, 98, 99, 99, 100`; mobile
 performance `99, 99, 99, 99, 100`. Accessibility, best practices and agent-ready were 100 on every
@@ -73,14 +73,14 @@ single run.
 
 ## 2. Core Web Vitals
 
-| Metric | Desktop before | Desktop after | Mobile before | Mobile after |
-|---|---|---|---|---|
-| LCP | 1.63 s | **0.57 s** | **4.32 s** | **1.08 s** |
-| TBT | 0 ms | 0 ms | 448 ms | **61 ms** |
-| CLS | 0.011 | **0.000** | 0.003 | **0.000** |
-| Time to Interactive | 1.63 s | **0.57 s** | **10.80 s** | **1.08 s** |
-| Page weight | 1,322 KiB | **74 KiB** | 1,557 KiB | **103 KiB** |
-| Requests | ~172 | **13** | ~179 | **13** |
+| Metric              | Desktop before | Desktop after | Mobile before | Mobile after |
+| ------------------- | -------------- | ------------- | ------------- | ------------ |
+| LCP                 | 1.63 s         | **0.57 s**    | **4.32 s**    | **1.08 s**   |
+| TBT                 | 0 ms           | 0 ms          | 448 ms        | **61 ms**    |
+| CLS                 | 0.011          | **0.000**     | 0.003         | **0.000**    |
+| Time to Interactive | 1.63 s         | **0.57 s**    | **10.80 s**   | **1.08 s**   |
+| Page weight         | 1,322 KiB      | **74 KiB**    | 1,557 KiB     | **103 KiB**  |
+| Requests            | ~172           | **13**        | ~179          | **13**       |
 
 **The mobile numbers are the ones that matter.** LCP moved out of Google's "poor" band (>4 s) to
 comfortably inside "good" (≤2.5 s). Time to interactive went from 10.8 s to 1.08 s, a **10× change**:
@@ -92,7 +92,7 @@ lighter** and there are **13.8× fewer requests**.
 1.07 s to 1.30 s. An unpredictable site is worse than a uniformly slow one, because you cannot tell a
 customer what to expect.
 
-**Honest note on desktop Speed Index:** it went *up*, 0.87 s to 1.22 s. The old page had no meaningful
+**Honest note on desktop Speed Index:** it went _up_, 0.87 s to 1.22 s. The old page had no meaningful
 hero image; this one loads a real photograph at full strength. That is a deliberate trade of a
 fractional metric for the image that makes the page read as a real trade rather than a brochure.
 Desktop performance still scores 99.
@@ -105,29 +105,29 @@ The baseline's single failing `agentic-browsing` audit was `agent-accessibility-
 accessibility tree. That is fixed, and it is the same fix that serves screen readers, which is why
 accessibility moved 91/95 → 100 in the same pass.
 
-| Signal | Before | After |
-|---|---|---|
-| AI crawler access | ✅ 200 | ✅ 200 (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, OAI-SearchBot) |
-| Accessibility tree | ❌ malformed | ✅ well-formed |
-| `llms.txt` | Wix auto-generated, names the business "Mold Master Rem" | hand-shaped, generated from the same content the pages render |
-| Entity consistency | ❌ four brand-name variants | ✅ one name, sourced from `site.ts` |
-| Answerable structure | ❌ no FAQ schema, 6/7 service pages with zero H2s | ✅ FAQPage on every service page, real H2 hierarchy |
-| Extractable facts | ❌ no service area, hours, or process | ✅ service area, process, credentials, review text |
+| Signal               | Before                                                   | After                                                                            |
+| -------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| AI crawler access    | ✅ 200                                                   | ✅ 200 (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, OAI-SearchBot) |
+| Accessibility tree   | ❌ malformed                                             | ✅ well-formed                                                                   |
+| `llms.txt`           | Wix auto-generated, names the business "Mold Master Rem" | hand-shaped, generated from the same content the pages render                    |
+| Entity consistency   | ❌ four brand-name variants                              | ✅ one name, sourced from `site.ts`                                              |
+| Answerable structure | ❌ no FAQ schema, 6/7 service pages with zero H2s        | ✅ FAQPage on every service page, real H2 hierarchy                              |
+| Extractable facts    | ❌ no service area, hours, or process                    | ✅ service area, process, credentials, review text                               |
 
 ---
 
 ## 4. Structure and SEO fundamentals
 
-| | Before | After |
-|---|---|---|
-| Pages missing a meta description | **11 of 13** | **0 of 12** |
-| Pages with exactly one H1 | 8 of 13 | **all** |
-| Service pages with zero H2s | 6 of 7 | **0** |
-| Schema types | 2 (`WebSite`, `LocalBusiness`) | **5** (`+ Service`, `FAQPage`, `BreadcrumbList`) |
-| Conflicting `WebSite` blocks | 2 | 1 |
-| Live staging page in the index | `/copy-of-who-we-are`, titled "WHO WE ARE - before editing" | gone, 301 to `/who-we-are` |
-| Brand-name variants | 4 | 1 |
-| Sitemap | Wix-generated, listed the draft page | generated from content, 14 URLs |
+|                                  | Before                                                      | After                                            |
+| -------------------------------- | ----------------------------------------------------------- | ------------------------------------------------ |
+| Pages missing a meta description | **11 of 13**                                                | **0 of 12**                                      |
+| Pages with exactly one H1        | 8 of 13                                                     | **all**                                          |
+| Service pages with zero H2s      | 6 of 7                                                      | **0**                                            |
+| Schema types                     | 2 (`WebSite`, `LocalBusiness`)                              | **5** (`+ Service`, `FAQPage`, `BreadcrumbList`) |
+| Conflicting `WebSite` blocks     | 2                                                           | 1                                                |
+| Live staging page in the index   | `/copy-of-who-we-are`, titled "WHO WE ARE - before editing" | gone, 301 to `/who-we-are`                       |
+| Brand-name variants              | 4                                                           | 1                                                |
+| Sitemap                          | Wix-generated, listed the draft page                        | generated from content, 14 URLs                  |
 
 **URLs preserved.** Every existing path still resolves: the seven service pages, `/our-services`,
 `/who-we-are`, `/free-mold-guide`, `/blog`, and `/post/[slug]`. The migration has **exactly one
@@ -141,11 +141,11 @@ physically cannot ship without one.
 
 ## 5. Content
 
-| | Before | After |
-|---|---|---|
+|                           | Before           | After                 |
+| ------------------------- | ---------------- | --------------------- |
 | Words across the page set | 4,954 (13 pages) | **11,003** (12 pages) |
-| Blog posts | 543 + 583 words | 888 + 925 words |
-| Service pages with FAQs | 0 | 7 |
+| Blog posts                | 543 + 583 words  | 888 + 925 words       |
+| Service pages with FAQs   | 0                | 7                     |
 
 **Caveat on those totals:** both counts include navigation and footer chrome, and the rebuild has a
 fuller footer, so some of the increase is furniture rather than content. The cleaner figure is the
@@ -164,14 +164,14 @@ claim today is that the structural reasons for the absence are fixed.
 
 ## 6. Security
 
-| Header | Before | After |
-|---|---|---|
-| `content-security-policy` | ❌ | ✅ |
-| `x-frame-options` | ❌ | ✅ `DENY` |
-| `referrer-policy` | ❌ | ✅ |
-| `permissions-policy` | ❌ | ✅ |
-| `x-content-type-options` | ❌ | ✅ `nosniff` |
-| `strict-transport-security` | ✅ | ✅ |
+| Header                      | Before | After        |
+| --------------------------- | ------ | ------------ |
+| `content-security-policy`   | ❌     | ✅           |
+| `x-frame-options`           | ❌     | ✅ `DENY`    |
+| `referrer-policy`           | ❌     | ✅           |
+| `permissions-policy`        | ❌     | ✅           |
+| `x-content-type-options`    | ❌     | ✅ `nosniff` |
+| `strict-transport-security` | ✅     | ✅           |
 
 All verified with `curl -I` against the deployment, not read from source. That distinction earned its
 keep: the first deployment shipped **none** of these. They were set in `hooks.server.ts`, and because
@@ -228,11 +228,11 @@ Nothing here blocks the work; all of it is honesty about scope.
    then returns 503 with a readable page pointing at the phone number, because no SMTP credentials
    have been supplied. It fails loudly rather than accepting a lead it cannot deliver.
 4. **Facts still marked `NEEDS_CLIENT`**: street address, opening hours, pricing. The schema omits
-   them rather than guessing. The live site's schema puts a *county* in `addressLocality`, which is
+   them rather than guessing. The live site's schema puts a _county_ in `addressLocality`, which is
    wrong; we would rather emit nothing than a second wrong fact.
 5. **Rankings unchanged and will be for months** (§5).
 6. **Copy is written from the outside.** Accurate about the service category, not yet specific about
-   *their* process, products, or what "holistic" means in their practice. That comes from the intro
+   _their_ process, products, or what "holistic" means in their practice. That comes from the intro
    call and slots into `services.ts` without touching a component.
 7. **CrUX field data still unavailable.** All performance numbers here are lab, not field.
 

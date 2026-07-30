@@ -18,10 +18,10 @@ Seven services, an about page, a lead magnet, a contact surface, and a blog with
 
 Content divides cleanly, and that division drives the whole architecture:
 
-| Content | Volume | Changes | Where it lives |
-|---|---|---|---|
-| Home, about, 7 service pages, contact, guide | 11 pages | rarely — a few times a year | **hardcoded** in typed TS modules |
-| Blog posts | 2 today, growing | the only thing that needs fresh publishing | **Sanity-shaped now, Sanity later** |
+| Content                                      | Volume           | Changes                                    | Where it lives                      |
+| -------------------------------------------- | ---------------- | ------------------------------------------ | ----------------------------------- |
+| Home, about, 7 service pages, contact, guide | 11 pages         | rarely — a few times a year                | **hardcoded** in typed TS modules   |
+| Blog posts                                   | 2 today, growing | the only thing that needs fresh publishing | **Sanity-shaped now, Sanity later** |
 
 Only the blog earns a CMS. Building one for eleven pages that change annually is the mistake this
 rebuild is explicitly not making.
@@ -34,12 +34,12 @@ Nothing here needs inventing. It needs using properly.
 
 **Palette** (sampled from the live site's computed styles, `raw/brand.json`):
 
-| Token | Value | On white | On navy | Use |
-|---|---|---|---|---|
-| `--brand-navy` | `#08415C` | **10.93:1** ✅ AAA | — | headings, header/footer, primary buttons, **links on white** |
-| `--brand-slate` | `#293241` | **12.91:1** ✅ AAA | — | body text |
-| `--brand-sky` | `#81C3D7` | **1.96:1** ❌ | 5.58:1 ✅ AA | icons, accents, borders — **never text on white** |
-| `--brand-bright` | `#5AB7E8` | **2.24:1** ❌ | 4.88:1 ✅ AA | accent on navy only |
+| Token            | Value     | On white           | On navy      | Use                                                          |
+| ---------------- | --------- | ------------------ | ------------ | ------------------------------------------------------------ |
+| `--brand-navy`   | `#08415C` | **10.93:1** ✅ AAA | —            | headings, header/footer, primary buttons, **links on white** |
+| `--brand-slate`  | `#293241` | **12.91:1** ✅ AAA | —            | body text                                                    |
+| `--brand-sky`    | `#81C3D7` | **1.96:1** ❌      | 5.58:1 ✅ AA | icons, accents, borders — **never text on white**            |
+| `--brand-bright` | `#5AB7E8` | **2.24:1** ❌      | 4.88:1 ✅ AA | accent on navy only                                          |
 
 **Contrast is a hard constraint on this palette, not a preference.** Both blues fail against white —
 `#81C3D7` at 1.96:1 and `#5AB7E8` at 2.24:1, versus the 4.5:1 AA floor. They are icon, border, and
@@ -51,7 +51,7 @@ This is worth stating up front because it's exactly the trap the current site fa
 
 **Type:** Poppins (SemiBold display, Light/Regular body). Note from §1 of the baseline: on the live
 site **151 elements currently render in Arial** — Poppins isn't reliably loading. Self-hosting a
-subset woff2 fixes the brand *and* removes render-blocking third-party font CSS.
+subset woff2 fixes the brand _and_ removes render-blocking third-party font CSS.
 
 **Creative** — pulled at original resolution into `brand/`:
 
@@ -96,18 +96,18 @@ which is exactly why it's static and image-disciplined (§5), not a page builder
 
 **Homepage composition**, top to bottom:
 
-| Section | Content | Reads more at |
-|---|---|---|
-| Hero | what they do + where + since 2013, phone and quote CTA in the first screen | — |
-| Credentials | the 5 certification marks + Happening List 2026 award | `/who-we-are` |
-| Services | all 7 — name, one-line promise, 2–3 lines of substance. No icons. | each service page |
-| Why it matters | what mold actually does to a home and the people in it | — |
-| Process | what happens when you call — inspect, test, remediate, verify | `/mold-inspections` |
-| Who we are | short version, certifications named | `/who-we-are` |
-| Reviews | real Google reviews, marked up | — |
-| Service area | the towns, in text | — |
-| Guide | the lead magnet | `/free-mold-guide` |
-| Contact | form + click-to-call + email + hours | — |
+| Section        | Content                                                                    | Reads more at       |
+| -------------- | -------------------------------------------------------------------------- | ------------------- |
+| Hero           | what they do + where + since 2013, phone and quote CTA in the first screen | —                   |
+| Credentials    | the 5 certification marks + Happening List 2026 award                      | `/who-we-are`       |
+| Services       | all 7 — name, one-line promise, 2–3 lines of substance. No icons.          | each service page   |
+| Why it matters | what mold actually does to a home and the people in it                     | —                   |
+| Process        | what happens when you call — inspect, test, remediate, verify              | `/mold-inspections` |
+| Who we are     | short version, certifications named                                        | `/who-we-are`       |
+| Reviews        | real Google reviews, marked up                                             | —                   |
+| Service area   | the towns, in text                                                         | —                   |
+| Guide          | the lead magnet                                                            | `/free-mold-guide`  |
+| Contact        | form + click-to-call + email + hours                                       | —                   |
 
 All seven services on the homepage is deliberate — it's the single highest-value SEO surface and
 currently carries 339 words. Condensed-but-real copy for each service takes it to ~1,200 and gives
@@ -182,12 +182,12 @@ one record and can never drift out of sync:
 
 ```ts
 export type Service = {
-  slug: string          // the URL — unchanged from the current site (§3b)
-  name: string
-  promise: string       // one line, homepage
-  summary: string       // 2-3 lines, homepage
-  body: string[]        // the long-form page
-  faqs: { q: string; a: string }[]   // FAQPage schema + on-page answers
+	slug: string // the URL — unchanged from the current site (§3b)
+	name: string
+	promise: string // one line, homepage
+	summary: string // 2-3 lines, homepage
+	body: string[] // the long-form page
+	faqs: { q: string; a: string }[] // FAQPage schema + on-page answers
 }
 ```
 
@@ -199,16 +199,16 @@ redesign.
 
 ```ts
 export type Post = {
-  _id: string
-  _type: 'post'
-  title: string
-  slug: { current: string }
-  publishedAt: string        // ISO
-  excerpt: string            // also the meta description — fixes finding §3
-  mainImage?: { asset: { url: string }; alt: string }   // alt required — finding §2
-  body: PortableTextBlock[]
-  author?: { name: string; role?: string }
-  categories?: { title: string; slug: { current: string } }[]
+	_id: string
+	_type: 'post'
+	title: string
+	slug: { current: string }
+	publishedAt: string // ISO
+	excerpt: string // also the meta description — fixes finding §3
+	mainImage?: { asset: { url: string }; alt: string } // alt required — finding §2
+	body: PortableTextBlock[]
+	author?: { name: string; role?: string }
+	categories?: { title: string; slug: { current: string } }[]
 }
 ```
 
@@ -221,8 +221,7 @@ export const getPosts = (): Post[] => POSTS
 export const getPost = (slug: string) => POSTS.find((p) => p.slug.current === slug)
 
 // loaders.ts — at cutover. Nothing else in the app changes.
-export const getPosts = () =>
-  client.fetch<Post[]>(`*[_type == "post"] | order(publishedAt desc)`)
+export const getPosts = () => client.fetch<Post[]>(`*[_type == "post"] | order(publishedAt desc)`)
 ```
 
 The hardcoded posts are typed against the same `Post` type the Sanity schema generates, so a shape
@@ -291,7 +290,8 @@ scraping required.
 
 ## 5. Fixes, traced to findings
 
-**Structure & SEO** *(baseline §3)*
+**Structure & SEO** _(baseline §3)_
+
 - Exactly one H1 per page; real H2 hierarchy on all 7 service pages (currently zero H2s on six).
 - A meta description on all 13 pages (currently 11 have none) — sourced from `excerpt`/`summary`
   fields so it can't be forgotten.
@@ -300,7 +300,8 @@ scraping required.
 - Homepage title carries service + geography, not just the brand.
 - Generated sitemap and robots; no stale hand-maintained lists.
 
-**Schema** *(baseline §3, §4)* — the whole point is rich results and answer-engine extractability:
+**Schema** _(baseline §3, §4)_ — the whole point is rich results and answer-engine extractability:
+
 - `LocalBusiness` with real `address`, `geo`, `openingHours`, `areaServed`, `telephone`,
   `priceRange`, and `sameAs` linking Facebook + Instagram (currently absent).
 - `Service` on each of the 7 service pages (currently none).
@@ -308,13 +309,15 @@ scraping required.
 - `BreadcrumbList` site-wide, `Article` on posts, `Organization` once.
 - One `WebSite` block, not two conflicting ones.
 
-**Answer-engine readiness** *(baseline §4)* — currently 67/100 `agentic-browsing`:
+**Answer-engine readiness** _(baseline §4)_ — currently 67/100 `agentic-browsing`:
+
 - Fix the accessibility tree — the single failing audit, and the same fix that serves screen readers.
 - Hand-authored `llms.txt` with the correct business name, services, and service area.
 - Extractable facts on-page: hours, towns served, what each service costs or how pricing works.
 - Answerable heading structure so passages can be lifted cleanly.
 
-**Accessibility** *(baseline §2)* — target: real WCAG 2.2 AA, not just a Lighthouse number.
+**Accessibility** _(baseline §2)_ — target: real WCAG 2.2 AA, not just a Lighthouse number.
+
 - Discernible names on every link (`link-name` currently fails).
 - Contrast enforced per the palette table in §2 — both brand blues fail on white and are restricted
   to icons, borders, and on-navy use. A unit test pins the ratios so a future palette tweak can't
@@ -322,20 +325,23 @@ scraping required.
 - Real alt text on all images (40 of 84 currently use filenames like `new.png`).
 - Sequential headings; visible focus; 24×24 targets; `/a11y` gate in CI.
 
-**Performance** *(baseline §1)* — target 100s desktop, 95+ mobile:
+**Performance** _(baseline §1)_ — target 100s desktop, 95+ mobile:
+
 - Static prerender; no page-builder runtime. Budget: **<10 requests, <150 KiB** vs today's ~179 and
   1,557 KiB.
 - Self-hosted subset Poppins woff2, `font-display: swap`.
 - Responsive AVIF/WebP with explicit dimensions; hero preloaded.
 - The 5.2 MB source hero becomes a ~40 KiB responsive set.
 
-**Measurement** *(baseline §6)* — the gap that makes the case study provable:
+**Measurement** _(baseline §6)_ — the gap that makes the case study provable:
+
 - Umami, self-hosted, with the `test_eject=1` convention shipped day one.
 - **Conversion events on every money surface**: phone tap, email tap, form submit, guide download.
   None of these are currently counted.
 - GA4 + Search Console alongside, because that's where the ranking history lives.
 
-**Conversion** *(baseline §7)*
+**Conversion** _(baseline §7)_
+
 - Credentials block using the 6 badges.
 - Google reviews surfaced and marked up (they have them; there's a "HAPPY CUSTOMERS" section today).
 - Explicit service-area list — the towns, in text. Local intent needs local words.
@@ -343,7 +349,7 @@ scraping required.
 - Real form: server-validated, honeypot + timing guard, rate-limited (the sixtom `contact-form.ts`
   pattern ports directly).
 
-**Security** *(baseline §8)* — CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy via
+**Security** _(baseline §8)_ — CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy via
 `hooks.server.ts`. All five are currently missing and unsettable on Wix.
 
 ---
@@ -371,14 +377,14 @@ before scorecard.
 
 Honest about what can and can't be claimed at launch:
 
-| Claimable at launch | Needs months |
-|---|---|
-| Lighthouse deltas, all four categories | rankings on non-branded queries |
-| `agentic-browsing` 67 → target 100 | organic traffic growth |
-| Page weight, request count, LCP/TBT/TTI | answer-engine citations |
-| Schema coverage, a11y, word count | conversion rate (needs a baseline first) |
+| Claimable at launch                     | Needs months                             |
+| --------------------------------------- | ---------------------------------------- |
+| Lighthouse deltas, all four categories  | rankings on non-branded queries          |
+| `agentic-browsing` 67 → target 100      | organic traffic growth                   |
+| Page weight, request count, LCP/TBT/TTI | answer-engine citations                  |
+| Schema coverage, a11y, word count       | conversion rate (needs a baseline first) |
 
-**Sequencing constraint from baseline §6:** analytics must be live and collecting *before* launch, or
+**Sequencing constraint from baseline §6:** analytics must be live and collecting _before_ launch, or
 there's no floor to measure against. Request the Wix Analytics history now — it may be the only
 pre-rebuild traffic record that exists.
 
@@ -416,5 +422,5 @@ determine how good the rewritten copy actually is, and §6 is where the ranking 
 - **Wix account access** — unlocks the MCP content drain (§4b) and the billing line (baseline §9).
 - The **logo as vector**, if it exists.
 
-Everything above is an input to the *copy*, not to the *architecture*. The build proceeds now; the
+Everything above is an input to the _copy_, not to the _architecture_. The build proceeds now; the
 call makes it right rather than making it possible.
