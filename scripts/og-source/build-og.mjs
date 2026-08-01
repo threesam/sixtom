@@ -109,29 +109,34 @@ const bubbleSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="
 	<rect width="${W}" height="${H}" fill="url(#scrim)"/>
 </svg>`
 
-// Recursive webfont, base64-embedded so the page renders offline/deterministically.
-const fontB64 = readFileSync(resolve(ROOT, 'static/fonts/recursive.woff2')).toString('base64')
+// Webfonts base64-embedded so the page renders offline/deterministically:
+// Cabinet Grotesk carries the wordmark, Recursive carries the subhead/domain.
+const recursiveB64 = readFileSync(resolve(ROOT, 'static/fonts/recursive.woff2')).toString('base64')
+const cabinetB64 = readFileSync(resolve(ROOT, 'static/fonts/cabinet-grotesk.woff2')).toString('base64')
 
-// Logo lockup mirrors src/lib/components/SiteFooter.svelte: six + inverted "to"
-// chip + m, uppercase, bold, tight tracking — just scaled up for the card.
+// Logo lockup mirrors the .wordmark rule in src/app.css: one value (0.08em)
+// sets the letter gaps, the chip's x-padding, and the gaps flanking the chip;
+// the chip is a square with TO cap-centered.
+const LS = '0.08em'
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:'Recursive';src:url(data:font/woff2;base64,${fontB64}) format('woff2');font-weight:400 700;font-display:block;}
+@font-face{font-family:'Recursive';src:url(data:font/woff2;base64,${recursiveB64}) format('woff2');font-weight:400 700;font-display:block;}
+@font-face{font-family:'Cabinet Grotesk';src:url(data:font/woff2;base64,${cabinetB64}) format('woff2');font-weight:100 900;font-display:block;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:${W}px;height:${H}px;overflow:hidden;}
 body{background:#161616;position:relative;font-family:'Recursive',ui-monospace,monospace;color:#f7f7f7;}
 .bg{position:absolute;inset:0;width:100%;height:100%;}
 .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding-bottom:24px;}
-.logo{display:inline-flex;align-items:baseline;font-weight:700;font-size:168px;line-height:1;letter-spacing:-0.03em;text-transform:uppercase;}
-.logo .a{padding-right:3px;}
-.logo .chip{background:#f7f7f7;color:#161616;padding:6px 6px 2px 6px;}
-.logo .b{padding-left:3px;}
+.logo{display:inline-flex;align-items:baseline;font-family:'Cabinet Grotesk';font-weight:800;font-size:150px;line-height:1;letter-spacing:${LS};text-transform:uppercase;}
+.logo .chip{background:#f7f7f7;color:#161616;display:inline-flex;align-items:center;aspect-ratio:1;padding-left:${LS};margin-right:${LS};}
+.logo .chip span{text-box:trim-both cap alphabetic;}
+.logo .b{margin-right:calc(-1 * ${LS});}
 .sub{font-size:36px;font-weight:500;letter-spacing:-0.01em;color:#c8c8c8;}
 .sub b{color:#f7f7f7;font-weight:700;}
 .domain{position:absolute;bottom:44px;left:0;width:100%;text-align:center;font-size:22px;letter-spacing:6px;color:#7a7a7a;text-transform:uppercase;}
 </style></head><body>
 <div class="bg">${bubbleSvg}</div>
 <div class="wrap">
-	<div class="logo"><span class="a">six</span><span class="chip">to</span><span class="b">m</span></div>
+	<div class="logo"><span>six</span><span class="chip"><span>to</span></span><span class="b">m</span></div>
 	<div class="sub">AI built your first draft. i build <b>your solution.</b></div>
 </div>
 <div class="domain">sixtom.com</div>
@@ -146,6 +151,13 @@ try {
 	const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 2 })
 	await page.setContent(html, { waitUntil: 'load' })
 	await page.evaluate(() => document.fonts.ready)
+	// The square chip makes lockup height font-dependent; shrink to fit the card.
+	await page.evaluate(() => {
+		const el = document.querySelector('.logo')
+		const r = el.getBoundingClientRect()
+		const k = Math.min(1, 1020 / r.width, 400 / r.height)
+		if (k < 1) el.style.fontSize = `${Math.floor(parseFloat(getComputedStyle(el).fontSize) * k)}px`
+	})
 	await page.screenshot({ path: shot2x, clip: { x: 0, y: 0, width: W, height: H } })
 } finally {
 	await browser.close()
@@ -154,4 +166,4 @@ try {
 // Downsample the 2x supersample to the declared 1200x630 for crisp edges.
 execFileSync('magick', [shot2x, '-resize', `${W}x${H}`, '-strip', pngPath])
 rmSync(shot2x, { force: true })
-console.log(`og.png written (${String(circles.length)} bubbles, real Recursive logo) -> ${pngPath}`)
+console.log(`og.png written (${String(circles.length)} bubbles, Cabinet Grotesk wordmark) -> ${pngPath}`)
