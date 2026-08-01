@@ -109,13 +109,10 @@
 	text-transform: uppercase;
 }
 
-/* SIXTOM wordmark lockup. One var drives the whole system: letter gaps, the
- * chip's x-padding, and the gaps flanking the chip all equal --wm-ls. The chip
- * itself is a square (aspect 1:1) with TO cap-centered — the trailing
- * letter-space after the O acts as the right padding, and .m cancels the
- * wordmark's own trailing space so centered layouts stay optically centered.
- * text-box-trim makes the vertical geometry exact; without support the chip
- * just runs slightly taller. */
+/* SIXTOM wordmark. --wm-ls drives every gap: letter-spacing, the chip's
+ * x-padding (the O's trailing letter-space is the right pad; .m cancels the
+ * final one), and the chip is a square with TO cap-centered. Browsers without
+ * text-box-trim just render the chip slightly taller. */
 .wordmark {
 	--wm-ls: 0.08em;
 	display: inline-flex;

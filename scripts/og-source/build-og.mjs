@@ -136,7 +136,7 @@ body{background:#161616;position:relative;font-family:'Recursive',ui-monospace,m
 </style></head><body>
 <div class="bg">${bubbleSvg}</div>
 <div class="wrap">
-	<div class="logo"><span class="a">six</span><span class="chip"><span>to</span></span><span class="b">m</span></div>
+	<div class="logo"><span>six</span><span class="chip"><span>to</span></span><span class="b">m</span></div>
 	<div class="sub">AI built your first draft. i build <b>your solution.</b></div>
 </div>
 <div class="domain">sixtom.com</div>
