@@ -156,7 +156,7 @@ try {
 		const el = document.querySelector('.logo')
 		const r = el.getBoundingClientRect()
 		const k = Math.min(1, 1020 / r.width, 400 / r.height)
-		if (k < 1) el.style.fontSize = `${Math.floor(150 * k)}px`
+		if (k < 1) el.style.fontSize = `${Math.floor(parseFloat(getComputedStyle(el).fontSize) * k)}px`
 	})
 	await page.screenshot({ path: shot2x, clip: { x: 0, y: 0, width: W, height: H } })
 } finally {
