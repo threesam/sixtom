@@ -6,7 +6,7 @@ import { site } from './site'
 // customer copy (results over mechanism), no slot counters (honest at zero).
 export const grandSlam: GrandSlamOffer = {
 	chip: '1 client a month · waitlist open',
-	headline: "the demo works. production doesn't.",
+	headline: "everyone saw the demo. nobody's seen it since.",
 	lead: "AI gets you to a demo because it can hold the whole thing in its head. once your codebase outgrows that window, it starts making things worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.",
 	offerLine:
 		'the production sprint. two weeks. live in production on day 10 — and you own every line of it.',
