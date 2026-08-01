@@ -7,7 +7,7 @@ skips Listmonk for the test email; processSubmission skips SMTP for it).
 
 ## 1. land → read the offer → join the waitlist
 
-1. Open `/`. Expect: h1 "the demo works. production doesn't.", chip "1 client a month · waitlist open", stat "day 10 or free".
+1. Open `/`. Expect: h1 "everyone saw the demo nobody's seen it since" (periods live in content/meta, not the display), chip "1 client a month · waitlist open", stat "day 10 or free".
 2. Scroll through wall → ledger → guarantee → proof. Expect: ledger shows "total value" of "$28,500+" and a pay line containing "$10,000"; guarantee headline contains "day 10"; proof tiles include "+185%".
 3. Fill `#waitlist-email` with e2e@test.sixtom.local and `#waitlist-build` with any text; submit.
 4. Expect: navigation to `/notify?/notify` (the named-action URL — no redirect) showing "You're on the list." No console errors, no failed network requests anywhere in the journey.

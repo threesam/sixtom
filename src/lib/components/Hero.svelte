@@ -23,13 +23,13 @@
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-16 text-left md:py-20 md:text-center">
 		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
-		<!-- One string in content; two beats on screen. The stray space between the
-		     block spans keeps textContent equal to the plain headline. -->
+		<!-- One string in content; two beats on screen, periods dropped at display
+		     scale — the line break is the punctuation. Meta/OG keep the prose form. -->
 		<h1
-			class="text-fg mt-6 text-[clamp(2.75rem,10.5vw,6.5rem)] leading-[1.04] font-bold tracking-tight"
+			class="text-fg mt-6 text-[clamp(2.5rem,9.5vw,5.75rem)] leading-[1.04] font-bold tracking-tight"
 		>
 			{#each grandSlam.headline.split(/(?<=\.)\s+/) as beat, i (beat)}
-				{#if i > 0}{' '}{/if}<span class="block text-balance">{beat}</span>
+				{#if i > 0}{' '}{/if}<span class="block text-balance">{beat.replace(/\.$/, '')}</span>
 			{/each}
 		</h1>
 		<p class="text-fg-muted mx-auto mt-6 max-w-3xl text-base leading-relaxed md:text-lg">

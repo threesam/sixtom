@@ -1,6 +1,6 @@
 # SIXTOM — full content
 
-> the demo works. production doesn't. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat. 1 client a month.
+> everyone saw the demo. nobody's seen it since. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat. 1 client a month.
 
 ## thesis
 
