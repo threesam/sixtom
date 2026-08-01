@@ -23,10 +23,14 @@
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-16 text-left md:py-20 md:text-center">
 		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
+		<!-- One string in content; two beats on screen. The stray space between the
+		     block spans keeps textContent equal to the plain headline. -->
 		<h1
-			class="text-fg mt-6 text-[clamp(2.25rem,8.5vw,4.5rem)] leading-[1.08] font-bold tracking-tight text-balance"
+			class="text-fg mt-6 text-[clamp(2.75rem,10.5vw,6.5rem)] leading-[1.04] font-bold tracking-tight"
 		>
-			{grandSlam.headline}
+			{#each grandSlam.headline.split(/(?<=\.)\s+/) as beat, i (beat)}
+				{#if i > 0}{' '}{/if}<span class="block text-balance">{beat}</span>
+			{/each}
 		</h1>
 		<p class="text-fg-muted mx-auto mt-6 max-w-3xl text-base leading-relaxed md:text-lg">
 			{grandSlam.lead}
