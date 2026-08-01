@@ -138,6 +138,13 @@
 .wordmark .chip > span {
 	text-box: trim-both cap alphabetic;
 }
+/* No text-box: the 1em line box centers 0.04em low of the cap band
+ * (Cabinet: asc .87 / desc .28 / cap .67em). Nudge keeps the gaps pixel-even. */
+@supports not (text-box: trim-both cap alphabetic) {
+	.wordmark .chip > span {
+		transform: translateY(0.04em);
+	}
+}
 .wordmark .m {
 	margin-right: calc(-1 * var(--wm-ls));
 }
