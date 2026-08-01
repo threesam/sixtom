@@ -152,6 +152,15 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* Headings speak the display face everywhere; body stays Recursive. Element
+ * selector beats the inherited font-sans on <main> without fighting utilities. */
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+}
+
 /* Form controls use the brand teal, not the default blue. @tailwindcss/forms
  * sets appearance:none and paints the checked state with currentColor, so the
  * `color` is what drives the dot/check; accent-color is the native fallback. */
