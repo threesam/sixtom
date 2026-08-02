@@ -80,7 +80,7 @@ Reads `site.calEvent` from the content layer, upserts the intro event in Cal.com
 
 `src/app.css` defines semantic tokens via `@theme` and per-section overrides via `.surface-uv` (blacklight: white + black text + glowing accents). Elements needing the dark palette inside/after a UV context sit outside the `.surface-uv` element (see `SiteFooter` on home) rather than using an override class.
 
-Tokens: `--color-surface`, `--color-fg`, `--color-fg-muted`, `--color-fg-subtle`, `--color-border`, `--color-border-strong`, `--color-accent` (teal), `--gradient-accent` (subtle horizontal teal flow for `bg-accent`), `--color-on-accent`, `--color-error`, `--shadow-accent` (none on dark, glow on UV), `--font-sans` (Recursive + system mono fallback), `--font-display` (Space Grotesk + system sans fallback).
+Tokens: `--color-surface`, `--color-fg`, `--color-fg-muted`, `--color-fg-subtle`, `--color-border`, `--color-border-strong`, `--color-accent` (teal), `--gradient-accent` (subtle horizontal teal flow for `bg-accent`), `--color-on-accent`, `--color-error`, `--shadow-accent` (none on dark, glow on UV), `--font-sans` (Recursive + system mono fallback), `--font-display` (Cabinet Grotesk + system sans fallback; carries all headings and the `.wordmark` lockup).
 
 Custom utilities: `.btn-accent` (gradient bg + dark text + shadow), `.eyebrow` (accent color + tracking + uppercase + shadow), `.text-accent` (accent text + shadow).
 
