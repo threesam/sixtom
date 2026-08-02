@@ -3,9 +3,11 @@
 
 	// Two display beats from the one prose headline; periods drop on screen
 	// (the line break is the punctuation) but survive in content and meta.
-	const [beatOne, beatTwo] = grandSlam.headline
+	// Sentences past the first join into beat two so copy is never dropped.
+	const [beatOne, ...rest] = grandSlam.headline
 		.split(/(?<=\.)\s+/)
 		.map((beat) => beat.replace(/\.$/, ''))
+	const beatTwo = rest.join(' ')
 </script>
 
 <section class="snap-section bg-surface relative">

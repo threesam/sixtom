@@ -2,11 +2,10 @@
 // SIXTOM logo lockup + subhead.
 //
 // The background bakes one frame of the hero's value-noise field (static/bubbles.js)
-// into SVG circles (oklch -> sRGB). The foreground renders the *actual* wordmark
-// markup — six + inverted "to" chip + m — in the real Recursive webfont via headless
-// Chromium, so the logo matches the site exactly (Recursive is proportional, so it
-// can't be faked on a monospace SVG grid). The bubble field is fully deterministic;
-// the rasterized text depends on the local chromium + magick versions.
+// into SVG circles (oklch -> sRGB). The foreground renders the actual wordmark
+// markup (six + square "to" chip + m, Cabinet Grotesk) plus the Recursive subhead
+// via headless Chromium, so the card matches the site exactly. The bubble field is
+// fully deterministic; the rasterized text depends on local chromium + magick.
 //
 // Run: node scripts/og-source/build-og.mjs   (needs playwright chromium + magick)
 import { execFileSync } from 'node:child_process'
