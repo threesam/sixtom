@@ -112,7 +112,9 @@ const bubbleSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="
 // Webfonts base64-embedded so the page renders offline/deterministically:
 // Cabinet Grotesk carries the wordmark, Recursive carries the subhead/domain.
 const recursiveB64 = readFileSync(resolve(ROOT, 'static/fonts/recursive.woff2')).toString('base64')
-const cabinetB64 = readFileSync(resolve(ROOT, 'static/fonts/cabinet-grotesk.woff2')).toString('base64')
+const cabinetB64 = readFileSync(resolve(ROOT, 'static/fonts/cabinet-grotesk.woff2')).toString(
+	'base64'
+)
 
 // Logo lockup mirrors the .wordmark rule in src/app.css: one value (0.08em)
 // sets the letter gaps, the chip's x-padding, and the gaps flanking the chip;
@@ -166,4 +168,6 @@ try {
 // Downsample the 2x supersample to the declared 1200x630 for crisp edges.
 execFileSync('magick', [shot2x, '-resize', `${W}x${H}`, '-strip', pngPath])
 rmSync(shot2x, { force: true })
-console.log(`og.png written (${String(circles.length)} bubbles, Cabinet Grotesk wordmark) -> ${pngPath}`)
+console.log(
+	`og.png written (${String(circles.length)} bubbles, Cabinet Grotesk wordmark) -> ${pngPath}`
+)

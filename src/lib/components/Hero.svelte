@@ -1,5 +1,11 @@
 <script lang="ts">
 	import { grandSlam } from '$lib/content'
+
+	// Two display beats from the one prose headline; periods drop on screen
+	// (the line break is the punctuation) but survive in content and meta.
+	const [beatOne, beatTwo] = grandSlam.headline
+		.split(/(?<=\.)\s+/)
+		.map((beat) => beat.replace(/\.$/, ''))
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -23,14 +29,11 @@
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-16 text-left md:py-20 md:text-center">
 		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
-		<!-- One string in content; two beats on screen, periods dropped at display
-		     scale — the line break is the punctuation. Meta/OG keep the prose form. -->
 		<h1
 			class="text-fg mt-6 text-[clamp(2.5rem,9.5vw,5.75rem)] leading-[1.04] font-bold tracking-tight"
 		>
-			{#each grandSlam.headline.split(/(?<=\.)\s+/) as beat, i (beat)}
-				{#if i > 0}{' '}{/if}<span class="block text-balance">{beat.replace(/\.$/, '')}</span>
-			{/each}
+			<span class="block text-balance">{beatOne}</span>
+			<span class="block text-balance">{beatTwo}</span>
 		</h1>
 		<!-- offerLine stays in content for the JSON-LD description; on screen the
 		     stat beats below carry the offer facts so the hero reads once, not twice. -->

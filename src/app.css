@@ -159,8 +159,7 @@ html {
 	scroll-behavior: smooth;
 }
 
-/* Headings speak the display face everywhere; body stays Recursive. Element
- * selector beats the inherited font-sans on <main> without fighting utilities. */
+/* Element selector: outranks the font-sans inherited from <main> without fighting utilities. */
 h1,
 h2,
 h3,
