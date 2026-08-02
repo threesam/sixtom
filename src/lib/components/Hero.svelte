@@ -32,13 +32,12 @@
 				{#if i > 0}{' '}{/if}<span class="block text-balance">{beat.replace(/\.$/, '')}</span>
 			{/each}
 		</h1>
-		<p class="text-fg-muted mx-auto mt-6 max-w-3xl text-base leading-relaxed md:text-lg">
+		<!-- offerLine stays in content for the JSON-LD description; on screen the
+		     stat beats below carry the offer facts so the hero reads once, not twice. -->
+		<p class="text-fg-muted mx-auto mt-8 max-w-3xl text-base leading-relaxed md:text-lg">
 			{grandSlam.lead}
 		</p>
-		<p class="text-fg mx-auto mt-6 max-w-3xl text-xl leading-snug font-medium md:text-2xl">
-			{grandSlam.offerLine}
-		</p>
-		<div class="mt-10 flex flex-col items-start gap-4 md:items-center">
+		<div class="mt-12 flex flex-col items-start gap-4 md:items-center">
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_waitlist"
