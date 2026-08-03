@@ -29,6 +29,7 @@ export function GET(): Response {
 			priority: '0.7'
 		})),
 		{ path: '/privacy', lastmod: today, changefreq: 'yearly', priority: '0.3' },
+		{ path: '/accessibility', lastmod: today, changefreq: 'yearly', priority: '0.3' },
 		{ path: '/terms', lastmod: today, changefreq: 'yearly', priority: '0.3' }
 	]
 
