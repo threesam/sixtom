@@ -100,9 +100,18 @@ function getTransporter(): Transporter {
 	return cachedTransporter
 }
 
+/**
+ * 'waitlist' is the notify form, 'contact' is everything else. The two need
+ * different mail: a waitlist joiner gets the teardown claim, and Sam's copy
+ * needs to be identifiable, which `Contact: Waitlist signup` was not - every
+ * signup arrived under the same subject.
+ */
+export type SubmissionKind = 'waitlist' | 'contact'
+
 export async function processSubmission(
 	formData: FormData,
-	event: Pick<RequestEvent, 'request' | 'getClientAddress'>
+	event: Pick<RequestEvent, 'request' | 'getClientAddress'>,
+	kind: SubmissionKind = 'contact'
 ): Promise<SubmissionResult> {
 	function readString(field: string): string {
 		const value = formData.get(field)
@@ -156,17 +165,50 @@ export async function processSubmission(
 	}
 
 	const transporter = getTransporter()
-	const confirmation = {
-		from: env.SMTP_EMAIL,
-		to: email,
-		subject: `Contact SIXTOM`,
-		text: 'Contact form submission received! We look forward to talking to you soon.'
-	}
+
+	// The teardown is promised on the site but cannot be recorded without a URL,
+	// which the form deliberately does not collect. Asking for it in the reply is
+	// the gate: bots fill forms and never answer email, so a signup that never
+	// replies costs a database row and nothing else. The reply is the signal that
+	// someone actually wants the thing.
+	const waitlistBody = [
+		"you're on the list.",
+		'',
+		'one seat a month, by appointment. i tell you straight when the next one opens.',
+		'',
+		"the teardown: send me the link and i'll record you a short one. what's solid,",
+		"the three things that'll break, and what i'd do first. no charge, no call, no pitch.",
+		'',
+		'just reply to this with the URL.',
+		'',
+		'in the meantime, what it costs you to leave it as it is:',
+		'https://sixtom.com/tax',
+		'',
+		'- sam'
+	].join('\n')
+
+	const confirmation =
+		kind === 'waitlist'
+			? {
+					from: env.SMTP_EMAIL,
+					to: email,
+					subject: 'your teardown - send me the link',
+					text: waitlistBody
+				}
+			: {
+					from: env.SMTP_EMAIL,
+					to: email,
+					subject: `Contact SIXTOM`,
+					text: 'Contact form submission received! We look forward to talking to you soon.'
+				}
+
 	const notification = {
 		from: env.SMTP_EMAIL,
 		to: env.SMTP_RECIPIENT_EMAIL,
 		replyTo: email,
-		subject: `Contact: ${name}`,
+		// Lead with the address: the waitlist form hardcodes name to
+		// "Waitlist signup", so every one of these used to arrive identical.
+		subject: kind === 'waitlist' ? `waitlist: ${email}` : `Contact: ${name}`,
 		text: message
 	}
 

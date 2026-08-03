@@ -24,7 +24,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: "what's the free teardown?",
 		answer:
-			"join the waitlist and i'll record a short teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch."
+			"join the waitlist, send me the link, and i'll record a short teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch."
 	},
 	{
 		question: 'how long does it take?',

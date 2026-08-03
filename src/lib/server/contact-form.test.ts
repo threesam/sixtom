@@ -2,9 +2,20 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { RequestEvent } from '@sveltejs/kit'
 import { processSubmission, resetRateLimitForTests } from './contact-form'
 
+// hoisted so the spy is reachable from the tests; contact-form caches the
+// transporter, so a fresh vi.fn() per createTransport call would be unobservable.
+const { sendMail } = vi.hoisted(() => ({
+	// typed param so mock.calls carries the mail shape rather than an empty tuple.
+	// nodemailer's sendMail returns a promise, so resolve one without an await.
+	sendMail: vi.fn((mail: { to: string; subject: string; text: string }) => {
+		void mail
+		return Promise.resolve(undefined)
+	})
+}))
+
 vi.mock('nodemailer', () => ({
 	default: {
-		createTransport: () => ({ sendMail: vi.fn().mockResolvedValue(undefined) })
+		createTransport: () => ({ sendMail })
 	}
 }))
 
@@ -46,6 +57,7 @@ function makeFormData(overrides: Partial<Record<string, string>> = {}): FormData
 describe('processSubmission — protection layers', () => {
 	beforeEach(() => {
 		resetRateLimitForTests()
+		sendMail.mockClear()
 	})
 
 	it('rejects missing required fields', async () => {
@@ -146,5 +158,34 @@ describe('processSubmission — protection layers', () => {
 		} finally {
 			env['CONTACT_FORM_TEST_EMAIL'] = original
 		}
+	})
+
+	describe('waitlist submissions', () => {
+		function sentMail() {
+			return sendMail.mock.calls.map(([mail]) => mail)
+		}
+
+		it('sends the teardown claim rather than the generic contact ack', async () => {
+			await processSubmission(makeFormData({ name: 'Waitlist signup' }), mockEvent(), 'waitlist')
+			const toVisitor = sentMail().find((m) => m.to === 'real@example.com')
+			expect(toVisitor?.subject).toContain('teardown')
+			// the ask is the whole gate: no reply, no work
+			expect(toVisitor?.text).toContain('reply')
+			expect(toVisitor?.text).not.toContain('Contact form submission received')
+		})
+
+		it('makes the operator notification identifiable by address', async () => {
+			// every waitlist signup hardcodes this name, so the subject cannot use it
+			await processSubmission(makeFormData({ name: 'Waitlist signup' }), mockEvent(), 'waitlist')
+			const toOperator = sentMail().find((m) => m.to !== 'real@example.com')
+			expect(toOperator?.subject).toContain('real@example.com')
+			expect(toOperator?.subject).not.toBe('Contact: Waitlist signup')
+		})
+
+		it('leaves the contact path unchanged', async () => {
+			await processSubmission(makeFormData(), mockEvent())
+			const toVisitor = sentMail().find((m) => m.to === 'real@example.com')
+			expect(toVisitor?.subject).toBe('Contact SIXTOM')
+		})
 	})
 })
