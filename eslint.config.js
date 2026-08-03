@@ -68,15 +68,5 @@ export default defineConfig(
 			// External-link href values (e.g., Cal.com, garden) don't go through SvelteKit's resolve().
 			'svelte/no-navigation-without-resolve': 'off'
 		}
-	},
-	{
-		// Legacy Sanity v2 schema files use the framework's `any`-typed PreviewProps.
-		// Studio runs client-side, gated to /sanity; not part of the marketing build.
-		files: ['src/schemas/**/*.ts'],
-		rules: {
-			'@typescript-eslint/no-unsafe-assignment': 'off',
-			'@typescript-eslint/no-unsafe-member-access': 'off',
-			'@typescript-eslint/restrict-template-expressions': 'off'
-		}
 	}
 )

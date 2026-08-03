@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { calEvent } from '../src/lib/content/site'
 
 const API_KEY = process.env.CAL_API_KEY
