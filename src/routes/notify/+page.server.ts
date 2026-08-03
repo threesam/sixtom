@@ -15,7 +15,7 @@ export const actions = {
 		}
 
 		const formData = await event.request.formData()
-		const result = await processSubmission(formData, event)
+		const result = await processSubmission(formData, event, 'waitlist')
 
 		if (result.ok) {
 			// Bank the address in listmonk's `sixtom` list as well as the inbox —

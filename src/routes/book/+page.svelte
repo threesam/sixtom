@@ -193,7 +193,7 @@
 							required
 							maxlength="500"
 							bind:value={built}
-							placeholder="where can I see it? paste a link"
+							placeholder="a url, the repo, or 'not deployed yet'"
 							class="{inputClass} mt-2"
 						/>
 					</div>

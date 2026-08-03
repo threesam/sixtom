@@ -61,7 +61,7 @@ and there's a floor under it: day 5, we both look at it. if we can both see it w
 
 ## the free teardown
 
-join the waitlist and get a short recorded teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch.
+join the waitlist, then show me the thing — a live url, the repo, or a screen recording — and you get a short recorded teardown of your app. what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch. not deployed yet is fine; the repo is the better one for this anyway.
 
 ## who it's for
 
@@ -94,7 +94,7 @@ live in production by day 10, or the remaining payments are free. there's a floo
 
 **what's the free teardown?**
 
-join the waitlist and i'll record a short teardown of your app — what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch.
+join the waitlist, then show me the thing — a live url, the repo, or a screen recording — and i'll record a short teardown of your app. what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch. not deployed yet is fine; the repo is the better one for this anyway.
 
 **how long does it take?**
 

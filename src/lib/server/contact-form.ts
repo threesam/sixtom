@@ -1,6 +1,7 @@
 import nodemailer, { type Transporter } from 'nodemailer'
 import { env } from '$env/dynamic/private'
 import type { RequestEvent } from '@sveltejs/kit'
+import { site } from '$lib/content/site'
 
 export const MAX_NAME_LENGTH = 120
 export const MAX_EMAIL_LENGTH = 254
@@ -100,9 +101,51 @@ function getTransporter(): Transporter {
 	return cachedTransporter
 }
 
+/**
+ * 'waitlist' is the notify form, 'contact' is everything else. The two need
+ * different mail: a waitlist joiner gets the teardown claim, and Sam's copy
+ * needs to be identifiable, which `Contact: Waitlist signup` was not - every
+ * signup arrived under the same subject.
+ */
+export type SubmissionKind = 'waitlist' | 'contact'
+
+// The teardown is promised on the site but cannot be recorded without seeing
+// the app, which the form deliberately does not collect. Asking in the reply is
+// the gate: bots fill forms and never answer email, so a signup that never
+// replies costs a database row and nothing else. The reply is the signal that
+// someone actually wants the thing.
+//
+// The ask is three options on purpose. This audience vibe-coded something that
+// half-works, so a large share of them have no public URL to paste — localhost,
+// behind auth, or never deployed. A URL-only ask is unanswerable for them and
+// they drop off silently, which is the exact failure the reply-gate exists to
+// prevent. The repo is also the better artifact for the promise being made:
+// "what will break" lives in the code, not on the rendered page.
+//
+// Module scope because nothing in it is per-request; building it inside the
+// handler re-joined it on every submission, including the contact ones that
+// throw it away.
+const WAITLIST_BODY = [
+	"you're on the list.",
+	'',
+	'one seat a month, by appointment. i tell you straight when the next one opens.',
+	'',
+	"the teardown: show me the thing and i'll record you a short one. what's solid,",
+	"the three things that'll break, and what i'd do first. no charge, no call, no pitch.",
+	'',
+	'reply with whatever lets me see it — a live url, the repo, or a 3-minute screen',
+	"recording. if it isn't deployed yet, the repo is the better one for this anyway.",
+	'',
+	'in the meantime, what it costs you to leave it as it is:',
+	`${site.siteUrl}/tax`,
+	'',
+	'- sam'
+].join('\n')
+
 export async function processSubmission(
 	formData: FormData,
-	event: Pick<RequestEvent, 'request' | 'getClientAddress'>
+	event: Pick<RequestEvent, 'request' | 'getClientAddress'>,
+	kind: SubmissionKind = 'contact'
 ): Promise<SubmissionResult> {
 	function readString(field: string): string {
 		const value = formData.get(field)
@@ -156,17 +199,29 @@ export async function processSubmission(
 	}
 
 	const transporter = getTransporter()
-	const confirmation = {
-		from: env.SMTP_EMAIL,
-		to: email,
-		subject: `Contact SIXTOM`,
-		text: 'Contact form submission received! We look forward to talking to you soon.'
-	}
+
+	const confirmation =
+		kind === 'waitlist'
+			? {
+					from: env.SMTP_EMAIL,
+					to: email,
+					subject: 'your teardown - show me the thing',
+					text: WAITLIST_BODY
+				}
+			: {
+					from: env.SMTP_EMAIL,
+					to: email,
+					subject: `Contact SIXTOM`,
+					text: 'Contact form submission received! We look forward to talking to you soon.'
+				}
+
 	const notification = {
 		from: env.SMTP_EMAIL,
 		to: env.SMTP_RECIPIENT_EMAIL,
 		replyTo: email,
-		subject: `Contact: ${name}`,
+		// Lead with the address: the waitlist form hardcodes name to
+		// "Waitlist signup", so every one of these used to arrive identical.
+		subject: kind === 'waitlist' ? `waitlist: ${email}` : `Contact: ${name}`,
 		text: message
 	}
 

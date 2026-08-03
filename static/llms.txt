@@ -5,7 +5,7 @@
 ## what i do
 
 - **the production sprint — $10,000.** two weeks. i rebuild your AI-built demo on foundations that hold: architecture teardown + premortem, security review on every commit, automated test suite, performance to 100s, accessibility pass, analytics + observability, CRO-ready pages + A/B scaffold, technical SEO foundation, AEO/GEO foundation, infra cost audit, conversion copy pass, and a brand kit with 1-of-1 art — plus an AI leverage session, a 90-day growth map, and a runbook + Loom library by day 30. total itemized value $28,500+. live on day 10 — you own 100% of it.
-- **the free teardown — $0.** join the waitlist and get a short recorded teardown of your app: what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch.
+- **the free teardown — $0.** join the waitlist, then show me the thing — a live url, the repo, or a screen recording — and get a short recorded teardown of your app: what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch. not deployed yet is fine; the repo is the better one for this anyway.
 
 ## the guarantee
 

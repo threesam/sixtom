@@ -144,7 +144,7 @@ export function serviceJsonLd(): ServiceLd {
 				'@type': 'Offer',
 				name: 'free teardown',
 				description:
-					"a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. join the waitlist to get one.",
+					"a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. join the waitlist, then show me the thing: a live url, the repo, or a screen recording.",
 				price: '0',
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/InStock',
