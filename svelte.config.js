@@ -13,7 +13,7 @@ export default {
 		// since the homepage went single-case-study, so the prerenderer can't
 		// discover it and the build fails (same class of miss as /faq before).
 		prerender: {
-			entries: ['/sitemap.xml', '/privacy', '/terms', '/tax', '/faq', '/log']
+			entries: ['/accessibility', '/sitemap.xml', '/privacy', '/terms', '/tax', '/faq', '/log']
 		}
 		// inlineStyleThreshold removed: nested routes with <svelte:head> had the
 		// SSR-injected inline <style> block wiped during hydration while the

@@ -38,6 +38,11 @@
 				data-umami-event="footer_terms"
 				class="no-link hover:text-fg transition-colors">terms</a
 			>
+			<a
+				href="/accessibility"
+				data-umami-event="footer_accessibility"
+				class="no-link hover:text-fg transition-colors">accessibility</a
+			>
 			<!-- the garden's guide coin, 1:1 at inline scale — CSS-only flip so the
 			     zero-JS home keeps it -->
 			<a

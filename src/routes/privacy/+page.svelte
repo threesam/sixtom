@@ -10,7 +10,7 @@
 	/>
 </svelte:head>
 
-<div class="bg-surface flex min-h-screen flex-col">
+<div class="bg-surface flex min-h-svh flex-col">
 	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">
 		<header class="mb-16">
 			<a
