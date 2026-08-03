@@ -166,20 +166,28 @@ export async function processSubmission(
 
 	const transporter = getTransporter()
 
-	// The teardown is promised on the site but cannot be recorded without a URL,
-	// which the form deliberately does not collect. Asking for it in the reply is
-	// the gate: bots fill forms and never answer email, so a signup that never
+	// The teardown is promised on the site but cannot be recorded without seeing
+	// the app, which the form deliberately does not collect. Asking in the reply
+	// is the gate: bots fill forms and never answer email, so a signup that never
 	// replies costs a database row and nothing else. The reply is the signal that
 	// someone actually wants the thing.
+	//
+	// The ask is three options on purpose. This audience vibe-coded something that
+	// half-works, so a large share of them have no public URL to paste — localhost,
+	// behind auth, or never deployed. A URL-only ask is unanswerable for them and
+	// they drop off silently, which is the exact failure the reply-gate exists to
+	// prevent. The repo is also the better artifact for the promise being made:
+	// "what will break" lives in the code, not on the rendered page.
 	const waitlistBody = [
 		"you're on the list.",
 		'',
 		'one seat a month, by appointment. i tell you straight when the next one opens.',
 		'',
-		"the teardown: send me the link and i'll record you a short one. what's solid,",
+		"the teardown: show me the thing and i'll record you a short one. what's solid,",
 		"the three things that'll break, and what i'd do first. no charge, no call, no pitch.",
 		'',
-		'just reply to this with the URL.',
+		'reply with whatever lets me see it — a live url, the repo, or a 3-minute screen',
+		"recording. if it isn't deployed yet, the repo is the better one for this anyway.",
 		'',
 		'in the meantime, what it costs you to leave it as it is:',
 		'https://sixtom.com/tax',
@@ -192,7 +200,7 @@ export async function processSubmission(
 			? {
 					from: env.SMTP_EMAIL,
 					to: email,
-					subject: 'your teardown - send me the link',
+					subject: 'your teardown - show me the thing',
 					text: waitlistBody
 				}
 			: {

@@ -209,7 +209,7 @@ export const grandSlam: GrandSlamOffer = {
 		buildPlaceholder: 'a demo of… it works, but…',
 		button: 'get on the list →',
 		reward:
-			"the seat's booked out? good sign. while you wait, send me the link and you get a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. no pitch attached."
+			"the seat's booked out? good sign. while you wait, show me what you've built — url, repo, or a screen recording — and you get a free teardown of your app. what's solid, the three things that'll break, and what i'd do first. no pitch attached."
 	}
 }
 
