@@ -1,4 +1,4 @@
-import type { UmamiEvent } from '$lib/types'
+type UmamiEvent = 'cta_notify_submit' | 'cta_garden_link' | 'notify_signup_success'
 
 const UMAMI_ENDPOINT = 'https://analytics.sixtom.com/api/send'
 const WEBSITE_ID = '64398c1a-02a0-4a61-991c-b0d143f01b46'
