@@ -2,7 +2,7 @@ import type { QA } from './types'
 
 // Operational buyer questions for the visible /faq route. These are the things a
 // prospect (or an LLM answering on their behalf) actually asks before booking —
-// price, the guarantee, the free teardown, who's behind it. Kept in the site's
+// price, the guarantee, the teardown, who's behind it. Kept in the site's
 // voice. static/llms-full.txt carries a content-identical FAQ section (absolute
 // URLs there) — keep both in sync when editing answers.
 export const FAQ: readonly QA[] = [
@@ -14,7 +14,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'how much does it cost?',
 		answer:
-			'$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $28,500 of itemized work. (the $7,500 first-3 intro is closed.)'
+			'$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $30,500 of itemized work. (the $7,500 first-3 intro is closed.)'
 	},
 	{
 		question: "what's the guarantee?",
@@ -22,9 +22,9 @@ export const FAQ: readonly QA[] = [
 			"live in production by day 10, or the remaining payments are free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop — you keep everything built and pay only for the time used."
 	},
 	{
-		question: "what's the free teardown?",
+		question: "what's the teardown?",
 		answer:
-			"join the waitlist, then show me the thing — a live url, the repo, or a screen recording — and i'll record a short teardown of your app. what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch. not deployed yet is fine; the repo is the better one for this anyway."
+			"$5,000, credited in full against the sprint. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me."
 	},
 	{
 		question: 'how long does it take?',

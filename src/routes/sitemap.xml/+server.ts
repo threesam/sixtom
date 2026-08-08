@@ -13,7 +13,7 @@ interface SitemapUrl {
 export function GET(): Response {
 	const today = new Date().toISOString().slice(0, 10)
 	// Indexable routes only — /book (noindex,nofollow) is deliberately excluded.
-	// /notify is the waitlist + free-teardown offer URL (schema points at it),
+	// /notify is the waitlist + teardown offer URL (schema points at it),
 	// indexable since the grand-slam migration. Writeups derive from LOG_ENTRIES
 	// so new ones appear automatically, stamped with their real publish date.
 	const urls: SitemapUrl[] = [

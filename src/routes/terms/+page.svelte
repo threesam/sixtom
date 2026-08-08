@@ -6,7 +6,7 @@
 	<title>terms | SIXTOM</title>
 	<meta
 		name="description"
-		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the free teardown."
+		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
 	/>
 </svelte:head>
 
@@ -44,10 +44,12 @@
 			</section>
 
 			<section>
-				<h2 class="text-fg text-xl font-semibold tracking-tight">the free teardown</h2>
+				<h2 class="text-fg text-xl font-semibold tracking-tight">the teardown</h2>
 				<p class="mt-3">
-					the teardown is free, carries no obligation on either side, and i may decline to record
-					one if your project isn't a fit.
+					$5,000, paid up front, credited in full against the sprint if you book one within 90 days.
+					you get the written findings either way and you own them. it carries no obligation on
+					either side — i may decline if your project isn't a fit, and if i decline after you've
+					paid, you get all of it back.
 				</p>
 			</section>
 
