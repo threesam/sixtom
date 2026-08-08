@@ -41,6 +41,13 @@ export interface Testimonial {
 	attribution: string
 }
 
+export interface Teardown {
+	name: string
+	longName: string
+	priceUSD: number
+	creditNote: string
+}
+
 export interface Site {
 	siteUrl: string
 	bookingUrl: string
@@ -48,6 +55,7 @@ export interface Site {
 	tagline: string
 	operator: Operator
 	sprint: Offer
+	teardown: Teardown
 	process: readonly ProcessStep[]
 	testimonial: Testimonial
 }

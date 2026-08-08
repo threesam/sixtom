@@ -45,7 +45,7 @@ describe('JSON-LD generators', () => {
 		expect(ld.publisher['@id']).toBe(PERSON_ID)
 	})
 
-	it('serviceJsonLd sells exactly the two live offers: sprint + free teardown', () => {
+	it('serviceJsonLd sells exactly the two live offers: sprint + teardown', () => {
 		const ld = serviceJsonLd()
 		expect(ld['@context']).toBe('https://schema.org')
 		expect(ld['@type']).toBe('Service')
@@ -60,8 +60,8 @@ describe('JSON-LD generators', () => {
 		// closed intro must not leak into machine surfaces
 		expect(ld.offers[0]?.description).not.toContain('7500')
 		expect(ld.offers[0]?.description).not.toContain('7,500')
-		expect(ld.offers[1]?.name).toBe('free teardown')
-		expect(ld.offers[1]?.price).toBe('0')
+		expect(ld.offers[1]?.name).toBe(site.teardown.longName)
+		expect(ld.offers[1]?.price).toBe(String(site.teardown.priceUSD))
 		expect(ld.offers[1]?.availability).toBe('https://schema.org/InStock')
 		expect(ld.offers[1]?.url).toBe(`${site.siteUrl}/notify`)
 	})

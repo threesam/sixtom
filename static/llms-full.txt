@@ -16,7 +16,7 @@ i rebuild it the way i'd build it for myself — the architecture, the security,
 
 ### the foundation
 
-- architecture teardown + premortem — exactly what will break, and why — $3,000
+- architecture teardown + premortem — exactly what will break, and why — $5,000
 - the rebuild — your product, standing on foundations that hold — core
 - security review on every commit — nothing ships that i haven't read — $2,000
 - automated test suite — so it stays fixed after i leave — $2,500
@@ -49,7 +49,7 @@ straight with you: search and answer-engines pay off over months, not days. the 
 - the 90-day growth map — the highest-impact moves, in order — $1,500
 - the runbook + Loom library — so you're never dependent on me again — $1,500
 
-**total value: $28,500+. you pay: $10,000 fixed, or 4 weekly payments of $2,500.** (the $7,500 first-3 intro is closed.)
+**total value: $30,500+. you pay: $10,000 fixed, or 4 weekly payments of $2,500.** (the $7,500 first-3 intro is closed.)
 
 a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.
 
@@ -59,9 +59,9 @@ live in production by day 10, or the remaining payments are free.
 
 and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there — you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
 
-## the free teardown
+## the teardown
 
-join the waitlist, then show me the thing — a live url, the repo, or a screen recording — and you get a short recorded teardown of your app. what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch. not deployed yet is fine; the repo is the better one for this anyway.
+$5,000, credited in full against the sprint. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
 
 ## who it's for
 
@@ -86,15 +86,15 @@ you (or your AI) got something to a working demo. i take it from there to produc
 
 **how much does it cost?**
 
-$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $28,500 of itemized work. (the $7,500 first-3 intro is closed.)
+$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $30,500 of itemized work. (the $7,500 first-3 intro is closed.)
 
 **what's the guarantee?**
 
 live in production by day 10, or the remaining payments are free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop — you keep everything built and pay only for the time used.
 
-**what's the free teardown?**
+**what's the teardown?**
 
-join the waitlist, then show me the thing — a live url, the repo, or a screen recording — and i'll record a short teardown of your app. what's solid, the three things that'll break, and what i'd do first. no charge, no call, no pitch. not deployed yet is fine; the repo is the better one for this anyway.
+$5,000, credited in full against the sprint. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
 
 **how long does it take?**
 
@@ -142,7 +142,7 @@ Salvatore D'Angelo. lead engineer at Made In Cookware — multi-million visitors
 
 ## how to engage
 
-- **join the waitlist:** https://sixtom.com/notify — one seat a month; waitlist members get the free teardown while they wait.
+- **join the waitlist:** https://sixtom.com/notify — one seat a month; or take the teardown to move now instead of waiting.
 - **book the intro call:** https://sixtom.com/book — 3 quick steps, then the booking link.
 - **FAQ:** https://sixtom.com/faq — straight answers on price, the day-10 guarantee, timeline, and who's behind it.
 - **the vibe-code tax calculator:** https://sixtom.com/tax — a quick estimate of what the gap is costing you per year. no email.

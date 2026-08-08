@@ -21,7 +21,7 @@
 	<title>waitlist | SIXTOM</title>
 	<meta
 		name="description"
-		content="one client a month. join the waitlist — and get a free teardown of your app while you wait."
+		content="one client a month. join the waitlist — or start with a paid teardown and move now."
 	/>
 </svelte:head>
 

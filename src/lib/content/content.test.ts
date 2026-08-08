@@ -15,7 +15,7 @@ describe('content', () => {
 		const sum = grandSlam.ledger.groups
 			.flatMap((g) => g.lines)
 			.reduce((acc, l) => acc + (l.valueUSD ?? 0), 0)
-		expect(sum).toBe(28500)
+		expect(sum).toBe(30500)
 		expect(LEDGER_TOTAL_USD).toBe(sum)
 	})
 
