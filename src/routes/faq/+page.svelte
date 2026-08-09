@@ -3,24 +3,20 @@
 	import { faqPageJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 	import BookCta from '$lib/components/BookCta.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	// Visible FAQ + matching FAQPage schema (engines require the answer text be on
 	// the page, which it is). Questions/answers live in src/lib/content/faq.ts.
 	const faqLd = renderJsonLd(faqPageJsonLd(FAQ, `${site.siteUrl}/faq`))
 </script>
 
+<PageMeta
+	title="faq | SIXTOM"
+	description="what sixtom costs, how the two-week sprint and the day-10 guarantee work, and what the teardown is."
+	socialDescription="what sixtom costs, how the sprint and the day-10 guarantee work."
+/>
+
 <svelte:head>
-	<title>faq | SIXTOM</title>
-	<meta
-		name="description"
-		content="what sixtom costs, how the two-week sprint and the day-10 guarantee work, and what the teardown is."
-	/>
-	<meta property="og:title" content="faq | SIXTOM" />
-	<meta
-		property="og:description"
-		content="what sixtom costs, how the sprint and the day-10 guarantee work."
-	/>
-	<meta property="og:type" content="website" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html faqLd}
 </svelte:head>

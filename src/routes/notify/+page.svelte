@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import TeardownReward from '$lib/components/TeardownReward.svelte'
 	import { grandSlam } from '$lib/content'
 	import type { ActionData } from './$types'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
 
@@ -17,13 +19,10 @@
 	})
 </script>
 
-<svelte:head>
-	<title>waitlist | SIXTOM</title>
-	<meta
-		name="description"
-		content="one client a month. join the waitlist — or start with a paid teardown and move now."
-	/>
-</svelte:head>
+<PageMeta
+	title="waitlist | SIXTOM"
+	description="one client a month. join the waitlist — or start with a paid teardown and move now."
+/>
 
 <div class="bg-surface flex min-h-screen flex-col">
 	<div class="mx-auto w-full max-w-2xl px-6 pt-12">
@@ -40,7 +39,7 @@
 		<div class="mx-auto w-full max-w-2xl">
 			<p class="eyebrow text-sm">{close.scarcity}</p>
 			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
-			<p class="text-fg-muted mt-6 text-lg leading-relaxed">{close.reward}</p>
+			<TeardownReward class="text-fg-muted mt-6 text-lg leading-relaxed" />
 
 			<form
 				method="post"

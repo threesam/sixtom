@@ -2,6 +2,7 @@
 	import { LOG_ENTRIES } from '$lib/log'
 	import { blogJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	const blogDescription =
 		'case studies and build notes from the work — what i shipped, why, and what the numbers showed.'
@@ -25,12 +26,9 @@
 	const entries = [...LOG_ENTRIES].sort((a, b) => b.date.localeCompare(a.date))
 </script>
 
+<PageMeta title="log | SIXTOM" description={blogDescription} />
+
 <svelte:head>
-	<title>log | SIXTOM</title>
-	<meta name="description" content={blogDescription} />
-	<meta property="og:title" content="log | SIXTOM" />
-	<meta property="og:description" content={blogDescription} />
-	<meta property="og:type" content="website" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html blogLd}
 </svelte:head>

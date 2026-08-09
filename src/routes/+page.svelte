@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import TeardownReward from '$lib/components/TeardownReward.svelte'
 	import { site, grandSlam, LEDGER_TOTAL_USD } from '$lib/content'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	const o = grandSlam
 	const eyebrowClass = 'eyebrow text-sm'
@@ -9,7 +11,19 @@
 		'text-fg mt-2 text-3xl leading-tight font-bold tracking-tight text-balance md:text-5xl'
 	const bodyClass = 'text-fg-muted mt-6 max-w-2xl text-base leading-relaxed md:text-lg'
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
+
+	// One string, three tags: og and twitter drift apart the moment they are
+	// edited separately.
+	const socialDescription =
+		'live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month.'
+	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
+
+<PageMeta
+	title={pageTitle}
+	description="the production sprint: {socialDescription}"
+	{socialDescription}
+/>
 
 <Hero />
 
@@ -236,7 +250,7 @@
 			</button>
 		</form>
 
-		<p class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed">{o.close.reward}</p>
+		<TeardownReward class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed" />
 	</div>
 </section>
 

@@ -1,21 +1,14 @@
 <script lang="ts">
 	import VibeTaxCalculator from '$lib/components/VibeTaxCalculator.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 </script>
 
-<svelte:head>
-	<title>vibe-code tax | SIXTOM</title>
-	<meta
-		name="description"
-		content="how much your vibe-coded prototype is costing you per year. 3 inputs, instant number, no email."
-	/>
-	<meta property="og:title" content="vibe-code tax | SIXTOM" />
-	<meta
-		property="og:description"
-		content="how much your vibe-coded prototype is costing you per year."
-	/>
-	<meta property="og:type" content="website" />
-</svelte:head>
+<PageMeta
+	title="vibe-code tax | SIXTOM"
+	description="how much your vibe-coded prototype is costing you per year. 3 inputs, instant number, no email."
+	socialDescription="how much your vibe-coded prototype is costing you per year."
+/>
 
 <div class="bg-surface flex min-h-screen flex-col">
 	<div class="mx-auto w-full max-w-3xl px-6 pt-12">

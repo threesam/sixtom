@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms'
 	import type { ActionData } from './$types'
 	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE } from './options'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
 
@@ -47,13 +48,13 @@
 	const stepHeadClass = 'text-fg mt-2 text-2xl font-semibold tracking-tight md:text-3xl'
 </script>
 
+<PageMeta
+	title="book | SIXTOM"
+	description="see if the sprint is a fit. 3 quick steps, then the booking link."
+/>
+
 <svelte:head>
-	<title>book | SIXTOM</title>
 	<meta name="robots" content="noindex, nofollow" />
-	<meta
-		name="description"
-		content="see if the sprint is a fit. 3 quick steps, then the booking link."
-	/>
 </svelte:head>
 
 <div class="bg-surface min-h-screen">

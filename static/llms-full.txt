@@ -61,7 +61,7 @@ and there's a floor under it: day 5, we both look at it. if we can both see it w
 
 ## the teardown
 
-$5,000, credited in full against the sprint. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
+$5,000, credited in full against the sprint if you book one within 90 days. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
 
 ## who it's for
 
@@ -94,7 +94,7 @@ live in production by day 10, or the remaining payments are free. there's a floo
 
 **what's the teardown?**
 
-$5,000, credited in full against the sprint. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
+$5,000, credited in full against the sprint if you book one within 90 days. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
 
 **how long does it take?**
 

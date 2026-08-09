@@ -7,11 +7,12 @@
 		<meta name="author" content="Salvatore D'Angelo" />
 		<meta name="format-detection" content="telephone=no" />
 
-		<title>SIXTOM — everyone saw the demo. nobody's seen it since.</title>
-		<meta
-			name="description"
-			content="the production sprint: live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month."
-		/>
+		<!-- Title, description and the og/twitter title+description pairs are the
+		     HOME page's copy, so they live in src/routes/+page.svelte. Kept here
+		     they were emitted on every route, and each route that set its own then
+		     rendered two - with this one first, which is the one crawlers take.
+		     Only genuinely global tags (card type, image) belong in this file. -->
+
 		<!-- Canonical URL is set dynamically per-route in src/routes/+layout.svelte
 		     using $app/state's page.url.pathname; do not hardcode here to avoid
 		     duplicate canonical tags on non-home routes. -->
@@ -36,11 +37,6 @@
 			crossorigin
 		/>
 
-		<meta property="og:title" content="SIXTOM — everyone saw the demo. nobody's seen it since." />
-		<meta
-			property="og:description"
-			content="live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month."
-		/>
 		<meta property="og:type" content="website" />
 		<!-- og:url lives in +layout.svelte (per-route, alongside canonical) — a
 		     static one here would duplicate it and scrapers take the first. -->
@@ -53,11 +49,6 @@
 		/>
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="SIXTOM — everyone saw the demo. nobody's seen it since." />
-		<meta
-			name="twitter:description"
-			content="live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month."
-		/>
 		<meta name="twitter:image" content="https://sixtom.com/og.png" />
 		<meta
 			name="twitter:image:alt"
