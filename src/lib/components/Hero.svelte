@@ -63,11 +63,17 @@
 				or get a free teardown
 			</a>
 		</div>
-		<ul class="mt-10 flex list-none flex-wrap gap-x-10 gap-y-4 p-0 md:mt-12 md:justify-center">
+		<ul
+			class="mt-10 grid list-none grid-cols-[repeat(3,auto)] justify-between gap-x-3 p-0 md:mt-12 md:flex md:flex-wrap md:justify-center md:gap-x-10"
+		>
 			{#each grandSlam.stats as stat (stat.label)}
 				<li>
-					<p class="text-fg text-lg font-bold tabular-nums md:text-xl">{stat.value}</p>
-					<p class="text-fg-subtle text-xs tracking-widest uppercase">{stat.label}</p>
+					<p class="text-fg text-sm font-bold tabular-nums md:text-xl">{stat.value}</p>
+					<p
+						class="text-fg-subtle text-[0.625rem] tracking-wider uppercase md:text-xs md:tracking-widest"
+					>
+						{stat.label}
+					</p>
 				</li>
 			{/each}
 		</ul>
