@@ -1,19 +1,12 @@
 <script lang="ts">
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 </script>
 
-<svelte:head>
-	<title>privacy | SIXTOM</title>
-	<meta
-		name="description"
-		content="what sixtom collects, what it doesn't, and how to get it deleted."
-	/>
-	<meta property="og:title" content="privacy | SIXTOM" />
-	<meta
-		property="og:description"
-		content="what sixtom collects, what it doesn't, and how to get it deleted."
-	/>
-</svelte:head>
+<PageMeta
+	title="privacy | SIXTOM"
+	description="what sixtom collects, what it doesn't, and how to get it deleted."
+/>
 
 <div class="bg-surface flex min-h-svh flex-col">
 	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">

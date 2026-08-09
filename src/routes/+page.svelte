@@ -3,6 +3,7 @@
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import TeardownReward from '$lib/components/TeardownReward.svelte'
 	import { site, grandSlam, LEDGER_TOTAL_USD } from '$lib/content'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	const o = grandSlam
 	const eyebrowClass = 'eyebrow text-sm'
@@ -18,17 +19,11 @@
 	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
-<svelte:head>
-	<!-- Moved out of app.html: kept there, these were emitted on every route and
-	     every route setting its own then rendered two. Title derives from the
-	     headline so the hook and the SERP entry cannot drift apart. -->
-	<title>{pageTitle}</title>
-	<meta name="description" content="the production sprint: {socialDescription}" />
-	<meta property="og:title" content={pageTitle} />
-	<meta property="og:description" content={socialDescription} />
-	<meta name="twitter:title" content={pageTitle} />
-	<meta name="twitter:description" content={socialDescription} />
-</svelte:head>
+<PageMeta
+	title={pageTitle}
+	description="the production sprint: {socialDescription}"
+	{socialDescription}
+/>
 
 <Hero />
 
