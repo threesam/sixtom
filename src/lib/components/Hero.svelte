@@ -29,10 +29,12 @@
 		></div>
 	</div>
 
-	<div class="relative mx-auto w-full max-w-6xl px-6 py-16 text-left md:py-20 md:text-center">
+	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-left md:py-20 md:text-center">
 		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
+		<!-- 8.6vw is the measured ceiling that keeps each beat on one line at 320px;
+		     a floor above ~1.6rem wins on phones and re-wraps them. -->
 		<h1
-			class="text-fg mt-6 text-[clamp(2.5rem,9.5vw,5.75rem)] leading-[1.04] font-bold tracking-tight"
+			class="text-fg mt-6 text-[clamp(1.6rem,8.6vw,5.75rem)] leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
 		>
 			<span class="block text-balance">{beatOne}</span>
 			<span class="block text-balance">{beatTwo}</span>
@@ -42,7 +44,7 @@
 		<p class="text-fg-muted mx-auto mt-8 max-w-3xl text-base leading-relaxed md:text-lg">
 			{grandSlam.lead}
 		</p>
-		<div class="mt-12 flex flex-col items-start gap-4 md:items-center">
+		<div class="mt-10 flex flex-col items-start gap-4 md:mt-12 md:items-center">
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_waitlist"
@@ -58,11 +60,13 @@
 				or get a free teardown
 			</a>
 		</div>
-		<ul class="mt-12 flex list-none flex-wrap gap-x-10 gap-y-4 p-0 md:justify-center">
+		<ul
+			class="mt-10 flex list-none flex-wrap justify-between gap-x-2 gap-y-4 p-0 md:mt-12 md:justify-center md:gap-x-10"
+		>
 			{#each grandSlam.stats as stat (stat.label)}
 				<li>
-					<p class="text-fg text-lg font-bold tabular-nums md:text-xl">{stat.value}</p>
-					<p class="text-fg-subtle text-xs tracking-widest uppercase">{stat.label}</p>
+					<p class="text-fg text-base font-bold tabular-nums md:text-xl">{stat.value}</p>
+					<p class="text-fg-subtle text-xs uppercase md:tracking-widest">{stat.label}</p>
 				</li>
 			{/each}
 		</ul>
