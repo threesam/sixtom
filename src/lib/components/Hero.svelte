@@ -31,11 +31,8 @@
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-left md:py-20 md:text-center">
 		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
-		<!-- Two viewport-width curves, not one. The single clamp's 2.5rem floor
-		     outran every phone (40px at 320-412px), so both beats wrapped and the
-		     hook read as four orphaned fragments instead of two. 8.6vw is the
-		     measured ceiling that keeps the longest beat on one line down to 320px;
-		     md+ keeps the original curve untouched. -->
+		<!-- 8.6vw is the measured ceiling that keeps each beat on one line at 320px;
+		     a floor above ~1.6rem wins on phones and re-wraps them. -->
 		<h1
 			class="text-fg mt-6 text-[clamp(1.6rem,8.6vw,5.75rem)] leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
 		>
@@ -64,16 +61,12 @@
 			</a>
 		</div>
 		<ul
-			class="mt-10 grid list-none grid-cols-[repeat(3,auto)] justify-between gap-x-3 p-0 md:mt-12 md:flex md:flex-wrap md:justify-center md:gap-x-10"
+			class="mt-10 flex list-none justify-between gap-x-2 gap-y-4 p-0 md:mt-12 md:flex-wrap md:justify-center md:gap-x-10"
 		>
 			{#each grandSlam.stats as stat (stat.label)}
 				<li>
-					<p class="text-fg text-sm font-bold tabular-nums md:text-xl">{stat.value}</p>
-					<p
-						class="text-fg-subtle text-[0.625rem] tracking-wider uppercase md:text-xs md:tracking-widest"
-					>
-						{stat.label}
-					</p>
+					<p class="text-fg text-base font-bold tabular-nums md:text-xl">{stat.value}</p>
+					<p class="text-fg-subtle text-xs uppercase md:tracking-widest">{stat.label}</p>
 				</li>
 			{/each}
 		</ul>
