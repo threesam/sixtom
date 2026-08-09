@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import TeardownReward from '$lib/components/TeardownReward.svelte'
 	import { grandSlam } from '$lib/content'
 	import type { ActionData } from './$types'
 
@@ -40,7 +41,7 @@
 		<div class="mx-auto w-full max-w-2xl">
 			<p class="eyebrow text-sm">{close.scarcity}</p>
 			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
-			<p class="text-fg-muted mt-6 text-lg leading-relaxed">{close.reward}</p>
+			<TeardownReward class="text-fg-muted mt-6 text-lg leading-relaxed" />
 
 			<form
 				method="post"

@@ -208,7 +208,11 @@ export const grandSlam: GrandSlamOffer = {
 		buildLabel: 'what did you build?',
 		buildPlaceholder: 'a demo of… it works, but…',
 		button: 'get on the list →',
-		reward: `the seat's booked out? good sign. if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')}, ${site.teardown.creditNote}. i read the whole thing and tell you exactly what breaks, in what order, and what i'd do first. you get the writeup whether or not we ever work together.`
+		// Split around site.teardown.creditNote so the claim can carry its own
+		// condition inline — the unqualified version outruns what /terms actually says.
+		rewardBefore: `the seat's booked out? good sign. if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
+		rewardAfter: `. i read the whole thing and tell you exactly what breaks, in what order, and what i'd do first. you get the writeup whether or not we ever work together.`,
+		creditTerms: `paid up front. credited against the sprint if you book one within 90 days — and if i decline your project after you've paid, you get all of it back.`
 	}
 }
 

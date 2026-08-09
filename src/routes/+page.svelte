@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte'
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import TeardownReward from '$lib/components/TeardownReward.svelte'
 	import { site, grandSlam, LEDGER_TOTAL_USD } from '$lib/content'
 
 	const o = grandSlam
@@ -236,7 +237,7 @@
 			</button>
 		</form>
 
-		<p class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed">{o.close.reward}</p>
+		<TeardownReward class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed" />
 	</div>
 </section>
 
