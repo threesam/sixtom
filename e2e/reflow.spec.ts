@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test'
 // 320px with text scaled to 200%. This regressed silently once already — the
 // ledger's price column was shrink-0 next to a label that could not shrink
 // below its longest word, so the page scrolled sideways by 119px.
-const ROUTES = ['/', '/faq', '/terms', '/notify', '/accessibility', '/tax']
+const ROUTES = ['/', '/faq', '/terms', '/notify', '/accessibility', '/tax', '/book', '/log']
 
 test.describe('reflow at 320px / 200% text', () => {
 	test.use({ viewport: { width: 320, height: 568 } })
