@@ -5,15 +5,10 @@ import svelte from 'eslint-plugin-svelte'
 import globals from 'globals'
 import ts from 'typescript-eslint'
 
-// Files outside the tsconfig's include glob (root configs, e2e specs) that
-// still need type-aware lint. Globbed, not enumerated: tseslint warns past 8
-// entries, and a per-spec list silently fails every new e2e file.
-const ALLOW_DEFAULT_PROJECT = [
-	'eslint.config.js',
-	'svelte.config.js',
-	'playwright.config.ts',
-	'e2e/*.ts'
-]
+// Root config files sit outside every tsconfig's include, so they need the
+// default project. The e2e specs used to live here too, but the default project
+// is capped at 8 files and they blew past it — e2e/tsconfig.json owns them now.
+const ALLOW_DEFAULT_PROJECT = ['eslint.config.js', 'svelte.config.js', 'playwright.config.ts']
 
 export default defineConfig(
 	{

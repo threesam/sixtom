@@ -74,9 +74,9 @@
 				{@const hasUnpriced = group.lines.some((l) => l.valueUSD === null)}
 				<details class="group border-border border-b">
 					<summary
-						class="focus-visible:outline-accent flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
+						class="focus-visible:outline-accent flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
 					>
-						<span class="flex items-baseline gap-3">
+						<span class="flex min-w-0 items-baseline gap-3">
 							<span
 								aria-hidden="true"
 								class="text-fg-subtle inline-block transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
@@ -90,8 +90,8 @@
 					</summary>
 					<ul class="divide-border divide-y pb-2">
 						{#each group.lines as item (item.line)}
-							<li class="flex items-baseline justify-between gap-6 py-4 pl-7">
-								<div>
+							<li class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4 pl-7">
+								<div class="min-w-0">
 									<p class="text-fg text-base font-semibold">{item.line}</p>
 									<p class="text-fg-muted mt-1 text-sm leading-relaxed">{item.sub}</p>
 								</div>
@@ -109,7 +109,7 @@
 		</div>
 
 		<div class="mt-8">
-			<div class="flex items-baseline justify-between gap-6">
+			<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
 				<p class="text-fg text-lg font-bold">total value</p>
 				<p class="text-fg text-lg font-bold tabular-nums">{usd(LEDGER_TOTAL_USD)}+</p>
 			</div>

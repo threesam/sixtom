@@ -1,0 +1,8 @@
+{
+	// SvelteKit's generated include covers src/, test/ and tests/ — not e2e/ — so
+	// these specs had no owning project and fell back to eslint's default one.
+	// That fallback is capped at 8 files, which the root configs plus the specs
+	// exceeded. Giving e2e its own project removes the cap instead of raising it.
+	"extends": "../tsconfig.json",
+	"include": ["**/*.ts"]
+}
