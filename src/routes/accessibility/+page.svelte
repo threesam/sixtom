@@ -1,20 +1,13 @@
 <script lang="ts">
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import { site } from '$lib/content'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 </script>
 
-<svelte:head>
-	<title>accessibility | SIXTOM</title>
-	<meta
-		name="description"
-		content="what sixtom does to stay usable for everyone, how it's checked, and how to report a problem."
-	/>
-	<meta property="og:title" content="accessibility | SIXTOM" />
-	<meta
-		property="og:description"
-		content="what sixtom does to stay usable for everyone, how it's checked, and how to report a problem."
-	/>
-</svelte:head>
+<PageMeta
+	title="accessibility | SIXTOM"
+	description="what sixtom does to stay usable for everyone, how it's checked, and how to report a problem."
+/>
 
 <div class="bg-surface flex min-h-svh flex-col">
 	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">

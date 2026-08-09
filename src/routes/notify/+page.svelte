@@ -4,6 +4,7 @@
 	import TeardownReward from '$lib/components/TeardownReward.svelte'
 	import { grandSlam } from '$lib/content'
 	import type { ActionData } from './$types'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
 
@@ -18,18 +19,10 @@
 	})
 </script>
 
-<svelte:head>
-	<title>waitlist | SIXTOM</title>
-	<meta
-		name="description"
-		content="one client a month. join the waitlist — or start with a paid teardown and move now."
-	/>
-	<meta property="og:title" content="waitlist | SIXTOM" />
-	<meta
-		property="og:description"
-		content="one client a month. join the waitlist — or start with a paid teardown and move now."
-	/>
-</svelte:head>
+<PageMeta
+	title="waitlist | SIXTOM"
+	description="one client a month. join the waitlist — or start with a paid teardown and move now."
+/>
 
 <div class="bg-surface flex min-h-screen flex-col">
 	<div class="mx-auto w-full max-w-2xl px-6 pt-12">

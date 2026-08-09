@@ -1,22 +1,15 @@
 <script lang="ts">
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
 	import { site } from '$lib/content'
+	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	const teardownPrice = `$${site.teardown.priceUSD.toLocaleString('en-US')}`
 </script>
 
-<svelte:head>
-	<title>terms | SIXTOM</title>
-	<meta
-		name="description"
-		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
-	/>
-	<meta property="og:title" content="terms | SIXTOM" />
-	<meta
-		property="og:description"
-		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
-	/>
-</svelte:head>
+<PageMeta
+	title="terms | SIXTOM"
+	description="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
+/>
 
 <div class="bg-surface flex min-h-svh flex-col">
 	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">
