@@ -57,7 +57,7 @@
 				data-umami-event="cta_hero_teardown"
 				class="text-fg hover:text-fg-subtle text-xs tracking-widest uppercase transition-colors"
 			>
-				or get a free teardown
+				or start with a teardown
 			</a>
 		</div>
 		<ul

@@ -1,21 +1,31 @@
 import { describe, it, expect } from 'vitest'
-import { site, calEvent, grandSlam, LEDGER_TOTAL_USD } from './index'
+import { site, calEvent, grandSlam, FAQ, LEDGER_TOTAL_USD } from './index'
 
 describe('content', () => {
 	it('site exports the operator + sprint (audit and retainer are gone)', () => {
 		expect(site.operator.name).toBe("Salvatore D'Angelo")
 		expect(site.sprint.priceUSD).toBe(10000)
+		expect(site.teardown.priceUSD).toBe(5000)
 		expect(site.sprint.introPriceUSD).toBe(7500)
 		expect(site.bookingUrl).toMatch(/^https?:\/\//)
 		expect('audit' in site).toBe(false)
 		expect('retainer' in site).toBe(false)
 	})
 
+	// The teardown price is written out in prose on several surfaces (FAQ, llms.txt,
+	// terms) the way the sprint price already is, so changing site.ts alone would
+	// leave them quietly disagreeing about what a teardown costs.
+	it('the FAQ quotes the current teardown price', () => {
+		const answer = FAQ.find((qa) => qa.question.includes('teardown'))?.answer ?? ''
+		expect(answer).toContain(`$${site.teardown.priceUSD.toLocaleString('en-US')}`)
+		expect(answer).toContain(site.teardown.creditNote)
+	})
+
 	it('ledger line values sum to the advertised total', () => {
 		const sum = grandSlam.ledger.groups
 			.flatMap((g) => g.lines)
 			.reduce((acc, l) => acc + (l.valueUSD ?? 0), 0)
-		expect(sum).toBe(28500)
+		expect(sum).toBe(30500)
 		expect(LEDGER_TOTAL_USD).toBe(sum)
 	})
 

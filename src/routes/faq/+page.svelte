@@ -13,7 +13,7 @@
 	<title>faq | SIXTOM</title>
 	<meta
 		name="description"
-		content="what sixtom costs, how the two-week sprint and the day-10 guarantee work, and how to get the free teardown."
+		content="what sixtom costs, how the two-week sprint and the day-10 guarantee work, and what the teardown is."
 	/>
 	<meta property="og:title" content="faq | SIXTOM" />
 	<meta

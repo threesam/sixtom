@@ -37,7 +37,7 @@ export const grandSlam: GrandSlamOffer = {
 					{
 						line: 'architecture teardown + premortem',
 						sub: 'exactly what will break, and why',
-						valueUSD: 3000
+						valueUSD: 5000
 					},
 					{
 						line: 'the rebuild',
@@ -208,8 +208,7 @@ export const grandSlam: GrandSlamOffer = {
 		buildLabel: 'what did you build?',
 		buildPlaceholder: 'a demo of… it works, but…',
 		button: 'get on the list →',
-		reward:
-			"the seat's booked out? good sign. while you wait, show me what you've built — url, repo, or a screen recording — and you get a free teardown of your app. what's solid, the three things that'll break, and what i'd do first. no pitch attached."
+		reward: `the seat's booked out? good sign. if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')}, ${site.teardown.creditNote}. i read the whole thing and tell you exactly what breaks, in what order, and what i'd do first. you get the writeup whether or not we ever work together.`
 	}
 }
 

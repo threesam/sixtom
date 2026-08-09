@@ -31,6 +31,11 @@ export const site: Site = {
 		cadence: '1 client a month, by appointment.',
 		paymentPlan: '4 weekly payments of $2,500'
 	},
+	teardown: {
+		longName: 'the teardown',
+		priceUSD: 5000,
+		creditNote: 'credited in full against the sprint'
+	},
 	process: [
 		{ label: 'wk 1 · day 0', body: 'a 30-minute call. we figure out the thing.' },
 		{
@@ -72,7 +77,7 @@ export const calEvent: CalEvent = {
 		{
 			label: 'where are you in the process?',
 			type: 'select',
-			options: ['on the waitlist', 'got my free teardown — ready to talk', 'just found sixtom'],
+			options: ['on the waitlist', 'did the teardown — ready to talk', 'just found sixtom'],
 			required: true
 		}
 	]

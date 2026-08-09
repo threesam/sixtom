@@ -109,11 +109,10 @@ function getTransporter(): Transporter {
  */
 export type SubmissionKind = 'waitlist' | 'contact'
 
-// The teardown is promised on the site but cannot be recorded without seeing
-// the app, which the form deliberately does not collect. Asking in the reply is
-// the gate: bots fill forms and never answer email, so a signup that never
-// replies costs a database row and nothing else. The reply is the signal that
-// someone actually wants the thing.
+// The reply is still the gate, but the teardown behind it is now paid, so the
+// ask has changed shape: the reply qualifies, the price qualifies harder. Bots
+// fill forms and never answer email, so a signup that never replies costs a
+// database row and nothing else.
 //
 // The ask is three options on purpose. This audience vibe-coded something that
 // half-works, so a large share of them have no public URL to paste — localhost,
@@ -130,11 +129,13 @@ const WAITLIST_BODY = [
 	'',
 	'one seat a month, by appointment. i tell you straight when the next one opens.',
 	'',
-	"the teardown: show me the thing and i'll record you a short one. what's solid,",
-	"the three things that'll break, and what i'd do first. no charge, no call, no pitch.",
+	`if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
+	`${site.teardown.creditNote}. i read the whole thing and write up what's solid,`,
+	"exactly what breaks and in what order, and what i'd do first. you keep the",
+	"writeup either way, and i'll tell you if you don't need me.",
 	'',
-	'reply with whatever lets me see it — a live url, the repo, or a 3-minute screen',
-	"recording. if it isn't deployed yet, the repo is the better one for this anyway.",
+	'either way — reply with whatever lets me see it: a live url, the repo, or a',
+	"3-minute screen recording. if it isn't deployed yet, the repo is better anyway.",
 	'',
 	'in the meantime, what it costs you to leave it as it is:',
 	`${site.siteUrl}/tax`,
@@ -205,7 +206,7 @@ export async function processSubmission(
 			? {
 					from: env.SMTP_EMAIL,
 					to: email,
-					subject: 'your teardown - show me the thing',
+					subject: "you're on the list - show me the thing",
 					text: WAITLIST_BODY
 				}
 			: {

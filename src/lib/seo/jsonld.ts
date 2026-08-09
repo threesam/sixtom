@@ -142,10 +142,9 @@ export function serviceJsonLd(): ServiceLd {
 			},
 			{
 				'@type': 'Offer',
-				name: 'free teardown',
-				description:
-					"a free teardown of your app — what's solid, the three things that'll break, and what i'd do first. join the waitlist, then show me the thing: a live url, the repo, or a screen recording.",
-				price: '0',
+				name: site.teardown.longName,
+				description: `a paid teardown of your app, ${site.teardown.creditNote} — what's solid, exactly what breaks and in what order, and what i'd do first. send the repo, a live url, or a screen recording.`,
+				price: String(site.teardown.priceUSD),
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/InStock',
 				url: `${site.siteUrl}/notify`

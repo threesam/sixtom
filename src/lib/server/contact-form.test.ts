@@ -165,10 +165,10 @@ describe('processSubmission — protection layers', () => {
 			return sendMail.mock.calls.map(([mail]) => mail)
 		}
 
-		it('sends the teardown claim rather than the generic contact ack', async () => {
+		it('sends the waitlist confirmation rather than the generic contact ack', async () => {
 			await processSubmission(makeFormData({ name: 'Waitlist signup' }), mockEvent(), 'waitlist')
 			const toVisitor = sentMail().find((m) => m.to === 'real@example.com')
-			expect(toVisitor?.subject).toContain('teardown')
+			expect(toVisitor?.subject).toContain('on the list')
 			// the ask is the whole gate: no reply, no work
 			expect(toVisitor?.text).toContain('reply')
 			expect(toVisitor?.text).not.toContain('Contact form submission received')
