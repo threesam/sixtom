@@ -9,7 +9,9 @@
 	let { class: className = '' }: { class?: string } = $props()
 
 	const { close } = grandSlam
-	const PANEL_ID = 'credit-terms'
+	// Rendered on both / and /notify; a literal id would collide the moment two
+	// instances shared a page.
+	const PANEL_ID = $props.id()
 </script>
 
 <p class={className}>
