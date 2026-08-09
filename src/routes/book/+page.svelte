@@ -54,6 +54,11 @@
 		name="description"
 		content="see if the sprint is a fit. 3 quick steps, then the booking link."
 	/>
+	<meta property="og:title" content="book | SIXTOM" />
+	<meta
+		property="og:description"
+		content="see if the sprint is a fit. 3 quick steps, then the booking link."
+	/>
 </svelte:head>
 
 <div class="bg-surface min-h-screen">

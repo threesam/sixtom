@@ -5,7 +5,7 @@
 ## what i do
 
 - **the production sprint — $10,000.** two weeks. i rebuild your AI-built demo on foundations that hold: architecture teardown + premortem, security review on every commit, automated test suite, performance to 100s, accessibility pass, analytics + observability, CRO-ready pages + A/B scaffold, technical SEO foundation, AEO/GEO foundation, infra cost audit, conversion copy pass, and a brand kit with 1-of-1 art — plus an AI leverage session, a 90-day growth map, and a runbook + Loom library by day 30. total itemized value $30,500+. live on day 10 — you own 100% of it.
-- **the teardown — $5,000, credited in full against the sprint.** i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together.
+- **the teardown — $5,000, credited in full against the sprint if you book one within 90 days.** i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together.
 
 ## the guarantee
 
@@ -27,7 +27,7 @@ you vibe-coded something to a working demo. it has real users, or paying ones. i
 ## pricing
 
 - sprint: $10,000 USD fixed, or 4 weekly payments of $2,500. 1 client a month, by appointment. (the $7,500 first-3 intro is closed.)
-- teardown: $5,000 USD, credited in full against the sprint. via the waitlist at https://sixtom.com/notify.
+- teardown: $5,000 USD, credited in full against the sprint if you book one within 90 days. via the waitlist at https://sixtom.com/notify.
 
 ## who i am
 

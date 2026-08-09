@@ -14,7 +14,6 @@
 		property="og:description"
 		content="how much your vibe-coded prototype is costing you per year."
 	/>
-	<meta property="og:type" content="website" />
 </svelte:head>
 
 <div class="bg-surface flex min-h-screen flex-col">

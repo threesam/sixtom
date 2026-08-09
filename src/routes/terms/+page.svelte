@@ -11,6 +11,11 @@
 		name="description"
 		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
 	/>
+	<meta property="og:title" content="terms | SIXTOM" />
+	<meta
+		property="og:description"
+		content="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
+	/>
 </svelte:head>
 
 <div class="bg-surface flex min-h-svh flex-col">

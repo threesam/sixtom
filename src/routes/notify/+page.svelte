@@ -24,6 +24,11 @@
 		name="description"
 		content="one client a month. join the waitlist — or start with a paid teardown and move now."
 	/>
+	<meta property="og:title" content="waitlist | SIXTOM" />
+	<meta
+		property="og:description"
+		content="one client a month. join the waitlist — or start with a paid teardown and move now."
+	/>
 </svelte:head>
 
 <div class="bg-surface flex min-h-screen flex-col">

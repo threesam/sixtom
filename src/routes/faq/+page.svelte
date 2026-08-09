@@ -20,7 +20,6 @@
 		property="og:description"
 		content="what sixtom costs, how the sprint and the day-10 guarantee work."
 	/>
-	<meta property="og:type" content="website" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html faqLd}
 </svelte:head>

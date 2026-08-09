@@ -9,6 +9,11 @@
 		name="description"
 		content="what sixtom does to stay usable for everyone, how it's checked, and how to report a problem."
 	/>
+	<meta property="og:title" content="accessibility | SIXTOM" />
+	<meta
+		property="og:description"
+		content="what sixtom does to stay usable for everyone, how it's checked, and how to report a problem."
+	/>
 </svelte:head>
 
 <div class="bg-surface flex min-h-svh flex-col">

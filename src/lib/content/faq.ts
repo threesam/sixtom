@@ -24,7 +24,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: "what's the teardown?",
 		answer:
-			"$5,000, credited in full against the sprint. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me."
+			"$5,000, credited in full against the sprint if you book one within 90 days. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me."
 	},
 	{
 		question: 'how long does it take?',

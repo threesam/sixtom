@@ -8,6 +8,11 @@
 		name="description"
 		content="what sixtom collects, what it doesn't, and how to get it deleted."
 	/>
+	<meta property="og:title" content="privacy | SIXTOM" />
+	<meta
+		property="og:description"
+		content="what sixtom collects, what it doesn't, and how to get it deleted."
+	/>
 </svelte:head>
 
 <div class="bg-surface flex min-h-svh flex-col">
