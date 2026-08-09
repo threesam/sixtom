@@ -42,7 +42,6 @@ export interface Testimonial {
 }
 
 export interface Teardown {
-	name: string
 	longName: string
 	priceUSD: number
 	creditNote: string

@@ -206,7 +206,7 @@ export async function processSubmission(
 			? {
 					from: env.SMTP_EMAIL,
 					to: email,
-					subject: 'your teardown - show me the thing',
+					subject: "you're on the list - show me the thing",
 					text: WAITLIST_BODY
 				}
 			: {

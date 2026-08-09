@@ -32,7 +32,6 @@ export const site: Site = {
 		paymentPlan: '4 weekly payments of $2,500'
 	},
 	teardown: {
-		name: 'teardown',
 		longName: 'the teardown',
 		priceUSD: 5000,
 		creditNote: 'credited in full against the sprint'
