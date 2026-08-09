@@ -10,27 +10,24 @@
 		'text-fg mt-2 text-3xl leading-tight font-bold tracking-tight text-balance md:text-5xl'
 	const bodyClass = 'text-fg-muted mt-6 max-w-2xl text-base leading-relaxed md:text-lg'
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
+
+	// One string, three tags: og and twitter drift apart the moment they are
+	// edited separately.
+	const socialDescription =
+		'live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month.'
+	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
 <svelte:head>
 	<!-- Moved out of app.html: kept there, these were emitted on every route and
 	     every route setting its own then rendered two. Title derives from the
 	     headline so the hook and the SERP entry cannot drift apart. -->
-	<title>SIXTOM — {o.headline}</title>
-	<meta
-		name="description"
-		content="the production sprint: live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month."
-	/>
-	<meta property="og:title" content="SIXTOM — {o.headline}" />
-	<meta
-		property="og:description"
-		content="live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month."
-	/>
-	<meta name="twitter:title" content="SIXTOM — {o.headline}" />
-	<meta
-		name="twitter:description"
-		content="live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month."
-	/>
+	<title>{pageTitle}</title>
+	<meta name="description" content="the production sprint: {socialDescription}" />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={socialDescription} />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={socialDescription} />
 </svelte:head>
 
 <Hero />
