@@ -1,5 +1,8 @@
 <script lang="ts">
 	import SiteFooter from '$lib/components/SiteFooter.svelte'
+	import { site } from '$lib/content'
+
+	const teardownPrice = `$${site.teardown.priceUSD.toLocaleString('en-US')}`
 </script>
 
 <svelte:head>
@@ -46,10 +49,10 @@
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">the teardown</h2>
 				<p class="mt-3">
-					$5,000, paid up front, credited in full against the sprint if you book one within 90 days.
-					you get the written findings either way and you own them. it carries no obligation on
-					either side — i may decline if your project isn't a fit, and if i decline after you've
-					paid, you get all of it back.
+					{teardownPrice}, paid up front, credited in full against the sprint if you book one within
+					90 days. you get the written findings either way and you own them. it carries no
+					obligation on either side — i may decline if your project isn't a fit, and if i decline
+					after you've paid, you get all of it back.
 				</p>
 			</section>
 
