@@ -11,6 +11,9 @@ test.describe('hero headline', () => {
 
 	test('each beat stays on one line at 320px', async ({ page }) => {
 		await page.goto('/')
+		// The assertion is a text-metric measurement, so it is only meaningful once
+		// the real face is swapped in — against the fallback it measures nothing.
+		await page.evaluate(() => document.fonts.ready)
 		const linesPerBeat = await page.evaluate(() =>
 			[...document.querySelectorAll('h1 > span')].map((el) => {
 				const range = document.createRange()
