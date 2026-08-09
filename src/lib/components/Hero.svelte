@@ -61,7 +61,7 @@
 			</a>
 		</div>
 		<ul
-			class="mt-10 flex list-none justify-between gap-x-2 gap-y-4 p-0 md:mt-12 md:flex-wrap md:justify-center md:gap-x-10"
+			class="mt-10 flex list-none flex-wrap justify-between gap-x-2 gap-y-4 p-0 md:mt-12 md:justify-center md:gap-x-10"
 		>
 			{#each grandSlam.stats as stat (stat.label)}
 				<li>
