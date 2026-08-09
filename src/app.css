@@ -158,6 +158,18 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* WCAG 1.4.10: at 320px and 200% text, tokens with no break opportunity
+ * ("8.3s→2.9s", "$30,500+") forced the page to scroll sideways. */
+body {
+	overflow-wrap: break-word;
+}
+
+/* The UA gives fieldset min-inline-size: min-content, so /tax's radio group
+ * refused to shrink and scrolled the page sideways at 200%. */
+fieldset {
+	min-inline-size: 0;
+}
+
 /* Element selector: outranks the font-sans inherited from <main> without fighting utilities. */
 h1,
 h2,

@@ -172,9 +172,9 @@
 									value={opt.value}
 									bind:group={stage}
 									required
-									class="accent-accent"
+									class="accent-accent shrink-0"
 								/>
-								<span class="text-fg text-base">{opt.label}</span>
+								<span class="text-fg min-w-0 text-base">{opt.label}</span>
 							</label>
 						{/each}
 					</fieldset>
