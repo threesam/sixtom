@@ -68,8 +68,29 @@ describe('Umami CRO event instrumentation', () => {
 		expect(contents).toContain('data-umami-event={event}')
 	})
 
-	it('fires "notify_signup_success" server-side from the notify action', () => {
+	it('fires "notify_signup_success" only for signups that reach the list', () => {
 		const contents = readFileSync(resolve(ROUTES_DIR, 'notify/+page.server.ts'), 'utf-8')
-		expect(contents).toContain("fireServerEvent('notify_signup_success'")
+		// Presence is not enough — it was present before and still wrong. The
+		// event has to sit inside the same guard as the listmonk write, or
+		// honeypot/time-trap fakes (ok + suspicious, silent 200 by design) get
+		// counted as signups: 41 events against 3 subscribers over 30d.
+		const guardStart = contents.indexOf('if (!result.suspicious')
+		expect(guardStart, 'suspicious guard not found').toBeGreaterThan(-1)
+		// Walk to the guard's OWN closing brace. Slicing to the `return`
+		// instead looks equivalent and is not: it also swallows everything
+		// between the closing brace and the return, which is exactly where the
+		// bug used to live, so that version of this test passed on the bug.
+		let depth = 0
+		let guardEnd = contents.indexOf('{', guardStart)
+		for (let i = guardEnd; i < contents.length; i++) {
+			if (contents[i] === '{') depth++
+			else if (contents[i] === '}' && --depth === 0) {
+				guardEnd = i
+				break
+			}
+		}
+		const guarded = contents.slice(guardStart, guardEnd)
+		expect(guarded).toContain('subscribeToList(')
+		expect(guarded).toContain("fireServerEvent('notify_signup_success'")
 	})
 })
