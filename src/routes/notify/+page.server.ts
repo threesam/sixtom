@@ -29,10 +29,16 @@ export const actions = {
 			// `suspicious`, so it would otherwise flow straight into listmonk.
 			const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
 			const isTestEmail = testEmail !== '' && email === testEmail
+			// The analytics event belongs INSIDE this guard, with the list write.
+			// Outside it, honeypot and time-trap fakes — which return ok+suspicious
+			// on purpose, so bots never learn they were caught — counted as signups:
+			// 41 notify_signup_success events over 30d against 3 real subscribers.
+			// The event and the list have to mean the same thing or the brief
+			// reports a conversion rate that never happened.
 			if (!result.suspicious && email && !isTestEmail) {
 				await subscribeToList(email, SIXTOM_LIST_UUID)
+				fireServerEvent('notify_signup_success', event.request)
 			}
-			fireServerEvent('notify_signup_success', event.request)
 			return { status: 'success' as const, message: result.message }
 		}
 
