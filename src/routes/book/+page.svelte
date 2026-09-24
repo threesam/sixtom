@@ -210,8 +210,7 @@
 							maxlength="4000"
 							bind:value={deliverable}
 							placeholder="in 30 days, what has to be true for this to feel worth it?"
-							class="{inputClass} mt-2"
-						></textarea>
+							class="{inputClass} mt-2"></textarea>
 					</div>
 					<div>
 						<label for="budget" class={labelClass}>{budgetQuestion}</label>

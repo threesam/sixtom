@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { test, expect, type Browser } from '@playwright/test'
 
 async function openPage(browser: Browser, width = 1280, height = 720) {

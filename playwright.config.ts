@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { defineConfig, devices } from '@playwright/test'
 import { TEST_EMAIL } from './e2e/constants'
 
