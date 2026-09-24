@@ -25,8 +25,8 @@ function composeMessage(input: {
 	disqualified: boolean
 }): string {
 	const lines = [
-		input.disqualified ? '[stage = pre-build — auto-disqualified]' : null,
-		`built: ${input.built}`,
+		input.disqualified ? `[stage = ${DISQUALIFY_STAGE}, auto-disqualified]` : null,
+		`team works in: ${input.built}`,
 		`stage: ${lookupLabel(STAGE_OPTIONS, input.stage)}`,
 		`30-day must-be-true: ${input.deliverable}`,
 		`budget: ${lookupLabel(BUDGET_OPTIONS, input.budget)}`,
@@ -109,7 +109,7 @@ export const actions = {
 				status: 'success' as const,
 				disqualified: true,
 				message:
-					"sixtom is for people who've already built something with AI and need to make it production-grade. come back when you have a working demo and a thing that's not shipping — i'll be here."
+					"sixtom is for teams. come back when there's someone besides you to hand it to. i'll be here."
 			}
 		}
 

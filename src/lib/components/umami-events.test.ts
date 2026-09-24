@@ -19,7 +19,6 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'cta_hero_waitlist', dir: 'component', path: 'Hero.svelte' },
 	{ event: 'cta_hero_teardown', dir: 'component', path: 'Hero.svelte' },
 	{ event: 'cta_garden_link', dir: 'component', path: 'SiteFooter.svelte' },
-	{ event: 'cta_tax_calc', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_waitlist_submit', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_faq_book', dir: 'route', path: 'faq/+page.svelte' },
 	{ event: 'cta_notify_submit', dir: 'route', path: 'notify/+page.svelte' },

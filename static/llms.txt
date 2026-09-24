@@ -1,33 +1,33 @@
 # SIXTOM
 
-> everyone saw the demo. nobody's seen it since. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat. 1 client a month.
+> you told them to use AI. nothing changed. the enablement engagement: two weeks, one team. by day 10 a named person on your team ships a real internal system, or the rest is free. $15,000 fixed. 1 team a month.
 
 ## what i do
 
-- **the production sprint — $10,000.** two weeks. i rebuild your AI-built demo on foundations that hold: architecture teardown + premortem, security review on every commit, automated test suite, performance to 100s, accessibility pass, analytics + observability, CRO-ready pages + A/B scaffold, technical SEO foundation, AEO/GEO foundation, infra cost audit, conversion copy pass, and a brand kit with 1-of-1 art — plus an AI leverage session, a 90-day growth map, and a runbook + Loom library by day 30. total itemized value $30,500+. live on day 10 — you own 100% of it.
-- **the teardown — $5,000, credited in full against the sprint if you book one within 90 days.** i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together.
+- **the enablement engagement — $15,000.** two weeks, one team. a named person on your team ships a real internal tool on your data. one fragile automation chain becomes code you can read, with alerts and a last-run time. the guardrails go in: permissions, a review gate, repo rules, customer data off desktops. everyone on the team gets set up, git gets explained with tracing paper, and leadership gets a session so the team follows. plus a runbook + Loom library and a 90-day map by day 30. total itemized value $28,000+. you own all of it.
+- **the teardown — $1,500, credited in full against the engagement if you book one within 30 days.** i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together.
 
 ## the guarantee
 
-live in production by day 10, or the remaining payments are free. and there's a floor under it: day 5, we both look at it — if we can both see it won't ship in scope, we stop there. you keep everything built and pay only for the time used.
+your person ships the system by day 10, or the remaining payment is free. and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there. you keep everything built and pay only for the time used.
 
 ## who it's for
 
-you vibe-coded something to a working demo. it has real users, or paying ones. it's breaking, or it just won't reach production. you'd rather own the fix than rent a dev shop. (still just an idea — nothing built? not yet.)
+you sent the memo and nothing changed. you have a team, and they aren't engineers. someone on it is curious, or already shipping without guardrails. you'd rather your people own it than rent a consultancy. (just you, no team yet? not yet.)
 
-## how the sprint goes
+## how the two weeks go
 
-- wk 1 · day 0: a 30-minute call. we figure out the thing.
-- days 1–7: heads down. daily Loom + code drop in your channel.
+- wk 1 · day 0: a 30-minute call. we pick the person and the system.
+- days 1–7: we build it together, in your repo, on your data. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it can't ship in scope, we stop here. you keep what we built.
-- mid-sprint: one short sync. course-correct if needed.
-- day 10: live in production. you own it. (or the rest is free.)
+- week 2: the guardrails go in. the rest of the team gets set up. one session with leadership.
+- day 10: shipped. your person owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 
 ## pricing
 
-- sprint: $10,000 USD fixed, or 4 weekly payments of $2,500. 1 client a month, by appointment. (the $7,500 first-3 intro is closed.)
-- teardown: $5,000 USD, credited in full against the sprint if you book one within 90 days. via the waitlist at https://sixtom.com/notify.
+- enablement engagement: $15,000 USD fixed. half up front, half on day 10. 1 team a month, by appointment. the price is the same for everyone.
+- teardown: $1,500 USD, credited in full against the engagement if you book one within 30 days. via the waitlist at https://sixtom.com/notify.
 
 ## who i am
 
@@ -35,7 +35,6 @@ Salvatore D'Angelo. lead engineer at Made In Cookware (multi-million visitors a 
 
 ## how to engage
 
-- [join the waitlist](https://sixtom.com/notify): one seat a month — or take the teardown to move now instead of waiting.
+- [join the waitlist](https://sixtom.com/notify): one team a month. or take the teardown to move now instead of waiting.
 - [book the intro call](https://sixtom.com/book): 3 quick steps, then the booking link.
-- [FAQ](https://sixtom.com/faq): straight answers — price, the day-10 guarantee, timeline, who's behind it.
-- [the vibe-code tax calculator](https://sixtom.com/tax): what the gap is costing you per year. no email.
+- [FAQ](https://sixtom.com/faq): straight answers on price, the day-10 guarantee, timeline, and who's behind it.

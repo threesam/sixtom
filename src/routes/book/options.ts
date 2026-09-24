@@ -1,17 +1,16 @@
 export const STAGE_OPTIONS = [
-	{ value: 'demo-only', label: 'it works when I show it off' },
-	{ value: 'few-users', label: 'a few real people are using it' },
-	{ value: 'paying-breaking', label: 'paying customers, and it keeps breaking' },
-	{ value: 'pre-build', label: 'still just an idea in my head' }
+	{ value: 'memo-no-change', label: 'we said "use AI." nothing changed.' },
+	{ value: 'some-trying', label: 'a few people use it. nobody ships with it.' },
+	{ value: 'shipping-messy', label: "people are shipping. it's getting messy." },
+	{ value: 'solo', label: "it's just me. no team yet." }
 ] as const
 
 export const BUDGET_OPTIONS = [
-	{ value: 'under-7500', label: 'under $7,500' },
-	{ value: '7500-10k', label: '$7,500–$10,000' },
-	{ value: '10k-25k', label: '$10,000–$25,000' },
+	{ value: 'under-15k', label: 'under $15,000' },
+	{ value: '15k-25k', label: '$15,000–$25,000' },
 	{ value: '25k+', label: '$25,000+' },
 	{ value: 'not-sure', label: 'not sure yet' }
 ] as const
 
-// Stage that auto-disqualifies — sixtom isn't greenfield.
-export const DISQUALIFY_STAGE = 'pre-build'
+// Stage that auto-disqualifies: the engagement is for a team.
+export const DISQUALIFY_STAGE = 'solo'

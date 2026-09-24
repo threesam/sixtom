@@ -8,7 +8,7 @@
 
 <PageMeta
 	title="terms | SIXTOM"
-	description="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
+	description="how engagement with sixtom works. plain-English terms for the engagement, the day-10 guarantee, and the teardown."
 />
 
 <div class="bg-surface flex min-h-svh flex-col">
@@ -33,10 +33,10 @@
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">the guarantee</h2>
 				<p class="mt-3">
-					the sprint — live in production by day 10, or the remaining payments are waived. "live"
-					means the deploy target we name in writing on the day-0 call. the guarantee clock pauses
-					while something i need sits with you — access, approvals, content, feedback — and resumes
-					when i have it.
+					the engagement: your named person ships the system by day 10, or the remaining payment is
+					waived. "ships" means the system and the person we name in writing on the day-0 call. the
+					guarantee clock pauses while something i need sits with you — access, approvals, content,
+					feedback — and resumes when i have it.
 				</p>
 				<p class="mt-3">
 					the day-5 scope check — if we both see it won't ship in scope, we stop there. you keep
@@ -47,8 +47,8 @@
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">the teardown</h2>
 				<p class="mt-3">
-					{teardownPrice}, paid up front, credited in full against the sprint if you book one within
-					90 days. you get the written findings either way and you own them. it carries no
+					{teardownPrice}, paid up front, credited in full against the engagement if you book one
+					within 30 days. you get the written findings either way and you own them. it carries no
 					obligation on either side — i may decline if your project isn't a fit, and if i decline
 					after you've paid, you get all of it back.
 				</p>

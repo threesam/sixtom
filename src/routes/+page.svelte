@@ -15,13 +15,13 @@
 	// One string, three tags: og and twitter drift apart the moment they are
 	// edited separately.
 	const socialDescription =
-		'live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month.'
+		'two weeks, one team. your person ships a real system by day 10, or the rest is free. $15,000, one team a month.'
 	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
 <PageMeta
 	title={pageTitle}
-	description="the production sprint: {socialDescription}"
+	description="the enablement engagement: {socialDescription}"
 	{socialDescription}
 />
 
@@ -43,9 +43,8 @@
 				</li>
 			{/each}
 		</ul>
-		<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
-			{o.wall.taxLine}
-			<a href="/tax" data-umami-event="cta_tax_calc">run yours →</a>
+		<p class="text-fg mt-8 text-base leading-relaxed font-semibold md:text-lg">
+			{o.wall.costLine}
 		</p>
 	</div>
 </section>

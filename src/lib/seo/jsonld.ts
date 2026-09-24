@@ -109,14 +109,11 @@ export function webSiteJsonLd(): WebSiteLd {
 
 export function serviceJsonLd(): ServiceLd {
 	const bookUrl = `${site.siteUrl}/book`
-	// Built from parts so the optional intro/payment fields drop cleanly when unset.
-	const sprintDescription = [
-		'two weeks from working demo to production-grade. live in production by day 10 — or the remaining payments are free.',
-		site.sprint.paymentPlan ? `${site.sprint.paymentPlan} available.` : '',
-		site.sprint.introPriceUSD && !site.sprint.introClosed
-			? `$${String(site.sprint.introPriceUSD)} intro for the ${site.sprint.introNote ?? 'first clients'}.`
-			: '',
-		site.sprint.cadence
+	// Built from parts so the optional payment plan drops cleanly when unset.
+	const engagementDescription = [
+		'two weeks, one team. a named person on your team ships a real internal system by day 10, or the remaining payment is free.',
+		site.engagement.paymentPlan ? `${site.engagement.paymentPlan}.` : '',
+		site.engagement.cadence
 	]
 		.filter(Boolean)
 		.join(' ')
@@ -133,9 +130,9 @@ export function serviceJsonLd(): ServiceLd {
 		offers: [
 			{
 				'@type': 'Offer',
-				name: site.sprint.name,
-				description: sprintDescription,
-				price: String(site.sprint.priceUSD),
+				name: site.engagement.name,
+				description: engagementDescription,
+				price: String(site.engagement.priceUSD),
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/LimitedAvailability',
 				url: bookUrl
@@ -143,7 +140,7 @@ export function serviceJsonLd(): ServiceLd {
 			{
 				'@type': 'Offer',
 				name: site.teardown.longName,
-				description: `a paid teardown of your app, ${site.teardown.creditNote} — what's solid, exactly what breaks and in what order, and what i'd do first. send the repo, a live url, or a screen recording.`,
+				description: `a paid teardown of how your team uses AI today, ${site.teardown.creditNote}. a 10-minute Loom and a written list of what's stuck and what i'd fix first.`,
 				price: String(site.teardown.priceUSD),
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/InStock',

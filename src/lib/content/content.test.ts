@@ -2,11 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { site, calEvent, grandSlam, FAQ, LEDGER_TOTAL_USD } from './index'
 
 describe('content', () => {
-	it('site exports the operator + sprint (audit and retainer are gone)', () => {
+	// The price floor (vault, 2026-09-23): $15k engagement, $1.5k teardown.
+	// Prices hold or rise, so a lower number here is a regression, not an edit.
+	it('site exports the operator + the price floor (audit and retainer are gone)', () => {
 		expect(site.operator.name).toBe("Salvatore D'Angelo")
-		expect(site.sprint.priceUSD).toBe(10000)
-		expect(site.teardown.priceUSD).toBe(5000)
-		expect(site.sprint.introPriceUSD).toBe(7500)
+		expect(site.engagement.priceUSD).toBeGreaterThanOrEqual(15000)
+		expect(site.teardown.priceUSD).toBeGreaterThanOrEqual(1500)
+		expect('sprint' in site).toBe(false)
 		expect(site.bookingUrl).toMatch(/^https?:\/\//)
 		expect('audit' in site).toBe(false)
 		expect('retainer' in site).toBe(false)
@@ -25,16 +27,14 @@ describe('content', () => {
 		const sum = grandSlam.ledger.groups
 			.flatMap((g) => g.lines)
 			.reduce((acc, l) => acc + (l.valueUSD ?? 0), 0)
-		expect(sum).toBe(30500)
+		expect(sum).toBe(28000)
 		expect(LEDGER_TOTAL_USD).toBe(sum)
 	})
 
-	it('pay parts derive from sprint pricing; the closed intro is struck', () => {
+	it('pay parts derive from engagement pricing, with nothing discounted', () => {
 		const parts = grandSlam.ledger.payParts
-		expect(parts.find((p) => p.text.includes('$10,000'))?.struck).toBeFalsy()
-		expect(parts.find((p) => p.text.includes('4 weekly payments of $2,500'))?.struck).toBeFalsy()
-		// The $7,500 first-3 window is closed (referral margin) — visible but struck.
-		expect(parts.find((p) => p.text.includes('$7,500'))?.struck).toBe(true)
+		expect(parts[0]?.text).toBe('$15,000 fixed.')
+		expect(parts.some((p) => p.struck)).toBe(false)
 	})
 
 	it('guarantee is the day-10 promise', () => {

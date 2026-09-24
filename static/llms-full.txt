@@ -1,128 +1,125 @@
 # SIXTOM — full content
 
-> everyone saw the demo. nobody's seen it since. the production sprint: two weeks from working demo to production-grade — live in production on day 10, or the remaining payments are free. $10,000 flat. 1 client a month.
+> you told them to use AI. nothing changed. the enablement engagement: two weeks, one team. by day 10 a named person on your team ships a real internal system, or the rest is free. $15,000 fixed. 1 team a month.
 
 ## thesis
 
-vibe coding is how you slowly become the intern of your own codebase.
+setup was easy. what comes after isn't.
 
-AI gets you to a demo because it can hold the whole thing in its head. once your codebase outgrows that window, it starts making things worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.
+the memo went out. a few people tried it. a few more pretended to. the work looks the same. this year i've been turning ops, finance and marketing people into people who ship real systems. that's what i do for your team.
 
-you shipped a demo and it felt like magic. then the edits started breaking things you didn't touch. every new feature costs more than the last. you're not building anymore — you're negotiating with a machine that no longer understands what it built. the demo is real. the foundation isn't. and every month it stays that way has a price: the users who hit a bug and never come back, the launch that slips another month, the weekends spent firefighting instead of living.
+the tools got installed. the licenses got paid for. then half of marketing's week went to arguing which of three numbers is right. the glue between your apps broke and nobody noticed for a month. the one person who got good opened a 45,000-line pull request and nobody knew how to review it. the dashboard says live. nobody believes it. and it starts at the top. if leadership won't use it, the team won't either. every month it stays that way has a price: the licenses, paid for every month and opened twice. the glue, failing quietly until a customer finds out. the one who got good, shipping fast with no guardrails until prod breaks. that part is fixable in two weeks.
 
-## the offer — one sprint, everything in it
+## the offer — one engagement, everything in it
 
-i rebuild it the way i'd build it for myself — the architecture, the security, the tests, the judgment calls you can't vibe your way through. everything in the sprint, and what it'd cost you piecemeal:
+i sit with your team for two weeks and we build something real, on your data, in your repo. everything in the engagement, and what it'd cost you piecemeal:
 
-### the foundation
+### the diagnosis
 
-- architecture teardown + premortem — exactly what will break, and why — $5,000
-- the rebuild — your product, standing on foundations that hold — core
-- security review on every commit — nothing ships that i haven't read — $2,000
-- automated test suite — so it stays fixed after i leave — $2,500
-- performance to 100s — and i'll tell you when a third-party script makes that impossible — $1,500
-- accessibility pass — works for everyone who shows up — $1,500
+- adoption teardown — who's using it, where it's stuck, what's quietly broken — $1,500
+- one metric, one definition — the number everyone argues about gets a single source of truth — $3,000
 
-### the growth foundation
+### the build
 
-- analytics + observability — you see what's working from day one — $1,500
-- CRO-ready pages + A/B scaffold — every idea after launch is a test, not a rewrite — $2,500
-- technical SEO foundation — schema, sitemaps, core web vitals — $2,000
-- AEO/GEO foundation — structured for the answer-engines, so AI recommends you too — $2,000
-- infra cost audit — kill the subscriptions your stack is quietly renting — $1,000
+- the system — a named person on your team ships a real internal tool, on your data — core
+- glue → code — one fragile automation chain rebuilt as code you can read, with alerts and a last-run time — $4,000
+- honest status — every "live" badge shows when it last synced — $1,000
 
-straight with you: search and answer-engines pay off over months, not days. the sprint makes you findable, measurable, and ready to test from day one — the compounding comes from what you publish after. the growth map shows you where to push.
+### the guardrails
 
-### the brand
+- permissions + review gate — nothing reaches production without passing review — $3,000
+- repo rules — one branch per tool, hooks, shared instructions. a 45,000-line PR can't happen — $2,500
+- customer data off desktops — it lives somewhere with access control, not on a laptop — $2,000
 
-- conversion copy pass — every word on the page earning its keep — $1,500
-- brand kit + 1-of-1 art — colors, type, and an original piece nobody else has — $3,000
+### the people
 
-### the close
+- hands-on onboarding — everyone on the team set up and shipping. by the tenth person it takes one sitting — $4,000
+- the tracing-paper session — git and review, explained so it sticks for people who never wanted to learn git — $1,500
+- the leadership session — the people at the top use it first, so the team follows — $2,000
 
-- live in production by day 10 — you own 100% of it — included
+### the close (bonuses land by day 30)
+
+- shipped by day 10 — you own 100% of it — included
 - day-30 check-in — what stuck, what didn't — $500
+- the runbook + Loom library — so the next hire onboards without me — $1,500
+- the 90-day map — the next three systems worth building, in order — $1,500
 
-### the bonuses (land by day 30)
+**total value: $28,000+. you pay: $15,000 fixed. half up front, half on day 10.**
 
-- the AI leverage session — what to lean on, what to skip, how not to wreck what we just built — $1,000
-- the 90-day growth map — the highest-impact moves, in order — $1,500
-- the runbook + Loom library — so you're never dependent on me again — $1,500
-
-**total value: $30,500+. you pay: $10,000 fixed, or 4 weekly payments of $2,500.** (the $7,500 first-3 intro is closed.)
-
-a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.
+a consultancy quotes six figures and delivers a deck. a workshop is half a day and a recording nobody watches. this is two weeks, and something running when i leave.
 
 ## the guarantee
 
-live in production by day 10, or the remaining payments are free.
+your person ships by day 10, or the rest is free.
 
-and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there — you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
+and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
 
 ## the teardown
 
-$5,000, credited in full against the sprint if you book one within 90 days. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
+$1,500, credited in full against the engagement if you book one within 30 days. i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together, and i'll tell you if you don't need me.
+
+## proof — inside a consumer brand
+
+since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down. git got explained with tracing paper, and it stuck.
+
+before this, the craft: a solo therapy practice rebuilt in 4h43m. mobile load 8.3s → 2.9s. pageviews up 185%. same hands.
 
 ## who it's for
 
-this is for you if: you vibe-coded something to a working demo · it has real users, or paying ones · it's breaking, or it just won't reach production · you'd rather own the fix than rent a dev shop.
+this is for you if: you sent the memo. nothing changed · you have a team, and they aren't engineers · someone on it is curious, or already shipping without guardrails · you'd rather your people own it than rent a consultancy.
 
-not yet if: it's still just an idea — nothing built · you want someone to manage a team of engineers · you need it done and gone, no involvement.
+not yet if: it's just you. no team yet · you want a workshop and a recording · you want it done for you, with nobody on your side learning.
 
-## how the sprint goes
+## how the two weeks go
 
-- wk 1 · day 0: a 30-minute call. we figure out the thing.
-- days 1–7: heads down. daily Loom + code drop in your channel, so you watch it happen.
+- wk 1 · day 0: a 30-minute call. we pick the person and the system.
+- days 1–7: we build it together, in your repo, on your data. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it can't ship in scope, we stop here. you keep what we built.
-- mid-sprint: one short sync. course-correct if needed.
-- day 10: live in production. you own it. (or the rest is free.)
+- week 2: the guardrails go in. the rest of the team gets set up. one session with leadership.
+- day 10: shipped. your person owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 
 ## FAQ
 
 **what does sixtom do?**
 
-you (or your AI) got something to a working demo. i take it from there to production-grade — secure, tested, measured, ready for real users — in a two-week sprint. live on day 10, and you own every line of it.
+you told your team to use AI and nothing changed. in two weeks, one named person on your team ships a real internal system, the fragile glue between your tools becomes code you can watch, and the guardrails hold once they get good. you own all of it.
 
 **how much does it cost?**
 
-$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $30,500 of itemized work. (the $7,500 first-3 intro is closed.)
+$15,000 fixed. half up front, half on day 10. that buys the whole ledger on the home page, over $28,000 of itemized work. the price is the same for everyone.
 
 **what's the guarantee?**
 
-live in production by day 10, or the remaining payments are free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop — you keep everything built and pay only for the time used.
+your person ships the system by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop. you keep everything built and pay only for the time used.
 
 **what's the teardown?**
 
-$5,000, credited in full against the sprint if you book one within 90 days. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me.
+$1,500, credited in full against the engagement if you book one within 30 days. i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together, and i'll tell you if you don't need me.
 
 **how long does it take?**
 
-two weeks. live in production on day 10. one seat a month, by appointment.
+two weeks. shipped by day 10. one team a month, by appointment.
 
-**do you do SEO and getting found by AI?**
+**does my team need to be technical?**
 
-the sprint lays the foundation: technical SEO, schema, and answer-engine structure, plus analytics so you can see it working. straight with you — search compounds on what you publish over months, so the sprint makes you findable and measurable from day one, and the 90-day growth map shows you where to push after.
+no. the people i onboard work in ops, finance, marketing and wholesale. none of them were hired to write code. they need a setup that works, a review gate, and someone to explain git with tracing paper.
 
 **how many clients do you take?**
 
-one a month, by appointment. that's the whole model — you get my full attention, not a queue. when the seat's taken, the waitlist is open.
+one team a month, by appointment. that's the whole model. you get my full attention, not a queue. when the seat's taken, the waitlist is open.
 
-**what happens after the sprint?**
+**what happens after the two weeks?**
 
-you own everything either way — the code, the analytics, the runbook. there's a day-30 check-in to see what stuck. if you want me to stay on it after that, we talk then.
+you own everything: the system, the repo, the runbook. there's a day-30 check-in to see what stuck. if you want me back for the next system, we talk then.
 
 **who's behind sixtom?**
 
-Salvatore (Sam) D'Angelo — lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice.
+Salvatore (Sam) D'Angelo, lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice.
 
-**is it really all async?**
+**is it remote?**
 
-yes. a daily Loom + code drop in your channel, with one short mid-sprint sync to course-correct. no standups.
-
-**what is the "vibe-code tax"?**
-
-what your half-finished, AI-built prototype quietly costs you per year — lost deals, downtime, weekends. there's a no-email calculator at https://sixtom.com/tax.
+yes. working sessions over video, a daily Loom, and everything lands in your repo. no standups.
 
 ## testimonial
 
@@ -142,7 +139,6 @@ Salvatore D'Angelo. lead engineer at Made In Cookware — multi-million visitors
 
 ## how to engage
 
-- **join the waitlist:** https://sixtom.com/notify — one seat a month; or take the teardown to move now instead of waiting.
+- **join the waitlist:** https://sixtom.com/notify — one team a month; or take the teardown to move now instead of waiting.
 - **book the intro call:** https://sixtom.com/book — 3 quick steps, then the booking link.
 - **FAQ:** https://sixtom.com/faq — straight answers on price, the day-10 guarantee, timeline, and who's behind it.
-- **the vibe-code tax calculator:** https://sixtom.com/tax — a quick estimate of what the gap is costing you per year. no email.

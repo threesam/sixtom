@@ -159,7 +159,7 @@ function renderBucketTable(name: string, rows: readonly GscRow[]): string {
 function buildPrompt(buckets: TriageBuckets, siteUrl: string): string {
 	return [
 		`You are a senior SEO operator triaging a weekly Google Search Console export for ${siteUrl}.`,
-		`The site is sixtom.com — a solo engineering consultant offering a $1,500 audit and a $10,000 two-week sprint, targeting founders shipping AI-built MVPs to production. Voice: lowercase, terse, declarative.`,
+		`The site is sixtom.com — a solo engineering consultant offering a $1,500 teardown and a $15,000 two-week team AI enablement engagement, targeting founders who told their team to use AI and saw nothing change. Voice: lowercase, terse, declarative.`,
 		``,
 		`Three buckets of raw GSC data:`,
 		``,
@@ -173,7 +173,7 @@ function buildPrompt(buckets: TriageBuckets, siteUrl: string): string {
 		`Produce a markdown report with exactly three sections:`,
 		`1. **5 highest-leverage fixes this week** — each: the query, what to do, why it matters (one line each).`,
 		`2. **Title/meta rewrites** — for low-CTR top-10s where a snippet rewrite pays off. Concrete new title + meta in sixtom's voice.`,
-		`3. **Next 3 article titles** — based on off-target queries that match buyer intent for a $1,500 audit / $10,000 sprint. Lowercase titles, buyer-question framed.`,
+		`3. **Next 3 article titles** — based on off-target queries that match buyer intent for a $1,500 teardown / $15,000 enablement engagement. Lowercase titles, buyer-question framed.`,
 		``,
 		`Be ruthless about leverage. No fluff. No congratulations.`
 	].join('\n')

@@ -20,9 +20,6 @@ export interface Offer {
 	longName: string
 	priceUSD: number
 	cadence: string
-	introPriceUSD?: number
-	introNote?: string
-	introClosed?: boolean
 	paymentPlan?: string
 }
 
@@ -53,7 +50,7 @@ export interface Site {
 	gardenUrl: string
 	tagline: string
 	operator: Operator
-	sprint: Offer
+	engagement: Offer
 	teardown: Teardown
 	process: readonly ProcessStep[]
 	testimonial: Testimonial
@@ -103,7 +100,7 @@ export interface GrandSlamOffer {
 		para: string
 		turn: string
 		costCards: readonly CostCard[]
-		taxLine: string
+		costLine: string
 	}
 	ledger: {
 		eyebrow: string
