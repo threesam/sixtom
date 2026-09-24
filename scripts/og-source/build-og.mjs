@@ -138,7 +138,7 @@ body{background:#161616;position:relative;font-family:'Recursive',ui-monospace,m
 <div class="bg">${bubbleSvg}</div>
 <div class="wrap">
 	<div class="logo"><span>six</span><span class="chip"><span>to</span></span><span class="b">m</span></div>
-	<div class="sub">AI built your first draft. i build <b>your solution.</b></div>
+	<div class="sub">you told them to use AI. <b>nothing changed.</b></div>
 </div>
 <div class="domain">sixtom.com</div>
 </body></html>`
