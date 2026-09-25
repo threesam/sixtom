@@ -17,9 +17,14 @@
 	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
-<!-- Link previews stay vague on purpose: the offer changes, the brand doesn't.
-     Search keeps the specific title and description. -->
-<PageMeta title={pageTitle} {description} socialTitle="SIXTOM" socialDescription={site.tagline} />
+<!-- Link previews stay vague on purpose: brand title + a result line, no offer or
+     price (the card sits on Sam's LinkedIn). Search keeps the specific title and description. -->
+<PageMeta
+	title={pageTitle}
+	{description}
+	socialTitle="SIXTOM"
+	socialDescription={o.proof.heading}
+/>
 
 <Hero />
 
