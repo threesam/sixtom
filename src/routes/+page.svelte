@@ -12,18 +12,14 @@
 	const bodyClass = 'text-fg-muted mt-6 max-w-2xl text-base leading-relaxed md:text-lg'
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 
-	// One string, three tags: og and twitter drift apart the moment they are
-	// edited separately.
-	const socialDescription =
-		'two weeks, one team. your person ships a real system by day 10, or the rest is free. $15,000, one team a month.'
+	const description =
+		'the enablement engagement: two weeks, one team. your person ships a real system by day 10, or the rest is free. $15,000, one team a month.'
 	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
-<PageMeta
-	title={pageTitle}
-	description="the enablement engagement: {socialDescription}"
-	{socialDescription}
-/>
+<!-- Link previews stay vague on purpose: the offer changes, the brand doesn't.
+     Search keeps the specific title and description. -->
+<PageMeta title={pageTitle} {description} socialTitle="SIXTOM" socialDescription={site.tagline} />
 
 <Hero />
 
