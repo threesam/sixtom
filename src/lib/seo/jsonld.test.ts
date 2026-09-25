@@ -45,7 +45,7 @@ describe('JSON-LD generators', () => {
 		expect(ld.publisher['@id']).toBe(PERSON_ID)
 	})
 
-	it('serviceJsonLd sells exactly the two live offers: sprint + teardown', () => {
+	it('serviceJsonLd sells exactly the two live offers: engagement + teardown', () => {
 		const ld = serviceJsonLd()
 		expect(ld['@context']).toBe('https://schema.org')
 		expect(ld['@type']).toBe('Service')
@@ -53,8 +53,8 @@ describe('JSON-LD generators', () => {
 		expect(ld.areaServed).toBe('Worldwide')
 		expect(ld.description).toContain('day 10')
 		expect(ld.offers).toHaveLength(2)
-		expect(ld.offers[0]?.name).toBe(site.sprint.name)
-		expect(ld.offers[0]?.price).toBe(String(site.sprint.priceUSD))
+		expect(ld.offers[0]?.name).toBe(site.engagement.name)
+		expect(ld.offers[0]?.price).toBe(String(site.engagement.priceUSD))
 		expect(ld.offers[0]?.availability).toBe('https://schema.org/LimitedAvailability')
 		expect(ld.offers[0]?.description).toContain('day 10')
 		// closed intro must not leak into machine surfaces

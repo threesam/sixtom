@@ -108,17 +108,13 @@ function getTransporter(): Transporter {
  */
 export type SubmissionKind = 'waitlist' | 'contact'
 
-// The reply is still the gate, but the teardown behind it is now paid, so the
-// ask has changed shape: the reply qualifies, the price qualifies harder. Bots
-// fill forms and never answer email, so a signup that never replies costs a
-// database row and nothing else.
+// The reply is still the gate, and the teardown behind it is paid: the reply
+// qualifies, the price qualifies harder. Bots fill forms and never answer
+// email, so a signup that never replies costs a database row and nothing else.
 //
-// The ask is three options on purpose. This audience vibe-coded something that
-// half-works, so a large share of them have no public URL to paste — localhost,
-// behind auth, or never deployed. A URL-only ask is unanswerable for them and
-// they drop off silently, which is the exact failure the reply-gate exists to
-// prevent. The repo is also the better artifact for the promise being made:
-// "what will break" lives in the code, not on the rendered page.
+// The ask is one plain sentence on purpose. This buyer is a founder whose team
+// stalled on AI, not someone with a repo to paste; "how does your team work
+// today" is answerable from a phone in thirty seconds.
 //
 // Module scope because nothing in it is per-request; building it inside the
 // handler re-joined it on every submission, including the contact ones that
@@ -126,18 +122,15 @@ export type SubmissionKind = 'waitlist' | 'contact'
 const WAITLIST_BODY = [
 	"you're on the list.",
 	'',
-	'one seat a month, by appointment. i tell you straight when the next one opens.',
+	'one team a month, by appointment. i tell you straight when the next seat opens.',
 	'',
-	`if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
-	`${site.teardown.creditNote}. i read the whole thing and write up what's solid,`,
-	"exactly what breaks and in what order, and what i'd do first. you keep the",
-	"writeup either way, and i'll tell you if you don't need me.",
+	`if you'd rather not wait, start with the teardown: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
+	`${site.teardown.creditNote}. i look at how your team works today, record a`,
+	"10-minute Loom on where it's stuck, and write down what i'd fix first. you keep",
+	"it either way, and i'll tell you if you don't need me.",
 	'',
-	'either way — reply with whatever lets me see it: a live url, the repo, or a',
-	"3-minute screen recording. if it isn't deployed yet, the repo is better anyway.",
-	'',
-	'in the meantime, what it costs you to leave it as it is:',
-	`${site.siteUrl}/tax`,
+	'either way, reply with a line or two: what you asked your team to do, and',
+	'where it stalled.',
 	'',
 	'- sam'
 ].join('\n')

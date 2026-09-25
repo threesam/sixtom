@@ -1,218 +1,198 @@
 import type { GrandSlamOffer } from './types'
 import { site } from './site'
 
-// The one offer. Copy source of truth: vault "sixtom grand slam — page copy
-// (voice pass)". Rules baked in and pinned by content.test.ts: no "agent" in
-// customer copy (results over mechanism), no slot counters (honest at zero).
+const usd = (n: number) => `$${n.toLocaleString('en-US')}`
+
+// The one offer: team AI enablement (repositioned 2026-09-23 from the
+// vibe-code rescue sprint; see vault "growth strategy 2026-09" + "price floor").
+// Rules baked in and pinned by content.test.ts: no "agent" in customer copy
+// (results over mechanism; AI is only ever the client's context), no slot
+// counters (honest at zero). Proof stays anonymized: the day job is never
+// named as a case study until there's a written OK to cite it.
 export const grandSlam: GrandSlamOffer = {
-	chip: '1 client a month · waitlist open',
-	headline: "everyone saw the demo. nobody's seen it since.",
-	lead: "AI gets you to a demo because it can hold the whole thing in its head. once your codebase outgrows that window, it starts making things worse instead of better. that's the wall every vibe-coded project hits. it's also the thing i fix.",
+	chip: '1 team a month · waitlist open',
+	headline: 'you told them to use AI. nothing changed.',
+	lead: "the memo went out. a few people tried it. a few more pretended to. the work looks the same. this year i've been turning ops, finance and marketing people into people who ship real systems. that's what i do for your team.",
 	offerLine:
-		'the production sprint. two weeks. live in production on day 10 — and you own every line of it.',
+		'the enablement engagement. two weeks, one team. by day 10 a named person on your team ships a real internal system, and the guardrails hold once they get good.',
 	stats: [
-		{ value: '2 weeks', label: 'per sprint' },
-		{ value: 'all async', label: 'no standups' },
+		{ value: '2 weeks', label: 'one team' },
+		{ value: '1 owner', label: 'ships by day 10' },
 		{ value: 'day 10 or free', label: 'the guarantee' }
 	],
 	wall: {
-		thesis: 'vibe coding is how you slowly become the intern of your own codebase.',
-		para: "you shipped a demo and it felt like magic. then the edits started breaking things you didn't touch. every new feature costs more than the last. you're not building anymore — you're negotiating with a machine that no longer understands what it built.",
-		turn: "the demo is real. the foundation isn't. and every month it stays that way has a price:",
+		thesis: "setup was easy. what comes after isn't.",
+		para: "the tools got installed. the licenses got paid for. then half of marketing's week went to arguing which of three numbers is right. the glue between your apps broke and nobody noticed for a month. the one person who got good opened a 45,000-line pull request and nobody knew how to review it. the dashboard says live. nobody believes it.",
+		turn: "and it starts at the top. if leadership won't use it, the team won't either. every month it stays that way has a price:",
 		costCards: [
-			{ title: 'the users', sub: 'who hit a bug and never come back' },
-			{ title: 'the launch', sub: 'that slips another month, then another' },
-			{ title: 'the weekends', sub: 'spent firefighting instead of living' }
+			{ title: 'the licenses', sub: 'paid for every month, opened twice' },
+			{ title: 'the glue', sub: 'automations that fail quietly until a customer finds out' },
+			{ title: 'the one who got good', sub: 'shipping fast with no guardrails, until prod breaks' }
 		],
-		taxLine: 'every month it stays broken has a number.'
+		costLine: 'that part is fixable in two weeks.'
 	},
 	ledger: {
 		eyebrow: 'what you get',
-		heading: 'a real foundation, in two weeks.',
-		para: "i rebuild it the way i'd build it for myself — the architecture, the security, the tests, the judgment calls you can't vibe your way through. everything in the sprint, and what it'd cost you piecemeal:",
+		heading: 'one person shipping. guardrails that hold.',
+		para: "i sit with your team for two weeks and we build something real, on your data, in your repo. everything in the engagement, and what it'd cost you piecemeal:",
 		groups: [
 			{
-				title: 'the foundation',
+				title: 'the diagnosis',
 				lines: [
 					{
-						line: 'architecture teardown + premortem',
-						sub: 'exactly what will break, and why',
-						valueUSD: 5000
-					},
-					{
-						line: 'the rebuild',
-						sub: 'your product, standing on foundations that hold',
-						valueUSD: null,
-						valueLabel: 'core'
-					},
-					{
-						line: 'security review on every commit',
-						sub: "nothing ships that i haven't read",
-						valueUSD: 2000
-					},
-					{
-						line: 'automated test suite',
-						sub: 'so it stays fixed after i leave',
-						valueUSD: 2500
-					},
-					{
-						line: 'performance to 100s',
-						sub: "and i'll tell you when a third-party script makes that impossible",
+						line: 'adoption teardown',
+						sub: "who's using it, where it's stuck, what's quietly broken",
 						valueUSD: 1500
 					},
 					{
-						line: 'accessibility pass',
-						sub: 'works for everyone who shows up',
-						valueUSD: 1500
-					}
-				]
-			},
-			{
-				title: 'the growth foundation',
-				note: 'straight with you: search and answer-engines pay off over months, not days. the sprint makes you findable, measurable, and ready to test from day one — the compounding comes from what you publish after. the growth map shows you where to push.',
-				lines: [
-					{
-						line: 'analytics + observability',
-						sub: "you see what's working from day one",
-						valueUSD: 1500
-					},
-					{
-						line: 'CRO-ready pages + A/B scaffold',
-						sub: 'every idea after launch is a test, not a rewrite',
-						valueUSD: 2500
-					},
-					{
-						line: 'technical SEO foundation',
-						sub: 'schema, sitemaps, core web vitals',
-						valueUSD: 2000
-					},
-					{
-						line: 'AEO/GEO foundation',
-						sub: 'structured for the answer-engines, so AI recommends you too',
-						valueUSD: 2000
-					},
-					{
-						line: 'infra cost audit',
-						sub: 'kill the subscriptions your stack is quietly renting',
-						valueUSD: 1000
-					}
-				]
-			},
-			{
-				title: 'the brand',
-				lines: [
-					{
-						line: 'conversion copy pass',
-						sub: 'every word on the page earning its keep',
-						valueUSD: 1500
-					},
-					{
-						line: 'brand kit + 1-of-1 art',
-						sub: 'colors, type, and an original piece nobody else has',
+						line: 'one metric, one definition',
+						sub: 'the number everyone argues about gets a single source of truth',
 						valueUSD: 3000
 					}
 				]
 			},
 			{
-				title: 'the close',
+				title: 'the build',
 				lines: [
 					{
-						line: 'live in production by day 10',
+						line: 'the system',
+						sub: 'a named person on your team ships a real internal tool, on your data',
+						valueUSD: null,
+						valueLabel: 'core'
+					},
+					{
+						line: 'glue → code',
+						sub: 'one fragile automation chain rebuilt as code you can read, with alerts and a last-run time',
+						valueUSD: 4000
+					},
+					{
+						line: 'honest status',
+						sub: 'every "live" badge shows when it last synced',
+						valueUSD: 1000
+					}
+				]
+			},
+			{
+				title: 'the guardrails',
+				lines: [
+					{
+						line: 'permissions + review gate',
+						sub: 'nothing reaches production without passing review',
+						valueUSD: 3000
+					},
+					{
+						line: 'repo rules',
+						sub: "one branch per tool, hooks, shared instructions. a 45,000-line PR can't happen",
+						valueUSD: 2500
+					},
+					{
+						line: 'customer data off desktops',
+						sub: 'it lives somewhere with access control, not on a laptop',
+						valueUSD: 2000
+					}
+				]
+			},
+			{
+				title: 'the people',
+				lines: [
+					{
+						line: 'hands-on onboarding',
+						sub: 'everyone on the team set up and shipping. by the tenth person it takes one sitting',
+						valueUSD: 4000
+					},
+					{
+						line: 'the tracing-paper session',
+						sub: 'git and review, explained so it sticks for people who never wanted to learn git',
+						valueUSD: 1500
+					},
+					{
+						line: 'the leadership session',
+						sub: 'the people at the top use it first, so the team follows',
+						valueUSD: 2000
+					}
+				]
+			},
+			{
+				title: 'the close',
+				note: 'bonuses land by day 30.',
+				lines: [
+					{
+						line: 'shipped by day 10',
 						sub: 'you own 100% of it',
 						valueUSD: null,
 						valueLabel: 'included'
 					},
-					{ line: 'day-30 check-in', sub: "what stuck, what didn't", valueUSD: 500 }
-				]
-			},
-			{
-				title: 'the bonuses',
-				note: 'bonuses land by day 30.',
-				lines: [
+					{ line: 'day-30 check-in', sub: "what stuck, what didn't", valueUSD: 500 },
 					{
-						line: 'the AI leverage session',
-						sub: 'what to lean on, what to skip, how not to wreck what we just built',
-						valueUSD: 1000
-					},
-					{
-						line: 'the 90-day growth map',
-						sub: 'the highest-impact moves, in order',
+						line: 'the runbook + Loom library',
+						sub: 'so the next hire onboards without me',
 						valueUSD: 1500
 					},
 					{
-						line: 'the runbook + Loom library',
-						sub: "so you're never dependent on me again",
+						line: 'the 90-day map',
+						sub: 'the next three systems worth building, in order',
 						valueUSD: 1500
 					}
 				]
 			}
 		],
-		// Built from parts so optional pricing fields drop cleanly; a closed intro
-		// renders struck through on the page and vanishes from machine surfaces.
+		// Built from parts so the optional payment plan drops cleanly when unset.
 		payParts: [
-			{ text: `$${site.sprint.priceUSD.toLocaleString('en-US')} fixed.` },
-			...(site.sprint.introPriceUSD
-				? [
-						{
-							text: `$${site.sprint.introPriceUSD.toLocaleString('en-US')} for the ${site.sprint.introNote ?? 'first clients'}.`,
-							struck: site.sprint.introClosed ?? false
-						}
-					]
-				: []),
-			...(site.sprint.paymentPlan ? [{ text: `or ${site.sprint.paymentPlan}.` }] : [])
+			{ text: `${usd(site.engagement.priceUSD)} fixed.` },
+			...(site.engagement.paymentPlan ? [{ text: `${site.engagement.paymentPlan}.` }] : [])
 		],
 		anchorLine:
-			'a dev shop quotes $50k and three months. a senior engineer runs $200k a year. this is two weeks, ten grand, and you own all of it.'
+			'a consultancy quotes six figures and delivers a deck. a workshop is half a day and a recording nobody watches. this is two weeks, and something running when i leave.'
 	},
 	guarantee: {
 		// \n = author-controlled line break: clause per line on desktop.
-		headline: 'live in production by day 10,\nor the remaining payments are free.',
-		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there — you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
+		headline: 'your person ships by day 10,\nor the rest is free.',
+		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
 	proof: {
-		eyebrow: 'proof · something from nothing',
-		heading: 'a solo practice with no way to reach its own clients.',
-		para: "a men's-mental-health therapist had a slow, drifting site and one channel: rented directory listings, with insurance deciding who found him. i rebuilt the whole thing custom and gave him a growth engine he owns. the craft shows in the numbers:",
+		eyebrow: 'proof · inside a consumer brand',
+		heading: 'finance, ops and marketing, shipping their own tools.',
+		para: "since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. the numbers:",
 		tiles: [
-			{ value: '100s', label: 'desktop Lighthouse' },
-			{ value: '8.3s→2.9s', label: 'mobile load' },
-			{ value: '7.5×', label: 'lighter page' },
-			{ value: '+185%', label: 'pageviews, last 30d' }
+			{ value: '22', label: 'onboarding sessions' },
+			{ value: '5', label: 'departments' },
+			{ value: '~10', label: 'sessions to one-sitting setup' },
+			{ value: '3', label: 'glue chains now code' }
 		],
 		para2:
-			"traffic reversed from a slow decline to steady growth — and it's HIS execution showing up in the data: he's running the strategy, and the results climb as he does. something from nothing.",
+			'one finance analyst shipped dashboards fast enough that their lead asked them to slow down. the automations that failed quietly are code now, with alerts. git got explained with tracing paper, and it stuck.',
 		bridge:
-			"this one wasn't vibe-coded — just slow and invisible. same hands, same discipline, numbers you can check. the first rescue writeup is on the bench right now."
+			'before this, the craft: a solo therapy practice rebuilt in 4h43m. mobile load 8.3s → 2.9s. pageviews up 185%. same hands.'
 	},
 	isThisYou: {
 		heading: 'is this for you?',
 		yesLead: 'yes, if:',
 		yes: [
-			'you vibe-coded something to a working demo',
-			'it has real users, or paying ones',
-			"it's breaking, or it just won't reach production",
-			"you'd rather own the fix than rent a dev shop"
+			'you sent the memo. nothing changed.',
+			"you have a team, and they aren't engineers",
+			'someone on it is curious, or already shipping without guardrails',
+			"you'd rather your people own it than rent a consultancy"
 		],
 		noLead: 'not yet, if:',
 		no: [
-			"it's still just an idea — nothing built",
-			'you want someone to manage a team of engineers',
-			'you need it done and gone, no involvement'
+			"it's just you. no team yet",
+			'you want a workshop and a recording',
+			'you want it done for you, with nobody on your side learning'
 		]
 	},
 	timeline: { heading: 'the two weeks.' },
 	close: {
-		scarcity: 'one seat a month · by appointment',
+		scarcity: 'one team a month · by appointment',
 		heading: 'join the waitlist.',
 		emailPlaceholder: 'email you actually check',
-		buildLabel: 'what did you build?',
-		buildPlaceholder: 'a demo of… it works, but…',
+		buildLabel: 'what did you ask your team to do?',
+		buildPlaceholder: 'use AI for… a few tried it, then…',
 		button: 'get on the list →',
 		// Split around site.teardown.creditNote so the claim can carry its own
 		// condition inline — the unqualified version outruns what /terms actually says.
-		rewardBefore: `the seat's booked out? good sign. if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
-		rewardAfter: `. i read the whole thing and tell you exactly what breaks, in what order, and what i'd do first. you get the writeup whether or not we ever work together.`,
-		creditTerms: `paid up front. credited against the sprint if you book one within 90 days — and if i decline your project after you've paid, you get all of it back.`
+		rewardBefore: `if you'd rather not wait, start with the teardown: ${usd(site.teardown.priceUSD)},`,
+		rewardAfter: `. i look at how your team works today, record a 10-minute Loom on where it's stuck, and write down what i'd fix first. you keep it whether or not we work together.`,
+		creditTerms: `paid up front. credited against the engagement if you book one within 30 days. if i decline after you've paid, you get all of it back.`
 	}
 }
 

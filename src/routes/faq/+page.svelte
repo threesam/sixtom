@@ -12,8 +12,8 @@
 
 <PageMeta
 	title="faq | SIXTOM"
-	description="what sixtom costs, how the two-week sprint and the day-10 guarantee work, and what the teardown is."
-	socialDescription="what sixtom costs, how the sprint and the day-10 guarantee work."
+	description="what sixtom costs, how the two-week enablement engagement and the day-10 guarantee work, and what the teardown is."
+	socialDescription="what sixtom costs, how the engagement and the day-10 guarantee work."
 />
 
 <svelte:head>

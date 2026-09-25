@@ -9,55 +9,50 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'what does sixtom do?',
 		answer:
-			'you (or your AI) got something to a working demo. i take it from there to production-grade — secure, tested, measured, ready for real users — in a two-week sprint. live on day 10, and you own every line of it.'
+			'you told your team to use AI and nothing changed. in two weeks, one named person on your team ships a real internal system, the fragile glue between your tools becomes code you can watch, and the guardrails hold once they get good. you own all of it.'
 	},
 	{
 		question: 'how much does it cost?',
 		answer:
-			'$10,000 flat, or 4 weekly payments of $2,500. that price buys the whole ledger on the home page — over $30,500 of itemized work. (the $7,500 first-3 intro is closed.)'
+			'$15,000 fixed. half up front, half on day 10. that buys the whole ledger on the home page, over $28,000 of itemized work. the price is the same for everyone.'
 	},
 	{
 		question: "what's the guarantee?",
 		answer:
-			"live in production by day 10, or the remaining payments are free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop — you keep everything built and pay only for the time used."
+			"your person ships the system by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop. you keep everything built and pay only for the time used."
 	},
 	{
 		question: "what's the teardown?",
 		answer:
-			"$5,000, credited in full against the sprint if you book one within 90 days. i read the whole thing — repo, live url, or a screen recording — and write up what's solid, exactly what breaks and in what order, and what i'd do first. it's also how you move now instead of waiting for the next seat. you keep the writeup whether or not we work together, and i'll tell you if you don't need me."
+			"$1,500, credited in full against the engagement if you book one within 30 days. i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together, and i'll tell you if you don't need me."
 	},
 	{
 		question: 'how long does it take?',
-		answer: 'two weeks. live in production on day 10. one seat a month, by appointment.'
+		answer: 'two weeks. shipped by day 10. one team a month, by appointment.'
 	},
 	{
-		question: 'do you do SEO and getting found by AI?',
+		question: 'does my team need to be technical?',
 		answer:
-			'the sprint lays the foundation: technical SEO, schema, and answer-engine structure, plus analytics so you can see it working. straight with you — search compounds on what you publish over months, so the sprint makes you findable and measurable from day one, and the 90-day growth map shows you where to push after.'
+			'no. the people i onboard work in ops, finance, marketing and wholesale. none of them were hired to write code. they need a setup that works, a review gate, and someone to explain git with tracing paper.'
 	},
 	{
 		question: 'how many clients do you take?',
 		answer:
-			"one a month, by appointment. that's the whole model — you get my full attention, not a queue. when the seat's taken, the waitlist is open."
+			"one team a month, by appointment. that's the whole model. you get my full attention, not a queue. when the seat's taken, the waitlist is open."
 	},
 	{
-		question: 'what happens after the sprint?',
+		question: 'what happens after the two weeks?',
 		answer:
-			"you own everything either way — the code, the analytics, the runbook. there's a day-30 check-in to see what stuck. if you want me to stay on it after that, we talk then."
+			"you own everything: the system, the repo, the runbook. there's a day-30 check-in to see what stuck. if you want me back for the next system, we talk then."
 	},
 	{
 		question: "who's behind sixtom?",
 		answer:
-			"Salvatore (Sam) D'Angelo — lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice."
+			"Salvatore (Sam) D'Angelo, leads engineering and AI at Made In (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice."
 	},
 	{
-		question: 'is it really all async?',
+		question: 'is it remote?',
 		answer:
-			'yes. a daily Loom + code drop in your channel, with one short mid-sprint sync to course-correct. no standups.'
-	},
-	{
-		question: 'what is the "vibe-code tax"?',
-		answer:
-			"what your half-finished, AI-built prototype quietly costs you per year — lost deals, downtime, weekends. there's a no-email calculator at /tax."
+			'yes. working sessions over video, a daily Loom, and everything lands in your repo. no standups.'
 	}
 ]

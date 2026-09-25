@@ -4,13 +4,13 @@ Conventions for any agent (Claude Code, Cursor, Codex, Aider, etc.) working on t
 
 ## What this project is
 
-**sixtom** — a single grand-slam offer site (Hormozi-style), one client a month:
+**sixtom** — a single grand-slam offer site (Hormozi-style), one team a month. Repositioned 2026-09-23 from "rescue the vibe-coded MVP" to team AI enablement; pricing follows the vault note "price floor — the rate card strangers and friends both get":
 
-- **The Production Sprint** — $10,000 flat (or 4 weekly payments of $2,500; the $7,500 first-3 intro is CLOSED as of 2026-07-28 — referral margin — shown struck-through on the page, absent from schema/llms). Two weeks; a 19-line itemized ledger totaling $28,500+ (foundation / growth foundation / brand / close / bonuses). **The guarantee: live in production by day 10, or the remaining payments are free**, with the day-5 scope check as the floor (stop, keep everything, pay only time used).
-- **The free teardown** — $0, via the waitlist (`/notify`): a short recorded teardown of the prospect's app. Top-of-funnel; the old $1,500 audit folded into it.
-- **The retainer is off-page by design** — a private post-sprint continuation pitched at the day-30 check-in, never on the site. Add-on services (content strategy, SEO iteration, experiments) are reactivation offers to past clients, also never on the site.
+- **The enablement engagement** — $15,000 fixed (half up front, half on day 10). Two weeks, one team. The buyer is the founder who told the team to use AI and saw nothing change. The deliverable: a named person on their team ships a real internal system, one fragile automation chain becomes watchable code, and the guardrails (permissions, review gate, repo rules) hold once they get good. A 15-line itemized ledger totaling $28,000+. **The guarantee: your person ships by day 10, or the rest is free**, with the day-5 scope check as the floor (stop, keep everything, pay only time used).
+- **The teardown** — $1,500, paid, via the waitlist (`/notify`): a 10-minute Loom + written list of where the team is stuck. Credited in full against an engagement booked within 30 days.
+- **Off-page by design:** the retired $10k production sprint (a quiet yes for warm referrals only), the post-engagement retainer, and add-ons. No discounts: prices hold or rise, friends pay the card. `/tax` (the vibe-code tax calculator) is off-wedge and unlinked from home; the route still exists.
 
-Pricing/scope/cadence source of truth: `src/lib/content/site.ts` (sprint, operator, process) + `src/lib/content/offer.ts` (the whole grand-slam page as typed data — ledger, guarantee, proof, close). Honest-at-zero rule: no "X of 3 left" counters anywhere until an intro slot actually sells; scarcity is stated as capacity ("1 client a month") only. The operator runs AI agents in parallel — agents type, he judges — but see voice rule #1: that mechanism is never advertised in buyer-facing copy.
+Pricing/scope/cadence source of truth: `src/lib/content/site.ts` (engagement, operator, process) + `src/lib/content/offer.ts` (the whole grand-slam page as typed data — ledger, guarantee, proof, close). Honest-at-zero rule: no "X of 3 left" counters anywhere until an intro slot actually sells; scarcity is stated as capacity ("1 team a month") only. The operator runs AI agents in parallel — agents type, he judges — but see voice rule #1: that mechanism is never advertised in buyer-facing copy.
 
 ## Commands
 
@@ -47,9 +47,9 @@ Supporting routes:
 
 **Components** live in `src/lib/components/` and routes import them directly: `Hero`, `BookCta` (the "solve for X" booking CTA + `XMark`), `SiteFooter` (rendered per-page — there is no global footer in `+layout.svelte`), `VibeTaxCalculator`, `LogHero`, `MediaSlider`, `SanityStudio`.
 
-**Content is the source of truth.** Identity + sprint pricing + process + testimonial + URLs live in `src/lib/content/site.ts`; the entire grand-slam page copy (ledger, guarantee, proof, is-this-you, close) lives in `src/lib/content/offer.ts` typed by `GrandSlamOffer` (FAQ copy in `faq.ts`). **Update the content files and the components AND the schema.org JSON-LD follow automatically.** `content.test.ts` pins the ledger sum ($28,500), the derived pay line, the day-10 guarantee, and two copy rules: no "agent" in customer copy, no slot counters.
+**Content is the source of truth.** Identity + engagement pricing + process + testimonial + URLs live in `src/lib/content/site.ts`; the entire grand-slam page copy (ledger, guarantee, proof, is-this-you, close) lives in `src/lib/content/offer.ts` typed by `GrandSlamOffer` (FAQ copy in `faq.ts`). **Update the content files and the components AND the schema.org JSON-LD follow automatically.** `content.test.ts` pins the ledger sum ($28,000), the price floor, the derived pay line, the day-10 guarantee, and two copy rules: no "agent" in customer copy, no slot counters.
 
-Schema.org JSON-LD (Person, WebSite, Service with the two live offers — sprint + free teardown — plus per-page FAQPage/Blog/BlogPosting nodes merged by `@id`) is generated in `src/lib/seo/jsonld.ts` and injected via `src/routes/+layout.svelte` + the individual routes. Browser `<title>`, `<meta description>`, canonical, OG/Twitter live in `src/app.html` and per-route `<svelte:head>`. Static AEO files: `static/llms.txt`, `static/llms-full.txt`, `static/robots.txt`, `static/og.png`, `static/favicon.svg`.
+Schema.org JSON-LD (Person, WebSite, Service with the two live offers — engagement + paid teardown — plus per-page FAQPage/Blog/BlogPosting nodes merged by `@id`) is generated in `src/lib/seo/jsonld.ts` and injected via `src/routes/+layout.svelte` + the individual routes. Browser `<title>`, `<meta description>`, canonical, OG/Twitter live in `src/app.html` and per-route `<svelte:head>`. Static AEO files: `static/llms.txt`, `static/llms-full.txt`, `static/robots.txt`, `static/og.png`, `static/favicon.svg`.
 
 ### 2. Embedded Sanity Studio (`/sanity/*`)
 

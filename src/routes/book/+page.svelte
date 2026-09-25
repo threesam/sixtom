@@ -22,10 +22,10 @@
 		enhanced = '1'
 	})
 
-	const isPreBuild = $derived(stage === DISQUALIFY_STAGE)
+	const isSolo = $derived(stage === DISQUALIFY_STAGE)
 
 	function canAdvance(): boolean {
-		if (step === 1) return stage !== '' && !isPreBuild
+		if (step === 1) return stage !== '' && !isSolo
 		if (step === 2) return built.trim() !== '' && deliverable.trim() !== '' && budget !== ''
 		return true
 	}
@@ -50,7 +50,7 @@
 
 <PageMeta
 	title="book | SIXTOM"
-	description="see if the sprint is a fit. 3 quick steps, then the booking link."
+	description="see if the engagement is a fit. 3 quick steps, then the booking link."
 />
 
 <svelte:head>
@@ -116,18 +116,18 @@
 					{/if}
 				</div>
 			{/if}
-		{:else if step === 1 && isPreBuild}
-			<!-- Pre-build disqualify is purely client-side: no email captured, no server hit. -->
+		{:else if step === 1 && isSolo}
+			<!-- Solo disqualify is purely client-side: no email captured, no server hit. -->
 			<div class="border-border rounded-lg border p-8">
 				<p class="eyebrow text-sm">not yet</p>
 				<p class="text-fg mt-4 text-lg leading-relaxed">
-					sixtom is for things you've already built. come back when you have a working demo — i'll
-					be here.
+					sixtom is for teams. come back when there's someone besides you to hand it to. i'll be
+					here.
 				</p>
 				<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
 					<a
 						href="/notify"
-						data-umami-event="book_pre_build_notify"
+						data-umami-event="book_solo_notify"
 						class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
 					>
 						get notified when ready
@@ -135,7 +135,7 @@
 					<button
 						type="button"
 						onclick={() => (stage = '')}
-						data-umami-event="book_pre_build_restart"
+						data-umami-event="book_solo_restart"
 						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
 					>
 						i picked the wrong one
@@ -186,7 +186,7 @@
 						<h2 class={stepHeadClass}>what does done look like?</h2>
 					</div>
 					<div>
-						<label for="built" class={labelClass}>where can I see what you've made?</label>
+						<label for="built" class={labelClass}>where does your team work today?</label>
 						<input
 							id="built"
 							name="built"
@@ -194,7 +194,7 @@
 							required
 							maxlength="500"
 							bind:value={built}
-							placeholder="a url, the repo, or 'not deployed yet'"
+							placeholder="the tools, the repo if there is one, or 'spreadsheets, honestly'"
 							class="{inputClass} mt-2"
 						/>
 					</div>
