@@ -76,8 +76,7 @@ function hasHeaderInjection(value: string): boolean {
 }
 
 export type SubmissionResult =
-	| { ok: true; message: string; suspicious?: true }
-	| { ok: false; status: number; message: string }
+	{ ok: true; message: string; suspicious?: true } | { ok: false; status: number; message: string }
 
 export const SUCCESS_MESSAGE = "You're on the list."
 
@@ -91,12 +90,12 @@ function suspicious(): SubmissionResult {
 let cachedTransporter: Transporter | null = null
 function getTransporter(): Transporter {
 	cachedTransporter ??= nodemailer.createTransport({
-		host: env.SMTP_SERVER,
-		port: parsePositiveNumber(env.SMTP_PORT, 587),
+		host: env['SMTP_SERVER'],
+		port: parsePositiveNumber(env['SMTP_PORT'], 587),
 		secure: false,
 		requireTLS: true,
 		tls: { minVersion: 'TLSv1.2' },
-		auth: { user: env.SMTP_EMAIL, pass: env.SMTP_TOKEN }
+		auth: { user: env['SMTP_EMAIL'], pass: env['SMTP_TOKEN'] }
 	})
 	return cachedTransporter
 }
@@ -197,21 +196,21 @@ export async function processSubmission(
 	const confirmation =
 		kind === 'waitlist'
 			? {
-					from: env.SMTP_EMAIL,
+					from: env['SMTP_EMAIL'],
 					to: email,
 					subject: "you're on the list - show me the thing",
 					text: WAITLIST_BODY
 				}
 			: {
-					from: env.SMTP_EMAIL,
+					from: env['SMTP_EMAIL'],
 					to: email,
 					subject: `Contact SIXTOM`,
 					text: 'Contact form submission received! We look forward to talking to you soon.'
 				}
 
 	const notification = {
-		from: env.SMTP_EMAIL,
-		to: env.SMTP_RECIPIENT_EMAIL,
+		from: env['SMTP_EMAIL'],
+		to: env['SMTP_RECIPIENT_EMAIL'],
 		replyTo: email,
 		// Lead with the address: the waitlist form hardcodes name to
 		// "Waitlist signup", so every one of these used to arrive identical.

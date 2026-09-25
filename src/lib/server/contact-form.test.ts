@@ -5,12 +5,11 @@ import { processSubmission, resetRateLimitForTests } from './contact-form'
 // hoisted so the spy is reachable from the tests; contact-form caches the
 // transporter, so a fresh vi.fn() per createTransport call would be unobservable.
 const { sendMail } = vi.hoisted(() => ({
-	// typed param so mock.calls carries the mail shape rather than an empty tuple.
-	// nodemailer's sendMail returns a promise, so resolve one without an await.
-	sendMail: vi.fn((mail: { to: string; subject: string; text: string }) => {
-		void mail
-		return Promise.resolve(undefined)
-	})
+	// typed signature so mock.calls carries the mail shape rather than an empty
+	// tuple. nodemailer's sendMail returns a promise, so resolve one.
+	sendMail: vi.fn<(mail: { to: string; subject: string; text: string }) => Promise<undefined>>(() =>
+		Promise.resolve(undefined)
+	)
 }))
 
 vi.mock('nodemailer', () => ({

@@ -180,7 +180,7 @@ function buildPrompt(buckets: TriageBuckets, siteUrl: string): string {
 }
 
 async function callAiGateway(prompt: string): Promise<string> {
-	const token = env['AI_GATEWAY_API_KEY'] ?? env.VERCEL_OIDC_TOKEN
+	const token = env['AI_GATEWAY_API_KEY'] ?? env['VERCEL_OIDC_TOKEN']
 	if (!token) {
 		throw new Error('Neither AI_GATEWAY_API_KEY nor VERCEL_OIDC_TOKEN is available')
 	}
@@ -207,11 +207,11 @@ async function callAiGateway(prompt: string): Promise<string> {
 }
 
 async function sendEmailReport(subject: string, body: string): Promise<void> {
-	const host = env.SMTP_SERVER
-	const port = env.SMTP_PORT
-	const user = env.SMTP_EMAIL
-	const pass = env.SMTP_TOKEN
-	const to = env.SMTP_RECIPIENT_EMAIL
+	const host = env['SMTP_SERVER']
+	const port = env['SMTP_PORT']
+	const user = env['SMTP_EMAIL']
+	const pass = env['SMTP_TOKEN']
+	const to = env['SMTP_RECIPIENT_EMAIL']
 	if (!host || !port || !user || !pass || !to) {
 		throw new Error(
 			'SMTP env not set: need SMTP_SERVER, SMTP_PORT, SMTP_EMAIL, SMTP_TOKEN, SMTP_RECIPIENT_EMAIL'
