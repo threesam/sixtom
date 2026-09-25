@@ -10,9 +10,8 @@ export const site: Site = {
 	operator: {
 		name: "Salvatore D'Angelo",
 		jobTitle: 'lead engineer',
-		currentEmployer: 'Made In Cookware',
+		currentEmployer: 'Made In',
 		formerEmployer: 'Rhone',
-		credentialsChip: 'lead engineer at Made In Cookware. formerly at Rhone.',
 		linkedinUrl: 'https://www.linkedin.com/in/threesam',
 		xUrl: 'https://x.com/six_to_m',
 		githubUrl: 'https://github.com/threesam',

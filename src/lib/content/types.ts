@@ -8,7 +8,6 @@ export interface Operator {
 	jobTitle: string
 	currentEmployer: string
 	formerEmployer: string
-	credentialsChip: string
 	linkedinUrl: string
 	xUrl: string
 	githubUrl: string

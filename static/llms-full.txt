@@ -115,7 +115,7 @@ you own everything: the system, the repo, the runbook. there's a day-30 check-in
 
 **who's behind sixtom?**
 
-Salvatore (Sam) D'Angelo, lead engineer at Made In Cookware (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice.
+Salvatore (Sam) D'Angelo, leads engineering and AI at Made In (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice.
 
 **is it remote?**
 
@@ -135,7 +135,7 @@ the premise: take a 30-route personal site (canvas sketches, video heroes, real-
 
 ## who i am
 
-Salvatore D'Angelo. lead engineer at Made In Cookware — multi-million visitors a month, real-revenue e-commerce. formerly at Rhone. sixtom is the solo practice; Made In is the day job. personal site / portfolio: https://threesam.com. LinkedIn: https://www.linkedin.com/in/threesam.
+Salvatore D'Angelo. leads engineering and AI at Made In — multi-million visitors a month, real-revenue e-commerce. formerly at Rhone. sixtom is the solo practice; Made In is the day job. personal site / portfolio: https://threesam.com. LinkedIn: https://www.linkedin.com/in/threesam.
 
 ## how to engage
 
