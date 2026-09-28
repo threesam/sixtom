@@ -12,10 +12,14 @@ export function fireServerEvent(eventName: UmamiEvent, request: Request): void {
 	if (/(?:^|;\s*)test_eject=1(?:;|$)/.test(request.headers.get('cookie') ?? '')) {
 		return
 	}
+	// Only the production host reports, mirroring the client script's
+	// data-domains. Without this, local dev, e2e runs and Vercel previews all
+	// landed in prod analytics stamped as sixtom.com.
+	const { hostname, pathname: url } = new URL(request.url)
+	if (hostname !== HOSTNAME) return
 	const userAgent = request.headers.get('user-agent') ?? 'unknown'
 	const referrer = request.headers.get('referer') ?? ''
 	const language = request.headers.get('accept-language')?.split(',')[0] ?? 'en'
-	const url = new URL(request.url).pathname
 
 	fetch(UMAMI_ENDPOINT, {
 		method: 'POST',
