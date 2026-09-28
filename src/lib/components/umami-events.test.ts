@@ -38,7 +38,8 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'footer_faq', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_notify', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_privacy', dir: 'component', path: 'SiteFooter.svelte' },
-	{ event: 'footer_terms', dir: 'component', path: 'SiteFooter.svelte' }
+	{ event: 'footer_terms', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'error_back_home', dir: 'route', path: '+error.svelte' }
 ]
 
 describe('Umami CRO event instrumentation', () => {
