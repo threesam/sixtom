@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tick } from 'svelte'
 	import { enhance } from '$app/forms'
 	import type { ActionData } from './$types'
 	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE } from './options'
@@ -30,13 +31,28 @@
 		return true
 	}
 
+	// Each step's heading takes focus on a step change: the button that was
+	// pressed can unmount (next → submit on the last step), which would drop
+	// keyboard focus to <body>, and the heading tells screen readers where they are.
+	const stepHeads: HTMLElement[] = []
+	async function goTo(n: number) {
+		step = n
+		await tick()
+		stepHeads[n - 1]?.focus()
+	}
+
+	// Result/disqualify panels replace the control that had focus; pull focus
+	// onto their message so keyboard and screen-reader users land on it.
+	const focusOnMount = (el: HTMLElement) => {
+		el.focus()
+	}
+
 	function next() {
-		if (!canAdvance()) return
-		step += 1
+		if (canAdvance()) void goTo(step + 1)
 	}
 
 	function back() {
-		if (step > 1) step -= 1
+		if (step > 1) void goTo(step - 1)
 	}
 
 	const budgetQuestion = 'how much have you set aside?'
@@ -80,7 +96,9 @@
 			{#if form.disqualified}
 				<div class="border-border rounded-lg border p-8">
 					<p class="eyebrow text-sm">not yet</p>
-					<p class="text-fg mt-4 text-lg leading-relaxed">{form.message}</p>
+					<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+						{form.message}
+					</p>
 					<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
 						<a
 							href="/notify"
@@ -102,7 +120,9 @@
 			{:else}
 				<div class="border-border-strong ring-border rounded-lg border p-8 ring-1">
 					<p class="eyebrow text-sm">qualified</p>
-					<p class="text-fg mt-4 text-lg leading-relaxed">{form.message}</p>
+					<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+						{form.message}
+					</p>
 					{#if form.bookingUrl}
 						<a
 							href={form.bookingUrl}
@@ -120,7 +140,7 @@
 			<!-- Solo disqualify is purely client-side: no email captured, no server hit. -->
 			<div class="border-border rounded-lg border p-8">
 				<p class="eyebrow text-sm">not yet</p>
-				<p class="text-fg mt-4 text-lg leading-relaxed">
+				<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
 					sixtom is for teams. come back when there's someone besides you to hand it to. i'll be
 					here.
 				</p>
@@ -134,7 +154,10 @@
 					</a>
 					<button
 						type="button"
-						onclick={() => (stage = '')}
+						onclick={() => {
+							stage = ''
+							void goTo(1)
+						}}
 						data-umami-event="book_solo_restart"
 						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
 					>
@@ -146,17 +169,23 @@
 			<form
 				method="post"
 				novalidate
-				use:enhance={() => {
+				use:enhance={({ submitter }) => {
 					submitting = true
 					return async ({ update }) => {
 						await update()
 						submitting = false
+						// Disabling the focused submit button drops focus to <body>; on an
+						// error the form stays, so hand focus back for a keyboard retry.
+						await tick()
+						if (document.activeElement === document.body) submitter?.focus()
 					}
 				}}
 			>
 				<div class:hidden={step !== 1}>
 					<p class={stepEyebrowClass}>step 1 of {TOTAL_STEPS} — fit</p>
-					<h2 class={stepHeadClass}>where are you with this thing?</h2>
+					<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[0]}>
+						where are you with this thing?
+					</h2>
 					<fieldset class="mt-8 space-y-3">
 						<legend class="sr-only">stage</legend>
 						{#each STAGE_OPTIONS as opt (opt.value)}
@@ -183,7 +212,9 @@
 				<div class:hidden={step !== 2} class="space-y-8">
 					<div>
 						<p class={stepEyebrowClass}>step 2 of {TOTAL_STEPS} — the work</p>
-						<h2 class={stepHeadClass}>what does done look like?</h2>
+						<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[1]}>
+							what does done look like?
+						</h2>
 					</div>
 					<div>
 						<label for="built" class={labelClass}>where does your team work today?</label>
@@ -232,7 +263,9 @@
 				<div class:hidden={step !== 3} class="space-y-8">
 					<div>
 						<p class={stepEyebrowClass}>step 3 of {TOTAL_STEPS} — last bit</p>
-						<h2 class={stepHeadClass}>how do i reach you?</h2>
+						<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[2]}>
+							how do i reach you?
+						</h2>
 						<p class="text-fg-muted mt-3 text-sm leading-relaxed">
 							goes straight to my phone. i reply within a business day.
 						</p>
