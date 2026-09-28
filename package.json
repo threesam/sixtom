@@ -20,7 +20,7 @@
 		"@playwright/test": "1.63.0",
 		"@sveltejs/kit": "2.70.3",
 		"@sveltejs/vite-plugin-svelte": "7.3.1",
-		"@types/node": "26.6.2",
+		"@types/node": "26.6.3",
 		"@types/nodemailer": "8.0.2",
 		"eslint": "10.11.0",
 		"eslint-config-prettier": "10.1.8",
@@ -35,15 +35,15 @@
 		"tsx": "4.23.15",
 		"typescript": "6.0.3",
 		"typescript-eslint": "8.70.1",
-		"vite": "8.3.0",
-		"vitest": "5.0.1"
+		"vite": "8.3.1",
+		"vitest": "5.0.2"
 	},
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "6.3.4",
 		"@tailwindcss/forms": "0.5.11",
 		"@tailwindcss/typography": "0.5.20",
 		"@tailwindcss/vite": "4.3.3",
-		"nodemailer": "10.0.10"
+		"nodemailer": "10.0.11"
 	},
 	"pnpm": {
 		"overrides": {
