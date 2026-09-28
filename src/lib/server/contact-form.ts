@@ -75,7 +75,7 @@ function hasHeaderInjection(value: string): boolean {
 	return /[\r\n]/.test(value)
 }
 
-export type SubmissionResult =
+type SubmissionResult =
 	{ ok: true; message: string; suspicious?: true } | { ok: false; status: number; message: string }
 
 const SUCCESS_MESSAGE = "You're on the list."
@@ -106,7 +106,7 @@ function getTransporter(): Transporter {
  * needs to be identifiable, which `Contact: Waitlist signup` was not - every
  * signup arrived under the same subject.
  */
-export type SubmissionKind = 'waitlist' | 'contact'
+type SubmissionKind = 'waitlist' | 'contact'
 
 // The reply is still the gate, and the teardown behind it is paid: the reply
 // qualifies, the price qualifies harder. Bots fill forms and never answer
