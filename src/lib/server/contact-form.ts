@@ -3,9 +3,9 @@ import { env } from '$env/dynamic/private'
 import type { RequestEvent } from '@sveltejs/kit'
 import { site } from '$lib/content/site'
 
-export const MAX_NAME_LENGTH = 120
-export const MAX_EMAIL_LENGTH = 254
-export const MAX_MESSAGE_LENGTH = 5000
+const MAX_NAME_LENGTH = 120
+const MAX_EMAIL_LENGTH = 254
+const MAX_MESSAGE_LENGTH = 5000
 export const MAX_REQUEST_BYTES = 20_000
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -75,10 +75,10 @@ function hasHeaderInjection(value: string): boolean {
 	return /[\r\n]/.test(value)
 }
 
-export type SubmissionResult =
+type SubmissionResult =
 	{ ok: true; message: string; suspicious?: true } | { ok: false; status: number; message: string }
 
-export const SUCCESS_MESSAGE = "You're on the list."
+const SUCCESS_MESSAGE = "You're on the list."
 
 // Honeypot + time-trap silently 200 so attackers can't learn which layer
 // filtered them. `suspicious` lets callers skip side effects (e.g. the /notify
@@ -106,7 +106,7 @@ function getTransporter(): Transporter {
  * needs to be identifiable, which `Contact: Waitlist signup` was not - every
  * signup arrived under the same subject.
  */
-export type SubmissionKind = 'waitlist' | 'contact'
+type SubmissionKind = 'waitlist' | 'contact'
 
 // The reply is still the gate, and the teardown behind it is paid: the reply
 // qualifies, the price qualifies harder. Bots fill forms and never answer
@@ -185,8 +185,7 @@ export async function processSubmission(
 	}
 
 	// E2E bypass; env var unset in production, exact-match comparison.
-	const testEmailRaw = env['CONTACT_FORM_TEST_EMAIL']
-	const testEmail = typeof testEmailRaw === 'string' ? testEmailRaw.trim() : ''
+	const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
 	if (testEmail !== '' && email === testEmail) {
 		return { ok: true, message: SUCCESS_MESSAGE }
 	}
