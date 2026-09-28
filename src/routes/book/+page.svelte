@@ -169,11 +169,15 @@
 			<form
 				method="post"
 				novalidate
-				use:enhance={() => {
+				use:enhance={({ submitter }) => {
 					submitting = true
 					return async ({ update }) => {
 						await update()
 						submitting = false
+						// Disabling the focused submit button drops focus to <body>; on an
+						// error the form stays, so hand focus back for a keyboard retry.
+						await tick()
+						if (document.activeElement === document.body) submitter?.focus()
 					}
 				}}
 			>
