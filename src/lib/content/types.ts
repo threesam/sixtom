@@ -116,6 +116,7 @@ export interface GrandSlamOffer {
 		para: string
 		tiles: readonly Stat[]
 		para2: string
+		broke: { heading: string; lines: readonly string[]; turn: string }
 		bridge: string
 	}
 	isThisYou: {

@@ -37,20 +37,20 @@ export const site: Site = {
 		creditNote: 'credited in full against the engagement'
 	},
 	process: [
-		{ label: 'wk 1 · day 0', body: 'a 30-minute call. we pick the person and the system.' },
+		{ label: 'wk 1 · day 0', body: 'a 30-minute call. we pick the person and the process.' },
 		{
 			label: 'days 1–7',
-			body: 'we build it together, in your repo, on your data. a daily Loom so leadership watches it happen.'
+			body: 'we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.'
 		},
 		{
 			label: 'day 5 · scope check',
-			body: "if it can't ship in scope, we stop here. you keep what we built."
+			body: "if it won't be running in scope, we stop here. you keep what we built."
 		},
 		{
 			label: 'week 2',
-			body: 'the guardrails go in. the rest of the team gets set up. one session with leadership.'
+			body: 'the red light goes on. the guardrails go in. the rest of the team gets set up. one session with leadership.'
 		},
-		{ label: 'day 10', body: 'shipped. your person owns it. (or the rest is free.)' },
+		{ label: 'day 10', body: 'running. your person owns it. (or the rest is free.)' },
 		{ label: 'day 30', body: "check-in. what stuck, what didn't." }
 	],
 	testimonial: {
@@ -65,10 +65,10 @@ export const calEvent: CalEvent = {
 	slug: 'discovery',
 	durationMinutes: 30,
 	description:
-		'30 minutes. tell me what you asked your team to do with AI and where it stalled. we figure out the X between them and shipping, and whether the engagement is the move. no pitch.',
+		'30 minutes. tell me what your team is building with AI and what still runs late. we figure out the X between all that building and things getting better, and whether the engagement is the move. no pitch.',
 	intakeQuestions: [
 		{
-			label: 'what did you ask your team to do with AI, and where did it stall?',
+			label: 'what is your team building with AI, and what still runs late?',
 			type: 'longText',
 			required: true
 		},

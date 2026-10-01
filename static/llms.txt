@@ -1,27 +1,27 @@
 # SIXTOM
 
-> you told them to use AI. nothing changed. the enablement engagement: two weeks, one team. by day 10 a named person on your team ships a real internal system, or the rest is free. $15,000 fixed. 1 team a month.
+> everyone's building. nothing's better. the enablement engagement: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. 1 team a month.
 
 ## what i do
 
-- **the enablement engagement — $15,000.** two weeks, one team. a named person on your team ships a real internal tool on your data. one fragile automation chain becomes code you can read, with alerts and a last-run time. the guardrails go in: permissions, a review gate, repo rules, customer data off desktops. everyone on the team gets set up, git gets explained with tracing paper, and leadership gets a session so the team follows. plus a runbook + Loom library and a 90-day map by day 30. total itemized value $28,000+. you own all of it.
+- **the enablement engagement — $15,000.** two weeks, one team. one process that lives in people's heads gets written down step by step, made runnable, and given a red light when a step is late. a named person on your team owns it. the guardrails go in: permissions, a review gate, repo rules, access trimmed. the people who run the process get set up, git gets explained with tracing paper, and leadership gets a session so the team follows. plus a runbook + Loom library and a 90-day map by day 30. total itemized value $28,000+. you own all of it.
 - **the teardown — $1,500, credited in full against the engagement if you book one within 30 days.** i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together.
 
 ## the guarantee
 
-your person ships the system by day 10, or the remaining payment is free. and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there. you keep everything built and pay only for the time used.
+your person is running the process by day 10, or the remaining payment is free. and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything built and pay only for the time used.
 
 ## who it's for
 
-you sent the memo and nothing changed. you have a team, and they aren't engineers. someone on it is curious, or already shipping without guardrails. you'd rather your people own it than rent a consultancy. (just you, no team yet? not yet.)
+your team is building and you can't tell what it adds up to. the people building aren't engineers. one person reviews everything, or nobody does. you'd rather your people own it than rent a consultancy. (nobody has shipped anything yet? start with the teardown. just you, no team yet? not yet.)
 
 ## how the two weeks go
 
-- wk 1 · day 0: a 30-minute call. we pick the person and the system.
-- days 1–7: we build it together, in your repo, on your data. a daily Loom so leadership watches it happen.
-- day 5 · scope check: if it can't ship in scope, we stop here. you keep what we built.
-- week 2: the guardrails go in. the rest of the team gets set up. one session with leadership.
-- day 10: shipped. your person owns it. (or the rest is free.)
+- wk 1 · day 0: a 30-minute call. we pick the person and the process.
+- days 1–7: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
+- day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
+- week 2: the red light goes on. the guardrails go in. the rest of the team gets set up. one session with leadership.
+- day 10: running. your person owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 
 ## pricing

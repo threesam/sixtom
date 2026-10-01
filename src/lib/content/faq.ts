@@ -9,7 +9,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'what does sixtom do?',
 		answer:
-			'you told your team to use AI and nothing changed. in two weeks, one named person on your team ships a real internal system, the fragile glue between your tools becomes code you can watch, and the guardrails hold once they get good. you own all of it.'
+			"your team is building with AI and the work isn't getting better. in two weeks, one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it, and the guardrails hold as more people build. you own all of it."
 	},
 	{
 		question: 'how much does it cost?',
@@ -19,7 +19,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: "what's the guarantee?",
 		answer:
-			"your person ships the system by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop. you keep everything built and pay only for the time used."
+			"your person is running the process by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used."
 	},
 	{
 		question: "what's the teardown?",
@@ -28,7 +28,7 @@ export const FAQ: readonly QA[] = [
 	},
 	{
 		question: 'how long does it take?',
-		answer: 'two weeks. shipped by day 10. one team a month, by appointment.'
+		answer: 'two weeks. running by day 10. one team a month, by appointment.'
 	},
 	{
 		question: 'does my team need to be technical?',
@@ -43,7 +43,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'what happens after the two weeks?',
 		answer:
-			"you own everything: the system, the repo, the runbook. there's a day-30 check-in to see what stuck. if you want me back for the next system, we talk then."
+			"you own everything: the process, the repo, the runbook. there's a day-30 check-in to see what stuck. if you want me back for the next process, we talk then."
 	},
 	{
 		question: "who's behind sixtom?",

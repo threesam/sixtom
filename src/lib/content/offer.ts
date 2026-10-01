@@ -5,43 +5,45 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 
 // The one offer: team AI enablement (repositioned 2026-09-23 from the
 // vibe-code rescue sprint; see vault "growth strategy 2026-09" + "price floor").
+// Niched by stage 2026-10-01: the buyer whose team is already building. The
+// deliverable is one process (written down, runnable, a red light), not a tool.
 // Rules baked in and pinned by content.test.ts: no "agent" in customer copy
 // (results over mechanism; AI is only ever the client's context), no slot
 // counters (honest at zero). Proof stays anonymized: the day job is never
 // named as a case study until there's a written OK to cite it.
 export const grandSlam: GrandSlamOffer = {
 	chip: '1 team a month · waitlist open',
-	headline: 'you told them to use AI. nothing changed.',
-	lead: "the memo went out. a few people tried it. a few more pretended to. the work looks the same. this year i've been turning ops, finance and marketing people into people who ship real systems. that's what i do for your team.",
+	headline: "everyone's building. nothing's better.",
+	lead: "the memo worked. people who were never hired to write code are shipping their own tools. the work still runs late. the numbers still don't match. this year i got ops, finance and marketing people shipping, then learned what breaks once they do. your team gets the second half.",
 	offerLine:
-		'the enablement engagement. two weeks, one team. by day 10 a named person on your team ships a real internal system, and the guardrails hold once they get good.',
+		"the enablement engagement. two weeks, one team. by day 10 one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it.",
 	stats: [
 		{ value: '2 weeks', label: 'one team' },
-		{ value: '1 owner', label: 'ships by day 10' },
+		{ value: '1 process', label: 'running by day 10' },
 		{ value: 'day 10 or free', label: 'the guarantee' }
 	],
 	wall: {
-		thesis: "setup was easy. what comes after isn't.",
-		para: "the tools got installed. the licenses got paid for. then half of marketing's week went to arguing which of three numbers is right. the glue between your apps broke and nobody noticed for a month. the one person who got good opened a 45,000-line pull request and nobody knew how to review it. the dashboard says live. nobody believes it.",
-		turn: "and it starts at the top. if leadership won't use it, the team won't either. every month it stays that way has a price:",
+		thesis: "building got cheap. deciding didn't.",
+		para: "anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. one engineer reviews everything everyone made, and the queue never empties. the tests pass. nobody can say whether the thing was worth making. and the date still slipped, because the steps live in three people's heads and a chat thread.",
+		turn: 'the tools were never the hard part. every month it stays like this has a price:',
 		costCards: [
-			{ title: 'the licenses', sub: 'paid for every month, opened twice' },
-			{ title: 'the glue', sub: 'automations that fail quietly until a customer finds out' },
-			{ title: 'the one who got good', sub: 'shipping fast with no guardrails, until prod breaks' }
+			{ title: 'the pile', sub: 'tools nobody asked for, kept alive by whoever made them' },
+			{ title: 'the queue', sub: 'one person reviewing everything, so everything waits' },
+			{ title: 'the date', sub: 'late, and nobody knew until it was too late to fix' }
 		],
 		costLine: 'that part is fixable in two weeks.'
 	},
 	ledger: {
 		eyebrow: 'what you get',
-		heading: 'one person shipping. guardrails that hold.',
-		para: "i sit with your team for two weeks and we build something real, on your data, in your repo. everything in the engagement, and what it'd cost you piecemeal:",
+		heading: 'one process running. guardrails that hold.',
+		para: "i sit with your team for two weeks. we take one process that lives in people's heads and turn it into something the team can run and watch. you pick which one on the first call. everything in the engagement, and what it'd cost you piecemeal:",
 		groups: [
 			{
 				title: 'the diagnosis',
 				lines: [
 					{
-						line: 'adoption teardown',
-						sub: "who's using it, where it's stuck, what's quietly broken",
+						line: 'the inventory',
+						sub: "everything your team has built, who uses it, what's quietly broken",
 						valueUSD: 1500
 					},
 					{
@@ -52,22 +54,22 @@ export const grandSlam: GrandSlamOffer = {
 				]
 			},
 			{
-				title: 'the build',
+				title: 'the process',
 				lines: [
 					{
-						line: 'the system',
-						sub: 'a named person on your team ships a real internal tool, on your data',
+						line: 'written down',
+						sub: 'one process, step by step, with an owner and a yes or no on each step',
 						valueUSD: null,
 						valueLabel: 'core'
 					},
 					{
-						line: 'glue → code',
-						sub: 'one fragile automation chain rebuilt as code you can read, with alerts and a last-run time',
+						line: 'runnable',
+						sub: 'the steps your team repeats every week become something anyone can run by asking',
 						valueUSD: 4000
 					},
 					{
-						line: 'honest status',
-						sub: 'every "live" badge shows when it last synced',
+						line: 'the red light',
+						sub: 'when a step is late, its owner hears that day. so does everyone waiting on it',
 						valueUSD: 1000
 					}
 				]
@@ -77,7 +79,7 @@ export const grandSlam: GrandSlamOffer = {
 				lines: [
 					{
 						line: 'permissions + review gate',
-						sub: 'nothing reaches production without passing review',
+						sub: 'nothing reaches production without review, and the person who knows the work reviews it',
 						valueUSD: 3000
 					},
 					{
@@ -86,8 +88,8 @@ export const grandSlam: GrandSlamOffer = {
 						valueUSD: 2500
 					},
 					{
-						line: 'customer data off desktops',
-						sub: 'it lives somewhere with access control, not on a laptop',
+						line: 'access, trimmed',
+						sub: 'who needs to be in the repo and the systems, and who never did. customer data comes off laptops',
 						valueUSD: 2000
 					}
 				]
@@ -97,7 +99,7 @@ export const grandSlam: GrandSlamOffer = {
 				lines: [
 					{
 						line: 'hands-on onboarding',
-						sub: 'everyone on the team set up and shipping. by the tenth person it takes one sitting',
+						sub: 'the people who run the process, set up and running it. by the tenth person it takes one sitting',
 						valueUSD: 4000
 					},
 					{
@@ -117,7 +119,7 @@ export const grandSlam: GrandSlamOffer = {
 				note: 'bonuses land by day 30.',
 				lines: [
 					{
-						line: 'shipped by day 10',
+						line: 'running by day 10',
 						sub: 'you own 100% of it',
 						valueUSD: null,
 						valueLabel: 'included'
@@ -130,7 +132,7 @@ export const grandSlam: GrandSlamOffer = {
 					},
 					{
 						line: 'the 90-day map',
-						sub: 'the next three systems worth building, in order',
+						sub: 'the next three things worth doing, in order. and the ones to buy instead of build',
 						valueUSD: 1500
 					}
 				]
@@ -146,8 +148,8 @@ export const grandSlam: GrandSlamOffer = {
 	},
 	guarantee: {
 		// \n = author-controlled line break: clause per line on desktop.
-		headline: 'your person ships by day 10,\nor the rest is free.',
-		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
+		headline: 'your person runs it by day 10,\nor the rest is free.',
+		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
 	proof: {
 		eyebrow: 'proof · inside a consumer brand',
@@ -161,6 +163,16 @@ export const grandSlam: GrandSlamOffer = {
 		],
 		para2:
 			'one finance analyst shipped dashboards fast enough that their lead asked them to slow down. the automations that failed quietly are code now, with alerts. git got explained with tracing paper, and it stuck.',
+		broke: {
+			heading: 'what broke when it worked.',
+			lines: [
+				'i became the review queue. everything everyone built waited on me.',
+				'there are thousands of tests now. good ones. most never needed to exist.',
+				'i built tools faster than i asked who would use them.',
+				"the process was in people's heads. nothing can run that, and neither can the next hire."
+			],
+			turn: "so the first thing we make now is a document. the build comes second, and it's smaller."
+		},
 		bridge:
 			'before this, the craft: a solo therapy practice rebuilt in 4h43m. mobile load 8.3s → 2.9s. pageviews up 185%. same hands.'
 	},
@@ -168,13 +180,14 @@ export const grandSlam: GrandSlamOffer = {
 		heading: 'is this for you?',
 		yesLead: 'yes, if:',
 		yes: [
-			'you sent the memo. nothing changed.',
-			"you have a team, and they aren't engineers",
-			'someone on it is curious, or already shipping without guardrails',
+			"your team is building. you can't tell what it adds up to",
+			"the people building aren't engineers",
+			'one person reviews everything, or nobody does',
 			"you'd rather your people own it than rent a consultancy"
 		],
 		noLead: 'not yet, if:',
 		no: [
+			'nobody on your team has shipped anything yet. start with the teardown',
 			"it's just you. no team yet",
 			'you want a workshop and a recording',
 			'you want it done for you, with nobody on your side learning'
@@ -185,8 +198,8 @@ export const grandSlam: GrandSlamOffer = {
 		scarcity: 'one team a month · by appointment',
 		heading: 'join the waitlist.',
 		emailPlaceholder: 'email you actually check',
-		buildLabel: 'what did you ask your team to do?',
-		buildPlaceholder: 'use AI for… a few tried it, then…',
+		buildLabel: 'what is your team building, and what still runs late?',
+		buildPlaceholder: 'everyone has a dashboard now, but…',
 		button: 'get on the list →',
 		// Split around site.teardown.creditNote so the claim can carry its own
 		// condition inline — the unqualified version outruns what /terms actually says.

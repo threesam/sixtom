@@ -33,14 +33,14 @@
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">the guarantee</h2>
 				<p class="mt-3">
-					the engagement: your named person ships the system by day 10, or the remaining payment is
-					waived. "ships" means the system and the person we name in writing on the day-0 call. the
-					guarantee clock pauses while something i need sits with you — access, approvals, content,
-					feedback — and resumes when i have it.
+					the engagement: your named person is running the process by day 10, or the remaining
+					payment is waived. "running" means the process and the person we name in writing on the
+					day-0 call. the guarantee clock pauses while something i need sits with you — access,
+					approvals, content, feedback — and resumes when i have it.
 				</p>
 				<p class="mt-3">
-					the day-5 scope check — if we both see it won't ship in scope, we stop there. you keep
-					everything built and pay only for the time used.
+					the day-5 scope check — if we both see it won't be running in scope, we stop there. you
+					keep everything built and pay only for the time used.
 				</p>
 			</section>
 

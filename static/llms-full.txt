@@ -1,48 +1,48 @@
 # SIXTOM — full content
 
-> you told them to use AI. nothing changed. the enablement engagement: two weeks, one team. by day 10 a named person on your team ships a real internal system, or the rest is free. $15,000 fixed. 1 team a month.
+> everyone's building. nothing's better. the enablement engagement: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. 1 team a month.
 
 ## thesis
 
-setup was easy. what comes after isn't.
+building got cheap. deciding didn't.
 
-the memo went out. a few people tried it. a few more pretended to. the work looks the same. this year i've been turning ops, finance and marketing people into people who ship real systems. that's what i do for your team.
+the memo worked. people who were never hired to write code are shipping their own tools. the work still runs late. the numbers still don't match. this year i got ops, finance and marketing people shipping, then learned what breaks once they do. your team gets the second half.
 
-the tools got installed. the licenses got paid for. then half of marketing's week went to arguing which of three numbers is right. the glue between your apps broke and nobody noticed for a month. the one person who got good opened a 45,000-line pull request and nobody knew how to review it. the dashboard says live. nobody believes it. and it starts at the top. if leadership won't use it, the team won't either. every month it stays that way has a price: the licenses, paid for every month and opened twice. the glue, failing quietly until a customer finds out. the one who got good, shipping fast with no guardrails until prod breaks. that part is fixable in two weeks.
+anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. one engineer reviews everything everyone made, and the queue never empties. the tests pass. nobody can say whether the thing was worth making. and the date still slipped, because the steps live in three people's heads and a chat thread. the tools were never the hard part. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviewing everything, so everything waits. the date: late, and nobody knew until it was too late to fix. that part is fixable in two weeks.
 
 ## the offer — one engagement, everything in it
 
-i sit with your team for two weeks and we build something real, on your data, in your repo. everything in the engagement, and what it'd cost you piecemeal:
+i sit with your team for two weeks. we take one process that lives in people's heads and turn it into something the team can run and watch. you pick which one on the first call. everything in the engagement, and what it'd cost you piecemeal:
 
 ### the diagnosis
 
-- adoption teardown — who's using it, where it's stuck, what's quietly broken — $1,500
+- the inventory — everything your team has built, who uses it, what's quietly broken — $1,500
 - one metric, one definition — the number everyone argues about gets a single source of truth — $3,000
 
-### the build
+### the process
 
-- the system — a named person on your team ships a real internal tool, on your data — core
-- glue → code — one fragile automation chain rebuilt as code you can read, with alerts and a last-run time — $4,000
-- honest status — every "live" badge shows when it last synced — $1,000
+- written down — one process, step by step, with an owner and a yes or no on each step — core
+- runnable — the steps your team repeats every week become something anyone can run by asking — $4,000
+- the red light — when a step is late, its owner hears that day. so does everyone waiting on it — $1,000
 
 ### the guardrails
 
-- permissions + review gate — nothing reaches production without passing review — $3,000
+- permissions + review gate — nothing reaches production without review, and the person who knows the work reviews it — $3,000
 - repo rules — one branch per tool, hooks, shared instructions. a 45,000-line PR can't happen — $2,500
-- customer data off desktops — it lives somewhere with access control, not on a laptop — $2,000
+- access, trimmed — who needs to be in the repo and the systems, and who never did. customer data comes off laptops — $2,000
 
 ### the people
 
-- hands-on onboarding — everyone on the team set up and shipping. by the tenth person it takes one sitting — $4,000
+- hands-on onboarding — the people who run the process, set up and running it. by the tenth person it takes one sitting — $4,000
 - the tracing-paper session — git and review, explained so it sticks for people who never wanted to learn git — $1,500
 - the leadership session — the people at the top use it first, so the team follows — $2,000
 
 ### the close (bonuses land by day 30)
 
-- shipped by day 10 — you own 100% of it — included
+- running by day 10 — you own 100% of it — included
 - day-30 check-in — what stuck, what didn't — $500
 - the runbook + Loom library — so the next hire onboards without me — $1,500
-- the 90-day map — the next three systems worth building, in order — $1,500
+- the 90-day map — the next three things worth doing, in order. and the ones to buy instead of build — $1,500
 
 **total value: $28,000+. you pay: $15,000 fixed. half up front, half on day 10.**
 
@@ -50,9 +50,9 @@ a consultancy quotes six figures and delivers a deck. a workshop is half a day a
 
 ## the guarantee
 
-your person ships by day 10, or the rest is free.
+your person runs it by day 10, or the rest is free.
 
-and there's a floor under it: day 5, we both look at it. if we can both see it won't ship in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
+and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
 
 ## the teardown
 
@@ -62,28 +62,30 @@ $1,500, credited in full against the engagement if you book one within 30 days. 
 
 since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down. git got explained with tracing paper, and it stuck.
 
+what broke when it worked. i became the review queue. everything everyone built waited on me. there are thousands of tests now. good ones. most never needed to exist. i built tools faster than i asked who would use them. the process was in people's heads. nothing can run that, and neither can the next hire. so the first thing we make now is a document. the build comes second, and it's smaller.
+
 before this, the craft: a solo therapy practice rebuilt in 4h43m. mobile load 8.3s → 2.9s. pageviews up 185%. same hands.
 
 ## who it's for
 
-this is for you if: you sent the memo. nothing changed · you have a team, and they aren't engineers · someone on it is curious, or already shipping without guardrails · you'd rather your people own it than rent a consultancy.
+this is for you if: your team is building. you can't tell what it adds up to · the people building aren't engineers · one person reviews everything, or nobody does · you'd rather your people own it than rent a consultancy.
 
-not yet if: it's just you. no team yet · you want a workshop and a recording · you want it done for you, with nobody on your side learning.
+not yet if: nobody on your team has shipped anything yet. start with the teardown · it's just you. no team yet · you want a workshop and a recording · you want it done for you, with nobody on your side learning.
 
 ## how the two weeks go
 
-- wk 1 · day 0: a 30-minute call. we pick the person and the system.
-- days 1–7: we build it together, in your repo, on your data. a daily Loom so leadership watches it happen.
-- day 5 · scope check: if it can't ship in scope, we stop here. you keep what we built.
-- week 2: the guardrails go in. the rest of the team gets set up. one session with leadership.
-- day 10: shipped. your person owns it. (or the rest is free.)
+- wk 1 · day 0: a 30-minute call. we pick the person and the process.
+- days 1–7: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
+- day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
+- week 2: the red light goes on. the guardrails go in. the rest of the team gets set up. one session with leadership.
+- day 10: running. your person owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 
 ## FAQ
 
 **what does sixtom do?**
 
-you told your team to use AI and nothing changed. in two weeks, one named person on your team ships a real internal system, the fragile glue between your tools becomes code you can watch, and the guardrails hold once they get good. you own all of it.
+your team is building with AI and the work isn't getting better. in two weeks, one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it, and the guardrails hold as more people build. you own all of it.
 
 **how much does it cost?**
 
@@ -91,7 +93,7 @@ $15,000 fixed. half up front, half on day 10. that buys the whole ledger on the 
 
 **what's the guarantee?**
 
-your person ships the system by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't ship in scope, we stop. you keep everything built and pay only for the time used.
+your person is running the process by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used.
 
 **what's the teardown?**
 
@@ -99,7 +101,7 @@ $1,500, credited in full against the engagement if you book one within 30 days. 
 
 **how long does it take?**
 
-two weeks. shipped by day 10. one team a month, by appointment.
+two weeks. running by day 10. one team a month, by appointment.
 
 **does my team need to be technical?**
 
@@ -111,7 +113,7 @@ one team a month, by appointment. that's the whole model. you get my full attent
 
 **what happens after the two weeks?**
 
-you own everything: the system, the repo, the runbook. there's a day-30 check-in to see what stuck. if you want me back for the next system, we talk then.
+you own everything: the process, the repo, the runbook. there's a day-30 check-in to see what stuck. if you want me back for the next process, we talk then.
 
 **who's behind sixtom?**
 
