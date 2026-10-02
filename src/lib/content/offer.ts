@@ -24,7 +24,7 @@ export const grandSlam: GrandSlamOffer = {
 	],
 	wall: {
 		thesis: "building got cheap. deciding didn't.",
-		para: 'anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. the launch still slipped.',
+		para: 'anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist.',
 		turn: 'the tools were never the hard part. every month it stays like this has a price:',
 		costCards: [
 			{ title: 'the pile', sub: 'tools nobody asked for, kept alive by whoever made them' },
@@ -98,7 +98,7 @@ export const grandSlam: GrandSlamOffer = {
 				lines: [
 					{
 						line: 'hands-on onboarding',
-						sub: 'the people who run the process, set up and running it. by the tenth person it takes one sitting',
+						sub: 'the people who run the process, set up. by the tenth person it takes one sitting',
 						valueUSD: 4000
 					},
 					{
@@ -181,7 +181,7 @@ export const grandSlam: GrandSlamOffer = {
 		yes: [
 			"your team is building. you can't tell what it adds up to",
 			"the people building aren't engineers",
-			'one person reviews everything, or nobody does',
+			'a date slipped and nobody saw it coming',
 			"you'd rather your people own it than rent a consultancy"
 		],
 		noLead: 'not yet, if:',

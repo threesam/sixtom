@@ -140,7 +140,7 @@ export function serviceJsonLd(): ServiceLd {
 			{
 				'@type': 'Offer',
 				name: site.teardown.longName,
-				description: `a paid teardown of how your team uses AI today, ${site.teardown.creditNote}. a 10-minute Loom and a written list of what's stuck and what i'd fix first.`,
+				description: `a paid teardown of how your team uses AI today, ${site.teardown.creditNote} if you book one within 30 days. a 10-minute Loom and a written list of what's stuck and what i'd fix first.`,
 				price: String(site.teardown.priceUSD),
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/InStock',

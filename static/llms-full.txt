@@ -8,7 +8,7 @@ building got cheap. deciding didn't.
 
 the memo worked. your people are building their own tools with AI. the work still runs late, and the numbers still don't match.
 
-anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. the launch still slipped. the tools were never the hard part. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips. that part is fixable in two weeks.
+anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist. the tools were never the hard part. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips. that part is fixable in two weeks.
 
 ## the offer — one engagement, everything in it
 
@@ -33,7 +33,7 @@ two weeks with your team, on the one process that keeps running late. you pick i
 
 ### the people
 
-- hands-on onboarding — the people who run the process, set up and running it. by the tenth person it takes one sitting — $4,000
+- hands-on onboarding — the people who run the process, set up. by the tenth person it takes one sitting — $4,000
 - the tracing-paper session — git and review, explained so it sticks for people who never wanted to learn git — $1,500
 - the leadership session — the people at the top use it first, so the team follows — $2,000
 
@@ -68,7 +68,7 @@ before this, the craft: a solo therapy practice rebuilt in 4h43m. mobile load 8.
 
 ## who it's for
 
-this is for you if: your team is building. you can't tell what it adds up to · the people building aren't engineers · one person reviews everything, or nobody does · you'd rather your people own it than rent a consultancy.
+this is for you if: your team is building. you can't tell what it adds up to · the people building aren't engineers · a date slipped and nobody saw it coming · you'd rather your people own it than rent a consultancy.
 
 not yet if: nobody on your team has shipped anything yet. start with the teardown · it's just you. no team yet · you want a workshop and a recording · you want it done for you, with nobody on your side learning.
 
@@ -77,7 +77,7 @@ not yet if: nobody on your team has shipped anything yet. start with the teardow
 - wk 1 · day 0: a 30-minute call. we pick the person and the process.
 - days 1–7: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
-- week 2: the red light goes on. the guardrails go in. the rest of the team gets set up. one session with leadership.
+- week 2: the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.
 - day 10: running. your person owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 

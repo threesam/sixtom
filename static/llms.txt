@@ -13,14 +13,14 @@ your person is running the process by day 10, or the remaining payment is free. 
 
 ## who it's for
 
-your team is building and you can't tell what it adds up to. the people building aren't engineers. one person reviews everything, or nobody does. you'd rather your people own it than rent a consultancy. (nobody has shipped anything yet? start with the teardown. just you, no team yet? not yet.)
+your team is building and you can't tell what it adds up to. the people building aren't engineers. a date slipped and nobody saw it coming. you'd rather your people own it than rent a consultancy. (nobody has shipped anything yet? start with the teardown. just you, no team yet? not yet.)
 
 ## how the two weeks go
 
 - wk 1 · day 0: a 30-minute call. we pick the person and the process.
 - days 1–7: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
-- week 2: the red light goes on. the guardrails go in. the rest of the team gets set up. one session with leadership.
+- week 2: the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.
 - day 10: running. your person owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 

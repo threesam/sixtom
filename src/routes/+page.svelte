@@ -164,7 +164,7 @@
 		<blockquote class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg">
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
-				— {site.testimonial.attribution}
+				{site.testimonial.attribution}
 			</footer>
 		</blockquote>
 	</div>
