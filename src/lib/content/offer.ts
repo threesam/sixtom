@@ -25,7 +25,7 @@ export const grandSlam: GrandSlamOffer = {
 	wall: {
 		thesis: "building got cheap. deciding didn't.",
 		para: 'anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist.',
-		turn: 'the tools were never the hard part. every month it stays like this has a price:',
+		turn: 'every month it stays like this has a price:',
 		costCards: [
 			{ title: 'the pile', sub: 'tools nobody asked for, kept alive by whoever made them' },
 			{ title: 'the queue', sub: 'one person reviews everything, or nobody reviews anything' },

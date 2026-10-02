@@ -36,8 +36,9 @@
 					the engagement: your named person is running the process by day 10, or the remaining
 					payment is waived. "running" means the process we name in writing on the day-0 call is
 					written down, your named person has run it start to finish, and a late step alerts its
-					owner. the guarantee clock pauses while something i need sits with you — access,
-					approvals, content, feedback — and resumes when i have it.
+					owner and the people waiting on it, the same day. the guarantee clock pauses while
+					something i need sits with you — access, approvals, content, feedback — and resumes when i
+					have it.
 				</p>
 				<p class="mt-3">
 					the day-5 scope check — if we both see it won't be running in scope, we stop there. you

@@ -8,7 +8,7 @@ building got cheap. deciding didn't.
 
 the memo worked. your people are building their own tools with AI. the work still runs late, and the numbers still don't match.
 
-anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist. the tools were never the hard part. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips. that part is fixable in two weeks.
+anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips. that part is fixable in two weeks.
 
 ## the offer — one engagement, everything in it
 
