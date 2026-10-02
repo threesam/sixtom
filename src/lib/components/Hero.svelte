@@ -8,6 +8,8 @@
 		.split(/(?<=\.)\s+/)
 		.map((beat) => beat.replace(/\.$/, ''))
 	const beatTwo = rest.join(' ')
+	// One quiet line under the CTA: values only, the stat labels don't render.
+	const facts = grandSlam.stats.map((stat) => stat.value).join(' · ')
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -40,7 +42,7 @@
 			<span class="block text-balance">{beatTwo}</span>
 		</h1>
 		<!-- offerLine stays in content for the JSON-LD description; on screen the
-		     stat beats below carry the offer facts so the hero reads once, not twice. -->
+		     facts line below carries the offer so the hero reads once, not twice. -->
 		<p class="text-fg-muted mx-auto mt-8 max-w-3xl text-base leading-relaxed md:text-lg">
 			{grandSlam.lead}
 		</p>
@@ -48,27 +50,18 @@
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_waitlist"
-				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
+				class="btn-accent w-full px-8 py-3.5 text-center text-lg font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
 			>
 				join the waitlist →
 			</a>
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_teardown"
-				class="text-fg hover:text-fg-subtle text-xs tracking-widest uppercase transition-colors"
+				class="text-fg-muted hover:text-fg text-xs tracking-widest uppercase transition-colors"
 			>
 				or start with a teardown
 			</a>
 		</div>
-		<ul
-			class="mt-10 flex list-none flex-wrap justify-between gap-x-2 gap-y-4 p-0 md:mt-12 md:justify-center md:gap-x-10"
-		>
-			{#each grandSlam.stats as stat (stat.label)}
-				<li>
-					<p class="text-fg text-base font-bold tabular-nums md:text-xl">{stat.value}</p>
-					<p class="text-fg-subtle text-xs uppercase md:tracking-widest">{stat.label}</p>
-				</li>
-			{/each}
-		</ul>
+		<p class="text-fg-subtle mt-8 text-xs tracking-wide md:mt-10 md:text-sm">{facts}</p>
 	</div>
 </section>
