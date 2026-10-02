@@ -13,7 +13,7 @@
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 
 	const description =
-		'the enablement engagement: two weeks, one team. one process written down and running by day 10, or the rest is free. $15,000, one team a month.'
+		"your team is building with AI and nothing's better. two weeks: one process written down and running by day 10, or the rest is free. $15,000 fixed."
 	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
@@ -53,7 +53,6 @@
 <!-- the ledger -->
 <section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.ledger.eyebrow}</p>
 		<h2 class={h2Class}>{o.ledger.heading}</h2>
 		<p class={bodyClass}>{o.ledger.para}</p>
 

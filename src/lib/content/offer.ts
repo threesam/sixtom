@@ -14,29 +14,28 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 export const grandSlam: GrandSlamOffer = {
 	chip: '1 team a month · waitlist open',
 	headline: "everyone's building. nothing's better.",
-	lead: "the memo worked. people who were never hired to write code are shipping their own tools. the work still runs late. the numbers still don't match. this year i got ops, finance and marketing people shipping, then learned what breaks once they do. your team gets the second half.",
+	lead: "the memo worked. your people are building their own tools with AI. the work still runs late, and the numbers still don't match.",
 	offerLine:
-		"the enablement engagement. two weeks, one team. by day 10 one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it.",
+		"the enablement engagement, for teams already building with AI. two weeks, one team. by day 10 one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it.",
 	stats: [
 		{ value: '2 weeks', label: 'one team' },
-		{ value: '1 process', label: 'running by day 10' },
+		{ value: '1 process', label: 'written down, running' },
 		{ value: 'day 10 or free', label: 'the guarantee' }
 	],
 	wall: {
 		thesis: "building got cheap. deciding didn't.",
-		para: "anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. one engineer reviews everything everyone made, and the queue never empties. the tests pass. nobody can say whether the thing was worth making. and the date still slipped, because the steps live in three people's heads and a chat thread.",
+		para: 'anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. the launch still slipped.',
 		turn: 'the tools were never the hard part. every month it stays like this has a price:',
 		costCards: [
 			{ title: 'the pile', sub: 'tools nobody asked for, kept alive by whoever made them' },
-			{ title: 'the queue', sub: 'one person reviewing everything, so everything waits' },
-			{ title: 'the date', sub: 'late, and nobody knew until it was too late to fix' }
+			{ title: 'the queue', sub: 'one person reviews everything, or nobody reviews anything' },
+			{ title: 'the date', sub: 'the steps live in three heads and a chat thread, so it slips' }
 		],
 		costLine: 'that part is fixable in two weeks.'
 	},
 	ledger: {
-		eyebrow: 'what you get',
 		heading: 'one process running. guardrails that hold.',
-		para: "i sit with your team for two weeks. we take one process that lives in people's heads and turn it into something the team can run and watch. you pick which one on the first call. everything in the engagement, and what it'd cost you piecemeal:",
+		para: "two weeks with your team, on the one process that keeps running late. you pick it on the first call. everything in the engagement, and what it'd cost you piecemeal:",
 		groups: [
 			{
 				title: 'the diagnosis',
@@ -162,14 +161,14 @@ export const grandSlam: GrandSlamOffer = {
 			{ value: '3', label: 'glue chains now code' }
 		],
 		para2:
-			'one finance analyst shipped dashboards fast enough that their lead asked them to slow down. the automations that failed quietly are code now, with alerts. git got explained with tracing paper, and it stuck.',
+			'one finance analyst shipped dashboards fast enough that their lead asked them to slow down. the automations that failed quietly are code now, with alerts.',
 		broke: {
 			heading: 'what broke when it worked.',
 			lines: [
-				'i became the review queue. everything everyone built waited on me.',
-				'there are thousands of tests now. good ones. most never needed to exist.',
+				'i became the review queue. everything waited on me.',
+				'thousands of tests, good ones. most never needed to exist.',
 				'i built tools faster than i asked who would use them.',
-				"the process was in people's heads. nothing can run that, and neither can the next hire."
+				"the process stayed in people's heads. nobody can run that."
 			],
 			turn: "so the first thing we make now is a document. the build comes second, and it's smaller."
 		},

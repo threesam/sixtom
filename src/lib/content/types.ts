@@ -102,7 +102,6 @@ export interface GrandSlamOffer {
 		costLine: string
 	}
 	ledger: {
-		eyebrow: string
 		heading: string
 		para: string
 		groups: readonly LedgerGroup[]

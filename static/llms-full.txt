@@ -1,18 +1,18 @@
 # SIXTOM — full content
 
-> everyone's building. nothing's better. the enablement engagement: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. 1 team a month.
+> everyone's building. nothing's better. the enablement engagement, for teams already building with AI: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. 1 team a month.
 
 ## thesis
 
 building got cheap. deciding didn't.
 
-the memo worked. people who were never hired to write code are shipping their own tools. the work still runs late. the numbers still don't match. this year i got ops, finance and marketing people shipping, then learned what breaks once they do. your team gets the second half.
+the memo worked. your people are building their own tools with AI. the work still runs late, and the numbers still don't match.
 
-anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. one engineer reviews everything everyone made, and the queue never empties. the tests pass. nobody can say whether the thing was worth making. and the date still slipped, because the steps live in three people's heads and a chat thread. the tools were never the hard part. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviewing everything, so everything waits. the date: late, and nobody knew until it was too late to fix. that part is fixable in two weeks.
+anyone on your team can build a tool in an afternoon now. so they do. there are five dashboards and nobody is sure which number is right. the launch still slipped. the tools were never the hard part. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips. that part is fixable in two weeks.
 
 ## the offer — one engagement, everything in it
 
-i sit with your team for two weeks. we take one process that lives in people's heads and turn it into something the team can run and watch. you pick which one on the first call. everything in the engagement, and what it'd cost you piecemeal:
+two weeks with your team, on the one process that keeps running late. you pick it on the first call. everything in the engagement, and what it'd cost you piecemeal:
 
 ### the diagnosis
 
@@ -60,9 +60,9 @@ $1,500, credited in full against the engagement if you book one within 30 days. 
 
 ## proof — inside a consumer brand
 
-since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down. git got explained with tracing paper, and it stuck.
+since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down.
 
-what broke when it worked. i became the review queue. everything everyone built waited on me. there are thousands of tests now. good ones. most never needed to exist. i built tools faster than i asked who would use them. the process was in people's heads. nothing can run that, and neither can the next hire. so the first thing we make now is a document. the build comes second, and it's smaller.
+what broke when it worked. i became the review queue. everything waited on me. thousands of tests, good ones. most never needed to exist. i built tools faster than i asked who would use them. the process stayed in people's heads. nobody can run that. so the first thing we make now is a document. the build comes second, and it's smaller.
 
 before this, the craft: a solo therapy practice rebuilt in 4h43m. mobile load 8.3s → 2.9s. pageviews up 185%. same hands.
 
