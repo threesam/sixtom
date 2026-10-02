@@ -93,7 +93,7 @@ export interface GrandSlamOffer {
 	headline: string
 	lead: string
 	offerLine: string
-	stats: readonly Stat[]
+	facts: readonly string[]
 	wall: {
 		thesis: string
 		para: string

@@ -8,8 +8,6 @@
 		.split(/(?<=\.)\s+/)
 		.map((beat) => beat.replace(/\.$/, ''))
 	const beatTwo = rest.join(' ')
-	// One quiet line under the CTA: values only, the stat labels don't render.
-	const facts = grandSlam.stats.map((stat) => stat.value).join(' · ')
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -41,9 +39,9 @@
 			<span class="block text-balance">{beatOne}</span>
 			<span class="block text-balance">{beatTwo}</span>
 		</h1>
-		<!-- offerLine stays in content for the JSON-LD description; on screen the
-		     facts line below carries the offer so the hero reads once, not twice. -->
-		<p class="text-fg-muted mx-auto mt-8 max-w-3xl text-base leading-relaxed md:text-lg">
+		<!-- Headline = the problem, lead = what you get, facts = the terms. offerLine
+		     stays in content for the JSON-LD description. -->
+		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
 			{grandSlam.lead}
 		</p>
 		<div class="mt-10 flex flex-col items-start gap-4 md:mt-12 md:items-center">
@@ -62,6 +60,8 @@
 				or start with a teardown
 			</a>
 		</div>
-		<p class="text-fg-subtle mt-8 text-xs tracking-wide md:mt-10 md:text-sm">{facts}</p>
+		<p class="text-fg-subtle mt-8 text-xs tracking-wide md:mt-10 md:text-sm">
+			{grandSlam.facts.join(' · ')}
+		</p>
 	</div>
 </section>
