@@ -33,6 +33,7 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'book_step_next', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'book_submit', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'book_qualified_booking_click', dir: 'route', path: 'book/+page.svelte' },
+	{ event: 'book_early_teardown', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'footer_home', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_log', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_faq', dir: 'component', path: 'SiteFooter.svelte' },

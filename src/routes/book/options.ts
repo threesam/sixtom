@@ -14,3 +14,7 @@ export const BUDGET_OPTIONS = [
 
 // Stage that auto-disqualifies: the engagement is for a team.
 export const DISQUALIFY_STAGE = 'solo'
+
+// Stages before anyone ships: the engagement needs something already built to
+// work on, so "next" routes these to the teardown instead of the call.
+export const TEARDOWN_STAGES: readonly string[] = ['memo-no-change', 'some-trying']

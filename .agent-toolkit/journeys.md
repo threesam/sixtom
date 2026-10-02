@@ -27,10 +27,11 @@ the hero/offer copy changes often; the funnel shape shouldn't.
 
 ## 4. book wizard (keyboard)
 
-1. Open `/book`. Pick a team stage with the keyboard, press "next →". Expect focus on the step 2 heading.
+1. Open `/book`. Pick "people are shipping" with the keyboard, press "next →". Expect focus on the step 2 heading.
 2. Fill the three step-2 fields, "next →". Expect focus on the step 3 heading; "← back" returns focus to the step 2 heading.
 3. Fill name, email e2e@test.sixtom.local, company url; submit. Expect the "qualified" panel with a "book the call" link to cal.com, and focus on its message.
 4. Reload `/book`, pick "solo". Expect the "not yet" panel with focus on its message; "i picked the wrong one" returns to step 1 with focus on its heading.
+5. Reload `/book`, pick the first stage, press "next →". Expect the "start smaller" panel with focus on its message and `book_early_teardown` linking to `/notify`; "i picked the wrong one" returns to step 1 with focus on its heading.
 
 ## 5. 404
 
