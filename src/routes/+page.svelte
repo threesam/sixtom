@@ -13,7 +13,7 @@
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 
 	const description =
-		'the enablement engagement: two weeks, one team. your person ships a real system by day 10, or the rest is free. $15,000, one team a month.'
+		"your team is building with AI and nothing's better. two weeks: one process written down and running by day 10, or the rest is free. $15,000 fixed."
 	const pageTitle = `SIXTOM — ${o.headline}`
 </script>
 
@@ -53,7 +53,6 @@
 <!-- the ledger -->
 <section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.ledger.eyebrow}</p>
 		<h2 class={h2Class}>{o.ledger.heading}</h2>
 		<p class={bodyClass}>{o.ledger.para}</p>
 
@@ -150,11 +149,22 @@
 			{/each}
 		</ul>
 		<p class={bodyClass}>{o.proof.para2}</p>
+		<h3 class="text-fg mt-12 text-xl font-bold tracking-tight md:text-2xl">
+			{o.proof.broke.heading}
+		</h3>
+		<ul class="text-fg-muted mt-4 max-w-2xl space-y-3 text-base leading-relaxed md:text-lg">
+			{#each o.proof.broke.lines as line (line)}
+				<li>{line}</li>
+			{/each}
+		</ul>
+		<p class="text-fg mt-6 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
+			{o.proof.broke.turn}
+		</p>
 		<p class="text-fg-subtle mt-6 max-w-2xl text-sm leading-relaxed">{o.proof.bridge}</p>
 		<blockquote class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg">
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
-				— {site.testimonial.attribution}
+				{site.testimonial.attribution}
 			</footer>
 		</blockquote>
 	</div>

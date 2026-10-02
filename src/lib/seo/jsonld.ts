@@ -111,7 +111,7 @@ export function serviceJsonLd(): ServiceLd {
 	const bookUrl = `${site.siteUrl}/book`
 	// Built from parts so the optional payment plan drops cleanly when unset.
 	const engagementDescription = [
-		'two weeks, one team. a named person on your team ships a real internal system by day 10, or the remaining payment is free.',
+		'two weeks, one team. one process written down, running and owned by a named person on your team by day 10, or the remaining payment is free.',
 		site.engagement.paymentPlan ? `${site.engagement.paymentPlan}.` : '',
 		site.engagement.cadence
 	]
@@ -140,7 +140,7 @@ export function serviceJsonLd(): ServiceLd {
 			{
 				'@type': 'Offer',
 				name: site.teardown.longName,
-				description: `a paid teardown of how your team uses AI today, ${site.teardown.creditNote}. a 10-minute Loom and a written list of what's stuck and what i'd fix first.`,
+				description: `a paid teardown of how your team uses AI today, ${site.teardown.creditNote} if you book one within 30 days. a 10-minute Loom and a written list of what's stuck and what i'd fix first.`,
 				price: String(site.teardown.priceUSD),
 				priceCurrency: 'USD',
 				availability: 'https://schema.org/InStock',

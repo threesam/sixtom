@@ -102,7 +102,6 @@ export interface GrandSlamOffer {
 		costLine: string
 	}
 	ledger: {
-		eyebrow: string
 		heading: string
 		para: string
 		groups: readonly LedgerGroup[]
@@ -116,6 +115,7 @@ export interface GrandSlamOffer {
 		para: string
 		tiles: readonly Stat[]
 		para2: string
+		broke: { heading: string; lines: readonly string[]; turn: string }
 		bridge: string
 	}
 	isThisYou: {
