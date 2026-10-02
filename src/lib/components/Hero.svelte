@@ -8,6 +8,12 @@
 		.split(/(?<=\.)\s+/)
 		.map((beat) => beat.replace(/\.$/, ''))
 	const beatTwo = rest.join(' ')
+	// Phones: each beat is sized to span the full column, so the shorter beat sets
+	// bigger. Font size per unit of line width, measured for this headline in this
+	// face (0.12688 / 0.15218) and shaved 0.5% so rounding never wraps. No JS on
+	// this page, so the fit is CSS: container width * ratio. Re-measure when the
+	// headline changes; e2e/hero-responsive.spec.ts fails if either beat drifts.
+	const FIT = [0.1262, 0.1514]
 	// The lead's last sentence is the guarantee; it takes the accent so the one
 	// accent on screen ties the promise to the button.
 	const turn = grandSlam.lead.lastIndexOf('. ') + 2
@@ -34,15 +40,19 @@
 		></div>
 	</div>
 
-	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-left md:py-20 md:text-center">
+	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-center md:py-20">
 		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
-		<!-- 8.6vw is the measured ceiling that keeps each beat on one line at 320px;
-		     a floor above ~1.6rem wins on phones and re-wraps them. -->
 		<h1
-			class="text-fg mt-6 text-[clamp(1.6rem,8.6vw,5.75rem)] leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
+			class="text-fg @container mt-6 leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
 		>
-			<span class="text-fg-muted block text-balance">{beatOne}</span>
-			<span class="block text-balance">{beatTwo}</span>
+			<span
+				class="text-fg-muted block text-balance max-md:text-[length:calc(100cqw*var(--fit))] max-md:tracking-tight max-md:whitespace-nowrap"
+				style="--fit: {FIT[0]}">{beatOne}</span
+			>
+			<span
+				class="block text-balance max-md:text-[length:calc(100cqw*var(--fit))] max-md:tracking-tight max-md:whitespace-nowrap"
+				style="--fit: {FIT[1]}">{beatTwo}</span
+			>
 		</h1>
 		<!-- Four text elements, no more: eyebrow, headline (the problem), lead (what
 		     you get), CTAs. offerLine stays in content for the JSON-LD description. -->
