@@ -8,6 +8,11 @@
 		.split(/(?<=\.)\s+/)
 		.map((beat) => beat.replace(/\.$/, ''))
 	const beatTwo = rest.join(' ')
+	// The lead's last sentence is the guarantee; it takes the accent so the one
+	// accent on screen ties the promise to the button.
+	const turn = grandSlam.lead.lastIndexOf('. ') + 2
+	const outcome = grandSlam.lead.slice(0, turn)
+	const guarantee = grandSlam.lead.slice(turn)
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -36,13 +41,13 @@
 		<h1
 			class="text-fg mt-6 text-[clamp(1.6rem,8.6vw,5.75rem)] leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
 		>
-			<span class="block text-balance">{beatOne}</span>
+			<span class="text-fg-muted block text-balance">{beatOne}</span>
 			<span class="block text-balance">{beatTwo}</span>
 		</h1>
 		<!-- Four text elements, no more: eyebrow, headline (the problem), lead (what
 		     you get), CTAs. offerLine stays in content for the JSON-LD description. -->
 		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
-			{grandSlam.lead}
+			{outcome}<span class="text-accent">{guarantee}</span>
 		</p>
 		<div class="mt-10 flex flex-col items-center gap-4 md:mt-12">
 			<a
