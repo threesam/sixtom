@@ -39,12 +39,12 @@
 			<span class="block text-balance">{beatOne}</span>
 			<span class="block text-balance">{beatTwo}</span>
 		</h1>
-		<!-- Headline = the problem, lead = what you get, facts = the terms. offerLine
-		     stays in content for the JSON-LD description. -->
+		<!-- Four text elements, no more: eyebrow, headline (the problem), lead (what
+		     you get), CTAs. offerLine stays in content for the JSON-LD description. -->
 		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
 			{grandSlam.lead}
 		</p>
-		<div class="mt-10 flex flex-col items-start gap-4 md:mt-12 md:items-center">
+		<div class="mt-10 flex flex-col items-center gap-4 md:mt-12">
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_waitlist"
@@ -60,8 +60,5 @@
 				or start with a teardown
 			</a>
 		</div>
-		<p class="text-fg-subtle mt-8 text-xs tracking-wide md:mt-10 md:text-sm">
-			{grandSlam.facts.join(' · ')}
-		</p>
 	</div>
 </section>

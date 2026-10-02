@@ -12,12 +12,11 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 // counters (honest at zero). Proof stays anonymized: the day job is never
 // named as a case study until there's a written OK to cite it.
 export const grandSlam: GrandSlamOffer = {
-	chip: '1 team a month · waitlist open',
+	chip: '2 weeks · 1 team a month',
 	headline: "everyone's building. nothing's better.",
-	lead: 'by day 10, the one process that keeps running late is written down, running, and owned by someone on your team. or the rest is free.',
+	lead: 'by day 10, the process that keeps slipping is written down, running, and yours. or the rest is free.',
 	offerLine:
 		"the enablement engagement, for teams already building with AI. two weeks, one team. by day 10 one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it.",
-	facts: ['2 weeks', 'one team', `${usd(site.engagement.priceUSD)} fixed`],
 	wall: {
 		thesis: "building got cheap. deciding didn't.",
 		para: 'anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist.',
