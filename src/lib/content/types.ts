@@ -95,9 +95,7 @@ export interface GrandSlamOffer {
 	wall: {
 		thesis: string
 		para: string
-		turn: string
 		costCards: readonly CostCard[]
-		costLine: string
 	}
 	ledger: {
 		heading: string

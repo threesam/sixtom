@@ -19,13 +19,11 @@ export const grandSlam: GrandSlamOffer = {
 	wall: {
 		thesis: "building got cheap. deciding didn't.",
 		para: 'anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist.',
-		turn: 'every month it stays like this has a price:',
 		costCards: [
 			{ title: 'the pile', sub: 'tools nobody asked for, kept alive by whoever made them' },
 			{ title: 'the queue', sub: 'one person reviews everything, or nobody reviews anything' },
 			{ title: 'the date', sub: 'the steps live in three heads and a chat thread, so it slips' }
-		],
-		costLine: 'that part is fixable in two weeks.'
+		]
 	},
 	ledger: {
 		heading: 'one process running. guardrails that hold.',
@@ -140,8 +138,8 @@ export const grandSlam: GrandSlamOffer = {
 			'a consultancy quotes six figures and delivers a deck. a workshop is half a day and a recording nobody watches. this is two weeks, and something running when i leave.'
 	},
 	guarantee: {
-		// \n = author-controlled line break: clause per line on desktop.
-		headline: 'your person runs it by day 10,\nor the rest is free.',
+		// nbsp keeps "day 10" together: a phone used to strand "10," on its own line.
+		headline: 'your team runs it by day\u00a010, or the rest is free.',
 		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
 	proof: {

@@ -9,7 +9,7 @@
 
 ## the guarantee
 
-your person is running the process by day 10, or the remaining payment is free. and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything built and pay only for the time used.
+your team is running the process by day 10, or the remaining payment is free. and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything built and pay only for the time used.
 
 ## who it's for
 
@@ -21,7 +21,7 @@ your team is building and you can't tell what it adds up to. the people building
 - week 1: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
 - week 2: the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.
-- day 10: running. your person owns it. (or the rest is free.)
+- day 10: running. your team owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 
 ## pricing
