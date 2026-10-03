@@ -7,7 +7,7 @@ export const STAGE_OPTIONS = [
 
 export const BUDGET_OPTIONS = [
 	{ value: 'under-15k', label: 'under $15,000' },
-	{ value: '15k-25k', label: '$15,000–$25,000' },
+	{ value: '15k-25k', label: '$15,000-$25,000' },
 	{ value: '25k+', label: '$25,000+' },
 	{ value: 'not-sure', label: 'not sure yet' }
 ] as const

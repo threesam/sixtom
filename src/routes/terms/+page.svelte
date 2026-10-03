@@ -21,8 +21,7 @@
 			>
 				sixtom
 			</a>
-			<p class="eyebrow mt-12 text-sm">legal</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">terms.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">terms.</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				how engagement works. pricing, scope, and cadence live on the home page; this page covers
 				the boring bits when it goes sideways.
@@ -37,11 +36,11 @@
 					payment is waived. "running" means the process we name in writing on the day-0 call is
 					written down, your named person has run it start to finish, and a late step alerts its
 					owner and the people waiting on it, the same day. the guarantee clock pauses while
-					something i need sits with you — access, approvals, content, feedback — and resumes when i
+					something i need sits with you (access, approvals, content, feedback) and resumes when i
 					have it.
 				</p>
 				<p class="mt-3">
-					the day-5 scope check — if we both see it won't be running in scope, we stop there. you
+					the day-5 scope check: if we both see it won't be running in scope, we stop there. you
 					keep everything built and pay only for the time used.
 				</p>
 			</section>
@@ -51,7 +50,7 @@
 				<p class="mt-3">
 					{teardownPrice}, paid up front, credited in full against the engagement if you book one
 					within 30 days. you get the written findings either way and you own them. it carries no
-					obligation on either side — i may decline if your project isn't a fit, and if i decline
+					obligation on either side. i may decline if your project isn't a fit, and if i decline
 					after you've paid, you get all of it back.
 				</p>
 			</section>

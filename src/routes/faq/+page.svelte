@@ -31,8 +31,7 @@
 			>
 				sixtom
 			</a>
-			<p class="eyebrow mt-12 text-sm">questions</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">faq.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">faq.</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				the things people ask before they book. straight answers.
 			</p>
@@ -50,7 +49,7 @@
 		<div class="border-border mt-16 border-t pt-12">
 			<p class="text-fg text-2xl font-semibold tracking-tight">still have a question?</p>
 			<p class="text-fg-muted mt-3 text-base leading-relaxed">
-				book the intro call — 30 minutes, no pitch.
+				ask it on a 30-minute call. no pitch.
 			</p>
 			<BookCta event="cta_faq_book" class="mt-8" />
 		</div>

@@ -14,7 +14,7 @@
 
 	const description =
 		"your team is building with AI and nothing's better. two weeks: one process written down and running by day 10, or the rest is free. $15,000 fixed."
-	const pageTitle = `SIXTOM — ${o.headline}`
+	const pageTitle = `SIXTOM | ${o.headline}`
 </script>
 
 <!-- Link previews stay vague on purpose: brand title + a result line, no offer or
@@ -36,14 +36,16 @@
 		<p class="text-fg mt-8 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
 			{o.wall.turn}
 		</p>
-		<ul class="mt-8 grid gap-4 md:grid-cols-3">
+		<!-- A stacked list, not three equal cards: the costs read in order, each
+		     term big enough to land on its own. -->
+		<dl class="mt-8 space-y-6">
 			{#each o.wall.costCards as card (card.title)}
-				<li class="border-border rounded-lg border p-6">
-					<p class="text-fg font-semibold">{card.title}</p>
-					<p class="text-fg-muted mt-2 text-sm leading-relaxed">{card.sub}</p>
-				</li>
+				<div>
+					<dt class="text-fg text-2xl font-bold tracking-tight md:text-3xl">{card.title}</dt>
+					<dd class="text-fg-muted mt-1 text-base leading-relaxed md:text-lg">{card.sub}</dd>
+				</div>
 			{/each}
-		</ul>
+		</dl>
 		<p class="text-fg mt-8 text-base leading-relaxed font-semibold md:text-lg">
 			{o.wall.costLine}
 		</p>

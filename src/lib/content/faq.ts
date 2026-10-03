@@ -14,17 +14,17 @@ export const FAQ: readonly QA[] = [
 	{
 		question: 'how much does it cost?',
 		answer:
-			'$15,000 fixed. half up front, half on day 10. that buys the whole ledger on the home page, over $28,000 of itemized work. the price is the same for everyone.'
+			'$15,000 fixed. half up front, half on day 10. that buys everything itemized on the home page, over $28,000 of work. the price is the same for everyone.'
 	},
 	{
 		question: "what's the guarantee?",
 		answer:
-			"your person is running the process by day 10, or the remaining payment is free. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used."
+			"your person is running the process by day 10, or you don't pay the second half. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used."
 	},
 	{
 		question: "what's the teardown?",
 		answer:
-			"$1,500, credited in full against the engagement if you book one within 30 days. i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together, and i'll tell you if you don't need me."
+			"$1,500, credited in full against the engagement if you book one within 30 days. i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together, and i'll tell you if you don't need me. to start one, join the waitlist and reply to the email."
 	},
 	{
 		question: 'how long does it take?',

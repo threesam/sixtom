@@ -193,11 +193,12 @@ export const grandSlam: GrandSlamOffer = {
 		emailPlaceholder: 'email you actually check',
 		buildLabel: 'what is your team building, and what still runs late?',
 		buildPlaceholder: 'everyone has a dashboard now, but…',
-		button: 'get on the list →',
+		// Same label as the hero CTA: one label per intent across the site.
+		button: 'join the waitlist →',
 		// Split around site.teardown.creditNote so the claim can carry its own
 		// condition inline — the unqualified version outruns what /terms actually says.
 		rewardBefore: `if you'd rather not wait, start with the teardown: ${usd(site.teardown.priceUSD)},`,
-		rewardAfter: `. i look at how your team works today, record a 10-minute Loom on where it's stuck, and write down what i'd fix first. you keep it whether or not we work together.`,
+		rewardAfter: `. i look at how your team works today, record a 10-minute Loom on where it's stuck, and write down what i'd fix first. you keep it whether or not we work together. to start one, join the list above, then reply to the email and say so.`,
 		creditTerms: `paid up front. credited against the engagement if you book one within 30 days. if i decline after you've paid, you get all of it back.`
 	}
 }
