@@ -133,17 +133,30 @@
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
-		<p class={bodyClass}>{o.proof.para}</p>
-		<ul class="mt-10 grid list-none grid-cols-2 gap-6 p-0 md:grid-cols-4">
-			{#each o.proof.tiles as tile (tile.label)}
-				<li>
-					<p class="text-fg text-2xl font-bold tabular-nums md:text-3xl">{tile.value}</p>
-					<p class="text-fg-subtle mt-1 text-xs tracking-widest uppercase">{tile.label}</p>
-				</li>
-			{/each}
-		</ul>
-		<p class={bodyClass}>{o.proof.para2}</p>
-		<h3 class="text-fg mt-12 text-xl font-bold tracking-tight md:text-2xl">
+		<!-- The numbers as a cutout: a pocket of the hero's bubble field behind them
+		     (static/bubbles.js drives every [data-bubble] canvas), bleeding past the
+		     text column on desktop so it reads as its own object, not more prose. -->
+		<div class="border-border relative mt-10 overflow-hidden rounded-2xl border md:-mx-10 md:mt-14">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
+				<div class="absolute inset-0 bg-black/70"></div>
+			</div>
+			<dl class="relative grid gap-8 px-8 py-10 md:grid-cols-3 md:gap-6 md:px-10 md:py-14">
+				{#each o.proof.tiles as tile (tile.label)}
+					<div class="flex flex-col-reverse">
+						<dt class="text-fg-muted mt-2 text-xs tracking-widest uppercase md:text-sm">
+							{tile.label}
+						</dt>
+						<dd
+							class="text-fg font-display text-5xl font-bold tracking-tight tabular-nums md:text-6xl"
+						>
+							{tile.value}
+						</dd>
+					</div>
+				{/each}
+			</dl>
+		</div>
+		<h3 class="text-fg mt-16 text-xl font-bold tracking-tight md:mt-20 md:text-2xl">
 			{o.proof.broke.heading}
 		</h3>
 		<ul class="text-fg-muted mt-4 max-w-2xl space-y-3 text-base leading-relaxed md:text-lg">
@@ -155,9 +168,11 @@
 			{o.proof.broke.turn}
 		</p>
 		<p class="text-fg-subtle mt-6 max-w-2xl text-sm leading-relaxed">{o.proof.bridge}</p>
-		<blockquote class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg">
+		<blockquote
+			class="border-accent text-fg mt-14 max-w-2xl border-l-4 pl-6 text-xl leading-snug font-semibold md:pl-8 md:text-2xl"
+		>
 			“{site.testimonial.quote}”
-			<footer class="text-fg-subtle mt-2 text-sm not-italic">
+			<footer class="text-accent mt-4 text-xs font-normal tracking-widest uppercase">
 				{site.testimonial.attribution}
 			</footer>
 		</blockquote>

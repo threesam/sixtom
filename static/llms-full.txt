@@ -58,7 +58,7 @@ $1,500, credited in full against the engagement if you book one within 30 days. 
 
 ## proof: across industries
 
-30+ people onboarded to building with AI so far, at businesses all over the map: health practitioners, agencies, recruiting firms, artisans, a charity. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down.
+finance, ops and marketing, shipping their own tools. 30+ people onboarded across 7 businesses: health practitioners, agencies, recruiting firms, artisans, a charity. none of them were hired to write code. ~10 sessions until setup.
 
 what broke when it worked. i became the review queue. everything waited on me. thousands of tests, good ones. most never needed to exist. i built tools faster than i asked who would use them. the process stayed in people's heads. nobody can run that. so the first thing we make now is a document. the build comes second, and it's smaller.
 

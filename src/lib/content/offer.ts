@@ -145,15 +145,11 @@ export const grandSlam: GrandSlamOffer = {
 	proof: {
 		eyebrow: 'proof · across industries',
 		heading: 'finance, ops and marketing, shipping their own tools.',
-		para: '30+ people onboarded to building with AI so far, at businesses all over the map: health practitioners, agencies, recruiting firms, artisans, a charity. none of them were hired to write code. the numbers:',
 		tiles: [
 			{ value: '30+', label: 'people onboarded' },
 			{ value: '7', label: 'businesses' },
-			{ value: '~10', label: 'sessions to one-sitting setup' },
-			{ value: '3', label: 'glue chains now code' }
+			{ value: '~10', label: 'sessions until setup' }
 		],
-		para2:
-			'one finance analyst shipped dashboards fast enough that their lead asked them to slow down. the automations that failed quietly are code now, with alerts.',
 		broke: {
 			heading: 'what broke when it worked.',
 			lines: [
