@@ -69,14 +69,14 @@ describe('Umami CRO event instrumentation', () => {
 		expect(contents).toContain('data-umami-event={event}')
 	})
 
-	it('fires "notify_signup_success" only for signups that reach the list', () => {
-		const contents = readFileSync(resolve(ROUTES_DIR, 'notify/+page.server.ts'), 'utf-8')
-		// Presence is not enough — it was present before and still wrong. The
-		// event has to sit inside the same guard as the listmonk write, or
-		// honeypot/time-trap fakes (ok + suspicious, silent 200 by design) get
-		// counted as signups: 41 events against 3 subscribers over 30d.
+	// Presence is not enough: notify_signup_success was present before and
+	// still wrong. Conversion events have to sit inside the `!result.suspicious`
+	// guard, or honeypot/time-trap fakes (ok + suspicious, silent 200 by design)
+	// get counted: 41 signup events against 3 subscribers over 30d.
+	function suspiciousGuardBody(route: string): string {
+		const contents = readFileSync(resolve(ROUTES_DIR, route), 'utf-8')
 		const guardStart = contents.indexOf('if (!result.suspicious')
-		expect(guardStart, 'suspicious guard not found').toBeGreaterThan(-1)
+		expect(guardStart, `${route}: suspicious guard not found`).toBeGreaterThan(-1)
 		// Walk to the guard's OWN closing brace. Slicing to the `return`
 		// instead looks equivalent and is not: it also swallows everything
 		// between the closing brace and the return, which is exactly where the
@@ -90,8 +90,19 @@ describe('Umami CRO event instrumentation', () => {
 				break
 			}
 		}
-		const guarded = contents.slice(guardStart, guardEnd)
+		return contents.slice(guardStart, guardEnd)
+	}
+
+	it('fires "notify_signup_success" only for signups that reach the list', () => {
+		const guarded = suspiciousGuardBody('notify/+page.server.ts')
 		expect(guarded).toContain('subscribeToList(')
 		expect(guarded).toContain("fireServerEvent('notify_signup_success'")
+	})
+
+	it('fires the /book outcome events only for real submissions', () => {
+		const guarded = suspiciousGuardBody('book/+page.server.ts')
+		expect(guarded).toContain('fireServerEvent(')
+		expect(guarded).toContain("'book_qualified'")
+		expect(guarded).toContain("'book_disqualified'")
 	})
 })

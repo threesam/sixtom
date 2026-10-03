@@ -81,8 +81,9 @@ type SubmissionResult =
 const SUCCESS_MESSAGE = "you're on the list. check your inbox."
 
 // Honeypot + time-trap silently 200 so attackers can't learn which layer
-// filtered them. `suspicious` lets callers skip side effects (e.g. the /notify
-// listmonk subscribe) without breaking the fake success the bot sees.
+// filtered them. `suspicious` = "not a real visitor" (those, plus the e2e test
+// address): callers skip side effects (the /notify listmonk subscribe, the
+// analytics conversion) without breaking the fake success the sender sees.
 function suspicious(): SubmissionResult {
 	return { ok: true, message: SUCCESS_MESSAGE, suspicious: true }
 }
@@ -190,9 +191,7 @@ export async function processSubmission(
 
 	// E2E bypass; env var unset in production, exact-match comparison.
 	const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
-	if (testEmail !== '' && email === testEmail) {
-		return { ok: true, message: SUCCESS_MESSAGE }
-	}
+	if (testEmail !== '' && email === testEmail) return suspicious()
 
 	const transporter = getTransporter()
 

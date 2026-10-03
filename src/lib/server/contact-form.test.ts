@@ -153,7 +153,8 @@ describe('processSubmission — protection layers', () => {
 				makeFormData({ email: 'e2e@test.sixtom.local' }),
 				mockEvent({ ip: '10.0.0.51' })
 			)
-			expect(result.ok).toBe(true)
+			// suspicious: the e2e address must never reach listmonk or analytics.
+			expect(result).toMatchObject({ ok: true, suspicious: true })
 		} finally {
 			env['CONTACT_FORM_TEST_EMAIL'] = original
 		}

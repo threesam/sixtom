@@ -1,12 +1,25 @@
-type UmamiEvent = 'cta_notify_submit' | 'cta_garden_link' | 'notify_signup_success'
+import type { RequestEvent } from '@sveltejs/kit'
+
+type UmamiEvent = 'notify_signup_success' | 'book_qualified' | 'book_disqualified'
 
 const UMAMI_ENDPOINT = 'https://analytics.sixtom.com/api/send'
 const WEBSITE_ID = '64398c1a-02a0-4a61-991c-b0d143f01b46'
 const HOSTNAME = 'sixtom.com'
 
-// Fire-and-forget server-side Umami event. For signals that originate on the
-// server (successful form submits) where the client may have JS disabled.
-export function fireServerEvent(eventName: UmamiEvent, request: Request): void {
+// Server-side Umami event, for signals that originate on the server (successful
+// form submits) where the client may have JS disabled.
+//
+// The visitor's IP + user agent go in the payload, not just the headers: Umami
+// hashes (website, ip, ua) into the session id, and from Vercel the request IP
+// is Vercel's. Without them every conversion lands in its own server session,
+// orphaned from the UTM/referrer pageviews that produced it, so "signups by
+// source" reads as zero for every source. Umami hashes the IP and never stores it.
+export async function fireServerEvent(
+	eventName: UmamiEvent,
+	event: Pick<RequestEvent, 'request' | 'getClientAddress'>,
+	data?: Record<string, string>
+): Promise<void> {
+	const { request } = event
 	// testing eject: browsers marked by ?test (cookie set in hooks.server)
 	// don't produce server-side events. One guard here covers every caller.
 	if (/(?:^|;\s*)test_eject=1(?:;|$)/.test(request.headers.get('cookie') ?? '')) {
@@ -18,15 +31,19 @@ export function fireServerEvent(eventName: UmamiEvent, request: Request): void {
 	const { hostname, pathname: url } = new URL(request.url)
 	if (hostname !== HOSTNAME) return
 	const userAgent = request.headers.get('user-agent') ?? 'unknown'
-	const referrer = request.headers.get('referer') ?? ''
-	const language = request.headers.get('accept-language')?.split(',')[0] ?? 'en'
+	let ip: string | undefined
+	try {
+		ip = event.getClientAddress()
+	} catch {
+		// no address: Umami falls back to its own headers (a server session)
+	}
 
-	fetch(UMAMI_ENDPOINT, {
+	// Awaited, not fire-and-forget: Vercel can freeze the function as soon as
+	// the response is returned, dropping an in-flight fetch. The timeout caps
+	// what a slow analytics box can add to a form submit.
+	await fetch(UMAMI_ENDPOINT, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'User-Agent': userAgent
-		},
+		headers: { 'Content-Type': 'application/json', 'User-Agent': userAgent },
 		body: JSON.stringify({
 			type: 'event',
 			payload: {
@@ -34,10 +51,14 @@ export function fireServerEvent(eventName: UmamiEvent, request: Request): void {
 				hostname: HOSTNAME,
 				url,
 				name: eventName,
-				referrer,
-				language
+				referrer: request.headers.get('referer') ?? '',
+				language: request.headers.get('accept-language')?.split(',')[0] ?? 'en',
+				ip,
+				userAgent,
+				data
 			}
-		})
+		}),
+		signal: AbortSignal.timeout(2000)
 	}).catch(() => {
 		// Analytics failures must not affect user-facing responses.
 	})
