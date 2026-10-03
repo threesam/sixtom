@@ -134,23 +134,26 @@
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
 	</div>
-	<!-- The numbers as a full-bleed band over a pocket of the hero's bubble field
-	     (static/bubbles.js drives every [data-bubble] canvas), so they read as
-	     their own object, not more prose. The field bleeds; the stats keep the
-	     text column width. Three equal columns at every width, each stat centered;
-	     on phones the labels wrap (balanced) rather than the stats stacking. -->
-	<div class="border-border relative mt-10 overflow-hidden border-y md:mt-14">
+	<!-- The numbers as three cutouts of one full-bleed bubble field (static/bubbles.js
+	     drives every [data-bubble] canvas). The outer tiles bleed to the viewport
+	     edges, the middle one is a square, and the gaps are the page gutter painted
+	     back in the surface colour (the middle tile's shadow), so one field shows
+	     through three windows. Every stat is left-aligned; the first sits on the text
+	     column's left edge at every width: the gutter on phones, and from md up a
+	     padding that leaves it the same 13.5rem its neighbours get. Under 360px the
+	     gaps close and it is one solid band. e2e/proof-band.spec.ts pins the edges. -->
+	<div class="relative mt-10 md:mt-14">
 		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
-			<canvas data-bubble data-density="16" class="absolute inset-0 block h-full w-full"></canvas>
+			<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 			<div class="absolute inset-0 bg-black/60"></div>
 		</div>
-		<dl
-			class="relative mx-auto grid w-full max-w-3xl grid-cols-3 gap-3 px-6 py-10 text-center md:gap-6 md:py-20"
-		>
+		<dl class="relative grid grid-cols-3 min-[360px]:gap-6 md:grid-cols-[1fr_15rem_1fr]">
 			{#each o.proof.tiles as tile (tile.label)}
-				<div class="flex flex-col-reverse items-center justify-end">
+				<div
+					class="flex flex-col-reverse justify-center pl-6 nth-2:aspect-square min-[360px]:nth-2:shadow-[-1.5rem_0_var(--color-surface),1.5rem_0_var(--color-surface)] md:first:pl-[calc(100%-13.5rem)]"
+				>
 					<dt
-						class="text-fg-muted mt-2 text-[11px] leading-snug tracking-wider text-balance uppercase md:mt-3 md:text-sm md:tracking-widest"
+						class="text-fg-muted mt-2 text-[11px] leading-snug tracking-wider uppercase md:mt-3 md:text-sm md:tracking-widest"
 					>
 						{tile.label}
 					</dt>
