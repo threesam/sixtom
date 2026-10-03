@@ -61,11 +61,11 @@ export const site: Site = {
 }
 
 export const calEvent: CalEvent = {
-	title: 'solve for X — intro call',
+	title: 'intro call',
 	slug: 'discovery',
 	durationMinutes: 30,
 	description:
-		'30 minutes. tell me what your team is building with AI and what still runs late. we figure out the X between all that building and things getting better, and whether the engagement is the move. no pitch.',
+		'30 minutes. tell me what your team is building with AI and what still runs late. we figure out whether the engagement is the move. no pitch.',
 	intakeQuestions: [
 		{
 			label: 'what is your team building with AI, and what still runs late?',
@@ -80,7 +80,7 @@ export const calEvent: CalEvent = {
 		{
 			label: 'where are you in the process?',
 			type: 'select',
-			options: ['on the waitlist', 'did the teardown — ready to talk', 'just found sixtom'],
+			options: ['on the waitlist', 'did the teardown, ready to talk', 'just found sixtom'],
 			required: true
 		}
 	]
