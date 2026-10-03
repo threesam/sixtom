@@ -1,6 +1,7 @@
 import { fail } from '@sveltejs/kit'
 import { site } from '$lib/content'
 import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
+import { fireServerEvent } from '$lib/server/umami'
 import type { Actions } from './$types'
 import { BUDGET_OPTIONS, DISQUALIFY_STAGE, STAGE_OPTIONS } from './options'
 
@@ -105,6 +106,16 @@ export const actions = {
 		const result = await processSubmission(formData, event)
 		if (!result.ok) {
 			return fail(result.status, { status: 'error' as const, message: result.message })
+		}
+
+		// The funnel step between "clicked book_submit" (attempts, bots included)
+		// and the cal.com booking (Studio's webhook). Stage + budget ride along so
+		// the qualified rate can be read per budget band. Fakes don't count.
+		if (!result.suspicious) {
+			await fireServerEvent(disqualified ? 'book_disqualified' : 'book_qualified', event, {
+				stage,
+				budget
+			})
 		}
 
 		if (disqualified) {

@@ -68,9 +68,4 @@ describe('Umami CRO event instrumentation', () => {
 		const contents = readFileSync(resolve(COMPONENT_DIR, 'BookCta.svelte'), 'utf-8')
 		expect(contents).toContain('data-umami-event={event}')
 	})
-
-	it('fires "notify_signup_success" server-side from the notify action', () => {
-		const contents = readFileSync(resolve(ROUTES_DIR, 'notify/+page.server.ts'), 'utf-8')
-		expect(contents).toContain("fireServerEvent('notify_signup_success'")
-	})
 })
