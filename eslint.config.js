@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import prettier from 'eslint-config-prettier'
 import js from '@eslint/js'
 import { defineConfig } from 'eslint/config'

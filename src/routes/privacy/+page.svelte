@@ -18,8 +18,7 @@
 			>
 				sixtom
 			</a>
-			<p class="eyebrow mt-12 text-sm">legal</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">privacy.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">privacy.</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">the short, honest version.</p>
 		</header>
 
@@ -36,7 +35,7 @@
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">what i do with it</h2>
 				<p class="mt-3">
-					reply to you. look at aggregate patterns — which pages get traffic, where it comes from.
+					reply to you. look at aggregate patterns: which pages get traffic, where it comes from.
 				</p>
 			</section>
 

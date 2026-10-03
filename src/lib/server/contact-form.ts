@@ -3,9 +3,9 @@ import { env } from '$env/dynamic/private'
 import type { RequestEvent } from '@sveltejs/kit'
 import { site } from '$lib/content/site'
 
-export const MAX_NAME_LENGTH = 120
-export const MAX_EMAIL_LENGTH = 254
-export const MAX_MESSAGE_LENGTH = 5000
+const MAX_NAME_LENGTH = 120
+const MAX_EMAIL_LENGTH = 254
+const MAX_MESSAGE_LENGTH = 5000
 export const MAX_REQUEST_BYTES = 20_000
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -75,11 +75,10 @@ function hasHeaderInjection(value: string): boolean {
 	return /[\r\n]/.test(value)
 }
 
-export type SubmissionResult =
-	| { ok: true; message: string; suspicious?: true }
-	| { ok: false; status: number; message: string }
+type SubmissionResult =
+	{ ok: true; message: string; suspicious?: true } | { ok: false; status: number; message: string }
 
-export const SUCCESS_MESSAGE = "You're on the list."
+const SUCCESS_MESSAGE = "you're on the list. check your inbox."
 
 // Honeypot + time-trap silently 200 so attackers can't learn which layer
 // filtered them. `suspicious` lets callers skip side effects (e.g. the /notify
@@ -91,12 +90,12 @@ function suspicious(): SubmissionResult {
 let cachedTransporter: Transporter | null = null
 function getTransporter(): Transporter {
 	cachedTransporter ??= nodemailer.createTransport({
-		host: env.SMTP_SERVER,
-		port: parsePositiveNumber(env.SMTP_PORT, 587),
+		host: env['SMTP_SERVER'],
+		port: parsePositiveNumber(env['SMTP_PORT'], 587),
 		secure: false,
 		requireTLS: true,
 		tls: { minVersion: 'TLSv1.2' },
-		auth: { user: env.SMTP_EMAIL, pass: env.SMTP_TOKEN }
+		auth: { user: env['SMTP_EMAIL'], pass: env['SMTP_TOKEN'] }
 	})
 	return cachedTransporter
 }
@@ -107,19 +106,15 @@ function getTransporter(): Transporter {
  * needs to be identifiable, which `Contact: Waitlist signup` was not - every
  * signup arrived under the same subject.
  */
-export type SubmissionKind = 'waitlist' | 'contact'
+type SubmissionKind = 'waitlist' | 'contact'
 
-// The reply is still the gate, but the teardown behind it is now paid, so the
-// ask has changed shape: the reply qualifies, the price qualifies harder. Bots
-// fill forms and never answer email, so a signup that never replies costs a
-// database row and nothing else.
+// The reply is still the gate, and the teardown behind it is paid: the reply
+// qualifies, the price qualifies harder. Bots fill forms and never answer
+// email, so a signup that never replies costs a database row and nothing else.
 //
-// The ask is three options on purpose. This audience vibe-coded something that
-// half-works, so a large share of them have no public URL to paste — localhost,
-// behind auth, or never deployed. A URL-only ask is unanswerable for them and
-// they drop off silently, which is the exact failure the reply-gate exists to
-// prevent. The repo is also the better artifact for the promise being made:
-// "what will break" lives in the code, not on the rendered page.
+// The ask is one plain sentence on purpose. This buyer is a founder whose team
+// stalled on AI, not someone with a repo to paste; "how does your team work
+// today" is answerable from a phone in thirty seconds.
 //
 // Module scope because nothing in it is per-request; building it inside the
 // handler re-joined it on every submission, including the contact ones that
@@ -127,18 +122,15 @@ export type SubmissionKind = 'waitlist' | 'contact'
 const WAITLIST_BODY = [
 	"you're on the list.",
 	'',
-	'one seat a month, by appointment. i tell you straight when the next one opens.',
+	'one team a month, by appointment. i tell you straight when the next seat opens.',
 	'',
-	`if you'd rather not wait, the teardown is how you move now: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
-	`${site.teardown.creditNote}. i read the whole thing and write up what's solid,`,
-	"exactly what breaks and in what order, and what i'd do first. you keep the",
-	"writeup either way, and i'll tell you if you don't need me.",
+	`if you'd rather not wait, start with the teardown: $${site.teardown.priceUSD.toLocaleString('en-US')},`,
+	`${site.teardown.creditNote}. i look at how your team works today, record a`,
+	"10-minute Loom on where it's stuck, and write down what i'd fix first. you keep",
+	"it either way, and i'll tell you if you don't need me.",
 	'',
-	'either way — reply with whatever lets me see it: a live url, the repo, or a',
-	"3-minute screen recording. if it isn't deployed yet, the repo is better anyway.",
-	'',
-	'in the meantime, what it costs you to leave it as it is:',
-	`${site.siteUrl}/tax`,
+	'either way, reply with a line or two: what you asked your team to do, and',
+	'where it stalled.',
 	'',
 	'- sam'
 ].join('\n')
@@ -162,7 +154,7 @@ export async function processSubmission(
 	const formStartedAt = formStartedAtRaw !== '' ? Number(formStartedAtRaw) : undefined
 
 	if (!name || !email || !message) {
-		return { ok: false, status: 400, message: 'Missing required fields.' }
+		return { ok: false, status: 400, message: 'every field is required.' }
 	}
 
 	if (
@@ -173,7 +165,11 @@ export async function processSubmission(
 		hasHeaderInjection(name) ||
 		hasHeaderInjection(email)
 	) {
-		return { ok: false, status: 400, message: 'Invalid form submission.' }
+		return {
+			ok: false,
+			status: 400,
+			message: "that didn't go through. check your email address and try again."
+		}
 	}
 
 	if (company.trim() !== '') return suspicious()
@@ -189,12 +185,11 @@ export async function processSubmission(
 
 	const clientIp = getClientIp(event)
 	if (isRateLimited(clientIp)) {
-		return { ok: false, status: 429, message: 'Too many requests. Please try again shortly.' }
+		return { ok: false, status: 429, message: 'too many tries. give it a minute and try again.' }
 	}
 
 	// E2E bypass; env var unset in production, exact-match comparison.
-	const testEmailRaw = env['CONTACT_FORM_TEST_EMAIL']
-	const testEmail = typeof testEmailRaw === 'string' ? testEmailRaw.trim() : ''
+	const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
 	if (testEmail !== '' && email === testEmail) {
 		return { ok: true, message: SUCCESS_MESSAGE }
 	}
@@ -204,21 +199,21 @@ export async function processSubmission(
 	const confirmation =
 		kind === 'waitlist'
 			? {
-					from: env.SMTP_EMAIL,
+					from: env['SMTP_EMAIL'],
 					to: email,
 					subject: "you're on the list - show me the thing",
 					text: WAITLIST_BODY
 				}
 			: {
-					from: env.SMTP_EMAIL,
+					from: env['SMTP_EMAIL'],
 					to: email,
 					subject: `Contact SIXTOM`,
 					text: 'Contact form submission received! We look forward to talking to you soon.'
 				}
 
 	const notification = {
-		from: env.SMTP_EMAIL,
-		to: env.SMTP_RECIPIENT_EMAIL,
+		from: env['SMTP_EMAIL'],
+		to: env['SMTP_RECIPIENT_EMAIL'],
 		replyTo: email,
 		// Lead with the address: the waitlist form hardcodes name to
 		// "Waitlist signup", so every one of these used to arrive identical.
@@ -231,6 +226,10 @@ export async function processSubmission(
 		return { ok: true, message: SUCCESS_MESSAGE }
 	} catch (error) {
 		console.error('send-email failed:', error instanceof Error ? error.message : 'unknown')
-		return { ok: false, status: 500, message: 'Error sending message. Please try again later.' }
+		return {
+			ok: false,
+			status: 500,
+			message: "that didn't send on my end. try again in a few minutes."
+		}
 	}
 }

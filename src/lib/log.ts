@@ -11,7 +11,7 @@ export const LOG_ENTRIES: LogEntry[] = [
 	{
 		slug: 'garden-party',
 		title: 'garden party',
-		eyebrow: '— log / 2026-05-18',
+		eyebrow: 'log · 2026-05-18',
 		heroImage: '/assets/clouds.webp',
 		date: '2026-05-18',
 		blurb:

@@ -19,11 +19,10 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'cta_hero_waitlist', dir: 'component', path: 'Hero.svelte' },
 	{ event: 'cta_hero_teardown', dir: 'component', path: 'Hero.svelte' },
 	{ event: 'cta_garden_link', dir: 'component', path: 'SiteFooter.svelte' },
-	{ event: 'cta_tax_calc', dir: 'route', path: '+page.svelte' },
+	{ event: 'footer_book', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'cta_waitlist_submit', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_faq_book', dir: 'route', path: 'faq/+page.svelte' },
 	{ event: 'cta_notify_submit', dir: 'route', path: 'notify/+page.svelte' },
-	{ event: 'cta_calc_book', dir: 'component', path: 'VibeTaxCalculator.svelte' },
 	{ event: 'cta_case_study_book', dir: 'route', path: 'log/garden-party/+page.svelte' },
 	{ event: 'case_study_garden_link', dir: 'route', path: 'log/garden-party/+page.svelte' },
 	{ event: 'case_study_github_link', dir: 'route', path: 'log/garden-party/+page.svelte' },
@@ -34,12 +33,14 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'book_step_next', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'book_submit', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'book_qualified_booking_click', dir: 'route', path: 'book/+page.svelte' },
+	{ event: 'book_early_teardown', dir: 'route', path: 'book/+page.svelte' },
 	{ event: 'footer_home', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_log', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_faq', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_notify', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_privacy', dir: 'component', path: 'SiteFooter.svelte' },
-	{ event: 'footer_terms', dir: 'component', path: 'SiteFooter.svelte' }
+	{ event: 'footer_terms', dir: 'component', path: 'SiteFooter.svelte' },
+	{ event: 'error_back_home', dir: 'route', path: '+error.svelte' }
 ]
 
 describe('Umami CRO event instrumentation', () => {

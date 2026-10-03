@@ -8,7 +8,6 @@ export interface Operator {
 	jobTitle: string
 	currentEmployer: string
 	formerEmployer: string
-	credentialsChip: string
 	linkedinUrl: string
 	xUrl: string
 	githubUrl: string
@@ -20,9 +19,6 @@ export interface Offer {
 	longName: string
 	priceUSD: number
 	cadence: string
-	introPriceUSD?: number
-	introNote?: string
-	introClosed?: boolean
 	paymentPlan?: string
 }
 
@@ -53,7 +49,7 @@ export interface Site {
 	gardenUrl: string
 	tagline: string
 	operator: Operator
-	sprint: Offer
+	engagement: Offer
 	teardown: Teardown
 	process: readonly ProcessStep[]
 	testimonial: Testimonial
@@ -93,20 +89,17 @@ export interface CostCard {
 }
 
 export interface GrandSlamOffer {
-	chip: string
 	headline: string
 	lead: string
 	offerLine: string
-	stats: readonly Stat[]
 	wall: {
 		thesis: string
 		para: string
 		turn: string
 		costCards: readonly CostCard[]
-		taxLine: string
+		costLine: string
 	}
 	ledger: {
-		eyebrow: string
 		heading: string
 		para: string
 		groups: readonly LedgerGroup[]
@@ -120,6 +113,7 @@ export interface GrandSlamOffer {
 		para: string
 		tiles: readonly Stat[]
 		para2: string
+		broke: { heading: string; lines: readonly string[]; turn: string }
 		bridge: string
 	}
 	isThisYou: {

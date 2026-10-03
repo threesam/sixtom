@@ -8,7 +8,7 @@
 
 <PageMeta
 	title="terms | SIXTOM"
-	description="how engagement with sixtom works. plain-English terms for the sprint, the day-10 guarantee, and the teardown."
+	description="how engagement with sixtom works. plain-English terms for the engagement, the day-10 guarantee, and the teardown."
 />
 
 <div class="bg-surface flex min-h-svh flex-col">
@@ -21,8 +21,7 @@
 			>
 				sixtom
 			</a>
-			<p class="eyebrow mt-12 text-sm">legal</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">terms.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">terms.</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				how engagement works. pricing, scope, and cadence live on the home page; this page covers
 				the boring bits when it goes sideways.
@@ -33,23 +32,25 @@
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">the guarantee</h2>
 				<p class="mt-3">
-					the sprint — live in production by day 10, or the remaining payments are waived. "live"
-					means the deploy target we name in writing on the day-0 call. the guarantee clock pauses
-					while something i need sits with you — access, approvals, content, feedback — and resumes
-					when i have it.
+					the engagement: your named person is running the process by day 10, or the remaining
+					payment is waived. "running" means the process we name in writing on the day-0 call is
+					written down, your named person has run it start to finish, and a late step alerts its
+					owner and the people waiting on it, the same day. the guarantee clock pauses while
+					something i need sits with you (access, approvals, content, feedback) and resumes when i
+					have it.
 				</p>
 				<p class="mt-3">
-					the day-5 scope check — if we both see it won't ship in scope, we stop there. you keep
-					everything built and pay only for the time used.
+					the day-5 scope check: if we both see it won't be running in scope, we stop there. you
+					keep everything built and pay only for the time used.
 				</p>
 			</section>
 
 			<section>
 				<h2 class="text-fg text-xl font-semibold tracking-tight">the teardown</h2>
 				<p class="mt-3">
-					{teardownPrice}, paid up front, credited in full against the sprint if you book one within
-					90 days. you get the written findings either way and you own them. it carries no
-					obligation on either side — i may decline if your project isn't a fit, and if i decline
+					{teardownPrice}, paid up front, credited in full against the engagement if you book one
+					within 30 days. you get the written findings either way and you own them. it carries no
+					obligation on either side. i may decline if your project isn't a fit, and if i decline
 					after you've paid, you get all of it back.
 				</p>
 			</section>
@@ -70,7 +71,9 @@
 				</p>
 			</section>
 
-			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">last updated: july 2026</p>
+			<p class="text-fg-subtle mt-16 text-xs tracking-widest uppercase">
+				last updated: october 2026
+			</p>
 		</div>
 	</div>
 	<SiteFooter />

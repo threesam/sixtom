@@ -4,15 +4,14 @@ import { expect, test } from '@playwright/test'
 // 320px with text scaled to 200%. This regressed silently once already — the
 // ledger's price column was shrink-0 next to a label that could not shrink
 // below its longest word, so the page scrolled sideways by 119px.
-// Every prerendered route — a partial list is how /book stayed broken after
-// /tax was fixed.
+// Every prerendered route — a partial list is how /book once stayed broken
+// after another route was fixed.
 const ROUTES = [
 	'/',
 	'/faq',
 	'/terms',
 	'/notify',
 	'/accessibility',
-	'/tax',
 	'/book',
 	'/log',
 	'/log/garden-party'

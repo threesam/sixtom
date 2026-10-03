@@ -5,7 +5,7 @@
 	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	const blogDescription =
-		'case studies and build notes from the work — what i shipped, why, and what the numbers showed.'
+		'case studies and build notes from the work: what i shipped, why, and what the numbers showed.'
 	const blogLd = renderJsonLd(blogJsonLd(blogDescription))
 
 	// UTC so a calendar date like "2026-05-18" (parsed as UTC midnight) isn't
@@ -48,12 +48,12 @@
 				what i'm shipping, in public.
 			</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
-				case studies and build notes — the decisions, the experiments, the numbers.
+				case studies and build notes. the decisions, the experiments, the numbers.
 			</p>
 		</header>
 
 		{#if entries.length === 0}
-			<p class="text-fg-subtle text-base">No writeups yet. Check back soon.</p>
+			<p class="text-fg-subtle text-base">no writeups yet. check back soon.</p>
 		{:else}
 			<ul class="m-0 list-none p-0">
 				{#each entries as entry (entry.slug)}

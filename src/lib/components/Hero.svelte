@@ -8,6 +8,12 @@
 		.split(/(?<=\.)\s+/)
 		.map((beat) => beat.replace(/\.$/, ''))
 	const beatTwo = rest.join(' ')
+	// Phones: each beat is sized to span the full column, so the shorter beat sets
+	// bigger. Font size per unit of line width, measured for this headline in this
+	// face (0.12688 / 0.15218) and shaved 0.5% so rounding never wraps. No JS on
+	// this page, so the fit is CSS: container width * ratio. Re-measure when the
+	// headline changes; e2e/hero-responsive.spec.ts fails if either beat drifts.
+	const FIT = [0.1262, 0.1514]
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -29,46 +35,39 @@
 		></div>
 	</div>
 
-	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-left md:py-20 md:text-center">
-		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
-		<!-- 8.6vw is the measured ceiling that keeps each beat on one line at 320px;
-		     a floor above ~1.6rem wins on phones and re-wraps them. -->
+	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-center md:py-20">
 		<h1
-			class="text-fg mt-6 text-[clamp(1.6rem,8.6vw,5.75rem)] leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
+			class="text-fg @container leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
 		>
-			<span class="block text-balance">{beatOne}</span>
-			<span class="block text-balance">{beatTwo}</span>
+			<span
+				class="text-fg-muted block text-balance max-md:text-[length:calc(100cqw*var(--fit))] max-md:tracking-tight max-md:whitespace-nowrap"
+				style="--fit: {FIT[0]}">{beatOne}</span
+			>
+			<span
+				class="block text-balance max-md:text-[length:calc(100cqw*var(--fit))] max-md:tracking-tight max-md:whitespace-nowrap"
+				style="--fit: {FIT[1]}">{beatTwo}</span
+			>
 		</h1>
-		<!-- offerLine stays in content for the JSON-LD description; on screen the
-		     stat beats below carry the offer facts so the hero reads once, not twice. -->
-		<p class="text-fg-muted mx-auto mt-8 max-w-3xl text-base leading-relaxed md:text-lg">
+		<!-- Three text elements: headline (the problem), lead (what you get), CTAs.
+		     offerLine stays in content for the JSON-LD description. -->
+		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
 			{grandSlam.lead}
 		</p>
-		<div class="mt-10 flex flex-col items-start gap-4 md:mt-12 md:items-center">
+		<div class="mt-10 flex flex-col items-center gap-4 md:mt-12">
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_waitlist"
-				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
+				class="btn-accent w-full px-8 py-3.5 text-center text-lg font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
 			>
 				join the waitlist →
 			</a>
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_teardown"
-				class="text-fg hover:text-fg-subtle text-xs tracking-widest uppercase transition-colors"
+				class="text-fg-muted hover:text-fg text-xs tracking-widest uppercase transition-colors"
 			>
 				or start with a teardown
 			</a>
 		</div>
-		<ul
-			class="mt-10 flex list-none flex-wrap justify-between gap-x-2 gap-y-4 p-0 md:mt-12 md:justify-center md:gap-x-10"
-		>
-			{#each grandSlam.stats as stat (stat.label)}
-				<li>
-					<p class="text-fg text-base font-bold tabular-nums md:text-xl">{stat.value}</p>
-					<p class="text-fg-subtle text-xs uppercase md:tracking-widest">{stat.label}</p>
-				</li>
-			{/each}
-		</ul>
 	</div>
 </section>

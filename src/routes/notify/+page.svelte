@@ -21,7 +21,7 @@
 
 <PageMeta
 	title="waitlist | SIXTOM"
-	description="one client a month. join the waitlist — or start with a paid teardown and move now."
+	description="one team a month, by appointment. join the waitlist, or start with a paid teardown and move now."
 />
 
 <div class="bg-surface flex min-h-screen flex-col">
@@ -39,7 +39,9 @@
 		<div class="mx-auto w-full max-w-2xl">
 			<p class="eyebrow text-sm">{close.scarcity}</p>
 			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
-			<TeardownReward class="text-fg-muted mt-6 text-lg leading-relaxed" />
+			<!-- Same order as the home close: what you get, the form, then the
+			     teardown for anyone who would rather not wait. -->
+			<p class="text-fg-muted mt-6 text-lg leading-relaxed">{grandSlam.lead}</p>
 
 			<form
 				method="post"
@@ -103,6 +105,8 @@
 					<p class="text-error mt-4 text-base">{form.message}</p>
 				{/if}
 			</div>
+
+			<TeardownReward class="text-fg-muted mt-8 text-base leading-relaxed" />
 		</div>
 	</section>
 

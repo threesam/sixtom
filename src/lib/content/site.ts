@@ -10,9 +10,8 @@ export const site: Site = {
 	operator: {
 		name: "Salvatore D'Angelo",
 		jobTitle: 'lead engineer',
-		currentEmployer: 'Made In Cookware',
+		currentEmployer: 'Made In',
 		formerEmployer: 'Rhone',
-		credentialsChip: 'lead engineer at Made In Cookware. formerly at Rhone.',
 		linkedinUrl: 'https://www.linkedin.com/in/threesam',
 		xUrl: 'https://x.com/six_to_m',
 		githubUrl: 'https://github.com/threesam',
@@ -21,33 +20,37 @@ export const site: Site = {
 		// a sameAs pointing at an empty shell is an anti-signal. Re-add when
 		// essays actually syndicate there.
 	},
-	sprint: {
-		name: 'sprint',
-		longName: 'the production sprint',
-		priceUSD: 10000,
-		introPriceUSD: 7500,
-		introNote: 'first 3 clients',
-		introClosed: true,
-		cadence: '1 client a month, by appointment.',
-		paymentPlan: '4 weekly payments of $2,500'
+	// Pricing source of truth: vault "price floor — the rate card strangers and
+	// friends both get" (2026-09-23). Prices hold or rise; no intro discounts.
+	// The retired $10k production sprint is off-page — a quiet yes for warm
+	// referrals only.
+	engagement: {
+		name: 'enablement',
+		longName: 'the enablement engagement',
+		priceUSD: 15000,
+		cadence: 'one team a month, by appointment.',
+		paymentPlan: 'half up front, half on day 10'
 	},
 	teardown: {
 		longName: 'the teardown',
-		priceUSD: 5000,
-		creditNote: 'credited in full against the sprint'
+		priceUSD: 1500,
+		creditNote: 'credited in full against the engagement'
 	},
 	process: [
-		{ label: 'wk 1 · day 0', body: 'a 30-minute call. we figure out the thing.' },
+		{ label: 'day 0', body: 'a 30-minute call. we pick the person and the process.' },
 		{
-			label: 'days 1–7',
-			body: 'heads down. daily Loom + code drop in your channel, so you watch it happen.'
+			label: 'week 1',
+			body: 'we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.'
 		},
 		{
 			label: 'day 5 · scope check',
-			body: "if it can't ship in scope, we stop here. you keep what we built."
+			body: "if it won't be running in scope, we stop here. you keep what we built."
 		},
-		{ label: 'mid-sprint', body: 'one short sync. course-correct if needed.' },
-		{ label: 'day 10', body: 'live in production. you own it. (or the rest is free.)' },
+		{
+			label: 'week 2',
+			body: 'the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.'
+		},
+		{ label: 'day 10', body: 'running. your person owns it. (or the rest is free.)' },
 		{ label: 'day 30', body: "check-in. what stuck, what didn't." }
 	],
 	testimonial: {
@@ -58,26 +61,26 @@ export const site: Site = {
 }
 
 export const calEvent: CalEvent = {
-	title: 'solve for X — intro call',
+	title: 'intro call',
 	slug: 'discovery',
 	durationMinutes: 30,
 	description:
-		"30 minutes. tell me what you've built and where it's breaking — we figure out the X between you and shipping, and whether the sprint is the move. no pitch.",
+		'30 minutes. tell me what your team is building with AI and what still runs late. we figure out whether the engagement is the move. no pitch.',
 	intakeQuestions: [
 		{
-			label: "what's the thing you've been close on but haven't shipped?",
+			label: 'what is your team building with AI, and what still runs late?',
 			type: 'longText',
 			required: true
 		},
 		{
-			label: 'send a link to the repo or a screenshot of where it is',
+			label: 'where does your team work today? (tools, repo, spreadsheets)',
 			type: 'text',
 			required: false
 		},
 		{
 			label: 'where are you in the process?',
 			type: 'select',
-			options: ['on the waitlist', 'did the teardown — ready to talk', 'just found sixtom'],
+			options: ['on the waitlist', 'did the teardown, ready to talk', 'just found sixtom'],
 			required: true
 		}
 	]

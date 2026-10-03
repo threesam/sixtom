@@ -5,12 +5,11 @@ import { processSubmission, resetRateLimitForTests } from './contact-form'
 // hoisted so the spy is reachable from the tests; contact-form caches the
 // transporter, so a fresh vi.fn() per createTransport call would be unobservable.
 const { sendMail } = vi.hoisted(() => ({
-	// typed param so mock.calls carries the mail shape rather than an empty tuple.
-	// nodemailer's sendMail returns a promise, so resolve one without an await.
-	sendMail: vi.fn((mail: { to: string; subject: string; text: string }) => {
-		void mail
-		return Promise.resolve(undefined)
-	})
+	// typed signature so mock.calls carries the mail shape rather than an empty
+	// tuple. nodemailer's sendMail returns a promise, so resolve one.
+	sendMail: vi.fn<(mail: { to: string; subject: string; text: string }) => Promise<undefined>>(() =>
+		Promise.resolve(undefined)
+	)
 }))
 
 vi.mock('nodemailer', () => ({
@@ -174,16 +173,15 @@ describe('processSubmission — protection layers', () => {
 			expect(toVisitor?.text).not.toContain('Contact form submission received')
 		})
 
-		it('offers more than one way to show the app', async () => {
-			// Most of this audience has no public URL to paste — localhost, behind
-			// auth, or never deployed. A URL-only ask is unanswerable for them and
-			// they go quiet, which is the exact drop-off the reply-gate exists to
-			// prevent. Narrowing this copy back to one artifact is a regression.
+		it('asks something a founder can answer from a phone', async () => {
+			// The buyer is a founder whose team stalled on AI, not someone holding a
+			// repo. Asking for an artifact they don't have is how the reply-gate
+			// turns into a silent drop-off.
 			await processSubmission(makeFormData({ name: 'Waitlist signup' }), mockEvent(), 'waitlist')
 			const body = sentMail().find((m) => m.to === 'real@example.com')?.text ?? ''
-			expect(body).toContain('url')
-			expect(body).toContain('repo')
-			expect(body).toContain('recording')
+			expect(body).toContain('what you asked your team to do')
+			expect(body).toContain('where it stalled')
+			expect(body).not.toContain('/tax')
 		})
 
 		it('makes the operator notification identifiable by address', async () => {

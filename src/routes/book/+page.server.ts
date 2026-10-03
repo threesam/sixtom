@@ -25,8 +25,8 @@ function composeMessage(input: {
 	disqualified: boolean
 }): string {
 	const lines = [
-		input.disqualified ? '[stage = pre-build — auto-disqualified]' : null,
-		`built: ${input.built}`,
+		input.disqualified ? `[stage = ${DISQUALIFY_STAGE}, auto-disqualified]` : null,
+		`team works in: ${input.built}`,
 		`stage: ${lookupLabel(STAGE_OPTIONS, input.stage)}`,
 		`30-day must-be-true: ${input.deliverable}`,
 		`budget: ${lookupLabel(BUDGET_OPTIONS, input.budget)}`,
@@ -54,7 +54,10 @@ export const actions = {
 	default: async (event) => {
 		const declaredLength = Number(event.request.headers.get('content-length'))
 		if (!Number.isFinite(declaredLength) || declaredLength > MAX_REQUEST_BYTES) {
-			return fail(413, { status: 'error' as const, message: 'Payload too large.' })
+			return fail(413, {
+				status: 'error' as const,
+				message: 'that was too much text. shorten it and try again.'
+			})
 		}
 
 		const formData = await event.request.formData()
@@ -73,14 +76,14 @@ export const actions = {
 
 		const missing = !built || !stage || !deliverable || !budget || !companyUrl
 		if (missing) {
-			return fail(400, { status: 'error' as const, message: 'Missing required fields.' })
+			return fail(400, { status: 'error' as const, message: 'every field is required.' })
 		}
 
 		if (!STAGE_OPTIONS.some((o) => o.value === stage)) {
-			return fail(400, { status: 'error' as const, message: 'Invalid stage.' })
+			return fail(400, { status: 'error' as const, message: 'pick where your team is.' })
 		}
 		if (!BUDGET_OPTIONS.some((o) => o.value === budget)) {
-			return fail(400, { status: 'error' as const, message: 'Invalid budget.' })
+			return fail(400, { status: 'error' as const, message: 'pick a budget.' })
 		}
 
 		const disqualified = stage === DISQUALIFY_STAGE
@@ -109,7 +112,7 @@ export const actions = {
 				status: 'success' as const,
 				disqualified: true,
 				message:
-					"sixtom is for people who've already built something with AI and need to make it production-grade. come back when you have a working demo and a thing that's not shipping — i'll be here."
+					"sixtom is for teams. come back when there's someone besides you to hand it to. i'll be here."
 			}
 		}
 
@@ -123,7 +126,7 @@ export const actions = {
 			status: 'success' as const,
 			disqualified: false,
 			bookingUrl,
-			message: "qualified. here's the booking link — i've pre-filled your context for the call."
+			message: "here's the booking link. your answers are already in it."
 		}
 	}
 } satisfies Actions

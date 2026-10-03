@@ -11,7 +11,10 @@ export const actions = {
 		// A missing content-length is suspicious — every legitimate browser POST sets it.
 		const declaredLength = Number(event.request.headers.get('content-length'))
 		if (!Number.isFinite(declaredLength) || declaredLength > MAX_REQUEST_BYTES) {
-			return fail(413, { status: 'error' as const, message: 'Payload too large.' })
+			return fail(413, {
+				status: 'error' as const,
+				message: 'that was too much text. shorten it and try again.'
+			})
 		}
 
 		const formData = await event.request.formData()

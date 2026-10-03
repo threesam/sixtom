@@ -12,17 +12,18 @@
 	const bodyClass = 'text-fg-muted mt-6 max-w-2xl text-base leading-relaxed md:text-lg'
 	const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 
-	// One string, three tags: og and twitter drift apart the moment they are
-	// edited separately.
-	const socialDescription =
-		'live in production on day 10 — and you own every line of it. $10,000 flat, 1 client a month.'
-	const pageTitle = `SIXTOM — ${o.headline}`
+	const description =
+		"your team is building with AI and nothing's better. two weeks: one process written down and running by day 10, or the rest is free. $15,000 fixed."
+	const pageTitle = `SIXTOM | ${o.headline}`
 </script>
 
+<!-- Link previews stay vague on purpose: brand title + a result line, no offer or
+     price (the card sits on Sam's LinkedIn). Search keeps the specific title and description. -->
 <PageMeta
 	title={pageTitle}
-	description="the production sprint: {socialDescription}"
-	{socialDescription}
+	{description}
+	socialTitle="SIXTOM"
+	socialDescription={o.proof.heading}
 />
 
 <Hero />
@@ -35,17 +36,18 @@
 		<p class="text-fg mt-8 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
 			{o.wall.turn}
 		</p>
-		<ul class="mt-8 grid gap-4 md:grid-cols-3">
+		<!-- A stacked list, not three equal cards: the costs read in order, each
+		     term big enough to land on its own. -->
+		<dl class="mt-8 space-y-6">
 			{#each o.wall.costCards as card (card.title)}
-				<li class="border-border rounded-lg border p-6">
-					<p class="text-fg font-semibold">{card.title}</p>
-					<p class="text-fg-muted mt-2 text-sm leading-relaxed">{card.sub}</p>
-				</li>
+				<div>
+					<dt class="text-fg text-2xl font-bold tracking-tight md:text-3xl">{card.title}</dt>
+					<dd class="text-fg-muted mt-1 text-base leading-relaxed md:text-lg">{card.sub}</dd>
+				</div>
 			{/each}
-		</ul>
-		<p class="text-fg-muted mt-8 text-base leading-relaxed md:text-lg">
-			{o.wall.taxLine}
-			<a href="/tax" data-umami-event="cta_tax_calc">run yours →</a>
+		</dl>
+		<p class="text-fg mt-8 text-base leading-relaxed font-semibold md:text-lg">
+			{o.wall.costLine}
 		</p>
 	</div>
 </section>
@@ -53,7 +55,6 @@
 <!-- the ledger -->
 <section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.ledger.eyebrow}</p>
 		<h2 class={h2Class}>{o.ledger.heading}</h2>
 		<p class={bodyClass}>{o.ledger.para}</p>
 
@@ -150,11 +151,22 @@
 			{/each}
 		</ul>
 		<p class={bodyClass}>{o.proof.para2}</p>
+		<h3 class="text-fg mt-12 text-xl font-bold tracking-tight md:text-2xl">
+			{o.proof.broke.heading}
+		</h3>
+		<ul class="text-fg-muted mt-4 max-w-2xl space-y-3 text-base leading-relaxed md:text-lg">
+			{#each o.proof.broke.lines as line (line)}
+				<li>{line}</li>
+			{/each}
+		</ul>
+		<p class="text-fg mt-6 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
+			{o.proof.broke.turn}
+		</p>
 		<p class="text-fg-subtle mt-6 max-w-2xl text-sm leading-relaxed">{o.proof.bridge}</p>
 		<blockquote class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg">
 			“{site.testimonial.quote}”
 			<footer class="text-fg-subtle mt-2 text-sm not-italic">
-				— {site.testimonial.attribution}
+				{site.testimonial.attribution}
 			</footer>
 		</blockquote>
 	</div>

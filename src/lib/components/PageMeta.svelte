@@ -7,15 +7,21 @@
 	let {
 		title,
 		description,
-		socialDescription = description
-	}: { title: string; description: string; socialDescription?: string } = $props()
+		socialDescription = description,
+		socialTitle = title
+	}: {
+		title: string
+		description: string
+		socialDescription?: string
+		socialTitle?: string
+	} = $props()
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	<meta property="og:title" content={title} />
+	<meta property="og:title" content={socialTitle} />
 	<meta property="og:description" content={socialDescription} />
-	<meta name="twitter:title" content={title} />
+	<meta name="twitter:title" content={socialTitle} />
 	<meta name="twitter:description" content={socialDescription} />
 </svelte:head>

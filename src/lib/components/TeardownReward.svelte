@@ -21,7 +21,7 @@
 		popovertarget={PANEL_ID}
 		class="text-fg hover:decoration-accent focus-visible:ring-accent cursor-pointer rounded-sm underline decoration-dotted underline-offset-4 focus-visible:ring-2 focus-visible:outline-none"
 	>
-		{site.teardown.creditNote}<span class="sr-only">&nbsp;— see terms</span>
+		{site.teardown.creditNote}<span class="sr-only">&nbsp;(see terms)</span>
 	</button>{close.rewardAfter}
 </p>
 

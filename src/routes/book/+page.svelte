@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { tick } from 'svelte'
 	import { enhance } from '$app/forms'
 	import type { ActionData } from './$types'
-	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE } from './options'
+	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE, TEARDOWN_STAGES } from './options'
 	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
@@ -22,21 +23,47 @@
 		enhanced = '1'
 	})
 
-	const isPreBuild = $derived(stage === DISQUALIFY_STAGE)
+	const isSolo = $derived(stage === DISQUALIFY_STAGE)
+	// Set by "next", not by the radio: arrow keys select as they move, so routing
+	// on selection would trap keyboard users on the first two options.
+	let routedToTeardown = $state(false)
+
+	function restart() {
+		stage = ''
+		routedToTeardown = false
+		void goTo(1)
+	}
 
 	function canAdvance(): boolean {
-		if (step === 1) return stage !== '' && !isPreBuild
+		if (step === 1) return stage !== '' && !isSolo
 		if (step === 2) return built.trim() !== '' && deliverable.trim() !== '' && budget !== ''
 		return true
 	}
 
+	// Each step's heading takes focus on a step change: the button that was
+	// pressed can unmount (next → submit on the last step), which would drop
+	// keyboard focus to <body>, and the heading tells screen readers where they are.
+	const stepHeads: HTMLElement[] = []
+	async function goTo(n: number) {
+		step = n
+		await tick()
+		stepHeads[n - 1]?.focus()
+	}
+
+	// Result/disqualify panels replace the control that had focus; pull focus
+	// onto their message so keyboard and screen-reader users land on it.
+	const focusOnMount = (el: HTMLElement) => {
+		el.focus()
+	}
+
 	function next() {
 		if (!canAdvance()) return
-		step += 1
+		if (step === 1 && TEARDOWN_STAGES.includes(stage)) routedToTeardown = true
+		else void goTo(step + 1)
 	}
 
 	function back() {
-		if (step > 1) step -= 1
+		if (step > 1) void goTo(step - 1)
 	}
 
 	const budgetQuestion = 'how much have you set aside?'
@@ -50,7 +77,7 @@
 
 <PageMeta
 	title="book | SIXTOM"
-	description="see if the sprint is a fit. 3 quick steps, then the booking link."
+	description="see if the engagement is a fit. 3 quick steps, then the booking link."
 />
 
 <svelte:head>
@@ -80,7 +107,9 @@
 			{#if form.disqualified}
 				<div class="border-border rounded-lg border p-8">
 					<p class="eyebrow text-sm">not yet</p>
-					<p class="text-fg mt-4 text-lg leading-relaxed">{form.message}</p>
+					<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+						{form.message}
+					</p>
 					<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
 						<a
 							href="/notify"
@@ -102,7 +131,9 @@
 			{:else}
 				<div class="border-border-strong ring-border rounded-lg border p-8 ring-1">
 					<p class="eyebrow text-sm">qualified</p>
-					<p class="text-fg mt-4 text-lg leading-relaxed">{form.message}</p>
+					<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+						{form.message}
+					</p>
 					{#if form.bookingUrl}
 						<a
 							href={form.bookingUrl}
@@ -111,31 +142,57 @@
 							target="_blank"
 							class="btn-accent mt-8 inline-block px-6 py-3 text-base hover:opacity-90"
 						>
-							book the call
+							book the intro call →
 						</a>
 					{/if}
 				</div>
 			{/if}
-		{:else if step === 1 && isPreBuild}
-			<!-- Pre-build disqualify is purely client-side: no email captured, no server hit. -->
+		{:else if step === 1 && isSolo}
+			<!-- Solo disqualify is purely client-side: no email captured, no server hit. -->
 			<div class="border-border rounded-lg border p-8">
 				<p class="eyebrow text-sm">not yet</p>
-				<p class="text-fg mt-4 text-lg leading-relaxed">
-					sixtom is for things you've already built. come back when you have a working demo — i'll
-					be here.
+				<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+					sixtom is for teams. come back when there's someone besides you to hand it to. i'll be
+					here.
 				</p>
 				<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
 					<a
 						href="/notify"
-						data-umami-event="book_pre_build_notify"
+						data-umami-event="book_solo_notify"
 						class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
 					>
 						get notified when ready
 					</a>
 					<button
 						type="button"
-						onclick={() => (stage = '')}
-						data-umami-event="book_pre_build_restart"
+						onclick={restart}
+						data-umami-event="book_solo_restart"
+						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
+					>
+						i picked the wrong one
+					</button>
+				</div>
+			</div>
+		{:else if routedToTeardown}
+			<!-- Early-stage route is client-side too: nothing captured, no server hit. -->
+			<div class="border-border rounded-lg border p-8">
+				<p class="eyebrow text-sm">start smaller</p>
+				<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+					the engagement is for teams already shipping with AI. you're a step before that. start
+					with the teardown: i look at how your team works today and write down what i'd fix first.
+				</p>
+				<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
+					<a
+						href="/notify"
+						data-umami-event="book_early_teardown"
+						class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
+					>
+						see the teardown
+					</a>
+					<button
+						type="button"
+						onclick={restart}
+						data-umami-event="book_early_restart"
 						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
 					>
 						i picked the wrong one
@@ -146,17 +203,23 @@
 			<form
 				method="post"
 				novalidate
-				use:enhance={() => {
+				use:enhance={({ submitter }) => {
 					submitting = true
 					return async ({ update }) => {
 						await update()
 						submitting = false
+						// Disabling the focused submit button drops focus to <body>; on an
+						// error the form stays, so hand focus back for a keyboard retry.
+						await tick()
+						if (document.activeElement === document.body) submitter?.focus()
 					}
 				}}
 			>
 				<div class:hidden={step !== 1}>
-					<p class={stepEyebrowClass}>step 1 of {TOTAL_STEPS} — fit</p>
-					<h2 class={stepHeadClass}>where are you with this thing?</h2>
+					<p class={stepEyebrowClass}>step 1 of {TOTAL_STEPS} · fit</p>
+					<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[0]}>
+						where are you with this thing?
+					</h2>
 					<fieldset class="mt-8 space-y-3">
 						<legend class="sr-only">stage</legend>
 						{#each STAGE_OPTIONS as opt (opt.value)}
@@ -182,11 +245,13 @@
 
 				<div class:hidden={step !== 2} class="space-y-8">
 					<div>
-						<p class={stepEyebrowClass}>step 2 of {TOTAL_STEPS} — the work</p>
-						<h2 class={stepHeadClass}>what does done look like?</h2>
+						<p class={stepEyebrowClass}>step 2 of {TOTAL_STEPS} · the work</p>
+						<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[1]}>
+							what does done look like?
+						</h2>
 					</div>
 					<div>
-						<label for="built" class={labelClass}>where can I see what you've made?</label>
+						<label for="built" class={labelClass}>where does your team work today?</label>
 						<input
 							id="built"
 							name="built"
@@ -194,7 +259,7 @@
 							required
 							maxlength="500"
 							bind:value={built}
-							placeholder="a url, the repo, or 'not deployed yet'"
+							placeholder="the tools, the repo if there is one, or 'spreadsheets, honestly'"
 							class="{inputClass} mt-2"
 						/>
 					</div>
@@ -210,8 +275,7 @@
 							maxlength="4000"
 							bind:value={deliverable}
 							placeholder="in 30 days, what has to be true for this to feel worth it?"
-							class="{inputClass} mt-2"
-						></textarea>
+							class="{inputClass} mt-2"></textarea>
 					</div>
 					<div>
 						<label for="budget" class={labelClass}>{budgetQuestion}</label>
@@ -232,8 +296,10 @@
 
 				<div class:hidden={step !== 3} class="space-y-8">
 					<div>
-						<p class={stepEyebrowClass}>step 3 of {TOTAL_STEPS} — last bit</p>
-						<h2 class={stepHeadClass}>how do i reach you?</h2>
+						<p class={stepEyebrowClass}>step 3 of {TOTAL_STEPS} · last bit</p>
+						<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[2]}>
+							how do i reach you?
+						</h2>
 						<p class="text-fg-muted mt-3 text-sm leading-relaxed">
 							goes straight to my phone. i reply within a business day.
 						</p>

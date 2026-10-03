@@ -1,10 +1,11 @@
 // Builds the social card (static/og.png): the brand bubble field behind the real
-// SIXTOM logo lockup + subhead.
+// SIXTOM logo lockup. No headline in the image: the offer changes, the card
+// shouldn't have to (the words live in og:title / og:description).
 //
 // The background bakes one frame of the hero's value-noise field (static/bubbles.js)
 // into SVG circles (oklch -> sRGB). The foreground renders the actual wordmark
-// markup (six + square "to" chip + m, Cabinet Grotesk) plus the Recursive subhead
-// via headless Chromium, so the card matches the site exactly. The bubble field is
+// markup (six + square "to" chip + m, Cabinet Grotesk) plus the Recursive domain
+// line via headless Chromium, so the card matches the site exactly. The bubble field is
 // fully deterministic; the rasterized text depends on local chromium + magick.
 //
 // Run: node scripts/og-source/build-og.mjs   (needs playwright chromium + magick)
@@ -109,7 +110,7 @@ const bubbleSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="
 </svg>`
 
 // Webfonts base64-embedded so the page renders offline/deterministically:
-// Cabinet Grotesk carries the wordmark, Recursive carries the subhead/domain.
+// Cabinet Grotesk carries the wordmark, Recursive carries the domain.
 const recursiveB64 = readFileSync(resolve(ROOT, 'static/fonts/recursive.woff2')).toString('base64')
 const cabinetB64 = readFileSync(resolve(ROOT, 'static/fonts/cabinet-grotesk.woff2')).toString(
 	'base64'
@@ -131,14 +132,11 @@ body{background:#161616;position:relative;font-family:'Recursive',ui-monospace,m
 .logo .chip{background:#f7f7f7;color:#161616;display:inline-flex;align-items:center;aspect-ratio:1;padding-left:${LS};margin-right:${LS};}
 .logo .chip span{text-box:trim-both cap alphabetic;}
 .logo .b{margin-right:calc(-1 * ${LS});}
-.sub{font-size:36px;font-weight:500;letter-spacing:-0.01em;color:#c8c8c8;}
-.sub b{color:#f7f7f7;font-weight:700;}
 .domain{position:absolute;bottom:44px;left:0;width:100%;text-align:center;font-size:22px;letter-spacing:6px;color:#7a7a7a;text-transform:uppercase;}
 </style></head><body>
 <div class="bg">${bubbleSvg}</div>
 <div class="wrap">
 	<div class="logo"><span>six</span><span class="chip"><span>to</span></span><span class="b">m</span></div>
-	<div class="sub">AI built your first draft. i build <b>your solution.</b></div>
 </div>
 <div class="domain">sixtom.com</div>
 </body></html>`

@@ -28,6 +28,9 @@
 				data-umami-event="footer_notify"
 				class="no-link hover:text-fg transition-colors">waitlist</a
 			>
+			<a href="/book" data-umami-event="footer_book" class="no-link hover:text-fg transition-colors"
+				>intro call</a
+			>
 			<a
 				href="/privacy"
 				data-umami-event="footer_privacy"
