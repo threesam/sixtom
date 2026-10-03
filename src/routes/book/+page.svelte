@@ -2,7 +2,7 @@
 	import { tick } from 'svelte'
 	import { enhance } from '$app/forms'
 	import type { ActionData } from './$types'
-	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE } from './options'
+	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE, TEARDOWN_STAGES } from './options'
 	import PageMeta from '$lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
@@ -24,6 +24,15 @@
 	})
 
 	const isSolo = $derived(stage === DISQUALIFY_STAGE)
+	// Set by "next", not by the radio: arrow keys select as they move, so routing
+	// on selection would trap keyboard users on the first two options.
+	let routedToTeardown = $state(false)
+
+	function restart() {
+		stage = ''
+		routedToTeardown = false
+		void goTo(1)
+	}
 
 	function canAdvance(): boolean {
 		if (step === 1) return stage !== '' && !isSolo
@@ -48,7 +57,9 @@
 	}
 
 	function next() {
-		if (canAdvance()) void goTo(step + 1)
+		if (!canAdvance()) return
+		if (step === 1 && TEARDOWN_STAGES.includes(stage)) routedToTeardown = true
+		else void goTo(step + 1)
 	}
 
 	function back() {
@@ -154,11 +165,34 @@
 					</a>
 					<button
 						type="button"
-						onclick={() => {
-							stage = ''
-							void goTo(1)
-						}}
+						onclick={restart}
 						data-umami-event="book_solo_restart"
+						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
+					>
+						i picked the wrong one
+					</button>
+				</div>
+			</div>
+		{:else if routedToTeardown}
+			<!-- Early-stage route is client-side too: nothing captured, no server hit. -->
+			<div class="border-border rounded-lg border p-8">
+				<p class="eyebrow text-sm">start smaller</p>
+				<p class="text-fg mt-4 text-lg leading-relaxed" tabindex="-1" {@attach focusOnMount}>
+					the engagement is for teams already shipping with AI. you're a step before that. start
+					with the teardown: i look at how your team works today and write down what i'd fix first.
+				</p>
+				<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-6">
+					<a
+						href="/notify"
+						data-umami-event="book_early_teardown"
+						class="text-fg-subtle hover:text-coin text-xs tracking-widest uppercase transition-colors"
+					>
+						see the teardown
+					</a>
+					<button
+						type="button"
+						onclick={restart}
+						data-umami-event="book_early_restart"
 						class="text-fg-subtle hover:text-coin text-left text-xs tracking-widest uppercase transition-colors"
 					>
 						i picked the wrong one
