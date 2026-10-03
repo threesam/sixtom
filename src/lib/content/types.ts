@@ -89,11 +89,9 @@ export interface CostCard {
 }
 
 export interface GrandSlamOffer {
-	chip: string
 	headline: string
 	lead: string
 	offerLine: string
-	stats: readonly Stat[]
 	wall: {
 		thesis: string
 		para: string

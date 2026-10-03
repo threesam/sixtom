@@ -24,5 +24,20 @@ test.describe('hero headline', () => {
 
 		expect(linesPerBeat).toHaveLength(2)
 		expect(linesPerBeat).toEqual([1, 1])
+
+		// On phones each beat is fitted to the column by a measured ratio (FIT in
+		// Hero.svelte). A headline edit without re-measuring lands outside this band.
+		const fill = await page.evaluate(() => {
+			const column = document.querySelector('h1')?.getBoundingClientRect().width ?? 0
+			return [...document.querySelectorAll('h1 > span')].map((el) => {
+				const range = document.createRange()
+				range.selectNodeContents(el)
+				return range.getBoundingClientRect().width / column
+			})
+		})
+		for (const ratio of fill) {
+			expect(ratio).toBeGreaterThan(0.97)
+			expect(ratio).toBeLessThanOrEqual(1)
+		}
 	})
 })
