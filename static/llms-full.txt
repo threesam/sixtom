@@ -56,9 +56,9 @@ and there's a floor under it: day 5, we both look at it. if we can both see it w
 
 $1,500, credited in full against the engagement if you book one within 30 days. i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together, and i'll tell you if you don't need me. to start one, join the waitlist and reply to the email.
 
-## proof — inside a consumer brand
+## proof: across industries
 
-since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down.
+30+ people onboarded to building with AI so far, at businesses all over the map: health practitioners, agencies, recruiting firms, artisans, a charity. none of them were hired to write code. by the tenth session, setup took one sitting. three glue chains are code now. one finance analyst shipped dashboards fast enough that their lead asked them to slow down.
 
 what broke when it worked. i became the review queue. everything waited on me. thousands of tests, good ones. most never needed to exist. i built tools faster than i asked who would use them. the process stayed in people's heads. nobody can run that. so the first thing we make now is a document. the build comes second, and it's smaller.
 

@@ -145,12 +145,12 @@ export const grandSlam: GrandSlamOffer = {
 		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
 	proof: {
-		eyebrow: 'proof · inside a consumer brand',
+		eyebrow: 'proof · across industries',
 		heading: 'finance, ops and marketing, shipping their own tools.',
-		para: "since july i've run 22 onboarding sessions across ops, finance, marketing, wholesale and creative. into a shared repo, behind a review gate. none of them were hired to write code. the numbers:",
+		para: '30+ people onboarded to building with AI so far, at businesses all over the map: health practitioners, agencies, recruiting firms, artisans, a charity. none of them were hired to write code. the numbers:',
 		tiles: [
-			{ value: '22', label: 'onboarding sessions' },
-			{ value: '5', label: 'departments' },
+			{ value: '30+', label: 'people onboarded' },
+			{ value: '7', label: 'businesses' },
 			{ value: '~10', label: 'sessions to one-sitting setup' },
 			{ value: '3', label: 'glue chains now code' }
 		],
