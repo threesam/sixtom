@@ -6,10 +6,21 @@ import { expect, test } from '@playwright/test'
 // squares, the gaps and the level numbers all hang on a class string, so a
 // tweak can quietly break them. 500px is where an uncapped label would fit on
 // one line while its neighbour wraps.
-for (const width of [320, 393, 500, 1280]) {
-	test(`proof stats are centered squares at ${String(width)}px`, async ({ page }) => {
+// The last case is WCAG reflow (320px, text at 200%): a centered stat that
+// outgrows its square spills off the screen edge instead of scrolling.
+const CASES = [
+	{ width: 320, zoom: false },
+	{ width: 393, zoom: false },
+	{ width: 500, zoom: false },
+	{ width: 1280, zoom: false },
+	{ width: 320, zoom: true }
+]
+for (const { width, zoom } of CASES) {
+	const name = `${String(width)}px${zoom ? ' / 200% text' : ''}`
+	test(`proof stats are centered squares at ${name}`, async ({ page }) => {
 		await page.setViewportSize({ width, height: 900 })
 		await page.goto('/')
+		if (zoom) await page.addStyleTag({ content: 'html { font-size: 200% }' })
 		await page.evaluate(() => document.fonts.ready)
 		// bubbles.js sizes a canvas when it initialises it (from a ResizeObserver, so
 		// not synchronously); 300 is the untouched default. Times out if the band's
@@ -44,6 +55,8 @@ for (const width of [320, 393, 500, 1280]) {
 					height: box.height,
 					center: box.left + box.width / 2,
 					valueCenter: valueBox.left + valueBox.width / 2,
+					valueLeft: valueBox.left,
+					valueRight: valueBox.right,
 					valueTop: valueBox.top,
 					labelLeft: labelBox.left,
 					labelRight: labelBox.right
@@ -68,6 +81,8 @@ for (const width of [320, 393, 500, 1280]) {
 			expect(Math.abs(tile.width - tile.height)).toBeLessThan(1)
 			expect(Math.abs(tile.valueCenter - tile.center)).toBeLessThan(1)
 			expect(Math.abs(tile.valueTop - first.valueTop)).toBeLessThan(1)
+			expect(tile.valueLeft).toBeGreaterThanOrEqual(tile.left)
+			expect(tile.valueRight).toBeLessThanOrEqual(tile.right)
 			expect(tile.labelLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.labelRight).toBeLessThanOrEqual(tile.right)
 		}
