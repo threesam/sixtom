@@ -50,7 +50,7 @@
 		</h1>
 		<!-- Three text elements: headline (the problem), lead (what you get), CTAs.
 		     offerLine stays in content for the JSON-LD description. -->
-		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
+		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-balance md:text-xl">
 			{grandSlam.lead}
 		</p>
 		<div class="mt-10 flex flex-col items-center gap-4 md:mt-12">
