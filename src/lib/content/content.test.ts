@@ -38,7 +38,7 @@ describe('content', () => {
 	})
 
 	it('guarantee is the day-10 promise', () => {
-		expect(grandSlam.guarantee.headline).toContain('day 10')
+		expect(grandSlam.guarantee.headline).toMatch(/day\s10/)
 		expect(grandSlam.guarantee.headline).toContain('free')
 	})
 

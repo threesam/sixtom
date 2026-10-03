@@ -19,7 +19,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: "what's the guarantee?",
 		answer:
-			"your person is running the process by day 10, or you don't pay the second half. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used."
+			"your team is running the process by day 10, or you don't pay the second half. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used."
 	},
 	{
 		question: "what's the teardown?",

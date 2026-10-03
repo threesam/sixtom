@@ -33,9 +33,6 @@
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>{o.wall.thesis}</h2>
 		<p class={bodyClass}>{o.wall.para}</p>
-		<p class="text-fg mt-8 max-w-2xl text-base leading-relaxed font-semibold md:text-lg">
-			{o.wall.turn}
-		</p>
 		<!-- A stacked list, not three equal cards: the costs read in order, each
 		     term big enough to land on its own. -->
 		<dl class="mt-8 space-y-6">
@@ -46,9 +43,6 @@
 				</div>
 			{/each}
 		</dl>
-		<p class="text-fg mt-8 text-base leading-relaxed font-semibold md:text-lg">
-			{o.wall.costLine}
-		</p>
 	</div>
 </section>
 
@@ -125,12 +119,10 @@
 <!-- the guarantee -->
 <section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
-		<!-- Clause-per-line (\n in the content string); sized so each clause
-		     holds a single line inside max-w-3xl on desktop. -->
-		<h2 class="text-fg mt-2 text-3xl leading-tight font-bold tracking-tight md:text-[2.5rem]">
-			{#each o.guarantee.headline.split('\n') as line (line)}
-				<span class="block">{line}</span>
-			{/each}
+		<h2
+			class="text-fg mt-2 text-3xl leading-tight font-bold tracking-tight text-balance md:text-[2.5rem]"
+		>
+			{o.guarantee.headline}
 		</h2>
 		<p class={bodyClass}>{o.guarantee.body}</p>
 	</div>

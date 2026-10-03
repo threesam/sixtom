@@ -6,7 +6,7 @@
 
 building got cheap. deciding didn't.
 
-anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist. every month it stays like this has a price: the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips. that part is fixable in two weeks.
+anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist. the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips.
 
 ## the offer — one engagement, everything in it
 
@@ -48,7 +48,7 @@ a consultancy quotes six figures and delivers a deck. a workshop is half a day a
 
 ## the guarantee
 
-your person runs it by day 10, or the rest is free.
+your team runs it by day 10, or the rest is free.
 
 and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours.
 
@@ -76,7 +76,7 @@ not yet if: nobody on your team has shipped anything yet. start with the teardow
 - week 1: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
 - week 2: the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.
-- day 10: running. your person owns it. (or the rest is free.)
+- day 10: running. your team owns it. (or the rest is free.)
 - day 30: check-in. what stuck, what didn't.
 
 ## FAQ
@@ -91,7 +91,7 @@ $15,000 fixed. half up front, half on day 10. that buys everything itemized on t
 
 **what's the guarantee?**
 
-your person is running the process by day 10, or you don't pay the second half. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used.
+your team is running the process by day 10, or you don't pay the second half. there's a floor under it too: at the day-5 scope check, if we can both see it won't be running in scope, we stop. you keep everything built and pay only for the time used.
 
 **what's the teardown?**
 

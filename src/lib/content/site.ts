@@ -50,7 +50,7 @@ export const site: Site = {
 			label: 'week 2',
 			body: 'the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.'
 		},
-		{ label: 'day 10', body: 'running. your person owns it. (or the rest is free.)' },
+		{ label: 'day 10', body: 'running. your team owns it. (or the rest is free.)' },
 		{ label: 'day 30', body: "check-in. what stuck, what didn't." }
 	],
 	testimonial: {
