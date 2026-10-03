@@ -48,7 +48,7 @@ export const FAQ: readonly QA[] = [
 	{
 		question: "who's behind sixtom?",
 		answer:
-			"Salvatore (Sam) D'Angelo, leads engineering and AI at Made In (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice."
+			"Salvatore (Sam) D'Angelo, leads engineering and AI at a consumer brand (multi-million visitors a month), formerly at Rhone. sixtom is the solo practice."
 	},
 	{
 		question: 'is it remote?',

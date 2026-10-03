@@ -1,6 +1,7 @@
 {
 	"redirects": [
-		{ "source": "/log/garden-porty", "destination": "/log/garden-party", "permanent": true }
+		{ "source": "/log/garden-porty", "destination": "/log/garden-party", "permanent": true },
+		{ "source": "/tax", "destination": "/", "permanent": true }
 	],
 	"headers": [
 		{

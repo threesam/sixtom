@@ -20,7 +20,6 @@ export function GET(): Response {
 		{ path: '/', lastmod: today, changefreq: 'monthly', priority: '1.0' },
 		{ path: '/log', lastmod: today, changefreq: 'weekly', priority: '0.8' },
 		{ path: '/faq', lastmod: today, changefreq: 'monthly', priority: '0.7' },
-		{ path: '/tax', lastmod: today, changefreq: 'monthly', priority: '0.6' },
 		{ path: '/notify', lastmod: today, changefreq: 'monthly', priority: '0.6' },
 		...LOG_ENTRIES.map((entry) => ({
 			path: `/log/${entry.slug}`,

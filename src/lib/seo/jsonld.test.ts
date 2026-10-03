@@ -25,10 +25,8 @@ describe('JSON-LD generators', () => {
 		expect(ld.alternateName).not.toContain('Sixtom')
 		expect(ld.sameAs).toContain(site.gardenUrl)
 		expect(ld.sameAs).toContain(site.operator.linkedinUrl)
-		expect(ld.worksFor).toEqual({
-			'@type': 'Organization',
-			name: site.operator.currentEmployer
-		})
+		// No employer: the proof section is anonymized, so the bio must not name it.
+		expect(ld).not.toHaveProperty('worksFor')
 		expect(ld.alumniOf).toEqual({
 			'@type': 'Organization',
 			name: site.operator.formerEmployer
