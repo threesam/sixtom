@@ -164,8 +164,8 @@ body {
 	overflow-wrap: break-word;
 }
 
-/* The UA gives fieldset min-inline-size: min-content, so /tax's radio group
- * refused to shrink and scrolled the page sideways at 200%. */
+/* The UA gives fieldset min-inline-size: min-content, so a radio group
+ * (/book step 1) refused to shrink and scrolled the page sideways at 200%. */
 fieldset {
 	min-inline-size: 0;
 }

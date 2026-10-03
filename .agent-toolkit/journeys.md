@@ -15,10 +15,9 @@ the hero/offer copy changes often; the funnel shape shouldn't.
 3. Fill `#waitlist-email` with e2e@test.sixtom.local and `#waitlist-build` with any text; submit.
 4. Expect: navigation to `/notify?/notify` (the named-action URL — no redirect) showing "you're on the list. check your inbox." No console errors, no failed network requests anywhere in the journey.
 
-## 2. the tax loop
+## 2. footer → book
 
-1. Open `/tax`. Expect h1 "what's it costing you?" and a non-$0 figure with default inputs; changing the goal radio changes the figure.
-2. Click `cta_calc_book`. Expect `/book` step 1 ("where are you with this thing?") renders. No console errors.
+1. Open `/`. Click `footer_book`. Expect `/book` step 1 ("where are you with this thing?") renders. No console errors.
 
 ## 3. faq → book
 
