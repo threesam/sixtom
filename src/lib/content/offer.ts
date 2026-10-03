@@ -13,7 +13,7 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 // named as a case study until there's a written OK to cite it.
 export const grandSlam: GrandSlamOffer = {
 	headline: "everyone's building. nothing's better.",
-	lead: 'by day 10, the process that keeps slipping is written down, running, and yours. or the rest is free.',
+	lead: 'by day 10, the process that keeps slipping is written down, running, and yours.',
 	offerLine:
 		"the enablement engagement, for teams already building with AI. two weeks, one team. by day 10 one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it.",
 	wall: {

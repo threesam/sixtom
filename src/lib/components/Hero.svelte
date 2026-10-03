@@ -14,11 +14,6 @@
 	// this page, so the fit is CSS: container width * ratio. Re-measure when the
 	// headline changes; e2e/hero-responsive.spec.ts fails if either beat drifts.
 	const FIT = [0.1262, 0.1514]
-	// The lead's last sentence is the guarantee; it takes the accent so the one
-	// accent on screen ties the promise to the button.
-	const turn = grandSlam.lead.lastIndexOf('. ') + 2
-	const outcome = grandSlam.lead.slice(0, turn)
-	const guarantee = grandSlam.lead.slice(turn)
 </script>
 
 <section class="snap-section bg-surface relative">
@@ -56,7 +51,7 @@
 		<!-- Three text elements: headline (the problem), lead (what you get), CTAs.
 		     offerLine stays in content for the JSON-LD description. -->
 		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
-			{outcome}<span class="text-accent">{guarantee}</span>
+			{grandSlam.lead}
 		</p>
 		<div class="mt-10 flex flex-col items-center gap-4 md:mt-12">
 			<a
