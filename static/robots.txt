@@ -1,12 +1,8 @@
 # Robots policy for sixtom.com. AI crawlers and answer engines are welcomed —
 # we publish a machine-readable description at /llms.txt and an expanded
 # version at /llms-full.txt. Link response headers advertise both.
-#
-# Content-Signal directives follow the IETF AI Preferences (aipref) draft
-# vocabulary documented at https://contentsignals.org/.
 
 User-agent: *
-Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 Disallow: /sanity
 Disallow: /api/
