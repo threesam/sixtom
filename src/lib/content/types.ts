@@ -6,6 +6,7 @@ export interface QA {
 export interface Operator {
 	name: string
 	jobTitle: string
+	currentEmployer: string
 	formerEmployer: string
 	linkedinUrl: string
 	xUrl: string

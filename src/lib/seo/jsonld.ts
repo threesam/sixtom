@@ -29,6 +29,7 @@ export interface PersonLd {
 	name: string
 	alternateName: readonly string[]
 	jobTitle: string
+	worksFor: Org
 	alumniOf: Org
 	url: string
 	sameAs: readonly string[]
@@ -77,6 +78,7 @@ export function personJsonLd(): PersonLd {
 		// WebSite/Service nodes, not here, so engines don't conflate person + brand.
 		alternateName: ["Sam D'Angelo", 'threesam'],
 		jobTitle: site.operator.jobTitle,
+		worksFor: { '@type': 'Organization', name: site.operator.currentEmployer },
 		alumniOf: { '@type': 'Organization', name: site.operator.formerEmployer },
 		url: site.siteUrl,
 		// sameAs is the strongest entity-grounding signal for answer engines: it

@@ -10,6 +10,7 @@ export const site: Site = {
 	operator: {
 		name: "Salvatore D'Angelo",
 		jobTitle: 'lead engineer',
+		currentEmployer: 'Made In',
 		formerEmployer: 'Rhone',
 		linkedinUrl: 'https://www.linkedin.com/in/threesam',
 		xUrl: 'https://x.com/six_to_m',
