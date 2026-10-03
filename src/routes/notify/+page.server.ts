@@ -25,10 +25,10 @@ export const actions = {
 			// or bots would poison the list through the silent-200 path.
 			// Best-effort: a listmonk outage must not fail the promised signup.
 			//
-			// The analytics event belongs INSIDE this guard, with the list write.
-			// Outside it, fakes counted as signups: 41 notify_signup_success events
-			// over 30d against 3 real subscribers. The event and the list have to
-			// mean the same thing or the brief reports a conversion that never happened.
+			// The analytics event belongs INSIDE this guard too. Outside it, fakes
+			// counted as signups: 41 notify_signup_success events over 30d against
+			// 3 real subscribers. It counts real signups, so a listmonk outage
+			// still fires it: the person signed up and both emails went out.
 			if (!result.suspicious) {
 				const emailField = formData.get('email')
 				const email = typeof emailField === 'string' ? emailField.trim() : ''

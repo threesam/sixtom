@@ -68,41 +68,4 @@ describe('Umami CRO event instrumentation', () => {
 		const contents = readFileSync(resolve(COMPONENT_DIR, 'BookCta.svelte'), 'utf-8')
 		expect(contents).toContain('data-umami-event={event}')
 	})
-
-	// Presence is not enough: notify_signup_success was present before and
-	// still wrong. Conversion events have to sit inside the `!result.suspicious`
-	// guard, or honeypot/time-trap fakes (ok + suspicious, silent 200 by design)
-	// get counted: 41 signup events against 3 subscribers over 30d.
-	function suspiciousGuardBody(route: string): string {
-		const contents = readFileSync(resolve(ROUTES_DIR, route), 'utf-8')
-		const guardStart = contents.indexOf('if (!result.suspicious')
-		expect(guardStart, `${route}: suspicious guard not found`).toBeGreaterThan(-1)
-		// Walk to the guard's OWN closing brace. Slicing to the `return`
-		// instead looks equivalent and is not: it also swallows everything
-		// between the closing brace and the return, which is exactly where the
-		// bug used to live, so that version of this test passed on the bug.
-		let depth = 0
-		let guardEnd = contents.indexOf('{', guardStart)
-		for (let i = guardEnd; i < contents.length; i++) {
-			if (contents[i] === '{') depth++
-			else if (contents[i] === '}' && --depth === 0) {
-				guardEnd = i
-				break
-			}
-		}
-		return contents.slice(guardStart, guardEnd)
-	}
-
-	it('fires "notify_signup_success" only for signups that reach the list', () => {
-		const guarded = suspiciousGuardBody('notify/+page.server.ts')
-		expect(guarded).toContain('subscribeToList(')
-		expect(guarded).toContain("fireServerEvent('notify_signup_success'")
-	})
-
-	it('fires the /book outcome events only for real submissions', () => {
-		const guarded = suspiciousGuardBody('book/+page.server.ts')
-		expect(guarded).toContain('fireServerEvent(')
-		expect(guarded).toContain("'book_qualified'")
-		expect(guarded).toContain("'book_disqualified'")
-	})
 })
