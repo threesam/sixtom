@@ -71,9 +71,13 @@
 			data-website-id="64398c1a-02a0-4a61-991c-b0d143f01b46"
 			data-domains="sixtom.com"
 		></script>
-		<!-- Hero bubble-field animation. Standalone (no framework) so the home page
-		     stays csr=false; no-ops on pages without a [data-bubble] canvas. -->
-		<script defer src="%sveltekit.assets%/bubbles.js"></script>
+		<!-- Bubble-field animation. Standalone (no framework) so the home page stays
+		     csr=false; no-ops on pages without a [data-bubble] canvas. Deliberately
+		     not cached beyond revalidation (no header in vercel.json): the filename is
+		     stable, so a cached copy outlives the markup it drives. A 1-day cache once
+		     left returning phones running the old script against a new page. ?v=2
+		     flushes those copies. -->
+		<script defer src="%sveltekit.assets%/bubbles.js?v=2"></script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

@@ -52,7 +52,7 @@ const initBubbles = (canvas) => {
 	// Returns the field (geometry + fixed point positions) or null while the canvas
 	// is unsized. Rendered at the element's real pixel size (crisp, no upscale); the
 	// noise blob scale is tied to the short side so blobs are a fixed fraction of the
-	// viewport regardless of resolution. Positions carry a small static jitter so the
+	// viewport regardless of resolution or canvas shape. Positions carry a small static jitter so the
 	// grid doesn't read as a grid. Rebuilt on resize, not mutated.
 	const buildField = () => {
 		const { width, height } = canvas.getBoundingClientRect()
@@ -62,13 +62,11 @@ const initBubbles = (canvas) => {
 		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-		// A short desktop canvas (the proof band) sets data-density lower so its dots
-		// and blobs match the hero's size instead of shrinking with its height.
-		const minDim = Math.min(width, height)
-		const mobile = width < 768
-		const density = mobile ? MOBILE_DENSITY : DENSITY
-		const space = minDim / (mobile ? density : Number(canvas.dataset.density) || density)
-		const blobScale = BLOBS / (space * density)
+		// Sized off the viewport's short side, not the canvas's, so a short canvas
+		// (the proof band) gets the hero's dots and blobs instead of miniatures.
+		const minDim = Math.min(window.innerWidth, window.innerHeight)
+		const space = minDim / (window.innerWidth < 768 ? MOBILE_DENSITY : DENSITY)
+		const blobScale = BLOBS / minDim
 
 		const points = []
 		for (let x = space / 2; x < width; x += space) {
@@ -79,7 +77,7 @@ const initBubbles = (canvas) => {
 				})
 			}
 		}
-		return { width, height, space, blobScale, points }
+		return { width, height, minDim, space, blobScale, points }
 	}
 
 	// Each frame, sample the noise at every point with a time offset (the drift) so
@@ -150,6 +148,14 @@ const initBubbles = (canvas) => {
 	}
 
 	new ResizeObserver(sync).observe(canvas)
+
+	// The field is scaled to the viewport, which can change under a canvas that
+	// keeps its size (the proof band when only the window's height moves). Rebuild
+	// only when the short side really changed: a phone's URL bar fires resize on
+	// every scroll, and a rebuild clears the canvas.
+	window.addEventListener('resize', () => {
+		if (field && Math.min(window.innerWidth, window.innerHeight) !== field.minDim) sync()
+	})
 
 	// Pause whenever the canvas scrolls out of view — no point painting a canvas
 	// nobody can see while the rest of the page is read.
