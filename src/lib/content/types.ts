@@ -108,9 +108,7 @@ export interface GrandSlamOffer {
 	proof: {
 		eyebrow: string
 		heading: string
-		para: string
 		tiles: readonly Stat[]
-		para2: string
 		broke: { heading: string; lines: readonly string[]; turn: string }
 		bridge: string
 	}

@@ -133,17 +133,38 @@
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
-		<p class={bodyClass}>{o.proof.para}</p>
-		<ul class="mt-10 grid list-none grid-cols-2 gap-6 p-0 md:grid-cols-4">
+	</div>
+	<!-- The numbers as a full-bleed band over a pocket of the hero's bubble field
+	     (static/bubbles.js drives every [data-bubble] canvas), so they read as
+	     their own object, not more prose. The field bleeds; the stats keep the
+	     text column width. Three equal columns at every width, each stat centered;
+	     on phones the labels wrap (balanced) rather than the stats stacking. -->
+	<div class="border-border relative mt-10 overflow-hidden border-y md:mt-14">
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+			<canvas data-bubble data-density="16" class="absolute inset-0 block h-full w-full"></canvas>
+			<div class="absolute inset-0 bg-black/60"></div>
+		</div>
+		<dl
+			class="relative mx-auto grid w-full max-w-3xl grid-cols-3 gap-3 px-6 py-10 text-center md:gap-6 md:py-20"
+		>
 			{#each o.proof.tiles as tile (tile.label)}
-				<li>
-					<p class="text-fg text-2xl font-bold tabular-nums md:text-3xl">{tile.value}</p>
-					<p class="text-fg-subtle mt-1 text-xs tracking-widest uppercase">{tile.label}</p>
-				</li>
+				<div class="flex flex-col-reverse items-center justify-end">
+					<dt
+						class="text-fg-muted mt-2 text-[11px] leading-snug tracking-wider text-balance uppercase md:mt-3 md:text-sm md:tracking-widest"
+					>
+						{tile.label}
+					</dt>
+					<dd
+						class="text-fg font-display text-4xl font-bold tracking-tight tabular-nums md:text-7xl"
+					>
+						{tile.value}
+					</dd>
+				</div>
 			{/each}
-		</ul>
-		<p class={bodyClass}>{o.proof.para2}</p>
-		<h3 class="text-fg mt-12 text-xl font-bold tracking-tight md:text-2xl">
+		</dl>
+	</div>
+	<div class="mx-auto w-full max-w-3xl px-6">
+		<h3 class="text-fg mt-16 text-xl font-bold tracking-tight md:mt-20 md:text-2xl">
 			{o.proof.broke.heading}
 		</h3>
 		<ul class="text-fg-muted mt-4 max-w-2xl space-y-3 text-base leading-relaxed md:text-lg">
@@ -155,9 +176,11 @@
 			{o.proof.broke.turn}
 		</p>
 		<p class="text-fg-subtle mt-6 max-w-2xl text-sm leading-relaxed">{o.proof.bridge}</p>
-		<blockquote class="text-fg-muted mt-10 max-w-2xl text-base leading-relaxed italic md:text-lg">
+		<blockquote
+			class="border-accent text-fg mt-14 max-w-2xl border-l-4 pl-6 text-xl leading-snug font-semibold md:pl-8 md:text-2xl"
+		>
 			“{site.testimonial.quote}”
-			<footer class="text-fg-subtle mt-2 text-sm not-italic">
+			<footer class="text-accent mt-4 text-xs font-normal tracking-widest uppercase">
 				{site.testimonial.attribution}
 			</footer>
 		</blockquote>

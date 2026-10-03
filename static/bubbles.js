@@ -3,10 +3,9 @@
 // value-noise field is high, so contiguous blobs of blue-green drift through
 // rather than rippling uniformly in place. Standalone (no framework) so the home
 // page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
-// without a [data-bubble] canvas. A left→right CSS overlay fades it under the copy.
-const initBubbles = () => {
-	const canvas = document.querySelector('canvas[data-bubble]')
-	if (!canvas) return
+// without a [data-bubble] canvas; each one (hero, proof band) runs its own field.
+// A CSS overlay fades it under the copy.
+const initBubbles = (canvas) => {
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
 
@@ -63,9 +62,13 @@ const initBubbles = () => {
 		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
+		// A short desktop canvas (the proof band) sets data-density lower so its dots
+		// and blobs match the hero's size instead of shrinking with its height.
 		const minDim = Math.min(width, height)
-		const space = minDim / (width < 768 ? MOBILE_DENSITY : DENSITY)
-		const blobScale = BLOBS / minDim
+		const mobile = width < 768
+		const density = mobile ? MOBILE_DENSITY : DENSITY
+		const space = minDim / (mobile ? density : Number(canvas.dataset.density) || density)
+		const blobScale = BLOBS / (space * density)
 
 		const points = []
 		for (let x = space / 2; x < width; x += space) {
@@ -148,7 +151,7 @@ const initBubbles = () => {
 
 	new ResizeObserver(sync).observe(canvas)
 
-	// Pause whenever the hero scrolls out of view — no point painting a canvas
+	// Pause whenever the canvas scrolls out of view — no point painting a canvas
 	// nobody can see while the rest of the page is read.
 	new IntersectionObserver((entries) => {
 		onScreen = entries[0].isIntersecting
@@ -162,4 +165,4 @@ const initBubbles = () => {
 	})
 }
 
-initBubbles()
+document.querySelectorAll('canvas[data-bubble]').forEach(initBubbles)
