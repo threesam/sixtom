@@ -131,7 +131,7 @@
 							target="_blank"
 							class="btn-accent mt-8 inline-block px-6 py-3 text-base hover:opacity-90"
 						>
-							book the call
+							book the intro call →
 						</a>
 					{/if}
 				</div>
@@ -182,7 +182,7 @@
 				}}
 			>
 				<div class:hidden={step !== 1}>
-					<p class={stepEyebrowClass}>step 1 of {TOTAL_STEPS} — fit</p>
+					<p class={stepEyebrowClass}>step 1 of {TOTAL_STEPS} · fit</p>
 					<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[0]}>
 						where are you with this thing?
 					</h2>
@@ -211,7 +211,7 @@
 
 				<div class:hidden={step !== 2} class="space-y-8">
 					<div>
-						<p class={stepEyebrowClass}>step 2 of {TOTAL_STEPS} — the work</p>
+						<p class={stepEyebrowClass}>step 2 of {TOTAL_STEPS} · the work</p>
 						<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[1]}>
 							what does done look like?
 						</h2>
@@ -262,7 +262,7 @@
 
 				<div class:hidden={step !== 3} class="space-y-8">
 					<div>
-						<p class={stepEyebrowClass}>step 3 of {TOTAL_STEPS} — last bit</p>
+						<p class={stepEyebrowClass}>step 3 of {TOTAL_STEPS} · last bit</p>
 						<h2 class={stepHeadClass} tabindex="-1" bind:this={stepHeads[2]}>
 							how do i reach you?
 						</h2>

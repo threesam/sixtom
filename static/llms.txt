@@ -1,6 +1,6 @@
 # SIXTOM
 
-> everyone's building. nothing's better. the enablement engagement, for teams already building with AI: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. 1 team a month.
+> everyone's building. nothing's better. the enablement engagement, for teams already building with AI: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. one team a month.
 
 ## what i do
 
@@ -17,8 +17,8 @@ your team is building and you can't tell what it adds up to. the people building
 
 ## how the two weeks go
 
-- wk 1 · day 0: a 30-minute call. we pick the person and the process.
-- days 1–7: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
+- day 0: a 30-minute call. we pick the person and the process.
+- week 1: we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.
 - day 5 · scope check: if it won't be running in scope, we stop here. you keep what we built.
 - week 2: the red light goes on. the guardrails go in. the people who run it get set up. one session with leadership.
 - day 10: running. your person owns it. (or the rest is free.)
@@ -26,7 +26,7 @@ your team is building and you can't tell what it adds up to. the people building
 
 ## pricing
 
-- enablement engagement: $15,000 USD fixed. half up front, half on day 10. 1 team a month, by appointment. the price is the same for everyone.
+- enablement engagement: $15,000 USD fixed. half up front, half on day 10. one team a month, by appointment. the price is the same for everyone.
 - teardown: $1,500 USD, credited in full against the engagement if you book one within 30 days. via the waitlist at https://sixtom.com/notify.
 
 ## who i am

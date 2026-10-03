@@ -78,7 +78,7 @@ function hasHeaderInjection(value: string): boolean {
 type SubmissionResult =
 	{ ok: true; message: string; suspicious?: true } | { ok: false; status: number; message: string }
 
-const SUCCESS_MESSAGE = "You're on the list."
+const SUCCESS_MESSAGE = "you're on the list. check your inbox."
 
 // Honeypot + time-trap silently 200 so attackers can't learn which layer
 // filtered them. `suspicious` lets callers skip side effects (e.g. the /notify
@@ -154,7 +154,7 @@ export async function processSubmission(
 	const formStartedAt = formStartedAtRaw !== '' ? Number(formStartedAtRaw) : undefined
 
 	if (!name || !email || !message) {
-		return { ok: false, status: 400, message: 'Missing required fields.' }
+		return { ok: false, status: 400, message: 'every field is required.' }
 	}
 
 	if (
@@ -165,7 +165,11 @@ export async function processSubmission(
 		hasHeaderInjection(name) ||
 		hasHeaderInjection(email)
 	) {
-		return { ok: false, status: 400, message: 'Invalid form submission.' }
+		return {
+			ok: false,
+			status: 400,
+			message: "that didn't go through. check your email address and try again."
+		}
 	}
 
 	if (company.trim() !== '') return suspicious()
@@ -181,7 +185,7 @@ export async function processSubmission(
 
 	const clientIp = getClientIp(event)
 	if (isRateLimited(clientIp)) {
-		return { ok: false, status: 429, message: 'Too many requests. Please try again shortly.' }
+		return { ok: false, status: 429, message: 'too many tries. give it a minute and try again.' }
 	}
 
 	// E2E bypass; env var unset in production, exact-match comparison.
@@ -222,6 +226,10 @@ export async function processSubmission(
 		return { ok: true, message: SUCCESS_MESSAGE }
 	} catch (error) {
 		console.error('send-email failed:', error instanceof Error ? error.message : 'unknown')
-		return { ok: false, status: 500, message: 'Error sending message. Please try again later.' }
+		return {
+			ok: false,
+			status: 500,
+			message: "that didn't send on my end. try again in a few minutes."
+		}
 	}
 }

@@ -28,7 +28,7 @@ export const site: Site = {
 		name: 'enablement',
 		longName: 'the enablement engagement',
 		priceUSD: 15000,
-		cadence: '1 team a month, by appointment.',
+		cadence: 'one team a month, by appointment.',
 		paymentPlan: 'half up front, half on day 10'
 	},
 	teardown: {
@@ -37,9 +37,9 @@ export const site: Site = {
 		creditNote: 'credited in full against the engagement'
 	},
 	process: [
-		{ label: 'wk 1 · day 0', body: 'a 30-minute call. we pick the person and the process.' },
+		{ label: 'day 0', body: 'a 30-minute call. we pick the person and the process.' },
 		{
-			label: 'days 1–7',
+			label: 'week 1',
 			body: 'we write it down together, step by step, then make each step runnable. a daily Loom so leadership watches it happen.'
 		},
 		{

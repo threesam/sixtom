@@ -19,8 +19,7 @@
 			>
 				sixtom
 			</a>
-			<p class="eyebrow mt-12 text-sm">access</p>
-			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">accessibility.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">accessibility.</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				this site should work for everyone. if it doesn't work for you, that's a bug.
 			</p>

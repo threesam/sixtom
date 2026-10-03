@@ -394,7 +394,7 @@
 <section class="mx-auto w-full max-w-2xl px-6 pb-20 md:pb-28">
 	<div class="border-border border-t pt-10">
 		<p class="text-fg text-lg leading-relaxed md:text-xl">
-			that was my own garden. yours is next — production-grade in two weeks, and you own it.
+			that was my own garden. your team is next: one process running by day 10, and you own it.
 		</p>
 		<BookCta event="cta_case_study_book" class="mt-8" />
 	</div>

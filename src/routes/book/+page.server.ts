@@ -54,7 +54,10 @@ export const actions = {
 	default: async (event) => {
 		const declaredLength = Number(event.request.headers.get('content-length'))
 		if (!Number.isFinite(declaredLength) || declaredLength > MAX_REQUEST_BYTES) {
-			return fail(413, { status: 'error' as const, message: 'Payload too large.' })
+			return fail(413, {
+				status: 'error' as const,
+				message: 'that was too much text. shorten it and try again.'
+			})
 		}
 
 		const formData = await event.request.formData()
@@ -73,14 +76,14 @@ export const actions = {
 
 		const missing = !built || !stage || !deliverable || !budget || !companyUrl
 		if (missing) {
-			return fail(400, { status: 'error' as const, message: 'Missing required fields.' })
+			return fail(400, { status: 'error' as const, message: 'every field is required.' })
 		}
 
 		if (!STAGE_OPTIONS.some((o) => o.value === stage)) {
-			return fail(400, { status: 'error' as const, message: 'Invalid stage.' })
+			return fail(400, { status: 'error' as const, message: 'pick where your team is.' })
 		}
 		if (!BUDGET_OPTIONS.some((o) => o.value === budget)) {
-			return fail(400, { status: 'error' as const, message: 'Invalid budget.' })
+			return fail(400, { status: 'error' as const, message: 'pick a budget.' })
 		}
 
 		const disqualified = stage === DISQUALIFY_STAGE
@@ -123,7 +126,7 @@ export const actions = {
 			status: 'success' as const,
 			disqualified: false,
 			bookingUrl,
-			message: "qualified. here's the booking link — i've pre-filled your context for the call."
+			message: "here's the booking link. your answers are already in it."
 		}
 	}
 } satisfies Actions
