@@ -133,29 +133,33 @@
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
-		<!-- The numbers as a cutout: a pocket of the hero's bubble field behind them
-		     (static/bubbles.js drives every [data-bubble] canvas), bleeding past the
-		     text column on desktop so it reads as its own object, not more prose. -->
-		<div class="border-border relative mt-10 overflow-hidden rounded-2xl border md:-mx-10 md:mt-14">
-			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
-				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-				<div class="absolute inset-0 bg-black/70"></div>
-			</div>
-			<dl class="relative grid gap-8 px-8 py-10 md:grid-cols-3 md:gap-6 md:px-10 md:py-14">
-				{#each o.proof.tiles as tile (tile.label)}
-					<div class="flex flex-col-reverse">
-						<dt class="text-fg-muted mt-2 text-xs tracking-widest uppercase md:text-sm">
-							{tile.label}
-						</dt>
-						<dd
-							class="text-fg font-display text-5xl font-bold tracking-tight tabular-nums md:text-6xl"
-						>
-							{tile.value}
-						</dd>
-					</div>
-				{/each}
-			</dl>
+	</div>
+	<!-- The numbers as a full-bleed band over a pocket of the hero's bubble field
+	     (static/bubbles.js drives every [data-bubble] canvas), so they read as
+	     their own object, not more prose. Equal columns, each stat centered. -->
+	<div class="border-border relative mt-10 overflow-hidden border-y md:mt-14">
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+			<canvas data-bubble data-density="16" class="absolute inset-0 block h-full w-full"></canvas>
+			<div class="absolute inset-0 bg-black/60"></div>
 		</div>
+		<dl
+			class="relative mx-auto grid w-full max-w-5xl gap-10 px-6 py-14 text-center md:grid-cols-3 md:gap-6 md:py-20"
+		>
+			{#each o.proof.tiles as tile (tile.label)}
+				<div class="flex flex-col-reverse items-center">
+					<dt class="text-fg-muted mt-3 text-xs tracking-widest uppercase md:text-sm">
+						{tile.label}
+					</dt>
+					<dd
+						class="text-fg font-display text-6xl font-bold tracking-tight tabular-nums md:text-7xl"
+					>
+						{tile.value}
+					</dd>
+				</div>
+			{/each}
+		</dl>
+	</div>
+	<div class="mx-auto w-full max-w-3xl px-6">
 		<h3 class="text-fg mt-16 text-xl font-bold tracking-tight md:mt-20 md:text-2xl">
 			{o.proof.broke.heading}
 		</h3>

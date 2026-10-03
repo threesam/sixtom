@@ -62,9 +62,13 @@ const initBubbles = (canvas) => {
 		canvas.height = Math.round(height * dpr)
 		ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
+		// A short desktop canvas (the proof band) sets data-density lower so its dots
+		// and blobs match the hero's size instead of shrinking with its height.
 		const minDim = Math.min(width, height)
-		const space = minDim / (width < 768 ? MOBILE_DENSITY : DENSITY)
-		const blobScale = BLOBS / minDim
+		const mobile = width < 768
+		const density = mobile ? MOBILE_DENSITY : DENSITY
+		const space = minDim / (mobile ? density : Number(canvas.dataset.density) || density)
+		const blobScale = BLOBS / (space * density)
 
 		const points = []
 		for (let x = space / 2; x < width; x += space) {
