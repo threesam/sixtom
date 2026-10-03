@@ -50,14 +50,14 @@
 		</h1>
 		<!-- Three text elements: headline (the problem), lead (what you get), CTAs.
 		     offerLine stays in content for the JSON-LD description. -->
-		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-balance md:text-xl">
+		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-balance md:text-2xl">
 			{grandSlam.lead}
 		</p>
 		<div class="mt-10 flex flex-col items-center gap-4 md:mt-12">
 			<a
 				href="#waitlist"
 				data-umami-event="cta_hero_waitlist"
-				class="btn-accent w-full px-8 py-3.5 text-center text-lg font-bold md:w-auto md:px-12 md:py-5 md:text-2xl"
+				class="btn-accent w-full px-8 py-5 text-center text-xl font-bold md:w-auto md:px-16 md:py-6 md:text-2xl"
 			>
 				join the waitlist →
 			</a>
