@@ -32,8 +32,10 @@ export const actions = {
 			if (!result.suspicious) {
 				const emailField = formData.get('email')
 				const email = typeof emailField === 'string' ? emailField.trim() : ''
-				await subscribeToList(email, SIXTOM_LIST_UUID)
-				await fireServerEvent('notify_signup_success', event)
+				await Promise.all([
+					subscribeToList(email, SIXTOM_LIST_UUID),
+					fireServerEvent('notify_signup_success', event)
+				])
 			}
 			return { status: 'success' as const, message: result.message }
 		}
