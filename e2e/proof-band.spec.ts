@@ -1,11 +1,13 @@
 import { expect, test } from '@playwright/test'
 
-// The proof stats are three cutouts of one bubble field. The layout's whole
-// point is that the first stat sits on the text column's left edge at every
-// width, with the outer tiles bleeding to the viewport edges; the padding that
-// does it is arithmetic in a class string, so a tweak can quietly break it.
-for (const width of [320, 393, 1280]) {
-	test(`proof stats line up with the text column at ${String(width)}px`, async ({ page }) => {
+// The proof stats are three square cutouts of one bubble field, each stat
+// centered in its square. On phones the row is full-bleed; from md up it keeps
+// the text column, so the first square starts on the heading's left edge. The
+// squares, the gaps and the level numbers all hang on a class string, so a
+// tweak can quietly break them. 500px is where an uncapped label would fit on
+// one line while its neighbour wraps.
+for (const width of [320, 393, 500, 1280]) {
+	test(`proof stats are centered squares at ${String(width)}px`, async ({ page }) => {
 		await page.setViewportSize({ width, height: 900 })
 		await page.goto('/')
 		await page.evaluate(() => document.fonts.ready)
@@ -26,24 +28,32 @@ for (const width of [320, 393, 1280]) {
 				el.textContent.includes('people onboarded')
 			)
 			if (!dl) throw new Error('proof stats not found')
-			const section = dl.closest('section')
-			const heading = section?.querySelector('h2')
+			const heading = dl.closest('section')?.querySelector('h2')
 			if (!heading) throw new Error('proof heading not found')
 			const tiles = [...dl.children].map((tile) => {
 				const value = tile.querySelector('dd')
 				const label = tile.querySelector('dt')
 				if (!value || !label) throw new Error('stat is missing its value or label')
 				const box = tile.getBoundingClientRect()
+				const valueBox = textBox(value)
+				const labelBox = textBox(label)
 				return {
 					left: box.left,
 					right: box.right,
-					valueLeft: textBox(value).left,
-					valueTop: textBox(value).top,
-					labelRight: textBox(label).right
+					width: box.width,
+					height: box.height,
+					center: box.left + box.width / 2,
+					valueCenter: valueBox.left + valueBox.width / 2,
+					valueTop: valueBox.top,
+					labelLeft: labelBox.left,
+					labelRight: labelBox.right
 				}
 			})
+			// The h2 is a block in the text column, so its box is the column.
+			const column = heading.getBoundingClientRect()
 			return {
-				headingLeft: textBox(heading).left,
+				columnLeft: column.left,
+				columnRight: column.right,
 				viewport: document.documentElement.clientWidth,
 				tiles
 			}
@@ -51,14 +61,17 @@ for (const width of [320, 393, 1280]) {
 
 		expect(band.tiles).toHaveLength(3)
 		const [first, middle, last] = band.tiles
-		expect(first.valueLeft).toBeCloseTo(band.headingLeft, 0)
-		expect(first.left).toBe(0)
-		expect(last.right).toBeCloseTo(band.viewport, 0)
+		const desktop = width >= 768
+		expect(Math.abs(first.left - (desktop ? band.columnLeft : 0))).toBeLessThan(1)
+		expect(Math.abs(last.right - (desktop ? band.columnRight : band.viewport))).toBeLessThan(1)
 		for (const tile of band.tiles) {
-			expect(tile.valueTop).toBeCloseTo(first.valueTop, 0)
+			expect(Math.abs(tile.width - tile.height)).toBeLessThan(1)
+			expect(Math.abs(tile.valueCenter - tile.center)).toBeLessThan(1)
+			expect(Math.abs(tile.valueTop - first.valueTop)).toBeLessThan(1)
+			expect(tile.labelLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.labelRight).toBeLessThanOrEqual(tile.right)
 		}
 		// Gaps are the page gutter; under 360px they close into one solid band.
-		expect(middle.left - first.right).toBeCloseTo(width < 360 ? 0 : 24, 0)
+		expect(Math.abs(middle.left - first.right - (width < 360 ? 0 : 24))).toBeLessThan(1)
 	})
 }

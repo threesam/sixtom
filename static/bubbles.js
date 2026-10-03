@@ -65,7 +65,7 @@ const initBubbles = (canvas) => {
 		// Sized off the viewport's short side, not the canvas's, so a short canvas
 		// (the proof band) gets the hero's dots and blobs instead of miniatures.
 		const minDim = Math.min(window.innerWidth, window.innerHeight)
-		const space = minDim / (width < 768 ? MOBILE_DENSITY : DENSITY)
+		const space = minDim / (window.innerWidth < 768 ? MOBILE_DENSITY : DENSITY)
 		const blobScale = BLOBS / minDim
 
 		const points = []

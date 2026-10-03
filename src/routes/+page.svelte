@@ -134,37 +134,40 @@
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
 	</div>
-	<!-- The numbers as three cutouts of one full-bleed bubble field (static/bubbles.js
-	     drives every [data-bubble] canvas). The outer tiles bleed to the viewport
-	     edges, the middle one is a square, and the gaps are the page gutter painted
-	     back in the surface colour (the middle tile's shadow), so one field shows
-	     through three windows. Every stat is left-aligned; the first sits on the text
-	     column's left edge at every width: the gutter on phones, and from md up a
-	     padding that leaves it the same 13.5rem its neighbours get. Under 360px the
-	     gaps close and it is one solid band. e2e/proof-band.spec.ts pins the edges. -->
-	<div class="relative mt-10 md:mt-14">
-		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
-			<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-			<div class="absolute inset-0 bg-black/60"></div>
+	<!-- The numbers as three square cutouts of one bubble field (static/bubbles.js
+	     drives every [data-bubble] canvas), each stat centered in its square. The
+	     gaps are the page gutter painted back in the surface colour (the middle
+	     tile's shadow), so one field shows through three windows. On phones the
+	     row is full-bleed: the outer squares touch the screen edges. From md up it
+	     keeps the text column, so the first square starts on the heading's left
+	     edge. Under 360px the gaps close and it is one solid band. Phone labels are
+	     capped at 13ch so each one breaks to two lines and the numbers stay level.
+	     e2e/proof-band.spec.ts pins all of it. -->
+	<div class="mt-10 md:mx-auto md:mt-14 md:max-w-3xl md:px-6">
+		<div class="relative">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
+				<div class="absolute inset-0 bg-black/60"></div>
+			</div>
+			<dl class="relative grid grid-cols-3 min-[360px]:gap-6">
+				{#each o.proof.tiles as tile (tile.label)}
+					<div
+						class="flex aspect-square flex-col-reverse items-center justify-center px-2 text-center min-[360px]:nth-2:shadow-[-1.5rem_0_var(--color-surface),1.5rem_0_var(--color-surface)]"
+					>
+						<dt
+							class="text-fg-muted mt-2 max-w-[13ch] text-[11px] leading-snug tracking-wider uppercase md:mt-3 md:max-w-none md:text-sm md:tracking-widest"
+						>
+							{tile.label}
+						</dt>
+						<dd
+							class="text-fg font-display text-4xl font-bold tracking-tight tabular-nums md:text-7xl"
+						>
+							{tile.value}
+						</dd>
+					</div>
+				{/each}
+			</dl>
 		</div>
-		<dl class="relative grid grid-cols-3 min-[360px]:gap-6 md:grid-cols-[1fr_15rem_1fr]">
-			{#each o.proof.tiles as tile (tile.label)}
-				<div
-					class="flex flex-col-reverse justify-center pl-6 nth-2:aspect-square min-[360px]:nth-2:shadow-[-1.5rem_0_var(--color-surface),1.5rem_0_var(--color-surface)] md:first:pl-[calc(100%-13.5rem)]"
-				>
-					<dt
-						class="text-fg-muted mt-2 text-[11px] leading-snug tracking-wider uppercase md:mt-3 md:text-sm md:tracking-widest"
-					>
-						{tile.label}
-					</dt>
-					<dd
-						class="text-fg font-display text-4xl font-bold tracking-tight tabular-nums md:text-7xl"
-					>
-						{tile.value}
-					</dd>
-				</div>
-			{/each}
-		</dl>
 	</div>
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h3 class="text-fg mt-16 text-xl font-bold tracking-tight md:mt-20 md:text-2xl">
