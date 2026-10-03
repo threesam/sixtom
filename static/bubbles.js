@@ -3,7 +3,7 @@
 // value-noise field is high, so contiguous blobs of blue-green drift through
 // rather than rippling uniformly in place. Standalone (no framework) so the home
 // page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
-// without a [data-bubble] canvas; each one (hero, proof panel) runs its own field.
+// without a [data-bubble] canvas; each one (hero, proof band) runs its own field.
 // A CSS overlay fades it under the copy.
 const initBubbles = (canvas) => {
 	const ctx = canvas.getContext('2d')

@@ -136,14 +136,15 @@
 	</div>
 	<!-- The numbers as a full-bleed band over a pocket of the hero's bubble field
 	     (static/bubbles.js drives every [data-bubble] canvas), so they read as
-	     their own object, not more prose. Equal columns, each stat centered. -->
+	     their own object, not more prose. The field bleeds; the stats keep the
+	     text column width. Equal columns, each stat centered. -->
 	<div class="border-border relative mt-10 overflow-hidden border-y md:mt-14">
 		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
 			<canvas data-bubble data-density="16" class="absolute inset-0 block h-full w-full"></canvas>
 			<div class="absolute inset-0 bg-black/60"></div>
 		</div>
 		<dl
-			class="relative mx-auto grid w-full max-w-5xl gap-10 px-6 py-14 text-center md:grid-cols-3 md:gap-6 md:py-20"
+			class="relative mx-auto grid w-full max-w-3xl gap-10 px-6 py-14 text-center md:grid-cols-3 md:gap-6 md:py-20"
 		>
 			{#each o.proof.tiles as tile (tile.label)}
 				<div class="flex flex-col-reverse items-center">
