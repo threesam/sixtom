@@ -12,7 +12,6 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 // counters (honest at zero). Proof stays anonymized: the day job is never
 // named as a case study until there's a written OK to cite it.
 export const grandSlam: GrandSlamOffer = {
-	chip: '2 weeks · 1 team a month',
 	headline: "everyone's building. nothing's better.",
 	lead: 'by day 10, the process that keeps slipping is written down, running, and yours. or the rest is free.',
 	offerLine:

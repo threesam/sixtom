@@ -41,9 +41,8 @@
 	</div>
 
 	<div class="relative mx-auto w-full max-w-6xl px-6 py-12 text-center md:py-20">
-		<p class="eyebrow text-fg-muted text-xs md:text-sm">{grandSlam.chip}</p>
 		<h1
-			class="text-fg @container mt-6 leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
+			class="text-fg @container leading-[1.04] font-bold tracking-tight md:text-[clamp(2.5rem,9.5vw,5.75rem)]"
 		>
 			<span
 				class="text-fg-muted block text-balance max-md:text-[length:calc(100cqw*var(--fit))] max-md:tracking-tight max-md:whitespace-nowrap"
@@ -54,8 +53,8 @@
 				style="--fit: {FIT[1]}">{beatTwo}</span
 			>
 		</h1>
-		<!-- Four text elements, no more: eyebrow, headline (the problem), lead (what
-		     you get), CTAs. offerLine stays in content for the JSON-LD description. -->
+		<!-- Three text elements: headline (the problem), lead (what you get), CTAs.
+		     offerLine stays in content for the JSON-LD description. -->
 		<p class="text-fg mx-auto mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
 			{outcome}<span class="text-accent">{guarantee}</span>
 		</p>

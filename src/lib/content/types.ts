@@ -89,7 +89,6 @@ export interface CostCard {
 }
 
 export interface GrandSlamOffer {
-	chip: string
 	headline: string
 	lead: string
 	offerLine: string
