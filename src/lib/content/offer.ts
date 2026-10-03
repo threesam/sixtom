@@ -150,7 +150,7 @@ export const grandSlam: GrandSlamOffer = {
 		para: '30+ people onboarded to building with AI so far, at businesses all over the map: health practitioners, agencies, recruiting firms, artisans, a charity. none of them were hired to write code. the numbers:',
 		tiles: [
 			{ value: '30+', label: 'people onboarded' },
-			{ value: '5+', label: 'businesses' },
+			{ value: '7', label: 'businesses' },
 			{ value: '~10', label: 'sessions to one-sitting setup' },
 			{ value: '3', label: 'glue chains now code' }
 		],
