@@ -137,22 +137,25 @@
 	<!-- The numbers as a full-bleed band over a pocket of the hero's bubble field
 	     (static/bubbles.js drives every [data-bubble] canvas), so they read as
 	     their own object, not more prose. The field bleeds; the stats keep the
-	     text column width. Equal columns, each stat centered. -->
+	     text column width. Three equal columns at every width, each stat centered;
+	     on phones the labels wrap (balanced) rather than the stats stacking. -->
 	<div class="border-border relative mt-10 overflow-hidden border-y md:mt-14">
 		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
 			<canvas data-bubble data-density="16" class="absolute inset-0 block h-full w-full"></canvas>
 			<div class="absolute inset-0 bg-black/60"></div>
 		</div>
 		<dl
-			class="relative mx-auto grid w-full max-w-3xl gap-10 px-6 py-14 text-center md:grid-cols-3 md:gap-6 md:py-20"
+			class="relative mx-auto grid w-full max-w-3xl grid-cols-3 gap-3 px-6 py-10 text-center md:gap-6 md:py-20"
 		>
 			{#each o.proof.tiles as tile (tile.label)}
-				<div class="flex flex-col-reverse items-center">
-					<dt class="text-fg-muted mt-3 text-xs tracking-widest uppercase md:text-sm">
+				<div class="flex flex-col-reverse items-center justify-end">
+					<dt
+						class="text-fg-muted mt-2 text-[11px] leading-snug tracking-wider text-balance uppercase md:mt-3 md:text-sm md:tracking-widest"
+					>
 						{tile.label}
 					</dt>
 					<dd
-						class="text-fg font-display text-6xl font-bold tracking-tight tabular-nums md:text-7xl"
+						class="text-fg font-display text-4xl font-bold tracking-tight tabular-nums md:text-7xl"
 					>
 						{tile.value}
 					</dd>

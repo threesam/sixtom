@@ -147,7 +147,7 @@ export const grandSlam: GrandSlamOffer = {
 		heading: 'finance, ops and marketing, shipping their own tools.',
 		tiles: [
 			{ value: '30+', label: 'people onboarded' },
-			{ value: '7', label: 'businesses' },
+			{ value: '7', label: 'businesses served' },
 			{ value: '~10', label: 'sessions until setup' }
 		],
 		broke: {
