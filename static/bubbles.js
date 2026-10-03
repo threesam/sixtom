@@ -77,7 +77,7 @@ const initBubbles = (canvas) => {
 				})
 			}
 		}
-		return { width, height, space, blobScale, points }
+		return { width, height, minDim, space, blobScale, points }
 	}
 
 	// Each frame, sample the noise at every point with a time offset (the drift) so
@@ -148,6 +148,14 @@ const initBubbles = (canvas) => {
 	}
 
 	new ResizeObserver(sync).observe(canvas)
+
+	// The field is scaled to the viewport, which can change under a canvas that
+	// keeps its size (the proof band when only the window's height moves). Rebuild
+	// only when the short side really changed: a phone's URL bar fires resize on
+	// every scroll, and a rebuild clears the canvas.
+	window.addEventListener('resize', () => {
+		if (field && Math.min(window.innerWidth, window.innerHeight) !== field.minDim) sync()
+	})
 
 	// Pause whenever the canvas scrolls out of view — no point painting a canvas
 	// nobody can see while the rest of the page is read.

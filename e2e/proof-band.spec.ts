@@ -9,6 +9,12 @@ for (const width of [320, 393, 1280]) {
 		await page.setViewportSize({ width, height: 900 })
 		await page.goto('/')
 		await page.evaluate(() => document.fonts.ready)
+		// bubbles.js sizes a canvas when it initialises it (from a ResizeObserver, so
+		// not synchronously); 300 is the untouched default. Times out if the band's
+		// canvas is never picked up.
+		await page.waitForFunction(() =>
+			[...document.querySelectorAll('canvas')].every((canvas) => canvas.width !== 300)
+		)
 
 		const band = await page.evaluate(() => {
 			const textBox = (el: Element) => {
@@ -22,8 +28,7 @@ for (const width of [320, 393, 1280]) {
 			if (!dl) throw new Error('proof stats not found')
 			const section = dl.closest('section')
 			const heading = section?.querySelector('h2')
-			const canvas = section?.querySelector('canvas')
-			if (!heading || !canvas) throw new Error('proof heading or canvas not found')
+			if (!heading) throw new Error('proof heading not found')
 			const tiles = [...dl.children].map((tile) => {
 				const value = tile.querySelector('dd')
 				const label = tile.querySelector('dt')
@@ -40,8 +45,6 @@ for (const width of [320, 393, 1280]) {
 			return {
 				headingLeft: textBox(heading).left,
 				viewport: document.documentElement.clientWidth,
-				// bubbles.js sizes a canvas it has initialised; 300 is the untouched default.
-				canvasWidth: canvas.width,
 				tiles
 			}
 		})
@@ -57,6 +60,5 @@ for (const width of [320, 393, 1280]) {
 		}
 		// Gaps are the page gutter; under 360px they close into one solid band.
 		expect(middle.left - first.right).toBeCloseTo(width < 360 ? 0 : 24, 0)
-		expect(band.canvasWidth).not.toBe(300)
 	})
 }
