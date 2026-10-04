@@ -31,7 +31,7 @@
 			>
 				sixtom
 			</a>
-			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">faq.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">faq</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				the things people ask before they book. straight answers.
 			</p>

@@ -17,7 +17,7 @@ export const grandSlam: GrandSlamOffer = {
 	offerLine:
 		"the enablement engagement, for teams already building with AI. two weeks, one team. by day 10 one process that lived in people's heads is written down, runs without anyone chasing it, and goes red the day a step is late. a named person on your team owns it.",
 	wall: {
-		thesis: "building got cheap. deciding didn't.",
+		thesis: "building got cheap. deciding didn't",
 		para: 'anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist.',
 		costCards: [
 			{ title: 'the pile', sub: 'tools nobody asked for, kept alive by whoever made them' },
@@ -26,7 +26,7 @@ export const grandSlam: GrandSlamOffer = {
 		]
 	},
 	ledger: {
-		heading: 'one process running. guardrails that hold.',
+		heading: 'one process running. guardrails that hold',
 		para: "two weeks with your team, on the one process that keeps running late. you pick it on the first call. everything in the engagement, and what it'd cost you piecemeal:",
 		groups: [
 			{
@@ -139,7 +139,7 @@ export const grandSlam: GrandSlamOffer = {
 	},
 	guarantee: {
 		// nbsp keeps "day 10" together: a phone used to strand "10," on its own line.
-		headline: 'your team runs it by day\u00a010, or the rest is free.',
+		headline: 'your team runs it by day\u00a010, or the rest is free',
 		body: "and there's a floor under it: day 5, we both look at it. if we can both see it won't be running in scope, we stop there. you keep everything we built and pay only for the time used. the risk is mine to carry, not yours."
 	},
 	proof: {
@@ -151,7 +151,7 @@ export const grandSlam: GrandSlamOffer = {
 			{ value: '~10', label: 'sessions until setup' }
 		],
 		broke: {
-			heading: 'what broke when it worked.',
+			heading: 'what broke when it worked',
 			lines: [
 				'i became the review queue. everything waited on me.',
 				'thousands of tests, good ones. most never needed to exist.',
@@ -180,10 +180,10 @@ export const grandSlam: GrandSlamOffer = {
 			'you want it done for you, with nobody on your side learning'
 		]
 	},
-	timeline: { heading: 'the two weeks.' },
+	timeline: { heading: 'the two weeks' },
 	close: {
 		scarcity: 'one team a month · by appointment',
-		heading: 'join the waitlist.',
+		heading: 'join the waitlist',
 		emailPlaceholder: 'email you actually check',
 		buildLabel: 'what is your team building, and what still runs late?',
 		buildPlaceholder: 'everyone has a dashboard now, but…',

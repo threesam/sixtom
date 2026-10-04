@@ -15,7 +15,7 @@
 	<div class="mx-auto w-full max-w-3xl flex-1 px-6 py-20">
 		<p class="eyebrow text-sm">{page.status}</p>
 		<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">
-			{notFound ? 'nothing here.' : 'something broke.'}
+			{notFound ? 'nothing here' : 'something broke'}
 		</h1>
 		<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 			<a href="/" data-umami-event="error_back_home">back to sixtom</a>
