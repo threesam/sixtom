@@ -1,12 +1,13 @@
 import { expect, test } from '@playwright/test'
 
 // The proof stats are three squares, each a window onto one bubble field, each
-// stat centered in its square, each square stepped down one page gutter from
-// the last. On phones the row is full-bleed; from md up it keeps the text
-// column, so the first square starts on the heading's left edge. The squares,
-// the gaps and the step all hang on class strings and one mask rule, so a tweak
-// can quietly break them. 500px is where an uncapped label would fit on one
-// line while its neighbour wraps.
+// stat centered in its square, each square stepped down from the last. On
+// phones the row is full-bleed and the step is one page gutter. From md up the
+// first square starts on the heading's left edge, the row runs past the text
+// column into the right margin, and the step is a quarter of a tile. The
+// squares, the gaps and the step all hang on class strings and one mask rule,
+// so a tweak can quietly break them. 500px is where an uncapped label would fit
+// on one line while its neighbour wraps.
 // The last case is WCAG reflow (320px, text at 200%): a centered stat that
 // outgrows its square spills off the screen edge instead of scrolling.
 const CASES = [
@@ -78,14 +79,22 @@ for (const { width, zoom } of CASES) {
 		const [first, middle, last] = band.tiles
 		const desktop = width >= 768
 		expect(Math.abs(first.left - (desktop ? band.columnLeft : 0))).toBeLessThan(1)
-		expect(Math.abs(last.right - (desktop ? band.columnRight : band.viewport))).toBeLessThan(1)
-		// Gaps and the step are the page gutter; under 360px both close into one band.
+		if (desktop) {
+			// Runs past the text column into the right margin, never to the viewport edge.
+			expect(last.right).toBeGreaterThan(band.columnRight)
+			expect(last.right).toBeLessThan(band.viewport)
+		} else {
+			expect(Math.abs(last.right - band.viewport)).toBeLessThan(1)
+		}
+		// Gaps are the page gutter, and so is the step on phones; under 360px both
+		// close into one band. From md up the step is a quarter of a tile.
 		const gutter = width < 360 ? 0 : 24
+		const step = desktop ? first.height / 4 : gutter
 		for (const [i, tile] of band.tiles.entries()) {
 			expect(Math.abs(tile.width - tile.height)).toBeLessThan(1)
 			expect(Math.abs(tile.valueCenter - tile.center)).toBeLessThan(1)
-			// Stepped down a gutter at a time, the number at the same height in each square.
-			expect(Math.abs(tile.top - first.top - i * gutter)).toBeLessThan(1)
+			// Stepped down one step at a time, the number at the same height in each square.
+			expect(Math.abs(tile.top - first.top - i * step)).toBeLessThan(1)
 			expect(Math.abs(tile.valueTop - tile.top - (first.valueTop - first.top))).toBeLessThan(1)
 			expect(tile.valueLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.valueRight).toBeLessThanOrEqual(tile.right)
