@@ -1,11 +1,15 @@
 import { expect, test } from '@playwright/test'
 
-// The proof stats are three square cutouts of one bubble field, each stat
-// centered in its square. On phones the row is full-bleed; from md up it keeps
-// the text column, so the first square starts on the heading's left edge. The
-// squares, the gaps and the level numbers all hang on a class string, so a
-// tweak can quietly break them. 500px is where an uncapped label would fit on
-// one line while its neighbour wraps.
+// The proof stats are three squares, each a window onto one bubble field, each
+// stat centered in its square, each square stepped down from the last. On
+// phones the row is full-bleed and the step is one page gutter. From md up the
+// row is centered on the page and wider than the text column, so the middle
+// square sits on the centre line, and the step is a quarter of a tile. The
+// squares, the gaps and the step all hang on class strings and one mask rule,
+// so a tweak can quietly break them. 500px is where an uncapped label would fit
+// on one line while its neighbour wraps.
+// The squares a visitor sees are the canvas's mask, not the (transparent) tiles,
+// so the mask's layers are checked against the tiles too.
 // The last case is WCAG reflow (320px, text at 200%): a centered stat that
 // outgrows its square spills off the screen edge instead of scrolling.
 const CASES = [
@@ -51,6 +55,7 @@ for (const { width, zoom } of CASES) {
 				return {
 					left: box.left,
 					right: box.right,
+					top: box.top,
 					width: box.width,
 					height: box.height,
 					center: box.left + box.width / 2,
@@ -62,31 +67,97 @@ for (const { width, zoom } of CASES) {
 					labelRight: labelBox.right
 				}
 			})
-			// The h2 is a block in the text column, so its box is the column.
-			const column = heading.getBoundingClientRect()
+			// The canvas the squares are cut out of: the tiles themselves are transparent,
+			// so what the visitor sees as squares is this element's mask.
+			const windows = dl.previousElementSibling
+			if (!windows) throw new Error('proof windows not found')
+			const windowsBox = windows.getBoundingClientRect()
+			const mask = getComputedStyle(windows)
 			return {
-				columnLeft: column.left,
-				columnRight: column.right,
 				viewport: document.documentElement.clientWidth,
+				// Per title line: where its letters end, and its text as rendered.
+				headingLines: [...heading.querySelectorAll<HTMLElement>(':scope > span')].map((line) => {
+					if (!line.firstChild) throw new Error('proof heading line is empty')
+					const range = document.createRange()
+					range.selectNodeContents(line.firstChild)
+					// One rect per rendered row of text: more than one top means it wrapped.
+					const rows = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)))
+					return {
+						right: textBox(line.firstChild).right,
+						text: line.innerText.trim(),
+						rows: rows.size
+					}
+				}),
+				windows: {
+					left: windowsBox.left,
+					top: windowsBox.top,
+					maskImage: mask.maskImage,
+					maskPosition: mask.maskPosition,
+					maskSize: mask.maskSize,
+					maskRepeat: mask.maskRepeat
+				},
 				tiles
 			}
 		})
 
 		expect(band.tiles).toHaveLength(3)
+		// No closing period on the title at any width.
+		expect(band.headingLines).toHaveLength(2)
+		expect(band.headingLines[1].text).not.toMatch(/[.,]$/)
 		const [first, middle, last] = band.tiles
 		const desktop = width >= 768
-		expect(Math.abs(first.left - (desktop ? band.columnLeft : 0))).toBeLessThan(1)
-		expect(Math.abs(last.right - (desktop ? band.columnRight : band.viewport))).toBeLessThan(1)
-		for (const tile of band.tiles) {
+		// The middle square sits on the page's centre line, the outer two mirror each
+		// other: flush with the screen edges on phones, inset by the gutter from md up.
+		expect(Math.abs(middle.center - band.viewport / 2)).toBeLessThan(1)
+		expect(Math.abs(first.left - (band.viewport - last.right))).toBeLessThan(1)
+		if (desktop) {
+			expect(first.left).toBeGreaterThanOrEqual(24)
+			// The title shares the row's container, right-aligned in two lines: each
+			// line ends on the last square's edge, on a letter rather than a mark.
+			for (const line of band.headingLines) {
+				expect(line.rows).toBe(1)
+				expect(Math.abs(line.right - last.right)).toBeLessThan(1)
+				expect(line.text).not.toMatch(/[.,]$/)
+			}
+		} else {
+			expect(Math.abs(first.left)).toBeLessThan(1)
+		}
+		// Gaps are the page gutter, and so is the step on phones; under 360px both
+		// close into one band. From md up the step is a quarter of a tile.
+		const gutter = width < 360 ? 0 : 24
+		const step = desktop ? first.height / 4 : gutter
+		for (const [i, tile] of band.tiles.entries()) {
 			expect(Math.abs(tile.width - tile.height)).toBeLessThan(1)
 			expect(Math.abs(tile.valueCenter - tile.center)).toBeLessThan(1)
-			expect(Math.abs(tile.valueTop - first.valueTop)).toBeLessThan(1)
+			// Stepped down one step at a time, the number at the same height in each square.
+			expect(Math.abs(tile.top - first.top - i * step)).toBeLessThan(1)
+			expect(Math.abs(tile.valueTop - tile.top - (first.valueTop - first.top))).toBeLessThan(1)
 			expect(tile.valueLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.valueRight).toBeLessThanOrEqual(tile.right)
 			expect(tile.labelLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.labelRight).toBeLessThanOrEqual(tile.right)
 		}
-		// Gaps are the page gutter; under 360px they close into one solid band.
-		expect(Math.abs(middle.left - first.right - (width < 360 ? 0 : 24))).toBeLessThan(1)
+		expect(Math.abs(middle.left - first.right - gutter)).toBeLessThan(1)
+		// The visible squares are the canvas's mask, one layer per tile, each layer
+		// exactly over its tile. Under 360px there is no mask: one solid band.
+		if (width < 360) {
+			expect(band.windows.maskImage).toBe('none')
+		} else {
+			const px = (value: string) =>
+				value.split(',').map((layer) => layer.match(/-?[\d.]+/g)?.map(Number) ?? [])
+			const positions = px(band.windows.maskPosition)
+			expect(positions).toHaveLength(3)
+			expect(band.windows.maskImage.match(/linear-gradient/g)).toHaveLength(3)
+			expect(band.windows.maskRepeat).toMatch(/^no-repeat(, no-repeat)*$/)
+			// A shorter size list repeats across the layers, as CSS applies it.
+			const sizes = px(band.windows.maskSize)
+			for (const [i, tile] of band.tiles.entries()) {
+				const [maskWidth, maskHeight] = sizes[i % sizes.length]
+				expect(Math.abs(positions[i][0] - (tile.left - band.windows.left))).toBeLessThan(1)
+				expect(Math.abs(positions[i][1] - (tile.top - band.windows.top))).toBeLessThan(1)
+				expect(Math.abs(maskWidth - tile.width)).toBeLessThan(1)
+				expect(Math.abs(maskHeight - tile.height)).toBeLessThan(1)
+			}
+		}
 	})
 }
