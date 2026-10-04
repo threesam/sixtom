@@ -67,7 +67,7 @@ for (const { width, zoom } of CASES) {
 			})
 			return {
 				viewport: document.documentElement.clientWidth,
-				headingLeft: textBox(heading).left,
+				headingRight: textBox(heading).right,
 				tiles
 			}
 		})
@@ -81,8 +81,9 @@ for (const { width, zoom } of CASES) {
 		expect(Math.abs(first.left - (band.viewport - last.right))).toBeLessThan(1)
 		if (desktop) {
 			expect(first.left).toBeGreaterThanOrEqual(24)
-			// The title shares the row's container: it starts on the first square's edge.
-			expect(Math.abs(band.headingLeft - first.left)).toBeLessThan(1)
+			// The title shares the row's container, right-aligned: it ends on the last
+			// square's edge.
+			expect(Math.abs(band.headingRight - last.right)).toBeLessThan(1)
 		} else {
 			expect(Math.abs(first.left)).toBeLessThan(1)
 		}

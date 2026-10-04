@@ -130,9 +130,10 @@
 
 <!-- proof -->
 <section class="bg-surface py-20 md:py-28">
-	<!-- From md up the title shares the stat row's wider container, so it starts on
-	     the first square's left edge instead of the text column's. -->
-	<div class="mx-auto w-full max-w-3xl px-6 md:max-w-5xl">
+	<!-- From md up the title shares the stat row's wider container and is
+	     right-aligned, so it ends on the last square's right edge: the squares step
+	     down and away from it. -->
+	<div class="mx-auto w-full max-w-3xl px-6 md:max-w-5xl md:text-right">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
 	</div>
