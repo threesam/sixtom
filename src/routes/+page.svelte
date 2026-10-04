@@ -252,62 +252,77 @@
 	</div>
 </section>
 
-<!-- close / waitlist -->
-<section id="waitlist" class="surface-uv py-20 md:py-28">
-	<div class="mx-auto w-full max-w-3xl px-6">
-		<p class={eyebrowClass}>{o.close.scarcity}</p>
-		<h2 class={h2Class}>{o.close.heading}</h2>
-
-		<!-- csr=false: plain cross-route POST to the /notify action. No JS anywhere
-		     on this page — the visitor lands on /notify with the server-rendered
-		     result. Honeypot + rate limit + validation still apply server-side. -->
-		<form method="post" action="/notify?/notify" class="mt-10 max-w-xl space-y-4">
-			<label class="sr-only" for="waitlist-email">email address</label>
-			<input
-				id="waitlist-email"
-				name="email"
-				type="email"
-				required
-				autocomplete="email"
-				placeholder={o.close.emailPlaceholder}
-				class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none"
-			/>
-			<label class="text-fg-muted block text-sm" for="waitlist-build">
-				{o.close.buildLabel}
-				<textarea
-					id="waitlist-build"
-					name="message"
-					required
-					rows="3"
-					maxlength="4000"
-					placeholder={o.close.buildPlaceholder}
-					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent mt-2 w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none"
-				></textarea>
-			</label>
-			<input type="hidden" name="name" value="Waitlist signup" />
-			<input
-				type="text"
-				name="company"
-				tabindex="-1"
-				autocomplete="off"
+<!-- close / waitlist. The hero's bookend: the same bubble field on the dark
+     surface, so the page opens and closes on it (the one place two dark sections
+     meet; the field is the divider). The copy sits in a soft dark pool, a blurred
+     panel a few rem bigger than the text column, so small muted text keeps its
+     contrast at any width while the field stays lit around it: above and below
+     on phones, on every side from md up. -->
+<section id="waitlist" class="bg-surface relative overflow-hidden py-28 md:py-36">
+	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
+		<div class="absolute inset-0 bg-black/35"></div>
+	</div>
+	<div class="relative mx-auto w-full max-w-3xl px-6">
+		<div class="relative isolate max-w-xl">
+			<div
+				class="pointer-events-none absolute -inset-12 -z-10 bg-black/90 blur-xl"
 				aria-hidden="true"
-				class="absolute top-auto left-[-9999px] h-px w-px overflow-hidden"
-			/>
-			<button
-				type="submit"
-				data-umami-event="cta_waitlist_submit"
-				class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12"
-			>
-				{o.close.button}
-			</button>
-		</form>
+			></div>
+			<p class={eyebrowClass}>{o.close.scarcity}</p>
+			<h2 class={h2Class}>{o.close.heading}</h2>
 
-		<TeardownReward class="text-fg-muted mt-8 max-w-xl text-base leading-relaxed" />
+			<!-- csr=false: plain cross-route POST to the /notify action. No JS anywhere
+			     on this page — the visitor lands on /notify with the server-rendered
+			     result. Honeypot + rate limit + validation still apply server-side. -->
+			<form method="post" action="/notify?/notify" class="mt-10 max-w-xl space-y-4">
+				<label class="sr-only" for="waitlist-email">email address</label>
+				<input
+					id="waitlist-email"
+					name="email"
+					type="email"
+					required
+					autocomplete="email"
+					placeholder={o.close.emailPlaceholder}
+					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none"
+				/>
+				<label class="text-fg-muted block text-sm" for="waitlist-build">
+					{o.close.buildLabel}
+					<textarea
+						id="waitlist-build"
+						name="message"
+						required
+						rows="3"
+						maxlength="4000"
+						placeholder={o.close.buildPlaceholder}
+						class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent mt-2 w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none"
+					></textarea>
+				</label>
+				<input type="hidden" name="name" value="Waitlist signup" />
+				<input
+					type="text"
+					name="company"
+					tabindex="-1"
+					autocomplete="off"
+					aria-hidden="true"
+					class="absolute top-auto left-[-9999px] h-px w-px overflow-hidden"
+				/>
+				<button
+					type="submit"
+					data-umami-event="cta_waitlist_submit"
+					class="btn-accent w-full px-8 py-4 text-center text-xl font-bold md:w-auto md:px-12"
+				>
+					{o.close.button}
+				</button>
+			</form>
+
+			<TeardownReward class="text-fg-muted mt-8 text-sm leading-relaxed" />
+		</div>
 	</div>
 </section>
 
-<!-- Page-level, outside the UV section, so the footer keeps the root dark
-     surface — the page opens dark and closes dark, same as every other route. -->
+<!-- Page-level, outside the sections, on the root dark surface, same as every
+     other route. -->
 <SiteFooter />
 
 <style>

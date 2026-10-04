@@ -191,8 +191,8 @@ export const grandSlam: GrandSlamOffer = {
 		button: 'join the waitlist →',
 		// Split around site.teardown.creditNote so the claim can carry its own
 		// condition inline — the unqualified version outruns what /terms actually says.
-		rewardBefore: `if you'd rather not wait, start with the teardown: ${usd(site.teardown.priceUSD)},`,
-		rewardAfter: `. i look at how your team works today, record a 10-minute Loom on where it's stuck, and write down what i'd fix first. you keep it whether or not we work together. to start one, join the list above, then reply to the email and say so.`,
+		rewardBefore: `or start with the teardown: ${usd(site.teardown.priceUSD)},`,
+		rewardAfter: `. i record a 10-minute Loom on where your team is stuck and write down what i'd fix first. join the list, then reply to the email to start one.`,
 		creditTerms: `paid up front. credited against the engagement if you book one within 30 days. if i decline after you've paid, you get all of it back.`
 	}
 }
