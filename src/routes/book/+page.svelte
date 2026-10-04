@@ -95,7 +95,7 @@
 				sixtom
 			</a>
 			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-5xl">
-				let's see if we're a fit.
+				let's see if we're a fit
 			</h1>
 			<p class="text-fg-muted mt-6 text-base leading-relaxed">
 				3 quick steps. ~60 seconds. you'll get the booking link with your context pre-filled.

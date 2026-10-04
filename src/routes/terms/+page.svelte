@@ -21,7 +21,7 @@
 			>
 				sixtom
 			</a>
-			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">terms.</h1>
+			<h1 class="text-fg mt-12 text-4xl font-bold tracking-tight md:text-6xl">terms</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				how engagement works. pricing, scope, and cadence live on the home page; this page covers
 				the boring bits when it goes sideways.

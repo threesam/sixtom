@@ -45,7 +45,7 @@
 			</a>
 			<p class="eyebrow mt-12 text-sm">the log</p>
 			<h1 class="text-fg mt-2 text-4xl font-bold tracking-tight md:text-6xl">
-				what i'm shipping, in public.
+				what i'm shipping, in public
 			</h1>
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">
 				case studies and build notes. the decisions, the experiments, the numbers.
