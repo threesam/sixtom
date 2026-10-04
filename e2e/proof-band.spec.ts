@@ -78,7 +78,15 @@ for (const { width, zoom } of CASES) {
 				// Per title line: where its letters end, and its text as rendered.
 				headingLines: [...heading.querySelectorAll<HTMLElement>(':scope > span')].map((line) => {
 					if (!line.firstChild) throw new Error('proof heading line is empty')
-					return { right: textBox(line.firstChild).right, text: line.innerText.trim() }
+					const range = document.createRange()
+					range.selectNodeContents(line.firstChild)
+					// One rect per rendered row of text: more than one top means it wrapped.
+					const rows = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)))
+					return {
+						right: textBox(line.firstChild).right,
+						text: line.innerText.trim(),
+						rows: rows.size
+					}
 				}),
 				windows: {
 					left: windowsBox.left,
@@ -107,6 +115,7 @@ for (const { width, zoom } of CASES) {
 			// The title shares the row's container, right-aligned in two lines: each
 			// line ends on the last square's edge, on a letter rather than a mark.
 			for (const line of band.headingLines) {
+				expect(line.rows).toBe(1)
 				expect(Math.abs(line.right - last.right)).toBeLessThan(1)
 				expect(line.text).not.toMatch(/[.,]$/)
 			}
@@ -138,9 +147,12 @@ for (const { width, zoom } of CASES) {
 				value.split(',').map((layer) => layer.match(/-?[\d.]+/g)?.map(Number) ?? [])
 			const positions = px(band.windows.maskPosition)
 			expect(positions).toHaveLength(3)
+			expect(band.windows.maskImage.match(/linear-gradient/g)).toHaveLength(3)
 			expect(band.windows.maskRepeat).toMatch(/^no-repeat(, no-repeat)*$/)
-			const [maskWidth, maskHeight] = px(band.windows.maskSize)[0]
+			// A shorter size list repeats across the layers, as CSS applies it.
+			const sizes = px(band.windows.maskSize)
 			for (const [i, tile] of band.tiles.entries()) {
+				const [maskWidth, maskHeight] = sizes[i % sizes.length]
 				expect(Math.abs(positions[i][0] - (tile.left - band.windows.left))).toBeLessThan(1)
 				expect(Math.abs(positions[i][1] - (tile.top - band.windows.top))).toBeLessThan(1)
 				expect(Math.abs(maskWidth - tile.width)).toBeLessThan(1)
