@@ -130,7 +130,9 @@
 
 <!-- proof -->
 <section class="bg-surface py-20 md:py-28">
-	<div class="mx-auto w-full max-w-3xl px-6">
+	<!-- From md up the title shares the stat row's wider container, so it starts on
+	     the first square's left edge instead of the text column's. -->
+	<div class="mx-auto w-full max-w-3xl px-6 md:max-w-5xl">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
 	</div>

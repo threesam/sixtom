@@ -41,6 +41,8 @@ for (const { width, zoom } of CASES) {
 				el.textContent.includes('people onboarded')
 			)
 			if (!dl) throw new Error('proof stats not found')
+			const heading = dl.closest('section')?.querySelector('h2')
+			if (!heading) throw new Error('proof heading not found')
 			const tiles = [...dl.children].map((tile) => {
 				const value = tile.querySelector('dd')
 				const label = tile.querySelector('dt')
@@ -65,6 +67,7 @@ for (const { width, zoom } of CASES) {
 			})
 			return {
 				viewport: document.documentElement.clientWidth,
+				headingLeft: textBox(heading).left,
 				tiles
 			}
 		})
@@ -76,8 +79,13 @@ for (const { width, zoom } of CASES) {
 		// other: flush with the screen edges on phones, inset by the gutter from md up.
 		expect(Math.abs(middle.center - band.viewport / 2)).toBeLessThan(1)
 		expect(Math.abs(first.left - (band.viewport - last.right))).toBeLessThan(1)
-		if (desktop) expect(first.left).toBeGreaterThanOrEqual(24)
-		else expect(Math.abs(first.left)).toBeLessThan(1)
+		if (desktop) {
+			expect(first.left).toBeGreaterThanOrEqual(24)
+			// The title shares the row's container: it starts on the first square's edge.
+			expect(Math.abs(band.headingLeft - first.left)).toBeLessThan(1)
+		} else {
+			expect(Math.abs(first.left)).toBeLessThan(1)
+		}
 		// Gaps are the page gutter, and so is the step on phones; under 360px both
 		// close into one band. From md up the step is a quarter of a tile.
 		const gutter = width < 360 ? 0 : 24
