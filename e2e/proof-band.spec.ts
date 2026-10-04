@@ -8,6 +8,8 @@ import { expect, test } from '@playwright/test'
 // squares, the gaps and the step all hang on class strings and one mask rule,
 // so a tweak can quietly break them. 500px is where an uncapped label would fit
 // on one line while its neighbour wraps.
+// The squares a visitor sees are the canvas's mask, not the (transparent) tiles,
+// so the mask's layers are checked against the tiles too.
 // The last case is WCAG reflow (320px, text at 200%): a centered stat that
 // outgrows its square spills off the screen edge instead of scrolling.
 const CASES = [
@@ -65,9 +67,23 @@ for (const { width, zoom } of CASES) {
 					labelRight: labelBox.right
 				}
 			})
+			// The canvas the squares are cut out of: the tiles themselves are transparent,
+			// so what the visitor sees as squares is this element's mask.
+			const windows = dl.previousElementSibling
+			if (!windows) throw new Error('proof windows not found')
+			const windowsBox = windows.getBoundingClientRect()
+			const mask = getComputedStyle(windows)
 			return {
 				viewport: document.documentElement.clientWidth,
 				headingRight: textBox(heading).right,
+				windows: {
+					left: windowsBox.left,
+					top: windowsBox.top,
+					maskImage: mask.maskImage,
+					maskPosition: mask.maskPosition,
+					maskSize: mask.maskSize,
+					maskRepeat: mask.maskRepeat
+				},
 				tiles
 			}
 		})
@@ -103,5 +119,23 @@ for (const { width, zoom } of CASES) {
 			expect(tile.labelRight).toBeLessThanOrEqual(tile.right)
 		}
 		expect(Math.abs(middle.left - first.right - gutter)).toBeLessThan(1)
+		// The visible squares are the canvas's mask, one layer per tile, each layer
+		// exactly over its tile. Under 360px there is no mask: one solid band.
+		if (width < 360) {
+			expect(band.windows.maskImage).toBe('none')
+		} else {
+			const px = (value: string) =>
+				value.split(',').map((layer) => layer.match(/-?[\d.]+/g)?.map(Number) ?? [])
+			const positions = px(band.windows.maskPosition)
+			expect(positions).toHaveLength(3)
+			expect(band.windows.maskRepeat).toMatch(/^no-repeat(, no-repeat)*$/)
+			const [maskWidth, maskHeight] = px(band.windows.maskSize)[0]
+			for (const [i, tile] of band.tiles.entries()) {
+				expect(Math.abs(positions[i][0] - (tile.left - band.windows.left))).toBeLessThan(1)
+				expect(Math.abs(positions[i][1] - (tile.top - band.windows.top))).toBeLessThan(1)
+				expect(Math.abs(maskWidth - tile.width)).toBeLessThan(1)
+				expect(Math.abs(maskHeight - tile.height)).toBeLessThan(1)
+			}
+		}
 	})
 }
