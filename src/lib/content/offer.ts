@@ -182,8 +182,10 @@ export const grandSlam: GrandSlamOffer = {
 	},
 	timeline: { heading: 'the two weeks' },
 	close: {
-		scarcity: 'one team a month · by appointment',
-		heading: 'join the waitlist',
+		// The heading is the scarcity, not the ask: the button already says
+		// "join the waitlist", and saying it twice in one card reads as filler.
+		scarcity: 'by appointment',
+		heading: 'one team a month',
 		emailPlaceholder: 'email you actually check',
 		buildLabel: 'what is your team building, and what still runs late?',
 		buildPlaceholder: 'everyone has a dashboard now, but…',
