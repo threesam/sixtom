@@ -75,7 +75,11 @@ for (const { width, zoom } of CASES) {
 			const mask = getComputedStyle(windows)
 			return {
 				viewport: document.documentElement.clientWidth,
-				headingRight: textBox(heading).right,
+				// Per title line: where its letters end, and its text as rendered.
+				headingLines: [...heading.querySelectorAll<HTMLElement>(':scope > span')].map((line) => {
+					if (!line.firstChild) throw new Error('proof heading line is empty')
+					return { right: textBox(line.firstChild).right, text: line.innerText.trim() }
+				}),
 				windows: {
 					left: windowsBox.left,
 					top: windowsBox.top,
@@ -89,6 +93,9 @@ for (const { width, zoom } of CASES) {
 		})
 
 		expect(band.tiles).toHaveLength(3)
+		// No closing period on the title at any width.
+		expect(band.headingLines).toHaveLength(2)
+		expect(band.headingLines[1].text).not.toMatch(/[.,]$/)
 		const [first, middle, last] = band.tiles
 		const desktop = width >= 768
 		// The middle square sits on the page's centre line, the outer two mirror each
@@ -97,9 +104,12 @@ for (const { width, zoom } of CASES) {
 		expect(Math.abs(first.left - (band.viewport - last.right))).toBeLessThan(1)
 		if (desktop) {
 			expect(first.left).toBeGreaterThanOrEqual(24)
-			// The title shares the row's container, right-aligned: it ends on the last
-			// square's edge.
-			expect(Math.abs(band.headingRight - last.right)).toBeLessThan(1)
+			// The title shares the row's container, right-aligned in two lines: each
+			// line ends on the last square's edge, on a letter rather than a mark.
+			for (const line of band.headingLines) {
+				expect(Math.abs(line.right - last.right)).toBeLessThan(1)
+				expect(line.text).not.toMatch(/[.,]$/)
+			}
 		} else {
 			expect(Math.abs(first.left)).toBeLessThan(1)
 		}

@@ -15,6 +15,10 @@
 	const description =
 		"your team is building with AI and nothing's better. two weeks: one process written down and running by day 10, or the rest is free. $15,000 fixed."
 	const pageTitle = `SIXTOM | ${o.headline}`
+	// The proof title drops its closing period on screen (content keeps it for the
+	// link preview). From md up it sets as two right-aligned lines, split at its last
+	// comma: the line break is the comma, so no line ends on a mark.
+	const [proofLead = '', proofTail] = o.proof.heading.replace(/\.$/, '').split(/,\s+(?=[^,]*$)/)
 </script>
 
 <!-- Link previews stay vague on purpose: brand title + a result line, no offer or
@@ -131,11 +135,19 @@
 <!-- proof -->
 <section class="bg-surface py-20 md:py-28">
 	<!-- From md up the title shares the stat row's wider container and is
-	     right-aligned, so it ends on the last square's right edge: the squares step
-	     down and away from it. -->
+	     right-aligned in two lines, so it ends on the last square's right edge: the
+	     squares step down and away from it. Phones keep one flowing left-aligned
+	     heading, comma included. -->
 	<div class="mx-auto w-full max-w-3xl px-6 md:max-w-5xl md:text-right">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
-		<h2 class={h2Class}>{o.proof.heading}</h2>
+		<h2 class={h2Class}>
+			{#if proofTail}
+				<span class="md:block">{proofLead}<span class="md:hidden">,</span></span>
+				<span class="md:block">{proofTail}</span>
+			{:else}
+				{proofLead}
+			{/if}
+		</h2>
 	</div>
 	<!-- The numbers as three squares, each a window onto one bubble field
 	     (static/bubbles.js drives every [data-bubble] canvas), each stat centered,
