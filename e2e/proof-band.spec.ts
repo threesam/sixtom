@@ -1,11 +1,13 @@
 import { expect, test } from '@playwright/test'
 
-// The proof stats are three square cutouts of one bubble field, each stat
-// centered in its square. On phones the row is full-bleed; from md up it keeps
-// the text column, so the first square starts on the heading's left edge. The
-// squares, the gaps and the level numbers all hang on a class string, so a
-// tweak can quietly break them. 500px is where an uncapped label would fit on
-// one line while its neighbour wraps.
+// The proof stats are three squares, each a window onto one bubble field, each
+// stat centered in its square, each square stepped down from the last. On
+// phones the row is full-bleed and the step is one page gutter. From md up the
+// row is centered on the page and wider than the text column, so the middle
+// square sits on the centre line, and the step is a quarter of a tile. The
+// squares, the gaps and the step all hang on class strings and one mask rule,
+// so a tweak can quietly break them. 500px is where an uncapped label would fit
+// on one line while its neighbour wraps.
 // The last case is WCAG reflow (320px, text at 200%): a centered stat that
 // outgrows its square spills off the screen edge instead of scrolling.
 const CASES = [
@@ -51,6 +53,7 @@ for (const { width, zoom } of CASES) {
 				return {
 					left: box.left,
 					right: box.right,
+					top: box.top,
 					width: box.width,
 					height: box.height,
 					center: box.left + box.width / 2,
@@ -62,12 +65,9 @@ for (const { width, zoom } of CASES) {
 					labelRight: labelBox.right
 				}
 			})
-			// The h2 is a block in the text column, so its box is the column.
-			const column = heading.getBoundingClientRect()
 			return {
-				columnLeft: column.left,
-				columnRight: column.right,
 				viewport: document.documentElement.clientWidth,
+				headingLeft: textBox(heading).left,
 				tiles
 			}
 		})
@@ -75,18 +75,32 @@ for (const { width, zoom } of CASES) {
 		expect(band.tiles).toHaveLength(3)
 		const [first, middle, last] = band.tiles
 		const desktop = width >= 768
-		expect(Math.abs(first.left - (desktop ? band.columnLeft : 0))).toBeLessThan(1)
-		expect(Math.abs(last.right - (desktop ? band.columnRight : band.viewport))).toBeLessThan(1)
-		for (const tile of band.tiles) {
+		// The middle square sits on the page's centre line, the outer two mirror each
+		// other: flush with the screen edges on phones, inset by the gutter from md up.
+		expect(Math.abs(middle.center - band.viewport / 2)).toBeLessThan(1)
+		expect(Math.abs(first.left - (band.viewport - last.right))).toBeLessThan(1)
+		if (desktop) {
+			expect(first.left).toBeGreaterThanOrEqual(24)
+			// The title shares the row's container: it starts on the first square's edge.
+			expect(Math.abs(band.headingLeft - first.left)).toBeLessThan(1)
+		} else {
+			expect(Math.abs(first.left)).toBeLessThan(1)
+		}
+		// Gaps are the page gutter, and so is the step on phones; under 360px both
+		// close into one band. From md up the step is a quarter of a tile.
+		const gutter = width < 360 ? 0 : 24
+		const step = desktop ? first.height / 4 : gutter
+		for (const [i, tile] of band.tiles.entries()) {
 			expect(Math.abs(tile.width - tile.height)).toBeLessThan(1)
 			expect(Math.abs(tile.valueCenter - tile.center)).toBeLessThan(1)
-			expect(Math.abs(tile.valueTop - first.valueTop)).toBeLessThan(1)
+			// Stepped down one step at a time, the number at the same height in each square.
+			expect(Math.abs(tile.top - first.top - i * step)).toBeLessThan(1)
+			expect(Math.abs(tile.valueTop - tile.top - (first.valueTop - first.top))).toBeLessThan(1)
 			expect(tile.valueLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.valueRight).toBeLessThanOrEqual(tile.right)
 			expect(tile.labelLeft).toBeGreaterThanOrEqual(tile.left)
 			expect(tile.labelRight).toBeLessThanOrEqual(tile.right)
 		}
-		// Gaps are the page gutter; under 360px they close into one solid band.
-		expect(Math.abs(middle.left - first.right - (width < 360 ? 0 : 24))).toBeLessThan(1)
+		expect(Math.abs(middle.left - first.right - gutter)).toBeLessThan(1)
 	})
 }

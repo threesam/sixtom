@@ -130,31 +130,35 @@
 
 <!-- proof -->
 <section class="bg-surface py-20 md:py-28">
-	<div class="mx-auto w-full max-w-3xl px-6">
+	<!-- From md up the title shares the stat row's wider container, so it starts on
+	     the first square's left edge instead of the text column's. -->
+	<div class="mx-auto w-full max-w-3xl px-6 md:max-w-5xl">
 		<p class={eyebrowClass}>{o.proof.eyebrow}</p>
 		<h2 class={h2Class}>{o.proof.heading}</h2>
 	</div>
-	<!-- The numbers as three square cutouts of one bubble field (static/bubbles.js
-	     drives every [data-bubble] canvas), each stat centered in its square. The
-	     gaps are the page gutter painted back in the surface colour (the middle
-	     tile's shadow), so one field shows through three windows. On phones the
-	     row is full-bleed: the outer squares touch the screen edges. From md up it
-	     keeps the text column, so the first square starts on the heading's left
-	     edge. Under 360px the gaps close and it is one solid band. Phone labels are
-	     capped at 13ch so each one breaks to two lines and the numbers stay level.
-	     The numbers are capped at half their tile's width (cqw) and the labels may
-	     break mid-word, so at 320px / 200% text nothing spills out of a square.
+	<!-- The numbers as three squares, each a window onto one bubble field
+	     (static/bubbles.js drives every [data-bubble] canvas), each stat centered,
+	     each square stepped down from the last. On phones the row is full-bleed
+	     (the outer squares touch the screen edges) and the step is one page gutter.
+	     From md up the row is centered on the page and wider than the text column
+	     (max-w-5xl), so the middle square sits on the centre line and the outer two
+	     overhang the column equally, and the step is a quarter of a tile. One canvas is masked to the three squares (.proof-windows below); the
+	     step means the gaps aren't straight strips that could be painted over.
+	     Under 360px the gaps and the step close and it is one solid band. Phone
+	     labels are capped at 13ch so each breaks to two lines; the numbers are
+	     capped by their tile's width (cqw) and labels may break mid-word, so at
+	     320px / 200% text nothing spills out of a square.
 	     e2e/proof-band.spec.ts pins all of it. -->
-	<div class="mt-10 md:mx-auto md:mt-14 md:max-w-3xl md:px-6">
-		<div class="relative">
-			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+	<div class="mt-10 md:mx-auto md:mt-14 md:max-w-5xl md:px-6">
+		<div class="@container relative min-[360px]:pb-12 md:pb-[calc((100%-3rem)/6)]">
+			<div class="proof-windows pointer-events-none absolute inset-0" aria-hidden="true">
 				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 				<div class="absolute inset-0 bg-black/60"></div>
 			</div>
 			<dl class="relative grid grid-cols-3 min-[360px]:gap-6">
 				{#each o.proof.tiles as tile (tile.label)}
 					<div
-						class="@container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center min-[360px]:nth-2:shadow-[-1.5rem_0_var(--color-surface),1.5rem_0_var(--color-surface)]"
+						class="@container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2"
 					>
 						<dt
 							class="text-fg-muted mt-2 max-w-[min(13ch,100%)] text-[11px] leading-snug tracking-wider wrap-anywhere uppercase md:mt-3 md:max-w-full md:text-sm md:tracking-widest"
@@ -162,7 +166,7 @@
 							{tile.label}
 						</dt>
 						<dd
-							class="text-fg font-display text-[length:min(2.25rem,50cqw)] leading-[1.1] font-bold tracking-tight tabular-nums md:text-[length:min(4.5rem,50cqw)] md:leading-none"
+							class="text-fg font-display text-[length:min(2.25rem,50cqw)] leading-[1.1] font-bold tracking-tight tabular-nums md:text-[length:min(6rem,32cqw)] md:leading-none"
 						>
 							{tile.value}
 						</dd>
@@ -292,3 +296,28 @@
 <!-- Page-level, outside the UV section, so the footer keeps the root dark
      surface — the page opens dark and closes dark, same as every other route. -->
 <SiteFooter />
+
+<style>
+	/* One canvas shown through three square windows: the squares are a third of
+	   the row each (minus the two gutters), each stepped down from the last by a
+	   gutter on phones and a quarter of a tile from md up. Must match the grid's
+	   gap and the tiles' translate-y above. */
+	@media (min-width: 360px) {
+		.proof-windows {
+			--gap: 1.5rem;
+			--tile: calc((100cqw - 2 * var(--gap)) / 3);
+			--step: var(--gap);
+			mask:
+				linear-gradient(#000 0 0) 0 0,
+				linear-gradient(#000 0 0) calc(var(--tile) + var(--gap)) var(--step),
+				linear-gradient(#000 0 0) calc(2 * (var(--tile) + var(--gap))) calc(2 * var(--step));
+			mask-size: var(--tile) var(--tile);
+			mask-repeat: no-repeat;
+		}
+	}
+	@media (min-width: 48rem) {
+		.proof-windows {
+			--step: calc(var(--tile) / 4);
+		}
+	}
+</style>
