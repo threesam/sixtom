@@ -3,8 +3,8 @@ import { expect, test } from '@playwright/test'
 // The proof stats are three squares, each a window onto one bubble field, each
 // stat centered in its square, each square stepped down from the last. On
 // phones the row is full-bleed and the step is one page gutter. From md up the
-// first square starts on the heading's left edge, the row runs past the text
-// column into the right margin, and the step is a quarter of a tile. The
+// row is centered on the page and wider than the text column, so the middle
+// square sits on the centre line, and the step is a quarter of a tile. The
 // squares, the gaps and the step all hang on class strings and one mask rule,
 // so a tweak can quietly break them. 500px is where an uncapped label would fit
 // on one line while its neighbour wraps.
@@ -41,8 +41,6 @@ for (const { width, zoom } of CASES) {
 				el.textContent.includes('people onboarded')
 			)
 			if (!dl) throw new Error('proof stats not found')
-			const heading = dl.closest('section')?.querySelector('h2')
-			if (!heading) throw new Error('proof heading not found')
 			const tiles = [...dl.children].map((tile) => {
 				const value = tile.querySelector('dd')
 				const label = tile.querySelector('dt')
@@ -65,11 +63,7 @@ for (const { width, zoom } of CASES) {
 					labelRight: labelBox.right
 				}
 			})
-			// The h2 is a block in the text column, so its box is the column.
-			const column = heading.getBoundingClientRect()
 			return {
-				columnLeft: column.left,
-				columnRight: column.right,
 				viewport: document.documentElement.clientWidth,
 				tiles
 			}
@@ -78,14 +72,12 @@ for (const { width, zoom } of CASES) {
 		expect(band.tiles).toHaveLength(3)
 		const [first, middle, last] = band.tiles
 		const desktop = width >= 768
-		expect(Math.abs(first.left - (desktop ? band.columnLeft : 0))).toBeLessThan(1)
-		if (desktop) {
-			// Runs past the text column into the right margin, never to the viewport edge.
-			expect(last.right).toBeGreaterThan(band.columnRight)
-			expect(last.right).toBeLessThan(band.viewport)
-		} else {
-			expect(Math.abs(last.right - band.viewport)).toBeLessThan(1)
-		}
+		// The middle square sits on the page's centre line, the outer two mirror each
+		// other: flush with the screen edges on phones, inset by the gutter from md up.
+		expect(Math.abs(middle.center - band.viewport / 2)).toBeLessThan(1)
+		expect(Math.abs(first.left - (band.viewport - last.right))).toBeLessThan(1)
+		if (desktop) expect(first.left).toBeGreaterThanOrEqual(24)
+		else expect(Math.abs(first.left)).toBeLessThan(1)
 		// Gaps are the page gutter, and so is the step on phones; under 360px both
 		// close into one band. From md up the step is a quarter of a tile.
 		const gutter = width < 360 ? 0 : 24
