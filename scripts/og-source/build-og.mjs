@@ -87,9 +87,9 @@ for (let x = space / 2; x < W; x += space) {
 		const py = y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5
 		const n = noise(px * blobScale + FRAME, py * blobScale + FRAME * 0.4)
 		const [r, g, b] = oklchToRgb(
-			map(n, 0, 1, 64, 72),
-			map(n, 0, 1, 0.16, 0.15),
-			map(n, 0, 1, 178, 200)
+			map(n, 0, 1, 72, 80),
+			map(n, 0, 1, 0.16, 0.155),
+			map(n, 0, 1, 66, 86)
 		)
 		const radius = space * map(n, 0, 1, 0.12, 0.95)
 		const alpha = map(n, 0, 1, 0.1, ALPHA_MAX)
