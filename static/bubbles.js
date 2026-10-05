@@ -1,6 +1,6 @@
 // Hero bubble field — a "sea of shapes" descended from threesam.com's day20
 // sketch: a dot grid whose circles swell and brighten where a slow-drifting
-// value-noise field is high, so contiguous blobs of blue-green drift through
+// value-noise field is high, so contiguous blobs of gold drift through
 // rather than rippling uniformly in place. Standalone (no framework) so the home
 // page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
 // without a [data-bubble] canvas; each one (hero, proof band) runs its own field.
@@ -84,16 +84,16 @@ const initBubbles = (canvas) => {
 	// the high-noise regions — blobs — translate across the grid. A point's radius,
 	// colour and opacity all track its local noise value, so a blob reads as a
 	// swelling, brightening cluster sliding through. Colour spans the CTA gradient
-	// (oklch 64% .16 178 → 72% .15 200) by noise, so the field is the same teal.
+	// (oklch 72% .16 66 → 80% .155 86) by noise, so the field is the same gold.
 	const render = (field, elapsed) => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		const { space, blobScale, points } = field
 		const drift = elapsed * NDRIFT
 		for (const p of points) {
 			const n = noise(p.x * blobScale + drift, p.y * blobScale + drift * 0.4)
-			const l = map(n, 0, 1, 64, 72)
-			const c = map(n, 0, 1, 0.16, 0.15)
-			const h = map(n, 0, 1, 178, 200)
+			const l = map(n, 0, 1, 72, 80)
+			const c = map(n, 0, 1, 0.16, 0.155)
+			const h = map(n, 0, 1, 66, 86)
 			ctx.fillStyle = `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${h.toFixed(1)} / ${map(n, 0, 1, 0.1, ALPHA_MAX).toFixed(3)})`
 			ctx.beginPath()
 			ctx.arc(p.x, p.y, space * map(n, 0, 1, 0.12, 0.95), 0, Math.PI * 2)
