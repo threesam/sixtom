@@ -37,7 +37,7 @@
 
 	<section class="flex flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
+			<h1 class="text-fg text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
 			<!-- Same order as the home close: what you get, the form, then the
 			     teardown for anyone who would rather not wait. -->
 			<p class="text-fg-muted mt-6 text-lg leading-relaxed">{grandSlam.lead}</p>
