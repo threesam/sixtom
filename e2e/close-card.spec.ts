@@ -113,8 +113,13 @@ test('closing field meets the footer without a border or a cut', async ({ page }
 
 	const footer = page.locator('#waitlist ~ footer')
 	await expect(footer).toHaveCSS('border-top-width', '0px')
-	const surface = await page
-		.locator('#waitlist')
-		.evaluate((el) => getComputedStyle(el).backgroundColor)
-	await expect(footer).toHaveCSS('background-color', surface)
+	// One surface, as rendered: the pixel row above the boundary (empty of
+	// bubbles, per the check above) matches the row below it. Computed colours
+	// would miss an overlay dimming the section.
+	await footer.scrollIntoViewIfNeeded()
+	const box = await footer.boundingBox()
+	if (!box) throw new Error('footer not found')
+	const row = (y: number) =>
+		page.screenshot({ clip: { x: 0, y, width: box.width, height: 1 }, animations: 'disabled' })
+	expect((await row(box.y - 1)).equals(await row(box.y))).toBe(true)
 })
