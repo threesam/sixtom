@@ -89,37 +89,53 @@ for (const route of ['/', '/notify']) {
 	})
 }
 
-// The page ends without a line: the footer has no border and shares the
-// section's surface, and the closing field stops on whole circles (bubbles.js
-// drops the rows that would cross the edge), so its last pixel row is empty.
-test('closing field meets the footer without a border or a cut', async ({ page }) => {
+// A bubble field that meets a section of its own colour ends on whole circles
+// there (bubbles.js drops the rows that would cross the edge), so no straight
+// cut marks the join: the hero's bottom, and the closing field's top and bottom.
+// The footer below the close has no border and shares its surface.
+test('bubble fields meet their dark neighbours without a cut or a border', async ({ page }) => {
 	await page.setViewportSize({ width: 1280, height: 900 })
 	await page.goto('/')
-	await page.locator('#waitlist').scrollIntoViewIfNeeded()
-	// Painted pixels in one row of the closing canvas (every fourth byte is alpha).
-	const ink = (fromTop: number) =>
-		page.evaluate((at) => {
-			const canvas = document.querySelector<HTMLCanvasElement>('#waitlist canvas')
-			const ctx = canvas?.getContext('2d')
-			if (!canvas || !ctx) throw new Error('closing field not found')
-			const y = Math.min(canvas.height - 1, Math.round(canvas.height * at))
-			return ctx.getImageData(0, y, canvas.width, 1).data.filter((v, i) => i % 4 === 3 && v > 0)
-				.length
-		}, fromTop)
-	// The field only paints while on screen: wait for a frame, or an empty canvas
+	// Painted pixels in one row of a canvas (every fourth byte is alpha).
+	const ink = (selector: string, fromTop: number) =>
+		page.evaluate(
+			([sel, at]) => {
+				const canvas = document.querySelector<HTMLCanvasElement>(sel)
+				const ctx = canvas?.getContext('2d')
+				if (!canvas || !ctx) throw new Error(`no canvas at ${sel}`)
+				const y = Math.min(canvas.height - 1, Math.round(canvas.height * at))
+				return ctx.getImageData(0, y, canvas.width, 1).data.filter((v, i) => i % 4 === 3 && v > 0)
+					.length
+			},
+			[selector, fromTop] as const
+		)
+	// A field only paints while on screen: wait for a frame, or an empty canvas
 	// would pass as "nothing cut".
-	await expect.poll(() => ink(1 / 3)).toBeGreaterThan(0)
-	expect(await ink(1)).toBe(0)
+	const hero = 'section:first-of-type canvas'
+	await expect.poll(() => ink(hero, 1 / 3)).toBeGreaterThan(0)
+	expect(await ink(hero, 1)).toBe(0)
 
-	const footer = page.locator('#waitlist ~ footer')
-	await expect(footer).toHaveCSS('border-top-width', '0px')
-	// One surface, as rendered: the pixel row above the boundary (empty of
-	// bubbles, per the check above) matches the row below it. Computed colours
-	// would miss an overlay dimming the section.
-	await footer.scrollIntoViewIfNeeded()
-	const box = await footer.boundingBox()
-	if (!box) throw new Error('footer not found')
-	const row = (y: number) =>
-		page.screenshot({ clip: { x: 0, y, width: box.width, height: 1 }, animations: 'disabled' })
-	expect((await row(box.y - 1)).equals(await row(box.y))).toBe(true)
+	const close = '#waitlist canvas'
+	await page.locator('#waitlist').scrollIntoViewIfNeeded()
+	await expect.poll(() => ink(close, 1 / 3)).toBeGreaterThan(0)
+	expect(await ink(close, 0)).toBe(0)
+	expect(await ink(close, 1)).toBe(0)
+
+	// One surface on each side of a join, as rendered: the pixel row above it
+	// (empty of bubbles, per the checks above) matches the row below. Computed
+	// colours would miss an overlay dimming one side.
+	const sameAcross = async (below: string) => {
+		const target = page.locator(below)
+		await target.scrollIntoViewIfNeeded()
+		const box = await target.boundingBox()
+		if (!box) throw new Error(`${below} not found`)
+		const row = (y: number) =>
+			page.screenshot({ clip: { x: 0, y, width: box.width, height: 1 }, animations: 'disabled' })
+		return (await row(box.y - 1)).equals(await row(box.y))
+	}
+	const footer = '#waitlist ~ footer'
+	await expect(page.locator(footer)).toHaveCSS('border-top-width', '0px')
+	expect(await sameAcross(footer)).toBe(true)
+	expect(await sameAcross('section:first-of-type + section')).toBe(true)
+	expect(await sameAcross('#waitlist')).toBe(true)
 })

@@ -32,8 +32,12 @@
 
 <Hero />
 
+<!-- Surfaces run dark, dark, light: hero + wall, ledger, guarantee + proof,
+     is-this-you, timeline + close. Each bubble field (hero, close) meets a dark
+     neighbour, so it can end on whole circles with no line between the two;
+     e2e/visual-theme.spec.ts pins the order. -->
 <!-- the wall -->
-<section class="surface-uv py-20 md:py-28">
+<section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>{o.wall.thesis}</h2>
 		<p class={bodyClass}>{o.wall.para}</p>
@@ -51,7 +55,7 @@
 </section>
 
 <!-- the ledger -->
-<section class="bg-surface py-20 md:py-28">
+<section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>{o.ledger.heading}</h2>
 		<p class={bodyClass}>{o.ledger.para}</p>
@@ -65,7 +69,7 @@
 				{@const hasUnpriced = group.lines.some((l) => l.valueUSD === null)}
 				<details class="group border-border border-b">
 					<summary
-						class="focus-visible:outline-accent flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
+						class="focus-visible:outline-fg flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
 					>
 						<span class="flex min-w-0 items-baseline gap-3">
 							<span
@@ -121,7 +125,7 @@
 </section>
 
 <!-- the guarantee -->
-<section class="surface-uv py-20 md:py-28">
+<section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2
 			class="text-fg mt-2 text-3xl leading-tight font-bold tracking-tight text-balance md:text-[2.5rem]"
@@ -252,8 +256,8 @@
 </section>
 
 <!-- close / waitlist. The hero's bookend: the same bubble field on the dark
-     surface, so the page opens and closes on it (the one place two dark sections
-     meet; the field is the divider). The copy sits in a card: near-opaque so
+     surface, so the page opens and closes on it. It follows the dark timeline, so
+     the field ends on whole circles at the top too and nothing divides the two. The copy sits in a card: near-opaque so
      small muted text keeps its contrast over the field, padded, and narrower
      than the screen at every width (a 1rem gutter on phones, capped at max-w-md,
      then max-w-2xl from md up) so the field is lit on all four sides of it.
@@ -263,7 +267,7 @@
 	     border, and the field ends on whole circles, not a cut. It runs at full
 	     brightness (the copy is on the card, not on the field), so it reads gold. -->
 	<canvas
-		data-bubble="whole-bottom"
+		data-bubble="whole-top whole-bottom"
 		class="pointer-events-none absolute inset-0 block h-full w-full"
 		aria-hidden="true"
 	></canvas>

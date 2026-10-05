@@ -71,14 +71,18 @@ const initBubbles = (canvas) => {
 		const space = minDim / (window.innerWidth < 768 ? MOBILE_DENSITY : DENSITY)
 		const blobScale = BLOBS / minDim
 
-		// data-bubble="whole-bottom": drop the rows a circle could cross the bottom
-		// edge from (a quarter-cell of jitter plus the largest radius), so the field
-		// ends on round edges instead of a straight cut.
+		// data-bubble="whole-top" and/or "whole-bottom": drop the rows a circle could
+		// cross that edge from (a quarter-cell of jitter plus the largest radius), so
+		// the field ends on round edges there instead of a straight cut. For a field
+		// that meets a section of its own colour, where a cut would show as a line.
 		const reach = space * (0.25 + R_MAX)
-		const bottom = canvas.dataset.bubble === 'whole-bottom' ? height - reach : height
+		const edges = canvas.dataset.bubble ?? ''
+		const top = edges.includes('whole-top') ? reach : 0
+		const bottom = edges.includes('whole-bottom') ? height - reach : height
 		const points = []
 		for (let x = space / 2; x < width; x += space) {
 			for (let y = space / 2; y < bottom; y += space) {
+				if (y < top) continue
 				points.push({
 					x: x + (noise(x * 0.1, y * 0.1) - 0.5) * space * 0.5,
 					y: y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5

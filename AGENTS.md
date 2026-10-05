@@ -84,7 +84,7 @@ Tokens: `--color-surface`, `--color-fg`, `--color-fg-muted`, `--color-fg-subtle`
 
 Custom utilities: `.btn-accent` (gradient bg + dark text + shadow), `.eyebrow` (accent color + tracking + uppercase + shadow), `.text-accent` (accent text + shadow).
 
-Home sections alternate D / UV strictly (8 sections, first dark; `SiteFooter` sits at page level so it closes dark — pinned by `e2e/visual-theme.spec.ts`). The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together. Contrast floors (lifted 2026-07-24): dark `fg-subtle` ≈6.3:1, `fg-muted` ≈8.9:1, UV `fg-subtle` ≈7:1.
+Home sections run D D UV D D UV D D (8 sections: hero + wall, ledger, guarantee + proof, is-this-you, timeline + close), so each bubble field meets a dark neighbour and ends on whole circles with no line; `SiteFooter` sits at page level so it closes dark. Pinned by `e2e/visual-theme.spec.ts`. The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together. Contrast floors (lifted 2026-07-24): dark `fg-subtle` ≈6.3:1, `fg-muted` ≈8.9:1, UV `fg-subtle` ≈7:1.
 
 ## Voice & copy guardrails
 
