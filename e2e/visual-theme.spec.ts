@@ -17,7 +17,9 @@ async function openPage(browser: Browser, width = 1280, height = 720) {
 }
 
 test.describe('Visual surface — dark/light alternation', () => {
-	test('grand-slam page: 8 sections alternate dark/UV, first dark', async ({ browser }) => {
+	test('grand-slam page: sections alternate dark/UV, then the close bookends dark', async ({
+		browser
+	}) => {
 		const { context, page } = await openPage(browser)
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
 
@@ -29,21 +31,28 @@ test.describe('Visual surface — dark/light alternation', () => {
 			sections.map((s) => s.evaluate((el) => getComputedStyle(el).backgroundColor))
 		)
 
-		// Strict D U D U D U D U — two distinct surfaces, alternating, first dark.
+		// Strict D U D U D U D through the timeline — two distinct surfaces,
+		// alternating, first dark.
 		const distinct = new Set(surfaces)
 		expect(distinct.size, `expected 2 alternating surfaces, got ${[...distinct].join(' | ')}`).toBe(
 			2
 		)
-		for (let i = 2; i < surfaces.length; i++) {
-			expect(surfaces[i], `section ${String(i)} should match section ${String(i - 2)}`).toBe(
-				surfaces[i - 2]
+		const alternating = surfaces.slice(0, -1)
+		for (let i = 2; i < alternating.length; i++) {
+			expect(alternating[i], `section ${String(i)} should match section ${String(i - 2)}`).toBe(
+				alternating[i - 2]
 			)
 		}
 		expect(surfaces[0]).not.toBe(surfaces[1])
 
-		// SiteFooter (inside the closing UV section) keeps its explicit dark
-		// surface — the page opens dark and visually closes dark. Scoped selector:
-		// the testimonial blockquote also contains a <footer> (attribution).
+		// The close is the hero's bookend: dark again, straight after the dark
+		// timeline, and set apart from it by its own bubble field.
+		expect(surfaces[7]).toBe(surfaces[0])
+		await expect(sections[7].locator('canvas[data-bubble]')).toHaveCount(1)
+		await expect(sections[0].locator('canvas[data-bubble]')).toHaveCount(1)
+
+		// SiteFooter sits on the same dark surface. Scoped selector: the
+		// testimonial blockquote also contains a <footer> (attribution).
 		const footerBg = await page
 			.locator('footer', { has: page.locator('[data-umami-event="footer_home"]') })
 			.evaluate((el) => getComputedStyle(el).backgroundColor)

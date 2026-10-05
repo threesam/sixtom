@@ -37,7 +37,6 @@
 
 	<section class="flex flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<p class="eyebrow text-sm">{close.scarcity}</p>
 			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
 			<!-- Same order as the home close: what you get, the form, then the
 			     teardown for anyone who would rather not wait. -->
@@ -55,6 +54,8 @@
 				}}
 				class="mt-10 space-y-4"
 			>
+				<!-- Placeholders only, as on /book: each field says what goes in it, and the
+				     labels are for screen readers. No visible label on one field and not the other. -->
 				<label class="sr-only" for="email">email address</label>
 				<input
 					id="email"
@@ -63,20 +64,18 @@
 					required
 					autocomplete="email"
 					placeholder={close.emailPlaceholder}
-					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none disabled:opacity-60"
+					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent block w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60"
 				/>
-				<label class="text-fg-muted block text-sm" for="build">
-					{close.buildLabel}
-					<textarea
-						id="build"
-						name="message"
-						required
-						rows="3"
-						maxlength="4000"
-						placeholder={close.buildPlaceholder}
-						class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent mt-2 w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60"
-					></textarea>
-				</label>
+				<label class="sr-only" for="build">{close.buildLabel}</label>
+				<textarea
+					id="build"
+					name="message"
+					required
+					rows="3"
+					maxlength="4000"
+					placeholder={close.buildLabel}
+					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent block w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none disabled:opacity-60"
+				></textarea>
 				<input type="hidden" name="name" value="Waitlist signup" />
 				<input type="hidden" name="formStartedAt" bind:value={formStartedAt} />
 				<input type="hidden" name="enhanced" bind:value={enhanced} />

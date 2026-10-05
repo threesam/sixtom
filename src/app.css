@@ -113,8 +113,7 @@
 
 /* SIXTOM wordmark. --wm-ls drives every gap: letter-spacing, the chip's
  * x-padding (the O's trailing letter-space is the right pad; .m cancels the
- * final one), and the chip is a square with TO cap-centered. Browsers without
- * text-box-trim just render the chip slightly taller. */
+ * final one), and the chip is a square with TO cap-centered. */
 .wordmark {
 	--wm-ls: 0.08em;
 	display: inline-flex;
@@ -125,6 +124,12 @@
 	text-transform: uppercase;
 	line-height: 1;
 }
+/* The 1em line box centers 0.04em low of the cap band (Cabinet: asc .87 /
+ * desc .28 / cap .67em), so the square is lifted by that much and the letters
+ * are put back: TO stays on the same baseline as SIX and M, and the square is
+ * what moves to center on it. One path for every browser: the earlier
+ * text-box-trim version nudged the letters in its fallback, which sat TO a
+ * pixel low on browsers that took it. */
 .wordmark .chip {
 	background: var(--color-fg);
 	color: var(--color-surface);
@@ -133,16 +138,10 @@
 	aspect-ratio: 1;
 	padding-left: var(--wm-ls);
 	margin-right: var(--wm-ls);
+	translate: 0 -0.04em;
 }
 .wordmark .chip > span {
-	text-box: trim-both cap alphabetic;
-}
-/* No text-box: the 1em line box centers 0.04em low of the cap band
- * (Cabinet: asc .87 / desc .28 / cap .67em). Nudge keeps the gaps pixel-even. */
-@supports not (text-box: trim-both cap alphabetic) {
-	.wordmark .chip > span {
-		transform: translateY(0.04em);
-	}
+	translate: 0 0.04em;
 }
 .wordmark .m {
 	margin-right: calc(-1 * var(--wm-ls));
