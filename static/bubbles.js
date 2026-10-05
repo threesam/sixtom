@@ -68,9 +68,13 @@ const initBubbles = (canvas) => {
 		const space = minDim / (window.innerWidth < 768 ? MOBILE_DENSITY : DENSITY)
 		const blobScale = BLOBS / minDim
 
+		// data-bubble="whole-bottom": drop the rows a circle could cross the bottom
+		// edge from (a quarter-cell of jitter plus the largest radius), so the field
+		// ends on round edges instead of a straight cut.
+		const bottom = canvas.dataset.bubble === 'whole-bottom' ? height - space * 1.2 : height
 		const points = []
 		for (let x = space / 2; x < width; x += space) {
-			for (let y = space / 2; y < height; y += space) {
+			for (let y = space / 2; y < bottom; y += space) {
 				points.push({
 					x: x + (noise(x * 0.1, y * 0.1) - 0.5) * space * 0.5,
 					y: y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5

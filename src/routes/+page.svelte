@@ -260,10 +260,14 @@
      then max-w-2xl from md up) so the field is lit on all four sides of it.
      e2e/close-card.spec.ts pins the gutter and the padding. -->
 <section id="waitlist" class="bg-surface relative px-4 py-20 md:py-32">
-	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
-		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-		<div class="absolute inset-0 bg-black/35"></div>
-	</div>
+	<!-- No line under this section: the footer is the same surface and carries no
+	     border, so the field is dimmed by its own opacity (an overlay would darken
+	     the section against the footer) and ends on whole circles, not a cut. -->
+	<canvas
+		data-bubble="whole-bottom"
+		class="pointer-events-none absolute inset-0 block h-full w-full opacity-65"
+		aria-hidden="true"
+	></canvas>
 	<div class="relative mx-auto w-full max-w-md rounded-2xl bg-black/90 p-6 md:max-w-2xl md:p-12">
 		<h2 class={h2Class}>{o.close.heading}</h2>
 
