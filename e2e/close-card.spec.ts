@@ -27,7 +27,8 @@ for (const width of [320, 393, 768, 1280]) {
 				below: outer.bottom - rect.bottom,
 				padLeft: Math.min(...inner.map((r) => r.left)) - rect.left,
 				padRight: rect.right - Math.max(...inner.map((r) => r.right)),
-				padTop: inner[0].top - rect.top
+				padTop: inner[0].top - rect.top,
+				padBottom: rect.bottom - Math.max(...inner.map((r) => r.bottom))
 			}
 		})
 		expect(box.overflow).toBe(0)
@@ -41,6 +42,7 @@ for (const width of [320, 393, 768, 1280]) {
 		expect(box.padLeft).toBeGreaterThanOrEqual(24)
 		expect(box.padRight).toBeGreaterThanOrEqual(24)
 		expect(box.padTop).toBeGreaterThanOrEqual(24)
+		expect(box.padBottom).toBeGreaterThanOrEqual(24)
 	})
 }
 
@@ -82,6 +84,7 @@ for (const route of ['/', '/notify']) {
 			expect(field.left).toBe(form.fields[0].left)
 			expect(field.right).toBe(form.fields[0].right)
 		}
+		expect(form.gaps[0]).toBeGreaterThanOrEqual(12)
 		expect(Math.abs(form.gaps[0] - form.gaps[1])).toBeLessThan(1)
 	})
 }
