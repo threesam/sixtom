@@ -21,10 +21,11 @@
 	     size and never dimmed: the copy sits on a pool of dark its own size
 	     (.field-pool), so the field is as gold here as in the proof squares and
 	     the close. The next section is the same dark surface, so the field ends on
-	     whole circles at the bottom (whole-bottom) and no line shows. overflow-hidden keeps the canvas from adding scrollbars without
-	     constraining the section (oversized type can exceed 100svh and must stay
-	     un-clipped). Animated by static/bubbles.js (wired in app.html) so the page
-	     keeps csr=false — the canvas is plain markup that survives no-hydration; the
+	     whole circles at the bottom (whole-bottom) and no line shows.
+	     overflow-hidden keeps the canvas from adding scrollbars without constraining
+	     the section (oversized type can exceed 100svh and must stay un-clipped).
+	     Animated by static/bubbles.js (wired in app.html) so the page keeps
+	     csr=false — the canvas is plain markup that survives no-hydration; the
 	     script no-ops elsewhere. Decorative + aria-hidden. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
 		<canvas data-bubble="whole-bottom" class="absolute inset-0 block h-full w-full"></canvas>

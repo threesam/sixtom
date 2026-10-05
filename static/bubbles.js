@@ -3,8 +3,8 @@
 // value-noise field is high, so contiguous blobs of gold drift through
 // rather than rippling uniformly in place. Standalone (no framework) so the home
 // page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
-// without a [data-bubble] canvas; each one (hero, proof band) runs its own field.
-// A CSS overlay fades it under the copy.
+// without a [data-bubble] canvas; each one (hero, proof squares, close) runs its
+// own field. Nothing dims it: copy over a field sits on a dark pool (.field-pool).
 const initBubbles = (canvas) => {
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
