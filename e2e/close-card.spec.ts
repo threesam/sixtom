@@ -88,3 +88,33 @@ for (const route of ['/', '/notify']) {
 		expect(Math.abs(form.gaps[0] - form.gaps[1])).toBeLessThan(1)
 	})
 }
+
+// The page ends without a line: the footer has no border and shares the
+// section's surface, and the closing field stops on whole circles (bubbles.js
+// drops the rows that would cross the edge), so its last pixel row is empty.
+test('closing field meets the footer without a border or a cut', async ({ page }) => {
+	await page.setViewportSize({ width: 1280, height: 900 })
+	await page.goto('/')
+	await page.locator('#waitlist').scrollIntoViewIfNeeded()
+	// Painted pixels in one row of the closing canvas (every fourth byte is alpha).
+	const ink = (fromTop: number) =>
+		page.evaluate((at) => {
+			const canvas = document.querySelector<HTMLCanvasElement>('#waitlist canvas')
+			const ctx = canvas?.getContext('2d')
+			if (!canvas || !ctx) throw new Error('closing field not found')
+			const y = Math.min(canvas.height - 1, Math.round(canvas.height * at))
+			return ctx.getImageData(0, y, canvas.width, 1).data.filter((v, i) => i % 4 === 3 && v > 0)
+				.length
+		}, fromTop)
+	// The field only paints while on screen: wait for a frame, or an empty canvas
+	// would pass as "nothing cut".
+	await expect.poll(() => ink(1 / 3)).toBeGreaterThan(0)
+	expect(await ink(1)).toBe(0)
+
+	const footer = page.locator('#waitlist ~ footer')
+	await expect(footer).toHaveCSS('border-top-width', '0px')
+	const surface = await page
+		.locator('#waitlist')
+		.evaluate((el) => getComputedStyle(el).backgroundColor)
+	await expect(footer).toHaveCSS('background-color', surface)
+})
