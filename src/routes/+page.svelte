@@ -272,6 +272,8 @@
 			     on this page — the visitor lands on /notify with the server-rendered
 			     result. Honeypot + rate limit + validation still apply server-side. -->
 		<form method="post" action="/notify?/notify" class="mt-10 max-w-xl space-y-4">
+			<!-- Placeholders only, as on /book: each field says what goes in it, and the
+			     labels are for screen readers. No visible label on one field and not the other. -->
 			<label class="sr-only" for="waitlist-email">email address</label>
 			<input
 				id="waitlist-email"
@@ -280,20 +282,18 @@
 				required
 				autocomplete="email"
 				placeholder={o.close.emailPlaceholder}
-				class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent w-full rounded-md border px-4 py-3 text-lg focus:ring-2 focus:outline-none"
+				class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent block w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none"
 			/>
-			<label class="text-fg-muted block text-sm" for="waitlist-build">
-				{o.close.buildLabel}
-				<textarea
-					id="waitlist-build"
-					name="message"
-					required
-					rows="3"
-					maxlength="4000"
-					placeholder={o.close.buildPlaceholder}
-					class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent mt-2 w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none"
-				></textarea>
-			</label>
+			<label class="sr-only" for="waitlist-build">{o.close.buildLabel}</label>
+			<textarea
+				id="waitlist-build"
+				name="message"
+				required
+				rows="3"
+				maxlength="4000"
+				placeholder={o.close.buildLabel}
+				class="border-border bg-surface text-fg placeholder:text-fg-subtle focus:border-accent focus:ring-accent block w-full rounded-md border px-4 py-3 text-base focus:ring-2 focus:outline-none"
+			></textarea>
 			<input type="hidden" name="name" value="Waitlist signup" />
 			<input
 				type="text"

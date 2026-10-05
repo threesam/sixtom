@@ -125,7 +125,6 @@ export interface GrandSlamOffer {
 		heading: string
 		emailPlaceholder: string
 		buildLabel: string
-		buildPlaceholder: string
 		button: string
 		rewardBefore: string
 		rewardAfter: string

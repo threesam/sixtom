@@ -43,3 +43,45 @@ for (const width of [320, 393, 768, 1280]) {
 		expect(box.padTop).toBeGreaterThanOrEqual(24)
 	})
 }
+
+// One convention for the fields, on both pages that carry the form: placeholders
+// say what goes in each, labels are for screen readers only. So no visible label
+// sits flush left above a placeholder indented by the field's padding, the two
+// fields are set at one size, and the gaps between field, field and button match.
+for (const route of ['/', '/notify']) {
+	test(`waitlist fields share one treatment on ${route}`, async ({ page }) => {
+		await page.setViewportSize({ width: 393, height: 900 })
+		await page.goto(route)
+		const form = await page.evaluate(() => {
+			const el = document.querySelector('form[action$="?/notify"]')
+			const button = el?.querySelector('button[type="submit"]')
+			if (!el || !button) throw new Error('waitlist form not found')
+			const fields = [...el.querySelectorAll<HTMLElement>('input[type="email"], textarea')]
+			const boxes = [...fields, button].map((field) => field.getBoundingClientRect())
+			return {
+				fields: fields.map((field) => ({
+					placeholder: field.getAttribute('placeholder') ?? '',
+					named: (field as HTMLInputElement).labels?.length ?? 0,
+					fontSize: getComputedStyle(field).fontSize,
+					left: field.getBoundingClientRect().left,
+					right: field.getBoundingClientRect().right
+				})),
+				// A screen-reader label is clipped to a pixel; a visible one is not.
+				visibleLabels: [...el.querySelectorAll('label')].filter(
+					(label) => label.getBoundingClientRect().width > 1
+				).length,
+				gaps: boxes.slice(1).map((box, i) => box.top - boxes[i].bottom)
+			}
+		})
+		expect(form.fields).toHaveLength(2)
+		expect(form.visibleLabels).toBe(0)
+		for (const field of form.fields) {
+			expect(field.placeholder).not.toBe('')
+			expect(field.named).toBe(1)
+			expect(field.fontSize).toBe(form.fields[0].fontSize)
+			expect(field.left).toBe(form.fields[0].left)
+			expect(field.right).toBe(form.fields[0].right)
+		}
+		expect(Math.abs(form.gaps[0] - form.gaps[1])).toBeLessThan(1)
+	})
+}

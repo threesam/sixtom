@@ -188,7 +188,6 @@ export const grandSlam: GrandSlamOffer = {
 		heading: 'one team a month',
 		emailPlaceholder: 'email you actually check',
 		buildLabel: 'what is your team building, and what still runs late?',
-		buildPlaceholder: 'everyone has a dashboard now, but…',
 		// Same label as the hero CTA: one label per intent across the site.
 		button: 'join the waitlist →',
 		// Split around site.teardown.creditNote so the claim can carry its own
