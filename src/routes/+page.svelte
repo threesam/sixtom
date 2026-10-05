@@ -166,12 +166,11 @@
 		<div class="@container relative min-[360px]:pb-12 md:pb-[calc((100%-3rem)/6)]">
 			<div class="proof-windows pointer-events-none absolute inset-0" aria-hidden="true">
 				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-				<div class="absolute inset-0 bg-black/70"></div>
 			</div>
 			<dl class="relative grid grid-cols-3 min-[360px]:gap-6">
 				{#each o.proof.tiles as tile (tile.label)}
 					<div
-						class="@container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2"
+						class="field-pool @container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center [--pool-blur:0.375rem] [--pool-inset:0px] min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:[--pool-blur:0.75rem] md:[--pool-inset:6%] md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2"
 					>
 						<dt
 							class="text-fg-muted mt-2 max-w-[min(13ch,100%)] text-[11px] leading-snug tracking-wider wrap-anywhere uppercase md:mt-3 md:max-w-full md:text-sm md:tracking-widest"

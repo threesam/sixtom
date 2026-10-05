@@ -13,7 +13,7 @@ const initBubbles = (canvas) => {
 	const MOBILE_DENSITY = 32 // ~half the circle count on narrow screens (count ∝ density²)
 	const BLOBS = 4.5 // noise blobs across the short side — low → big contiguous blobs
 	const NDRIFT = 0.00024 // noise-units/ms the field scrolls (blobs "move through")
-	const ALPHA_MAX = 0.95 // peak opacity at a blob's core; a CSS overlay dims it under copy
+	const ALPHA_MAX = 0.95 // peak opacity at a blob's core; copy sits on a dark pool (.field-pool)
 	const FLOOR = 0.4 // noise below this draws nothing, so the quiet water is black
 	const PEAK = 0.8 // noise at or above this is a full core (value noise rarely runs higher)
 	const R_MAX = 0.58 // largest radius, in cells: full cores overlap by a sliver, no more
