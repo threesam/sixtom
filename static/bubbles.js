@@ -16,7 +16,7 @@ const initBubbles = (canvas) => {
 	const ALPHA_MAX = 0.95 // peak opacity at a blob's core; a CSS overlay dims it under copy
 	const FLOOR = 0.4 // noise below this draws nothing, so the quiet water is black
 	const PEAK = 0.8 // noise at or above this is a full core (value noise rarely runs higher)
-	const R_MAX = 0.58 // largest radius, in cells: neighbours just touch, never pile up
+	const R_MAX = 0.58 // largest radius, in cells: full cores overlap by a sliver, no more
 	const STATIC_FRAME = 3400 // reduced-motion: a representative mid-drift elapsed (ms)
 	const FPS = 20 // cap render rate — a slow ambient drift needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS

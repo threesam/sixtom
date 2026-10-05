@@ -20,7 +20,8 @@
 	<!-- Bubble field ("sea of shapes"), full-bleed and rendered crisp at native pixel
 	     size. Mobile (portrait, centered copy): a symmetric vertical scrim — dark
 	     behind the copy, easing off so the field glows top & bottom. Desktop: a
-	     left→right scrim. overflow-hidden keeps it from adding scrollbars without
+	     radial scrim, dark across the copy (out to 45% of the ellipse, which is
+	     what keeps the text's contrast under a bright core) and easing to the edges. overflow-hidden keeps it from adding scrollbars without
 	     constraining the section (oversized type can exceed 100svh and must stay
 	     un-clipped). Animated by static/bubbles.js (wired in app.html) so the page
 	     keeps csr=false — the canvas is plain markup that survives no-hydration; the
