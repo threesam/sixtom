@@ -265,7 +265,6 @@
 		<div class="absolute inset-0 bg-black/35"></div>
 	</div>
 	<div class="relative mx-auto w-full max-w-md rounded-2xl bg-black/90 p-6 md:max-w-2xl md:p-12">
-		<p class={eyebrowClass}>{o.close.scarcity}</p>
 		<h2 class={h2Class}>{o.close.heading}</h2>
 
 		<!-- csr=false: plain cross-route POST to the /notify action. No JS anywhere

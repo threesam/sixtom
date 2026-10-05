@@ -121,7 +121,6 @@ export interface GrandSlamOffer {
 	}
 	timeline: { heading: string }
 	close: {
-		scarcity: string
 		heading: string
 		emailPlaceholder: string
 		buildLabel: string

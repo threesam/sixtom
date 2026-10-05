@@ -37,7 +37,6 @@
 
 	<section class="flex flex-1 items-center px-6 py-16">
 		<div class="mx-auto w-full max-w-2xl">
-			<p class="eyebrow text-sm">{close.scarcity}</p>
 			<h1 class="text-fg mt-2 text-3xl font-bold tracking-tight md:text-5xl">{close.heading}</h1>
 			<!-- Same order as the home close: what you get, the form, then the
 			     teardown for anyone who would rather not wait. -->
