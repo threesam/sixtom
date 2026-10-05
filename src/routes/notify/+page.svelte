@@ -91,7 +91,7 @@
 					type="submit"
 					data-umami-event="cta_notify_submit"
 					disabled={submitting}
-					class="btn-accent px-6 py-3 text-lg hover:opacity-90 disabled:opacity-60"
+					class="btn-accent px-6 py-3 text-lg disabled:opacity-60"
 				>
 					{submitting ? 'sending…' : close.button}
 				</button>

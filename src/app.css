@@ -86,9 +86,13 @@
 	color: var(--color-on-accent);
 	border-radius: 9999px;
 	font-weight: 500;
+	cursor: pointer;
 	transition:
 		--gradient-angle 1.8s ease-in-out,
 		opacity 0.15s,
+		filter 0.15s,
+		box-shadow 0.15s,
+		translate 0.15s ease,
 		transform 0.1s ease;
 }
 .btn-accent:active {
@@ -98,12 +102,27 @@
 	outline: 2px solid var(--color-accent);
 	outline-offset: 3px;
 }
-.btn-accent:hover {
-	--gradient-angle: 225deg;
+/* Hover: the button lifts a pixel, brightens and throws a gold glow, at once;
+ * the gradient keeps its slow turn underneath. `translate`, not `transform`, so
+ * the press-in scale above still applies while hovered. Pointer devices only: a
+ * tap would leave a phone button stuck in the hover look. */
+@media (hover: hover) {
+	.btn-accent:hover:not(:disabled) {
+		--gradient-angle: 225deg;
+		filter: brightness(1.1);
+		box-shadow: 0 8px 24px -8px var(--color-accent);
+		translate: 0 -1px;
+	}
 }
 @media (prefers-reduced-motion: reduce) {
 	.btn-accent {
-		transition: opacity 0.15s;
+		transition:
+			opacity 0.15s,
+			filter 0.15s,
+			box-shadow 0.15s;
+	}
+	.btn-accent:hover:not(:disabled) {
+		translate: none;
 	}
 }
 

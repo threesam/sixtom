@@ -140,7 +140,7 @@
 							data-umami-event="book_qualified_booking_click"
 							rel="noopener noreferrer"
 							target="_blank"
-							class="btn-accent mt-8 inline-block px-6 py-3 text-base hover:opacity-90"
+							class="btn-accent mt-8 inline-block px-6 py-3 text-base"
 						>
 							book the intro call →
 						</a>
@@ -376,7 +376,7 @@
 							disabled={!canAdvance()}
 							data-umami-event="book_step_next"
 							data-umami-event-step={step}
-							class="btn-accent ml-auto px-6 py-3 text-base hover:opacity-90 disabled:opacity-60"
+							class="btn-accent ml-auto px-6 py-3 text-base disabled:opacity-60"
 						>
 							next →
 						</button>
@@ -385,7 +385,7 @@
 							type="submit"
 							data-umami-event="book_submit"
 							disabled={submitting}
-							class="btn-accent ml-auto px-6 py-3 text-base hover:opacity-90 disabled:opacity-60"
+							class="btn-accent ml-auto px-6 py-3 text-base disabled:opacity-60"
 						>
 							{submitting ? 'sending…' : 'send it →'}
 						</button>
