@@ -13,7 +13,10 @@ const initBubbles = (canvas) => {
 	const MOBILE_DENSITY = 32 // ~half the circle count on narrow screens (count ∝ density²)
 	const BLOBS = 4.5 // noise blobs across the short side — low → big contiguous blobs
 	const NDRIFT = 0.00024 // noise-units/ms the field scrolls (blobs "move through")
-	const ALPHA_MAX = 0.85 // peak opacity at a blob's core; the CSS overlay fades left→right
+	const ALPHA_MAX = 0.95 // peak opacity at a blob's core; a CSS overlay dims it under copy
+	const FLOOR = 0.4 // noise below this draws nothing, so the quiet water is black
+	const PEAK = 0.8 // noise at or above this is a full core (value noise rarely runs higher)
+	const R_MAX = 0.58 // largest radius, in cells: neighbours just touch, never pile up
 	const STATIC_FRAME = 3400 // reduced-motion: a representative mid-drift elapsed (ms)
 	const FPS = 20 // cap render rate — a slow ambient drift needs no more, keeps cost low
 	const FRAME_MS = 1000 / FPS
@@ -71,7 +74,8 @@ const initBubbles = (canvas) => {
 		// data-bubble="whole-bottom": drop the rows a circle could cross the bottom
 		// edge from (a quarter-cell of jitter plus the largest radius), so the field
 		// ends on round edges instead of a straight cut.
-		const bottom = canvas.dataset.bubble === 'whole-bottom' ? height - space * 1.2 : height
+		const reach = space * (0.25 + R_MAX)
+		const bottom = canvas.dataset.bubble === 'whole-bottom' ? height - reach : height
 		const points = []
 		for (let x = space / 2; x < width; x += space) {
 			for (let y = space / 2; y < bottom; y += space) {
@@ -86,21 +90,25 @@ const initBubbles = (canvas) => {
 
 	// Each frame, sample the noise at every point with a time offset (the drift) so
 	// the high-noise regions — blobs — translate across the grid. A point's radius,
-	// colour and opacity all track its local noise value, so a blob reads as a
-	// swelling, brightening cluster sliding through. Colour spans the CTA gradient
-	// (oklch 72% .16 66 → 80% .155 86) by noise, so the field is the same gold.
+	// lightness and opacity track how far its noise sits above FLOOR (t): nothing
+	// is drawn below it, and a core is near-opaque but barely wider than its cell.
+	// Separate bright dots on black read as gold; the earlier field (every point
+	// drawn, big and dim, overlapping) mixed down to a brown wash. Hue and chroma
+	// run along the CTA gradient (oklch .16 66 → .155 86); cores run a touch lighter.
 	const render = (field, elapsed) => {
 		ctx.clearRect(0, 0, field.width, field.height)
 		const { space, blobScale, points } = field
 		const drift = elapsed * NDRIFT
 		for (const p of points) {
 			const n = noise(p.x * blobScale + drift, p.y * blobScale + drift * 0.4)
-			const l = map(n, 0, 1, 72, 80)
+			const t = Math.min(1, (n - FLOOR) / (PEAK - FLOOR))
+			if (t <= 0) continue
+			const l = map(t, 0, 1, 74, 84)
 			const c = map(n, 0, 1, 0.16, 0.155)
 			const h = map(n, 0, 1, 66, 86)
-			ctx.fillStyle = `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${h.toFixed(1)} / ${map(n, 0, 1, 0.1, ALPHA_MAX).toFixed(3)})`
+			ctx.fillStyle = `oklch(${l.toFixed(1)}% ${c.toFixed(3)} ${h.toFixed(1)} / ${(t ** 1.3 * ALPHA_MAX).toFixed(3)})`
 			ctx.beginPath()
-			ctx.arc(p.x, p.y, space * map(n, 0, 1, 0.12, 0.95), 0, Math.PI * 2)
+			ctx.arc(p.x, p.y, space * map(t, 0, 1, 0.08, R_MAX), 0, Math.PI * 2)
 			ctx.fill()
 		}
 	}

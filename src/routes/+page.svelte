@@ -166,7 +166,7 @@
 		<div class="@container relative min-[360px]:pb-12 md:pb-[calc((100%-3rem)/6)]">
 			<div class="proof-windows pointer-events-none absolute inset-0" aria-hidden="true">
 				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-				<div class="absolute inset-0 bg-black/60"></div>
+				<div class="absolute inset-0 bg-black/70"></div>
 			</div>
 			<dl class="relative grid grid-cols-3 min-[360px]:gap-6">
 				{#each o.proof.tiles as tile (tile.label)}
@@ -261,11 +261,11 @@
      e2e/close-card.spec.ts pins the gutter and the padding. -->
 <section id="waitlist" class="bg-surface relative px-4 py-20 md:py-32">
 	<!-- No line under this section: the footer is the same surface and carries no
-	     border, so the field is dimmed by its own opacity (an overlay would darken
-	     the section against the footer) and ends on whole circles, not a cut. -->
+	     border, and the field ends on whole circles, not a cut. It runs at full
+	     brightness (the copy is on the card, not on the field), so it reads gold. -->
 	<canvas
 		data-bubble="whole-bottom"
-		class="pointer-events-none absolute inset-0 block h-full w-full opacity-65"
+		class="pointer-events-none absolute inset-0 block h-full w-full"
 		aria-hidden="true"
 	></canvas>
 	<div class="relative mx-auto w-full max-w-md rounded-2xl bg-black/90 p-6 md:max-w-2xl md:p-12">
