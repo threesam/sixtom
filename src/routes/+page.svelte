@@ -32,12 +32,8 @@
 
 <Hero />
 
-<!-- Surfaces run dark, dark, light: hero + wall, ledger, guarantee + proof,
-     is-this-you, timeline + close. Each bubble field (hero, close) meets a dark
-     neighbour, so it can end on whole circles with no line between the two;
-     e2e/visual-theme.spec.ts pins the order. -->
 <!-- the wall -->
-<section class="bg-surface py-20 md:py-28">
+<section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>{o.wall.thesis}</h2>
 		<p class={bodyClass}>{o.wall.para}</p>
@@ -55,7 +51,7 @@
 </section>
 
 <!-- the ledger -->
-<section class="surface-uv py-20 md:py-28">
+<section class="bg-surface py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2 class={h2Class}>{o.ledger.heading}</h2>
 		<p class={bodyClass}>{o.ledger.para}</p>
@@ -69,7 +65,7 @@
 				{@const hasUnpriced = group.lines.some((l) => l.valueUSD === null)}
 				<details class="group border-border border-b">
 					<summary
-						class="focus-visible:outline-fg flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
+						class="focus-visible:outline-accent flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5 focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
 					>
 						<span class="flex min-w-0 items-baseline gap-3">
 							<span
@@ -125,7 +121,7 @@
 </section>
 
 <!-- the guarantee -->
-<section class="bg-surface py-20 md:py-28">
+<section class="surface-uv py-20 md:py-28">
 	<div class="mx-auto w-full max-w-3xl px-6">
 		<h2
 			class="text-fg mt-2 text-3xl leading-tight font-bold tracking-tight text-balance md:text-[2.5rem]"
@@ -170,11 +166,12 @@
 		<div class="@container relative min-[360px]:pb-12 md:pb-[calc((100%-3rem)/6)]">
 			<div class="proof-windows pointer-events-none absolute inset-0" aria-hidden="true">
 				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
+				<div class="absolute inset-0 bg-black/60"></div>
 			</div>
 			<dl class="relative grid grid-cols-3 min-[360px]:gap-6">
 				{#each o.proof.tiles as tile (tile.label)}
 					<div
-						class="field-pool @container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center [--pool-blur:0.375rem] [--pool-inset:0px] min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:[--pool-blur:0.75rem] md:[--pool-inset:6%] md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2"
+						class="@container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2"
 					>
 						<dt
 							class="text-fg-muted mt-2 max-w-[min(13ch,100%)] text-[11px] leading-snug tracking-wider wrap-anywhere uppercase md:mt-3 md:max-w-full md:text-sm md:tracking-widest"
@@ -256,19 +253,19 @@
 </section>
 
 <!-- close / waitlist. The hero's bookend: the same bubble field on the dark
-     surface, so the page opens and closes on it. It follows the dark timeline, so
-     the field ends on whole circles at the top too and nothing divides the two. The copy sits in a card: near-opaque so
+     surface, so the page opens and closes on it (the one place two dark sections
+     meet; the field is the divider). The copy sits in a card: near-opaque so
      small muted text keeps its contrast over the field, padded, and narrower
      than the screen at every width (a 1rem gutter on phones, capped at max-w-md,
      then max-w-2xl from md up) so the field is lit on all four sides of it.
      e2e/close-card.spec.ts pins the gutter and the padding. -->
 <section id="waitlist" class="bg-surface relative px-4 py-20 md:py-32">
 	<!-- No line under this section: the footer is the same surface and carries no
-	     border, and the field ends on whole circles, not a cut. It runs at full
-	     brightness (the copy is on the card, not on the field), so it reads gold. -->
+	     border, so the field is dimmed by its own opacity (an overlay would darken
+	     the section against the footer) and ends on whole circles, not a cut. -->
 	<canvas
 		data-bubble="whole-top whole-bottom"
-		class="pointer-events-none absolute inset-0 block h-full w-full"
+		class="pointer-events-none absolute inset-0 block h-full w-full opacity-65"
 		aria-hidden="true"
 	></canvas>
 	<div class="relative mx-auto w-full max-w-md rounded-2xl bg-black/90 p-6 md:max-w-2xl md:p-12">

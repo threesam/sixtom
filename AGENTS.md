@@ -33,7 +33,7 @@ SvelteKit 2 + Svelte 5 (runes) + Tailwind 4, deployed to Vercel.
 
 ### 1. Offer site (multi-page)
 
-The home route (`src/routes/+page.svelte`) is the grand-slam page: 8 free-scrolling sections (hero → the wall → the ledger → the guarantee → proof → is-this-you → the two weeks → waitlist close), composed inline from `grandSlam` data plus `Hero.svelte`, with `SiteFooter.svelte` at page level, on the same dark surface as the closing section above it. The waitlist close is a **native cross-route form POST to `/notify?/notify`** — no JS on this page. It's SSR'd and edge-cached via `Cache-Control` in `src/hooks.server.ts`; `csr = false` in `+page.ts` ships zero SvelteKit client JS on initial paint.
+The home route (`src/routes/+page.svelte`) is the grand-slam page: 8 free-scrolling sections (hero → the wall → the ledger → the guarantee → proof → is-this-you → the two weeks → waitlist close), composed inline from `grandSlam` data plus `Hero.svelte`, with `SiteFooter.svelte` at page level (outside the closing UV section so it keeps the dark surface). The waitlist close is a **native cross-route form POST to `/notify?/notify`** — no JS on this page. It's SSR'd and edge-cached via `Cache-Control` in `src/hooks.server.ts`; `csr = false` in `+page.ts` ships zero SvelteKit client JS on initial paint.
 
 Supporting routes:
 
@@ -84,7 +84,7 @@ Tokens: `--color-surface`, `--color-fg`, `--color-fg-muted`, `--color-fg-subtle`
 
 Custom utilities: `.btn-accent` (gradient bg + dark text + shadow), `.eyebrow` (accent color + tracking + uppercase + shadow), `.text-accent` (accent text + shadow).
 
-Home sections run D D UV D D UV D D (8 sections: hero + wall, ledger, guarantee + proof, is-this-you, timeline + close), so the two full-bleed bubble fields (hero, close) meet a dark neighbour and end on whole circles there, with no line (the proof field is clipped into its square windows on purpose); `SiteFooter` sits at page level so it closes dark. Pinned by `e2e/visual-theme.spec.ts`. The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together. Contrast floors (lifted 2026-07-24): dark `fg-subtle` ≈6.3:1, `fg-muted` ≈8.9:1, UV `fg-subtle` ≈7:1.
+Home sections alternate D / UV strictly (8 sections, first dark; `SiteFooter` sits at page level so it closes dark — pinned by `e2e/visual-theme.spec.ts`). The visual rhythm is chromatic + typographic, not luminance — both halves are designed to read together. Contrast floors (lifted 2026-07-24): dark `fg-subtle` ≈6.3:1, `fg-muted` ≈8.9:1, UV `fg-subtle` ≈7:1.
 
 ## Voice & copy guardrails
 
