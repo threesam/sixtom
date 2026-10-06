@@ -89,14 +89,12 @@ for (const route of ['/', '/notify']) {
 	})
 }
 
-// A bubble field that meets a section of its own colour ends on whole circles
-// there (bubbles.js drops the rows that would cross the edge), so no straight
-// cut marks the join: the hero's bottom, and the closing field's top and bottom.
-// The footer below the close has no border and shares its surface.
+// The full-bleed bubble fields end on whole circles (bubbles.js drops the rows
+// that would cross the edge), never a straight cut: the hero's bottom, and the
+// closing field's top and bottom. The close shares its surface with the
+// timeline above and the footer below, and the footer has no border.
 for (const width of [393, 1280]) {
-	test(`bubble fields meet their dark neighbours without a cut at ${String(width)}px`, async ({
-		page
-	}) => {
+	test(`bubble fields end on whole circles at ${String(width)}px`, async ({ page }) => {
 		// Every point drawn as a full core: the largest a circle gets, everywhere at
 		// once. A live frame only shows the cut where a blob happens to sit on the edge.
 		await page.route('**/bubbles.js*', async (route) => {
@@ -140,7 +138,11 @@ for (const width of [393, 1280]) {
 		// colours would miss an overlay dimming one side.
 		const sameAcross = async (below: string) => {
 			const target = page.locator(below)
-			await target.scrollIntoViewIfNeeded()
+			// Put the join itself on screen: a tall section counts as in view while its
+			// top edge is still above the viewport.
+			await target.evaluate((el) => {
+				scrollTo({ top: el.getBoundingClientRect().top + scrollY - 200, behavior: 'instant' })
+			})
 			const box = await target.boundingBox()
 			if (!box) throw new Error(`${below} not found`)
 			const row = (y: number) =>
@@ -150,7 +152,6 @@ for (const width of [393, 1280]) {
 		const footer = '#waitlist ~ footer'
 		await expect(page.locator(footer)).toHaveCSS('border-top-width', '0px')
 		expect(await sameAcross(footer)).toBe(true)
-		expect(await sameAcross('section:first-of-type + section')).toBe(true)
 		expect(await sameAcross('#waitlist')).toBe(true)
 	})
 }
