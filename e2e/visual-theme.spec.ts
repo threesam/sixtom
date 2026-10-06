@@ -16,10 +16,8 @@ async function openPage(browser: Browser, width = 1280, height = 720) {
 	return { context, page }
 }
 
-test.describe('Visual surface — dark/light alternation', () => {
-	test('grand-slam page: sections alternate dark/UV, then the close bookends dark', async ({
-		browser
-	}) => {
+test.describe('Visual surface — dark/light order', () => {
+	test('grand-slam page: dark sections in pairs around each light one', async ({ browser }) => {
 		const { context, page } = await openPage(browser)
 		await page.goto('/', { waitUntil: 'domcontentloaded' })
 
@@ -31,23 +29,14 @@ test.describe('Visual surface — dark/light alternation', () => {
 			sections.map((s) => s.evaluate((el) => getComputedStyle(el).backgroundColor))
 		)
 
-		// Strict D U D U D U D through the timeline — two distinct surfaces,
-		// alternating, first dark.
-		const distinct = new Set(surfaces)
-		expect(distinct.size, `expected 2 alternating surfaces, got ${[...distinct].join(' | ')}`).toBe(
-			2
+		// Dark in pairs around each light section: hero + wall, ledger, guarantee +
+		// proof, is-this-you, timeline + close. Two surfaces, no third.
+		expect(new Set(surfaces).size).toBe(2)
+		expect(surfaces.map((surface) => (surface === surfaces[0] ? 'D' : 'U')).join('')).toBe(
+			'DDUDDUDD'
 		)
-		const alternating = surfaces.slice(0, -1)
-		for (let i = 2; i < alternating.length; i++) {
-			expect(alternating[i], `section ${String(i)} should match section ${String(i - 2)}`).toBe(
-				alternating[i - 2]
-			)
-		}
-		expect(surfaces[0]).not.toBe(surfaces[1])
 
-		// The close is the hero's bookend: dark again, straight after the dark
-		// timeline, and set apart from it by its own bubble field.
-		expect(surfaces[7]).toBe(surfaces[0])
+		// The page opens and closes on a bubble field.
 		await expect(sections[7].locator('canvas[data-bubble]')).toHaveCount(1)
 		await expect(sections[0].locator('canvas[data-bubble]')).toHaveCount(1)
 

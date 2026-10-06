@@ -126,6 +126,23 @@
 	}
 }
 
+/* Copy that sits on a bubble field gets a pool of dark behind it: a soft-edged
+ * black box the size of the copy. So the field itself is never dimmed (dimmed
+ * gold is brown) and reads the same everywhere: hero, proof squares, close. */
+@utility field-pool {
+	position: relative;
+	isolation: isolate;
+	&::before {
+		content: '';
+		position: absolute;
+		inset: var(--pool-inset, -1.5rem);
+		z-index: -1;
+		border-radius: 2rem;
+		background: rgb(0 0 0 / 0.88);
+		filter: blur(var(--pool-blur, 1.25rem));
+	}
+}
+
 @utility eyebrow {
 	color: var(--color-accent);
 	letter-spacing: 0.1em;
