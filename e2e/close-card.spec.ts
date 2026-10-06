@@ -153,7 +153,11 @@ for (const width of [320, 393, 768, 1280]) {
 						bottom = Math.max(bottom, y)
 					}
 				}
-				return Math.max(Math.abs(left - (w - 1 - right)), Math.abs(top - (h - 1 - bottom)))
+				// In CSS pixels: the canvas holds more than one pixel each on a dense screen.
+				const density = w / canvas.getBoundingClientRect().width
+				return (
+					Math.max(Math.abs(left - (w - 1 - right)), Math.abs(top - (h - 1 - bottom))) / density
+				)
 			})
 			expect(lopsided).toBeLessThanOrEqual(2)
 		}
