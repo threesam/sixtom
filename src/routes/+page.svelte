@@ -157,8 +157,8 @@
 	<!-- The numbers as three dark squares, each holding its own part of one bubble
 	     field (static/bubbles.js drives every [data-bubble] canvas, and samples the
 	     field by page position), each stat centered, each square stepped down from
-	     the last. A square's field ends on whole circles on all four sides, so
-	     nothing clips it. On phones the row is full-bleed
+	     the last. Like every field, a square's ends on whole circles on all four
+	     sides, so nothing clips it. On phones the row is full-bleed
 	     (the outer squares touch the screen edges) and the step is one page gutter.
 	     From md up the row is centered on the page and wider than the text column
 	     (max-w-5xl), so the middle square sits on the centre line and the outer two
@@ -176,10 +176,7 @@
 			>
 				{#each o.proof.tiles as tile (tile.label)}
 					<div class="{proofSquare} relative">
-						<canvas
-							data-bubble="whole-top whole-bottom whole-left whole-right"
-							class="absolute inset-0 block h-full w-full"
-						></canvas>
+						<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 						<div class="absolute inset-0 bg-black/60"></div>
 					</div>
 				{/each}
@@ -280,7 +277,7 @@
 	     border, so the field is dimmed by its own opacity (an overlay would darken
 	     the section against the footer) and ends on whole circles, not a cut. -->
 	<canvas
-		data-bubble="whole-top whole-bottom"
+		data-bubble
 		class="pointer-events-none absolute inset-0 block h-full w-full opacity-65"
 		aria-hidden="true"
 	></canvas>

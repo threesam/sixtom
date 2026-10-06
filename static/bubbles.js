@@ -70,21 +70,19 @@ const initBubbles = (canvas) => {
 		const space = minDim / (window.innerWidth < 768 ? MOBILE_DENSITY : DENSITY)
 		const blobScale = BLOBS / minDim
 
-		// data-bubble="whole-top", "whole-bottom", "whole-left", "whole-right": drop the
-		// rows or columns a circle could cross that edge from (a quarter-cell of jitter
-		// plus the largest radius), so the field ends on round edges there instead of a
-		// straight cut, and nothing has to clip it.
+		// Every field ends on whole circles on all four sides: grid lines keep clear of
+		// each edge by the furthest a circle can reach (a quarter-cell of jitter plus
+		// the largest radius), so no edge is a straight cut and nothing has to clip the
+		// canvas. As many lines as fit, centred, so the margin matches on both sides.
 		const reach = space * (0.25 + R_MAX)
-		const edges = canvas.dataset.bubble ?? ''
-		const top = edges.includes('whole-top') ? reach : 0
-		const bottom = edges.includes('whole-bottom') ? height - reach : height
-		const left = edges.includes('whole-left') ? reach : 0
-		const right = edges.includes('whole-right') ? width - reach : width
+		const lines = (size) => {
+			const count = Math.floor((size - 2 * reach) / space) + 1
+			const first = (size - (count - 1) * space) / 2
+			return Array.from({ length: count }, (_, i) => first + i * space)
+		}
 		const points = []
-		for (let x = space / 2; x < right; x += space) {
-			if (x < left) continue
-			for (let y = space / 2; y < bottom; y += space) {
-				if (y < top) continue
+		for (const x of lines(width)) {
+			for (const y of lines(height)) {
 				points.push({
 					x: x + (noise(x * 0.1, y * 0.1) - 0.5) * space * 0.5,
 					y: y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5
