@@ -182,9 +182,10 @@ export const grandSlam: GrandSlamOffer = {
 	},
 	timeline: { heading: 'the two weeks' },
 	close: {
-		// The heading is the scarcity, not the ask: the button already says
-		// "join the waitlist", and saying it twice in one card reads as filler.
-		heading: 'one team a month',
+		// The heading is a question the button answers. It does not repeat the
+		// button ("join the waitlist") and does not ask about their work: the
+		// textarea below does that. "one team a month" lives in the FAQ and meta.
+		heading: 'is your team next?',
 		emailPlaceholder: 'email you actually check',
 		buildLabel: 'what is your team building, and what still runs late?',
 		// Same label as the hero CTA: one label per intent across the site.
