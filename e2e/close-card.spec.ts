@@ -135,6 +135,27 @@ for (const width of [320, 393, 768, 1280]) {
 				})
 			await expect.poll(async () => (await ink()).middle).toBeGreaterThan(0)
 			expect((await ink()).edge).toBe(0)
+			// Centred: the dots stop as far from the left edge as from the right, and
+			// from the top as from the bottom. Each dot's own small offset is the slack.
+			const lopsided = await field.evaluate((el) => {
+				const canvas = el as HTMLCanvasElement
+				const ctx = canvas.getContext('2d')
+				if (!ctx) throw new Error('no 2d context')
+				const { width: w, height: h } = canvas
+				const { data } = ctx.getImageData(0, 0, w, h)
+				let [left, right, top, bottom] = [w, -1, h, -1]
+				for (let y = 0; y < h; y++) {
+					for (let x = 0; x < w; x++) {
+						if (data[(y * w + x) * 4 + 3] === 0) continue
+						left = Math.min(left, x)
+						right = Math.max(right, x)
+						top = Math.min(top, y)
+						bottom = Math.max(bottom, y)
+					}
+				}
+				return Math.max(Math.abs(left - (w - 1 - right)), Math.abs(top - (h - 1 - bottom)))
+			})
+			expect(lopsided).toBeLessThanOrEqual(2)
 		}
 
 		// One surface on each side of a join, as rendered: the pixel row above it

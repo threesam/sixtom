@@ -81,8 +81,9 @@ const initBubbles = (canvas) => {
 			return Array.from({ length: count }, (_, i) => first + i * space)
 		}
 		const points = []
+		const rows = lines(height)
 		for (const x of lines(width)) {
-			for (const y of lines(height)) {
+			for (const y of rows) {
 				points.push({
 					x: x + (noise(x * 0.1, y * 0.1) - 0.5) * space * 0.5,
 					y: y + (noise(y * 0.1, x * 0.1) - 0.5) * space * 0.5
