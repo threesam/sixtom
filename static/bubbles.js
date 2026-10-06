@@ -3,8 +3,9 @@
 // value-noise field is high, so contiguous blobs of gold drift through
 // rather than rippling uniformly in place. Standalone (no framework) so the home
 // page can stay csr=false — zero SvelteKit JS — for ~1.3KB. No-ops on any page
-// without a [data-bubble] canvas; each one (hero, proof squares, close) runs its
-// own field. CSS fades it under the copy (a mask, an overlay or plain opacity).
+// without a [data-bubble] canvas; each one (hero, the three proof squares, close)
+// runs its own grid over the one page-wide field. CSS fades it under the copy (an
+// overlay or plain opacity).
 const initBubbles = (canvas) => {
 	const ctx = canvas.getContext('2d')
 	if (!ctx) return
@@ -56,7 +57,7 @@ const initBubbles = (canvas) => {
 	// viewport regardless of resolution or canvas shape. Positions carry a small static jitter so the
 	// grid doesn't read as a grid. Rebuilt on resize, not mutated.
 	const buildField = () => {
-		const { width, height } = canvas.getBoundingClientRect()
+		const { width, height, left: x0, top: y0 } = canvas.getBoundingClientRect()
 		if (width === 0 || height === 0) return null
 		const dpr = Math.min(window.devicePixelRatio || 1, 2)
 		canvas.width = Math.round(width * dpr)
@@ -69,15 +70,19 @@ const initBubbles = (canvas) => {
 		const space = minDim / (window.innerWidth < 768 ? MOBILE_DENSITY : DENSITY)
 		const blobScale = BLOBS / minDim
 
-		// data-bubble="whole-top" and/or "whole-bottom": drop the rows a circle could
-		// cross that edge from (a quarter-cell of jitter plus the largest radius), so
-		// the field ends on round edges there instead of a straight cut.
+		// data-bubble="whole-top", "whole-bottom", "whole-left", "whole-right": drop the
+		// rows or columns a circle could cross that edge from (a quarter-cell of jitter
+		// plus the largest radius), so the field ends on round edges there instead of a
+		// straight cut, and nothing has to clip it.
 		const reach = space * (0.25 + R_MAX)
 		const edges = canvas.dataset.bubble ?? ''
 		const top = edges.includes('whole-top') ? reach : 0
 		const bottom = edges.includes('whole-bottom') ? height - reach : height
+		const left = edges.includes('whole-left') ? reach : 0
+		const right = edges.includes('whole-right') ? width - reach : width
 		const points = []
-		for (let x = space / 2; x < width; x += space) {
+		for (let x = space / 2; x < right; x += space) {
+			if (x < left) continue
 			for (let y = space / 2; y < bottom; y += space) {
 				if (y < top) continue
 				points.push({
@@ -86,7 +91,12 @@ const initBubbles = (canvas) => {
 				})
 			}
 		}
-		return { width, height, minDim, space, blobScale, points }
+		// Where the canvas sits on the page: the noise is sampled there, so canvases
+		// side by side (the proof squares) show neighbouring parts of one field
+		// instead of three copies of the same one.
+		const pageX = x0 + window.scrollX
+		const pageY = y0 + window.scrollY
+		return { width, height, minDim, space, blobScale, points, pageX, pageY }
 	}
 
 	// Each frame, sample the noise at every point with a time offset (the drift) so
@@ -96,10 +106,10 @@ const initBubbles = (canvas) => {
 	// (oklch 72% .16 66 → 80% .155 86) by noise, so the field is the same gold.
 	const render = (field, elapsed) => {
 		ctx.clearRect(0, 0, field.width, field.height)
-		const { space, blobScale, points } = field
+		const { space, blobScale, points, pageX, pageY } = field
 		const drift = elapsed * NDRIFT
 		for (const p of points) {
-			const n = noise(p.x * blobScale + drift, p.y * blobScale + drift * 0.4)
+			const n = noise((p.x + pageX) * blobScale + drift, (p.y + pageY) * blobScale + drift * 0.4)
 			const l = map(n, 0, 1, 72, 80)
 			const c = map(n, 0, 1, 0.16, 0.155)
 			const h = map(n, 0, 1, 66, 86)

@@ -1,15 +1,15 @@
 import { expect, test } from '@playwright/test'
 
-// The proof stats are three squares, each a window onto one bubble field, each
-// stat centered in its square, each square stepped down from the last. On
+// The proof stats are three dark squares, each with its own part of the bubble
+// field, each stat centered in its square, each square stepped down from the last. On
 // phones the row is full-bleed and the step is one page gutter. From md up the
 // row is centered on the page and wider than the text column, so the middle
 // square sits on the centre line, and the step is a quarter of a tile. The
-// squares, the gaps and the step all hang on class strings and one mask rule,
-// so a tweak can quietly break them. 500px is where an uncapped label would fit
-// on one line while its neighbour wraps.
-// The squares a visitor sees are the canvas's mask, not the (transparent) tiles,
-// so the mask's layers are checked against the tiles too.
+// squares, the gaps and the step all hang on class strings, so a tweak can
+// quietly break them. 500px is where an uncapped label would fit on one line
+// while its neighbour wraps.
+// The squares a visitor sees are a second grid behind the (transparent) tiles,
+// so each one is checked against its tile too.
 // The last case is WCAG reflow (320px, text at 200%): a centered stat that
 // outgrows its square spills off the screen edge instead of scrolling.
 const CASES = [
@@ -67,12 +67,13 @@ for (const { width, zoom } of CASES) {
 					labelRight: labelBox.right
 				}
 			})
-			// The canvas the squares are cut out of: the tiles themselves are transparent,
-			// so what the visitor sees as squares is this element's mask.
-			const windows = dl.previousElementSibling
-			if (!windows) throw new Error('proof windows not found')
-			const windowsBox = windows.getBoundingClientRect()
-			const mask = getComputedStyle(windows)
+			// The squares a visitor sees: the tiles themselves are transparent, each
+			// square sits behind one, and its bubble field fills it.
+			const squares = [...(dl.previousElementSibling?.children ?? [])].map((square) => {
+				const canvas = square.querySelector('canvas[data-bubble]')
+				if (!canvas) throw new Error('proof square has no bubble field')
+				return { box: square.getBoundingClientRect(), field: canvas.getBoundingClientRect() }
+			})
 			return {
 				viewport: document.documentElement.clientWidth,
 				// Per title line: where its letters end, and its text as rendered.
@@ -88,14 +89,7 @@ for (const { width, zoom } of CASES) {
 						rows: rows.size
 					}
 				}),
-				windows: {
-					left: windowsBox.left,
-					top: windowsBox.top,
-					maskImage: mask.maskImage,
-					maskPosition: mask.maskPosition,
-					maskSize: mask.maskSize,
-					maskRepeat: mask.maskRepeat
-				},
+				squares,
 				tiles
 			}
 		})
@@ -138,25 +132,14 @@ for (const { width, zoom } of CASES) {
 			expect(tile.labelRight).toBeLessThanOrEqual(tile.right)
 		}
 		expect(Math.abs(middle.left - first.right - gutter)).toBeLessThan(1)
-		// The visible squares are the canvas's mask, one layer per tile, each layer
-		// exactly over its tile. Under 360px there is no mask: one solid band.
-		if (width < 360) {
-			expect(band.windows.maskImage).toBe('none')
-		} else {
-			const px = (value: string) =>
-				value.split(',').map((layer) => layer.match(/-?[\d.]+/g)?.map(Number) ?? [])
-			const positions = px(band.windows.maskPosition)
-			expect(positions).toHaveLength(3)
-			expect(band.windows.maskImage.match(/linear-gradient/g)).toHaveLength(3)
-			expect(band.windows.maskRepeat).toMatch(/^no-repeat(, no-repeat)*$/)
-			// A shorter size list repeats across the layers, as CSS applies it.
-			const sizes = px(band.windows.maskSize)
-			for (const [i, tile] of band.tiles.entries()) {
-				const [maskWidth, maskHeight] = sizes[i % sizes.length]
-				expect(Math.abs(positions[i][0] - (tile.left - band.windows.left))).toBeLessThan(1)
-				expect(Math.abs(positions[i][1] - (tile.top - band.windows.top))).toBeLessThan(1)
-				expect(Math.abs(maskWidth - tile.width)).toBeLessThan(1)
-				expect(Math.abs(maskHeight - tile.height)).toBeLessThan(1)
+		// One visible square per tile, exactly over it, and its field exactly fills it.
+		expect(band.squares).toHaveLength(3)
+		for (const [i, tile] of band.tiles.entries()) {
+			for (const box of [band.squares[i].box, band.squares[i].field]) {
+				expect(Math.abs(box.left - tile.left)).toBeLessThan(1)
+				expect(Math.abs(box.top - tile.top)).toBeLessThan(1)
+				expect(Math.abs(box.width - tile.width)).toBeLessThan(1)
+				expect(Math.abs(box.height - tile.height)).toBeLessThan(1)
 			}
 		}
 	})
