@@ -152,7 +152,9 @@ test('proof squares show three different parts of the field', async ({ page }) =
 	await page.emulateMedia({ reducedMotion: 'reduce' })
 	await page.setViewportSize({ width: 1280, height: 900 })
 	await page.goto('/')
-	const squares = page.locator('canvas[data-bubble~="whole-left"]')
+	const squares = page
+		.locator('section', { hasText: 'people onboarded' })
+		.locator('canvas[data-bubble]')
 	await expect(squares).toHaveCount(3)
 	const frames = () =>
 		squares.evaluateAll((all) => (all as HTMLCanvasElement[]).map((canvas) => canvas.toDataURL()))

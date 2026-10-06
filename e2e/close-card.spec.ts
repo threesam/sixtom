@@ -89,10 +89,10 @@ for (const route of ['/', '/notify']) {
 	})
 }
 
-// The bubble fields end on whole circles (bubbles.js drops the rows and columns
-// that would cross the edge), never a straight cut: at the top and the bottom of
-// the hero and the close, and on all four sides of each proof square. The close shares its surface with the
-// timeline above and the footer below, and the footer has no border.
+// Every bubble field ends on whole circles on all four sides (bubbles.js keeps
+// its grid clear of the edges), never a straight cut: the hero, the three proof
+// squares and the close. The close shares its surface with the timeline above
+// and the footer below, and the footer has no border.
 for (const width of [320, 393, 768, 1280]) {
 	test(`bubble fields end on whole circles at ${String(width)}px`, async ({ page }) => {
 		// Every point drawn as a full core: the largest a circle gets, everywhere at
@@ -108,39 +108,17 @@ for (const width of [320, 393, 768, 1280]) {
 		})
 		await page.setViewportSize({ width, height: 900 })
 		await page.goto('/')
-		// Painted pixels in one row of a canvas (every fourth byte is alpha).
-		const ink = (selector: string, fromTop: number) =>
-			page.evaluate(
-				([sel, at]) => {
-					const canvas = document.querySelector<HTMLCanvasElement>(sel)
-					const ctx = canvas?.getContext('2d')
-					if (!canvas || !ctx) throw new Error(`no canvas at ${sel}`)
-					const y = Math.min(canvas.height - 1, Math.round(canvas.height * at))
-					return ctx.getImageData(0, y, canvas.width, 1).data.filter((v, i) => i % 4 === 3 && v > 0)
-						.length
-				},
-				[selector, fromTop] as const
-			)
-		// A field only paints while on screen: wait for a frame, or an empty canvas
-		// would pass as "nothing cut".
-		const hero = 'section:first-of-type canvas'
-		await expect.poll(() => ink(hero, 1 / 3)).toBeGreaterThan(0)
-		expect(await ink(hero, 0)).toBe(0)
-		expect(await ink(hero, 1)).toBe(0)
-
-		const close = '#waitlist canvas'
-		await page.locator('#waitlist').scrollIntoViewIfNeeded()
-		await expect.poll(() => ink(close, 1 / 3)).toBeGreaterThan(0)
-		expect(await ink(close, 0)).toBe(0)
-		expect(await ink(close, 1)).toBe(0)
-
-		// Painted pixels on a proof square's outermost frame, and in its middle row.
-		const squares = page.locator('canvas[data-bubble~="whole-left"]')
-		await expect(squares).toHaveCount(3)
-		await squares.first().scrollIntoViewIfNeeded()
-		const frame = () =>
-			squares.evaluateAll((all) =>
-				(all as HTMLCanvasElement[]).map((canvas) => {
+		// Painted pixels on a canvas's outermost frame, and in its middle row (every
+		// fourth byte is alpha).
+		const fields = page.locator('canvas[data-bubble]')
+		await expect(fields).toHaveCount(5)
+		for (const field of await fields.all()) {
+			// A field only paints while on screen: wait for a frame, or an empty canvas
+			// would pass as "nothing cut".
+			await field.scrollIntoViewIfNeeded()
+			const ink = () =>
+				field.evaluate((el) => {
+					const canvas = el as HTMLCanvasElement
 					const ctx = canvas.getContext('2d')
 					if (!ctx) throw new Error('no 2d context')
 					const { width: w, height: h } = canvas
@@ -155,11 +133,34 @@ for (const width of [320, 393, 768, 1280]) {
 							painted(w - 1, 0, 1, h)
 					}
 				})
-			)
-		await expect
-			.poll(async () => Math.min(...(await frame()).map((s) => s.middle)))
-			.toBeGreaterThan(0)
-		for (const square of await frame()) expect(square.edge).toBe(0)
+			await expect.poll(async () => (await ink()).middle).toBeGreaterThan(0)
+			expect((await ink()).edge).toBe(0)
+			// Centred: the dots stop as far from the left edge as from the right, and
+			// from the top as from the bottom. Each dot's own small offset is the slack.
+			const lopsided = await field.evaluate((el) => {
+				const canvas = el as HTMLCanvasElement
+				const ctx = canvas.getContext('2d')
+				if (!ctx) throw new Error('no 2d context')
+				const { width: w, height: h } = canvas
+				const { data } = ctx.getImageData(0, 0, w, h)
+				let [left, right, top, bottom] = [w, -1, h, -1]
+				for (let y = 0; y < h; y++) {
+					for (let x = 0; x < w; x++) {
+						if (data[(y * w + x) * 4 + 3] === 0) continue
+						left = Math.min(left, x)
+						right = Math.max(right, x)
+						top = Math.min(top, y)
+						bottom = Math.max(bottom, y)
+					}
+				}
+				// In CSS pixels: the canvas holds more than one pixel each on a dense screen.
+				const density = w / canvas.getBoundingClientRect().width
+				return (
+					Math.max(Math.abs(left - (w - 1 - right)), Math.abs(top - (h - 1 - bottom))) / density
+				)
+			})
+			expect(lopsided).toBeLessThanOrEqual(2)
+		}
 
 		// One surface on each side of a join, as rendered: the pixel row above it
 		// (empty of bubbles, per the checks above) matches the row below. Computed
