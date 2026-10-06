@@ -89,11 +89,11 @@ for (const route of ['/', '/notify']) {
 	})
 }
 
-// The full-bleed bubble fields end on whole circles (bubbles.js drops the rows
-// that would cross the edge), never a straight cut, at the top and the bottom
-// of both the hero and the close. The close shares its surface with the
+// The bubble fields end on whole circles (bubbles.js drops the rows and columns
+// that would cross the edge), never a straight cut: at the top and the bottom of
+// the hero and the close, and on all four sides of each proof square. The close shares its surface with the
 // timeline above and the footer below, and the footer has no border.
-for (const width of [393, 1280]) {
+for (const width of [320, 393, 768, 1280]) {
 	test(`bubble fields end on whole circles at ${String(width)}px`, async ({ page }) => {
 		// Every point drawn as a full core: the largest a circle gets, everywhere at
 		// once. A live frame only shows the cut where a blob happens to sit on the edge.
@@ -133,6 +133,33 @@ for (const width of [393, 1280]) {
 		await expect.poll(() => ink(close, 1 / 3)).toBeGreaterThan(0)
 		expect(await ink(close, 0)).toBe(0)
 		expect(await ink(close, 1)).toBe(0)
+
+		// Painted pixels on a proof square's outermost frame, and in its middle row.
+		const squares = page.locator('canvas[data-bubble~="whole-left"]')
+		await expect(squares).toHaveCount(3)
+		await squares.first().scrollIntoViewIfNeeded()
+		const frame = () =>
+			squares.evaluateAll((all) =>
+				(all as HTMLCanvasElement[]).map((canvas) => {
+					const ctx = canvas.getContext('2d')
+					if (!ctx) throw new Error('no 2d context')
+					const { width: w, height: h } = canvas
+					const painted = (x: number, y: number, dw: number, dh: number) =>
+						ctx.getImageData(x, y, dw, dh).data.filter((v, i) => i % 4 === 3 && v > 0).length
+					return {
+						middle: painted(0, Math.round(h / 2), w, 1),
+						edge:
+							painted(0, 0, w, 1) +
+							painted(0, h - 1, w, 1) +
+							painted(0, 0, 1, h) +
+							painted(w - 1, 0, 1, h)
+					}
+				})
+			)
+		await expect
+			.poll(async () => Math.min(...(await frame()).map((s) => s.middle)))
+			.toBeGreaterThan(0)
+		for (const square of await frame()) expect(square.edge).toBe(0)
 
 		// One surface on each side of a join, as rendered: the pixel row above it
 		// (empty of bubbles, per the checks above) matches the row below. Computed

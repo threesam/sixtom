@@ -19,6 +19,11 @@
 	// link preview). From md up it sets as two right-aligned lines, split at its last
 	// comma: the line break is the comma, so no line ends on a mark.
 	const [proofLead = '', proofTail] = o.proof.heading.replace(/\.$/, '').split(/,\s+(?=[^,]*$)/)
+	// One shape for a proof square and for the stat laid over it: square, each
+	// stepped down from the last by a page gutter on phones, a quarter of a tile
+	// from md up.
+	const proofSquare =
+		'aspect-square min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2'
 </script>
 
 <!-- Link previews stay vague on purpose: brand title + a result line, no offer or
@@ -149,14 +154,15 @@
 			{/if}
 		</h2>
 	</div>
-	<!-- The numbers as three squares, each a window onto one bubble field
-	     (static/bubbles.js drives every [data-bubble] canvas), each stat centered,
-	     each square stepped down from the last. On phones the row is full-bleed
+	<!-- The numbers as three dark squares, each holding its own part of one bubble
+	     field (static/bubbles.js drives every [data-bubble] canvas, and samples the
+	     field by page position), each stat centered, each square stepped down from
+	     the last. A square's field ends on whole circles on all four sides, so
+	     nothing clips it. On phones the row is full-bleed
 	     (the outer squares touch the screen edges) and the step is one page gutter.
 	     From md up the row is centered on the page and wider than the text column
 	     (max-w-5xl), so the middle square sits on the centre line and the outer two
-	     overhang the column equally, and the step is a quarter of a tile. One canvas is masked to the three squares (.proof-windows below); the
-	     step means the gaps aren't straight strips that could be painted over.
+	     overhang the column equally, and the step is a quarter of a tile.
 	     Under 360px the gaps and the step close and it is one solid band. Phone
 	     labels are capped at 13ch so each breaks to two lines; the numbers are
 	     capped by their tile's width (cqw) and labels may break mid-word, so at
@@ -164,14 +170,24 @@
 	     e2e/proof-band.spec.ts pins all of it. -->
 	<div class="mt-10 md:mx-auto md:mt-14 md:max-w-5xl md:px-6">
 		<div class="@container relative min-[360px]:pb-12 md:pb-[calc((100%-3rem)/6)]">
-			<div class="proof-windows pointer-events-none absolute inset-0" aria-hidden="true">
-				<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-				<div class="absolute inset-0 bg-black/60"></div>
+			<div
+				class="pointer-events-none absolute inset-0 grid grid-cols-3 content-start min-[360px]:gap-6"
+				aria-hidden="true"
+			>
+				{#each o.proof.tiles as tile (tile.label)}
+					<div class="{proofSquare} relative">
+						<canvas
+							data-bubble="whole-top whole-bottom whole-left whole-right"
+							class="absolute inset-0 block h-full w-full"
+						></canvas>
+						<div class="absolute inset-0 bg-black/60"></div>
+					</div>
+				{/each}
 			</div>
 			<dl class="relative grid grid-cols-3 min-[360px]:gap-6">
 				{#each o.proof.tiles as tile (tile.label)}
 					<div
-						class="@container flex aspect-square flex-col-reverse items-center justify-center px-2 text-center min-[360px]:nth-2:translate-y-6 min-[360px]:nth-3:translate-y-12 md:nth-2:translate-y-1/4 md:nth-3:translate-y-1/2"
+						class="{proofSquare} @container flex flex-col-reverse items-center justify-center px-2 text-center"
 					>
 						<dt
 							class="text-fg-muted mt-2 max-w-[min(13ch,100%)] text-[11px] leading-snug tracking-wider wrap-anywhere uppercase md:mt-3 md:max-w-full md:text-sm md:tracking-widest"
@@ -322,28 +338,3 @@
 <!-- Page-level, outside the sections, on the root dark surface, same as every
      other route. -->
 <SiteFooter />
-
-<style>
-	/* One canvas shown through three square windows: the squares are a third of
-	   the row each (minus the two gutters), each stepped down from the last by a
-	   gutter on phones and a quarter of a tile from md up. Must match the grid's
-	   gap and the tiles' translate-y above. */
-	@media (min-width: 360px) {
-		.proof-windows {
-			--gap: 1.5rem;
-			--tile: calc((100cqw - 2 * var(--gap)) / 3);
-			--step: var(--gap);
-			mask:
-				linear-gradient(#000 0 0) 0 0,
-				linear-gradient(#000 0 0) calc(var(--tile) + var(--gap)) var(--step),
-				linear-gradient(#000 0 0) calc(2 * (var(--tile) + var(--gap))) calc(2 * var(--step));
-			mask-size: var(--tile) var(--tile);
-			mask-repeat: no-repeat;
-		}
-	}
-	@media (min-width: 48rem) {
-		.proof-windows {
-			--step: calc(var(--tile) / 4);
-		}
-	}
-</style>
