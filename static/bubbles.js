@@ -124,19 +124,18 @@ const initBubbles = (canvas) => {
 	let raf = 0
 	let running = false
 	let onScreen = true
-	let elapsed = 0 // accumulated animation time (ms), persists across pauses
 	let lastRender = 0
 
 	// rAF fires at display rate (~60/120Hz) but we only redraw at FPS — the loop
-	// body is a cheap timestamp check on skipped frames. `elapsed` accumulates only
-	// the time between rendered frames, so pausing (tab hidden / scrolled away) and
-	// resuming continues the drift from where it left off instead of snapping back.
+	// body is a cheap timestamp check on skipped frames. The drift reads the page's
+	// clock (the rAF timestamp), not one per canvas, so every canvas shows the same
+	// moment of the field however long each sat paused off screen. A paused canvas
+	// resumes where the field has got to, which nobody watched it travel.
 	const frame = (now) => {
 		if (!running) return
 		if (now - lastRender >= FRAME_MS) {
-			if (lastRender) elapsed += now - lastRender
 			lastRender = now
-			render(field, elapsed)
+			render(field, now)
 		}
 		raf = requestAnimationFrame(frame)
 	}
@@ -144,7 +143,6 @@ const initBubbles = (canvas) => {
 	const startLoop = () => {
 		if (running || !field || reduceMotion || document.hidden || !onScreen) return
 		running = true
-		lastRender = 0 // re-anchor without advancing elapsed → no jump on resume
 		raf = requestAnimationFrame(frame)
 	}
 

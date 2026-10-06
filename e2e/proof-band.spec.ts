@@ -144,3 +144,19 @@ for (const { width, zoom } of CASES) {
 		}
 	})
 }
+
+// The three squares are windows onto one field, not three copies of it: the noise
+// is sampled by page position. Reduced motion paints one fixed frame, so without
+// that the three canvases (same size, same grid) would be pixel for pixel alike.
+test('proof squares show three different parts of the field', async ({ page }) => {
+	await page.emulateMedia({ reducedMotion: 'reduce' })
+	await page.setViewportSize({ width: 1280, height: 900 })
+	await page.goto('/')
+	const squares = page.locator('canvas[data-bubble~="whole-left"]')
+	await expect(squares).toHaveCount(3)
+	const frames = () =>
+		squares.evaluateAll((all) => (all as HTMLCanvasElement[]).map((canvas) => canvas.toDataURL()))
+	// Same size, so a blank canvas is the same image as its neighbour: this also
+	// waits for all three to paint.
+	await expect.poll(async () => new Set(await frames()).size).toBe(3)
+})

@@ -93,7 +93,7 @@ for (const route of ['/', '/notify']) {
 // that would cross the edge), never a straight cut: at the top and the bottom of
 // the hero and the close, and on all four sides of each proof square. The close shares its surface with the
 // timeline above and the footer below, and the footer has no border.
-for (const width of [393, 1280]) {
+for (const width of [320, 393, 768, 1280]) {
 	test(`bubble fields end on whole circles at ${String(width)}px`, async ({ page }) => {
 		// Every point drawn as a full core: the largest a circle gets, everywhere at
 		// once. A live frame only shows the cut where a blob happens to sit on the edge.
