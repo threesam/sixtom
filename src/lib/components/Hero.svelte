@@ -21,13 +21,15 @@
 	     size. Mobile (portrait, centered copy): a symmetric vertical scrim — dark
 	     behind the copy, easing off so the field glows top & bottom. Desktop: a
 	     radial scrim, darkest behind the copy. The field ends on whole circles at
-	     the bottom (whole-bottom), not a cut. overflow-hidden keeps it from adding
-	     scrollbars without constraining the section (oversized type can exceed
-	     100svh and must stay un-clipped). Animated by static/bubbles.js (wired in
-	     app.html) so the page keeps csr=false — the canvas is plain markup that
-	     survives no-hydration; the script no-ops elsewhere. Decorative + aria-hidden. -->
+	     the top and bottom (whole-top whole-bottom), not a cut. overflow-hidden
+	     keeps it from adding scrollbars without constraining the section (oversized
+	     type can exceed 100svh and must stay un-clipped). Animated by
+	     static/bubbles.js (wired in app.html) so the page keeps csr=false — the
+	     canvas is plain markup that survives no-hydration; the script no-ops
+	     elsewhere. Decorative + aria-hidden. -->
 	<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-		<canvas data-bubble="whole-bottom" class="absolute inset-0 block h-full w-full"></canvas>
+		<canvas data-bubble="whole-top whole-bottom" class="absolute inset-0 block h-full w-full"
+		></canvas>
 		<div
 			class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/92 to-black/50 md:hidden"
 		></div>

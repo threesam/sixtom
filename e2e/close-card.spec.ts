@@ -90,8 +90,8 @@ for (const route of ['/', '/notify']) {
 }
 
 // The full-bleed bubble fields end on whole circles (bubbles.js drops the rows
-// that would cross the edge), never a straight cut: the hero's bottom, and the
-// closing field's top and bottom. The close shares its surface with the
+// that would cross the edge), never a straight cut, at the top and the bottom
+// of both the hero and the close. The close shares its surface with the
 // timeline above and the footer below, and the footer has no border.
 for (const width of [393, 1280]) {
 	test(`bubble fields end on whole circles at ${String(width)}px`, async ({ page }) => {
@@ -125,6 +125,7 @@ for (const width of [393, 1280]) {
 		// would pass as "nothing cut".
 		const hero = 'section:first-of-type canvas'
 		await expect.poll(() => ink(hero, 1 / 3)).toBeGreaterThan(0)
+		expect(await ink(hero, 0)).toBe(0)
 		expect(await ink(hero, 1)).toBe(0)
 
 		const close = '#waitlist canvas'
