@@ -28,7 +28,7 @@
 <div
 	id={PANEL_ID}
 	popover
-	class="border-border bg-surface text-fg-muted m-auto w-[calc(100vw-3rem)] max-w-sm rounded-lg border p-5 text-base leading-relaxed shadow-xl backdrop:bg-black/60"
+	class="border-border bg-surface text-fg-muted backdrop:bg-surface/60 m-auto w-[calc(100vw-3rem)] max-w-sm rounded-lg border p-5 text-base leading-relaxed shadow-xl"
 >
 	<p>{close.creditTerms}</p>
 	<a

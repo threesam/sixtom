@@ -29,10 +29,10 @@
 	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
 		<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
 		<div
-			class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/92 to-black/50 md:hidden"
+			class="from-surface/65 via-surface/92 to-surface/50 absolute inset-0 bg-gradient-to-b md:hidden"
 		></div>
 		<div
-			class="absolute inset-0 hidden bg-[radial-gradient(ellipse_60%_70%_at_50%_45%,rgb(0_0_0/0.82),rgb(0_0_0/0.38))] md:block"
+			class="absolute inset-0 hidden bg-[radial-gradient(ellipse_60%_70%_at_50%_45%,color-mix(in_oklab,var(--color-surface)_82%,transparent),color-mix(in_oklab,var(--color-surface)_38%,transparent))] md:block"
 		></div>
 	</div>
 
