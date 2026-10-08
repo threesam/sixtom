@@ -146,11 +146,11 @@
 	line-height: 1;
 }
 /* The 1em line box centers 0.04em low of the cap band (Cabinet: asc .87 /
- * desc .28 / cap .67em), so the square is lifted by that much and the letters
- * are put back: TO stays on the same baseline as SIX and M, and the square is
- * what moves to center on it. One path for every browser: the earlier
- * text-box-trim version nudged the letters in its fallback, which sat TO a
- * pixel low on browsers that took it. */
+ * desc .28 / cap .67em), so the square has to sit that much higher than the
+ * line it centers on. Top padding of twice that does it in layout: the letters
+ * never leave the baseline SIX and M share. No transforms: the earlier
+ * lift-the-square, put-the-letters-back pair rounded apart in Firefox and sat
+ * TO a pixel low. */
 .wordmark .chip {
 	background: var(--color-fg);
 	color: var(--color-surface);
@@ -158,11 +158,8 @@
 	align-items: center;
 	aspect-ratio: 1;
 	padding-left: var(--wm-ls);
+	padding-top: 0.08em;
 	margin-right: var(--wm-ls);
-	translate: 0 -0.04em;
-}
-.wordmark .chip > span {
-	translate: 0 0.04em;
 }
 .wordmark .m {
 	margin-right: calc(-1 * var(--wm-ls));
