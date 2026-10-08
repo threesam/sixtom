@@ -177,7 +177,7 @@
 				{#each o.proof.tiles as tile (tile.label)}
 					<div class="{proofSquare} relative">
 						<canvas data-bubble class="absolute inset-0 block h-full w-full"></canvas>
-						<div class="absolute inset-0 bg-black/60"></div>
+						<div class="bg-surface/65 absolute inset-0"></div>
 					</div>
 				{/each}
 			</div>
@@ -281,7 +281,7 @@
 		class="pointer-events-none absolute inset-0 block h-full w-full opacity-65"
 		aria-hidden="true"
 	></canvas>
-	<div class="relative mx-auto w-full max-w-md rounded-2xl bg-black/90 p-6 md:max-w-2xl md:p-12">
+	<div class="bg-surface/90 relative mx-auto w-full max-w-md rounded-2xl p-6 md:max-w-2xl md:p-12">
 		<h2 class={h2Class}>{o.close.heading}</h2>
 
 		<!-- csr=false: plain cross-route POST to the /notify action. No JS anywhere
