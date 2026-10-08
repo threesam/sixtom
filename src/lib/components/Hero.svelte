@@ -32,7 +32,7 @@
 			class="from-surface/65 via-surface/92 to-surface/50 absolute inset-0 bg-gradient-to-b md:hidden"
 		></div>
 		<div
-			class="absolute inset-0 hidden bg-[radial-gradient(ellipse_60%_70%_at_50%_45%,color-mix(in_oklab,var(--color-surface)_82%,transparent),color-mix(in_oklab,var(--color-surface)_38%,transparent))] md:block"
+			class="from-surface/82 to-surface/38 absolute inset-0 hidden bg-radial-[ellipse_60%_70%_at_50%_45%] md:block"
 		></div>
 	</div>
 
