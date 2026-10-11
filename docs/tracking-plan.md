@@ -18,6 +18,27 @@ IP + user agent in the payload, so Umami puts them in the same session as the
 pageview that carried the UTMs. That's what makes "signups by source" readable
 (Umami → Attribution, or a Funnel report: `/` → `book_submit` → `book_qualified`).
 
+## engagement, on every page
+
+From `src/lib/engagement.js`. The same file runs threesam.com and
+pyredivers.com, so these names match across all three sites (and are
+hyphenated, unlike the funnel events above).
+
+| event                               | data                   | fires when                                                                         |
+| ----------------------------------- | ---------------------- | ---------------------------------------------------------------------------------- |
+| `scroll-25` `-50` `-75` `-100`      |                        | that far down the page, once per page view. Pages under two screens are skipped    |
+| `engaged-10s` `-30s` `-60s` `-180s` |                        | that many seconds with the page in front of the visitor (hidden tabs do not count) |
+| `outbound-click`                    | `host`, `path`, `from` | any off-site link, left or middle click                                            |
+| `media-play`, `media-25` … `-end`   | `src`                  | a video or sound with its sound on. Nothing on the site plays one yet              |
+
+Each mark is its own event name so Umami's Journey and Funnel reports can put
+them in order, for example `/` → `scroll-50` → `cta_hero_waitlist` →
+`notify_signup_success`.
+
+To read one visitor: Umami → sixtom.com → **Sessions**, pick a session. Its
+page views and events are listed in the order they happened. **Reports →
+Journey** shows the common paths across everyone.
+
 ## tag every link you send
 
 Most pushes are DMs and email, and those arrive with no referrer (the LinkedIn

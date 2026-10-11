@@ -3,6 +3,9 @@
 	import '../app.css'
 	import { page } from '$app/state'
 	import { site } from '$lib/content'
+	// The file itself, served as it is: the home page ships no framework code
+	// (csr = false), so the tracker is loaded by a script tag, not imported.
+	import engagement from '$lib/engagement.js?url'
 	import { personJsonLd, serviceJsonLd, webSiteJsonLd, renderJsonLd } from '$lib/seo/jsonld'
 
 	let { children }: { children: Snippet } = $props()
@@ -18,6 +21,7 @@
 	<meta property="og:url" content={`${site.siteUrl}${page.url.pathname}`} />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html jsonLdHtml}
+	<script type="module" src={engagement}></script>
 </svelte:head>
 
 <main class="font-sans antialiased">
