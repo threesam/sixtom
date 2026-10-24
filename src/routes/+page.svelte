@@ -329,6 +329,11 @@
 		</form>
 
 		<TeardownReward class="text-fg-muted mt-8 text-sm leading-relaxed" />
+		<a
+			href="/book"
+			data-umami-event="cta_close_book"
+			class="text-fg mt-6 inline-block text-sm underline underline-offset-4">{o.close.bookLine}</a
+		>
 	</div>
 </section>
 
