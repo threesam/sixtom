@@ -1,7 +1,7 @@
 <script lang="ts">
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import { site } from '$lib/content'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import { site } from '#lib/content/index.js'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 </script>
 
 <PageMeta

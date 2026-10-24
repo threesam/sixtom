@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { grandSlam } from '$lib/content'
+	import { grandSlam } from '#lib/content/index.js'
 
 	// Two display beats from the one prose headline; periods drop on screen
 	// (the line break is the punctuation) but survive in content and meta.

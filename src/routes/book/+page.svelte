@@ -3,7 +3,7 @@
 	import { enhance } from '$app/forms'
 	import type { ActionData } from './$types'
 	import { STAGE_OPTIONS, BUDGET_OPTIONS, DISQUALIFY_STAGE, TEARDOWN_STAGES } from './options'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
 

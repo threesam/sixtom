@@ -1,5 +1,5 @@
-import { site } from '$lib/content'
-import { LOG_ENTRIES } from '$lib/log'
+import { site } from '#lib/content/index.js'
+import { LOG_ENTRIES } from '#lib/log.js'
 
 export const prerender = true
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state'
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 
 	const notFound = $derived(page.status === 404)
 </script>

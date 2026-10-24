@@ -1,10 +1,10 @@
 <script lang="ts">
-	import LogHero from '$lib/components/LogHero.svelte'
-	import MediaSlider from '$lib/components/MediaSlider.svelte'
-	import BookCta from '$lib/components/BookCta.svelte'
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import { LOG_ENTRIES } from '$lib/log'
-	import { blogPostingJsonLd, renderJsonLd } from '$lib/seo/jsonld'
+	import LogHero from '#lib/components/LogHero.svelte'
+	import MediaSlider from '#lib/components/MediaSlider.svelte'
+	import BookCta from '#lib/components/BookCta.svelte'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import { LOG_ENTRIES } from '#lib/log.js'
+	import { blogPostingJsonLd, renderJsonLd } from '#lib/seo/jsonld.js'
 
 	// BlogPosting schema for this writeup, sourced from the same LOG_ENTRIES used by
 	// the /log feed so headline/date/image never drift from what's listed there.

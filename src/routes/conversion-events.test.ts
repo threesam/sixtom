@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { processSubmission } from '$lib/server/contact-form'
-import { subscribeToList } from '$lib/server/listmonk'
-import { fireServerEvent } from '$lib/server/umami'
+import { processSubmission } from '#lib/server/contact-form.js'
+import { subscribeToList } from '#lib/server/listmonk.js'
+import { fireServerEvent } from '#lib/server/umami.js'
 import { actions as notifyActions } from './notify/+page.server'
 import { actions as bookActions } from './book/+page.server'
 import { BUDGET_OPTIONS, DISQUALIFY_STAGE, STAGE_OPTIONS } from './book/options'
@@ -10,15 +10,15 @@ import { BUDGET_OPTIONS, DISQUALIFY_STAGE, STAGE_OPTIONS } from './book/options'
 // (and the e2e address) get ok + suspicious, a silent 200 by design; when the
 // signup event fired outside that guard it logged 41 signups against 3 real
 // subscribers over 30d. These drive the actual actions, not the source text.
-vi.mock('$lib/server/contact-form', () => ({
+vi.mock('#lib/server/contact-form.js', () => ({
 	MAX_REQUEST_BYTES: 20_000,
 	processSubmission: vi.fn()
 }))
-vi.mock('$lib/server/listmonk', () => ({
+vi.mock('#lib/server/listmonk.js', () => ({
 	SIXTOM_LIST_UUID: 'list',
 	subscribeToList: vi.fn(() => Promise.resolve(true))
 }))
-vi.mock('$lib/server/umami', () => ({ fireServerEvent: vi.fn() }))
+vi.mock('#lib/server/umami.js', () => ({ fireServerEvent: vi.fn() }))
 
 const submission = vi.mocked(processSubmission)
 const real = { ok: true, message: 'ok' } as const

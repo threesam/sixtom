@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Hero from '$lib/components/Hero.svelte'
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import TeardownReward from '$lib/components/TeardownReward.svelte'
-	import { site, grandSlam, LEDGER_TOTAL_USD } from '$lib/content'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import Hero from '#lib/components/Hero.svelte'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import TeardownReward from '#lib/components/TeardownReward.svelte'
+	import { site, grandSlam, LEDGER_TOTAL_USD } from '#lib/content/index.js'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 
 	const o = grandSlam
 	const eyebrowClass = 'eyebrow text-sm'

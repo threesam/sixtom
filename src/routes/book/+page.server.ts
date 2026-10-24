@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit'
-import { site } from '$lib/content'
-import { MAX_REQUEST_BYTES, processSubmission } from '$lib/server/contact-form'
-import { fireServerEvent } from '$lib/server/umami'
+import { site } from '#lib/content/index.js'
+import { MAX_REQUEST_BYTES, processSubmission } from '#lib/server/contact-form.js'
+import { fireServerEvent } from '#lib/server/umami.js'
 import type { Actions } from './$types'
 import { BUDGET_OPTIONS, DISQUALIFY_STAGE, STAGE_OPTIONS } from './options'
 

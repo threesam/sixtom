@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { LOG_ENTRIES } from '$lib/log'
-	import { blogJsonLd, renderJsonLd } from '$lib/seo/jsonld'
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import { LOG_ENTRIES } from '#lib/log.js'
+	import { blogJsonLd, renderJsonLd } from '#lib/seo/jsonld.js'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 
 	const blogDescription =
 		'case studies and build notes from the work: what i shipped, why, and what the numbers showed.'

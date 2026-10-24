@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import { env } from '$env/dynamic/private'
+import * as env from '$app/env/private'
 
 // Endpoints used by the weekly triage. Hardcoded — they don't change.
 const GSC_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
@@ -47,9 +47,9 @@ interface ChatCompletionResponse {
 }
 
 async function refreshAccessToken(): Promise<string> {
-	const clientId = env['GSC_OAUTH_CLIENT_ID']
-	const clientSecret = env['GSC_OAUTH_CLIENT_SECRET']
-	const refreshToken = env['GSC_OAUTH_REFRESH_TOKEN']
+	const clientId = env.GSC_OAUTH_CLIENT_ID
+	const clientSecret = env.GSC_OAUTH_CLIENT_SECRET
+	const refreshToken = env.GSC_OAUTH_REFRESH_TOKEN
 	if (!clientId || !clientSecret || !refreshToken) {
 		throw new Error(
 			'GSC OAuth env not set: need GSC_OAUTH_CLIENT_ID, GSC_OAUTH_CLIENT_SECRET, GSC_OAUTH_REFRESH_TOKEN'
@@ -180,7 +180,7 @@ function buildPrompt(buckets: TriageBuckets, siteUrl: string): string {
 }
 
 async function callAiGateway(prompt: string): Promise<string> {
-	const token = env['AI_GATEWAY_API_KEY'] ?? env['VERCEL_OIDC_TOKEN']
+	const token = env.AI_GATEWAY_API_KEY ?? env.VERCEL_OIDC_TOKEN
 	if (!token) {
 		throw new Error('Neither AI_GATEWAY_API_KEY nor VERCEL_OIDC_TOKEN is available')
 	}
@@ -207,11 +207,11 @@ async function callAiGateway(prompt: string): Promise<string> {
 }
 
 async function sendEmailReport(subject: string, body: string): Promise<void> {
-	const host = env['SMTP_SERVER']
-	const port = env['SMTP_PORT']
-	const user = env['SMTP_EMAIL']
-	const pass = env['SMTP_TOKEN']
-	const to = env['SMTP_RECIPIENT_EMAIL']
+	const host = env.SMTP_SERVER
+	const port = env.SMTP_PORT
+	const user = env.SMTP_EMAIL
+	const pass = env.SMTP_TOKEN
+	const to = env.SMTP_RECIPIENT_EMAIL
 	if (!host || !port || !user || !pass || !to) {
 		throw new Error(
 			'SMTP env not set: need SMTP_SERVER, SMTP_PORT, SMTP_EMAIL, SMTP_TOKEN, SMTP_RECIPIENT_EMAIL'
@@ -251,7 +251,7 @@ const KNOWN_TITLE_TOKENS = new Set<string>([
 const QUERY_ROW_LIMIT = 5000
 
 export async function runWeeklyTriage(): Promise<TriageResult> {
-	const siteUrl = env['GSC_SITE_URL']
+	const siteUrl = env.GSC_SITE_URL
 	if (!siteUrl) throw new Error('GSC_SITE_URL not set (e.g. "https://sixtom.com/")')
 
 	// GSC data lags ~2 days. End at yesterday-1, start 7 days before that.

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { site, FAQ } from '$lib/content'
-	import { faqPageJsonLd, renderJsonLd } from '$lib/seo/jsonld'
-	import BookCta from '$lib/components/BookCta.svelte'
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import { site, FAQ } from '#lib/content/index.js'
+	import { faqPageJsonLd, renderJsonLd } from '#lib/seo/jsonld.js'
+	import BookCta from '#lib/components/BookCta.svelte'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 
 	// Visible FAQ + matching FAQPage schema (engines require the answer text be on
 	// the page, which it is). Questions/answers live in src/lib/content/faq.ts.

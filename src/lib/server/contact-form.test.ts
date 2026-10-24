@@ -12,6 +12,16 @@ const { sendMail } = vi.hoisted(() => ({
 	)
 }))
 
+// $app/env/private exports are read-only bindings, so the one var a test flips
+// reads through this hoisted holder instead.
+const testEnv = vi.hoisted(() => ({ CONTACT_FORM_TEST_EMAIL: undefined as string | undefined }))
+vi.mock('$app/env/private', async (importOriginal) => ({
+	...(await importOriginal<object>()),
+	get CONTACT_FORM_TEST_EMAIL() {
+		return testEnv.CONTACT_FORM_TEST_EMAIL
+	}
+}))
+
 vi.mock('nodemailer', () => ({
 	default: {
 		createTransport: () => ({ sendMail })
@@ -145,9 +155,7 @@ describe('processSubmission — protection layers', () => {
 	})
 
 	it('bypasses SMTP when email matches CONTACT_FORM_TEST_EMAIL env var', async () => {
-		const { env } = await import('$env/dynamic/private')
-		const original = env['CONTACT_FORM_TEST_EMAIL']
-		env['CONTACT_FORM_TEST_EMAIL'] = 'e2e@test.sixtom.local'
+		testEnv.CONTACT_FORM_TEST_EMAIL = 'e2e@test.sixtom.local'
 		try {
 			const result = await processSubmission(
 				makeFormData({ email: 'e2e@test.sixtom.local' }),
@@ -156,7 +164,7 @@ describe('processSubmission — protection layers', () => {
 			// suspicious: the e2e address must never reach listmonk or analytics.
 			expect(result).toMatchObject({ ok: true, suspicious: true })
 		} finally {
-			env['CONTACT_FORM_TEST_EMAIL'] = original
+			testEnv.CONTACT_FORM_TEST_EMAIL = undefined
 		}
 	})
 

@@ -2,11 +2,11 @@
 	import type { Snippet } from 'svelte'
 	import '../app.css'
 	import { page } from '$app/state'
-	import { site } from '$lib/content'
+	import { site } from '#lib/content/index.js'
 	// The file itself, served as it is: the home page ships no framework code
 	// (csr = false), so the tracker is loaded by a script tag, not imported.
-	import engagement from '$lib/engagement.js?url'
-	import { personJsonLd, serviceJsonLd, webSiteJsonLd, renderJsonLd } from '$lib/seo/jsonld'
+	import engagement from '#lib/engagement.js?url'
+	import { personJsonLd, serviceJsonLd, webSiteJsonLd, renderJsonLd } from '#lib/seo/jsonld.js'
 
 	let { children }: { children: Snippet } = $props()
 
