@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { site } from '$lib/content'
+	import { site } from '#lib/content/index.js'
 	const year = new Date().getFullYear()
 </script>
 

@@ -8,8 +8,8 @@ import {
 	blogPostingJsonLd,
 	renderJsonLd
 } from './jsonld'
-import { site, FAQ } from '$lib/content'
-import { LOG_ENTRIES } from '$lib/log'
+import { site, FAQ } from '#lib/content/index.js'
+import { LOG_ENTRIES } from '#lib/log.js'
 
 describe('JSON-LD generators', () => {
 	const PERSON_ID = `${site.siteUrl}/#person`

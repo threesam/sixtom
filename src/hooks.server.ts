@@ -1,5 +1,5 @@
-import type { Handle } from '@sveltejs/kit'
-import { building } from '$app/environment'
+import type { Handle } from '@sveltejs/kit/hooks'
+import { building } from '$app/env'
 
 const MARKETING_CSP = [
 	"default-src 'self'",

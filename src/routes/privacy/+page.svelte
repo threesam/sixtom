@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 </script>
 
 <PageMeta

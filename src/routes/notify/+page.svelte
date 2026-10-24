@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import SiteFooter from '$lib/components/SiteFooter.svelte'
-	import TeardownReward from '$lib/components/TeardownReward.svelte'
-	import { grandSlam } from '$lib/content'
+	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import TeardownReward from '#lib/components/TeardownReward.svelte'
+	import { grandSlam } from '#lib/content/index.js'
 	import type { ActionData } from './$types'
-	import PageMeta from '$lib/components/PageMeta.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 
 	let { form }: { form: ActionData } = $props()
 

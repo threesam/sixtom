@@ -1,6 +1,6 @@
-import { site, grandSlam } from '$lib/content'
-import type { QA } from '$lib/content'
-import type { LogEntry } from '$lib/log'
+import { site, grandSlam } from '#lib/content/index.js'
+import type { QA } from '#lib/content/index.js'
+import type { LogEntry } from '#lib/log.js'
 
 // Stable @id anchors so every node — Person, WebSite, Service, plus the per-page
 // Article/FAQ blocks — resolves into one connected entity graph. Search and answer

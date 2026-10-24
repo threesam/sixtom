@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { grandSlam, site } from '$lib/content'
+	import { grandSlam, site } from '#lib/content/index.js'
 
 	// The home page ships zero client JS (csr = false), so the disclosure is the
 	// native popover: popovertarget needs no script, and the platform supplies

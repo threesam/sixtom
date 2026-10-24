@@ -1,7 +1,7 @@
 import nodemailer, { type Transporter } from 'nodemailer'
-import { env } from '$env/dynamic/private'
+import * as env from '$app/env/private'
 import type { RequestEvent } from '@sveltejs/kit'
-import { site } from '$lib/content/site'
+import { site } from '#lib/content/site.js'
 
 const MAX_NAME_LENGTH = 120
 const MAX_EMAIL_LENGTH = 254
@@ -19,13 +19,13 @@ function parsePositiveNumber(value: string | undefined, fallback: number): numbe
 	return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : fallback
 }
 
-const MIN_SUBMIT_MS = parsePositiveNumber(env['CONTACT_FORM_MIN_SUBMIT_MS'], DEFAULT_MIN_SUBMIT_MS)
+const MIN_SUBMIT_MS = parsePositiveNumber(env.CONTACT_FORM_MIN_SUBMIT_MS, DEFAULT_MIN_SUBMIT_MS)
 const RATE_LIMIT_WINDOW_MS = parsePositiveNumber(
-	env['CONTACT_FORM_RATE_LIMIT_WINDOW_MS'],
+	env.CONTACT_FORM_RATE_LIMIT_WINDOW_MS,
 	DEFAULT_RATE_LIMIT_WINDOW_MS
 )
 const RATE_LIMIT_MAX_REQUESTS = parsePositiveNumber(
-	env['CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS'],
+	env.CONTACT_FORM_RATE_LIMIT_MAX_REQUESTS,
 	DEFAULT_MAX_REQUESTS_PER_WINDOW
 )
 
@@ -91,12 +91,12 @@ function suspicious(): SubmissionResult {
 let cachedTransporter: Transporter | null = null
 function getTransporter(): Transporter {
 	cachedTransporter ??= nodemailer.createTransport({
-		host: env['SMTP_SERVER'],
-		port: parsePositiveNumber(env['SMTP_PORT'], 587),
+		host: env.SMTP_SERVER,
+		port: parsePositiveNumber(env.SMTP_PORT, 587),
 		secure: false,
 		requireTLS: true,
 		tls: { minVersion: 'TLSv1.2' },
-		auth: { user: env['SMTP_EMAIL'], pass: env['SMTP_TOKEN'] }
+		auth: { user: env.SMTP_EMAIL, pass: env.SMTP_TOKEN }
 	})
 	return cachedTransporter
 }
@@ -190,7 +190,7 @@ export async function processSubmission(
 	}
 
 	// E2E bypass; env var unset in production, exact-match comparison.
-	const testEmail = (env['CONTACT_FORM_TEST_EMAIL'] ?? '').trim()
+	const testEmail = (env.CONTACT_FORM_TEST_EMAIL ?? '').trim()
 	if (testEmail !== '' && email === testEmail) return suspicious()
 
 	const transporter = getTransporter()
@@ -198,21 +198,21 @@ export async function processSubmission(
 	const confirmation =
 		kind === 'waitlist'
 			? {
-					from: env['SMTP_EMAIL'],
+					from: env.SMTP_EMAIL,
 					to: email,
 					subject: "you're on the list - show me the thing",
 					text: WAITLIST_BODY
 				}
 			: {
-					from: env['SMTP_EMAIL'],
+					from: env.SMTP_EMAIL,
 					to: email,
 					subject: `Contact SIXTOM`,
 					text: 'Contact form submission received! We look forward to talking to you soon.'
 				}
 
 	const notification = {
-		from: env['SMTP_EMAIL'],
-		to: env['SMTP_RECIPIENT_EMAIL'],
+		from: env.SMTP_EMAIL,
+		to: env.SMTP_RECIPIENT_EMAIL,
 		replyTo: email,
 		// Lead with the address: the waitlist form hardcodes name to
 		// "Waitlist signup", so every one of these used to arrive identical.
