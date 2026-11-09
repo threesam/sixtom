@@ -4,8 +4,8 @@
 
 ## what i do
 
-- **the enablement engagement — $15,000.** two weeks, one team. one process that lives in people's heads gets written down step by step, made runnable, and given a red light when a step is late. a named person on your team owns it. the guardrails go in: permissions, a review gate, repo rules, access trimmed. the people who run the process get set up, git gets explained with tracing paper, and leadership gets a session so the team follows. plus a runbook + Loom library and a 90-day map by day 30. total itemized value $28,000+. you own all of it.
-- **the teardown — $1,500, credited in full against the engagement if you book one within 30 days.** i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together.
+- **the enablement engagement: $15,000.** two weeks, one team. one process that lives in people's heads gets written down step by step, made runnable, and given a red light when a step is late. a named person on your team owns it. the guardrails go in: permissions, a review gate, repo rules, access trimmed. the people who run the process get set up, git gets explained with tracing paper, and leadership gets a session so the team follows. plus a runbook + Loom library and a 90-day map by day 30. total itemized value $28,000+. you own all of it.
+- **the teardown: $1,500, credited in full against the engagement if you book one within 30 days.** i look at how your team works today: the tools, the automations, the numbers people argue about. you get a 10-minute Loom and a written list of what's stuck and what i'd fix first. you keep it whether or not we work together.
 
 ## the guarantee
 

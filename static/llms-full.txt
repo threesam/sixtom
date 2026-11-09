@@ -1,4 +1,4 @@
-# SIXTOM — full content
+# SIXTOM: full content
 
 > everyone's building. nothing's better. the enablement engagement, for teams already building with AI: two weeks, one team. by day 10 one process that lived in people's heads is written down, running, and owned by a named person on your team, or the rest is free. $15,000 fixed. one team a month.
 
@@ -8,39 +8,39 @@ building got cheap. deciding didn't.
 
 anyone on your team can build a tool in an afternoon now. so they do. nobody decides which ones should exist. the pile: tools nobody asked for, kept alive by whoever made them. the queue: one person reviews everything, or nobody reviews anything. the date: the steps live in three heads and a chat thread, so it slips.
 
-## the offer — one engagement, everything in it
+## the offer: one engagement, everything in it
 
 two weeks with your team, on the one process that keeps running late. you pick it on the first call. everything in the engagement, and what it'd cost you piecemeal:
 
 ### the diagnosis
 
-- the inventory — everything your team has built, who uses it, what's quietly broken — $1,500
-- one metric, one definition — the number everyone argues about gets a single source of truth — $3,000
+- the inventory: everything your team has built, who uses it, what's quietly broken. $1,500
+- one metric, one definition: the number everyone argues about gets a single source of truth. $3,000
 
 ### the process
 
-- written down — one process, step by step, with an owner and a yes or no on each step — core
-- runnable — the steps your team repeats every week become something anyone can run by asking — $4,000
-- the red light — when a step is late, its owner hears that day. so does everyone waiting on it — $1,000
+- written down: one process, step by step, with an owner and a yes or no on each step. core
+- runnable: the steps your team repeats every week become something anyone can run by asking. $4,000
+- the red light: when a step is late, its owner hears that day. so does everyone waiting on it. $1,000
 
 ### the guardrails
 
-- permissions + review gate — nothing reaches production without review, and the person who knows the work reviews it — $3,000
-- repo rules — one branch per tool, hooks, shared instructions. a 45,000-line PR can't happen — $2,500
-- access, trimmed — who needs to be in the repo and the systems, and who never did. customer data comes off laptops — $2,000
+- permissions + review gate: nothing reaches production without review, and the person who knows the work reviews it. $3,000
+- repo rules: one branch per tool, hooks, shared instructions. a 45,000-line PR can't happen. $2,500
+- access, trimmed: who needs to be in the repo and the systems, and who never did. customer data comes off laptops. $2,000
 
 ### the people
 
-- hands-on onboarding — the people who run the process, set up. by the tenth person it takes one sitting — $4,000
-- the tracing-paper session — git and review, explained so it sticks for people who never wanted to learn git — $1,500
-- the leadership session — the people at the top use it first, so the team follows — $2,000
+- hands-on onboarding: the people who run the process, set up. by the tenth person it takes one sitting. $4,000
+- the tracing-paper session: git and review, explained so it sticks for people who never wanted to learn git. $1,500
+- the leadership session: the people at the top use it first, so the team follows. $2,000
 
 ### the close (bonuses land by day 30)
 
-- running by day 10 — you own 100% of it — included
-- day-30 check-in — what stuck, what didn't — $500
-- the runbook + Loom library — so the next hire onboards without me — $1,500
-- the 90-day map — the next three things worth doing, in order. and the ones to buy instead of build — $1,500
+- running by day 10: you own 100% of it. included
+- day-30 check-in: what stuck, what didn't. $500
+- the runbook + Loom library: so the next hire onboards without me. $1,500
+- the 90-day map: the next three things worth doing, in order. and the ones to buy instead of build. $1,500
 
 **total value: $28,000+. you pay: $15,000 fixed. half up front, half on day 10.**
 
@@ -125,13 +125,13 @@ yes. working sessions over video, a daily Loom, and everything lands in your rep
 
 > He's built three sites for me and with each one, the unique needs and goals of the site dictated his approach, no cookie cutting corners.
 
-— Eleanor Goldfield
+Eleanor Goldfield
 
-## case study — garden party
+## case study: garden party
 
 a 1:1 port of threesam.com from Next.js to SvelteKit. five hours of build time. bundle size dropped 40%. every Lighthouse score went up. full writeup at https://sixtom.com/log/garden-party.
 
-the premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and port it to SvelteKit — the framework i prefer and ship freelance, just never at the day job. same routes, same sketches, same aesthetic — different runtime. two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
+the premise: take a 30-route personal site (canvas sketches, video heroes, real-time data feeds, the works) and port it to SvelteKit, the framework i prefer and ship freelance, just never at the day job. same routes, same sketches, same aesthetic. different runtime. two questions answered honestly: is a 1:1 port across frameworks possible, and is it worth it?
 
 ## who i am
 
@@ -139,6 +139,6 @@ Salvatore D'Angelo. leads engineering and AI at Made In: multi-million visitors 
 
 ## how to engage
 
-- **join the waitlist:** https://sixtom.com/notify — one team a month; or take the teardown to move now instead of waiting.
-- **book the intro call:** https://sixtom.com/book — 3 quick steps, then the booking link.
-- **FAQ:** https://sixtom.com/faq — straight answers on price, the day-10 guarantee, timeline, and who's behind it.
+- **join the waitlist:** https://sixtom.com/notify, one team a month; or take the teardown to move now instead of waiting.
+- **book the intro call:** https://sixtom.com/book, 3 quick steps, then the booking link.
+- **FAQ:** https://sixtom.com/faq, straight answers on price, the day-10 guarantee, timeline, and who's behind it.

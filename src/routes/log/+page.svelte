@@ -26,7 +26,7 @@
 	const entries = [...LOG_ENTRIES].sort((a, b) => b.date.localeCompare(a.date))
 </script>
 
-<PageMeta title="log | SIXTOM" description={blogDescription} />
+<PageMeta title="log: case studies and build notes | SIXTOM" description={blogDescription} />
 
 <svelte:head>
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
@@ -78,6 +78,8 @@
 							<p class="text-fg-muted mt-3 text-base leading-relaxed">{entry.blurb}</p>
 							<img
 								src={entry.heroImage}
+								width={entry.heroWidth}
+								height={entry.heroHeight}
 								alt=""
 								loading="lazy"
 								class="border-border mt-6 rounded-lg border"

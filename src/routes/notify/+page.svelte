@@ -20,7 +20,7 @@
 </script>
 
 <PageMeta
-	title="waitlist | SIXTOM"
+	title="waitlist and the teardown | SIXTOM"
 	description="one team a month, by appointment. join the waitlist, or start with a paid teardown and move now."
 />
 
