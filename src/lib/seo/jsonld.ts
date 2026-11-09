@@ -10,6 +10,7 @@ import type { LogEntry } from '#lib/log.js'
 const PERSON_ID = `${site.siteUrl}/#person`
 const WEBSITE_ID = `${site.siteUrl}/#website`
 const SERVICE_ID = `${site.siteUrl}/#service`
+const ORG_ID = `${site.siteUrl}/#organization`
 const BLOG_ID = `${site.siteUrl}/log#blog`
 
 interface Org {
@@ -65,7 +66,33 @@ export interface ServiceLd {
 	url: string
 	areaServed: string
 	provider: NodeRef
+	brand: NodeRef
 	offers: readonly OfferLd[]
+}
+
+export interface OrganizationLd {
+	'@context': 'https://schema.org'
+	'@type': 'Organization'
+	'@id': string
+	name: string
+	alternateName: readonly string[]
+	url: string
+	logo: string
+	image: string
+	description: string
+	areaServed: string
+	founder: NodeRef
+}
+
+export interface BreadcrumbListLd {
+	'@context': 'https://schema.org'
+	'@type': 'BreadcrumbList'
+	itemListElement: readonly {
+		'@type': 'ListItem'
+		position: number
+		name: string
+		item: string
+	}[]
 }
 
 export function personJsonLd(): PersonLd {
@@ -127,6 +154,7 @@ export function serviceJsonLd(): ServiceLd {
 		url: site.siteUrl,
 		areaServed: 'Worldwide',
 		provider: { '@id': PERSON_ID },
+		brand: { '@id': ORG_ID },
 		offers: [
 			{
 				'@type': 'Offer',
@@ -147,6 +175,45 @@ export function serviceJsonLd(): ServiceLd {
 				url: `${site.siteUrl}/notify`
 			}
 		]
+	}
+}
+
+// The brand as an entity, founded by the Person. Plain Organization, not
+// ProfessionalService: Google reads that as a LocalBusiness and requires a
+// street address, which a remote one-person practice doesn't publish.
+// ponytail: upgrade to ProfessionalService once there's an address to list.
+export function organizationJsonLd(): OrganizationLd {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		'@id': ORG_ID,
+		name: 'SIXTOM',
+		alternateName: ['Sixtom', 'sixtom'],
+		url: site.siteUrl,
+		logo: `${site.siteUrl}/apple-touch-icon.png`,
+		image: `${site.siteUrl}/og.png`,
+		description: grandSlam.offerLine,
+		areaServed: 'Worldwide',
+		founder: { '@id': PERSON_ID }
+	}
+}
+
+// Home > each path segment, named by its slug ("garden-party" -> "garden party").
+// The home page itself gets none: a one-item trail says nothing.
+export function breadcrumbJsonLd(pathname: string): BreadcrumbListLd | null {
+	const segments = pathname.split('/').filter(Boolean)
+	if (segments.length === 0) return null
+	const crumbs = [{ name: 'home', item: `${site.siteUrl}/` }]
+	segments.forEach((segment, i) => {
+		crumbs.push({
+			name: segment.replace(/-/g, ' '),
+			item: `${site.siteUrl}/${segments.slice(0, i + 1).join('/')}`
+		})
+	})
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, ...c }))
 	}
 }
 

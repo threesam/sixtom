@@ -3,6 +3,7 @@
 	import MediaSlider from '#lib/components/MediaSlider.svelte'
 	import BookCta from '#lib/components/BookCta.svelte'
 	import SiteFooter from '#lib/components/SiteFooter.svelte'
+	import PageMeta from '#lib/components/PageMeta.svelte'
 	import { LOG_ENTRIES } from '#lib/log.js'
 	import { blogPostingJsonLd, renderJsonLd } from '#lib/seo/jsonld.js'
 
@@ -71,19 +72,13 @@
 	}
 </script>
 
+<PageMeta
+	title="garden party: Next.js to SvelteKit | SIXTOM"
+	description="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
+/>
+
 <svelte:head>
-	<title>garden party | SIXTOM</title>
-	<meta
-		name="description"
-		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
-	/>
-	<meta property="og:title" content="garden party | SIXTOM" />
-	<meta
-		property="og:description"
-		content="why we ported threesam.com from Next.js to SvelteKit: the impulse, the experiment, and what the numbers showed."
-	/>
-	<meta name="twitter:card" content="summary" />
-	<link rel="preload" as="image" href="/assets/clouds.webp" />
+	<link rel="preload" as="image" href="/assets/clouds.webp" fetchpriority="high" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
 	{@html articleLd}
 </svelte:head>

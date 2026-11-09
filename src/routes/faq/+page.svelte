@@ -11,7 +11,7 @@
 </script>
 
 <PageMeta
-	title="faq | SIXTOM"
+	title="faq: price, guarantee and the teardown | SIXTOM"
 	description="what sixtom costs, how the two-week enablement engagement and the day-10 guarantee work, and what the teardown is."
 	socialDescription="what sixtom costs, how the engagement and the day-10 guarantee work."
 />

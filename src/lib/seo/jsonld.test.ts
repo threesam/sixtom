@@ -6,6 +6,8 @@ import {
 	faqPageJsonLd,
 	blogJsonLd,
 	blogPostingJsonLd,
+	organizationJsonLd,
+	breadcrumbJsonLd,
 	renderJsonLd
 } from './jsonld'
 import { site, FAQ } from '#lib/content/index.js'
@@ -64,6 +66,31 @@ describe('JSON-LD generators', () => {
 		expect(ld.offers[1]?.price).toBe(String(site.teardown.priceUSD))
 		expect(ld.offers[1]?.availability).toBe('https://schema.org/InStock')
 		expect(ld.offers[1]?.url).toBe(`${site.siteUrl}/notify`)
+		expect(ld.brand['@id']).toBe(`${site.siteUrl}/#organization`)
+	})
+
+	it('organizationJsonLd is the brand, founded by the person', () => {
+		const ld = organizationJsonLd()
+		expect(ld['@type']).toBe('Organization')
+		expect(ld['@id']).toBe(`${site.siteUrl}/#organization`)
+		expect(ld.name).toBe('SIXTOM')
+		expect(ld.founder['@id']).toBe(PERSON_ID)
+		expect(ld.logo).toMatch(/^https:\/\/.+\.png$/)
+	})
+
+	it('breadcrumbJsonLd walks the path from home, and skips home itself', () => {
+		expect(breadcrumbJsonLd('/')).toBeNull()
+		const ld = breadcrumbJsonLd('/log/garden-party')
+		expect(ld?.itemListElement).toEqual([
+			{ '@type': 'ListItem', position: 1, name: 'home', item: `${site.siteUrl}/` },
+			{ '@type': 'ListItem', position: 2, name: 'log', item: `${site.siteUrl}/log` },
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: 'garden party',
+				item: `${site.siteUrl}/log/garden-party`
+			}
+		])
 	})
 
 	it('faqPageJsonLd maps Q&A pairs to a FAQPage', () => {
