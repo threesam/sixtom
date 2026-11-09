@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
 import { site, calEvent, grandSlam, FAQ, LEDGER_TOTAL_USD } from './index'
 
 describe('content', () => {
@@ -48,6 +49,12 @@ describe('content', () => {
 
 	it('honest at zero: no slot counters in the copy', () => {
 		expect(JSON.stringify(grandSlam)).not.toMatch(/\bof 3 left\b|\bslots? left\b/i)
+	})
+
+	it('no em dashes in the copy or the llms files that carry it', () => {
+		expect(JSON.stringify(grandSlam) + JSON.stringify(FAQ)).not.toContain('\u2014')
+		for (const file of ['static/llms.txt', 'static/llms-full.txt'])
+			expect(readFileSync(file, 'utf8'), file).not.toContain('\u2014')
 	})
 
 	it('calEvent has the fields the sync script needs', () => {
