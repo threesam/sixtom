@@ -203,13 +203,13 @@ export function organizationJsonLd(): OrganizationLd {
 export function breadcrumbJsonLd(pathname: string): BreadcrumbListLd | null {
 	const segments = pathname.split('/').filter(Boolean)
 	if (segments.length === 0) return null
-	const crumbs = [{ name: 'home', item: `${site.siteUrl}/` }]
-	segments.forEach((segment, i) => {
-		crumbs.push({
+	const crumbs = [
+		{ name: 'home', item: `${site.siteUrl}/` },
+		...segments.map((segment, i) => ({
 			name: segment.replace(/-/g, ' '),
 			item: `${site.siteUrl}/${segments.slice(0, i + 1).join('/')}`
-		})
-	})
+		}))
+	]
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',

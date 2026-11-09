@@ -28,7 +28,6 @@
 	)
 	// An error page is not a page to point crawlers at: no canonical, no trail.
 	const crumbs = $derived(page.error ? null : breadcrumbJsonLd(page.url.pathname))
-	const crumbsHtml = $derived(crumbs ? renderJsonLd(crumbs) : '')
 </script>
 
 <svelte:head>
@@ -37,7 +36,7 @@
 		<meta property="og:url" content={`${site.siteUrl}${page.url.pathname}`} />
 	{/if}
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- safe: JSON.stringify of typed in-repo content -->
-	{@html jsonLdHtml + crumbsHtml}
+	{@html jsonLdHtml + (crumbs ? renderJsonLd(crumbs) : '')}
 	<script type="module" src={engagement}></script>
 </svelte:head>
 
