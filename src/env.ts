@@ -16,6 +16,8 @@ export const variables = defineEnvVars({
 	SMTP_EMAIL: { schema: optional },
 	SMTP_TOKEN: { schema: optional },
 	SMTP_RECIPIENT_EMAIL: { schema: optional },
+	// listmonk api user `sixtom-signup` (the sixtom list is private)
+	LISTMONK_SIGNUP_TOKEN: { schema: optional },
 	CRON_SECRET: { schema: optional },
 	GSC_SITE_URL: { schema: optional },
 	GSC_OAUTH_CLIENT_ID: { schema: optional },

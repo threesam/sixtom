@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 import { MAX_REQUEST_BYTES, processSubmission } from '#lib/server/contact-form.js'
-import { SIXTOM_LIST_UUID, subscribeToList } from '#lib/server/listmonk.js'
+import { SIXTOM_LIST_ID, subscribeToList } from '#lib/server/listmonk.js'
 import { fireServerEvent } from '#lib/server/umami.js'
 
 export const actions = {
@@ -33,7 +33,7 @@ export const actions = {
 				const emailField = formData.get('email')
 				const email = typeof emailField === 'string' ? emailField.trim() : ''
 				await Promise.all([
-					subscribeToList(email, SIXTOM_LIST_UUID),
+					subscribeToList(email, SIXTOM_LIST_ID),
 					fireServerEvent('notify_signup_success', event)
 				])
 			}
