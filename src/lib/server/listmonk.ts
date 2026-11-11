@@ -18,7 +18,7 @@ const SUBSCRIBE_TIMEOUT_MS = 5000
 const EXISTS = 409
 
 interface Found {
-	data?: { results?: { id: number; email: string }[] }
+	data?: { results?: { id: number; email: string; status: string }[] }
 }
 
 function api(path: string, method: string, body?: object): Promise<Response> {
@@ -33,7 +33,16 @@ function api(path: string, method: string, body?: object): Promise<Response> {
 	})
 }
 
-async function join(email: string, listId: number): Promise<Response> {
+function ok(res: Response): boolean {
+	if (!res.ok) console.error('listmonk subscribe failed:', res.status)
+	return res.ok
+}
+
+// listmonk's `search` is a case-insensitive regex over name and email, so the
+// address is escaped and anchored: an exact match, `+` and `.` included.
+const exactly = (email: string) => `^${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`
+
+async function join(email: string, listId: number): Promise<boolean> {
 	const made = await api('/subscribers', 'POST', {
 		email,
 		name: email.split('@')[0],
@@ -41,20 +50,27 @@ async function join(email: string, listId: number): Promise<Response> {
 		lists: [listId],
 		preconfirm_subscriptions: true
 	})
-	if (made.status !== EXISTS) return made
-	// Already on another of the box's lists: add this one to theirs. A
-	// blocklisted address stays unsubscribed, listmonk sees to that.
-	const found = await api(`/subscribers?search=${encodeURIComponent(email)}&per_page=20`, 'GET')
-	if (!found.ok) return found
+	if (made.status !== EXISTS) return ok(made)
+	// Already on another of the box's lists: add this one to theirs.
+	const found = await api(`/subscribers?search=${encodeURIComponent(exactly(email))}`, 'GET')
+	if (!ok(found)) return false
 	const { data } = (await found.json()) as Found
-	const id = data?.results?.find((s) => s.email.toLowerCase() === email)?.id
-	if (id === undefined) return new Response(null, { status: 404 })
-	return api('/subscribers/lists', 'PUT', {
-		ids: [id],
-		action: 'add',
-		target_list_ids: [listId],
-		status: 'confirmed'
-	})
+	const subscriber = data?.results?.find((s) => s.email.toLowerCase() === email)
+	if (!subscriber) {
+		console.error('listmonk subscribe failed: existing subscriber not found')
+		return false
+	}
+	// Blocklisted stays off: a confirmed add would revive the list membership
+	// the moment someone un-blocklists them.
+	if (subscriber.status === 'blocklisted') return true
+	return ok(
+		await api('/subscribers/lists', 'PUT', {
+			ids: [subscriber.id],
+			action: 'add',
+			target_list_ids: [listId],
+			status: 'confirmed'
+		})
+	)
 }
 
 // Best-effort subscribe. Never throws — the caller's primary flow (the email
@@ -62,12 +78,7 @@ async function join(email: string, listId: number): Promise<Response> {
 // the inbox, only the list write is lost.
 export async function subscribeToList(email: string, listId: number): Promise<boolean> {
 	try {
-		const res = await join(email.toLowerCase(), listId)
-		if (!res.ok) {
-			console.error('listmonk subscribe failed:', res.status)
-			return false
-		}
-		return true
+		return await join(email.toLowerCase(), listId)
 	} catch (error) {
 		console.error('listmonk subscribe failed:', error instanceof Error ? error.message : 'unknown')
 		return false
