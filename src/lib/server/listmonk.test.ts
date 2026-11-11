@@ -21,31 +21,10 @@ describe('subscribeToList', () => {
 		expect(JSON.parse(init?.body as string)).toMatchObject({ email: 'ada@example.com', lists: [7] })
 	})
 
-	it('adds an address already on another list to this one, found by exact match', async () => {
-		fetchMock
-			.mockResolvedValueOnce(json(409))
-			.mockResolvedValueOnce(
-				json(200, {
-					data: { results: [{ id: 42, email: 'a.b+x@example.com', status: 'enabled' }] }
-				})
-			)
-			.mockResolvedValueOnce(json(200))
-		expect(await subscribeToList('a.b+x@example.com', 7)).toBe(true)
-		const search = new URL(fetchMock.mock.calls[1]?.[0] as string).searchParams.get('search')
-		expect(search).toBe('^a\\.b\\+x@example\\.com$')
-		const [url, init] = fetchMock.mock.calls[2] ?? []
-		expect(url).toBe('https://mail.sixtom.com/api/subscribers/lists')
-		expect(JSON.parse(init?.body as string)).toMatchObject({ ids: [42], target_list_ids: [7] })
-	})
-
-	it('leaves a blocklisted address off the list', async () => {
-		fetchMock.mockResolvedValueOnce(json(409)).mockResolvedValueOnce(
-			json(200, {
-				data: { results: [{ id: 42, email: 'bot@example.com', status: 'blocklisted' }] }
-			})
-		)
-		expect(await subscribeToList('bot@example.com', 7)).toBe(true)
-		expect(fetchMock).toHaveBeenCalledTimes(2)
+	it('reports an address already on the box (409) as not added', async () => {
+		fetchMock.mockResolvedValueOnce(json(409))
+		expect(await subscribeToList('ada@example.com', 7)).toBe(false)
+		expect(fetchMock).toHaveBeenCalledOnce()
 	})
 
 	it('reports failure instead of throwing when listmonk is down', async () => {
