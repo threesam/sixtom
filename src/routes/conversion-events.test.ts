@@ -15,7 +15,7 @@ vi.mock('#lib/server/contact-form.js', () => ({
 	processSubmission: vi.fn()
 }))
 vi.mock('#lib/server/listmonk.js', () => ({
-	SIXTOM_LIST_UUID: 'list',
+	SIXTOM_LIST_ID: 7,
 	subscribeToList: vi.fn(() => Promise.resolve(true))
 }))
 vi.mock('#lib/server/umami.js', () => ({ fireServerEvent: vi.fn() }))
@@ -52,7 +52,7 @@ describe('notify_signup_success', () => {
 		submission.mockResolvedValueOnce(real)
 		vi.mocked(subscribeToList).mockResolvedValueOnce(false)
 		await notifyActions.notify(post('/notify', { email: ' ada@example.com ' }))
-		expect(subscribeToList).toHaveBeenCalledWith('ada@example.com', 'list')
+		expect(subscribeToList).toHaveBeenCalledWith('ada@example.com', 7)
 		expect(fireServerEvent).toHaveBeenCalledWith('notify_signup_success', expect.anything())
 	})
 

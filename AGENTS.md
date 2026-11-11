@@ -59,7 +59,7 @@ Preserved for future content-driven pages. The home page does NOT consume Sanity
 
 ### 3. Form actions (`/notify` and `/book`)
 
-Both the `/notify` capture and the `/book` qualification wizard post to SvelteKit form actions (`src/routes/notify/+page.server.ts`, `src/routes/book/+page.server.ts`). Shared submission logic lives in `src/lib/server/contact-form.ts` (`processSubmission`). The notify action also banks the address in Listmonk's `sixtom` list (`src/lib/server/listmonk.ts`, best-effort — a Listmonk outage must not fail the signup) and fires a server-side Umami event (`notify_signup_success`) via `src/lib/server/umami.ts` so analytics doesn't depend on the client running JS.
+Both the `/notify` capture and the `/book` qualification wizard post to SvelteKit form actions (`src/routes/notify/+page.server.ts`, `src/routes/book/+page.server.ts`). Shared submission logic lives in `src/lib/server/contact-form.ts` (`processSubmission`). The notify action also banks the address in Listmonk's `sixtom` list (`src/lib/server/listmonk.ts`: the list is private, so it writes via the admin API as api user `sixtom-signup`, token in `LISTMONK_SIGNUP_TOKEN`; best-effort — a Listmonk outage must not fail the signup) and fires a server-side Umami event (`notify_signup_success`) via `src/lib/server/umami.ts` so analytics doesn't depend on the client running JS.
 
 **Preserve all four protection layers if you touch this:**
 
