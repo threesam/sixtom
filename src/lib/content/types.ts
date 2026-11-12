@@ -128,5 +128,7 @@ export interface GrandSlamOffer {
 		rewardBefore: string
 		rewardAfter: string
 		creditTerms: string
+		// a visitor who already knows the process skips the list and talks
+		bookLine: string
 	}
 }

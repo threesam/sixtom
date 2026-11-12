@@ -21,6 +21,7 @@ const CLIENT_EVENTS: readonly ClientEvent[] = [
 	{ event: 'cta_garden_link', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'footer_book', dir: 'component', path: 'SiteFooter.svelte' },
 	{ event: 'cta_waitlist_submit', dir: 'route', path: '+page.svelte' },
+	{ event: 'cta_close_book', dir: 'route', path: '+page.svelte' },
 	{ event: 'cta_faq_book', dir: 'route', path: 'faq/+page.svelte' },
 	{ event: 'cta_notify_submit', dir: 'route', path: 'notify/+page.svelte' },
 	{ event: 'cta_case_study_book', dir: 'route', path: 'log/garden-party/+page.svelte' },

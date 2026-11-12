@@ -194,7 +194,8 @@ export const grandSlam: GrandSlamOffer = {
 		// condition inline — the unqualified version outruns what /terms actually says.
 		rewardBefore: `or start with the teardown: ${usd(site.teardown.priceUSD)},`,
 		rewardAfter: `. i record a 10-minute Loom on where your team is stuck and write down what i'd fix first. join the list, then reply to the email to start one.`,
-		creditTerms: `paid up front. credited against the engagement if you book one within 30 days. if i decline after you've paid, you get all of it back.`
+		creditTerms: `paid up front. credited against the engagement if you book one within 30 days. if i decline after you've paid, you get all of it back.`,
+		bookLine: 'already know which process keeps slipping? book the intro call →'
 	}
 }
 
